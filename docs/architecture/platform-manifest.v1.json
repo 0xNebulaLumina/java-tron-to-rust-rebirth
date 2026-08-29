@@ -2,7 +2,7 @@
   "schema_version": 1,
   "policy": "docs/architecture/toolchains-and-platforms.md",
   "runner": "tools/platform/run",
-  "repository_revision": "df50ce9676b94de0b10a605076adfd8728811384",
+  "repository_revision": "c37b72b04cdf8209fdf1fb4d67f749518f2084b9",
   "support_scope": {
     "initial": "Linux x86_64 GNU only",
     "protocol_scope": "full faithful Java behavior and compatibility scope; platform narrowing does not remove protocol work",
@@ -12,7 +12,12 @@
     {
       "id": "F-PRODUCTION-DEFAULT",
       "features": [],
-      "forbidden": ["test-oracle", "fault-injection", "benchmark", "tracing"],
+      "forbidden": [
+        "test-oracle",
+        "fault-injection",
+        "benchmark",
+        "tracing"
+      ],
       "consensus_equivalent": true
     }
   ],
@@ -25,8 +30,21 @@
     }
   ],
   "cell_contract": {
-    "required": ["compile", "differential", "unit", "native_resource", "ffi", "packaging", "smoke"],
-    "dispositions": ["runnable", "deferred", "unavailable", "not_applicable"],
+    "required": [
+      "compile",
+      "differential",
+      "unit",
+      "native_resource",
+      "ffi",
+      "packaging",
+      "smoke"
+    ],
+    "dispositions": [
+      "runnable",
+      "deferred",
+      "unavailable",
+      "not_applicable"
+    ],
     "c000_rule": "Every applicable cell of every initially supported row requires current passing native EV evidence or reviewed non-applicability. Deferred, unavailable, unrun, stale, failed, or unapproved applicable cells block C000.14 and C000.V. Cross-build or emulation never substitutes for native evidence."
   },
   "rows": [
@@ -41,13 +59,68 @@
       "execution": "native",
       "support": "initial",
       "cells": {
-        "compile": {"disposition": "runnable", "argv": ["cargo", "check", "--locked", "--workspace"], "cwd": "rust-tron", "evidence": ["EV-0002"]},
-        "unit": {"disposition": "runnable", "argv": ["python3", "tools/platform/c000_unit.py"], "cwd": ".", "evidence": ["EV-0003"]},
-        "differential": {"disposition": "runnable", "argv": ["python3", "tools/platform/c000_differential.py"], "cwd": ".", "case_count": 8, "evidence": ["EV-0004"]},
-        "native_resource": {"disposition": "not_applicable", "reason": "C000 introduces no native allocation, handle, lifetime, cleanup, or failure surface; the Rust workspace forbids unsafe code and adopts no native library", "review_bindings": ["RV-0002", "RV-0003"], "review_scope": "security/tooling and license/provenance/tooling", "reopen_condition": "any native dependency, unsafe code, OS resource ownership, or native handle surface is introduced", "evidence": []},
-        "ffi": {"disposition": "not_applicable", "reason": "C000 introduces no foreign-function boundary, linked native library, generated binding, or cross-language in-process call", "review_bindings": ["RV-0002", "RV-0003"], "review_scope": "security/tooling and license/provenance/tooling", "reopen_condition": "any FFI declaration, generated binding, native link, or in-process foreign call is introduced", "evidence": []},
-        "packaging": {"disposition": "not_applicable", "reason": "C000 defines architecture governance and behavior-neutral verification tooling but no distributable binary, archive, image, installer, or release artifact", "review_bindings": ["RV-0002", "RV-0003"], "review_scope": "security/tooling and license/provenance/tooling", "reopen_condition": "a C000-produced distributable or release artifact is introduced", "evidence": []},
-        "smoke": {"disposition": "not_applicable", "reason": "C000 has no node or service runtime surface to start, probe, and stop; executable C000 tooling is covered by focused unit and eight-case differential cells", "review_bindings": ["RV-0002", "RV-0003"], "review_scope": "security/tooling and license/provenance/tooling", "reopen_condition": "a C000 runtime process, node, service, or operator-facing executable surface is introduced", "evidence": []}
+        "compile": {
+          "disposition": "runnable",
+          "argv": [
+            "cargo",
+            "check",
+            "--locked",
+            "--workspace"
+          ],
+          "cwd": "rust-tron",
+          "evidence": []
+        },
+        "unit": {
+          "disposition": "runnable",
+          "argv": [
+            "python3",
+            "tools/platform/c000_unit.py"
+          ],
+          "cwd": ".",
+          "evidence": []
+        },
+        "differential": {
+          "disposition": "runnable",
+          "argv": [
+            "python3",
+            "tools/platform/c000_differential.py"
+          ],
+          "cwd": ".",
+          "case_count": 8,
+          "evidence": []
+        },
+        "native_resource": {
+          "disposition": "not_applicable",
+          "reason": "C000 introduces no native allocation, handle, lifetime, cleanup, or failure surface; the Rust workspace forbids unsafe code and adopts no native library",
+          "review_bindings": [],
+          "review_scope": "security/tooling and license/provenance/tooling",
+          "reopen_condition": "any native dependency, unsafe code, OS resource ownership, or native handle surface is introduced",
+          "evidence": []
+        },
+        "ffi": {
+          "disposition": "not_applicable",
+          "reason": "C000 introduces no foreign-function boundary, linked native library, generated binding, or cross-language in-process call",
+          "review_bindings": [],
+          "review_scope": "security/tooling and license/provenance/tooling",
+          "reopen_condition": "any FFI declaration, generated binding, native link, or in-process foreign call is introduced",
+          "evidence": []
+        },
+        "packaging": {
+          "disposition": "not_applicable",
+          "reason": "C000 defines architecture governance and behavior-neutral verification tooling but no distributable binary, archive, image, installer, or release artifact",
+          "review_bindings": [],
+          "review_scope": "security/tooling and license/provenance/tooling",
+          "reopen_condition": "a C000-produced distributable or release artifact is introduced",
+          "evidence": []
+        },
+        "smoke": {
+          "disposition": "not_applicable",
+          "reason": "C000 has no node or service runtime surface to start, probe, and stop; executable C000 tooling is covered by focused unit and eight-case differential cells",
+          "review_bindings": [],
+          "review_scope": "security/tooling and license/provenance/tooling",
+          "reopen_condition": "a C000 runtime process, node, service, or operator-facing executable surface is introduced",
+          "evidence": []
+        }
       }
     }
   ],
@@ -59,7 +132,12 @@
       "target": "aarch64-unknown-linux-gnu",
       "support": "reserved_later_enablement",
       "c000_blocker": false,
-      "enablement_tasks": ["pin JDK and native toolchain identities", "register a native executor", "add complete applicable cells and current native evidence", "update downstream packaging and release gates"]
+      "enablement_tasks": [
+        "pin JDK and native toolchain identities",
+        "register a native executor",
+        "add complete applicable cells and current native evidence",
+        "update downstream packaging and release gates"
+      ]
     },
     {
       "id": "P-MACOS-X64",
@@ -68,7 +146,12 @@
       "target": "x86_64-apple-darwin",
       "support": "reserved_later_enablement",
       "c000_blocker": false,
-      "enablement_tasks": ["pin JDK and native toolchain identities", "register a native executor", "add complete applicable cells and current native evidence", "update downstream packaging and release gates"]
+      "enablement_tasks": [
+        "pin JDK and native toolchain identities",
+        "register a native executor",
+        "add complete applicable cells and current native evidence",
+        "update downstream packaging and release gates"
+      ]
     },
     {
       "id": "P-MACOS-ARM64",
@@ -77,7 +160,12 @@
       "target": "aarch64-apple-darwin",
       "support": "reserved_later_enablement",
       "c000_blocker": false,
-      "enablement_tasks": ["pin JDK and native toolchain identities", "register a native executor", "add complete applicable cells and current native evidence", "update downstream packaging and release gates"]
+      "enablement_tasks": [
+        "pin JDK and native toolchain identities",
+        "register a native executor",
+        "add complete applicable cells and current native evidence",
+        "update downstream packaging and release gates"
+      ]
     }
   ],
   "coverage": {
@@ -87,9 +175,9 @@
     "missing_initial_rows": 0,
     "duplicates": 0,
     "native_cells_required": 7,
-    "native_cells_passing": 3,
-    "reviewed_not_applicable_cells": 4,
-    "result": "complete"
+    "native_cells_passing": 0,
+    "reviewed_not_applicable_cells": 0,
+    "result": "incomplete"
   },
   "continuous_enforcement": {
     "evidence_schema": "docs/governance/evidence-v1.schema.json",

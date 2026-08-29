@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "java_source_revision": "df50ce9676b94de0b10a605076adfd8728811384",
+  "java_source_revision": "c37b72b04cdf8209fdf1fb4d67f749518f2084b9",
   "runner_protocol": 1,
   "fixture_schema": "schemas/oracle-fixture-v1.schema.json",
   "result_schema": "schemas/oracle-result-v1.schema.json",
@@ -18,17 +18,20 @@
       "path": "production-ownership.v1.json",
       "ledger": "production-ownership",
       "row_count": 9216,
-      "sha256": "0b19e527ff92886b288a09530e0a8b6818dec5065efc98efd987fdc121d66d5a"
+      "sha256": "21f038c79885c83fc3a23e272e9784fcec5e55435cfbe2cd9422ac03cf04e9ee"
     },
     {
       "path": "java-test-ownership.v1.json",
       "ledger": "java-test-ownership",
       "row_count": 3439,
-      "sha256": "f16e650361cc0b0c9c7947727a0643a564891b0b7ec3bf50c95647e71a31686b"
+      "sha256": "1ab281b9e2830cb781a660f02475d02bf336b119a1885f09671d6fae91004a33"
     }
   ],
   "regeneration": {
-    "command": ["python3", "tools/reference-runner/generate-ledgers.py"],
+    "command": [
+      "python3",
+      "tools/reference-runner/generate-ledgers.py"
+    ],
     "generator_version": 3,
     "domain_inventory_sha256": "ca8466d63f700c7efffdc32a6addf5952ba6efa0b2790c44760ba4fadeb099b2",
     "unknown_policy": "fail",
@@ -53,13 +56,13 @@
     "../../tools/reference-runner/java-runner",
     "../../tools/reference-runner/rust-runner"
   ],
-  "status": "C000 complete: 14/14 artifact audit cases pass; 19/19 evidence records valid",
+  "status": "C000 incomplete: evidence and independent approvals must be rerun against revision c37b72b",
   "approval": {
     "review_approvals": {
-      "architecture": "RV-0001",
-      "security": "RV-0002",
-      "license": "RV-0003"
+      "architecture": null,
+      "security": null,
+      "license": null
     },
-    "platform_complete": true
+    "platform_complete": false
   }
 }

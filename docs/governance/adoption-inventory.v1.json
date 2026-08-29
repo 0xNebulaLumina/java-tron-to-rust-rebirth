@@ -3,7 +3,7 @@
   "generated_from": [
     {
       "path": "docs/architecture/platform-manifest.v1.json",
-      "sha256": "638856206e95e8d8291fee6f295d82d0a29a7bb0b0d6d3b062758ee2227b39d2"
+      "sha256": "ae81b97710c3d6ff2e77c07ceb60507315ab09144bc97e093d2ee8af64ae2123"
     },
     {
       "path": "docs/architecture/toolchains-and-platforms.md",
@@ -67,11 +67,11 @@
     },
     {
       "path": "docs/oracles/java-test-ownership.v1.json",
-      "sha256": "f16e650361cc0b0c9c7947727a0643a564891b0b7ec3bf50c95647e71a31686b"
+      "sha256": "1ab281b9e2830cb781a660f02475d02bf336b119a1885f09671d6fae91004a33"
     },
     {
       "path": "docs/oracles/manifest.v1.json",
-      "sha256": "1271aa448089cbf7dfe3623308f258adc3ed1ac2f0f55011e7c7d7f80974f6b6"
+      "sha256": "232affc9a29c375b8fe85b7e918bca6fd80bcd778df1cc7754be6042e8facea0"
     },
     {
       "path": "docs/oracles/normalization-policy-v1.json",
@@ -79,7 +79,7 @@
     },
     {
       "path": "docs/oracles/production-ownership.v1.json",
-      "sha256": "0b19e527ff92886b288a09530e0a8b6818dec5065efc98efd987fdc121d66d5a"
+      "sha256": "21f038c79885c83fc3a23e272e9784fcec5e55435cfbe2cd9422ac03cf04e9ee"
     },
     {
       "path": "docs/oracles/runner-protocol.md",
@@ -247,7 +247,7 @@
       "id": "AD-0001",
       "name": "docs/architecture/platform-manifest.v1.json",
       "kind": "parameter",
-      "exact_version": "sha256:638856206e95e8d8291fee6f295d82d0a29a7bb0b0d6d3b062758ee2227b39d2",
+      "exact_version": "sha256:ae81b97710c3d6ff2e77c07ceb60507315ab09144bc97e093d2ee8af64ae2123",
       "features": [],
       "source": "docs/architecture/platform-manifest.v1.json",
       "consuming_item": "C000.14",
@@ -391,7 +391,7 @@
       "id": "AD-0007",
       "name": "docs/governance/independent-review-v1.schema.json",
       "kind": "schema_source",
-      "exact_version": "schema-v1 sha256:215984258a66ecd7efe5b769b0f77f12ae7fb07bc696ab768fecddf8d267554c",
+      "exact_version": "schema-v1 sha256:e8a4b256b2798bb03af002f980b470520c07c871d924ef6a99f848e105197251",
       "features": [],
       "source": "docs/governance/independent-review-v1.schema.json",
       "consuming_item": "C000.13",
@@ -631,7 +631,7 @@
       "id": "AD-0017",
       "name": "docs/oracles/java-test-ownership.v1.json",
       "kind": "parameter",
-      "exact_version": "sha256:f16e650361cc0b0c9c7947727a0643a564891b0b7ec3bf50c95647e71a31686b",
+      "exact_version": "sha256:1ab281b9e2830cb781a660f02475d02bf336b119a1885f09671d6fae91004a33",
       "features": [],
       "source": "docs/oracles/java-test-ownership.v1.json",
       "consuming_item": "C000.09",
@@ -655,7 +655,7 @@
       "id": "AD-0018",
       "name": "docs/oracles/manifest.v1.json",
       "kind": "parameter",
-      "exact_version": "sha256:1271aa448089cbf7dfe3623308f258adc3ed1ac2f0f55011e7c7d7f80974f6b6",
+      "exact_version": "sha256:232affc9a29c375b8fe85b7e918bca6fd80bcd778df1cc7754be6042e8facea0",
       "features": [],
       "source": "docs/oracles/manifest.v1.json",
       "consuming_item": "C000.04",
@@ -703,7 +703,7 @@
       "id": "AD-0020",
       "name": "docs/oracles/production-ownership.v1.json",
       "kind": "parameter",
-      "exact_version": "sha256:0b19e527ff92886b288a09530e0a8b6818dec5065efc98efd987fdc121d66d5a",
+      "exact_version": "sha256:21f038c79885c83fc3a23e272e9784fcec5e55435cfbe2cd9422ac03cf04e9ee",
       "features": [],
       "source": "docs/oracles/production-ownership.v1.json",
       "consuming_item": "C000.08",
@@ -975,11 +975,11 @@
       "decision": "DD-004",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -999,11 +999,11 @@
       "decision": "DD-004",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1023,11 +1023,11 @@
       "decision": "DD-004",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1479,11 +1479,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1503,11 +1503,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1527,11 +1527,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1551,11 +1551,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1575,11 +1575,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1599,11 +1599,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1623,11 +1623,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1647,11 +1647,11 @@
       "decision": "DD-002",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1671,11 +1671,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1695,11 +1695,11 @@
       "decision": "DD-002",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1719,11 +1719,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1745,11 +1745,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1771,11 +1771,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1797,11 +1797,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1823,11 +1823,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1849,11 +1849,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1875,11 +1875,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1901,11 +1901,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1927,11 +1927,11 @@
       "decision": "DD-001",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1954,11 +1954,11 @@
       "decision": "DD-002",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -1981,11 +1981,11 @@
       "decision": "DD-002",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -2005,11 +2005,11 @@
       "decision": "DD-003",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -2031,11 +2031,11 @@
       "decision": "DD-003",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -2058,11 +2058,11 @@
       "decision": "DD-003",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -2082,11 +2082,11 @@
       "decision": "DD-003",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -2106,11 +2106,11 @@
       "decision": "DD-003",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -2130,11 +2130,11 @@
       "decision": "DD-003",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -2157,11 +2157,11 @@
       "decision": "DD-004",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
@@ -2184,11 +2184,11 @@
       "decision": "DD-004",
       "security": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
       },
       "license": {
         "status": "review_required",
-        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
+        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
       },
       "status": "review_required",
       "invalidation_triggers": [
