@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0003",
   "owning_item": "C000.14",
-  "subject_revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9",
+  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -92,12 +92,14 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-150506Z-0003",
+  "run_id": "c000-descendant-20260829-151429Z-0003",
   "cases": [
     {
       "id": "fixture-schema:mismatch-error",
       "outcome": "pass",
-      "expected": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
       "observed": {
         "case": "fixture-schema:mismatch-error",
         "errors": [],
@@ -108,7 +110,9 @@
     {
       "id": "fixture-schema:mismatch-forbidden-normalization",
       "outcome": "pass",
-      "expected": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
       "observed": {
         "case": "fixture-schema:mismatch-forbidden-normalization",
         "errors": [],
@@ -119,7 +123,9 @@
     {
       "id": "fixture-schema:mismatch-normalization-forbidden-class",
       "outcome": "pass",
-      "expected": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
       "observed": {
         "case": "fixture-schema:mismatch-normalization-forbidden-class",
         "errors": [],
@@ -130,7 +136,9 @@
     {
       "id": "fixture-schema:mismatch-normalization-forbidden-pointer",
       "outcome": "pass",
-      "expected": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
       "observed": {
         "case": "fixture-schema:mismatch-normalization-forbidden-pointer",
         "errors": [],
@@ -141,7 +149,9 @@
     {
       "id": "fixture-schema:mismatch-output",
       "outcome": "pass",
-      "expected": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
       "observed": {
         "case": "fixture-schema:mismatch-output",
         "errors": [],
@@ -152,7 +162,9 @@
     {
       "id": "fixture-schema:mismatch-state",
       "outcome": "pass",
-      "expected": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
       "observed": {
         "case": "fixture-schema:mismatch-state",
         "errors": [],
@@ -163,7 +175,9 @@
     {
       "id": "fixture-schema:negative",
       "outcome": "pass",
-      "expected": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
       "observed": {
         "case": "fixture-schema:negative",
         "errors": [],
@@ -174,7 +188,9 @@
     {
       "id": "fixture-schema:positive",
       "outcome": "pass",
-      "expected": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
       "observed": {
         "case": "fixture-schema:positive",
         "errors": [],
@@ -185,7 +201,9 @@
     {
       "id": "runner-identify:java",
       "outcome": "pass",
-      "expected": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
       "observed": {
         "case": "runner-identify:java",
         "exit_code": 0,
@@ -196,7 +214,9 @@
     {
       "id": "runner-identify:rust",
       "outcome": "pass",
-      "expected": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
       "observed": {
         "case": "runner-identify:rust",
         "exit_code": 0,
@@ -205,21 +225,21 @@
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:05:06Z",
-  "ended_at": "2026-08-29T15:05:06Z",
+  "started_at": "2026-08-29T15:14:29Z",
+  "ended_at": "2026-08-29T15:14:29Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
     "case_count": 10,
-    "all": "pass"
+    "all_pass": true
   },
   "observed": {
     "case_count": 10,
-    "all": "pass"
+    "all_pass": true
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0003.stdout.txt",
-    "sha256": "ccbc7ec8b7c302e14af067fb5cdccd49f668b57be8789a25e0eeaa4d71a0807b"
+    "sha256": "3c662819ced125446d18645896e70534fa749041b4d428e637f811db0f9084a2"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0003.stderr.txt",

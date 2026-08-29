@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0005",
   "owning_item": "C000.14",
-  "subject_revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9",
+  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
   "subject_artifacts": [
     {
       "path": "docs/architecture/license-provenance-policy.md",
@@ -50,88 +50,84 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-150506Z-0005",
+  "run_id": "c000-descendant-20260829-151429Z-0005",
   "cases": [
     {
       "id": "native_resource",
-      "outcome": "pass",
+      "outcome": "fail",
       "expected": {
         "disposition": "not_applicable",
-        "review_status": "pending"
+        "review_bindings": "authenticated independent approvals required"
       },
       "observed": {
         "case": "native_resource",
         "disposition": "not_applicable",
-        "outcome": "pass",
+        "outcome": "fail",
         "reason": "C000 introduces no native allocation, handle, lifetime, cleanup, or failure surface; the Rust workspace forbids unsafe code and adopts no native library",
         "reopen_condition": "any native dependency, unsafe code, OS resource ownership, or native handle surface is introduced",
-        "review_bindings": [],
-        "review_status": "pending authenticated RV bindings"
+        "review_bindings": []
       },
       "skip_disposition": null
     },
     {
       "id": "ffi",
-      "outcome": "pass",
+      "outcome": "fail",
       "expected": {
         "disposition": "not_applicable",
-        "review_status": "pending"
+        "review_bindings": "authenticated independent approvals required"
       },
       "observed": {
         "case": "ffi",
         "disposition": "not_applicable",
-        "outcome": "pass",
+        "outcome": "fail",
         "reason": "C000 introduces no foreign-function boundary, linked native library, generated binding, or cross-language in-process call",
         "reopen_condition": "any FFI declaration, generated binding, native link, or in-process foreign call is introduced",
-        "review_bindings": [],
-        "review_status": "pending authenticated RV bindings"
+        "review_bindings": []
       },
       "skip_disposition": null
     },
     {
       "id": "packaging",
-      "outcome": "pass",
+      "outcome": "fail",
       "expected": {
         "disposition": "not_applicable",
-        "review_status": "pending"
+        "review_bindings": "authenticated independent approvals required"
       },
       "observed": {
         "case": "packaging",
         "disposition": "not_applicable",
-        "outcome": "pass",
+        "outcome": "fail",
         "reason": "C000 defines architecture governance and behavior-neutral verification tooling but no distributable binary, archive, image, installer, or release artifact",
         "reopen_condition": "a C000-produced distributable or release artifact is introduced",
-        "review_bindings": [],
-        "review_status": "pending authenticated RV bindings"
+        "review_bindings": []
       },
       "skip_disposition": null
     },
     {
       "id": "smoke",
-      "outcome": "pass",
+      "outcome": "fail",
       "expected": {
         "disposition": "not_applicable",
-        "review_status": "pending"
+        "review_bindings": "authenticated independent approvals required"
       },
       "observed": {
         "case": "smoke",
         "disposition": "not_applicable",
-        "outcome": "pass",
+        "outcome": "fail",
         "reason": "C000 has no node or service runtime surface to start, probe, and stop; executable C000 tooling is covered by focused unit and eight-case differential cells",
         "reopen_condition": "a C000 runtime process, node, service, or operator-facing executable surface is introduced",
-        "review_bindings": [],
-        "review_status": "pending authenticated RV bindings"
+        "review_bindings": []
       },
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:05:06Z",
-  "ended_at": "2026-08-29T15:05:06Z",
-  "observed_exit_code": 0,
-  "observed_status": "pass",
+  "started_at": "2026-08-29T15:14:29Z",
+  "ended_at": "2026-08-29T15:14:29Z",
+  "observed_exit_code": 1,
+  "observed_status": "fail",
   "expected": {
-    "reviewed_not_applicable": 0,
-    "pending_review": 4
+    "reviewed_not_applicable": 4,
+    "pending_review": 0
   },
   "observed": {
     "reviewed_not_applicable": 0,
@@ -139,7 +135,7 @@
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0005.stdout.txt",
-    "sha256": "cf82b355f4a9893e5b88286fbaf0b482b103623e66c59b5367d9b6d2b8889a5b"
+    "sha256": "500d0831684b2406669eb9f2d5eca56c71155101180c75100745cfaf57753475"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0005.stderr.txt",

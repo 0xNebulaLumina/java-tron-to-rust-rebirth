@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0009",
   "owning_item": "C000.04",
-  "subject_revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9",
+  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -32,7 +32,7 @@
     {
       "path": "tools/platform/c000_artifacts.py",
       "mode": "100755",
-      "sha256": "7b3a5955ef6eabc07f647743265593b20eb7d5266a569a433975ff60a9ac3185"
+      "sha256": "54b1d4edac59b67964350ebde7ba12f07b40a4eadd7b78ce62aeec5a091419ab"
     },
     {
       "path": "tools/platform/run",
@@ -42,7 +42,7 @@
     {
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "a6dc7c963af5b707e2127d827bb2e7313190b8aff9491489f82a2f0a2fa7b712"
+      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
     }
   ],
   "command": [
@@ -65,7 +65,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-150506Z-0009",
+  "run_id": "c000-descendant-20260829-151429Z-0009",
   "cases": [
     {
       "id": "C000.04",
@@ -82,8 +82,8 @@
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:05:06Z",
-  "ended_at": "2026-08-29T15:05:06Z",
+  "started_at": "2026-08-29T15:14:29Z",
+  "ended_at": "2026-08-29T15:14:29Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
@@ -97,7 +97,7 @@
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0009.stdout.txt",
-    "sha256": "802a61c303d2422eea87cf42b97a8c1ca64757fd4ddb4dde445548cdafcb8f54"
+    "sha256": "c391a0b1d984380e5c78e66819a397b0a290df669fd06c4afcd233ce8b660fda"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0009.stderr.txt",
@@ -156,7 +156,7 @@
       "kind": "generator",
       "path": "tools/platform/c000_artifacts.py",
       "mode": "100755",
-      "sha256": "7b3a5955ef6eabc07f647743265593b20eb7d5266a569a433975ff60a9ac3185"
+      "sha256": "54b1d4edac59b67964350ebde7ba12f07b40a4eadd7b78ce62aeec5a091419ab"
     },
     {
       "kind": "generator",
@@ -168,7 +168,7 @@
       "kind": "source",
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "a6dc7c963af5b707e2127d827bb2e7313190b8aff9491489f82a2f0a2fa7b712"
+      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
     }
   ],
   "review_bindings": [],

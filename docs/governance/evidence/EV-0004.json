@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0004",
   "owning_item": "C000.14",
-  "subject_revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9",
+  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -97,7 +97,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-150506Z-0004",
+  "run_id": "c000-descendant-20260829-151429Z-0004",
   "cases": [
     {
       "id": "positive",
@@ -266,21 +266,21 @@
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:05:06Z",
-  "ended_at": "2026-08-29T15:05:06Z",
+  "started_at": "2026-08-29T15:14:29Z",
+  "ended_at": "2026-08-29T15:14:29Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
     "case_count": 8,
-    "all": "pass"
+    "all_pass": true
   },
   "observed": {
     "case_count": 8,
-    "all": "pass"
+    "all_pass": true
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0004.stdout.txt",
-    "sha256": "a79695311a316d27e7d94f1c6fb7baaf5f196674862f28badf38b450219ac298"
+    "sha256": "6351b31b44e1ba5534c85908157df85398e6128962c9e429fe7017559ffd77f4"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0004.stderr.txt",
