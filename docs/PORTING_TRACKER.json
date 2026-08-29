@@ -48,14 +48,12 @@
       "kind": "substantive",
       "description": "Define workspace crates for protocol, primitives, config, crypto, shielded, storage, state, TVM, execution, consensus, network, APIs, events/metrics, node, and toolkit; prohibit dependency cycles; publish the owning-crate/gate map.",
       "dependencies": [],
-      "status": "[x]",
+      "status": "[ ]",
       "readiness": "ready",
       "owner": "c000-foundation",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0006"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Reset at active revision 65d7291: prior EV evidence is stale; regenerate clean-tree workspace/crate-map evidence after the C000 artifact runner and governed artifacts are repaired.",
       "decisions": [],
       "adoptions": [
         "AD-0034",
@@ -82,18 +80,16 @@
       "id": "C000.02",
       "chunk": "C000",
       "kind": "substantive",
-      "description": "Pin Rust and Java toolchains, source revision, the initial supported Linux x86_64 GNU platform/backend/feature row, unsafe policy, and reproducible artifact provenance. Reserve Linux aarch64 and macOS x86_64/aarch64 stable row IDs for explicit later enablement with native executors and evidence without narrowing protocol behavior or migration scope.",
+      "description": "Pin Rust and Java toolchains, source revision, the initial supported Linux x86_64 GNU platform/backend/feature row, unsafe policy, and reproducible artifact provenance. Reserve Linux aarch64 and macOS x86_64/aarch64 stable row IDs for explicit later enablement with native executors and evidence; this platform staging must not narrow protocol behavior or migration scope.",
       "dependencies": [
         "C000.01"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-foundation",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0007"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.01 and reset at active revision 65d7291; prior toolchain/platform evidence is stale and platform revision/coverage must be regenerated.",
       "decisions": ["docs/architecture/toolchains-and-platforms.md"],
       "adoptions": [
         "AD-0002",
@@ -119,14 +115,12 @@
       "dependencies": [
         "C000.02"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-foundation",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0008"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.02; prior EV evidence does not attest active revision 65d7291 and must be rerun from a clean tree.",
       "decisions": [],
       "adoptions": [],
       "last_updated": "2026-08-29"
@@ -139,14 +133,12 @@
       "dependencies": [
         "C000.03"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-oracles-ledgers",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0009"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.03; active revision 65d7291 changed governed schemas/artifacts and invalidated prior evidence and DD-005 license approval.",
       "decisions": [],
       "adoptions": [
         "AD-0018",
@@ -164,14 +156,12 @@
       "dependencies": [
         "C000.04"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-oracles-ledgers",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0010"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.04; active revision 65d7291 invalidated runner evidence, and tools/platform/c000_artifacts.py currently aborts because validator signatures changed.",
       "decisions": [],
       "adoptions": [
         "AD-0009",
@@ -201,14 +191,12 @@
       "dependencies": [
         "C000.05"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-oracles-ledgers",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0011"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.05; prior DR-001 completion evidence is stale for active revision 65d7291.",
       "decisions": [
         "DR-001"
       ],
@@ -223,14 +211,12 @@
       "dependencies": [
         "C000.06"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-oracles-ledgers",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0012"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.06; RV-0002/RV-0003 do not cover active revision 65d7291, so security and license policy approval is pending.",
       "decisions": [],
       "adoptions": [
         "AD-0022",
@@ -247,14 +233,12 @@
       "dependencies": [
         "C000.07"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-oracles-ledgers",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0013"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.07; production ledgers and ownership bindings are stale at active revision 65d7291 and require regeneration.",
       "decisions": [],
       "adoptions": [
         "AD-0020",
@@ -272,14 +256,12 @@
       "dependencies": [
         "C000.08"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-oracles-ledgers",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0014"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.08; Java test/resource ledgers are stale at active revision 65d7291 and require regeneration.",
       "decisions": [],
       "adoptions": [
         "AD-0017",
@@ -297,14 +279,12 @@
       "dependencies": [
         "C000.09"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-governance",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0015"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.09; tracker validation currently fails at active revision 65d7291 with stale evidence, digest drift, and ineffective completed records.",
       "decisions": [
         "docs/governance/tracker-evidence-dependency-contract.md",
         "docs/governance/tracker-v1.schema.json"
@@ -324,14 +304,12 @@
       "dependencies": [
         "C000.10"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-governance",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0016"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.10; DD-005 and affected adoption/license dispositions must be returned to pending until current independent review.",
       "decisions": [
         "docs/governance/DD-template.md",
         "docs/governance/dependency-decision-v1.schema.json",
@@ -351,14 +329,12 @@
       "dependencies": [
         "C000.11"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-governance",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0017"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.11; DR-004/C000.12 is absent from finite provenance/adoption and license-review scope for active revision 65d7291.",
       "decisions": [
         "docs/architecture/DR-004-custom-actuator-extensions.md"
       ],
@@ -373,14 +349,12 @@
       "dependencies": [
         "C000.12"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-governance",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0001"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.12; c000_artifacts.py calls evidence_contract/review_contract with obsolete signatures, and review-schema/adoption digests disagree.",
       "decisions": [
         "docs/governance/behavior-manifest-v1.schema.json",
         "docs/governance/evidence-v1.schema.json",
@@ -398,22 +372,17 @@
       "id": "C000.14",
       "chunk": "C000",
       "kind": "substantive",
-      "description": "Publish the continuously enforced platform manifest for the C000.02 initially supported Linux x86_64 GNU row, marking native versus cross-built/emulated execution and the applicable compile, differential/unit, native-resource, FFI, packaging and smoke commands. Record reserved later rows and explicit enablement conditions without treating them as C000 blockers.",
+      "description": "Publish the continuously enforced platform manifest for the C000.02 initially supported Linux x86_64 GNU row, marking native versus cross-built/emulated execution and the applicable compile, differential/unit, native-resource, FFI, packaging and smoke commands. Record reserved later rows and their explicit enablement conditions without treating them as C000 blockers.",
       "dependencies": [
         "C000.02",
         "C000.13"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-governance",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0002",
-        "EV-0003",
-        "EV-0004",
-        "EV-0005"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.02 and C000.13; platform manifest revision/coverage and security-sensitive non-applicability approvals are stale for 65d7291.",
       "decisions": [
         "docs/architecture/platform-manifest.v1.json"
       ],
@@ -439,14 +408,12 @@
       "dependencies": [
         "C000.14"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "c000-governance",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0018"
-      ],
-      "blocker": null,
+      "evidence": [],
+      "blocker": "Blocked by C000.14; recurring adoption inventory contains stale digest and license/security approval bindings at active revision 65d7291.",
       "decisions": [
         "docs/governance/adoption-inventory.v1.json",
         "tools/tracker/validate.py"
@@ -478,19 +445,13 @@
         "C000.14",
         "C000.15"
       ],
-      "status": "[x]",
-      "readiness": "ready",
+      "status": "[ ]",
+      "readiness": "blocked",
       "owner": "orchestrator",
       "branch_or_pr": null,
-      "evidence": [
-        "EV-0019"
-      ],
-      "blocker": null,
-      "decisions": [
-        "RV-0001",
-        "RV-0002",
-        "RV-0003"
-      ],
+      "evidence": [],
+      "blocker": "Blocked by all C000 substantive items: active revision 65d7291 has no current clean-tree EV set or authenticated architecture/security/license closure; artifact runner and tracker validation fail.",
+      "decisions": [],
       "adoptions": [
         "AD-0052",
         "AD-0063"
@@ -506,7 +467,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "ready",
+      "readiness": "blocked",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -524,7 +485,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "ready",
+      "readiness": "blocked",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -542,7 +503,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "ready",
+      "readiness": "blocked",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -560,7 +521,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "ready",
+      "readiness": "blocked",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -578,7 +539,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "ready",
+      "readiness": "blocked",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -596,7 +557,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "ready",
+      "readiness": "blocked",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -614,7 +575,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "ready",
+      "readiness": "blocked",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -632,7 +593,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "ready",
+      "readiness": "blocked",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -5974,6 +5935,8 @@
     "roots": [
       "C000.01"
     ],
-    "result": "pass"
+    "active_revision": "65d7291efc9c0b30399f553016195e784bde8941",
+    "summary": "fail/current: committed C000 reviews report blocker/high findings; all prior C000 EV evidence and RV approvals are stale or pending for active revision 65d7291, the C000 artifact runner aborts on validator signature mismatch, and tracker validation reports stale evidence/digest/coverage gaps.",
+    "result": "fail"
   }
 }
