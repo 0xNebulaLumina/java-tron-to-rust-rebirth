@@ -4,24 +4,259 @@
   "owning_gate": "C000.V",
   "review_class": "security",
   "scope_rows": [
+    "C000.01",
+    "C000.02",
+    "C000.04",
+    "C000.05",
+    "C000.07",
+    "C000.08",
     "C000.09",
     "C000.10",
     "C000.11",
-    "C000.12",
-    "C000.15"
+    "C000.13",
+    "C000.14",
+    "C000.15",
+    "C000.V"
   ],
-  "seam_rows": [],
+  "seam_rows": [
+    "SEAM-001",
+    "SEAM-002",
+    "SEAM-003",
+    "SEAM-004",
+    "SEAM-005",
+    "SEAM-006",
+    "SEAM-007",
+    "SEAM-008",
+    "SEAM-009",
+    "SEAM-010"
+  ],
   "covered_revisions": {
-    "repository": "df50ce9676b94de0b10a605076adfd8728811384"
+    "repository": "01bd7cb0cd11fb06b2d7acfd07c254a46ebed10d"
   },
   "covered_artifacts": [
     {
+      "path": "docs/architecture/platform-manifest.v1.json",
+      "sha256": "638856206e95e8d8291fee6f295d82d0a29a7bb0b0d6d3b062758ee2227b39d2"
+    },
+    {
+      "path": "docs/architecture/toolchains-and-platforms.md",
+      "sha256": "da6fbd2ac97cd2647a72e2084c35d35a5319ef811ab1b2792bc1977af0200ae0"
+    },
+    {
+      "path": "docs/governance/adoption-inventory-v1.schema.json",
+      "sha256": "dede0d4e6f683498282250604d65b5c341fa9176a5fa4d2d3b4d21a32299d612"
+    },
+    {
       "path": "docs/governance/adoption-inventory.v1.json",
-      "sha256": "551b596d5e1a612dd0b3115f93c1b70e8763ab2c53664c1c90f0d5f0429ae1a9"
+      "sha256": "a70957bdf9ddd1f5a71b6088f57c96c620b5ee74130bf4b85e4513155a635fda"
+    },
+    {
+      "path": "docs/governance/behavior-manifest-v1.schema.json",
+      "sha256": "de679f4884d8fc2ab0c9fa6a18f7c5e94efa0ef2699e4f4408180b13fc81e48f"
+    },
+    {
+      "path": "docs/governance/dependency-decision-v1.schema.json",
+      "sha256": "62336f1abdc5dbb7b6a8811447cb87fd41119a1941a03766b9d58f5c0857041d"
     },
     {
       "path": "docs/governance/dependency-decisions.v1.json",
-      "sha256": "c9a4908f046b73d5a3a4fe07a3028b9a293629b6420d58472cca6117e9fbed1a"
+      "sha256": "37d3b74a1c255761a9555c6cd02bcf08e2b88d3b5bed6e6acd4a60c57949138d"
+    },
+    {
+      "path": "docs/governance/evidence-v1.schema.json",
+      "sha256": "249ecc36508d27bd609babb49f7cc35d2bf18abd448265a330c8dde414ce6c6f"
+    },
+    {
+      "path": "docs/governance/independent-review-v1.schema.json",
+      "sha256": "e8a4b256b2798bb03af002f980b470520c07c871d924ef6a99f848e105197251"
+    },
+    {
+      "path": "docs/governance/tracker-v1.schema.json",
+      "sha256": "14b1abd6a1c237e7bb5cb2bad68a0d1185d331880f80cd4c455347bce76aa450"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/mismatch-error.json",
+      "sha256": "37a6a62bfbf7ba355637da04400f764707b7068dc0ac9a494a66522ee8193530"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/mismatch-forbidden-normalization.json",
+      "sha256": "4842e34f710e223d457649faf73d344d0b12cb7baf92bbf9cf88ece065b71f05"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-class.json",
+      "sha256": "4435daa383c4d7559a00a11aa79e5002a08e94948bd48a6a39974950c4c538b3"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-pointer.json",
+      "sha256": "ad1616d90a7f148200b40a079aca401724a40a0a3af0a86032a5da92c6907af3"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/mismatch-output.json",
+      "sha256": "accae08c09be4a36bb41886c61ebc7c37cf2255157bd9453e1d986d6f727e6a1"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/mismatch-state.json",
+      "sha256": "29f22f2038eb9b209a56ee2eeb860aceeb00ae615e697feb63f5ddeb118186b8"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/negative.json",
+      "sha256": "e626eebc2f25e6717715bade230fce8260ab0ca8fb1bd7670d45f74aaca9245b"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/positive.json",
+      "sha256": "aa32a0a57c7c17885a6aac20809d14f961be15fd2e350e0d42f0d4d431ce68d6"
+    },
+    {
+      "path": "docs/oracles/java-test-ownership.v1.json",
+      "sha256": "f16e650361cc0b0c9c7947727a0643a564891b0b7ec3bf50c95647e71a31686b"
+    },
+    {
+      "path": "docs/oracles/manifest.v1.json",
+      "sha256": "1271aa448089cbf7dfe3623308f258adc3ed1ac2f0f55011e7c7d7f80974f6b6"
+    },
+    {
+      "path": "docs/oracles/normalization-policy-v1.json",
+      "sha256": "ae8e332d42efa831f84130e37a0700b9204bd707bb6023609e21985179d8e897"
+    },
+    {
+      "path": "docs/oracles/production-ownership.v1.json",
+      "sha256": "0b19e527ff92886b288a09530e0a8b6818dec5065efc98efd987fdc121d66d5a"
+    },
+    {
+      "path": "docs/oracles/runner-protocol.md",
+      "sha256": "cc02a0d33a1e3bd5661d022c06273e7dfe95a9497489ef3d36363b87be484e25"
+    },
+    {
+      "path": "docs/oracles/schemas/license-provenance-v1.schema.json",
+      "sha256": "16ae136443e483ee1165b93d2c9095e56a3f8463ae8c526543d294291db784ae"
+    },
+    {
+      "path": "docs/oracles/schemas/mismatch-report-v1.schema.json",
+      "sha256": "40eecf6cc9977302331f54b7cb52570de78c6c702cb23b829f31006cf3579e00"
+    },
+    {
+      "path": "docs/oracles/schemas/oracle-fixture-v1.schema.json",
+      "sha256": "9e1c053e18b3c35ef8aa65eb974fa6cd869f66e12538138953994c6326e0f482"
+    },
+    {
+      "path": "docs/oracles/schemas/oracle-result-v1.schema.json",
+      "sha256": "f21a19efff4fb8749bae8b8eb2773e169f67c34788aff95654e72277d24725a4"
+    },
+    {
+      "path": "docs/oracles/schemas/ownership-ledger-v1.schema.json",
+      "sha256": "fcee680065acf8bd9230b9e77e2d90319c811c404ea656e5b56d6ef36018c528"
+    },
+    {
+      "path": "docs/oracles/schemas/security-finding-v1.schema.json",
+      "sha256": "5bf75afc41b389d3dfa4c74880eb46db624dbb2a09d9eecb098dacad3190b52c"
+    },
+    {
+      "path": "docs/oracles/schemas/threat-model-v1.schema.json",
+      "sha256": "9f9153bd9bb8d6272107b06c3d520275b2dd48b49c9176bf41320ace79913741"
+    },
+    {
+      "path": "java-tron/build.gradle",
+      "sha256": "5ebee95958472a0ed9812f70ddbbba21039f627eeaab776fa281e504cce8526a"
+    },
+    {
+      "path": "java-tron/gradle/wrapper/gradle-wrapper.jar",
+      "sha256": "3dc39ad650d40f6c029bd8ff605c6d95865d657dbfdeacdb079db0ddfffedf9f"
+    },
+    {
+      "path": "java-tron/gradle/wrapper/gradle-wrapper.properties",
+      "sha256": "2e4b4b216e7444cdebfa9c542b8eac0548e85c94e0c709de9a6eb7a69cc9a975"
+    },
+    {
+      "path": "java-tron/gradlew",
+      "sha256": "261d896f782ec3181add62d77d5b1b9e1d0d599757ec108d857bad1eec2e7615"
+    },
+    {
+      "path": "rust-tron/Cargo.lock",
+      "sha256": "c8bf1395110ba03bc8fcb0e0f2d89dfc87d9c3f47b75a085662e2cb068723db4"
+    },
+    {
+      "path": "rust-tron/Cargo.toml",
+      "sha256": "8691685741ed539c44def10375169ee0a94329677ae5c61e373540993b1491f6"
+    },
+    {
+      "path": "rust-tron/crates/tron-apis/Cargo.toml",
+      "sha256": "fbc0226bbd4e36ab75ccf012581d7ffc17af6812b12ea96ab5f20cacbd716f84"
+    },
+    {
+      "path": "rust-tron/crates/tron-config/Cargo.toml",
+      "sha256": "46b8615ae98c3e1e87ecbddc11d9c67fc641f44b0f0968b1f241fc0d5b62766a"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/Cargo.toml",
+      "sha256": "e6da2be0249d142bc0b3eddde74be101bdc41c21b082811a648edb598103b794"
+    },
+    {
+      "path": "rust-tron/crates/tron-crypto/Cargo.toml",
+      "sha256": "e03f9fa3557b5d1c182eb69bdf20d5f9785690eac28bce8eb7d7d048ef7604b0"
+    },
+    {
+      "path": "rust-tron/crates/tron-events-metrics/Cargo.toml",
+      "sha256": "737f2d4434924493e21128de34b9ea615a1a79e6fa7693b8614c2061ca4a1ccf"
+    },
+    {
+      "path": "rust-tron/crates/tron-execution/Cargo.toml",
+      "sha256": "28a4bda334eaa13b08e4ea9dfef837f3558d52bb8366169bd95e9a1e40b219f8"
+    },
+    {
+      "path": "rust-tron/crates/tron-network/Cargo.toml",
+      "sha256": "be1cc1c7b61deb4ea520eb96f96fe0b6ab78f4ed2a58038bf7d13b29631887c5"
+    },
+    {
+      "path": "rust-tron/crates/tron-node/Cargo.toml",
+      "sha256": "c06dfb9f83772be50fd65bd87c97f3060294d95b2dbd275eb25b1f90188809ad"
+    },
+    {
+      "path": "rust-tron/crates/tron-primitives/Cargo.toml",
+      "sha256": "f299b3d584b17a74f60908f9b0186edb998d7852300ac4123b40975795d215f7"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/Cargo.toml",
+      "sha256": "6b5b45f097c505cb7c982f66e127eed4069278252b7b2833564035a6f3d48d20"
+    },
+    {
+      "path": "rust-tron/crates/tron-shielded/Cargo.toml",
+      "sha256": "a8f3a72803a19c9ebf8efb222c26a6ad1570d7026b812743dd34376058379faa"
+    },
+    {
+      "path": "rust-tron/crates/tron-state/Cargo.toml",
+      "sha256": "81f386e41efe8e66452fd722eb1272d2cc6df3683c44f56e5c63560bcfb65c65"
+    },
+    {
+      "path": "rust-tron/crates/tron-storage/Cargo.toml",
+      "sha256": "8af101fe2d82104e587889812ace371fbfd4801bf6706a08f5c476621cea5f5a"
+    },
+    {
+      "path": "rust-tron/crates/tron-toolkit/Cargo.toml",
+      "sha256": "7f0f44c9656782af5daa03011462032828c6aaedac3daf886148f30a6c48004c"
+    },
+    {
+      "path": "rust-tron/crates/tron-tvm/Cargo.toml",
+      "sha256": "f29e8177a6c1317463f2d95abff66688f39a0f6b1424ea4ac4584e521d861dbe"
+    },
+    {
+      "path": "rust-tron/rust-toolchain.toml",
+      "sha256": "8adfc1727670e54730d1c2bdfec839504cb9cd2d95c4fb7cf11b5874c3f38f80"
+    },
+    {
+      "path": "tools/platform/c000_artifacts.py",
+      "sha256": "d1f74cdfa3201f561343a270400f43783bafd586d0ca32d1ec86dc2fea72b4fb"
+    },
+    {
+      "path": "tools/platform/c000_differential.py",
+      "sha256": "65bc44ccde4d59cbe6dea783dce98963bdcb16954b69fd3b22f806be2f2a99e0"
+    },
+    {
+      "path": "tools/platform/c000_not_applicable.py",
+      "sha256": "699c17a2f2e7ef422c239393de2536f3cf3db02df9de5f14bcef138b5da73bd4"
+    },
+    {
+      "path": "tools/platform/c000_unit.py",
+      "sha256": "374088ae10b289a755842bb62efdee91c32593dae9757b08fb236abe81e34ad2"
     },
     {
       "path": "tools/platform/run",
@@ -29,7 +264,7 @@
     },
     {
       "path": "tools/reference-runner/generate-ledgers.py",
-      "sha256": "feba8260a50870330d2462f5a201ffa64852e8841f10fd4ff7293f11419aefe1"
+      "sha256": "ce8c6120338838700e6a51b9d1534f109826da4037cb0d0ff983be9c19ee88e1"
     },
     {
       "path": "tools/reference-runner/java-runner",
@@ -45,31 +280,122 @@
     },
     {
       "path": "tools/tracker/validate.py",
-      "sha256": "48495d1355e28108ee83722f61c933e6f43d5e739075c56c0de7020f6062f6c4"
-    },
+      "sha256": "b89ab18fce61103d23df88e367f07d61f403478996734123099c7e43b23e59ee"
+    }
+  ],
+  "authors": [
     {
-      "path": "rust-tron/rust-toolchain.toml",
-      "sha256": "8adfc1727670e54730d1c2bdfec839504cb9cd2d95c4fb7cf11b5874c3f38f80"
-    },
+      "agent_id": "c000-governance-review-fix",
+      "artifact_paths": [
+        "docs/architecture/platform-manifest.v1.json",
+        "docs/architecture/toolchains-and-platforms.md",
+        "docs/governance/adoption-inventory-v1.schema.json",
+        "docs/governance/adoption-inventory.v1.json",
+        "docs/governance/behavior-manifest-v1.schema.json",
+        "docs/governance/dependency-decision-v1.schema.json",
+        "docs/governance/dependency-decisions.v1.json",
+        "docs/governance/evidence-v1.schema.json",
+        "docs/governance/independent-review-v1.schema.json",
+        "docs/governance/tracker-v1.schema.json",
+        "docs/oracles/fixtures/v1/mismatch-error.json",
+        "docs/oracles/fixtures/v1/mismatch-forbidden-normalization.json",
+        "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-class.json",
+        "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-pointer.json",
+        "docs/oracles/fixtures/v1/mismatch-output.json",
+        "docs/oracles/fixtures/v1/mismatch-state.json",
+        "docs/oracles/fixtures/v1/negative.json",
+        "docs/oracles/fixtures/v1/positive.json",
+        "docs/oracles/java-test-ownership.v1.json",
+        "docs/oracles/manifest.v1.json",
+        "docs/oracles/normalization-policy-v1.json",
+        "docs/oracles/production-ownership.v1.json",
+        "docs/oracles/runner-protocol.md",
+        "docs/oracles/schemas/license-provenance-v1.schema.json",
+        "docs/oracles/schemas/mismatch-report-v1.schema.json",
+        "docs/oracles/schemas/oracle-fixture-v1.schema.json",
+        "docs/oracles/schemas/oracle-result-v1.schema.json",
+        "docs/oracles/schemas/ownership-ledger-v1.schema.json",
+        "docs/oracles/schemas/security-finding-v1.schema.json",
+        "docs/oracles/schemas/threat-model-v1.schema.json",
+        "java-tron/build.gradle",
+        "java-tron/gradle/wrapper/gradle-wrapper.jar",
+        "java-tron/gradle/wrapper/gradle-wrapper.properties",
+        "java-tron/gradlew",
+        "rust-tron/Cargo.lock",
+        "rust-tron/Cargo.toml",
+        "rust-tron/crates/tron-apis/Cargo.toml",
+        "rust-tron/crates/tron-config/Cargo.toml",
+        "rust-tron/crates/tron-consensus/Cargo.toml",
+        "rust-tron/crates/tron-crypto/Cargo.toml",
+        "rust-tron/crates/tron-events-metrics/Cargo.toml",
+        "rust-tron/crates/tron-execution/Cargo.toml",
+        "rust-tron/crates/tron-network/Cargo.toml",
+        "rust-tron/crates/tron-node/Cargo.toml",
+        "rust-tron/crates/tron-primitives/Cargo.toml",
+        "rust-tron/crates/tron-protocol/Cargo.toml",
+        "rust-tron/crates/tron-shielded/Cargo.toml",
+        "rust-tron/crates/tron-state/Cargo.toml",
+        "rust-tron/crates/tron-storage/Cargo.toml",
+        "rust-tron/crates/tron-toolkit/Cargo.toml",
+        "rust-tron/crates/tron-tvm/Cargo.toml",
+        "rust-tron/rust-toolchain.toml",
+        "tools/platform/c000_artifacts.py",
+        "tools/platform/c000_differential.py",
+        "tools/platform/c000_not_applicable.py",
+        "tools/platform/c000_unit.py",
+        "tools/platform/run",
+        "tools/reference-runner/generate-ledgers.py",
+        "tools/reference-runner/java-runner",
+        "tools/reference-runner/runner.py",
+        "tools/reference-runner/rust-runner",
+        "tools/tracker/validate.py"
+      ]
+    }
+  ],
+  "owners": [
     {
-      "path": "java-tron/gradle/wrapper/gradle-wrapper.jar",
-      "sha256": "3dc39ad650d40f6c029bd8ff605c6d95865d657dbfdeacdb079db0ddfffedf9f"
-    },
-    {
-      "path": "java-tron/gradlew",
-      "sha256": "261d896f782ec3181add62d77d5b1b9e1d0d599757ec108d857bad1eec2e7615"
+      "agent_id": "c000-governance",
+      "scope_rows": [
+        "C000.01",
+        "C000.02",
+        "C000.04",
+        "C000.05",
+        "C000.07",
+        "C000.08",
+        "C000.09",
+        "C000.10",
+        "C000.11",
+        "C000.13",
+        "C000.14",
+        "C000.15",
+        "C000.V"
+      ],
+      "seam_rows": [
+        "SEAM-001",
+        "SEAM-002",
+        "SEAM-003",
+        "SEAM-004",
+        "SEAM-005",
+        "SEAM-006",
+        "SEAM-007",
+        "SEAM-008",
+        "SEAM-009",
+        "SEAM-010"
+      ]
     }
   ],
   "reviewers": [
     {
-      "identity": "C000 Security Reviewer SR-01",
+      "agent_id": "c000-security-review",
+      "identity": "c000-security-review",
       "role": "security",
       "independent_of_authors": true,
       "conflicts": [],
       "recusals": []
     },
     {
-      "identity": "C000 Security Closure Reviewer SR-02",
+      "agent_id": "plan-approval-a",
+      "identity": "plan-approval-a",
       "role": "closure",
       "independent_of_authors": true,
       "conflicts": [],
@@ -77,19 +403,19 @@
     }
   ],
   "findings": [],
-  "reruns": ["EV-0003", "EV-0004", "EV-0005"],
+  "reruns": [],
   "closure": {
-    "status": "approved",
-    "reviewer": "C000 Security Closure Reviewer SR-02",
-    "date": "2026-08-29",
-    "approval": true
+    "status": "pending",
+    "reviewer_agent_id": null,
+    "date": null,
+    "approval": false
   },
   "retention_until": "2027-08-29",
   "invalidation_triggers": [
     "covered repository revision changes",
     "covered artifact digest changes",
-    "adoption decision or disposition changes",
-    "new or reopened finding",
-    "tool command, dependency, privilege, network, or runtime boundary changes"
+    "authorship, ownership, reviewer, or closure identity changes",
+    "scope row or seam review requirement changes",
+    "new or reopened finding"
   ]
 }

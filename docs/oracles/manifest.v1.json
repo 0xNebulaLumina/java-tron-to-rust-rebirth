@@ -18,19 +18,19 @@
       "path": "production-ownership.v1.json",
       "ledger": "production-ownership",
       "row_count": 9216,
-      "sha256": "daa3fff02d748ffd9c43b90b8f0cebf92f5a1ac46cd0f3eea48d6066f224420d"
+      "sha256": "0b19e527ff92886b288a09530e0a8b6818dec5065efc98efd987fdc121d66d5a"
     },
     {
       "path": "java-test-ownership.v1.json",
       "ledger": "java-test-ownership",
       "row_count": 3439,
-      "sha256": "6b39d2c86d9e8dda0fc305d0029c0f72eb07a7b8df185bf88025e1e451e1004f"
+      "sha256": "f16e650361cc0b0c9c7947727a0643a564891b0b7ec3bf50c95647e71a31686b"
     }
   ],
   "regeneration": {
     "command": ["python3", "tools/reference-runner/generate-ledgers.py"],
-    "generator_version": 2,
-    "domain_inventory_sha256": "e4506c584da9bee95bd8b7939502d869ab5cf062cefdd47973b8c93055f94a6d",
+    "generator_version": 3,
+    "domain_inventory_sha256": "ca8466d63f700c7efffdc32a6addf5952ba6efa0b2790c44760ba4fadeb099b2",
     "unknown_policy": "fail",
     "required_checks": [
       "owner exists in docs/PORTING_TRACKER.json",

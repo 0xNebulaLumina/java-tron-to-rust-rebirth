@@ -27,7 +27,7 @@
     },
     {
       "path": "docs/governance/independent-review-v1.schema.json",
-      "sha256": "215984258a66ecd7efe5b769b0f77f12ae7fb07bc696ab768fecddf8d267554c"
+      "sha256": "e8a4b256b2798bb03af002f980b470520c07c871d924ef6a99f848e105197251"
     },
     {
       "path": "docs/governance/tracker-v1.schema.json",
@@ -67,11 +67,11 @@
     },
     {
       "path": "docs/oracles/java-test-ownership.v1.json",
-      "sha256": "6b39d2c86d9e8dda0fc305d0029c0f72eb07a7b8df185bf88025e1e451e1004f"
+      "sha256": "f16e650361cc0b0c9c7947727a0643a564891b0b7ec3bf50c95647e71a31686b"
     },
     {
       "path": "docs/oracles/manifest.v1.json",
-      "sha256": "8a025be90b30a8267dbfabe26631dfaf0f2a1ac0994ebafa7ef204c38c3994f6"
+      "sha256": "1271aa448089cbf7dfe3623308f258adc3ed1ac2f0f55011e7c7d7f80974f6b6"
     },
     {
       "path": "docs/oracles/normalization-policy-v1.json",
@@ -79,7 +79,7 @@
     },
     {
       "path": "docs/oracles/production-ownership.v1.json",
-      "sha256": "daa3fff02d748ffd9c43b90b8f0cebf92f5a1ac46cd0f3eea48d6066f224420d"
+      "sha256": "0b19e527ff92886b288a09530e0a8b6818dec5065efc98efd987fdc121d66d5a"
     },
     {
       "path": "docs/oracles/runner-protocol.md",
@@ -223,7 +223,7 @@
     },
     {
       "path": "tools/reference-runner/generate-ledgers.py",
-      "sha256": "feba8260a50870330d2462f5a201ffa64852e8841f10fd4ff7293f11419aefe1"
+      "sha256": "ce8c6120338838700e6a51b9d1534f109826da4037cb0d0ff983be9c19ee88e1"
     },
     {
       "path": "tools/reference-runner/java-runner",
@@ -239,7 +239,7 @@
     },
     {
       "path": "tools/tracker/validate.py",
-      "sha256": "48495d1355e28108ee83722f61c933e6f43d5e739075c56c0de7020f6062f6c4"
+      "sha256": "b89ab18fce61103d23df88e367f07d61f403478996734123099c7e43b23e59ee"
     }
   ],
   "instances": [
@@ -631,7 +631,7 @@
       "id": "AD-0017",
       "name": "docs/oracles/java-test-ownership.v1.json",
       "kind": "parameter",
-      "exact_version": "sha256:6b39d2c86d9e8dda0fc305d0029c0f72eb07a7b8df185bf88025e1e451e1004f",
+      "exact_version": "sha256:f16e650361cc0b0c9c7947727a0643a564891b0b7ec3bf50c95647e71a31686b",
       "features": [],
       "source": "docs/oracles/java-test-ownership.v1.json",
       "consuming_item": "C000.09",
@@ -655,7 +655,7 @@
       "id": "AD-0018",
       "name": "docs/oracles/manifest.v1.json",
       "kind": "parameter",
-      "exact_version": "sha256:8a025be90b30a8267dbfabe26631dfaf0f2a1ac0994ebafa7ef204c38c3994f6",
+      "exact_version": "sha256:1271aa448089cbf7dfe3623308f258adc3ed1ac2f0f55011e7c7d7f80974f6b6",
       "features": [],
       "source": "docs/oracles/manifest.v1.json",
       "consuming_item": "C000.04",
@@ -703,7 +703,7 @@
       "id": "AD-0020",
       "name": "docs/oracles/production-ownership.v1.json",
       "kind": "parameter",
-      "exact_version": "sha256:daa3fff02d748ffd9c43b90b8f0cebf92f5a1ac46cd0f3eea48d6066f224420d",
+      "exact_version": "sha256:0b19e527ff92886b288a09530e0a8b6818dec5065efc98efd987fdc121d66d5a",
       "features": [],
       "source": "docs/oracles/production-ownership.v1.json",
       "consuming_item": "C000.08",
@@ -974,14 +974,14 @@
       "local_gate": "C000.V",
       "decision": "DD-004",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -998,14 +998,14 @@
       "local_gate": "C000.V",
       "decision": "DD-004",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1022,14 +1022,14 @@
       "local_gate": "C000.V",
       "decision": "DD-004",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1478,14 +1478,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1502,14 +1502,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1526,14 +1526,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1550,14 +1550,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1574,14 +1574,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1591,21 +1591,21 @@
       "id": "AD-0057",
       "name": "tools/reference-runner/generate-ledgers.py",
       "kind": "tool",
-      "exact_version": "sha256:feba8260a50870330d2462f5a201ffa64852e8841f10fd4ff7293f11419aefe1",
+      "exact_version": "sha256:ce8c6120338838700e6a51b9d1534f109826da4037cb0d0ff983be9c19ee88e1",
       "features": [],
       "source": "tools/reference-runner/generate-ledgers.py",
       "consuming_item": "C000.08",
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1615,21 +1615,21 @@
       "id": "AD-0058",
       "name": "tools/reference-runner/generate-ledgers.py",
       "kind": "tool",
-      "exact_version": "sha256:feba8260a50870330d2462f5a201ffa64852e8841f10fd4ff7293f11419aefe1",
+      "exact_version": "sha256:ce8c6120338838700e6a51b9d1534f109826da4037cb0d0ff983be9c19ee88e1",
       "features": [],
       "source": "tools/reference-runner/generate-ledgers.py",
       "consuming_item": "C000.09",
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1646,14 +1646,14 @@
       "local_gate": "C000.V",
       "decision": "DD-002",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1670,14 +1670,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1694,14 +1694,14 @@
       "local_gate": "C000.V",
       "decision": "DD-002",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1711,21 +1711,21 @@
       "id": "AD-0062",
       "name": "tools/tracker/validate.py",
       "kind": "tool",
-      "exact_version": "sha256:48495d1355e28108ee83722f61c933e6f43d5e739075c56c0de7020f6062f6c4",
+      "exact_version": "sha256:b89ab18fce61103d23df88e367f07d61f403478996734123099c7e43b23e59ee",
       "features": [],
       "source": "tools/tracker/validate.py",
       "consuming_item": "C000.10",
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1744,14 +1744,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 for the current C000 standard-library-only tooling invocation bound to this exact hashed consumer script; runtime substitution or any dependency or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for use of the host Python command to execute this repository-authored C000 script; approval excludes runtime redistribution and any production dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1770,14 +1770,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 for the current C000 standard-library-only tooling invocation bound to this exact hashed consumer script; runtime substitution or any dependency or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for use of the host Python command to execute this repository-authored C000 script; approval excludes runtime redistribution and any production dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1796,14 +1796,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 for the current C000 standard-library-only tooling invocation bound to this exact hashed consumer script; runtime substitution or any dependency or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for use of the host Python command to execute this repository-authored C000 script; approval excludes runtime redistribution and any production dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1822,14 +1822,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 for the current C000 standard-library-only tooling invocation bound to this exact hashed consumer script; runtime substitution or any dependency or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for use of the host Python command to execute this repository-authored C000 script; approval excludes runtime redistribution and any production dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1848,14 +1848,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 for the current C000 standard-library-only tooling invocation bound to this exact hashed consumer script; runtime substitution or any dependency or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for use of the host Python command to execute this repository-authored C000 script; approval excludes runtime redistribution and any production dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1874,14 +1874,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 for the current C000 standard-library-only tooling invocation bound to this exact hashed consumer script; runtime substitution or any dependency or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for use of the host Python command to execute this repository-authored C000 script; approval excludes runtime redistribution and any production dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1900,14 +1900,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 for the current C000 standard-library-only tooling invocation bound to this exact hashed consumer script; runtime substitution or any dependency or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for use of the host Python command to execute this repository-authored C000 script; approval excludes runtime redistribution and any production dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1926,14 +1926,14 @@
       "local_gate": "C000.V",
       "decision": "DD-001",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 for the current C000 standard-library-only tooling invocation bound to this exact hashed consumer script; runtime substitution or any dependency or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for use of the host Python command to execute this repository-authored C000 script; approval excludes runtime redistribution and any production dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1953,14 +1953,14 @@
       "local_gate": "C000.V",
       "decision": "DD-002",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 for the current C000 launcher boundary using the host POSIX shell with only set -eu and exec; shell substitution or behavior or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for host-shell execution of this repository-authored hashed launcher; approval excludes shell redistribution and any production runtime dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1980,14 +1980,14 @@
       "local_gate": "C000.V",
       "decision": "DD-002",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 for the current C000 launcher boundary using the host POSIX shell with only set -eu and exec; shell substitution or behavior or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for host-shell execution of this repository-authored hashed launcher; approval excludes shell redistribution and any production runtime dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -2004,14 +2004,14 @@
       "local_gate": "C000.V",
       "decision": "DD-003",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -2030,14 +2030,14 @@
       "local_gate": "C000.V",
       "decision": "DD-003",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -2057,14 +2057,14 @@
       "local_gate": "C000.V",
       "decision": "DD-003",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 only as the C000 distribution manager interpreting this exact hashed Rust 1.85.1 toolchain declaration; substitution, distribution identity change, or production use reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for host-tooling use that installs the pinned C000 Rust toolchain; approval excludes rustup redistribution, archive provenance, and any production dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -2081,14 +2081,14 @@
       "local_gate": "C000.V",
       "decision": "DD-003",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -2105,14 +2105,14 @@
       "local_gate": "C000.V",
       "decision": "DD-003",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -2129,14 +2129,14 @@
       "local_gate": "C000.V",
       "decision": "DD-003",
       "security": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0002; digest, version, features, consumer, or execution-role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved for this exact hashed/versioned C000 tooling input by RV-0003; provenance, digest, version, linkage, distribution, or role change reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -2156,14 +2156,14 @@
       "local_gate": "C000.V",
       "decision": "DD-004",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 for the pinned Temurin 8u462-b08 identities and platforms used only by the C000 Java reference-build gate; archive substitution or production use reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for C000 host-tooling execution of the pinned Temurin identity; approval excludes JDK redistribution, unrecorded archives, and any production JVM dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -2183,14 +2183,14 @@
       "local_gate": "C000.V",
       "decision": "DD-004",
       "security": {
-        "status": "approved",
-        "rationale": "Approved by RV-0002 for the pinned Temurin 17.0.16+8 identities and platforms used only by the C000 Java reference-build gate; archive substitution or production use reopens review."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
       "license": {
-        "status": "approved",
-        "rationale": "Approved by RV-0003 for C000 host-tooling execution of the pinned Temurin identity; approval excludes JDK redistribution, unrecorded archives, and any production JVM dependency."
+        "status": "review_required",
+        "rationale": "Prior approval invalidated by governance artifact changes; authenticated independent review must rerun against the final clean commit."
       },
-      "status": "approved",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -2205,14 +2205,16 @@
     "discovery_roots": [
       "tools/platform/run",
       "tools/platform/c000_*.py",
-      "tools/reference-runner/**",
+      "tools/reference-runner/*.py",
+      "tools/reference-runner/java-runner",
+      "tools/reference-runner/rust-runner",
       "tools/tracker/validate.py",
       "docs/oracles/fixtures/v1/*.json",
       "docs/oracles/manifest.v1.json",
       "docs/oracles/normalization-policy-v1.json",
       "docs/oracles/runner-protocol.md",
       "docs/oracles/*-ownership.v1.json",
-      "docs/oracles/schemas/**",
+      "docs/oracles/schemas/*.json",
       "docs/governance/*schema.json",
       "docs/architecture/platform-manifest.v1.json",
       "docs/architecture/toolchains-and-platforms.md",
@@ -2222,7 +2224,7 @@
       "rust-tron/rust-toolchain.toml",
       "java-tron/gradlew",
       "java-tron/build.gradle",
-      "java-tron/gradle/wrapper/**"
+      "java-tron/gradle/wrapper/*"
     ],
     "rule": "The validator independently enumerates this finite set, verifies every digest, requires a consuming-item adoption for every input and every actual consumer, derives external Cargo.lock packages, and rejects missing, extra, duplicate, drifted, obsolete, or unknown-decision adoptions. Inventory-only and repository-input dispositions are records, not production dependency approvals."
   }

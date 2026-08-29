@@ -16,56 +16,140 @@
         "tools/reference-runner/runner.py",
         "tools/tracker/validate.py"
       ],
-      "status": "approved_tooling_scope",
-      "security_disposition": "approved by RV-0002 for the hashed checked-in scripts and their current standard-library-only host Python command execution in C000 governance and tooling scope; runtime substitution, third-party imports, or production use are excluded",
-      "license_disposition": "approved by RV-0003 for repository-authored LGPL-3.0-only scripts executed by the host Python command; Python runtime redistribution and production dependency adoption are excluded",
+      "status": "review_required",
+      "security_disposition": "pending authenticated independent security review on the final clean committed artifact set",
+      "license_disposition": "pending authenticated independent license review on the final clean committed artifact set",
       "rationale": "The scripts use the Python standard library only and are C000 governance, inventory, validation, and oracle tooling. Approval is limited to the inventory hashes and does not approve Python packages or a production Rust dependency.",
       "approval_required_before_release": true,
-      "invalidation_triggers": ["script digest changes", "third-party Python import added", "python3 runtime identity changes", "execution role changes"]
+      "invalidation_triggers": [
+        "script digest changes",
+        "third-party Python import added",
+        "python3 runtime identity changes",
+        "execution role changes"
+      ]
     },
     {
       "id": "DD-002",
       "scope": "Checked-in POSIX shell launchers for C000 reference runners",
-      "exact_inputs": ["tools/reference-runner/java-runner", "tools/reference-runner/rust-runner"],
-      "status": "approved_tooling_scope",
-      "security_disposition": "approved by RV-0002 for the hashed launcher scripts and their current host POSIX shell execution limited to set -eu and exec in C000 tooling scope; shell substitution or production use are excluded",
-      "license_disposition": "approved by RV-0003 for repository-authored LGPL-3.0-only launchers executed by the host shell; shell redistribution and production runtime adoption are excluded",
+      "exact_inputs": [
+        "tools/reference-runner/java-runner",
+        "tools/reference-runner/rust-runner"
+      ],
+      "status": "review_required",
+      "security_disposition": "pending authenticated independent security review on the final clean committed artifact set",
+      "license_disposition": "pending authenticated independent license review on the final clean committed artifact set",
       "rationale": "The launchers are narrow C000 process boundaries. Approval does not extend to a substituted shell, Java/Rust program, production process supervisor, or runtime dependency.",
       "approval_required_before_release": true,
-      "invalidation_triggers": ["launcher digest changes", "shell runtime identity changes", "argument or environment forwarding changes"]
+      "invalidation_triggers": [
+        "launcher digest changes",
+        "shell runtime identity changes",
+        "argument or environment forwarding changes"
+      ]
     },
     {
       "id": "DD-003",
       "scope": "Rust 1.85.1 C000 toolchain declaration, root and child Cargo workspace manifests, and lockfile",
-      "exact_inputs": ["rust-tron/rust-toolchain.toml", "rust-tron/Cargo.toml", "rust-tron/crates/*/Cargo.toml", "rust-tron/Cargo.lock"],
-      "status": "approved_tooling_scope",
-      "security_disposition": "approved by RV-0002 for rustc, Cargo, clippy, rustfmt, rust-docs 1.85.1, and rustup interpreting the exact hashed toolchain declaration solely as C000 tools; substituted distributions and production use are excluded",
-      "license_disposition": "approved by RV-0003 for host-tooling use of rustup and the pinned Rust 1.85.1 tools in C000 scope; rustup or toolchain archive redistribution and production dependency adoption are excluded",
+      "exact_inputs": [
+        "rust-tron/rust-toolchain.toml",
+        "rust-tron/Cargo.toml",
+        "rust-tron/crates/tron-apis/Cargo.toml",
+        "rust-tron/crates/tron-config/Cargo.toml",
+        "rust-tron/crates/tron-consensus/Cargo.toml",
+        "rust-tron/crates/tron-crypto/Cargo.toml",
+        "rust-tron/crates/tron-events-metrics/Cargo.toml",
+        "rust-tron/crates/tron-execution/Cargo.toml",
+        "rust-tron/crates/tron-network/Cargo.toml",
+        "rust-tron/crates/tron-node/Cargo.toml",
+        "rust-tron/crates/tron-primitives/Cargo.toml",
+        "rust-tron/crates/tron-protocol/Cargo.toml",
+        "rust-tron/crates/tron-shielded/Cargo.toml",
+        "rust-tron/crates/tron-state/Cargo.toml",
+        "rust-tron/crates/tron-storage/Cargo.toml",
+        "rust-tron/crates/tron-toolkit/Cargo.toml",
+        "rust-tron/crates/tron-tvm/Cargo.toml",
+        "rust-tron/Cargo.lock"
+      ],
+      "status": "review_required",
+      "security_disposition": "pending authenticated independent security review on the final clean committed artifact set",
+      "license_disposition": "pending authenticated independent license review on the final clean committed artifact set",
       "rationale": "Cargo.lock contains only workspace packages at C000. No third-party crate, feature set, native library, backend, or later dependency is approved.",
       "approval_required_before_release": true,
-      "invalidation_triggers": ["toolchain version or component changes", "target set changes", "Cargo.lock gains a non-workspace package", "workspace license or feature changes", "distribution archive digest changes"]
+      "invalidation_triggers": [
+        "toolchain version or component changes",
+        "target set changes",
+        "Cargo.lock gains a non-workspace package",
+        "workspace license or feature changes",
+        "distribution archive digest changes"
+      ]
     },
     {
       "id": "DD-004",
       "scope": "Java reference build declarations, checked-in Gradle 7.6.4 wrapper, and pinned Temurin identities",
-      "exact_inputs": ["java-tron/build.gradle", "java-tron/gradle/wrapper/gradle-wrapper.jar", "java-tron/gradle/wrapper/gradle-wrapper.properties", "java-tron/gradlew", "docs/architecture/platform-manifest.v1.json", "docs/architecture/toolchains-and-platforms.md"],
-      "status": "approved_tooling_scope",
-      "security_disposition": "approved by RV-0002 for the hashed checked-in wrapper inputs and pinned Temurin 8u462-b08 and 17.0.16+8 platform identities used solely by the C000 Java reference-build gate; substituted archives and production JVM use are excluded",
-      "license_disposition": "approved by RV-0003 for the hashed checked-in wrapper inputs and host-tooling execution of the pinned Temurin identities; Gradle/JDK redistribution, unrecorded archives, and production dependency adoption are excluded",
+      "exact_inputs": [
+        "java-tron/build.gradle",
+        "java-tron/gradle/wrapper/gradle-wrapper.jar",
+        "java-tron/gradle/wrapper/gradle-wrapper.properties",
+        "java-tron/gradlew",
+        "docs/architecture/platform-manifest.v1.json",
+        "docs/architecture/toolchains-and-platforms.md"
+      ],
+      "status": "review_required",
+      "security_disposition": "pending authenticated independent security review on the final clean committed artifact set",
+      "license_disposition": "pending authenticated independent license review on the final clean committed artifact set",
       "rationale": "This decision inventories the Java reference-build boundary only. It does not approve Java build dependencies as Rust production dependencies, substituted JDKs, mutable downloads, or a production JVM dependency.",
       "approval_required_before_release": true,
-      "invalidation_triggers": ["wrapper or build declaration digest changes", "Gradle URL or version changes", "JDK vendor/version changes", "archive digest changes", "reference-build role changes"]
+      "invalidation_triggers": [
+        "wrapper or build declaration digest changes",
+        "Gradle URL or version changes",
+        "JDK vendor/version changes",
+        "archive digest changes",
+        "reference-build role changes"
+      ]
     },
     {
       "id": "DD-005",
       "scope": "Checked-in current C000 schemas, fixtures, manifests, normalization policy, and source-derived ownership ledgers",
-      "exact_inputs": ["all schema_source, fixture_source, and repository parameter instances enumerated in adoption-inventory.v1.json; obsolete policy and legacy ledger paths are excluded"],
+      "exact_inputs": [
+        "docs/architecture/platform-manifest.v1.json",
+        "docs/architecture/toolchains-and-platforms.md",
+        "docs/governance/adoption-inventory-v1.schema.json",
+        "docs/governance/behavior-manifest-v1.schema.json",
+        "docs/governance/dependency-decision-v1.schema.json",
+        "docs/governance/evidence-v1.schema.json",
+        "docs/governance/independent-review-v1.schema.json",
+        "docs/governance/tracker-v1.schema.json",
+        "docs/oracles/fixtures/v1/mismatch-error.json",
+        "docs/oracles/fixtures/v1/mismatch-forbidden-normalization.json",
+        "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-class.json",
+        "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-pointer.json",
+        "docs/oracles/fixtures/v1/mismatch-output.json",
+        "docs/oracles/fixtures/v1/mismatch-state.json",
+        "docs/oracles/fixtures/v1/negative.json",
+        "docs/oracles/fixtures/v1/positive.json",
+        "docs/oracles/java-test-ownership.v1.json",
+        "docs/oracles/manifest.v1.json",
+        "docs/oracles/normalization-policy-v1.json",
+        "docs/oracles/production-ownership.v1.json",
+        "docs/oracles/runner-protocol.md",
+        "docs/oracles/schemas/license-provenance-v1.schema.json",
+        "docs/oracles/schemas/mismatch-report-v1.schema.json",
+        "docs/oracles/schemas/oracle-fixture-v1.schema.json",
+        "docs/oracles/schemas/oracle-result-v1.schema.json",
+        "docs/oracles/schemas/ownership-ledger-v1.schema.json",
+        "docs/oracles/schemas/security-finding-v1.schema.json",
+        "docs/oracles/schemas/threat-model-v1.schema.json"
+      ],
       "status": "approved_repository_input",
       "security_disposition": "not_applicable to inert repository data; parser and consumer behavior is reviewed separately",
       "license_disposition": "approved as repository-authored LGPL-3.0-only project material by RV-0003",
       "rationale": "These hashed inputs are adopted for deterministic C000 validation and drift detection. This disposition is not third-party dependency, architecture, or production implementation approval.",
       "approval_required_before_release": false,
-      "invalidation_triggers": ["input digest changes", "schema semantics change", "source or authorship changes", "input becomes executable"]
+      "invalidation_triggers": [
+        "input digest changes",
+        "schema semantics change",
+        "source or authorship changes",
+        "input becomes executable"
+      ]
     }
   ],
   "contract": "Every current C000 adoption instance resolves to exactly one DD-### decision. Approval is limited to the recorded input, version, digest, features, consumer, and tooling role. No decision approves a later production crate, native library, backend, feature set, substituted runtime/toolchain, mutable download, or C000.V architecture closure."

@@ -2,6 +2,7 @@
 """Dependency-free governance validator; it reports state and never mutates it."""
 from __future__ import annotations
 
+from collections import Counter
 import datetime as dt
 import hashlib
 import json
@@ -9,6 +10,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -21,6 +23,57 @@ EV_ID = re.compile(r"^EV-[0-9]{4,}$")
 RV_ID = re.compile(r"^RV-[0-9]{4,}$")
 C000_TARGETS = {f"C000.{n:02d}" for n in range(10, 16)}
 TODAY = dt.date.today()
+
+REVIEW_CLASSES = {"architecture", "security", "license"}
+AUTHENTICATED_AGENT_ID = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)+$")
+ADOPTION_DISCOVERY_PATTERNS = (
+    "tools/platform/run",
+    "tools/platform/c000_*.py",
+    "tools/reference-runner/*.py",
+    "tools/reference-runner/java-runner",
+    "tools/reference-runner/rust-runner",
+    "tools/tracker/validate.py",
+    "docs/oracles/fixtures/v1/*.json",
+    "docs/oracles/manifest.v1.json",
+    "docs/oracles/normalization-policy-v1.json",
+    "docs/oracles/runner-protocol.md",
+    "docs/oracles/*-ownership.v1.json",
+    "docs/oracles/schemas/*.json",
+    "docs/governance/*schema.json",
+    "docs/architecture/platform-manifest.v1.json",
+    "docs/architecture/toolchains-and-platforms.md",
+    "rust-tron/Cargo.toml",
+    "rust-tron/crates/*/Cargo.toml",
+    "rust-tron/Cargo.lock",
+    "rust-tron/rust-toolchain.toml",
+    "java-tron/gradlew",
+    "java-tron/build.gradle",
+    "java-tron/gradle/wrapper/*",
+)
+
+
+def repository_tree_clean(errors: list[str]) -> bool:
+    try:
+        result = subprocess.run(
+            ["git", "status", "--porcelain", "--untracked-files=all"],
+            cwd=ROOT,
+            check=True,
+            text=True,
+            capture_output=True,
+        )
+    except (OSError, subprocess.CalledProcessError) as exc:
+        fail(errors, f"cannot resolve repository tree state: {exc}")
+        return False
+    return not result.stdout
+
+
+def discovered_adoption_sources() -> set[str]:
+    paths = set()
+    for pattern in ADOPTION_DISCOVERY_PATTERNS:
+        for path in ROOT.glob(pattern):
+            if path.is_file():
+                paths.add(path.relative_to(ROOT).as_posix())
+    return paths
 
 
 def load(path: Path):
@@ -165,7 +218,7 @@ def artifact_ok(entry, label: str, errors: list[str]) -> bool:
     return True
 
 
-def evidence_contract(revision: str | None, by_id, errors: list[str]):
+def evidence_contract(revision: str | None, tree_clean: bool, by_id, errors: list[str]):
     records, valid = {}, set()
     required = {"schema_version", "evidence_id", "owning_item", "command", "environment", "run_id", "cases", "started_at", "ended_at", "observed_exit_code", "observed_status", "expected", "observed", "stdout", "stderr", "artifacts", "invalidation_edges", "review_bindings", "retention_until"}
     environment_fields = {"repository_revision", "tree_state", "toolchains", "platform_row", "target", "host_os", "host_architecture", "execution", "working_directory", "cells", "backend", "features"}
@@ -201,8 +254,10 @@ def evidence_contract(revision: str | None, by_id, errors: list[str]):
             environment = {}
         if revision and environment.get("repository_revision") != revision:
             fail(errors, f"{ident}: repository revision is stale")
-        if environment.get("tree_state") not in {"clean", "dirty"} or not isinstance(environment.get("toolchains"), dict) or not environment.get("toolchains"):
-            fail(errors, f"{ident}: invalid tree state/toolchain binding")
+        if environment.get("tree_state") != "clean" or not tree_clean:
+            fail(errors, f"{ident}: completion evidence must bind the current clean committed tree")
+        if not isinstance(environment.get("toolchains"), dict) or not environment.get("toolchains"):
+            fail(errors, f"{ident}: invalid toolchain binding")
         features = environment.get("features")
         if not isinstance(features, list) or not all(isinstance(feature, str) for feature in features) or len(features) != len(set(features)):
             fail(errors, f"{ident}: invalid feature binding")
@@ -273,9 +328,30 @@ def evidence_contract(revision: str | None, by_id, errors: list[str]):
     return records, valid
 
 
-def review_contract(revision: str | None, by_id, evidence, valid_evidence, errors: list[str]):
+def review_contract(revision: str | None, tree_clean: bool, by_id, evidence, valid_evidence, errors: list[str]):
     records, valid = {}, set()
-    required = {"schema_version", "review_id", "owning_gate", "review_class", "scope_rows", "seam_rows", "covered_revisions", "covered_artifacts", "reviewers", "findings", "reruns", "closure", "retention_until", "invalidation_triggers"}
+    required_fields = {"schema_version", "review_id", "owning_gate", "review_class", "scope_rows", "seam_rows", "covered_revisions", "covered_artifacts", "authors", "owners", "reviewers", "findings", "reruns", "closure", "retention_until", "invalidation_triggers"}
+    seams_document = load(ROOT / "docs/architecture/cross-domain-seams.v1.json")
+    seam_rows = seams_document.get("rows", []) if isinstance(seams_document, dict) else []
+    seams_by_class = {
+        review_class: {row.get("id") for row in seam_rows if isinstance(row, dict) and review_class in row.get("review_classes", [])}
+        for review_class in REVIEW_CLASSES
+    }
+    c000_rows = {ident for ident in by_id if ident.startswith("C000.")}
+    adoption = load(ROOT / "docs/governance/adoption-inventory.v1.json")
+    adoption_consumers = {entry.get("consuming_item") for entry in adoption.get("instances", []) if isinstance(entry, dict)} if isinstance(adoption, dict) else set()
+    scopes_by_class = {
+        "architecture": c000_rows,
+        "security": {row for row in adoption_consumers if row in by_id} | {"C000.V"},
+        "license": {row for row in adoption_consumers if row in by_id} | {"C000.V"},
+    }
+    governance_schemas = {path.relative_to(ROOT).as_posix() for path in (ROOT / "docs/governance").glob("*schema.json") if path.is_file()}
+    adoption_artifacts = discovered_adoption_sources() | {"docs/governance/adoption-inventory.v1.json", "docs/governance/dependency-decisions.v1.json"}
+    artifacts_by_class = {
+        "architecture": governance_schemas | {"docs/architecture/cross-domain-seams.v1.json", "docs/architecture/platform-manifest.v1.json", "docs/architecture/toolchains-and-platforms.md"},
+        "security": adoption_artifacts,
+        "license": adoption_artifacts,
+    }
     for path in sorted((ROOT / "docs/governance/reviews").glob("*.json")):
         before = len(errors)
         try:
@@ -293,49 +369,70 @@ def review_contract(revision: str | None, by_id, evidence, valid_evidence, error
         if ident in records:
             fail(errors, f"duplicate review {ident}")
         records[ident] = review
-        if review.get("schema_version") != 1 or required - review.keys() or set(review) - required:
+        if review.get("schema_version") != 1 or set(review) != required_fields:
             fail(errors, f"{ident}: schema version/fields invalid")
-        gate = review.get("owning_gate")
+        gate, review_class = review.get("owning_gate"), review.get("review_class")
         if gate not in by_id or not isinstance(gate, str) or not gate.endswith(".V"):
             fail(errors, f"{ident}: invalid owning gate")
-        if review.get("review_class") not in {"architecture", "security", "license"}:
+        if review_class not in REVIEW_CLASSES:
             fail(errors, f"{ident}: invalid review class")
+            continue
         for field in ("scope_rows", "seam_rows", "reruns", "invalidation_triggers"):
             value = review.get(field)
             strings = isinstance(value, list) and all(isinstance(entry, str) and entry for entry in value)
             if not strings or (field in {"scope_rows", "invalidation_triggers"} and not value) or (strings and len(value) != len(set(value))):
                 fail(errors, f"{ident}: invalid {field}")
-        if isinstance(review.get("scope_rows"), list) and any(row not in by_id for row in review["scope_rows"]):
-            fail(errors, f"{ident}: scope contains unknown tracker row")
+        if set(review.get("scope_rows", [])) != scopes_by_class[review_class]:
+            fail(errors, f"{ident}: incomplete {review_class} scope rows")
+        if set(review.get("seam_rows", [])) != seams_by_class[review_class]:
+            fail(errors, f"{ident}: incomplete {review_class} seam rows")
         covered = review.get("covered_revisions")
         if not isinstance(covered, dict) or set(covered) != {"repository"} or (revision and covered.get("repository") != revision):
             fail(errors, f"{ident}: covered revision is stale or malformed")
         artifacts = review.get("covered_artifacts")
-        if not isinstance(artifacts, list) or not artifacts:
-            fail(errors, f"{ident}: covered_artifacts must be non-empty")
-            artifacts = []
-        for index, artifact in enumerate(artifacts):
+        artifact_paths = {entry.get("path") for entry in artifacts if isinstance(entry, dict)} if isinstance(artifacts, list) else set()
+        if artifact_paths != artifacts_by_class[review_class] or len(artifact_paths) != len(artifacts or []):
+            fail(errors, f"{ident}: covered artifacts are not the exact required {review_class} set")
+        for index, artifact in enumerate(artifacts if isinstance(artifacts, list) else []):
             artifact_ok(artifact, f"{ident}.covered_artifacts[{index}]", errors)
+        author_ids, owner_ids, reviewer_ids, closure_ids = set(), set(), set(), set()
+        for field, destination in (("authors", author_ids), ("owners", owner_ids)):
+            entries = review.get(field)
+            if not isinstance(entries, list) or not entries:
+                fail(errors, f"{ident}: {field} must identify authenticated agents")
+                continue
+            for index, entry in enumerate(entries):
+                expected = {"agent_id", "artifact_paths"} if field == "authors" else {"agent_id", "scope_rows", "seam_rows"}
+                if not isinstance(entry, dict) or set(entry) != expected or not AUTHENTICATED_AGENT_ID.fullmatch(str(entry.get("agent_id", ""))):
+                    fail(errors, f"{ident}.{field}[{index}]: malformed authenticated attribution")
+                    continue
+                destination.add(entry["agent_id"])
+        attributed_artifacts = {path for entry in review.get("authors", []) if isinstance(entry, dict) for path in entry.get("artifact_paths", []) if isinstance(path, str)}
+        owned_scope = {row for entry in review.get("owners", []) if isinstance(entry, dict) for row in entry.get("scope_rows", []) if isinstance(row, str)}
+        owned_seams = {row for entry in review.get("owners", []) if isinstance(entry, dict) for row in entry.get("seam_rows", []) if isinstance(row, str)}
+        if attributed_artifacts != artifact_paths or owned_scope != set(review.get("scope_rows", [])) or owned_seams != set(review.get("seam_rows", [])):
+            fail(errors, f"{ident}: authorship/ownership does not cover the exact reviewed artifacts, scope rows, and seams")
         reviewers = review.get("reviewers")
         if not isinstance(reviewers, list) or not reviewers:
             fail(errors, f"{ident}: reviewers must be a non-empty array")
             reviewers = []
-        identities = []
         for index, reviewer in enumerate(reviewers):
-            if not isinstance(reviewer, dict) or set(reviewer) != {"identity", "role", "independent_of_authors", "conflicts", "recusals"} or reviewer.get("independent_of_authors") is not True or reviewer.get("role") not in {"primary", "secondary", "security", "license", "closure"} or not isinstance(reviewer.get("conflicts"), list) or not isinstance(reviewer.get("recusals"), list):
-                fail(errors, f"{ident}.reviewers[{index}]: schema/independence invalid")
+            expected = {"agent_id", "identity", "role", "independent_of_authors", "conflicts", "recusals"}
+            if not isinstance(reviewer, dict) or set(reviewer) != expected or not AUTHENTICATED_AGENT_ID.fullmatch(str(reviewer.get("agent_id", ""))) or reviewer.get("independent_of_authors") is not True or reviewer.get("role") not in {"primary", "secondary", "security", "license", "closure"} or not isinstance(reviewer.get("conflicts"), list) or not isinstance(reviewer.get("recusals"), list):
+                fail(errors, f"{ident}.reviewers[{index}]: schema/authentication/independence invalid")
                 continue
-            identities.append(reviewer.get("identity"))
-        if len(identities) != len(set(identities)):
-            fail(errors, f"{ident}: duplicate reviewer identity")
+            reviewer_ids.add(reviewer["agent_id"])
+            if reviewer.get("role") == "closure":
+                closure_ids.add(reviewer["agent_id"])
+        if len(reviewer_ids) != len(reviewers) or reviewer_ids & (author_ids | owner_ids):
+            fail(errors, f"{ident}: reviewer/author/owner separation violated")
         rerun_values = review.get("reruns", [])
-        reruns = set(rerun_values) if isinstance(rerun_values, list) and all(isinstance(value, str) for value in rerun_values) else set()
+        reruns = set(rerun_values) if isinstance(rerun_values, list) else set()
         for rerun in reruns:
-            if rerun not in evidence:
-                fail(errors, f"{ident}: unknown rerun evidence {rerun}")
-            elif rerun not in valid_evidence or evidence[rerun].get("observed_status") != "pass":
+            if rerun not in evidence or rerun not in valid_evidence or evidence[rerun].get("observed_status") != "pass":
                 fail(errors, f"{ident}: rerun evidence is not current and passing: {rerun}")
         findings = review.get("findings")
+        rerun_owners = {evidence[rerun].get("owning_item") for rerun in reruns if rerun in evidence and rerun in valid_evidence}
         if not isinstance(findings, list):
             fail(errors, f"{ident}: findings must be an array")
             findings = []
@@ -352,16 +449,19 @@ def review_contract(revision: str | None, by_id, evidence, valid_evidence, error
         if len(finding_ids) != len(set(finding_ids)):
             fail(errors, f"{ident}: duplicate finding id")
         closure = review.get("closure")
-        if not isinstance(closure, dict) or set(closure) != {"status", "reviewer", "date", "approval"} or closure.get("status") not in {"pending", "approved", "rejected"}:
+        if not isinstance(closure, dict) or set(closure) != {"status", "reviewer_agent_id", "date", "approval"} or closure.get("status") not in {"pending", "approved", "rejected"}:
             fail(errors, f"{ident}: closure schema invalid")
             closure = {}
         if closure.get("status") == "approved":
-            if closure.get("approval") is not True or closure.get("reviewer") not in identities or not reviewers:
-                fail(errors, f"{ident}: approval lacks independent registered closure")
+            closure_agent = closure.get("reviewer_agent_id")
+            if not tree_clean or closure.get("approval") is not True or closure_agent not in closure_ids or closure_agent in (author_ids | owner_ids) or len(closure_ids) != 1:
+                fail(errors, f"{ident}: approval lacks a separated authenticated closure reviewer on a clean tree")
+            if not reruns or rerun_owners != set(review.get("scope_rows", [])):
+                fail(errors, f"{ident}: approval lacks one current clean rerun for every required scope row")
             if any(f.get("disposition") != "fixed" or f.get("fix_revision") != revision or not f.get("required_rerun_ids") for f in findings):
                 fail(errors, f"{ident}: approved review has unresolved or stale findings")
-        elif closure.get("approval") is not False:
-            fail(errors, f"{ident}: non-approved closure claims approval")
+        elif closure.get("approval") is not False or closure.get("reviewer_agent_id") is not None or closure.get("date") is not None:
+            fail(errors, f"{ident}: non-approved closure must remain unclaimed")
         try:
             if dt.date.fromisoformat(review["retention_until"]) < TODAY:
                 fail(errors, f"{ident}: retention expired")
@@ -376,30 +476,49 @@ def platform_contract(revision, evidence, valid_evidence, reviews, valid_reviews
     manifest = load(ROOT / "docs/architecture/platform-manifest.v1.json")
     expected_initial = {"P-LINUX-X64"}
     expected_reserved = {"P-LINUX-ARM64", "P-MACOS-X64", "P-MACOS-ARM64"}
-    rows = manifest.get("rows", [])
-    reserved_rows = manifest.get("planned_platform_enablement", [])
-    ids = [row.get("id") for row in rows]
-    reserved_ids = [row.get("id") for row in reserved_rows]
-    initial_ids = {row.get("id") for row in rows if row.get("support") == "initial"}
-    required = set(manifest.get("cell_contract", {}).get("required", []))
+    complete = True
+    if not isinstance(manifest, dict):
+        fail(errors, "platform manifest must be an object")
+        return False
+    rows = manifest.get("rows")
+    reserved_rows = manifest.get("planned_platform_enablement")
+    if not isinstance(rows, list):
+        fail(errors, "platform manifest rows must be an array")
+        rows, complete = [], False
+    if not isinstance(reserved_rows, list):
+        fail(errors, "platform planned enablement must be an array")
+        reserved_rows, complete = [], False
+    ids = [row.get("id") for row in rows if isinstance(row, dict)]
+    reserved_ids = [row.get("id") for row in reserved_rows if isinstance(row, dict)]
+    initial_ids = {row.get("id") for row in rows if isinstance(row, dict) and row.get("support") == "initial"}
+    cell_contract = manifest.get("cell_contract")
+    required_values = cell_contract.get("required") if isinstance(cell_contract, dict) else None
+    required = set(required_values) if isinstance(required_values, list) and all(isinstance(value, str) for value in required_values) else set()
     if manifest.get("schema_version") != 1 or manifest.get("repository_revision") != revision:
         fail(errors, "platform manifest schema/repository revision is stale")
     if initial_ids != expected_initial or set(ids) != expected_initial or len(ids) != len(expected_initial):
         fail(errors, "platform manifest must contain the initial Linux x86_64 policy row exactly once")
-    if set(reserved_ids) != expected_reserved or len(reserved_ids) != len(expected_reserved) or any(row.get("support") != "reserved_later_enablement" or row.get("c000_blocker") is not False for row in reserved_rows):
+    if set(reserved_ids) != expected_reserved or len(reserved_ids) != len(expected_reserved) or any(not isinstance(row, dict) or row.get("support") != "reserved_later_enablement" or row.get("c000_blocker") is not False for row in reserved_rows):
         fail(errors, "platform manifest must contain each non-blocking reserved later-enablement row exactly once")
     if required != {"compile", "differential", "unit", "native_resource", "ffi", "packaging", "smoke"}:
         fail(errors, "platform manifest cell contract is incomplete")
-    feature_sets = manifest.get("feature_sets", [])
+    feature_sets = manifest.get("feature_sets")
+    if not isinstance(feature_sets, list):
+        fail(errors, "platform feature_sets must be an array")
+        feature_sets, complete = [], False
     features_by_id = {entry.get("id"): entry.get("features") for entry in feature_sets if isinstance(entry, dict)}
     if features_by_id.get("F-PRODUCTION-DEFAULT") != []:
         fail(errors, "F-PRODUCTION-DEFAULT must match the Cargo workspace's empty declared feature set")
-    backends = {entry.get("id") for entry in manifest.get("backend_sets", []) if isinstance(entry, dict)}
-    complete = True
+    backend_sets = manifest.get("backend_sets")
+    if not isinstance(backend_sets, list):
+        fail(errors, "platform backend_sets must be an array")
+        backend_sets, complete = [], False
+    backends = {entry.get("id") for entry in backend_sets if isinstance(entry, dict)}
     passing_count = 0
     reviewed_not_applicable_count = 0
-    runner = ROOT / manifest.get("runner", "")
-    if not runner.is_file() or not runner.stat().st_mode & 0o111:
+    runner_value = manifest.get("runner")
+    runner = ROOT / runner_value if isinstance(runner_value, str) else None
+    if runner is None or not runner.is_file() or not runner.stat().st_mode & 0o111:
         fail(errors, "platform runner is missing or not executable")
         complete = False
     for row in rows:
@@ -462,11 +581,12 @@ def platform_contract(revision, evidence, valid_evidence, reviews, valid_reviews
                     environment = ev.get("environment")
                     if not isinstance(environment, dict):
                         environment = {}
+                    environment_cells = environment.get("cells") if isinstance(environment.get("cells"), list) else []
                     executable = argv[0] if isinstance(argv, list) and argv else None
                     required_tools = {"cargo", "rustc"} if executable == "cargo" else {"python"}
                     expected_cwd = cell.get("cwd", ".")
                     toolchains = environment.get("toolchains")
-                    bound = ref in valid_evidence and ev.get("owning_item") == "C000.14" and ev.get("observed_status") == "pass" and ev.get("command") == argv and environment.get("platform_row") == row_id and environment.get("target") == row.get("target") and environment.get("host_os") == row.get("os") and environment.get("host_architecture") == row.get("architecture") and environment.get("execution") == "native" and environment.get("working_directory") == expected_cwd and environment.get("backend") == row.get("backend") and environment.get("features") == row_features and cell_name in environment.get("cells", []) and isinstance(toolchains, dict) and required_tools.issubset(toolchains)
+                    bound = ref in valid_evidence and ev.get("owning_item") == "C000.14" and ev.get("observed_status") == "pass" and ev.get("command") == argv and environment.get("platform_row") == row_id and environment.get("target") == row.get("target") and environment.get("host_os") == row.get("os") and environment.get("host_architecture") == row.get("architecture") and environment.get("execution") == "native" and environment.get("working_directory") == expected_cwd and environment.get("backend") == row.get("backend") and environment.get("features") == row_features and cell_name in environment_cells and isinstance(toolchains, dict) and required_tools.issubset(toolchains)
                     if not bound:
                         fail(errors, f"{label}: evidence {ref} lacks full command/target/native/toolchain/backend/feature/cell binding")
                     passing |= bound
@@ -504,12 +624,97 @@ def adoption_contract(by_id, errors: list[str]):
     if not isinstance(sources, list):
         fail(errors, "adoption inventory: generated_from must be an array")
         sources = []
+    discovered = discovered_adoption_sources()
+    listed_sources = {source.get("path") for source in sources if isinstance(source, dict)}
+    if listed_sources != discovered or len(listed_sources) != len(sources):
+        fail(errors, f"adoption inventory source discovery mismatch; missing={sorted(discovered - listed_sources)} extra={sorted(listed_sources - discovered)}")
+    generation = adoption.get("generation_contract") if isinstance(adoption, dict) else None
+    if not isinstance(generation, dict) or generation.get("discovery_roots") != list(ADOPTION_DISCOVERY_PATTERNS):
+        fail(errors, "adoption inventory discovery roots are stale or incomplete")
     for index, source in enumerate(sources):
         artifact_ok(source, f"dependency inventory input[{index}]", errors)
     instances = adoption.get("instances", []) if isinstance(adoption, dict) else []
     if not isinstance(instances, list):
         fail(errors, "adoption inventory: instances must be an array")
         instances = []
+
+    expected = set()
+    for source in discovered:
+        if source == "docs/architecture/platform-manifest.v1.json":
+            expected.add((source, "C000.14", "parameter", source))
+        elif source == "docs/architecture/toolchains-and-platforms.md":
+            expected.add((source, "C000.02", "parameter", source))
+        elif source.startswith("docs/governance/"):
+            consumer = {"adoption-inventory-v1.schema.json": "C000.15", "dependency-decision-v1.schema.json": "C000.11", "tracker-v1.schema.json": "C000.10"}.get(Path(source).name, "C000.13")
+            expected.add((source, consumer, "schema_source", source))
+        elif source.startswith("docs/oracles/fixtures/"):
+            expected.add((source, "C000.05", "fixture_source", source))
+        elif source.endswith("production-ownership.v1.json"):
+            expected.add((source, "C000.08", "parameter", source))
+        elif source.endswith("java-test-ownership.v1.json"):
+            expected.add((source, "C000.09", "parameter", source))
+        elif source.endswith("manifest.v1.json") or source.endswith("normalization-policy-v1.json"):
+            expected.add((source, "C000.04", "parameter", source))
+        elif source.endswith("runner-protocol.md"):
+            expected.add((source, "C000.05", "parameter", source))
+        elif source.startswith("docs/oracles/schemas/"):
+            name = Path(source).name
+            if name == "ownership-ledger-v1.schema.json":
+                expected |= {(source, "C000.08", "schema_source", source), (source, "C000.09", "schema_source", source)}
+            else:
+                consumer = "C000.07" if name in {"license-provenance-v1.schema.json", "security-finding-v1.schema.json", "threat-model-v1.schema.json"} else "C000.05" if name == "mismatch-report-v1.schema.json" else "C000.04"
+                expected.add((source, consumer, "schema_source", source))
+        elif source == "java-tron/build.gradle":
+            expected.add((source, "C000.02", "parameter", source))
+        elif source.startswith("java-tron/gradle/wrapper/") or source == "java-tron/gradlew":
+            expected.add((source, "C000.02", "tool", source))
+        elif source == "rust-tron/rust-toolchain.toml":
+            expected.add((source, "C000.02", "parameter", source))
+        elif source == "rust-tron/Cargo.lock" or source.endswith("Cargo.toml"):
+            expected.add((source, "C000.01", "parameter", source))
+        elif source == "tools/platform/run":
+            expected.add((source, "C000.14", "tool", source))
+        elif source.startswith("tools/platform/"):
+            consumer = "C000.V" if source.endswith("c000_artifacts.py") else "C000.14"
+            expected.add((source, consumer, "tool", source))
+        elif source.endswith("generate-ledgers.py"):
+            expected |= {(source, "C000.08", "tool", source), (source, "C000.09", "tool", source)}
+        elif source.endswith("runner.py"):
+            expected.add((source, "C000.05", "tool", source))
+        elif source.endswith("java-runner") or source.endswith("rust-runner"):
+            expected.add((source, "C000.05", "tool", source))
+        elif source == "tools/tracker/validate.py":
+            expected.add((source, "C000.10", "tool", source))
+
+    runtime_expected = {
+        ("tools/platform/c000_artifacts.py", "C000.V", "runtime", "Python 3 command runtime"),
+        *((source, "C000.14", "runtime", "Python 3 command runtime") for source in discovered if source.startswith("tools/platform/c000_") and not source.endswith("c000_artifacts.py")),
+        ("tools/reference-runner/runner.py", "C000.05", "runtime", "Python 3 command runtime"),
+        ("tools/reference-runner/generate-ledgers.py", "C000.08", "runtime", "Python 3 command runtime"),
+        ("tools/reference-runner/generate-ledgers.py", "C000.09", "runtime", "Python 3 command runtime"),
+        ("tools/tracker/validate.py", "C000.10", "runtime", "Python 3 command runtime"),
+        ("tools/reference-runner/java-runner", "C000.05", "runtime", "POSIX /bin/sh runtime"),
+        ("tools/reference-runner/rust-runner", "C000.05", "runtime", "POSIX /bin/sh runtime"),
+        *(("rust-tron/rust-toolchain.toml", "C000.02", "tool", name) for name in ("rustc", "Cargo", "rustup", "clippy", "rustfmt", "rust-docs")),
+        ("docs/architecture/platform-manifest.v1.json", "C000.14", "runtime", "Eclipse Temurin JDK"),
+    }
+    expected |= runtime_expected
+    expected_counts = Counter(expected)
+    expected_counts[("docs/architecture/platform-manifest.v1.json", "C000.14", "runtime", "Eclipse Temurin JDK")] = 2
+    actual_counts = Counter((entry.get("source"), entry.get("consuming_item"), entry.get("kind"), entry.get("name")) for entry in instances if isinstance(entry, dict))
+    if actual_counts != expected_counts:
+        fail(errors, f"adoption instances/consumers mismatch; expected={sorted(expected_counts.items())} actual={sorted(actual_counts.items())}")
+
+    try:
+        lock = tomllib.loads((ROOT / "rust-tron/Cargo.lock").read_text(encoding="utf-8"))
+        workspace_names = {tomllib.loads(path.read_text(encoding="utf-8")).get("package", {}).get("name") for path in (ROOT / "rust-tron").glob("**/Cargo.toml")}
+        external = {(package.get("name"), package.get("version")) for package in lock.get("package", []) if package.get("name") not in workspace_names}
+        recorded_external = {(entry.get("name"), entry.get("exact_version")) for entry in instances if isinstance(entry, dict) and entry.get("source") == "rust-tron/Cargo.lock" and entry.get("kind") == "runtime"}
+        if external != recorded_external:
+            fail(errors, f"Cargo.lock external package adoption mismatch; expected={sorted(external)} recorded={sorted(recorded_external)}")
+    except (OSError, tomllib.TOMLDecodeError) as exc:
+        fail(errors, f"cannot derive Cargo.lock adoptions: {exc}")
+
     records, valid = {}, set()
     for index, instance in enumerate(instances):
         before = len(errors)
@@ -532,8 +737,7 @@ def adoption_contract(by_id, errors: list[str]):
                 fail(errors, f"{label}: malformed {field} disposition")
         if instance.get("status") not in {"recorded", "review_required", "approved", "rejected", "retired"}:
             fail(errors, f"{label}: invalid adoption status")
-        source = instance.get("source")
-        exact = instance.get("exact_version")
+        source, exact = instance.get("source"), instance.get("exact_version")
         if isinstance(source, str) and (ROOT / source).is_file() and isinstance(exact, str) and exact.startswith("sha256:") and exact[7:] != digest(ROOT / source):
             fail(errors, f"{label}: source digest drift")
         if len(errors) == before and instance.get("status") in {"recorded", "approved"} and all(instance[field]["status"] in {"approved", "not_applicable"} for field in ("security", "license")):
@@ -544,20 +748,27 @@ def adoption_contract(by_id, errors: list[str]):
 def artifact_contract(by_id, revision, errors):
     predicates = {"ledger": True, "projection": True}
     seams = load(ROOT / "docs/architecture/cross-domain-seams.v1.json")
-    ids = [row.get("id") for row in seams.get("rows", [])]
-    if len(ids) != len(set(ids)):
-        fail(errors, "duplicate seam id")
-    for row in seams.get("rows", []):
+    rows = seams.get("rows") if isinstance(seams, dict) else None
+    if not isinstance(rows, list):
+        fail(errors, "cross-domain seam rows must be an array")
+        rows = []
+    ids = [row.get("id") for row in rows if isinstance(row, dict)]
+    if len(ids) != len(rows) or len(ids) != len(set(ids)):
+        fail(errors, "malformed or duplicate seam id")
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
         ownership = all(isinstance(row.get(field), str) and row.get(field).strip() for field in ("primary", "secondary"))
-        if not ownership or row.get("review_gate") not in by_id:
-            fail(errors, f"{row.get('id')}: incomplete/unknown seam ownership")
+        review_classes = row.get("review_classes")
+        if not ownership or row.get("review_gate") not in by_id or not isinstance(review_classes, list) or not review_classes or not set(review_classes).issubset(REVIEW_CLASSES) or len(review_classes) != len(set(review_classes)):
+            fail(errors, f"{row.get('id')}: incomplete/unknown seam ownership or review scope")
     for name in ("production-ownership.v1.json", "java-test-ownership.v1.json"):
         ledger = load(ROOT / "docs/oracles" / name)
-        rows = ledger.get("rows", [])
-        ok = isinstance(rows, list) and ledger.get("row_count") == len(rows) and ledger.get("java_source_revision") == revision and ledger.get("regeneration", {}).get("unknown_policy") == "fail"
-        row_ids = [row.get("id") for row in rows if isinstance(row, dict)]
-        ok &= len(row_ids) == len(rows) == len(set(row_ids))
-        for row in rows:
+        ledger_rows = ledger.get("rows", []) if isinstance(ledger, dict) else []
+        ok = isinstance(ledger_rows, list) and ledger.get("row_count") == len(ledger_rows) and ledger.get("java_source_revision") == revision and isinstance(ledger.get("regeneration"), dict) and ledger["regeneration"].get("unknown_policy") == "fail"
+        row_ids = [row.get("id") for row in ledger_rows if isinstance(row, dict)]
+        ok &= len(row_ids) == len(ledger_rows) == len(set(row_ids))
+        for row in ledger_rows:
             if not isinstance(row, dict) or row.get("owning_item") not in by_id or row.get("acceptance_gate") not in by_id:
                 ok = False
                 break
@@ -565,12 +776,13 @@ def artifact_contract(by_id, revision, errors):
             fail(errors, f"docs/oracles/{name}: stale or incomplete ownership ledger")
             predicates["ledger"] = False
     oracle_manifest = load(ROOT / "docs/oracles/manifest.v1.json")
-    if "C000.V execution and approval not complete" in str(oracle_manifest.get("status", "")):
+    if isinstance(oracle_manifest, dict) and "C000.V execution and approval not complete" in str(oracle_manifest.get("status", "")):
         predicates["projection"] = False
     for path in (ROOT / "docs").rglob("behavior-manifest*.json"):
         if path.name.endswith(".schema.json"):
             continue
-        coverage = load(path).get("coverage", {})
+        document = load(path)
+        coverage = document.get("coverage", {}) if isinstance(document, dict) else {}
         if coverage.get("result") != "pass" or any(coverage.get(key) != 0 for key in ("unowned", "duplicate_owned", "missing_case", "unknown_owner")):
             fail(errors, f"{path.relative_to(ROOT)}: behavior ownership coverage gap")
             predicates["ledger"] = False
@@ -657,11 +869,12 @@ def main():
     errors = []
     tracker = load(TRACKER)
     revision = repository_revision(errors)
+    tree_clean = repository_tree_clean(errors)
     projection = checklist_projection(errors)
     by_id, stats = graph_contract(tracker, projection, errors)
     governance_contract(by_id, errors)
-    evidence, valid_evidence = evidence_contract(revision, by_id, errors)
-    reviews, valid_reviews = review_contract(revision, by_id, evidence, valid_evidence, errors)
+    evidence, valid_evidence = evidence_contract(revision, tree_clean, by_id, errors)
+    reviews, valid_reviews = review_contract(revision, tree_clean, by_id, evidence, valid_evidence, errors)
     platform_complete = platform_contract(revision, evidence, valid_evidence, reviews, valid_reviews, errors)
     adoptions, valid_adoptions = adoption_contract(by_id, errors)
     predicates = artifact_contract(by_id, revision, errors)

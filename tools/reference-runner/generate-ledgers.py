@@ -17,33 +17,84 @@ TRACKER = ROOT / "docs/PORTING_TRACKER.json"
 REV = "df50ce9676b94de0b10a605076adfd8728811384"
 EXCLUDED = {".git", ".gradle", "__pycache__", "build", "out", "target", "node_modules"}
 
-# Ordered, reviewed source domains.  Patterns are anchored to repository-relative
-# paths and intentionally name Java modules/registries rather than symbol substrings.
+# Reviewed mappings for framework paths.  These are deliberately finite package
+# and file families: framework is not itself an ownership domain.
+FRAMEWORK_DOMAINS = [
+    ("build_release", r"^java-tron/framework/(?:build\.gradle|config/|src/lombok\.config$)", "C028.08", "C028.V"),
+    ("configuration", r"^java-tron/framework/src/(?:main|test)/resources/(?:config(?!-shield)[^/]*\.conf|logback[^/]*\.xml)$", "C003.08", "C003.V"),
+    ("shielded", r"^java-tron/framework/src/(?:main|test)/resources/(?:params/|json/(?:merkle_|.*sapling)|.*shield)", "C006.06", "C006.V"),
+    ("tvm", r"^java-tron/framework/src/test/resources/precompiles/", "C015.06", "C015.V"),
+    ("application_lifecycle", r"^java-tron/framework/src/(?:main|test)/java/org/tron/common/application/", "C025.08", "C025.V"),
+    ("pbft", r"^java-tron/framework/src/(?:main|test)/java/org/tron/common/backup/", "C018.06", "C018.V"),
+    ("p2p", r"^java-tron/framework/src/(?:main|test)/java/org/tron/common/client/", "C021.09", "C021.V"),
+    ("events_metrics", r"^java-tron/framework/src/(?:main|test)/java/org/tron/common/(?:logsfilter|prometheus|log)/", "C025.08", "C025.V"),
+    ("transaction_pipeline", r"^java-tron/framework/src/(?:main|test)/java/org/tron/common/runtime/", "C016.06", "C016.V"),
+    ("shielded", r"^java-tron/framework/src/(?:main|test)/java/org/tron/common/zksnark/", "C006.06", "C006.V"),
+    ("configuration", r"^java-tron/framework/src/test/java/org/tron/common/(?:command|config|cron)/", "C003.08", "C003.V"),
+    ("storage", r"^java-tron/framework/src/test/java/org/tron/common/storage/", "C008.11", "C008.V"),
+    ("crypto", r"^java-tron/framework/src/test/java/org/tron/common/(?:crypto|utils)/", "C004.06", "C004.V"),
+    ("http_api", r"^java-tron/framework/src/test/java/org/tron/common/jetty/", "C023.06", "C023.V"),
+    ("common_primitives", r"^java-tron/framework/src/test/java/org/tron/common/(?:cache/|(?:BaseMethodTest|BaseTest|ClassLevelAppContextFixture|ComparatorTest|EntityTest|MultiLayoutPatternTest|ParameterTest|TestConstants)\.java$)", "C002.07", "C002.V"),
+    ("common_primitives", r"^java-tron/framework/src/test/java/org/tron/core/(?:exception|utils)/", "C002.07", "C002.V"),
+    ("grpc_api", r"^java-tron/framework/src/(?:main|test)/java/org/tron/core/(?:Wallet(?:Mock)?(?:Test)?\.java$|services/(?:NodeInfoService|RpcApiService|WalletOnCursor|filter/LiteFnQueryGrpcInterceptor|filter/RpcApiAccessInterceptor|interfaceOn(?:PBFT|Solidity)/(?!http/)|ratelimiter/(?!PrometheusInterceptor)|(?:RpcApiServices|WalletApi)Test))", "C022.02", "C022.V"),
+    ("consensus", r"^java-tron/framework/src/(?:main|test)/java/org/tron/core/(?:consensus/|witness/|services/(?:WitnessProductBlockService|DelegationService|ProposalService))", "C017.07", "C017.V"),
+    ("pbft", r"^java-tron/framework/src/(?:main|test)/java/org/tron/core/pbft/", "C018.06", "C018.V"),
+    ("events_metrics", r"^java-tron/framework/src/(?:main|test)/java/org/tron/core/(?:event/|metrics/|services/event/|services/ratelimiter/PrometheusInterceptor)", "C025.08", "C025.V"),
+    ("json_rpc", r"^java-tron/framework/src/(?:main|test)/java/org/tron/core/(?:jsonrpc/|services/(?:jsonrpc/|interfaceJsonRpcOn))", "C024.08", "C024.V"),
+    ("http_api", r"^java-tron/framework/src/(?:main|test)/java/(?:org/springframework/http/|org/tron/json/|org/tron/core/services/(?:http/|filter/(?!LiteFnQueryGrpcInterceptor|RpcApiAccessInterceptor)|interfaceOn(?:PBFT|Solidity)/http/))", "C023.06", "C023.V"),
+    ("p2p", r"^java-tron/framework/src/(?:main|test)/java/org/tron/core/net/", "C021.09", "C021.V"),
+    ("configuration", r"^java-tron/framework/src/(?:main|test)/java/org/tron/core/config/", "C003.08", "C003.V"),
+    ("tvm", r"^java-tron/framework/src/test/java/org/tron/core/(?:vm|tire)/", "C015.06", "C015.V"),
+    ("transaction_pipeline", r"^java-tron/framework/src/test/java/org/tron/core/(?:actuator/|(?:BandwidthProcessor|EnergyProcessor|TxInput|TxOutput).*)", "C016.06", "C016.V"),
+    ("shielded", r"^java-tron/framework/src/(?:main|test)/java/org/tron/core/(?:zen/|zksnark/|Shield.*)", "C006.06", "C006.V"),
+    ("storage", r"^java-tron/framework/src/(?:main|test)/java/org/tron/core/(?:capsule/|db2?/)", "C008.11", "C008.V"),
+    ("state_genesis", r"^java-tron/framework/src/main/java/org/tron/core/trie/", "C010.06", "C010.V"),
+    ("block_pipeline", r"^java-tron/framework/src/(?:main|test)/java/org/tron/core/(?:services/(?:stop/|ComputeRewardTest)|(?:BlockUtil|ForkController|CoreException).*)", "C019.07", "C019.V"),
+    ("application_lifecycle", r"^java-tron/framework/src/(?:main|test)/java/org/tron/program/", "C025.08", "C025.V"),
+    ("crypto", r"^java-tron/framework/src/test/java/org/tron/keystore/", "C004.06", "C004.V"),
+]
+
+# Reviewed mappings outside framework.  Patterns remain module/registry based.
 DOMAINS = [
     ("protocol", r"^java-tron/protocol/", "C001.07", "C001.V"),
     ("crypto", r"^java-tron/(?:crypto|common/src/main/java/org/tron/common/(?:crypto|utils/(?:Base58|ByteArray|Sha256Hash)))/", "C004.06", "C004.V"),
-    ("shielded", r"^java-tron/(?:common|framework)/src/(?:main|test)/.*(?:zksnark|shield|librustzcash|libsodium|sapling)", "C006.06", "C006.V"),
+    ("shielded", r"^java-tron/common/src/(?:main|test)/.*(?:zksnark|shield|librustzcash|libsodium|sapling)", "C006.06", "C006.V"),
     ("storage", r"^java-tron/chainbase/src/(?:main|test)/java/org/tron/core/(?:db|store|capsule)/", "C008.11", "C008.V"),
-    ("chainbase", r"^java-tron/chainbase/", "C009.06", "C009.V"),
+    ("chainbase", r"^java-tron/chainbase/(?!src/(?:main|test)/java/org/tron/core/(?:db|store|capsule)/)", "C009.06", "C009.V"),
     ("actuators", r"^java-tron/actuator/", "C016.06", "C016.V"),
-    ("json_rpc", r"^java-tron/.*(?:jsonrpc|JsonRpc|JSONRPC|json-rpc)", "C024.08", "C024.V"),
-    ("pbft", r"^java-tron/(?:consensus|framework)/src/(?:main|test)/.*(?:pbft|Pbft|PBFT|backup)", "C018.06", "C018.V"),
     ("consensus", r"^java-tron/consensus/", "C017.07", "C017.V"),
-    ("events_metrics_lifecycle", r"^java-tron/(?:framework|plugins)/src/(?:main|test)/.*(?:event|Event|metric|Metric|prometheus|Prometheus|plugin|Plugin|ApplicationImpl|ServiceContainer)", "C025.08", "C025.V"),
-    ("http_api", r"^java-tron/framework/src/(?:main|test)/.*(?:http|servlet|Servlet)", "C023.06", "C023.V"),
-    ("grpc_api", r"^java-tron/framework/src/(?:main|test)/.*(?:grpc|rpc|Rpc|Wallet|ApiWrapper)", "C022.02", "C022.V"),
-    ("p2p_messages", r"^java-tron/framework/src/(?:main|test)/.*(?:net/|p2p|P2p|message|Message|handler|Handler|discover|Discover)", "C021.09", "C021.V"),
-    ("block_pipeline", r"^java-tron/framework/src/(?:main|test)/.*(?:Manager|block|Block|pending|Pending|fork|Fork)", "C019.07", "C019.V"),
-    ("tvm", r"^java-tron/(?:common|framework)/src/(?:main|test)/.*(?:vm/|VM|tvm|Tvm|opcode|precompile|Precompile|Program)", "C015.06", "C015.V"),
-    ("transaction_pipeline", r"^java-tron/framework/src/(?:main|test)/.*(?:Transaction|transaction|actuator|Actuator|Runtime)", "C016.06", "C016.V"),
-    ("state_genesis", r"^java-tron/framework/src/(?:main|test)/.*(?:Genesis|genesis|DynamicProperties|AccountState|Trie)", "C010.06", "C010.V"),
-    ("framework_runtime", r"^java-tron/framework/", "C019.07", "C019.V"),
     ("plugins_toolkit", r"^java-tron/plugins/", "C027.06", "C027.V"),
     ("configuration", r"^java-tron/(?:config/|common/src/(?:main|test)/(?:resources|java/org/tron/common/parameter)/)", "C003.08", "C003.V"),
-    ("common_primitives", r"^java-tron/common/", "C002.07", "C002.V"),
+    ("common_primitives", r"^java-tron/common/(?!src/(?:main|test)/(?:resources|java/org/tron/common/(?:parameter|crypto|utils/(?:Base58|ByteArray|Sha256Hash)))/)(?!src/(?:main|test)/.*(?:zksnark|shield|librustzcash|libsodium|sapling))", "C002.07", "C002.V"),
     ("platform_native", r"^java-tron/platform/", "C006.06", "C006.V"),
     ("build_release", r"^java-tron/(?:\.github/|docker/|gradle/|errorprone/|example/|docs/|(?:build\.gradle|settings\.gradle|gradle\.properties|gradlew|gradlew\.bat|start\.sh|start\.sh\.simple|install_dependencies\.sh|gen\.sh|ver\.sh|jitpack\.yml|lombok\.config|sonar-project\.properties|\.codeclimate\.yml|\.dockerignore|LICENSE|NOTICE|README\.md|SECURITY\.md|CONTRIBUTING\.md|METRICS_CHANGELOG\.md|quickstart\.md|shell\.md|Tron protobuf protocol document\.md)$)", "C028.08", "C028.V"),
 ]
+EXPECTED_DOMAIN_OWNERSHIP = {
+    "actuators": ("C016.06", "C016.V"),
+    "application_lifecycle": ("C025.08", "C025.V"),
+    "block_pipeline": ("C019.07", "C019.V"),
+    "build_release": ("C028.08", "C028.V"),
+    "chainbase": ("C009.06", "C009.V"),
+    "common_primitives": ("C002.07", "C002.V"),
+    "configuration": ("C003.08", "C003.V"),
+    "consensus": ("C017.07", "C017.V"),
+    "crypto": ("C004.06", "C004.V"),
+    "events_metrics": ("C025.08", "C025.V"),
+    "grpc_api": ("C022.02", "C022.V"),
+    "http_api": ("C023.06", "C023.V"),
+    "json_rpc": ("C024.08", "C024.V"),
+    "p2p": ("C021.09", "C021.V"),
+    "pbft": ("C018.06", "C018.V"),
+    "platform_native": ("C006.06", "C006.V"),
+    "plugins_toolkit": ("C027.06", "C027.V"),
+    "protocol": ("C001.07", "C001.V"),
+    "shielded": ("C006.06", "C006.V"),
+    "state_genesis": ("C010.06", "C010.V"),
+    "storage": ("C008.11", "C008.V"),
+    "transaction_pipeline": ("C016.06", "C016.V"),
+    "tvm": ("C015.06", "C015.V"),
+}
+COMPILED_FRAMEWORK_DOMAINS = [(name, re.compile(pattern), item, gate) for name, pattern, item, gate in FRAMEWORK_DOMAINS]
 COMPILED_DOMAINS = [(name, re.compile(pattern), item, gate) for name, pattern, item, gate in DOMAINS]
 
 
@@ -53,11 +104,13 @@ def stable(prefix, *parts):
 
 
 def classify(path):
-    matches = [(name, item, gate) for name, pattern, item, gate in COMPILED_DOMAINS if pattern.search(path)]
+    inventory = COMPILED_FRAMEWORK_DOMAINS if path.startswith("java-tron/framework/") else COMPILED_DOMAINS
+    matches = [(name, item, gate) for name, pattern, item, gate in inventory if pattern.search(path)]
     if not matches:
         raise ValueError(f"unclassified source path: {path}")
-    name, item, gate = matches[0]
-    return name, item, gate
+    if len(matches) != 1:
+        raise ValueError(f"ambiguous source path: {path}: {matches}")
+    return matches[0]
 
 
 def tracker_ids():
@@ -77,7 +130,14 @@ def tracker_ids():
 def validate_domains():
     ids = tracker_ids()
     errors = []
-    for name, _, item, gate in DOMAINS:
+    seen = {}
+    for name, _, item, gate in FRAMEWORK_DOMAINS + DOMAINS:
+        expected = EXPECTED_DOMAIN_OWNERSHIP.get(name)
+        if expected != (item, gate):
+            errors.append(f"domain {name}: expected owner/gate {expected}, found {(item, gate)}")
+        previous = seen.setdefault(name, (item, gate))
+        if previous != (item, gate):
+            errors.append(f"domain {name}: conflicting owner/gate mappings {previous} and {(item, gate)}")
         if item not in ids: errors.append(f"domain {name}: missing owning item {item}")
         if gate not in ids: errors.append(f"domain {name}: missing gate {gate}")
         if item.split(".", 1)[0] != gate.split(".", 1)[0]:
@@ -233,9 +293,9 @@ def emit():
     validate_domains()
     prods = sorted(production_rows(), key=lambda r: (r["source"]["path"], r["source"]["line"], r["id"]))
     tests = sorted(test_rows(), key=lambda r: (r["source"]["path"], r["source"]["line"], r["id"]))
-    inventory_hash = hashlib.sha256(json.dumps(DOMAINS, separators=(",", ":")).encode()).hexdigest()
+    inventory_hash = hashlib.sha256(json.dumps(FRAMEWORK_DOMAINS + DOMAINS, separators=(",", ":")).encode()).hexdigest()
     common = {"schema_version": 1, "java_source_revision": REV,
-              "generator": {"path": "tools/reference-runner/generate-ledgers.py", "version": 2,
+              "generator": {"path": "tools/reference-runner/generate-ledgers.py", "version": 3,
                             "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()},
               "regeneration": {"command": ["python3", "tools/reference-runner/generate-ledgers.py"],
                                "domain_inventory_sha256": inventory_hash,

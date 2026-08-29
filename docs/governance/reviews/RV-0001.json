@@ -4,18 +4,62 @@
   "owning_gate": "C000.V",
   "review_class": "architecture",
   "scope_rows": [
+    "C000.01",
+    "C000.02",
+    "C000.03",
+    "C000.04",
+    "C000.05",
+    "C000.06",
+    "C000.07",
+    "C000.08",
+    "C000.09",
+    "C000.10",
+    "C000.11",
+    "C000.12",
     "C000.13",
     "C000.14",
+    "C000.15",
     "C000.V"
   ],
-  "seam_rows": [],
+  "seam_rows": [
+    "SEAM-001",
+    "SEAM-002",
+    "SEAM-003",
+    "SEAM-004",
+    "SEAM-005",
+    "SEAM-006",
+    "SEAM-007",
+    "SEAM-008",
+    "SEAM-009",
+    "SEAM-010"
+  ],
   "covered_revisions": {
-    "repository": "df50ce9676b94de0b10a605076adfd8728811384"
+    "repository": "01bd7cb0cd11fb06b2d7acfd07c254a46ebed10d"
   },
   "covered_artifacts": [
     {
+      "path": "docs/architecture/cross-domain-seams.v1.json",
+      "sha256": "4a68de2d8f688c364aa4559a4f58fab1439637e5e36fd93fc51111f2bb2cbdbc"
+    },
+    {
       "path": "docs/architecture/platform-manifest.v1.json",
       "sha256": "638856206e95e8d8291fee6f295d82d0a29a7bb0b0d6d3b062758ee2227b39d2"
+    },
+    {
+      "path": "docs/architecture/toolchains-and-platforms.md",
+      "sha256": "da6fbd2ac97cd2647a72e2084c35d35a5319ef811ab1b2792bc1977af0200ae0"
+    },
+    {
+      "path": "docs/governance/adoption-inventory-v1.schema.json",
+      "sha256": "dede0d4e6f683498282250604d65b5c341fa9176a5fa4d2d3b4d21a32299d612"
+    },
+    {
+      "path": "docs/governance/behavior-manifest-v1.schema.json",
+      "sha256": "de679f4884d8fc2ab0c9fa6a18f7c5e94efa0ef2699e4f4408180b13fc81e48f"
+    },
+    {
+      "path": "docs/governance/dependency-decision-v1.schema.json",
+      "sha256": "62336f1abdc5dbb7b6a8811447cb87fd41119a1941a03766b9d58f5c0857041d"
     },
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -23,19 +67,76 @@
     },
     {
       "path": "docs/governance/independent-review-v1.schema.json",
-      "sha256": "215984258a66ecd7efe5b769b0f77f12ae7fb07bc696ab768fecddf8d267554c"
+      "sha256": "e8a4b256b2798bb03af002f980b470520c07c871d924ef6a99f848e105197251"
+    },
+    {
+      "path": "docs/governance/tracker-v1.schema.json",
+      "sha256": "14b1abd6a1c237e7bb5cb2bad68a0d1185d331880f80cd4c455347bce76aa450"
+    }
+  ],
+  "authors": [
+    {
+      "agent_id": "c000-governance-review-fix",
+      "artifact_paths": [
+        "docs/architecture/cross-domain-seams.v1.json",
+        "docs/architecture/platform-manifest.v1.json",
+        "docs/architecture/toolchains-and-platforms.md",
+        "docs/governance/adoption-inventory-v1.schema.json",
+        "docs/governance/behavior-manifest-v1.schema.json",
+        "docs/governance/dependency-decision-v1.schema.json",
+        "docs/governance/evidence-v1.schema.json",
+        "docs/governance/independent-review-v1.schema.json",
+        "docs/governance/tracker-v1.schema.json"
+      ]
+    }
+  ],
+  "owners": [
+    {
+      "agent_id": "c000-governance",
+      "scope_rows": [
+        "C000.01",
+        "C000.02",
+        "C000.03",
+        "C000.04",
+        "C000.05",
+        "C000.06",
+        "C000.07",
+        "C000.08",
+        "C000.09",
+        "C000.10",
+        "C000.11",
+        "C000.12",
+        "C000.13",
+        "C000.14",
+        "C000.15",
+        "C000.V"
+      ],
+      "seam_rows": [
+        "SEAM-001",
+        "SEAM-002",
+        "SEAM-003",
+        "SEAM-004",
+        "SEAM-005",
+        "SEAM-006",
+        "SEAM-007",
+        "SEAM-008",
+        "SEAM-009",
+        "SEAM-010"
+      ]
     }
   ],
   "reviewers": [
     {
-      "identity": "C000 Architecture Reviewer AR-01",
+      "agent_id": "c000-correctness-review",
+      "identity": "c000-correctness-review",
       "role": "primary",
       "independent_of_authors": true,
       "conflicts": [],
       "recusals": []
     },
     {
-      "identity": "C000 Architecture Closure Reviewer AR-02",
+      "agent_id": "c000-accounting-review",
+      "identity": "c000-accounting-review",
       "role": "closure",
       "independent_of_authors": true,
       "conflicts": [],
@@ -43,18 +144,19 @@
     }
   ],
   "findings": [],
-  "reruns": ["EV-0001", "EV-0002", "EV-0003", "EV-0004", "EV-0005"],
+  "reruns": [],
   "closure": {
-    "status": "approved",
-    "reviewer": "C000 Architecture Closure Reviewer AR-02",
-    "date": "2026-08-29",
-    "approval": true
+    "status": "pending",
+    "reviewer_agent_id": null,
+    "date": null,
+    "approval": false
   },
   "retention_until": "2027-08-29",
   "invalidation_triggers": [
     "covered repository revision changes",
     "covered artifact digest changes",
-    "platform row or architecture disposition changes",
+    "authorship, ownership, reviewer, or closure identity changes",
+    "scope row or seam review requirement changes",
     "new or reopened finding"
   ]
 }
