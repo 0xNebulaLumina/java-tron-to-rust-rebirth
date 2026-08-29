@@ -95,7 +95,7 @@ def ledger_issues(path: str, expected_ledger: str) -> list[str]:
     generator_path = generator.get("path")
     if regeneration.get("unknown_policy") != "fail" or not regeneration.get("domain_inventory_sha256"):
         issues.append(f"{path}: regeneration is not fail-on-unknown or lacks its inventory digest")
-    if generator.get("version") != 2 or not isinstance(generator_path, str) or not (ROOT / generator_path).is_file() or artifact(generator_path)["sha256"] != generator.get("sha256"):
+    if generator.get("version") != 3 or not isinstance(generator_path, str) or not (ROOT / generator_path).is_file() or artifact(generator_path)["sha256"] != generator.get("sha256"):
         issues.append(f"{path}: generator identity or digest is stale")
     if ledger.get("java_source_revision") != manifest.get("repository_revision"):
         issues.append(f"{path}: source revision differs from the platform contract")
@@ -127,17 +127,18 @@ def ledger_issues(path: str, expected_ledger: str) -> list[str]:
     return issues
 
 
-def governance_model() -> tuple[Any | None, dict[str, Any], str | None, list[str]]:
+def governance_model() -> tuple[Any | None, dict[str, Any], str | None, bool, list[str]]:
     issues: list[str] = []
     try:
         validator = load_validator()
         tracker = load_json("docs/PORTING_TRACKER.json")
     except (OSError, json.JSONDecodeError, RuntimeError) as error:
-        return None, {}, None, [f"cannot load governance model: {error}"]
+        return None, {}, None, False, [f"cannot load governance model: {error}"]
     records = tracker.get("records", []) if isinstance(tracker, dict) else []
     by_id = {row.get("id"): row for row in records if isinstance(row, dict) and isinstance(row.get("id"), str)}
     revision = validator.repository_revision(issues)
-    return validator, by_id, revision, issues
+    tree_clean = validator.repository_tree_clean(issues)
+    return validator, by_id, revision, tree_clean, issues
 
 
 def oracle_issues(revision: str | None) -> list[str]:
@@ -175,7 +176,7 @@ def oracle_issues(revision: str | None) -> list[str]:
             if ledger.get("ledger") != entry.get("ledger") or ledger.get("row_count") != entry.get("row_count"):
                 issues.append(f"{path}: ledger identity/count mismatch for {entry.get('path')}")
     regeneration = manifest.get("regeneration", {})
-    if regeneration.get("generator_version") != 2 or regeneration.get("unknown_policy") != "fail" or not regeneration.get("domain_inventory_sha256"):
+    if regeneration.get("generator_version") != 3 or regeneration.get("unknown_policy") != "fail" or not regeneration.get("domain_inventory_sha256"):
         issues.append(f"{path}: regeneration contract is incomplete")
     return issues
 
@@ -253,11 +254,11 @@ def governed_artifact_paths() -> tuple[str, ...]:
     return tuple(sorted(path for path in paths if (ROOT / path).is_file()))
 
 
-def internal_governance_cases(validator: Any, by_id: dict[str, Any], revision: str | None) -> tuple[dict[str, dict[str, Any]], dict[str, str], list[dict[str, str]]]:
+def internal_governance_cases(validator: Any, by_id: dict[str, Any], revision: str | None, tree_clean: bool) -> tuple[dict[str, dict[str, Any]], dict[str, str], list[dict[str, str]]]:
     evidence_issues: list[str] = []
-    evidence, valid_evidence = validator.evidence_contract(revision, by_id, evidence_issues)
+    evidence, valid_evidence = validator.evidence_contract(revision, tree_clean, by_id, evidence_issues)
     review_issues: list[str] = []
-    reviews, valid_reviews = validator.review_contract(revision, by_id, evidence, valid_evidence, review_issues)
+    reviews, valid_reviews = validator.review_contract(revision, tree_clean, by_id, evidence, valid_evidence, review_issues)
     platform_issues: list[str] = []
     platform_ok = validator.platform_contract(revision, evidence, valid_evidence, reviews, valid_reviews, platform_issues)
     c13_evidence = {ident for ident, record in evidence.items() if record.get("owning_item") == "C000.13"}
@@ -285,13 +286,13 @@ def internal_governance_cases(validator: Any, by_id: dict[str, Any], revision: s
     return cases, approvals, [artifact(path) for path in paths]
 
 
-def verification_case(validator: Any | None, by_id: dict[str, Any], revision: str | None, model_issues: list[str]) -> dict[str, Any]:
+def verification_case(validator: Any | None, by_id: dict[str, Any], revision: str | None, tree_clean: bool, model_issues: list[str]) -> dict[str, Any]:
     task_results = {task_id: task_case(task_id, validator, by_id, revision) for task_id in TASK_ARTIFACTS}
     issues = list(model_issues)
     approvals: dict[str, str] = {}
     internal = {"C000.13": {"outcome": "fail", "issues": ["governance validator unavailable"]}, "C000.14": {"outcome": "fail", "issues": ["governance validator unavailable"], "platform_complete": False}}
     if validator is not None:
-        internal, approvals, _ = internal_governance_cases(validator, by_id, revision)
+        internal, approvals, _ = internal_governance_cases(validator, by_id, revision, tree_clean)
     failed_tasks = [task_id for task_id, case in task_results.items() if case["outcome"] != "pass"]
     failed_internal = [task_id for task_id, case in internal.items() if case["outcome"] != "pass"]
     if failed_tasks:
@@ -310,9 +311,9 @@ def verification_case(validator: Any | None, by_id: dict[str, Any], revision: st
 
 
 def main() -> int:
-    validator, by_id, revision, model_issues = governance_model()
+    validator, by_id, revision, tree_clean, model_issues = governance_model()
     cases = [task_case(task_id, validator, by_id, revision) for task_id in EMITTED_TASKS]
-    cases.append(verification_case(validator, by_id, revision, model_issues))
+    cases.append(verification_case(validator, by_id, revision, tree_clean, model_issues))
     failed = any(case["outcome"] != "pass" for case in cases)
     payload = {"schema_version": 1, "audit": "C000-artifacts", "outcome": "fail" if failed else "pass", "cases": cases}
     print(json.dumps(payload, sort_keys=True, separators=(",", ":")))

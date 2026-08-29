@@ -72,3 +72,4 @@ Reusable repository facts and conventions learned from the Java evidence:
 - Events are asynchronous stateful pipelines with removed/reapply behavior on reorg, not simple post-commit logging.
 - The tracked Java test tree contains 530 source files and ten test resources. Important protocol/crypto/chainbase/consensus behavior is often tested from the framework module rather than its owning module.
 - The repository-level license is LGPLv3, but individual sources include GPLv3, Apache-2.0, ethereumJ LGPL text, and an UNLICENSED Solidity fixture. Crate/source/fixture/parameter distribution needs explicit provenance review.
+- Python-based repository gates must keep the worktree clean; retain repository-level ignores for `__pycache__/` and `*.py[cod]`.
