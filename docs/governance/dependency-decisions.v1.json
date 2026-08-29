@@ -17,8 +17,8 @@
         "tools/tracker/validate.py"
       ],
       "status": "review_required",
-      "security_disposition": "pending authenticated independent security review on revision c37b72b",
-      "license_disposition": "pending authenticated independent license review on revision c37b72b",
+      "security_disposition": "pending authenticated independent security review of the current inventory hashes",
+      "license_disposition": "pending authenticated independent license review of the current inventory hashes",
       "rationale": "The scripts use the Python standard library only and are C000 governance, inventory, validation, and oracle tooling. Approval is limited to the inventory hashes and does not approve Python packages or a production Rust dependency.",
       "approval_required_before_release": true,
       "invalidation_triggers": [
@@ -36,8 +36,8 @@
         "tools/reference-runner/rust-runner"
       ],
       "status": "review_required",
-      "security_disposition": "pending authenticated independent security review on revision c37b72b",
-      "license_disposition": "pending authenticated independent license review on revision c37b72b",
+      "security_disposition": "pending authenticated independent security review of the current inventory hashes",
+      "license_disposition": "pending authenticated independent license review of the current inventory hashes",
       "rationale": "The launchers are narrow C000 process boundaries. Approval does not extend to a substituted shell, Java/Rust program, production process supervisor, or runtime dependency.",
       "approval_required_before_release": true,
       "invalidation_triggers": [
@@ -70,8 +70,8 @@
         "rust-tron/Cargo.lock"
       ],
       "status": "review_required",
-      "security_disposition": "pending authenticated independent security review on revision c37b72b",
-      "license_disposition": "pending authenticated independent license review on revision c37b72b",
+      "security_disposition": "pending authenticated independent security review of the current inventory hashes",
+      "license_disposition": "pending authenticated independent license review of the current inventory hashes",
       "rationale": "Cargo.lock contains only workspace packages at C000. No third-party crate, feature set, native library, backend, or later dependency is approved.",
       "approval_required_before_release": true,
       "invalidation_triggers": [
@@ -93,8 +93,8 @@
         "docs/architecture/toolchains-and-platforms.md"
       ],
       "status": "review_required",
-      "security_disposition": "pending authenticated independent security review on revision c37b72b",
-      "license_disposition": "pending authenticated independent license review on revision c37b72b",
+      "security_disposition": "pending authenticated independent security review of the current inventory hashes",
+      "license_disposition": "pending authenticated independent license review of the current inventory hashes",
       "rationale": "This decision inventories the Java reference-build boundary only. It does not approve Java build dependencies as Rust production dependencies, substituted JDKs, mutable downloads, or a production JVM dependency.",
       "approval_required_before_release": true,
       "invalidation_triggers": [
@@ -137,8 +137,8 @@
         "docs/oracles/schemas/threat-model-v1.schema.json"
       ],
       "status": "review_required",
-      "security_disposition": "not_applicable to inert repository data; parser and consumer behavior requires current review",
-      "license_disposition": "pending authenticated independent license review on revision c37b72b",
+      "security_disposition": "not_applicable to inert repository data; parser and consumer behavior requires review against the current inventory hashes",
+      "license_disposition": "pending authenticated independent license review of the current inventory hashes",
       "rationale": "These hashed governed inputs are adopted for deterministic C000 validation and drift detection. Descendant attestation envelopes are validated separately against the authorized subject closure and are not adoption inputs. This disposition is not third-party dependency, architecture, or production implementation approval.",
       "approval_required_before_release": true,
       "invalidation_triggers": [

@@ -121,26 +121,31 @@ def excluded_attestation_path(path: str) -> bool:
     return path in ATTESTATION_EXCLUSIONS or path.startswith(ATTESTATION_PREFIXES)
 
 
-def committed_closure(revision: str, errors: list[str]) -> dict[str, tuple[str, str, str, str]] | None:
+def committed_tree(revision: str, errors: list[str]) -> dict[str, tuple[str, str, str, str]] | None:
     try:
         raw = git("ls-tree", "-rz", "--full-tree", revision, text=False).stdout
-        closure = {}
+        tree = {}
         for record in raw.split(b"\0"):
             if not record:
                 continue
             metadata, encoded_path = record.split(b"\t", 1)
             mode, object_type, object_id = metadata.decode("ascii").split()
             path = encoded_path.decode("utf-8")
-            if excluded_attestation_path(path):
-                continue
-            if path in closure or path.startswith("/") or ".." in Path(path).parts:
-                raise ValueError(f"ambiguous governed path {path!r}")
+            if path in tree or path.startswith("/") or ".." in Path(path).parts:
+                raise ValueError(f"ambiguous committed path {path!r}")
             content_sha256 = hashlib.sha256(git("cat-file", "blob", object_id, text=False).stdout).hexdigest() if object_type == "blob" else object_id
-            closure[path] = (mode, object_type, object_id, content_sha256)
-        return closure
+            tree[path] = (mode, object_type, object_id, content_sha256)
+        return tree
     except (OSError, UnicodeError, ValueError, subprocess.CalledProcessError) as exc:
-        fail(errors, f"cannot resolve committed governed closure at {revision}: {exc}")
+        fail(errors, f"cannot resolve committed tree at {revision}: {exc}")
         return None
+
+
+def committed_closure(revision: str, errors: list[str]) -> dict[str, tuple[str, str, str, str]] | None:
+    tree = committed_tree(revision, errors)
+    if tree is None:
+        return None
+    return {path: entry for path, entry in tree.items() if not excluded_attestation_path(path)}
 
 
 def closure_digest(closure: dict[str, tuple[str, str, str, str]]) -> str:
@@ -173,7 +178,7 @@ def validate_history_identity(subject: str, head: str | None, errors: list[str])
         return False
 
 
-def manifest_subject_revision(current_revision: str | None, errors: list[str]) -> tuple[str | None, dict[str, tuple[str, str, str, str]]]:
+def manifest_subject_revision(current_revision: str | None, errors: list[str]) -> tuple[str | None, dict[str, tuple[str, str, str, str]], dict[str, tuple[str, str, str, str]]]:
     manifests = {
         "platform": load(ROOT / "docs/architecture/platform-manifest.v1.json"),
         "oracle": load(ROOT / "docs/oracles/manifest.v1.json"),
@@ -182,16 +187,17 @@ def manifest_subject_revision(current_revision: str | None, errors: list[str]) -
     subject = subjects["platform"]
     if any(value != subject for value in subjects.values()):
         fail(errors, "platform and oracle manifests must attest the same subject_revision")
-        return None, {}
+        return None, {}, {}
     if not isinstance(subject, str) or not re.fullmatch(r"[0-9a-f]{40}", subject) or subject != GOVERNED_BASELINE:
         fail(errors, f"manifest subject_revision must equal authorized full commit {GOVERNED_BASELINE}")
-        return None, {}
+        return None, {}, {}
     if not validate_history_identity(subject, current_revision, errors):
-        return None, {}
-    subject_closure = committed_closure(subject, errors)
+        return None, {}, {}
+    subject_tree = committed_tree(subject, errors)
+    subject_closure = {path: entry for path, entry in subject_tree.items() if not excluded_attestation_path(path)} if subject_tree is not None else None
     head_closure = committed_closure(current_revision, errors) if current_revision else None
-    if subject_closure is None or head_closure is None:
-        return None, {}
+    if subject_tree is None or subject_closure is None or head_closure is None:
+        return None, {}, {}
     if subject_closure != head_closure:
         changed = sorted(set(subject_closure) ^ set(head_closure) | {path for path in set(subject_closure) & set(head_closure) if subject_closure[path] != head_closure[path]})
         fail(errors, f"governed input closure drifted after subject_revision: {changed}")
@@ -200,7 +206,7 @@ def manifest_subject_revision(current_revision: str | None, errors: list[str]) -
         policy = manifest.get("attestation") if isinstance(manifest, dict) else None
         if not isinstance(policy, dict) or policy.get("closure_sha256") != expected_digest or policy.get("algorithm") != "git-ls-tree-v1" or policy.get("excluded_paths") != sorted(ATTESTATION_EXCLUSIONS) or policy.get("excluded_prefixes") != list(ATTESTATION_PREFIXES):
             fail(errors, f"{name} manifest does not bind the authorized exact governed closure")
-    return subject, subject_closure
+    return subject, subject_closure, subject_tree
 
 def reject_supersession_cycles(records, field: str, errors: list[str]):
     for start in records:
@@ -312,15 +318,15 @@ def graph_contract(tracker, projection, errors):
     return by_id, stats
 
 
-def subject_artifact_ok(entry, label: str, subject_closure, errors: list[str]) -> bool:
+def subject_artifact_ok(entry, label: str, subject_tree, errors: list[str]) -> bool:
     if not isinstance(entry, dict) or set(entry) != {"path", "mode", "sha256"}:
         fail(errors, f"{label}: artifact must contain exactly path, mode, and sha256")
         return False
     path, mode, sha256 = entry.get("path"), entry.get("mode"), entry.get("sha256")
-    if not isinstance(path, str) or excluded_attestation_path(path) or path not in subject_closure:
+    if not isinstance(path, str) or excluded_attestation_path(path) or path not in subject_tree:
         fail(errors, f"{label}: unknown, excluded, or self-referential subject artifact {path!r}")
         return False
-    actual_mode, object_type, _object_id, actual_sha256 = subject_closure[path]
+    actual_mode, object_type, _object_id, actual_sha256 = subject_tree[path]
     if object_type != "blob" or mode != actual_mode or sha256 != actual_sha256:
         fail(errors, f"{label}: subject blob/mode digest mismatch for {path}")
         return False
@@ -342,7 +348,7 @@ def artifact_ok(entry, label: str, errors: list[str]) -> bool:
     return True
 
 
-def evidence_contract(subject: str | None, subject_closure, tree_clean: bool, by_id, errors: list[str]):
+def evidence_contract(subject: str | None, subject_tree, tree_clean: bool, by_id, errors: list[str]):
     records, valid = {}, set()
     required = {"schema_version", "evidence_id", "owning_item", "subject_revision", "subject_artifacts", "command", "environment", "run_id", "cases", "started_at", "ended_at", "observed_exit_code", "observed_status", "expected", "observed", "stdout", "stderr", "artifacts", "invalidation_edges", "review_bindings", "retention_until", "supersedes"}
     environment_fields = {"tree_state", "toolchains", "platform_row", "target", "host_os", "host_architecture", "execution", "working_directory", "cells", "backend", "features"}
@@ -381,7 +387,7 @@ def evidence_contract(subject: str | None, subject_closure, tree_clean: bool, by
             subject_artifacts = []
         subject_paths = [entry.get("path") for entry in subject_artifacts if isinstance(entry, dict)]
         for index, artifact in enumerate(subject_artifacts):
-            subject_artifact_ok(artifact, f"{ident}.subject_artifacts[{index}]", subject_closure, errors)
+            subject_artifact_ok(artifact, f"{ident}.subject_artifacts[{index}]", subject_tree, errors)
         if len(subject_paths) != len(subject_artifacts) or len(subject_paths) != len(set(subject_paths)):
             fail(errors, f"{ident}: malformed or duplicate subject artifact path")
         command = ev.get("command")
@@ -428,7 +434,7 @@ def evidence_contract(subject: str | None, subject_closure, tree_clean: bool, by
             if not isinstance(edge, dict) or set(edge) != {"kind", "path", "mode", "sha256"}:
                 fail(errors, f"{ident}.invalidation_edges[{index}]: schema invalid")
             else:
-                subject_artifact_ok({key: edge[key] for key in ("path", "mode", "sha256")}, f"{ident}.invalidation_edges[{index}]", subject_closure, errors)
+                subject_artifact_ok({key: edge[key] for key in ("path", "mode", "sha256")}, f"{ident}.invalidation_edges[{index}]", subject_tree, errors)
         cases = ev.get("cases")
         if not isinstance(cases, list) or not cases:
             fail(errors, f"{ident}: no cases")
@@ -456,7 +462,7 @@ def evidence_contract(subject: str | None, subject_closure, tree_clean: bool, by
     valid -= superseded
     return records, valid
 
-def review_contract(subject: str | None, subject_closure, tree_clean: bool, by_id, evidence, valid_evidence, errors: list[str]):
+def review_contract(subject: str | None, subject_tree, tree_clean: bool, by_id, evidence, valid_evidence, errors: list[str]):
     records, valid = {}, set()
     required_fields = {"schema_version", "review_id", "owning_gate", "review_class", "scope_rows", "seam_rows", "subject_revision", "subject_artifacts", "authors", "owners", "reviewers", "findings", "reruns", "closure", "retention_until", "invalidation_triggers", "supersedes"}
     seams_document = load(ROOT / "docs/architecture/cross-domain-seams.v1.json")
@@ -521,7 +527,7 @@ def review_contract(subject: str | None, subject_closure, tree_clean: bool, by_i
         if artifact_paths != artifacts_by_class[review_class] or len(artifact_paths) != len(artifacts or []):
             fail(errors, f"{ident}: subject artifacts are not the exact required {review_class} set")
         for index, artifact in enumerate(artifacts if isinstance(artifacts, list) else []):
-            subject_artifact_ok(artifact, f"{ident}.subject_artifacts[{index}]", subject_closure, errors)
+            subject_artifact_ok(artifact, f"{ident}.subject_artifacts[{index}]", subject_tree, errors)
         author_ids, owner_ids, reviewer_ids, closure_ids = set(), set(), set(), set()
         for field, destination in (("authors", author_ids), ("owners", owner_ids)):
             entries = review.get(field)
@@ -1006,13 +1012,13 @@ def main():
     errors = []
     tracker = load(TRACKER)
     revision = repository_revision(errors)
-    subject_revision, subject_closure = manifest_subject_revision(revision, errors)
+    subject_revision, subject_closure, subject_tree = manifest_subject_revision(revision, errors)
     tree_clean = repository_tree_clean(errors)
     projection = checklist_projection(errors)
     by_id, stats = graph_contract(tracker, projection, errors)
     governance_contract(by_id, errors)
-    evidence, valid_evidence = evidence_contract(subject_revision, subject_closure, tree_clean, by_id, errors)
-    reviews, valid_reviews = review_contract(subject_revision, subject_closure, tree_clean, by_id, evidence, valid_evidence, errors)
+    evidence, valid_evidence = evidence_contract(subject_revision, subject_tree, tree_clean, by_id, errors)
+    reviews, valid_reviews = review_contract(subject_revision, subject_tree, tree_clean, by_id, evidence, valid_evidence, errors)
     platform_complete = platform_contract(subject_revision, evidence, valid_evidence, reviews, valid_reviews, errors)
     adoptions, valid_adoptions = adoption_contract(by_id, errors)
     predicates = artifact_contract(by_id, errors)
