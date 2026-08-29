@@ -6,6 +6,7 @@ from collections import Counter
 import datetime as dt
 import hashlib
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -23,6 +24,14 @@ EV_ID = re.compile(r"^EV-[0-9]{4,}$")
 RV_ID = re.compile(r"^RV-[0-9]{4,}$")
 C000_TARGETS = {f"C000.{n:02d}" for n in range(10, 16)}
 TODAY = dt.date.today()
+GOVERNED_BASELINE = "c37b72b04cdf8209fdf1fb4d67f749518f2084b9"
+ATTESTATION_EXCLUSIONS = {
+    "docs/PORTING_TRACKER.json",
+    "docs/PORTING_CHECKLIST.md",
+    "docs/architecture/platform-manifest.v1.json",
+    "docs/oracles/manifest.v1.json",
+}
+ATTESTATION_PREFIXES = ("docs/governance/evidence/", "docs/governance/reviews/")
 
 REVIEW_CLASSES = {"architecture", "security", "license"}
 AUTHENTICATED_AGENT_ID = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)+$")
@@ -89,12 +98,116 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def git(*args: str, text: bool = True) -> subprocess.CompletedProcess:
+    return subprocess.run(["git", *args], cwd=ROOT, check=True, text=text, capture_output=True)
+
+
 def repository_revision(errors: list[str]) -> str | None:
     try:
-        return subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, check=True, text=True, capture_output=True).stdout.strip()
-    except (OSError, subprocess.CalledProcessError) as exc:
+        revision = git("rev-parse", "--verify", "HEAD^{commit}").stdout.strip()
+        if not re.fullmatch(r"[0-9a-f]{40}", revision):
+            raise ValueError("repository does not use full SHA-1 object names")
+        return revision
+    except (OSError, ValueError, subprocess.CalledProcessError) as exc:
         fail(errors, f"cannot resolve repository revision: {exc}")
         return None
+
+
+def excluded_attestation_path(path: str) -> bool:
+    return path in ATTESTATION_EXCLUSIONS or path.startswith(ATTESTATION_PREFIXES)
+
+
+def committed_closure(revision: str, errors: list[str]) -> dict[str, tuple[str, str, str, str]] | None:
+    try:
+        raw = git("ls-tree", "-rz", "--full-tree", revision, text=False).stdout
+        closure = {}
+        for record in raw.split(b"\0"):
+            if not record:
+                continue
+            metadata, encoded_path = record.split(b"\t", 1)
+            mode, object_type, object_id = metadata.decode("ascii").split()
+            path = encoded_path.decode("utf-8")
+            if excluded_attestation_path(path):
+                continue
+            if path in closure or path.startswith("/") or ".." in Path(path).parts:
+                raise ValueError(f"ambiguous governed path {path!r}")
+            content_sha256 = hashlib.sha256(git("cat-file", "blob", object_id, text=False).stdout).hexdigest() if object_type == "blob" else object_id
+            closure[path] = (mode, object_type, object_id, content_sha256)
+        return closure
+    except (OSError, UnicodeError, ValueError, subprocess.CalledProcessError) as exc:
+        fail(errors, f"cannot resolve committed governed closure at {revision}: {exc}")
+        return None
+
+
+def closure_digest(closure: dict[str, tuple[str, str, str, str]]) -> str:
+    canonical = b"".join(
+        f"{path}\0{mode}\0{object_type}\0{object_id}\0{sha256}\n".encode()
+        for path, (mode, object_type, object_id, sha256) in sorted(closure.items())
+    )
+    return hashlib.sha256(canonical).hexdigest()
+
+
+def validate_history_identity(subject: str, head: str | None, errors: list[str]) -> bool:
+    try:
+        if git("rev-parse", "--is-shallow-repository").stdout.strip() != "false":
+            raise ValueError("shallow history is not admissible")
+        graft_path = Path(git("rev-parse", "--git-path", "info/grafts").stdout.strip())
+        if not graft_path.is_absolute():
+            graft_path = ROOT / graft_path
+        if graft_path.exists() and graft_path.stat().st_size:
+            raise ValueError("git grafts are not admissible")
+        if git("replace", "-l").stdout.strip() or "GIT_REPLACE_REF_BASE" in os.environ:
+            raise ValueError("git replacement objects are not admissible")
+        git("cat-file", "-e", f"{subject}^{{commit}}")
+        if git("rev-parse", "--verify", f"{subject}^{{commit}}").stdout.strip() != subject:
+            raise ValueError("subject_revision does not name the exact commit object")
+        if head:
+            git("merge-base", "--is-ancestor", subject, head)
+        return True
+    except (OSError, ValueError, subprocess.CalledProcessError) as exc:
+        fail(errors, f"invalid subject revision/history: {exc}")
+        return False
+
+
+def manifest_subject_revision(current_revision: str | None, errors: list[str]) -> tuple[str | None, dict[str, tuple[str, str, str, str]]]:
+    manifests = {
+        "platform": load(ROOT / "docs/architecture/platform-manifest.v1.json"),
+        "oracle": load(ROOT / "docs/oracles/manifest.v1.json"),
+    }
+    subjects = {name: manifest.get("subject_revision") if isinstance(manifest, dict) else None for name, manifest in manifests.items()}
+    subject = subjects["platform"]
+    if any(value != subject for value in subjects.values()):
+        fail(errors, "platform and oracle manifests must attest the same subject_revision")
+        return None, {}
+    if not isinstance(subject, str) or not re.fullmatch(r"[0-9a-f]{40}", subject) or subject != GOVERNED_BASELINE:
+        fail(errors, f"manifest subject_revision must equal authorized full commit {GOVERNED_BASELINE}")
+        return None, {}
+    if not validate_history_identity(subject, current_revision, errors):
+        return None, {}
+    subject_closure = committed_closure(subject, errors)
+    head_closure = committed_closure(current_revision, errors) if current_revision else None
+    if subject_closure is None or head_closure is None:
+        return None, {}
+    if subject_closure != head_closure:
+        changed = sorted(set(subject_closure) ^ set(head_closure) | {path for path in set(subject_closure) & set(head_closure) if subject_closure[path] != head_closure[path]})
+        fail(errors, f"governed input closure drifted after subject_revision: {changed}")
+    expected_digest = closure_digest(subject_closure)
+    for name, manifest in manifests.items():
+        policy = manifest.get("attestation") if isinstance(manifest, dict) else None
+        if not isinstance(policy, dict) or policy.get("closure_sha256") != expected_digest or policy.get("algorithm") != "git-ls-tree-v1" or policy.get("excluded_paths") != sorted(ATTESTATION_EXCLUSIONS) or policy.get("excluded_prefixes") != list(ATTESTATION_PREFIXES):
+            fail(errors, f"{name} manifest does not bind the authorized exact governed closure")
+    return subject, subject_closure
+
+def reject_supersession_cycles(records, field: str, errors: list[str]):
+    for start in records:
+        seen, current = set(), start
+        while current in records and current not in seen:
+            seen.add(current)
+            value = records[current].get(field)
+            current = value if isinstance(value, str) else ""
+        if current in seen:
+            fail(errors, f"attestation supersession cycle includes {current}")
+            return
 
 
 def checklist_projection(errors: list[str]):
@@ -195,33 +308,40 @@ def graph_contract(tracker, projection, errors):
     return by_id, stats
 
 
-def artifact_ok(entry, label: str, errors: list[str]) -> bool:
-    if not isinstance(entry, dict):
-        fail(errors, f"{label}: malformed artifact reference: expected object")
+def subject_artifact_ok(entry, label: str, subject_closure, errors: list[str]) -> bool:
+    if not isinstance(entry, dict) or set(entry) != {"path", "mode", "sha256"}:
+        fail(errors, f"{label}: artifact must contain exactly path, mode, and sha256")
         return False
-    path_value = entry.get("path")
-    sha256 = entry.get("sha256")
-    if not isinstance(path_value, str) or not path_value:
-        fail(errors, f"{label}: malformed artifact reference: path must be a non-empty string")
+    path, mode, sha256 = entry.get("path"), entry.get("mode"), entry.get("sha256")
+    if not isinstance(path, str) or excluded_attestation_path(path) or path not in subject_closure:
+        fail(errors, f"{label}: unknown, excluded, or self-referential subject artifact {path!r}")
         return False
-    if not isinstance(sha256, str) or not re.fullmatch(r"[0-9a-f]{64}", sha256):
-        fail(errors, f"{label}: malformed artifact reference: sha256 must be 64 lowercase hex characters")
-        return False
-    path = ROOT / path_value
-    if not path.is_file():
-        fail(errors, f"{label}: missing artifact {path_value}")
-        return False
-    actual = digest(path)
-    if actual != sha256:
-        fail(errors, f"{label}: digest drift for {path_value}")
+    actual_mode, object_type, _object_id, actual_sha256 = subject_closure[path]
+    if object_type != "blob" or mode != actual_mode or sha256 != actual_sha256:
+        fail(errors, f"{label}: subject blob/mode digest mismatch for {path}")
         return False
     return True
 
 
-def evidence_contract(revision: str | None, tree_clean: bool, by_id, errors: list[str]):
+def artifact_ok(entry, label: str, errors: list[str]) -> bool:
+    if not isinstance(entry, dict) or set(entry) != {"path", "sha256"}:
+        fail(errors, f"{label}: malformed current artifact reference")
+        return False
+    path_value, sha256 = entry.get("path"), entry.get("sha256")
+    if not isinstance(path_value, str) or excluded_attestation_path(path_value) or not re.fullmatch(r"[0-9a-f]{64}", str(sha256)):
+        fail(errors, f"{label}: invalid or self-referential current artifact")
+        return False
+    path = (ROOT / path_value).resolve()
+    if ROOT not in path.parents or not path.is_file() or digest(path) != sha256:
+        fail(errors, f"{label}: missing, escaped, or digest-drifted artifact {path_value}")
+        return False
+    return True
+
+
+def evidence_contract(subject: str | None, subject_closure, tree_clean: bool, by_id, errors: list[str]):
     records, valid = {}, set()
-    required = {"schema_version", "evidence_id", "owning_item", "command", "environment", "run_id", "cases", "started_at", "ended_at", "observed_exit_code", "observed_status", "expected", "observed", "stdout", "stderr", "artifacts", "invalidation_edges", "review_bindings", "retention_until"}
-    environment_fields = {"repository_revision", "tree_state", "toolchains", "platform_row", "target", "host_os", "host_architecture", "execution", "working_directory", "cells", "backend", "features"}
+    required = {"schema_version", "evidence_id", "owning_item", "subject_revision", "subject_artifacts", "command", "environment", "run_id", "cases", "started_at", "ended_at", "observed_exit_code", "observed_status", "expected", "observed", "stdout", "stderr", "artifacts", "invalidation_edges", "review_bindings", "retention_until", "supersedes"}
+    environment_fields = {"tree_state", "toolchains", "platform_row", "target", "host_os", "host_architecture", "execution", "working_directory", "cells", "backend", "features"}
     for path in sorted((ROOT / "docs/governance/evidence").glob("*.json")):
         before = len(errors)
         try:
@@ -236,8 +356,6 @@ def evidence_contract(revision: str | None, tree_clean: bool, by_id, errors: lis
         if not isinstance(ident, str) or not EV_ID.fullmatch(ident) or path.stem != ident:
             fail(errors, f"{path.relative_to(ROOT)}: invalid evidence identity")
             continue
-        if ident in records:
-            fail(errors, f"duplicate evidence {ident}")
         records[ident] = ev
         missing, unknown = required - ev.keys(), set(ev) - required
         if ev.get("schema_version") != 1 or missing or unknown:
@@ -245,43 +363,51 @@ def evidence_contract(revision: str | None, tree_clean: bool, by_id, errors: lis
         owner = ev.get("owning_item")
         if owner not in by_id:
             fail(errors, f"{ident}: unknown owning item {owner}")
-        command = ev.get("command")
-        if not isinstance(command, list) or not command or not all(isinstance(arg, str) and arg for arg in command):
-            fail(errors, f"{ident}: command must be a non-empty string array")
+        if subject and ev.get("subject_revision") != subject:
+            fail(errors, f"{ident}: subject revision is stale")
         environment = ev.get("environment")
         if not isinstance(environment, dict) or set(environment) != environment_fields:
             fail(errors, f"{ident}: environment schema fields invalid")
             environment = {}
-        if revision and environment.get("repository_revision") != revision:
-            fail(errors, f"{ident}: repository revision is stale")
         if environment.get("tree_state") != "clean" or not tree_clean:
-            fail(errors, f"{ident}: completion evidence must bind the current clean committed tree")
+            fail(errors, f"{ident}: attestation validation requires a clean worktree and index")
+        subject_artifacts = ev.get("subject_artifacts")
+        if not isinstance(subject_artifacts, list) or not subject_artifacts:
+            fail(errors, f"{ident}: subject_artifacts must be non-empty")
+            subject_artifacts = []
+        subject_paths = [entry.get("path") for entry in subject_artifacts if isinstance(entry, dict)]
+        for index, artifact in enumerate(subject_artifacts):
+            subject_artifact_ok(artifact, f"{ident}.subject_artifacts[{index}]", subject_closure, errors)
+        if len(subject_paths) != len(subject_artifacts) or len(subject_paths) != len(set(subject_paths)):
+            fail(errors, f"{ident}: malformed or duplicate subject artifact path")
+        command = ev.get("command")
+        if not isinstance(command, list) or not command or not all(isinstance(arg, str) and arg for arg in command):
+            fail(errors, f"{ident}: command must be a non-empty string array")
         if not isinstance(environment.get("toolchains"), dict) or not environment.get("toolchains"):
             fail(errors, f"{ident}: invalid toolchain binding")
-        features = environment.get("features")
-        if not isinstance(features, list) or not all(isinstance(feature, str) for feature in features) or len(features) != len(set(features)):
-            fail(errors, f"{ident}: invalid feature binding")
-        cells = environment.get("cells")
-        cells_valid = isinstance(cells, list) and all(isinstance(cell, str) and cell in {"compile", "differential", "unit", "native_resource", "ffi", "packaging", "smoke"} for cell in cells) and len(cells) == len(set(cells))
-        if not cells_valid or (owner == "C000.14" and not cells):
-            fail(errors, f"{ident}: invalid platform cell binding")
+        for field in ("features", "cells"):
+            value = environment.get(field)
+            if not isinstance(value, list) or len(value) != len(set(value)) or not all(isinstance(item, str) for item in value):
+                fail(errors, f"{ident}: invalid {field} binding")
+        if owner == "C000.14" and not environment.get("cells"):
+            fail(errors, f"{ident}: platform evidence must bind cells")
         if environment.get("execution") != "native" or not all(isinstance(environment.get(field), str) and environment[field] for field in ("target", "host_os", "host_architecture", "working_directory", "platform_row", "backend")):
-            fail(errors, f"{ident}: invalid target/native host/working-directory binding")
+            fail(errors, f"{ident}: invalid target/native environment binding")
         bindings = ev.get("review_bindings")
-        if not isinstance(bindings, list) or not all(isinstance(binding, str) and RV_ID.fullmatch(binding) for binding in bindings) or len(bindings) != len(set(bindings)):
+        if not isinstance(bindings, list) or len(bindings) != len(set(bindings)) or not all(isinstance(value, str) and RV_ID.fullmatch(value) for value in bindings):
             fail(errors, f"{ident}: invalid review bindings")
+        supersedes = ev.get("supersedes")
+        if supersedes is not None and (not isinstance(supersedes, str) or not EV_ID.fullmatch(supersedes) or supersedes == ident):
+            fail(errors, f"{ident}: invalid supersedes edge")
         try:
             started = dt.datetime.fromisoformat(ev["started_at"].replace("Z", "+00:00"))
             ended = dt.datetime.fromisoformat(ev["ended_at"].replace("Z", "+00:00"))
             if ended < started:
                 fail(errors, f"{ident}: evidence ends before it starts")
-        except (KeyError, AttributeError, TypeError, ValueError):
-            fail(errors, f"{ident}: invalid evidence timestamps")
-        try:
             if dt.date.fromisoformat(ev["retention_until"]) < TODAY:
                 fail(errors, f"{ident}: retention expired")
-        except (KeyError, TypeError, ValueError):
-            fail(errors, f"{ident}: invalid retention date")
+        except (KeyError, AttributeError, TypeError, ValueError):
+            fail(errors, f"{ident}: invalid evidence timestamps/retention")
         for name in ("stdout", "stderr"):
             artifact_ok(ev.get(name), f"{ident}.{name}", errors)
         artifacts = ev.get("artifacts")
@@ -295,10 +421,10 @@ def evidence_contract(revision: str | None, tree_clean: bool, by_id, errors: lis
             fail(errors, f"{ident}: invalidation_edges must be non-empty")
             edges = []
         for index, edge in enumerate(edges):
-            if not isinstance(edge, dict) or set(edge) != {"kind", "identity", "sha256"} or edge.get("kind") not in {"source", "schema", "config", "fixture", "dependency", "toolchain", "generator", "normalization", "platform-manifest"}:
+            if not isinstance(edge, dict) or set(edge) != {"kind", "path", "mode", "sha256"}:
                 fail(errors, f"{ident}.invalidation_edges[{index}]: schema invalid")
-                continue
-            artifact_ok({"path": edge.get("identity"), "sha256": edge.get("sha256")}, f"{ident}.invalidation_edges[{index}]", errors)
+            else:
+                subject_artifact_ok({key: edge[key] for key in ("path", "mode", "sha256")}, f"{ident}.invalidation_edges[{index}]", subject_closure, errors)
         cases = ev.get("cases")
         if not isinstance(cases, list) or not cases:
             fail(errors, f"{ident}: no cases")
@@ -309,13 +435,9 @@ def evidence_contract(revision: str | None, tree_clean: bool, by_id, errors: lis
                 fail(errors, f"{ident}.cases[{index}]: schema invalid")
                 continue
             case_ids.append(case.get("id"))
-            if case.get("outcome") not in {"pass", "fail", "skip"}:
-                fail(errors, f"{ident}:{case.get('id')}: invalid outcome")
-            if case.get("outcome") == "skip":
-                disposition = case.get("skip_disposition")
-                if not isinstance(disposition, dict) or set(disposition) != {"status", "reason", "owner", "unblock_condition", "review_by"} or disposition.get("status") not in {"deferred", "unavailable", "not-applicable"}:
-                    fail(errors, f"{ident}:{case.get('id')}: ungoverned skip")
-            elif case.get("skip_disposition") is not None:
+            if case.get("outcome") == "skip" and not isinstance(case.get("skip_disposition"), dict):
+                fail(errors, f"{ident}:{case.get('id')}: ungoverned skip")
+            if case.get("outcome") != "skip" and case.get("skip_disposition") is not None:
                 fail(errors, f"{ident}:{case.get('id')}: unexpected skip disposition")
         if len(case_ids) != len(set(case_ids)):
             fail(errors, f"{ident}: duplicate case id")
@@ -325,12 +447,14 @@ def evidence_contract(revision: str | None, tree_clean: bool, by_id, errors: lis
             fail(errors, f"{ident}: pass status contradicts exit/case outcome")
         if len(errors) == before:
             valid.add(ident)
+    reject_supersession_cycles(records, "supersedes", errors)
+    superseded = {ev.get("supersedes") for ev in records.values() if isinstance(ev, dict) and ev.get("supersedes")}
+    valid -= superseded
     return records, valid
 
-
-def review_contract(revision: str | None, tree_clean: bool, by_id, evidence, valid_evidence, errors: list[str]):
+def review_contract(subject: str | None, subject_closure, tree_clean: bool, by_id, evidence, valid_evidence, errors: list[str]):
     records, valid = {}, set()
-    required_fields = {"schema_version", "review_id", "owning_gate", "review_class", "scope_rows", "seam_rows", "covered_revisions", "covered_artifacts", "authors", "owners", "reviewers", "findings", "reruns", "closure", "retention_until", "invalidation_triggers"}
+    required_fields = {"schema_version", "review_id", "owning_gate", "review_class", "scope_rows", "seam_rows", "subject_revision", "subject_artifacts", "authors", "owners", "reviewers", "findings", "reruns", "closure", "retention_until", "invalidation_triggers", "supersedes"}
     seams_document = load(ROOT / "docs/architecture/cross-domain-seams.v1.json")
     seam_rows = seams_document.get("rows", []) if isinstance(seams_document, dict) else []
     seams_by_class = {
@@ -386,15 +510,14 @@ def review_contract(revision: str | None, tree_clean: bool, by_id, evidence, val
             fail(errors, f"{ident}: incomplete {review_class} scope rows")
         if set(review.get("seam_rows", [])) != seams_by_class[review_class]:
             fail(errors, f"{ident}: incomplete {review_class} seam rows")
-        covered = review.get("covered_revisions")
-        if not isinstance(covered, dict) or set(covered) != {"repository"} or (revision and covered.get("repository") != revision):
-            fail(errors, f"{ident}: covered revision is stale or malformed")
-        artifacts = review.get("covered_artifacts")
+        if subject and review.get("subject_revision") != subject:
+            fail(errors, f"{ident}: subject revision is stale or malformed")
+        artifacts = review.get("subject_artifacts")
         artifact_paths = {entry.get("path") for entry in artifacts if isinstance(entry, dict)} if isinstance(artifacts, list) else set()
         if artifact_paths != artifacts_by_class[review_class] or len(artifact_paths) != len(artifacts or []):
-            fail(errors, f"{ident}: covered artifacts are not the exact required {review_class} set")
+            fail(errors, f"{ident}: subject artifacts are not the exact required {review_class} set")
         for index, artifact in enumerate(artifacts if isinstance(artifacts, list) else []):
-            artifact_ok(artifact, f"{ident}.covered_artifacts[{index}]", errors)
+            subject_artifact_ok(artifact, f"{ident}.subject_artifacts[{index}]", subject_closure, errors)
         author_ids, owner_ids, reviewer_ids, closure_ids = set(), set(), set(), set()
         for field, destination in (("authors", author_ids), ("owners", owner_ids)):
             entries = review.get(field)
@@ -455,11 +578,11 @@ def review_contract(revision: str | None, tree_clean: bool, by_id, evidence, val
         if closure.get("status") == "approved":
             closure_agent = closure.get("reviewer_agent_id")
             if not tree_clean or closure.get("approval") is not True or closure_agent not in closure_ids or closure_agent in (author_ids | owner_ids) or len(closure_ids) != 1:
-                fail(errors, f"{ident}: approval lacks a separated authenticated closure reviewer on a clean tree")
-            if not reruns or rerun_owners != set(review.get("scope_rows", [])):
-                fail(errors, f"{ident}: approval lacks one current clean rerun for every required scope row")
-            if any(f.get("disposition") != "fixed" or f.get("fix_revision") != revision or not f.get("required_rerun_ids") for f in findings):
-                fail(errors, f"{ident}: approved review has unresolved or stale findings")
+                fail(errors, f"{ident}: approval lacks a separated authenticated closure reviewer on a clean descendant")
+            if not reruns or rerun_owners != set(review.get("scope_rows", [])) or any(evidence[rerun].get("subject_revision") != subject for rerun in reruns if rerun in evidence):
+                fail(errors, f"{ident}: approval lacks one current subject-bound rerun for every required scope row")
+            if any(f.get("disposition") != "fixed" or not isinstance(f.get("fix_revision"), str) or not validate_history_identity(f["fix_revision"], subject, errors) or not f.get("required_rerun_ids") for f in findings):
+                fail(errors, f"{ident}: approved review has unresolved or invalid findings")
         elif closure.get("approval") is not False or closure.get("reviewer_agent_id") is not None or closure.get("date") is not None:
             fail(errors, f"{ident}: non-approved closure must remain unclaimed")
         try:
@@ -467,12 +590,17 @@ def review_contract(revision: str | None, tree_clean: bool, by_id, evidence, val
                 fail(errors, f"{ident}: retention expired")
         except (KeyError, TypeError, ValueError):
             fail(errors, f"{ident}: invalid retention date")
+        supersedes = review.get("supersedes")
+        if supersedes is not None and (not isinstance(supersedes, str) or not RV_ID.fullmatch(supersedes) or supersedes == ident):
+            fail(errors, f"{ident}: invalid supersedes edge")
         if len(errors) == before:
             valid.add(ident)
+    reject_supersession_cycles(records, "supersedes", errors)
+    superseded = {review.get("supersedes") for review in records.values() if isinstance(review, dict) and review.get("supersedes")}
+    valid -= superseded
     return records, valid
 
-
-def platform_contract(revision, evidence, valid_evidence, reviews, valid_reviews, errors: list[str]) -> bool:
+def platform_contract(subject_revision, evidence, valid_evidence, reviews, valid_reviews, errors: list[str]) -> bool:
     manifest = load(ROOT / "docs/architecture/platform-manifest.v1.json")
     expected_initial = {"P-LINUX-X64"}
     expected_reserved = {"P-LINUX-ARM64", "P-MACOS-X64", "P-MACOS-ARM64"}
@@ -494,8 +622,8 @@ def platform_contract(revision, evidence, valid_evidence, reviews, valid_reviews
     cell_contract = manifest.get("cell_contract")
     required_values = cell_contract.get("required") if isinstance(cell_contract, dict) else None
     required = set(required_values) if isinstance(required_values, list) and all(isinstance(value, str) for value in required_values) else set()
-    if manifest.get("schema_version") != 1 or manifest.get("repository_revision") != revision:
-        fail(errors, "platform manifest schema/repository revision is stale")
+    if manifest.get("schema_version") != 1 or manifest.get("subject_revision") != subject_revision:
+        fail(errors, "platform manifest schema/subject revision is invalid")
     if initial_ids != expected_initial or set(ids) != expected_initial or len(ids) != len(expected_initial):
         fail(errors, "platform manifest must contain the initial Linux x86_64 policy row exactly once")
     if set(reserved_ids) != expected_reserved or len(reserved_ids) != len(expected_reserved) or any(not isinstance(row, dict) or row.get("support") != "reserved_later_enablement" or row.get("c000_blocker") is not False for row in reserved_rows):
@@ -745,7 +873,7 @@ def adoption_contract(by_id, errors: list[str]):
     return records, valid
 
 
-def artifact_contract(by_id, revision, errors):
+def artifact_contract(by_id, errors):
     predicates = {"ledger": True, "projection": True}
     seams = load(ROOT / "docs/architecture/cross-domain-seams.v1.json")
     rows = seams.get("rows") if isinstance(seams, dict) else None
@@ -762,10 +890,12 @@ def artifact_contract(by_id, revision, errors):
         review_classes = row.get("review_classes")
         if not ownership or row.get("review_gate") not in by_id or not isinstance(review_classes, list) or not review_classes or not set(review_classes).issubset(REVIEW_CLASSES) or len(review_classes) != len(set(review_classes)):
             fail(errors, f"{row.get('id')}: incomplete/unknown seam ownership or review scope")
+    oracle_manifest = load(ROOT / "docs/oracles/manifest.v1.json")
+    java_source_revision = oracle_manifest.get("java_source_revision") if isinstance(oracle_manifest, dict) else None
     for name in ("production-ownership.v1.json", "java-test-ownership.v1.json"):
         ledger = load(ROOT / "docs/oracles" / name)
         ledger_rows = ledger.get("rows", []) if isinstance(ledger, dict) else []
-        ok = isinstance(ledger_rows, list) and ledger.get("row_count") == len(ledger_rows) and ledger.get("java_source_revision") == revision and isinstance(ledger.get("regeneration"), dict) and ledger["regeneration"].get("unknown_policy") == "fail"
+        ok = isinstance(ledger_rows, list) and ledger.get("row_count") == len(ledger_rows) and ledger.get("java_source_revision") == java_source_revision and isinstance(ledger.get("regeneration"), dict) and ledger["regeneration"].get("unknown_policy") == "fail"
         row_ids = [row.get("id") for row in ledger_rows if isinstance(row, dict)]
         ok &= len(row_ids) == len(ledger_rows) == len(set(row_ids))
         for row in ledger_rows:
@@ -775,7 +905,6 @@ def artifact_contract(by_id, revision, errors):
         if not ok:
             fail(errors, f"docs/oracles/{name}: stale or incomplete ownership ledger")
             predicates["ledger"] = False
-    oracle_manifest = load(ROOT / "docs/oracles/manifest.v1.json")
     if isinstance(oracle_manifest, dict) and "C000.V execution and approval not complete" in str(oracle_manifest.get("status", "")):
         predicates["projection"] = False
     for path in (ROOT / "docs").rglob("behavior-manifest*.json"):
@@ -869,17 +998,18 @@ def main():
     errors = []
     tracker = load(TRACKER)
     revision = repository_revision(errors)
+    subject_revision, subject_closure = manifest_subject_revision(revision, errors)
     tree_clean = repository_tree_clean(errors)
     projection = checklist_projection(errors)
     by_id, stats = graph_contract(tracker, projection, errors)
     governance_contract(by_id, errors)
-    evidence, valid_evidence = evidence_contract(revision, tree_clean, by_id, errors)
-    reviews, valid_reviews = review_contract(revision, tree_clean, by_id, evidence, valid_evidence, errors)
-    platform_complete = platform_contract(revision, evidence, valid_evidence, reviews, valid_reviews, errors)
+    evidence, valid_evidence = evidence_contract(subject_revision, subject_closure, tree_clean, by_id, errors)
+    reviews, valid_reviews = review_contract(subject_revision, subject_closure, tree_clean, by_id, evidence, valid_evidence, errors)
+    platform_complete = platform_contract(subject_revision, evidence, valid_evidence, reviews, valid_reviews, errors)
     adoptions, valid_adoptions = adoption_contract(by_id, errors)
-    predicates = artifact_contract(by_id, revision, errors)
+    predicates = artifact_contract(by_id, errors)
     derived_contract(tracker, by_id, evidence, valid_evidence, reviews, valid_reviews, adoptions, valid_adoptions, platform_complete, predicates, stats, errors)
-    report = {"schema_version": 1, "validator": "tools/tracker/validate.py", "repository_revision": revision, "result": "fail" if errors else "pass", "derived": {"platform_complete": platform_complete, "evidence_records": len(evidence), "valid_evidence_records": len(valid_evidence), "review_records": len(reviews), "valid_review_records": len(valid_reviews), "adoption_records": len(adoptions), "valid_adoption_records": len(valid_adoptions), **predicates}, "errors": errors}
+    report = {"schema_version": 1, "validator": "tools/tracker/validate.py", "repository_revision": revision, "subject_revision": subject_revision, "governed_closure_sha256": closure_digest(subject_closure) if subject_closure else None, "result": "fail" if errors else "pass", "derived": {"platform_complete": platform_complete, "evidence_records": len(evidence), "valid_evidence_records": len(valid_evidence), "review_records": len(reviews), "valid_review_records": len(valid_reviews), "adoption_records": len(adoptions), "valid_adoption_records": len(valid_adoptions), **predicates}, "errors": errors}
     print(json.dumps(report, sort_keys=True, separators=(",", ":")))
     return 1 if errors else 0
 

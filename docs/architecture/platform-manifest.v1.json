@@ -2,7 +2,6 @@
   "schema_version": 1,
   "policy": "docs/architecture/toolchains-and-platforms.md",
   "runner": "tools/platform/run",
-  "repository_revision": "c37b72b04cdf8209fdf1fb4d67f749518f2084b9",
   "support_scope": {
     "initial": "Linux x86_64 GNU only",
     "protocol_scope": "full faithful Java behavior and compatibility scope; platform narrowing does not remove protocol work",
@@ -184,5 +183,20 @@
     "review_schema": "docs/governance/independent-review-v1.schema.json",
     "approval_gate": "C000.V",
     "rule": "The validator resolves each EV/RV reference, verifies immutable hashes, freshness, revision, and native execution, derives readiness, and rejects completed gates with deferred, unavailable, unrun, stale, failed, or unapproved applicable cells on supported rows. Reserved later-enablement rows are outside C000 until explicitly promoted by reviewed tracker change."
+  },
+  "subject_revision": "c37b72b04cdf8209fdf1fb4d67f749518f2084b9",
+  "attestation": {
+    "algorithm": "git-ls-tree-v1",
+    "closure_sha256": "96b8b25300d52aa1c176b4c63247b83370aa4fe227c2ab837c8dd10bbc7dae4d",
+    "excluded_paths": [
+      "docs/PORTING_CHECKLIST.md",
+      "docs/PORTING_TRACKER.json",
+      "docs/architecture/platform-manifest.v1.json",
+      "docs/oracles/manifest.v1.json"
+    ],
+    "excluded_prefixes": [
+      "docs/governance/evidence/",
+      "docs/governance/reviews/"
+    ]
   }
 }

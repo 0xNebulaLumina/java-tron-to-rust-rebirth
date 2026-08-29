@@ -10,8 +10,8 @@
     "review_class",
     "scope_rows",
     "seam_rows",
-    "covered_revisions",
-    "covered_artifacts",
+    "subject_revision",
+    "subject_artifacts",
     "authors",
     "owners",
     "reviewers",
@@ -19,7 +19,8 @@
     "reruns",
     "closure",
     "retention_until",
-    "invalidation_triggers"
+    "invalidation_triggers",
+    "supersedes"
   ],
   "properties": {
     "schema_version": {
@@ -55,27 +56,6 @@
       "items": {
         "type": "string",
         "pattern": "^SEAM-[0-9]{3}$"
-      }
-    },
-    "covered_revisions": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "repository"
-      ],
-      "properties": {
-        "repository": {
-          "type": "string",
-          "pattern": "^[0-9a-f]{40}$"
-        }
-      }
-    },
-    "covered_artifacts": {
-      "type": "array",
-      "minItems": 1,
-      "uniqueItems": true,
-      "items": {
-        "$ref": "#/$defs/artifact"
       }
     },
     "authors": {
@@ -131,6 +111,25 @@
         "type": "string",
         "minLength": 1
       }
+    },
+    "subject_revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "subject_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^RV-[0-9]{4,}$"
     }
   },
   "$defs": {
@@ -139,6 +138,7 @@
       "additionalProperties": false,
       "required": [
         "path",
+        "mode",
         "sha256"
       ],
       "properties": {
@@ -149,6 +149,13 @@
         "sha256": {
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
+        },
+        "mode": {
+          "enum": [
+            "100644",
+            "100755",
+            "120000"
+          ]
         }
       }
     },
