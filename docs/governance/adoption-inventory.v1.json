@@ -2,10 +2,6 @@
   "schema_version": 1,
   "generated_from": [
     {
-      "path": "docs/architecture/platform-manifest.v1.json",
-      "sha256": "936dadc8feaf11485d4dd2e8ca8809143a22737646e8093d342840c1b6004b58"
-    },
-    {
       "path": "docs/architecture/toolchains-and-platforms.md",
       "sha256": "da6fbd2ac97cd2647a72e2084c35d35a5319ef811ab1b2792bc1977af0200ae0"
     },
@@ -68,10 +64,6 @@
     {
       "path": "docs/oracles/java-test-ownership.v1.json",
       "sha256": "1ab281b9e2830cb781a660f02475d02bf336b119a1885f09671d6fae91004a33"
-    },
-    {
-      "path": "docs/oracles/manifest.v1.json",
-      "sha256": "7da027b7608af75e79a5f64e515ea4da9ee092398ea2b0af0aa2756d036f2b06"
     },
     {
       "path": "docs/oracles/normalization-policy-v1.json",
@@ -243,30 +235,6 @@
     }
   ],
   "instances": [
-    {
-      "id": "AD-0001",
-      "name": "docs/architecture/platform-manifest.v1.json",
-      "kind": "parameter",
-      "exact_version": "sha256:ae81b97710c3d6ff2e77c07ceb60507315ab09144bc97e093d2ee8af64ae2123",
-      "features": [],
-      "source": "docs/architecture/platform-manifest.v1.json",
-      "consuming_item": "C000.14",
-      "local_gate": "C000.V",
-      "decision": "DD-005",
-      "security": {
-        "status": "not_applicable",
-        "rationale": "Repository-local immutable input; external security approval is not applicable."
-      },
-      "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
-      },
-      "status": "recorded",
-      "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
-      ]
-    },
     {
       "id": "AD-0002",
       "name": "docs/architecture/toolchains-and-platforms.md",
@@ -635,30 +603,6 @@
       "features": [],
       "source": "docs/oracles/java-test-ownership.v1.json",
       "consuming_item": "C000.09",
-      "local_gate": "C000.V",
-      "decision": "DD-005",
-      "security": {
-        "status": "not_applicable",
-        "rationale": "Repository-local immutable input; external security approval is not applicable."
-      },
-      "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
-      },
-      "status": "recorded",
-      "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
-      ]
-    },
-    {
-      "id": "AD-0018",
-      "name": "docs/oracles/manifest.v1.json",
-      "kind": "parameter",
-      "exact_version": "sha256:232affc9a29c375b8fe85b7e918bca6fd80bcd778df1cc7754be6042e8facea0",
-      "features": [],
-      "source": "docs/oracles/manifest.v1.json",
-      "consuming_item": "C000.04",
       "local_gate": "C000.V",
       "decision": "DD-005",
       "security": {
@@ -2141,60 +2085,6 @@
         "source digest changes",
         "version, features, consumer, or execution role changes"
       ]
-    },
-    {
-      "id": "AD-0079",
-      "name": "Eclipse Temurin JDK",
-      "kind": "runtime",
-      "exact_version": "8u462-b08",
-      "features": [
-        "x86_64-linux",
-        "x86_64-macos"
-      ],
-      "source": "docs/architecture/platform-manifest.v1.json",
-      "consuming_item": "C000.14",
-      "local_gate": "C000.V",
-      "decision": "DD-004",
-      "security": {
-        "status": "review_required",
-        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
-      },
-      "license": {
-        "status": "review_required",
-        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
-      },
-      "status": "review_required",
-      "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
-      ]
-    },
-    {
-      "id": "AD-0080",
-      "name": "Eclipse Temurin JDK",
-      "kind": "runtime",
-      "exact_version": "17.0.16+8",
-      "features": [
-        "aarch64-linux",
-        "aarch64-macos"
-      ],
-      "source": "docs/architecture/platform-manifest.v1.json",
-      "consuming_item": "C000.14",
-      "local_gate": "C000.V",
-      "decision": "DD-004",
-      "security": {
-        "status": "review_required",
-        "rationale": "Authenticated independent security review must rerun against clean revision c37b72b."
-      },
-      "license": {
-        "status": "review_required",
-        "rationale": "Authenticated independent license/provenance review must rerun against clean revision c37b72b."
-      },
-      "status": "review_required",
-      "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
-      ]
     }
   ],
   "generation_contract": {
@@ -2210,13 +2100,11 @@
       "tools/reference-runner/rust-runner",
       "tools/tracker/validate.py",
       "docs/oracles/fixtures/v1/*.json",
-      "docs/oracles/manifest.v1.json",
       "docs/oracles/normalization-policy-v1.json",
       "docs/oracles/runner-protocol.md",
       "docs/oracles/*-ownership.v1.json",
       "docs/oracles/schemas/*.json",
       "docs/governance/*schema.json",
-      "docs/architecture/platform-manifest.v1.json",
       "docs/architecture/toolchains-and-platforms.md",
       "rust-tron/Cargo.toml",
       "rust-tron/crates/*/Cargo.toml",
@@ -2226,6 +2114,6 @@
       "java-tron/build.gradle",
       "java-tron/gradle/wrapper/*"
     ],
-    "rule": "The validator independently enumerates this finite set, verifies every digest, requires a consuming-item adoption for every input and every actual consumer, derives external Cargo.lock packages, and rejects missing, extra, duplicate, drifted, obsolete, or unknown-decision adoptions. Inventory-only and repository-input dispositions are records, not production dependency approvals."
+    "rule": "The validator independently enumerates this finite set, verifies every digest, requires a consuming-item adoption for every input and every actual consumer, derives external Cargo.lock packages, and rejects missing, extra, duplicate, drifted, obsolete, unknown-decision, or descendant-attestation adoptions. Platform/oracle manifests, evidence, reviews, and tracker/checklist projections are descendant envelopes validated separately against the authorized subject closure, never adoption inputs. Inventory-only and repository-input dispositions are records, not production dependency approvals."
   }
 }

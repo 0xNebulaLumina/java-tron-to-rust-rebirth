@@ -84,13 +84,12 @@
     },
     {
       "id": "DD-004",
-      "scope": "Java reference build declarations, checked-in Gradle 7.6.4 wrapper, and pinned Temurin identities",
+      "scope": "Java reference build declarations, checked-in Gradle 7.6.4 wrapper, and pinned Temurin policy",
       "exact_inputs": [
         "java-tron/build.gradle",
         "java-tron/gradle/wrapper/gradle-wrapper.jar",
         "java-tron/gradle/wrapper/gradle-wrapper.properties",
         "java-tron/gradlew",
-        "docs/architecture/platform-manifest.v1.json",
         "docs/architecture/toolchains-and-platforms.md"
       ],
       "status": "review_required",
@@ -108,9 +107,8 @@
     },
     {
       "id": "DD-005",
-      "scope": "Checked-in current C000 schemas, fixtures, manifests, normalization policy, and source-derived ownership ledgers",
+      "scope": "Checked-in current C000 schemas, fixtures, normalization policy, and source-derived ownership ledgers",
       "exact_inputs": [
-        "docs/architecture/platform-manifest.v1.json",
         "docs/architecture/toolchains-and-platforms.md",
         "docs/governance/adoption-inventory-v1.schema.json",
         "docs/governance/behavior-manifest-v1.schema.json",
@@ -127,7 +125,6 @@
         "docs/oracles/fixtures/v1/negative.json",
         "docs/oracles/fixtures/v1/positive.json",
         "docs/oracles/java-test-ownership.v1.json",
-        "docs/oracles/manifest.v1.json",
         "docs/oracles/normalization-policy-v1.json",
         "docs/oracles/production-ownership.v1.json",
         "docs/oracles/runner-protocol.md",
@@ -142,7 +139,7 @@
       "status": "review_required",
       "security_disposition": "not_applicable to inert repository data; parser and consumer behavior requires current review",
       "license_disposition": "pending authenticated independent license review on revision c37b72b",
-      "rationale": "These hashed inputs are adopted for deterministic C000 validation and drift detection. This disposition is not third-party dependency, architecture, or production implementation approval.",
+      "rationale": "These hashed governed inputs are adopted for deterministic C000 validation and drift detection. Descendant attestation envelopes are validated separately against the authorized subject closure and are not adoption inputs. This disposition is not third-party dependency, architecture, or production implementation approval.",
       "approval_required_before_release": true,
       "invalidation_triggers": [
         "input digest changes",

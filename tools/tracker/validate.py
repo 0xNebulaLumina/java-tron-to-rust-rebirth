@@ -32,6 +32,12 @@ ATTESTATION_EXCLUSIONS = {
     "docs/oracles/manifest.v1.json",
 }
 ATTESTATION_PREFIXES = ("docs/governance/evidence/", "docs/governance/reviews/")
+ADOPTION_FORBIDDEN_PATHS = frozenset(ATTESTATION_EXCLUSIONS)
+
+
+def is_forbidden_adoption_source(path: object) -> bool:
+    return isinstance(path, str) and (path in ADOPTION_FORBIDDEN_PATHS or path.startswith(ATTESTATION_PREFIXES))
+
 
 REVIEW_CLASSES = {"architecture", "security", "license"}
 AUTHENTICATED_AGENT_ID = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)+$")
@@ -43,13 +49,11 @@ ADOPTION_DISCOVERY_PATTERNS = (
     "tools/reference-runner/rust-runner",
     "tools/tracker/validate.py",
     "docs/oracles/fixtures/v1/*.json",
-    "docs/oracles/manifest.v1.json",
     "docs/oracles/normalization-policy-v1.json",
     "docs/oracles/runner-protocol.md",
     "docs/oracles/*-ownership.v1.json",
     "docs/oracles/schemas/*.json",
     "docs/governance/*schema.json",
-    "docs/architecture/platform-manifest.v1.json",
     "docs/architecture/toolchains-and-platforms.md",
     "rust-tron/Cargo.toml",
     "rust-tron/crates/*/Cargo.toml",
@@ -753,6 +757,9 @@ def adoption_contract(by_id, errors: list[str]):
         fail(errors, "adoption inventory: generated_from must be an array")
         sources = []
     discovered = discovered_adoption_sources()
+    forbidden_discovered = sorted(path for path in discovered if is_forbidden_adoption_source(path))
+    if forbidden_discovered:
+        fail(errors, f"descendant attestation files entered adoption discovery: {forbidden_discovered}")
     listed_sources = {source.get("path") for source in sources if isinstance(source, dict)}
     if listed_sources != discovered or len(listed_sources) != len(sources):
         fail(errors, f"adoption inventory source discovery mismatch; missing={sorted(discovered - listed_sources)} extra={sorted(listed_sources - discovered)}")
@@ -765,12 +772,15 @@ def adoption_contract(by_id, errors: list[str]):
     if not isinstance(instances, list):
         fail(errors, "adoption inventory: instances must be an array")
         instances = []
+    forbidden_sources = sorted(path for path in listed_sources if is_forbidden_adoption_source(path))
+    forbidden_instances = sorted({entry.get("source") for entry in instances if isinstance(entry, dict) and is_forbidden_adoption_source(entry.get("source"))}) if isinstance(instances, list) else []
+    forbidden_decisions = sorted({path for row in decision_rows if isinstance(row, dict) for path in row.get("exact_inputs", []) if is_forbidden_adoption_source(path)})
+    if forbidden_sources or forbidden_instances or forbidden_decisions:
+        fail(errors, f"descendant attestation files cannot be adoption inputs; generated_from={forbidden_sources} instances={forbidden_instances} decisions={forbidden_decisions}")
 
     expected = set()
     for source in discovered:
-        if source == "docs/architecture/platform-manifest.v1.json":
-            expected.add((source, "C000.14", "parameter", source))
-        elif source == "docs/architecture/toolchains-and-platforms.md":
+        if source == "docs/architecture/toolchains-and-platforms.md":
             expected.add((source, "C000.02", "parameter", source))
         elif source.startswith("docs/governance/"):
             consumer = {"adoption-inventory-v1.schema.json": "C000.15", "dependency-decision-v1.schema.json": "C000.11", "tracker-v1.schema.json": "C000.10"}.get(Path(source).name, "C000.13")
@@ -781,7 +791,7 @@ def adoption_contract(by_id, errors: list[str]):
             expected.add((source, "C000.08", "parameter", source))
         elif source.endswith("java-test-ownership.v1.json"):
             expected.add((source, "C000.09", "parameter", source))
-        elif source.endswith("manifest.v1.json") or source.endswith("normalization-policy-v1.json"):
+        elif source.endswith("normalization-policy-v1.json"):
             expected.add((source, "C000.04", "parameter", source))
         elif source.endswith("runner-protocol.md"):
             expected.add((source, "C000.05", "parameter", source))
@@ -824,11 +834,9 @@ def adoption_contract(by_id, errors: list[str]):
         ("tools/reference-runner/java-runner", "C000.05", "runtime", "POSIX /bin/sh runtime"),
         ("tools/reference-runner/rust-runner", "C000.05", "runtime", "POSIX /bin/sh runtime"),
         *(("rust-tron/rust-toolchain.toml", "C000.02", "tool", name) for name in ("rustc", "Cargo", "rustup", "clippy", "rustfmt", "rust-docs")),
-        ("docs/architecture/platform-manifest.v1.json", "C000.14", "runtime", "Eclipse Temurin JDK"),
     }
     expected |= runtime_expected
     expected_counts = Counter(expected)
-    expected_counts[("docs/architecture/platform-manifest.v1.json", "C000.14", "runtime", "Eclipse Temurin JDK")] = 2
     actual_counts = Counter((entry.get("source"), entry.get("consuming_item"), entry.get("kind"), entry.get("name")) for entry in instances if isinstance(entry, dict))
     if actual_counts != expected_counts:
         fail(errors, f"adoption instances/consumers mismatch; expected={sorted(expected_counts.items())} actual={sorted(actual_counts.items())}")
