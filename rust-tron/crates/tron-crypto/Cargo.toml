@@ -7,6 +7,14 @@ license.workspace = true
 publish.workspace = true
 
 [dependencies]
+base64 = "=0.22.1"
+k256 = { version = "=0.13.4", default-features = false, features = ["arithmetic", "ecdsa", "sha256", "std"] }
+rand_core = { version = "=0.6.4", features = ["getrandom"] }
+ripemd = "=0.1.3"
+sha2 = "=0.10.9"
+sha3 = "=0.10.8"
+sm2 = { version = "=0.13.3", default-features = false, features = ["arithmetic", "std"] }
+sm3 = "=0.4.2"
 tron-primitives = { path = "../tron-primitives" }
 
 [lints]

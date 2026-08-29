@@ -525,59 +525,85 @@
     {
       "id": "C004",
       "title": "Core crypto and addresses",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-08-29",
       "resume": null,
       "items": [
         {
           "id": "C004.01",
           "description": "secp256k1 key generation, sign, recover, verify, low-S, and `[r,s,v-27]` encoding.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented by c004-crypto-core: secp256k1 signing, low-S output, verification, recovery, and wire encoding."
         },
         {
           "id": "C004.02",
           "description": "SM2/SM3 key/signature engine and engine selection.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented by c004-crypto-core: explicit SM2/SM3 engine selection, signing, verification, and recovery."
         },
         {
           "id": "C004.03",
           "description": "SHA-256/SM3 typed hash API distinct from Keccak/RIPEMD/Blake2 primitives.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented by c004-crypto-core: typed SHA-256/SM3 plus distinct Keccak and RIPEMD primitives."
         },
         {
           "id": "C004.04",
           "description": "TRON 0x41 address and Base58Check derivation/validation.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented 0x41 derivation and validation plus Bitcoin-alphabet Base58 and engine-selected double-hash Base58Check."
         },
         {
           "id": "C004.05",
           "description": "Historical padded signature acceptance, unique signer recovery, and malformed boundaries.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented strict 65..=68 ingress, consensus >=65 padding compatibility, recovered-address uniqueness, permission weights, and stable error categories."
         },
         {
           "id": "C004.06",
           "description": "Normal contract, CREATE, and CREATE2 address formulas.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented exact txid-owner top-level, root-txid/nonce CREATE, and TRON CREATE2 formulas."
         }
       ],
       "gate": {
         "id": "C004.V",
-        "description": "Fixed Java vectors match byte-for-byte in both engines.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: the authenticated Java oracle produced 26 vectors, all 8 Rust tests pass, and the Rust workspace all-targets check passes with the lockfile enforced.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C004 provenance and vector gate",
+            "cwd": ".",
+            "argv": ["python3", "tools/crypto/c004_gate.py"],
+            "timeout_seconds": 60
+          },
+          {
+            "name": "C004 crypto vectors",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-crypto", "--test", "c004_vectors", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "Rust workspace all-targets check",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "check", "--workspace", "--all-targets", "--locked"],
+            "timeout_seconds": 300
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C004.R.01",
+            "summary": "Final review required confirmation of authenticated Java-oracle provenance, exact cross-engine crypto and address vectors, malformed and historical signature behavior, and the complete locked validation results.",
+            "status": "closed",
+            "resolution": "Approved after confirming the final gate results: the authenticated Java oracle produced 26 vectors, all 8 Rust tests pass, and the locked Rust workspace all-targets check passes. C004 is complete and the next ready item is C005.01."
+          }
+        ]
       },
       "blocker": null
     },

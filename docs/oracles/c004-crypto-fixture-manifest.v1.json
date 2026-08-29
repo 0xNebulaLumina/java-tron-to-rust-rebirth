@@ -1,0 +1,188 @@
+{
+  "generator": {
+    "bcprov": "org.bouncycastle:bcprov-jdk18on:1.84",
+    "bcprov_sha256": "64d6c5a6121fcd927152dd182cbed39afe0fda641a970d9bcc0c9cb1858b2731",
+    "gradle_pom_sha256": "ce7abb4a91ba5d2a73fdf17a3df4762e3605a0392cc7983ef2f1ae16cd384cc3",
+    "java_source_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+    "path": "tools/crypto/C004Oracle.java"
+  },
+  "id": "c004-crypto-fixture-manifest-v1",
+  "rust_dispatch": {
+    "C004.ADDRESS.INVALID_PREFIX": "java_oracle_base58check_vectors",
+    "C004.BASE58.SECP256K1": "java_oracle_base58check_vectors",
+    "C004.BASE58.SM2": "java_oracle_base58check_vectors",
+    "C004.FORMULA.CREATE.NEGATIVE": "java_oracle_contract_formula_vectors",
+    "C004.FORMULA.CREATE.POSITIVE": "java_oracle_contract_formula_vectors",
+    "C004.FORMULA.CREATE2": "java_oracle_contract_formula_vectors",
+    "C004.FORMULA.TOP_LEVEL": "java_oracle_contract_formula_vectors",
+    "C004.HASH.KECCAK256": "java_oracle_hash_vectors",
+    "C004.HASH.KECCAK512": "java_oracle_hash_vectors",
+    "C004.HASH.RIPEMD160": "java_oracle_hash_vectors",
+    "C004.HASH.SHA256": "java_oracle_hash_vectors",
+    "C004.HASH.SM3": "java_oracle_hash_vectors",
+    "C004.KEY.SECP256K1": "java_oracle_key_and_address_vectors",
+    "C004.KEY.SM2": "java_oracle_key_and_address_vectors",
+    "C004.PERMISSION.DUPLICATE_POST_471": "fork_aware_permission_duplicate_vectors",
+    "C004.PERMISSION.DUPLICATE_PRE_471": "fork_aware_permission_duplicate_vectors",
+    "C004.PERMISSION.NONMEMBER": "fork_aware_permission_duplicate_vectors",
+    "C004.PERMISSION.TOO_MANY": "fork_aware_permission_duplicate_vectors",
+    "C004.SIG.SECP256K1": "java_oracle_signature_vectors",
+    "C004.SIG.SECP256K1.HIGH_S": "java_oracle_signature_vectors",
+    "C004.SIG.SM2": "java_oracle_signature_vectors",
+    "C004.WIRE.CONSENSUS_69": "both_engines_recover_padded_permission_signatures",
+    "C004.WIRE.INGRESS_64": "java_oracle_wire_boundary_vectors",
+    "C004.WIRE.INGRESS_65": "java_oracle_wire_boundary_vectors",
+    "C004.WIRE.INGRESS_68": "java_oracle_wire_boundary_vectors",
+    "C004.WIRE.INGRESS_69": "java_oracle_wire_boundary_vectors"
+  },
+  "schema_version": 1,
+  "vectors": [
+    {
+      "id": "C004.HASH.SHA256",
+      "input_utf8": "C004 fixed hash input",
+      "output_hex": "c7c08907f9eb01ff7c27a47b0ef1808e646b2892e9a95cfc01affb78733e7cd5"
+    },
+    {
+      "id": "C004.HASH.SM3",
+      "input_utf8": "C004 fixed hash input",
+      "output_hex": "2bb2a8fb48ca9517988ea731df7f61cfb54fed3d2dadcd08a254ce436dba96d7"
+    },
+    {
+      "id": "C004.HASH.KECCAK256",
+      "input_utf8": "C004 fixed hash input",
+      "output_hex": "8785749be513e46964337f179cbcbf65d6baff646856cc76f7437f28213ec530"
+    },
+    {
+      "id": "C004.HASH.KECCAK512",
+      "input_utf8": "C004 fixed hash input",
+      "output_hex": "bbeccb18016a21be2384b019d9f93fe360c4319b82809ad123c28e2f65e9413471ac14ae96047cf0f69e3f8b5e8a6c2894a0d1e8af3a36fc9cf3d5aa14c3e40a"
+    },
+    {
+      "id": "C004.HASH.RIPEMD160",
+      "input_utf8": "C004 fixed hash input",
+      "output_hex": "29f2922d608065f1777ca227988adffbdfcb900d"
+    },
+    {
+      "address_hex": "417e5f4552091a69125d5dfcb7b8c2659029395bdf",
+      "id": "C004.KEY.SECP256K1",
+      "private_key_hex": "0000000000000000000000000000000000000000000000000000000000000001",
+      "public_key_uncompressed_hex": "0479be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8"
+    },
+    {
+      "address_hex": "41c7abce97e7f3169745738ecfeddd453cc6e0d66b",
+      "id": "C004.KEY.SM2",
+      "private_key_hex": "0000000000000000000000000000000000000000000000000000000000000001",
+      "public_key_uncompressed_hex": "0432c4ae2c1f1981195f9904466a39c9948fe30bbff2660be1715a4589334c74c7bc3736a2f4f6779c59bdcee36b692153d0a9877cc62a474002df32e52139f0a0"
+    },
+    {
+      "id": "C004.SIG.SECP256K1",
+      "nonce_hex": "0000000000000000000000000000000000000000000000000000000000000002",
+      "policy": "low_s",
+      "prehash_hex": "5ee7aeb6130271dd5377087c2b9055720c58f3b3a25e6b57f0cecb8918dee8ca",
+      "r_hex": "c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5",
+      "recovery_id": 0,
+      "s_hex": "127617252a77f7a541de247560a86925d710d28c400283e1ee543b5ad28ca337",
+      "verified": true,
+      "wire_hex": "c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5127617252a77f7a541de247560a86925d710d28c400283e1ee543b5ad28ca33700"
+    },
+    {
+      "id": "C004.SIG.SECP256K1.HIGH_S",
+      "nonce_hex": "0000000000000000000000000000000000000000000000000000000000000002",
+      "policy": "recover_and_verify",
+      "prehash_hex": "5ee7aeb6130271dd5377087c2b9055720c58f3b3a25e6b57f0cecb8918dee8ca",
+      "r_hex": "c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5",
+      "recovery_id": 1,
+      "s_hex": "ed89e8dad588085abe21db8a9f5796d8e39e0a5a6f461c59d17e2331fda99e0a",
+      "verified": true,
+      "wire_hex": "c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5ed89e8dad588085abe21db8a9f5796d8e39e0a5a6f461c59d17e2331fda99e0a01"
+    },
+    {
+      "id": "C004.SIG.SM2",
+      "nonce_hex": "0000000000000000000000000000000000000000000000000000000000000002",
+      "policy": "verify_and_recover_compatibility",
+      "prehash_hex": "5ee7aeb6130271dd5377087c2b9055720c58f3b3a25e6b57f0cecb8918dee8ca",
+      "r_hex": "b5b6ac16eacaeddd60cff7d426040fbfa866edbc62e8de893a2af9a6bcd1a61c",
+      "recovery_id": 1,
+      "s_hex": "a524a9f38a9a89114f980415ecfdf81f9dd0688cf05195e6b6a67735db6c6e16",
+      "verified": true,
+      "wire_hex": "b5b6ac16eacaeddd60cff7d426040fbfa866edbc62e8de893a2af9a6bcd1a61ca524a9f38a9a89114f980415ecfdf81f9dd0688cf05195e6b6a67735db6c6e1601"
+    },
+    {
+      "encoded": "T9yED5xMV5ARV98BexN97aLZ1UUq7eKSxm",
+      "id": "C004.BASE58.SECP256K1",
+      "payload_hex": "41000102030405060708090a0b0c0d0e0f10111213"
+    },
+    {
+      "encoded": "T9yED5xMV5ARV98BexN97aLZ1UUq9hgUMX",
+      "id": "C004.BASE58.SM2",
+      "payload_hex": "41000102030405060708090a0b0c0d0e0f10111213"
+    },
+    {
+      "error": "invalid_prefix",
+      "id": "C004.ADDRESS.INVALID_PREFIX",
+      "input_hex": "420000000000000000000000000000000000000000"
+    },
+    {
+      "expected": "signature_format",
+      "id": "C004.WIRE.INGRESS_64"
+    },
+    {
+      "expected": "accepted",
+      "id": "C004.WIRE.INGRESS_65"
+    },
+    {
+      "expected": "accepted",
+      "id": "C004.WIRE.INGRESS_68"
+    },
+    {
+      "expected": "signature_format",
+      "id": "C004.WIRE.INGRESS_69"
+    },
+    {
+      "expected": "accepted_ignore_trailing",
+      "id": "C004.WIRE.CONSENSUS_69"
+    },
+    {
+      "expected": "too_many_signatures",
+      "id": "C004.PERMISSION.TOO_MANY"
+    },
+    {
+      "expected": "signer_not_in_permission",
+      "id": "C004.PERMISSION.NONMEMBER"
+    },
+    {
+      "expected": "canonical_signature_identity",
+      "id": "C004.PERMISSION.DUPLICATE_PRE_471"
+    },
+    {
+      "expected": "recovered_address_identity",
+      "id": "C004.PERMISSION.DUPLICATE_POST_471"
+    },
+    {
+      "address_hex": "41bd95d27e7ce24dc97a989c4e8f0dad9aad14927d",
+      "id": "C004.FORMULA.TOP_LEVEL",
+      "owner_hex": "41000102030405060708090a0b0c0d0e0f10111213",
+      "txid_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f"
+    },
+    {
+      "address_hex": "4192c8a5a62642e1621a9b7c850eec3e8023251dbf",
+      "id": "C004.FORMULA.CREATE.POSITIVE",
+      "nonce": 1,
+      "root_txid_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f"
+    },
+    {
+      "address_hex": "41ac56f25d78aa9d77b5a9cf9df18b19443e2a3f69",
+      "id": "C004.FORMULA.CREATE.NEGATIVE",
+      "nonce": -1,
+      "root_txid_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f"
+    },
+    {
+      "address_hex": "41fb0e8a31333b0131f3d3ea4c2257b4117d34c675",
+      "creator_hex": "41000102030405060708090a0b0c0d0e0f10111213",
+      "id": "C004.FORMULA.CREATE2",
+      "init_code_hex": "4330303420696e697420636f6465",
+      "salt_hex": "202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f"
+    }
+  ],
+  "vectors_sha256": "7363fc237ce59fde1ab1fc6120525d4d38ddd1cede441cab981415d7471eb3dc"
+}

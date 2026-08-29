@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "c004-crypto-source-manifest-v1",
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "origin": "https://github.com/tronprotocol/java-tron.git",
+  "policy": "Only the listed Java files are affirmative C004 parity evidence. Transitive libraries and adjacent crypto domains are not silently included.",
+  "whitelist": [
+    {"path":"java-tron/crypto/src/main/java/org/tron/common/crypto/ECKey.java","sha256":"5a9758d789553a186ec677c1e7da69c6874b056d4121358864445766efa2e1cd","covers":["secp256k1 key/sign/verify/recover","low-S","65-byte signature wire form"]},
+    {"path":"java-tron/crypto/src/main/java/org/tron/common/crypto/sm2/SM2.java","sha256":"47fd81f9c33617ced1bfdd2e57591088620eb82447cb0562dd2198e3d37eeabb","covers":["SM2 key/sign/verify/recover","65-byte signature wire form"]},
+    {"path":"java-tron/crypto/src/main/java/org/tron/common/crypto/SignUtils.java","sha256":"7aac8ea027a8fee0cc2b94cbc282eb6e0b26a301b4ea389b5e67d7776bd95fdc","covers":["crypto-engine signature dispatch"]},
+    {"path":"java-tron/crypto/src/main/java/org/tron/common/crypto/Hash.java","sha256":"230da16e50c7e57e50ad745c66bb08e4707cc5478ba5c391ace38306ec4fbf07","covers":["Keccak public-key address derivation"]},
+    {"path":"java-tron/common/src/main/java/org/tron/common/utils/Sha256Hash.java","sha256":"1ac3630b8bd67a41ba060aa7971e62d083473cb69ef0f2efb052350b96a316c6","covers":["SHA-256/SM3 engine-selected hashing"]},
+    {"path":"java-tron/common/src/main/java/org/tron/common/utils/Base58.java","sha256":"f87802aecbabf08735c9be52065c4a2b19b602a36cdca0d4f7b39a1ac9fdd8b7","covers":["Bitcoin-alphabet Base58"]},
+    {"path":"java-tron/common/src/main/java/org/tron/common/utils/StringUtil.java","sha256":"e5f5e58890de385797e9cb468647525cde75f6c34f34f3cbb1694a67c90760d6","covers":["Base58Check encoding"]},
+    {"path":"java-tron/chainbase/src/main/java/org/tron/common/utils/Commons.java","sha256":"288561ea104b5d7052b40dff892c435d31f94b8c5de5f5ef7aa9ee82ac4eb92b","covers":["Base58Check decoding","0x41 address validation"]},
+    {"path":"java-tron/chainbase/src/main/java/org/tron/core/capsule/TransactionCapsule.java","sha256":"516296bd553357efb30c602516f005625ee116d6c7c4357b3279f10a14399123","covers":["consensus signature minimum length","unique signer permission weight"]},
+    {"path":"java-tron/chainbase/src/main/java/org/tron/common/utils/WalletUtil.java","sha256":"3b4ad7cb9ac1a072c5e7070a1bec972ef7df88958a953df9fb81861a863a50f5","covers":["top-level contract address","CREATE2 formula"]},
+    {"path":"java-tron/actuator/src/main/java/org/tron/core/utils/TransactionUtil.java","sha256":"341f4faa5d29b33705f95ec1edc8b4c18ca1abdd5754e3ab1dea5ead4354350b","covers":["top-level contract address","CREATE signed-i64 big-endian nonce formula"]}
+  ],
+  "scope_seams": [
+    {"owner":"C005","gate":"C005.V","domain":"keystore","status":"excluded","reason":"key-file encryption, password handling, and wallet persistence are not core key/signature semantics"},
+    {"owner":"C006","gate":"C006.V","domain":"zksnark/shielded crypto","status":"excluded","reason":"Sapling parameters, proofs, and shielded addresses have separate provenance and gates"},
+    {"owner":"C015","gate":"C015.V","domain":"Blake2 precompile","status":"excluded","reason":"TVM precompile execution and gas semantics are not the C004 typed hash surface"}
+  ]
+}
