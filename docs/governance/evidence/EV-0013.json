@@ -2,18 +2,53 @@
   "schema_version": 1,
   "evidence_id": "EV-0013",
   "owning_item": "C000.08",
+  "subject_revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9",
+  "subject_artifacts": [
+    {
+      "path": "docs/governance/evidence-v1.schema.json",
+      "mode": "100644",
+      "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
+    },
+    {
+      "path": "docs/oracles/production-ownership.v1.json",
+      "mode": "100644",
+      "sha256": "21f038c79885c83fc3a23e272e9784fcec5e55435cfbe2cd9422ac03cf04e9ee"
+    },
+    {
+      "path": "docs/oracles/schemas/ownership-ledger-v1.schema.json",
+      "mode": "100644",
+      "sha256": "fcee680065acf8bd9230b9e77e2d90319c811c404ea656e5b56d6ef36018c528"
+    },
+    {
+      "path": "tools/platform/c000_artifacts.py",
+      "mode": "100755",
+      "sha256": "7b3a5955ef6eabc07f647743265593b20eb7d5266a569a433975ff60a9ac3185"
+    },
+    {
+      "path": "tools/platform/run",
+      "mode": "100755",
+      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+    },
+    {
+      "path": "tools/reference-runner/generate-ledgers.py",
+      "mode": "100755",
+      "sha256": "ce8c6120338838700e6a51b9d1534f109826da4037cb0d0ff983be9c19ee88e1"
+    },
+    {
+      "path": "tools/tracker/validate.py",
+      "mode": "100755",
+      "sha256": "a6dc7c963af5b707e2127d827bb2e7313190b8aff9491489f82a2f0a2fa7b712"
+    }
+  ],
   "command": [
     "tools/platform/run",
     "c000-artifacts"
   ],
   "environment": {
-    "repository_revision": "df50ce9676b94de0b10a605076adfd8728811384",
-    "tree_state": "dirty",
+    "tree_state": "clean",
     "toolchains": {
-      "python": "3.12.3",
-      "git": "git version 2.43.0",
-      "runner": "tools/platform/run sha256:cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770",
-      "auditor": "tools/platform/c000_artifacts.py sha256:d1f74cdfa3201f561343a270400f43783bafd586d0ca32d1ec86dc2fea72b4fb"
+      "python": "Python 3.12.3",
+      "git": "git version 2.43.0"
     },
     "platform_row": "P-LINUX-X64",
     "target": "x86_64-unknown-linux-gnu",
@@ -25,27 +60,29 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-artifacts-20260829-141131Z-once",
+  "run_id": "c000-descendant-20260829-150506Z-0013",
   "cases": [
     {
+      "id": "C000.08",
+      "outcome": "fail",
       "expected": {
         "artifacts_present": true,
         "documents_parse": true,
         "semantic_contracts_current": true
       },
-      "id": "C000.08",
       "observed": {
         "artifact_count": 3,
-        "issues": []
+        "issues": [
+          "docs/oracles/production-ownership.v1.json: source revision differs from the platform contract"
+        ]
       },
-      "outcome": "pass",
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T14:11:31Z",
-  "ended_at": "2026-08-29T14:11:31Z",
-  "observed_exit_code": 0,
-  "observed_status": "pass",
+  "started_at": "2026-08-29T15:05:06Z",
+  "ended_at": "2026-08-29T15:05:06Z",
+  "observed_exit_code": 1,
+  "observed_status": "fail",
   "expected": {
     "artifacts_present": true,
     "documents_parse": true,
@@ -53,11 +90,13 @@
   },
   "observed": {
     "artifact_count": 3,
-    "issues": []
+    "issues": [
+      "docs/oracles/production-ownership.v1.json: source revision differs from the platform contract"
+    ]
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0013.stdout.txt",
-    "sha256": "ad2417fe052041207aa002e0b3361b40981b1e2bafe085d1fc0839cd778035df"
+    "sha256": "802a61c303d2422eea87cf42b97a8c1ca64757fd4ddb4dde445548cdafcb8f54"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0013.stderr.txt",
@@ -66,7 +105,7 @@
   "artifacts": [
     {
       "path": "docs/oracles/production-ownership.v1.json",
-      "sha256": "daa3fff02d748ffd9c43b90b8f0cebf92f5a1ac46cd0f3eea48d6066f224420d"
+      "sha256": "21f038c79885c83fc3a23e272e9784fcec5e55435cfbe2cd9422ac03cf04e9ee"
     },
     {
       "path": "docs/oracles/schemas/ownership-ledger-v1.schema.json",
@@ -74,41 +113,54 @@
     },
     {
       "path": "tools/reference-runner/generate-ledgers.py",
-      "sha256": "feba8260a50870330d2462f5a201ffa64852e8841f10fd4ff7293f11419aefe1"
+      "sha256": "ce8c6120338838700e6a51b9d1534f109826da4037cb0d0ff983be9c19ee88e1"
     }
   ],
   "invalidation_edges": [
     {
-      "kind": "generator",
-      "identity": "tools/platform/run",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
-    },
-    {
-      "kind": "generator",
-      "identity": "tools/platform/c000_artifacts.py",
-      "sha256": "d1f74cdfa3201f561343a270400f43783bafd586d0ca32d1ec86dc2fea72b4fb"
-    },
-    {
       "kind": "schema",
-      "identity": "docs/governance/evidence-v1.schema.json",
-      "sha256": "249ecc36508d27bd609babb49f7cc35d2bf18abd448265a330c8dde414ce6c6f"
+      "path": "docs/governance/evidence-v1.schema.json",
+      "mode": "100644",
+      "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
     },
     {
       "kind": "source",
-      "identity": "docs/oracles/production-ownership.v1.json",
-      "sha256": "daa3fff02d748ffd9c43b90b8f0cebf92f5a1ac46cd0f3eea48d6066f224420d"
+      "path": "docs/oracles/production-ownership.v1.json",
+      "mode": "100644",
+      "sha256": "21f038c79885c83fc3a23e272e9784fcec5e55435cfbe2cd9422ac03cf04e9ee"
     },
     {
-      "kind": "schema",
-      "identity": "docs/oracles/schemas/ownership-ledger-v1.schema.json",
+      "kind": "source",
+      "path": "docs/oracles/schemas/ownership-ledger-v1.schema.json",
+      "mode": "100644",
       "sha256": "fcee680065acf8bd9230b9e77e2d90319c811c404ea656e5b56d6ef36018c528"
     },
     {
       "kind": "generator",
-      "identity": "tools/reference-runner/generate-ledgers.py",
-      "sha256": "feba8260a50870330d2462f5a201ffa64852e8841f10fd4ff7293f11419aefe1"
+      "path": "tools/platform/c000_artifacts.py",
+      "mode": "100755",
+      "sha256": "7b3a5955ef6eabc07f647743265593b20eb7d5266a569a433975ff60a9ac3185"
+    },
+    {
+      "kind": "generator",
+      "path": "tools/platform/run",
+      "mode": "100755",
+      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+    },
+    {
+      "kind": "source",
+      "path": "tools/reference-runner/generate-ledgers.py",
+      "mode": "100755",
+      "sha256": "ce8c6120338838700e6a51b9d1534f109826da4037cb0d0ff983be9c19ee88e1"
+    },
+    {
+      "kind": "source",
+      "path": "tools/tracker/validate.py",
+      "mode": "100755",
+      "sha256": "a6dc7c963af5b707e2127d827bb2e7313190b8aff9491489f82a2f0a2fa7b712"
     }
   ],
   "review_bindings": [],
-  "retention_until": "2027-08-29"
+  "retention_until": "2027-08-29",
+  "supersedes": null
 }

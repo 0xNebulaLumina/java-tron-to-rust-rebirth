@@ -2,31 +2,97 @@
   "schema_version": 1,
   "evidence_id": "EV-0003",
   "owning_item": "C000.14",
+  "subject_revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9",
+  "subject_artifacts": [
+    {
+      "path": "docs/governance/evidence-v1.schema.json",
+      "mode": "100644",
+      "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/mismatch-error.json",
+      "mode": "100644",
+      "sha256": "37a6a62bfbf7ba355637da04400f764707b7068dc0ac9a494a66522ee8193530"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/mismatch-forbidden-normalization.json",
+      "mode": "100644",
+      "sha256": "4842e34f710e223d457649faf73d344d0b12cb7baf92bbf9cf88ece065b71f05"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-class.json",
+      "mode": "100644",
+      "sha256": "4435daa383c4d7559a00a11aa79e5002a08e94948bd48a6a39974950c4c538b3"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-pointer.json",
+      "mode": "100644",
+      "sha256": "ad1616d90a7f148200b40a079aca401724a40a0a3af0a86032a5da92c6907af3"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/mismatch-output.json",
+      "mode": "100644",
+      "sha256": "accae08c09be4a36bb41886c61ebc7c37cf2255157bd9453e1d986d6f727e6a1"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/mismatch-state.json",
+      "mode": "100644",
+      "sha256": "29f22f2038eb9b209a56ee2eeb860aceeb00ae615e697feb63f5ddeb118186b8"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/negative.json",
+      "mode": "100644",
+      "sha256": "e626eebc2f25e6717715bade230fce8260ab0ca8fb1bd7670d45f74aaca9245b"
+    },
+    {
+      "path": "docs/oracles/fixtures/v1/positive.json",
+      "mode": "100644",
+      "sha256": "aa32a0a57c7c17885a6aac20809d14f961be15fd2e350e0d42f0d4d431ce68d6"
+    },
+    {
+      "path": "docs/oracles/schemas/oracle-fixture-v1.schema.json",
+      "mode": "100644",
+      "sha256": "9e1c053e18b3c35ef8aa65eb974fa6cd869f66e12538138953994c6326e0f482"
+    },
+    {
+      "path": "docs/oracles/schemas/oracle-result-v1.schema.json",
+      "mode": "100644",
+      "sha256": "f21a19efff4fb8749bae8b8eb2773e169f67c34788aff95654e72277d24725a4"
+    },
+    {
+      "path": "tools/platform/c000_unit.py",
+      "mode": "100755",
+      "sha256": "374088ae10b289a755842bb62efdee91c32593dae9757b08fb236abe81e34ad2"
+    },
+    {
+      "path": "tools/reference-runner/runner.py",
+      "mode": "100755",
+      "sha256": "cff1909a30e6f84ee43b776536db4041e4766b78e1d08f3494eb2406472ef3db"
+    }
+  ],
   "command": [
     "python3",
     "tools/platform/c000_unit.py"
   ],
   "environment": {
-    "repository_revision": "df50ce9676b94de0b10a605076adfd8728811384",
-    "tree_state": "dirty",
+    "tree_state": "clean",
     "toolchains": {
-      "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
-      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
-      "python": "Python 3.12.3"
+      "python": "Python 3.12.3",
+      "git": "git version 2.43.0"
     },
     "platform_row": "P-LINUX-X64",
     "target": "x86_64-unknown-linux-gnu",
     "host_os": "linux",
     "host_architecture": "x86_64",
     "execution": "native",
-    "backend": "B-RUST-DEFAULT",
-    "features": [],
+    "working_directory": ".",
     "cells": [
       "unit"
     ],
-    "working_directory": "."
+    "backend": "B-RUST-DEFAULT",
+    "features": []
   },
-  "run_id": "c000-20260829-ev-0003-001",
+  "run_id": "c000-descendant-20260829-150506Z-0003",
   "cases": [
     {
       "id": "fixture-schema:mismatch-error",
@@ -139,8 +205,8 @@
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T13:17:36Z",
-  "ended_at": "2026-08-29T13:17:36Z",
+  "started_at": "2026-08-29T15:05:06Z",
+  "ended_at": "2026-08-29T15:05:06Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
@@ -162,76 +228,85 @@
   "artifacts": [],
   "invalidation_edges": [
     {
-      "kind": "platform-manifest",
-      "identity": "docs/architecture/platform-manifest.v1.json",
-      "sha256": "638856206e95e8d8291fee6f295d82d0a29a7bb0b0d6d3b062758ee2227b39d2"
-    },
-    {
       "kind": "schema",
-      "identity": "docs/governance/evidence-v1.schema.json",
-      "sha256": "249ecc36508d27bd609babb49f7cc35d2bf18abd448265a330c8dde414ce6c6f"
+      "path": "docs/governance/evidence-v1.schema.json",
+      "mode": "100644",
+      "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
     },
     {
-      "kind": "generator",
-      "identity": "tools/platform/c000_unit.py",
-      "sha256": "374088ae10b289a755842bb62efdee91c32593dae9757b08fb236abe81e34ad2"
-    },
-    {
-      "kind": "generator",
-      "identity": "tools/reference-runner/runner.py",
-      "sha256": "cff1909a30e6f84ee43b776536db4041e4766b78e1d08f3494eb2406472ef3db"
-    },
-    {
-      "kind": "schema",
-      "identity": "docs/oracles/schemas/oracle-fixture-v1.schema.json",
-      "sha256": "9e1c053e18b3c35ef8aa65eb974fa6cd869f66e12538138953994c6326e0f482"
-    },
-    {
-      "kind": "schema",
-      "identity": "docs/oracles/schemas/oracle-result-v1.schema.json",
-      "sha256": "f21a19efff4fb8749bae8b8eb2773e169f67c34788aff95654e72277d24725a4"
-    },
-    {
-      "kind": "fixture",
-      "identity": "docs/oracles/fixtures/v1/mismatch-error.json",
+      "kind": "source",
+      "path": "docs/oracles/fixtures/v1/mismatch-error.json",
+      "mode": "100644",
       "sha256": "37a6a62bfbf7ba355637da04400f764707b7068dc0ac9a494a66522ee8193530"
     },
     {
-      "kind": "fixture",
-      "identity": "docs/oracles/fixtures/v1/mismatch-forbidden-normalization.json",
+      "kind": "source",
+      "path": "docs/oracles/fixtures/v1/mismatch-forbidden-normalization.json",
+      "mode": "100644",
       "sha256": "4842e34f710e223d457649faf73d344d0b12cb7baf92bbf9cf88ece065b71f05"
     },
     {
-      "kind": "fixture",
-      "identity": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-class.json",
+      "kind": "source",
+      "path": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-class.json",
+      "mode": "100644",
       "sha256": "4435daa383c4d7559a00a11aa79e5002a08e94948bd48a6a39974950c4c538b3"
     },
     {
-      "kind": "fixture",
-      "identity": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-pointer.json",
+      "kind": "source",
+      "path": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-pointer.json",
+      "mode": "100644",
       "sha256": "ad1616d90a7f148200b40a079aca401724a40a0a3af0a86032a5da92c6907af3"
     },
     {
-      "kind": "fixture",
-      "identity": "docs/oracles/fixtures/v1/mismatch-output.json",
+      "kind": "source",
+      "path": "docs/oracles/fixtures/v1/mismatch-output.json",
+      "mode": "100644",
       "sha256": "accae08c09be4a36bb41886c61ebc7c37cf2255157bd9453e1d986d6f727e6a1"
     },
     {
-      "kind": "fixture",
-      "identity": "docs/oracles/fixtures/v1/mismatch-state.json",
+      "kind": "source",
+      "path": "docs/oracles/fixtures/v1/mismatch-state.json",
+      "mode": "100644",
       "sha256": "29f22f2038eb9b209a56ee2eeb860aceeb00ae615e697feb63f5ddeb118186b8"
     },
     {
-      "kind": "fixture",
-      "identity": "docs/oracles/fixtures/v1/negative.json",
+      "kind": "source",
+      "path": "docs/oracles/fixtures/v1/negative.json",
+      "mode": "100644",
       "sha256": "e626eebc2f25e6717715bade230fce8260ab0ca8fb1bd7670d45f74aaca9245b"
     },
     {
-      "kind": "fixture",
-      "identity": "docs/oracles/fixtures/v1/positive.json",
+      "kind": "source",
+      "path": "docs/oracles/fixtures/v1/positive.json",
+      "mode": "100644",
       "sha256": "aa32a0a57c7c17885a6aac20809d14f961be15fd2e350e0d42f0d4d431ce68d6"
+    },
+    {
+      "kind": "source",
+      "path": "docs/oracles/schemas/oracle-fixture-v1.schema.json",
+      "mode": "100644",
+      "sha256": "9e1c053e18b3c35ef8aa65eb974fa6cd869f66e12538138953994c6326e0f482"
+    },
+    {
+      "kind": "source",
+      "path": "docs/oracles/schemas/oracle-result-v1.schema.json",
+      "mode": "100644",
+      "sha256": "f21a19efff4fb8749bae8b8eb2773e169f67c34788aff95654e72277d24725a4"
+    },
+    {
+      "kind": "source",
+      "path": "tools/platform/c000_unit.py",
+      "mode": "100755",
+      "sha256": "374088ae10b289a755842bb62efdee91c32593dae9757b08fb236abe81e34ad2"
+    },
+    {
+      "kind": "source",
+      "path": "tools/reference-runner/runner.py",
+      "mode": "100755",
+      "sha256": "cff1909a30e6f84ee43b776536db4041e4766b78e1d08f3494eb2406472ef3db"
     }
   ],
   "review_bindings": [],
-  "retention_until": "2027-08-29"
+  "retention_until": "2027-08-29",
+  "supersedes": null
 }

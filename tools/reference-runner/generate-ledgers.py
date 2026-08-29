@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[2]
 JAVA = ROOT / "java-tron"
 OUT = ROOT / "docs/oracles"
 TRACKER = ROOT / "docs/PORTING_TRACKER.json"
-REV = "df50ce9676b94de0b10a605076adfd8728811384"
+REV = "4a21592f95e37908b21bc3f611c6e7a1a67f09f3"
 EXCLUDED = {".git", ".gradle", "__pycache__", "build", "out", "target", "node_modules"}
 
 # Reviewed mappings for framework paths.  These are deliberately finite package

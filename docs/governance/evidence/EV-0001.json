@@ -2,50 +2,69 @@
   "schema_version": 1,
   "evidence_id": "EV-0001",
   "owning_item": "C000.13",
+  "subject_revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9",
+  "subject_artifacts": [
+    {
+      "path": "docs/governance/evidence-v1.schema.json",
+      "mode": "100644",
+      "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
+    },
+    {
+      "path": "tools/tracker/validate.py",
+      "mode": "100755",
+      "sha256": "a6dc7c963af5b707e2127d827bb2e7313190b8aff9491489f82a2f0a2fa7b712"
+    }
+  ],
   "command": [
     "git",
     "rev-parse",
-    "HEAD"
+    "f1bd213363055e86fac72b09eaa745e79acfa6f9"
   ],
   "environment": {
-    "repository_revision": "df50ce9676b94de0b10a605076adfd8728811384",
-    "tree_state": "dirty",
+    "tree_state": "clean",
     "toolchains": {
-      "git": "repository-provided host git"
+      "python": "Python 3.12.3",
+      "git": "git version 2.43.0"
     },
     "platform_row": "P-LINUX-X64",
-    "backend": "B-RUST-DEFAULT",
-    "features": [],
     "target": "x86_64-unknown-linux-gnu",
     "host_os": "linux",
     "host_architecture": "x86_64",
     "execution": "native",
+    "working_directory": ".",
     "cells": [],
-    "working_directory": "."
+    "backend": "B-RUST-DEFAULT",
+    "features": []
   },
-  "run_id": "c000-20260829-revision-001",
+  "run_id": "c000-descendant-20260829-150506Z-0001",
   "cases": [
     {
       "id": "repository-revision",
       "outcome": "pass",
-      "expected": "df50ce9676b94de0b10a605076adfd8728811384",
-      "observed": "df50ce9676b94de0b10a605076adfd8728811384",
+      "expected": {
+        "revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9"
+      },
+      "observed": {
+        "revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9",
+        "descendant_revision": "be9eb7eb6b7e53edd913e40432d6e2f13543328c"
+      },
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T12:35:35Z",
-  "ended_at": "2026-08-29T12:35:35Z",
+  "started_at": "2026-08-29T15:05:06Z",
+  "ended_at": "2026-08-29T15:05:06Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
-    "revision": "df50ce9676b94de0b10a605076adfd8728811384"
+    "revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9"
   },
   "observed": {
-    "revision": "df50ce9676b94de0b10a605076adfd8728811384"
+    "revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9",
+    "descendant_revision": "be9eb7eb6b7e53edd913e40432d6e2f13543328c"
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0001.stdout.txt",
-    "sha256": "bafcf9df9b258194379a07e176a1761b2329a2823364afb50f3b64c25dac197c"
+    "sha256": "518b1e93d43e54dbb21c182a89bc2642d385662c53093b027a22fa49f4b20cf0"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0001.stderr.txt",
@@ -54,21 +73,19 @@
   "artifacts": [],
   "invalidation_edges": [
     {
-      "kind": "platform-manifest",
-      "identity": "docs/architecture/platform-manifest.v1.json",
-      "sha256": "638856206e95e8d8291fee6f295d82d0a29a7bb0b0d6d3b062758ee2227b39d2"
-    },
-    {
       "kind": "schema",
-      "identity": "docs/governance/evidence-v1.schema.json",
-      "sha256": "249ecc36508d27bd609babb49f7cc35d2bf18abd448265a330c8dde414ce6c6f"
+      "path": "docs/governance/evidence-v1.schema.json",
+      "mode": "100644",
+      "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
     },
     {
-      "kind": "generator",
-      "identity": "tools/platform/run",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "kind": "source",
+      "path": "tools/tracker/validate.py",
+      "mode": "100755",
+      "sha256": "a6dc7c963af5b707e2127d827bb2e7313190b8aff9491489f82a2f0a2fa7b712"
     }
   ],
+  "review_bindings": [],
   "retention_until": "2027-08-29",
-  "review_bindings": []
+  "supersedes": null
 }

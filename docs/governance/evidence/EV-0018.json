@@ -2,18 +2,63 @@
   "schema_version": 1,
   "evidence_id": "EV-0018",
   "owning_item": "C000.15",
+  "subject_revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9",
+  "subject_artifacts": [
+    {
+      "path": "docs/governance/adoption-inventory-v1.schema.json",
+      "mode": "100644",
+      "sha256": "dede0d4e6f683498282250604d65b5c341fa9176a5fa4d2d3b4d21a32299d612"
+    },
+    {
+      "path": "docs/governance/adoption-inventory.v1.json",
+      "mode": "100644",
+      "sha256": "7d29a28303859d547d6206263cc8dff51b600f871ac5141f86b79f784bb3b5ed"
+    },
+    {
+      "path": "docs/governance/dependency-decisions.v1.json",
+      "mode": "100644",
+      "sha256": "d4f94ade7f9996100f4d8cac434700798e3f23e565d5f429082f19d750d74efd"
+    },
+    {
+      "path": "docs/governance/evidence-v1.schema.json",
+      "mode": "100644",
+      "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
+    },
+    {
+      "path": "rust-tron/Cargo.lock",
+      "mode": "100644",
+      "sha256": "c8bf1395110ba03bc8fcb0e0f2d89dfc87d9c3f47b75a085662e2cb068723db4"
+    },
+    {
+      "path": "rust-tron/Cargo.toml",
+      "mode": "100644",
+      "sha256": "8691685741ed539c44def10375169ee0a94329677ae5c61e373540993b1491f6"
+    },
+    {
+      "path": "tools/platform/c000_artifacts.py",
+      "mode": "100755",
+      "sha256": "7b3a5955ef6eabc07f647743265593b20eb7d5266a569a433975ff60a9ac3185"
+    },
+    {
+      "path": "tools/platform/run",
+      "mode": "100755",
+      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+    },
+    {
+      "path": "tools/tracker/validate.py",
+      "mode": "100755",
+      "sha256": "a6dc7c963af5b707e2127d827bb2e7313190b8aff9491489f82a2f0a2fa7b712"
+    }
+  ],
   "command": [
     "tools/platform/run",
     "c000-artifacts"
   ],
   "environment": {
-    "repository_revision": "df50ce9676b94de0b10a605076adfd8728811384",
-    "tree_state": "dirty",
+    "tree_state": "clean",
     "toolchains": {
-      "python": "3.12.3",
-      "git": "git version 2.43.0",
-      "runner": "tools/platform/run sha256:cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770",
-      "auditor": "tools/platform/c000_artifacts.py sha256:d1f74cdfa3201f561343a270400f43783bafd586d0ca32d1ec86dc2fea72b4fb"
+      "python": "Python 3.12.3",
+      "git": "git version 2.43.0"
     },
     "platform_row": "P-LINUX-X64",
     "target": "x86_64-unknown-linux-gnu",
@@ -25,27 +70,33 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-artifacts-20260829-141131Z-once",
+  "run_id": "c000-descendant-20260829-150506Z-0018",
   "cases": [
     {
+      "id": "C000.15",
+      "outcome": "fail",
       "expected": {
         "artifacts_present": true,
         "documents_parse": true,
         "semantic_contracts_current": true
       },
-      "id": "C000.15",
       "observed": {
         "artifact_count": 5,
-        "issues": []
+        "issues": [
+          "AD-0062: source digest drift",
+          "adoption inventory contains non-current instances",
+          "dependency inventory input[4]: missing, escaped, or digest-drifted artifact docs/governance/evidence-v1.schema.json",
+          "dependency inventory input[57]: missing, escaped, or digest-drifted artifact tools/tracker/validate.py",
+          "dependency inventory input[5]: missing, escaped, or digest-drifted artifact docs/governance/independent-review-v1.schema.json"
+        ]
       },
-      "outcome": "pass",
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T14:11:31Z",
-  "ended_at": "2026-08-29T14:11:31Z",
-  "observed_exit_code": 0,
-  "observed_status": "pass",
+  "started_at": "2026-08-29T15:05:06Z",
+  "ended_at": "2026-08-29T15:05:06Z",
+  "observed_exit_code": 1,
+  "observed_status": "fail",
   "expected": {
     "artifacts_present": true,
     "documents_parse": true,
@@ -53,11 +104,17 @@
   },
   "observed": {
     "artifact_count": 5,
-    "issues": []
+    "issues": [
+      "AD-0062: source digest drift",
+      "adoption inventory contains non-current instances",
+      "dependency inventory input[4]: missing, escaped, or digest-drifted artifact docs/governance/evidence-v1.schema.json",
+      "dependency inventory input[57]: missing, escaped, or digest-drifted artifact tools/tracker/validate.py",
+      "dependency inventory input[5]: missing, escaped, or digest-drifted artifact docs/governance/independent-review-v1.schema.json"
+    ]
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0018.stdout.txt",
-    "sha256": "ad2417fe052041207aa002e0b3361b40981b1e2bafe085d1fc0839cd778035df"
+    "sha256": "802a61c303d2422eea87cf42b97a8c1ca64757fd4ddb4dde445548cdafcb8f54"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0018.stderr.txt",
@@ -70,11 +127,11 @@
     },
     {
       "path": "docs/governance/adoption-inventory.v1.json",
-      "sha256": "551b596d5e1a612dd0b3115f93c1b70e8763ab2c53664c1c90f0d5f0429ae1a9"
+      "sha256": "7d29a28303859d547d6206263cc8dff51b600f871ac5141f86b79f784bb3b5ed"
     },
     {
       "path": "docs/governance/dependency-decisions.v1.json",
-      "sha256": "c9a4908f046b73d5a3a4fe07a3028b9a293629b6420d58472cca6117e9fbed1a"
+      "sha256": "d4f94ade7f9996100f4d8cac434700798e3f23e565d5f429082f19d750d74efd"
     },
     {
       "path": "rust-tron/Cargo.lock",
@@ -87,46 +144,61 @@
   ],
   "invalidation_edges": [
     {
-      "kind": "generator",
-      "identity": "tools/platform/run",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
-    },
-    {
-      "kind": "generator",
-      "identity": "tools/platform/c000_artifacts.py",
-      "sha256": "d1f74cdfa3201f561343a270400f43783bafd586d0ca32d1ec86dc2fea72b4fb"
-    },
-    {
-      "kind": "schema",
-      "identity": "docs/governance/evidence-v1.schema.json",
-      "sha256": "249ecc36508d27bd609babb49f7cc35d2bf18abd448265a330c8dde414ce6c6f"
-    },
-    {
-      "kind": "schema",
-      "identity": "docs/governance/adoption-inventory-v1.schema.json",
+      "kind": "source",
+      "path": "docs/governance/adoption-inventory-v1.schema.json",
+      "mode": "100644",
       "sha256": "dede0d4e6f683498282250604d65b5c341fa9176a5fa4d2d3b4d21a32299d612"
     },
     {
       "kind": "source",
-      "identity": "docs/governance/adoption-inventory.v1.json",
-      "sha256": "551b596d5e1a612dd0b3115f93c1b70e8763ab2c53664c1c90f0d5f0429ae1a9"
+      "path": "docs/governance/adoption-inventory.v1.json",
+      "mode": "100644",
+      "sha256": "7d29a28303859d547d6206263cc8dff51b600f871ac5141f86b79f784bb3b5ed"
     },
     {
       "kind": "source",
-      "identity": "docs/governance/dependency-decisions.v1.json",
-      "sha256": "c9a4908f046b73d5a3a4fe07a3028b9a293629b6420d58472cca6117e9fbed1a"
+      "path": "docs/governance/dependency-decisions.v1.json",
+      "mode": "100644",
+      "sha256": "d4f94ade7f9996100f4d8cac434700798e3f23e565d5f429082f19d750d74efd"
     },
     {
-      "kind": "dependency",
-      "identity": "rust-tron/Cargo.lock",
+      "kind": "schema",
+      "path": "docs/governance/evidence-v1.schema.json",
+      "mode": "100644",
+      "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/Cargo.lock",
+      "mode": "100644",
       "sha256": "c8bf1395110ba03bc8fcb0e0f2d89dfc87d9c3f47b75a085662e2cb068723db4"
     },
     {
-      "kind": "dependency",
-      "identity": "rust-tron/Cargo.toml",
+      "kind": "source",
+      "path": "rust-tron/Cargo.toml",
+      "mode": "100644",
       "sha256": "8691685741ed539c44def10375169ee0a94329677ae5c61e373540993b1491f6"
+    },
+    {
+      "kind": "generator",
+      "path": "tools/platform/c000_artifacts.py",
+      "mode": "100755",
+      "sha256": "7b3a5955ef6eabc07f647743265593b20eb7d5266a569a433975ff60a9ac3185"
+    },
+    {
+      "kind": "generator",
+      "path": "tools/platform/run",
+      "mode": "100755",
+      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+    },
+    {
+      "kind": "source",
+      "path": "tools/tracker/validate.py",
+      "mode": "100755",
+      "sha256": "a6dc7c963af5b707e2127d827bb2e7313190b8aff9491489f82a2f0a2fa7b712"
     }
   ],
   "review_bindings": [],
-  "retention_until": "2027-08-29"
+  "retention_until": "2027-08-29",
+  "supersedes": null
 }

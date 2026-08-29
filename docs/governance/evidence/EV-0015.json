@@ -2,18 +2,48 @@
   "schema_version": 1,
   "evidence_id": "EV-0015",
   "owning_item": "C000.10",
+  "subject_revision": "f1bd213363055e86fac72b09eaa745e79acfa6f9",
+  "subject_artifacts": [
+    {
+      "path": "docs/governance/evidence-v1.schema.json",
+      "mode": "100644",
+      "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
+    },
+    {
+      "path": "docs/governance/tracker-evidence-dependency-contract.md",
+      "mode": "100644",
+      "sha256": "46d05c2607eb43aaf94727482bace630e73d293b2987e9ec12118935b9e760e4"
+    },
+    {
+      "path": "docs/governance/tracker-v1.schema.json",
+      "mode": "100644",
+      "sha256": "14b1abd6a1c237e7bb5cb2bad68a0d1185d331880f80cd4c455347bce76aa450"
+    },
+    {
+      "path": "tools/platform/c000_artifacts.py",
+      "mode": "100755",
+      "sha256": "7b3a5955ef6eabc07f647743265593b20eb7d5266a569a433975ff60a9ac3185"
+    },
+    {
+      "path": "tools/platform/run",
+      "mode": "100755",
+      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+    },
+    {
+      "path": "tools/tracker/validate.py",
+      "mode": "100755",
+      "sha256": "a6dc7c963af5b707e2127d827bb2e7313190b8aff9491489f82a2f0a2fa7b712"
+    }
+  ],
   "command": [
     "tools/platform/run",
     "c000-artifacts"
   ],
   "environment": {
-    "repository_revision": "df50ce9676b94de0b10a605076adfd8728811384",
-    "tree_state": "dirty",
+    "tree_state": "clean",
     "toolchains": {
-      "python": "3.12.3",
-      "git": "git version 2.43.0",
-      "runner": "tools/platform/run sha256:cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770",
-      "auditor": "tools/platform/c000_artifacts.py sha256:d1f74cdfa3201f561343a270400f43783bafd586d0ca32d1ec86dc2fea72b4fb"
+      "python": "Python 3.12.3",
+      "git": "git version 2.43.0"
     },
     "platform_row": "P-LINUX-X64",
     "target": "x86_64-unknown-linux-gnu",
@@ -25,25 +55,25 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-artifacts-20260829-141131Z-once",
+  "run_id": "c000-descendant-20260829-150506Z-0015",
   "cases": [
     {
+      "id": "C000.10",
+      "outcome": "pass",
       "expected": {
         "artifacts_present": true,
         "documents_parse": true,
         "semantic_contracts_current": true
       },
-      "id": "C000.10",
       "observed": {
         "artifact_count": 3,
         "issues": []
       },
-      "outcome": "pass",
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T14:11:31Z",
-  "ended_at": "2026-08-29T14:11:31Z",
+  "started_at": "2026-08-29T15:05:06Z",
+  "ended_at": "2026-08-29T15:05:06Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
@@ -57,7 +87,7 @@
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0015.stdout.txt",
-    "sha256": "ad2417fe052041207aa002e0b3361b40981b1e2bafe085d1fc0839cd778035df"
+    "sha256": "802a61c303d2422eea87cf42b97a8c1ca64757fd4ddb4dde445548cdafcb8f54"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0015.stderr.txt",
@@ -66,7 +96,7 @@
   "artifacts": [
     {
       "path": "docs/governance/tracker-evidence-dependency-contract.md",
-      "sha256": "94d98bb45f4ed3aa363f5041e76dd5270ca506c6fb66fc6f4a11888cecba5535"
+      "sha256": "46d05c2607eb43aaf94727482bace630e73d293b2987e9ec12118935b9e760e4"
     },
     {
       "path": "docs/governance/tracker-v1.schema.json",
@@ -74,41 +104,48 @@
     },
     {
       "path": "tools/tracker/validate.py",
-      "sha256": "48495d1355e28108ee83722f61c933e6f43d5e739075c56c0de7020f6062f6c4"
+      "sha256": "a6dc7c963af5b707e2127d827bb2e7313190b8aff9491489f82a2f0a2fa7b712"
     }
   ],
   "invalidation_edges": [
     {
-      "kind": "generator",
-      "identity": "tools/platform/run",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
-    },
-    {
-      "kind": "generator",
-      "identity": "tools/platform/c000_artifacts.py",
-      "sha256": "d1f74cdfa3201f561343a270400f43783bafd586d0ca32d1ec86dc2fea72b4fb"
-    },
-    {
       "kind": "schema",
-      "identity": "docs/governance/evidence-v1.schema.json",
-      "sha256": "249ecc36508d27bd609babb49f7cc35d2bf18abd448265a330c8dde414ce6c6f"
+      "path": "docs/governance/evidence-v1.schema.json",
+      "mode": "100644",
+      "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
     },
     {
       "kind": "source",
-      "identity": "docs/governance/tracker-evidence-dependency-contract.md",
-      "sha256": "94d98bb45f4ed3aa363f5041e76dd5270ca506c6fb66fc6f4a11888cecba5535"
+      "path": "docs/governance/tracker-evidence-dependency-contract.md",
+      "mode": "100644",
+      "sha256": "46d05c2607eb43aaf94727482bace630e73d293b2987e9ec12118935b9e760e4"
     },
     {
-      "kind": "schema",
-      "identity": "docs/governance/tracker-v1.schema.json",
+      "kind": "source",
+      "path": "docs/governance/tracker-v1.schema.json",
+      "mode": "100644",
       "sha256": "14b1abd6a1c237e7bb5cb2bad68a0d1185d331880f80cd4c455347bce76aa450"
     },
     {
       "kind": "generator",
-      "identity": "tools/tracker/validate.py",
-      "sha256": "48495d1355e28108ee83722f61c933e6f43d5e739075c56c0de7020f6062f6c4"
+      "path": "tools/platform/c000_artifacts.py",
+      "mode": "100755",
+      "sha256": "7b3a5955ef6eabc07f647743265593b20eb7d5266a569a433975ff60a9ac3185"
+    },
+    {
+      "kind": "generator",
+      "path": "tools/platform/run",
+      "mode": "100755",
+      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+    },
+    {
+      "kind": "source",
+      "path": "tools/tracker/validate.py",
+      "mode": "100755",
+      "sha256": "a6dc7c963af5b707e2127d827bb2e7313190b8aff9491489f82a2f0a2fa7b712"
     }
   ],
   "review_bindings": [],
-  "retention_until": "2027-08-29"
+  "retention_until": "2027-08-29",
+  "supersedes": null
 }
