@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0013",
   "owning_item": "C000.08",
-  "subject_revision": "0ff60fa23e4fafaccd91cdccbeaf997d498e8f8a",
+  "subject_revision": "3e6b93bae4a7c12f590c9a63edf80a5c699d36ec",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -22,7 +22,7 @@
     {
       "path": "tools/platform/c000_artifacts.py",
       "mode": "100755",
-      "sha256": "e2c3d877c1c73f166befbe78cea8a6361339b3788f8e1af792c9c2a0af3cef21"
+      "sha256": "541b94f562a922164ae27eb9f2af82c444d6309652764a8bc1f7ac597aa87f1b"
     },
     {
       "path": "tools/platform/run",
@@ -60,7 +60,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-162824Z-0ff60fa2-0013",
+  "run_id": "c000-descendant-20260829-163706Z-3e6b93ba-0013",
   "cases": [
     {
       "expected": {
@@ -77,9 +77,9 @@
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T16:28:24Z",
-  "ended_at": "2026-08-29T16:28:27Z",
-  "observed_exit_code": 0,
+  "started_at": "2026-08-29T16:37:18Z",
+  "ended_at": "2026-08-29T16:37:22Z",
+  "observed_exit_code": 1,
   "observed_status": "pass",
   "expected": {
     "selected_cases": [
@@ -97,11 +97,11 @@
     }
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0013.20260829-162824Z-0ff60fa2-0013.stdout.txt",
-    "sha256": "bd189dda49abbaefec93c38c7f391afed81e8ef029ad0f55d4c96d245cb6e321"
+    "path": "docs/governance/evidence/EV-0013.20260829-163706Z-3e6b93ba-0013.stdout.txt",
+    "sha256": "11f2b82c084ef2ee906bd154936f264ddc99d1848d06c9d6ea3b2f16711e74a0"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0013.20260829-162824Z-0ff60fa2-0013.stderr.txt",
+    "path": "docs/governance/evidence/EV-0013.20260829-163706Z-3e6b93ba-0013.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
@@ -128,7 +128,7 @@
       "kind": "generator",
       "path": "tools/platform/c000_artifacts.py",
       "mode": "100755",
-      "sha256": "e2c3d877c1c73f166befbe78cea8a6361339b3788f8e1af792c9c2a0af3cef21"
+      "sha256": "541b94f562a922164ae27eb9f2af82c444d6309652764a8bc1f7ac597aa87f1b"
     },
     {
       "kind": "generator",

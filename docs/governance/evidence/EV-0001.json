@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0001",
   "owning_item": "C000.13",
-  "subject_revision": "0ff60fa23e4fafaccd91cdccbeaf997d498e8f8a",
+  "subject_revision": "3e6b93bae4a7c12f590c9a63edf80a5c699d36ec",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -18,7 +18,7 @@
   "command": [
     "git",
     "rev-parse",
-    "0ff60fa23e4fafaccd91cdccbeaf997d498e8f8a"
+    "3e6b93bae4a7c12f590c9a63edf80a5c699d36ec"
   ],
   "environment": {
     "tree_state": "clean",
@@ -36,36 +36,36 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-162606Z-0ff60fa2-0001",
+  "run_id": "c000-descendant-20260829-163706Z-3e6b93ba-0001",
   "cases": [
     {
       "id": "signed-subject-revision",
       "outcome": "pass",
       "expected": {
-        "revision": "0ff60fa23e4fafaccd91cdccbeaf997d498e8f8a"
+        "revision": "3e6b93bae4a7c12f590c9a63edf80a5c699d36ec"
       },
       "observed": {
-        "revision": "0ff60fa23e4fafaccd91cdccbeaf997d498e8f8a"
+        "revision": "3e6b93bae4a7c12f590c9a63edf80a5c699d36ec"
       },
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T16:26:06Z",
-  "ended_at": "2026-08-29T16:26:06Z",
+  "started_at": "2026-08-29T16:37:22Z",
+  "ended_at": "2026-08-29T16:37:22Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
-    "revision": "0ff60fa23e4fafaccd91cdccbeaf997d498e8f8a"
+    "revision": "3e6b93bae4a7c12f590c9a63edf80a5c699d36ec"
   },
   "observed": {
-    "revision": "0ff60fa23e4fafaccd91cdccbeaf997d498e8f8a"
+    "revision": "3e6b93bae4a7c12f590c9a63edf80a5c699d36ec"
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0001.20260829-162606Z-0ff60fa2-0001.stdout.txt",
-    "sha256": "50a723cad657099a3691edb01f93258f5ecc914c06c5b05aeb80de98e0ffe5bc"
+    "path": "docs/governance/evidence/EV-0001.20260829-163706Z-3e6b93ba-0001.stdout.txt",
+    "sha256": "4832e487400dc75e313596d3d3ef19753716d8541e4f1df8e08bc4788438c4a3"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0001.20260829-162606Z-0ff60fa2-0001.stderr.txt",
+    "path": "docs/governance/evidence/EV-0001.20260829-163706Z-3e6b93ba-0001.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
