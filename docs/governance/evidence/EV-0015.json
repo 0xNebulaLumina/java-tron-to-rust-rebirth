@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0015",
   "owning_item": "C000.10",
-  "subject_revision": "6b5ed14e342db9ac9afc820315dfe2daf45b6b2a",
+  "subject_revision": "0ff60fa23e4fafaccd91cdccbeaf997d498e8f8a",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -12,7 +12,7 @@
     {
       "path": "docs/governance/tracker-evidence-dependency-contract.md",
       "mode": "100644",
-      "sha256": "4210de9c65720c113bdae724f7098695902c032f45bd3f46688148dbfad4a375"
+      "sha256": "55e2e4bc8905a94139b13c1b4cdcf10a051290cf3e6b2d7064e91417ff43e51d"
     },
     {
       "path": "docs/governance/tracker-v1.schema.json",
@@ -32,7 +32,7 @@
     {
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "4df090bc5dfb8c681047f6b22cf6860a30f3cca426731b23dc4915361c5375a1"
+      "sha256": "cafccf36643a7c725b945774cfd5a3a121860d825f541ff14d0a17b06b2c2b1e"
     }
   ],
   "command": [
@@ -55,7 +55,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-161553Z-6b5ed14e-0015",
+  "run_id": "c000-descendant-20260829-162824Z-0ff60fa2-0015",
   "cases": [
     {
       "expected": {
@@ -72,8 +72,8 @@
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T16:15:40Z",
-  "ended_at": "2026-08-29T16:15:43Z",
+  "started_at": "2026-08-29T16:28:24Z",
+  "ended_at": "2026-08-29T16:28:27Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
@@ -92,11 +92,11 @@
     }
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0015.20260829-161553Z-6b5ed14e-0015.stdout.txt",
-    "sha256": "6fb122c585d42d340dd884017f56f9b2095ec64c76693139a80f41357da325e4"
+    "path": "docs/governance/evidence/EV-0015.20260829-162824Z-0ff60fa2-0015.stdout.txt",
+    "sha256": "bd189dda49abbaefec93c38c7f391afed81e8ef029ad0f55d4c96d245cb6e321"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0015.20260829-161553Z-6b5ed14e-0015.stderr.txt",
+    "path": "docs/governance/evidence/EV-0015.20260829-162824Z-0ff60fa2-0015.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
@@ -111,7 +111,7 @@
       "kind": "source",
       "path": "docs/governance/tracker-evidence-dependency-contract.md",
       "mode": "100644",
-      "sha256": "4210de9c65720c113bdae724f7098695902c032f45bd3f46688148dbfad4a375"
+      "sha256": "55e2e4bc8905a94139b13c1b4cdcf10a051290cf3e6b2d7064e91417ff43e51d"
     },
     {
       "kind": "source",
@@ -135,7 +135,7 @@
       "kind": "source",
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "4df090bc5dfb8c681047f6b22cf6860a30f3cca426731b23dc4915361c5375a1"
+      "sha256": "cafccf36643a7c725b945774cfd5a3a121860d825f541ff14d0a17b06b2c2b1e"
     }
   ],
   "review_bindings": [],

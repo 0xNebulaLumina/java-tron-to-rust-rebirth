@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0016",
   "owning_item": "C000.11",
-  "subject_revision": "6b5ed14e342db9ac9afc820315dfe2daf45b6b2a",
+  "subject_revision": "0ff60fa23e4fafaccd91cdccbeaf997d498e8f8a",
   "subject_artifacts": [
     {
       "path": "docs/governance/DD-template.md",
@@ -12,7 +12,7 @@
     {
       "path": "docs/governance/adoption-inventory-v1.schema.json",
       "mode": "100644",
-      "sha256": "dede0d4e6f683498282250604d65b5c341fa9176a5fa4d2d3b4d21a32299d612"
+      "sha256": "8d5877ec949f9060c088fb800573e9bca08f749520ae1eba494218b39eb4abab"
     },
     {
       "path": "docs/governance/dependency-decision-v1.schema.json",
@@ -42,7 +42,7 @@
     {
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "4df090bc5dfb8c681047f6b22cf6860a30f3cca426731b23dc4915361c5375a1"
+      "sha256": "cafccf36643a7c725b945774cfd5a3a121860d825f541ff14d0a17b06b2c2b1e"
     }
   ],
   "command": [
@@ -65,7 +65,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-161553Z-6b5ed14e-0016",
+  "run_id": "c000-descendant-20260829-162824Z-0ff60fa2-0016",
   "cases": [
     {
       "expected": {
@@ -82,8 +82,8 @@
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T16:15:40Z",
-  "ended_at": "2026-08-29T16:15:43Z",
+  "started_at": "2026-08-29T16:28:24Z",
+  "ended_at": "2026-08-29T16:28:27Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
@@ -102,11 +102,11 @@
     }
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0016.20260829-161553Z-6b5ed14e-0016.stdout.txt",
-    "sha256": "6fb122c585d42d340dd884017f56f9b2095ec64c76693139a80f41357da325e4"
+    "path": "docs/governance/evidence/EV-0016.20260829-162824Z-0ff60fa2-0016.stdout.txt",
+    "sha256": "bd189dda49abbaefec93c38c7f391afed81e8ef029ad0f55d4c96d245cb6e321"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0016.20260829-161553Z-6b5ed14e-0016.stderr.txt",
+    "path": "docs/governance/evidence/EV-0016.20260829-162824Z-0ff60fa2-0016.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
@@ -121,7 +121,7 @@
       "kind": "source",
       "path": "docs/governance/adoption-inventory-v1.schema.json",
       "mode": "100644",
-      "sha256": "dede0d4e6f683498282250604d65b5c341fa9176a5fa4d2d3b4d21a32299d612"
+      "sha256": "8d5877ec949f9060c088fb800573e9bca08f749520ae1eba494218b39eb4abab"
     },
     {
       "kind": "source",
@@ -157,7 +157,7 @@
       "kind": "source",
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "4df090bc5dfb8c681047f6b22cf6860a30f3cca426731b23dc4915361c5375a1"
+      "sha256": "cafccf36643a7c725b945774cfd5a3a121860d825f541ff14d0a17b06b2c2b1e"
     }
   ],
   "review_bindings": [],
