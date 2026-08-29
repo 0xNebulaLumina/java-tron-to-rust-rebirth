@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "evidence_id": "EV-0005",
+  "owning_item": "C000.14",
+  "command": [
+    "python3",
+    "tools/platform/c000_not_applicable.py"
+  ],
+  "environment": {
+    "repository_revision": "df50ce9676b94de0b10a605076adfd8728811384",
+    "tree_state": "dirty",
+    "toolchains": {
+      "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+      "python": "Python 3.12.3"
+    },
+    "platform_row": "P-LINUX-X64",
+    "target": "x86_64-unknown-linux-gnu",
+    "host_os": "linux",
+    "host_architecture": "x86_64",
+    "execution": "native",
+    "backend": "B-RUST-DEFAULT",
+    "features": [],
+    "cells": [
+      "native_resource",
+      "ffi",
+      "packaging",
+      "smoke"
+    ],
+    "working_directory": "."
+  },
+  "run_id": "c000-20260829-ev-0005-001",
+  "cases": [
+    {
+      "id": "native_resource",
+      "outcome": "pass",
+      "expected": {
+        "disposition": "not_applicable",
+        "review_bindings": [
+          "RV-0002",
+          "RV-0003"
+        ]
+      },
+      "observed": {
+        "case": "native_resource",
+        "disposition": "not_applicable",
+        "outcome": "pass",
+        "reason": "C000 introduces no native allocation, handle, lifetime, cleanup, or failure surface; the Rust workspace forbids unsafe code and adopts no native library",
+        "reopen_condition": "any native dependency, unsafe code, OS resource ownership, or native handle surface is introduced",
+        "review_bindings": [
+          "RV-0002",
+          "RV-0003"
+        ]
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "ffi",
+      "outcome": "pass",
+      "expected": {
+        "disposition": "not_applicable",
+        "review_bindings": [
+          "RV-0002",
+          "RV-0003"
+        ]
+      },
+      "observed": {
+        "case": "ffi",
+        "disposition": "not_applicable",
+        "outcome": "pass",
+        "reason": "C000 introduces no foreign-function boundary, linked native library, generated binding, or cross-language in-process call",
+        "reopen_condition": "any FFI declaration, generated binding, native link, or in-process foreign call is introduced",
+        "review_bindings": [
+          "RV-0002",
+          "RV-0003"
+        ]
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "packaging",
+      "outcome": "pass",
+      "expected": {
+        "disposition": "not_applicable",
+        "review_bindings": [
+          "RV-0002",
+          "RV-0003"
+        ]
+      },
+      "observed": {
+        "case": "packaging",
+        "disposition": "not_applicable",
+        "outcome": "pass",
+        "reason": "C000 defines architecture governance and behavior-neutral verification tooling but no distributable binary, archive, image, installer, or release artifact",
+        "reopen_condition": "a C000-produced distributable or release artifact is introduced",
+        "review_bindings": [
+          "RV-0002",
+          "RV-0003"
+        ]
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "smoke",
+      "outcome": "pass",
+      "expected": {
+        "disposition": "not_applicable",
+        "review_bindings": [
+          "RV-0002",
+          "RV-0003"
+        ]
+      },
+      "observed": {
+        "case": "smoke",
+        "disposition": "not_applicable",
+        "outcome": "pass",
+        "reason": "C000 has no node or service runtime surface to start, probe, and stop; executable C000 tooling is covered by focused unit and eight-case differential cells",
+        "reopen_condition": "a C000 runtime process, node, service, or operator-facing executable surface is introduced",
+        "review_bindings": [
+          "RV-0002",
+          "RV-0003"
+        ]
+      },
+      "skip_disposition": null
+    }
+  ],
+  "started_at": "2026-08-29T13:18:07Z",
+  "ended_at": "2026-08-29T13:18:07Z",
+  "observed_exit_code": 0,
+  "observed_status": "pass",
+  "expected": {
+    "reviewed_not_applicable": 4
+  },
+  "observed": {
+    "reviewed_not_applicable": 4
+  },
+  "stdout": {
+    "path": "docs/governance/evidence/EV-0005.stdout.txt",
+    "sha256": "4b6da81c95ecfcf549f80c274ab2be6c3c9485fb5187b86f6be30cb698cb14bc"
+  },
+  "stderr": {
+    "path": "docs/governance/evidence/EV-0005.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "artifacts": [],
+  "invalidation_edges": [
+    {
+      "kind": "platform-manifest",
+      "identity": "docs/architecture/platform-manifest.v1.json",
+      "sha256": "638856206e95e8d8291fee6f295d82d0a29a7bb0b0d6d3b062758ee2227b39d2"
+    },
+    {
+      "kind": "schema",
+      "identity": "docs/governance/evidence-v1.schema.json",
+      "sha256": "249ecc36508d27bd609babb49f7cc35d2bf18abd448265a330c8dde414ce6c6f"
+    },
+    {
+      "kind": "generator",
+      "identity": "tools/platform/c000_not_applicable.py",
+      "sha256": "699c17a2f2e7ef422c239393de2536f3cf3db02df9de5f14bcef138b5da73bd4"
+    },
+    {
+      "kind": "config",
+      "identity": "docs/governance/reviews/RV-0002.json",
+      "sha256": "890233c27f5fae0b39f8f9865649cf0ada286f6a91ee17e114616398bcd8872c"
+    },
+    {
+      "kind": "config",
+      "identity": "docs/governance/reviews/RV-0003.json",
+      "sha256": "19a60b06aaea3da6d8d39a9076f32248a14dde7363f11f0985f273f14974a4b8"
+    }
+  ],
+  "review_bindings": [
+    "RV-0002",
+    "RV-0003"
+  ],
+  "retention_until": "2027-08-29"
+}

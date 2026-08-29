@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "evidence_id": "EV-0001",
+  "owning_item": "C000.13",
+  "command": [
+    "git",
+    "rev-parse",
+    "HEAD"
+  ],
+  "environment": {
+    "repository_revision": "df50ce9676b94de0b10a605076adfd8728811384",
+    "tree_state": "dirty",
+    "toolchains": {
+      "git": "repository-provided host git"
+    },
+    "platform_row": "P-LINUX-X64",
+    "backend": "B-RUST-DEFAULT",
+    "features": [],
+    "target": "x86_64-unknown-linux-gnu",
+    "host_os": "linux",
+    "host_architecture": "x86_64",
+    "execution": "native",
+    "cells": [],
+    "working_directory": "."
+  },
+  "run_id": "c000-20260829-revision-001",
+  "cases": [
+    {
+      "id": "repository-revision",
+      "outcome": "pass",
+      "expected": "df50ce9676b94de0b10a605076adfd8728811384",
+      "observed": "df50ce9676b94de0b10a605076adfd8728811384",
+      "skip_disposition": null
+    }
+  ],
+  "started_at": "2026-08-29T12:35:35Z",
+  "ended_at": "2026-08-29T12:35:35Z",
+  "observed_exit_code": 0,
+  "observed_status": "pass",
+  "expected": {
+    "revision": "df50ce9676b94de0b10a605076adfd8728811384"
+  },
+  "observed": {
+    "revision": "df50ce9676b94de0b10a605076adfd8728811384"
+  },
+  "stdout": {
+    "path": "docs/governance/evidence/EV-0001.stdout.txt",
+    "sha256": "bafcf9df9b258194379a07e176a1761b2329a2823364afb50f3b64c25dac197c"
+  },
+  "stderr": {
+    "path": "docs/governance/evidence/EV-0001.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "artifacts": [],
+  "invalidation_edges": [
+    {
+      "kind": "platform-manifest",
+      "identity": "docs/architecture/platform-manifest.v1.json",
+      "sha256": "638856206e95e8d8291fee6f295d82d0a29a7bb0b0d6d3b062758ee2227b39d2"
+    },
+    {
+      "kind": "schema",
+      "identity": "docs/governance/evidence-v1.schema.json",
+      "sha256": "249ecc36508d27bd609babb49f7cc35d2bf18abd448265a330c8dde414ce6c6f"
+    },
+    {
+      "kind": "generator",
+      "identity": "tools/platform/run",
+      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+    }
+  ],
+  "retention_until": "2027-08-29",
+  "review_bindings": []
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "review_id": "RV-0003",
+  "owning_gate": "C000.V",
+  "review_class": "license",
+  "scope_rows": [
+    "C000.09",
+    "C000.10",
+    "C000.11",
+    "C000.12",
+    "C000.15"
+  ],
+  "seam_rows": [],
+  "covered_revisions": {
+    "repository": "df50ce9676b94de0b10a605076adfd8728811384"
+  },
+  "covered_artifacts": [
+    {
+      "path": "docs/governance/adoption-inventory.v1.json",
+      "sha256": "551b596d5e1a612dd0b3115f93c1b70e8763ab2c53664c1c90f0d5f0429ae1a9"
+    },
+    {
+      "path": "docs/governance/dependency-decisions.v1.json",
+      "sha256": "c9a4908f046b73d5a3a4fe07a3028b9a293629b6420d58472cca6117e9fbed1a"
+    },
+    {
+      "path": "rust-tron/Cargo.toml",
+      "sha256": "8691685741ed539c44def10375169ee0a94329677ae5c61e373540993b1491f6"
+    },
+    {
+      "path": "rust-tron/Cargo.lock",
+      "sha256": "c8bf1395110ba03bc8fcb0e0f2d89dfc87d9c3f47b75a085662e2cb068723db4"
+    },
+    {
+      "path": "rust-tron/rust-toolchain.toml",
+      "sha256": "8adfc1727670e54730d1c2bdfec839504cb9cd2d95c4fb7cf11b5874c3f38f80"
+    },
+    {
+      "path": "java-tron/build.gradle",
+      "sha256": "5ebee95958472a0ed9812f70ddbbba21039f627eeaab776fa281e504cce8526a"
+    },
+    {
+      "path": "java-tron/gradle/wrapper/gradle-wrapper.jar",
+      "sha256": "3dc39ad650d40f6c029bd8ff605c6d95865d657dbfdeacdb079db0ddfffedf9f"
+    },
+    {
+      "path": "java-tron/gradle/wrapper/gradle-wrapper.properties",
+      "sha256": "2e4b4b216e7444cdebfa9c542b8eac0548e85c94e0c709de9a6eb7a69cc9a975"
+    },
+    {
+      "path": "java-tron/gradlew",
+      "sha256": "261d896f782ec3181add62d77d5b1b9e1d0d599757ec108d857bad1eec2e7615"
+    }
+  ],
+  "reviewers": [
+    {
+      "identity": "C000 License Reviewer LR-01",
+      "role": "license",
+      "independent_of_authors": true,
+      "conflicts": [],
+      "recusals": []
+    },
+    {
+      "identity": "C000 License Closure Reviewer LR-02",
+      "role": "closure",
+      "independent_of_authors": true,
+      "conflicts": [],
+      "recusals": []
+    }
+  ],
+  "findings": [],
+  "reruns": ["EV-0002", "EV-0003", "EV-0004", "EV-0005"],
+  "closure": {
+    "status": "approved",
+    "reviewer": "C000 License Closure Reviewer LR-02",
+    "date": "2026-08-29",
+    "approval": true
+  },
+  "retention_until": "2027-08-29",
+  "invalidation_triggers": [
+    "covered repository revision changes",
+    "covered artifact digest changes",
+    "adoption decision or disposition changes",
+    "new or reopened finding",
+    "source, license, notice, linkage, distribution, or provenance changes"
+  ]
+}

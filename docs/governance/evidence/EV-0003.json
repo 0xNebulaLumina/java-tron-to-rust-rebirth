@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "evidence_id": "EV-0003",
+  "owning_item": "C000.14",
+  "command": [
+    "python3",
+    "tools/platform/c000_unit.py"
+  ],
+  "environment": {
+    "repository_revision": "df50ce9676b94de0b10a605076adfd8728811384",
+    "tree_state": "dirty",
+    "toolchains": {
+      "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+      "python": "Python 3.12.3"
+    },
+    "platform_row": "P-LINUX-X64",
+    "target": "x86_64-unknown-linux-gnu",
+    "host_os": "linux",
+    "host_architecture": "x86_64",
+    "execution": "native",
+    "backend": "B-RUST-DEFAULT",
+    "features": [],
+    "cells": [
+      "unit"
+    ],
+    "working_directory": "."
+  },
+  "run_id": "c000-20260829-ev-0003-001",
+  "cases": [
+    {
+      "id": "fixture-schema:mismatch-error",
+      "outcome": "pass",
+      "expected": "pass",
+      "observed": {
+        "case": "fixture-schema:mismatch-error",
+        "errors": [],
+        "outcome": "pass"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "fixture-schema:mismatch-forbidden-normalization",
+      "outcome": "pass",
+      "expected": "pass",
+      "observed": {
+        "case": "fixture-schema:mismatch-forbidden-normalization",
+        "errors": [],
+        "outcome": "pass"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "fixture-schema:mismatch-normalization-forbidden-class",
+      "outcome": "pass",
+      "expected": "pass",
+      "observed": {
+        "case": "fixture-schema:mismatch-normalization-forbidden-class",
+        "errors": [],
+        "outcome": "pass"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "fixture-schema:mismatch-normalization-forbidden-pointer",
+      "outcome": "pass",
+      "expected": "pass",
+      "observed": {
+        "case": "fixture-schema:mismatch-normalization-forbidden-pointer",
+        "errors": [],
+        "outcome": "pass"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "fixture-schema:mismatch-output",
+      "outcome": "pass",
+      "expected": "pass",
+      "observed": {
+        "case": "fixture-schema:mismatch-output",
+        "errors": [],
+        "outcome": "pass"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "fixture-schema:mismatch-state",
+      "outcome": "pass",
+      "expected": "pass",
+      "observed": {
+        "case": "fixture-schema:mismatch-state",
+        "errors": [],
+        "outcome": "pass"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "fixture-schema:negative",
+      "outcome": "pass",
+      "expected": "pass",
+      "observed": {
+        "case": "fixture-schema:negative",
+        "errors": [],
+        "outcome": "pass"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "fixture-schema:positive",
+      "outcome": "pass",
+      "expected": "pass",
+      "observed": {
+        "case": "fixture-schema:positive",
+        "errors": [],
+        "outcome": "pass"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "runner-identify:java",
+      "outcome": "pass",
+      "expected": "pass",
+      "observed": {
+        "case": "runner-identify:java",
+        "exit_code": 0,
+        "outcome": "pass"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "runner-identify:rust",
+      "outcome": "pass",
+      "expected": "pass",
+      "observed": {
+        "case": "runner-identify:rust",
+        "exit_code": 0,
+        "outcome": "pass"
+      },
+      "skip_disposition": null
+    }
+  ],
+  "started_at": "2026-08-29T13:17:36Z",
+  "ended_at": "2026-08-29T13:17:36Z",
+  "observed_exit_code": 0,
+  "observed_status": "pass",
+  "expected": {
+    "case_count": 10,
+    "all": "pass"
+  },
+  "observed": {
+    "case_count": 10,
+    "all": "pass"
+  },
+  "stdout": {
+    "path": "docs/governance/evidence/EV-0003.stdout.txt",
+    "sha256": "ccbc7ec8b7c302e14af067fb5cdccd49f668b57be8789a25e0eeaa4d71a0807b"
+  },
+  "stderr": {
+    "path": "docs/governance/evidence/EV-0003.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "artifacts": [],
+  "invalidation_edges": [
+    {
+      "kind": "platform-manifest",
+      "identity": "docs/architecture/platform-manifest.v1.json",
+      "sha256": "638856206e95e8d8291fee6f295d82d0a29a7bb0b0d6d3b062758ee2227b39d2"
+    },
+    {
+      "kind": "schema",
+      "identity": "docs/governance/evidence-v1.schema.json",
+      "sha256": "249ecc36508d27bd609babb49f7cc35d2bf18abd448265a330c8dde414ce6c6f"
+    },
+    {
+      "kind": "generator",
+      "identity": "tools/platform/c000_unit.py",
+      "sha256": "374088ae10b289a755842bb62efdee91c32593dae9757b08fb236abe81e34ad2"
+    },
+    {
+      "kind": "generator",
+      "identity": "tools/reference-runner/runner.py",
+      "sha256": "cff1909a30e6f84ee43b776536db4041e4766b78e1d08f3494eb2406472ef3db"
+    },
+    {
+      "kind": "schema",
+      "identity": "docs/oracles/schemas/oracle-fixture-v1.schema.json",
+      "sha256": "9e1c053e18b3c35ef8aa65eb974fa6cd869f66e12538138953994c6326e0f482"
+    },
+    {
+      "kind": "schema",
+      "identity": "docs/oracles/schemas/oracle-result-v1.schema.json",
+      "sha256": "f21a19efff4fb8749bae8b8eb2773e169f67c34788aff95654e72277d24725a4"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/mismatch-error.json",
+      "sha256": "37a6a62bfbf7ba355637da04400f764707b7068dc0ac9a494a66522ee8193530"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/mismatch-forbidden-normalization.json",
+      "sha256": "4842e34f710e223d457649faf73d344d0b12cb7baf92bbf9cf88ece065b71f05"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-class.json",
+      "sha256": "4435daa383c4d7559a00a11aa79e5002a08e94948bd48a6a39974950c4c538b3"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-pointer.json",
+      "sha256": "ad1616d90a7f148200b40a079aca401724a40a0a3af0a86032a5da92c6907af3"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/mismatch-output.json",
+      "sha256": "accae08c09be4a36bb41886c61ebc7c37cf2255157bd9453e1d986d6f727e6a1"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/mismatch-state.json",
+      "sha256": "29f22f2038eb9b209a56ee2eeb860aceeb00ae615e697feb63f5ddeb118186b8"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/negative.json",
+      "sha256": "e626eebc2f25e6717715bade230fce8260ab0ca8fb1bd7670d45f74aaca9245b"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/positive.json",
+      "sha256": "aa32a0a57c7c17885a6aac20809d14f961be15fd2e350e0d42f0d4d431ce68d6"
+    }
+  ],
+  "review_bindings": [],
+  "retention_until": "2027-08-29"
+}

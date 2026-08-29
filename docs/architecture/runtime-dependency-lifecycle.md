@@ -1,0 +1,73 @@
+# Runtime dependency, cursor, determinism, and lifecycle contract
+
+## Composition and dependency injection
+
+`tron-node` and `tron-toolkit` are the only composition roots. They construct immutable configuration first, then explicit service values, and pass dependencies through constructors. Libraries must not read process environment, command-line arguments, global registries, wall time, operating-system randomness, or singleton service locators after composition. Static mutable state, hidden lazy construction, cyclic injection, and background work started by constructors are prohibited.
+
+Construction and activation are separate phases:
+
+```text
+parse inputs -> validate config -> construct graph -> initialize resources
+             -> start services -> signal ready -> run -> cancel
+             -> quiesce ingress -> drain work -> flush/close state -> stop
+```
+
+A dependency is represented by the narrow owning trait or concrete value. Optional capabilities are explicit `Option`/enum configuration at the composition root, not nullable services. A service may depend only on an earlier crate layer and an earlier lifecycle phase.
+
+## Typed state cursors
+
+HEAD, SOLIDITY, and PBFT are distinct types, never enum values stored in one mutable thread-local cursor and never interchangeable integers.
+
+```rust
+pub struct HeadCursor { /* private checkpoint identity */ }
+pub struct SolidityCursor { /* private solid checkpoint identity */ }
+pub struct PbftCursor { /* private PBFT checkpoint identity and offset */ }
+```
+
+The eventual state API exposes read views parameterized by the concrete cursor type. Conversion is allowed only through an explicit, validated state service operation that records the checkpoint/height relationship. HEAD may include the latest accepted speculative/chain state; SOLIDITY resolves the independently tracked solidified checkpoint; PBFT resolves the independently tracked PBFT checkpoint and its Java-compatible offset. API adapters receive the required cursor from composition and cannot mutate a process-wide current cursor.
+
+## Clock and randomness
+
+All time enters through injected traits with units encoded in types. Consensus slot time, monotonic deadlines, and wall-clock timestamps are separate interfaces; monotonic values are never serialized and wall time never drives consensus calculations without an explicit compatibility rule.
+
+Randomness enters through an injected, purpose-specific source. Consensus-visible shuffles and fixtures use specified deterministic algorithms and seeds. Secret-key generation uses an approved cryptographic source that cannot be substituted with deterministic test randomness in production. General-purpose library calls to ambient randomness are prohibited.
+
+## Cancellation and task ownership
+
+The composition root owns one process cancellation source and creates child scopes for services and bounded operations. Cancellation propagates root-to-leaf; failures propagate leaf-to-root with typed cause and service identity. Dropping a future is not the shutdown protocol. Every spawned task is registered to exactly one service, has a bounded termination contract, and is joined before that service reports stopped. Detached tasks are prohibited.
+
+Ingress cancellation stops new P2P/API/tool work before state-bearing work drains. A timeout escalates to a reported failed shutdown; it must not silently abandon state flushes or native resources.
+
+## Lifecycle graph
+
+```text
+Configuration
+  -> Clock / monotonic clock / randomness / cancellation root
+  -> Protocol registry and primitive policies
+  -> Crypto and shielded providers
+  -> Storage backend and format manager
+  -> State stores, revoking sessions, HEAD/SOLIDITY/PBFT cursors
+  -> TVM and transaction execution
+  -> DPoS and PBFT services
+  -> Block/pending manager
+  -> Network transport and application protocol
+  -> API services
+  -> Events/metrics services
+  -> Node ready signal
+```
+
+Startup follows the arrows. A service starts only after every dependency reports initialized. Readiness is emitted only after all enabled ingress services are accepting work and state initialization is complete. Partial-start failure cancels the graph and stops only successfully initialized services in strict reverse order.
+
+Shutdown is reverse dependency order with explicit phases:
+
+1. revoke readiness and cancel new ingress;
+2. stop block production, sync admission, API mutation, and transaction admission;
+3. drain bounded handlers, event publication, and pending work according to compatibility rules;
+4. settle/revoke speculative sessions and persist required checkpoints;
+5. flush stores and close backend/native resources;
+6. stop metrics/log exporters and join all tasks;
+7. return a typed aggregate result preserving every stop failure.
+
+Signals, operator requests, fatal service failures, and startup failures all enter the same cancellation path. No component may call process exit directly except the composition root after shutdown completes.
+
+This C000.03 document defines structure only. Concrete traits and behavior belong to their owning implementation chunks and remain subject to C000.V architecture review.

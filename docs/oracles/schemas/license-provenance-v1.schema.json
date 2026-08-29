@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:java-tron-rust:license-provenance:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "record_id", "artifact_kind", "name", "digest", "origin", "revision_or_version", "acquisition", "declared_license", "detected_license", "copyright_notices", "modifications", "owning_item", "platforms", "features", "relationships", "review"],
+  "properties": {
+    "schema_version": {"const": 1}, "record_id": {"type": "string", "pattern": "^LP-[0-9]{4,}$"},
+    "artifact_kind": {"enum": ["source", "schema", "generated_code", "crate", "native_ffi", "parameter", "fixture", "binary", "container", "resource", "script", "tool"]},
+    "name": {"type": "string"}, "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "origin": {"type": "string"}, "revision_or_version": {"type": "string"}, "acquisition": {"enum": ["vendored", "downloaded", "generated", "copied", "mechanically_derived", "clean_room", "authored"]},
+    "generator": {"type": ["object", "null"], "required": ["tool", "version", "input_digests"], "properties": {"tool": {"type": "string"}, "version": {"type": "string"}, "input_digests": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}}},
+    "declared_license": {"type": ["string", "null"]}, "detected_license": {"type": ["string", "null"]}, "copyright_notices": {"type": "array", "items": {"type": "string"}}, "modifications": {"type": "array", "items": {"type": "string"}},
+    "owning_item": {"type": "string", "pattern": "^C[0-9]{3}\\.(?:[0-9]{2}|V)$"}, "platforms": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "features": {"type": "array", "items": {"type": "string"}},
+    "relationships": {"type": "array", "items": {"type": "object", "required": ["kind", "record_id"], "properties": {"kind": {"enum": ["generated_from", "links", "loads", "contains", "transitive", "fixture_source"]}, "record_id": {"type": "string"}}}},
+    "integrity_signature": {"type": ["string", "null"]}, "redistribution_obligations": {"type": "array", "items": {"type": "string"}},
+    "review": {"type": "object", "additionalProperties": false, "required": ["status", "reviewer", "evidence", "reopen_triggers"], "properties": {"status": {"enum": ["pending", "approved", "rejected", "exception"]}, "reviewer": {"type": ["string", "null"]}, "evidence": {"type": "array", "items": {"type": "string"}}, "rationale": {"type": ["string", "null"]}, "expires": {"type": ["string", "null"], "format": "date"}, "reopen_triggers": {"type": "array", "minItems": 1, "items": {"type": "string"}}}}
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:java-tron-rust:independent-review:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "review_id", "owning_gate", "review_class", "scope_rows", "seam_rows", "covered_revisions", "covered_artifacts", "reviewers", "findings", "reruns", "closure", "retention_until", "invalidation_triggers"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "review_id": {"type": "string", "pattern": "^RV-[0-9]{4,}$"},
+    "owning_gate": {"type": "string", "pattern": "^C[0-9]{3}\\.V$"},
+    "review_class": {"enum": ["architecture", "security", "license"]},
+    "scope_rows": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "seam_rows": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^SEAM-[0-9]{3}$"}},
+    "covered_revisions": {"type": "object", "additionalProperties": false, "required": ["repository"], "properties": {"repository": {"type": "string", "pattern": "^[0-9a-f]{40}$"}}},
+    "covered_artifacts": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/artifact"}},
+    "reviewers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/reviewer"}},
+    "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}},
+    "reruns": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EV-[0-9]{4,}$"}},
+    "closure": {"$ref": "#/$defs/closure"},
+    "retention_until": {"type": "string", "format": "date"},
+    "invalidation_triggers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"closure": {"properties": {"status": {"const": "approved"}}}}},
+      "then": {
+        "properties": {
+          "closure": {"properties": {"reviewer": {"type": "string", "minLength": 1}, "date": {"type": "string", "format": "date"}, "approval": {"const": true}}},
+          "findings": {"items": {"properties": {"disposition": {"const": "fixed"}, "fix_revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "required_rerun_ids": {"minItems": 1}}}},
+          "reviewers": {"minItems": 1}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "artifact": {"type": "object", "additionalProperties": false, "required": ["path", "sha256"], "properties": {"path": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}},
+    "reviewer": {"type": "object", "additionalProperties": false, "required": ["identity", "role", "independent_of_authors", "conflicts", "recusals"], "properties": {"identity": {"type": "string", "minLength": 1}, "role": {"enum": ["primary", "secondary", "security", "license", "closure"]}, "independent_of_authors": {"const": true}, "conflicts": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}, "recusals": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}}},
+    "finding": {"type": "object", "additionalProperties": false, "required": ["id", "severity", "disposition", "fix_revision", "required_rerun_ids"], "properties": {"id": {"type": "string", "minLength": 1}, "severity": {"enum": ["critical", "high", "medium", "low"]}, "disposition": {"enum": ["open", "fixed", "accepted", "rejected"]}, "fix_revision": {"type": ["string", "null"]}, "required_rerun_ids": {"type": "array", "items": {"type": "string", "pattern": "^EV-[0-9]{4,}$"}}}},
+    "closure": {"type": "object", "additionalProperties": false, "required": ["status", "reviewer", "date", "approval"], "properties": {"status": {"enum": ["pending", "approved", "rejected"]}, "reviewer": {"type": ["string", "null"]}, "date": {"type": ["string", "null"], "format": "date"}, "approval": {"type": "boolean"}}, "allOf": [{"if": {"required": ["status"], "properties": {"status": {"const": "pending"}}}, "then": {"properties": {"reviewer": {"type": "null"}, "date": {"type": "null"}, "approval": {"const": false}}}}, {"if": {"required": ["status"], "properties": {"status": {"const": "rejected"}}}, "then": {"properties": {"reviewer": {"type": "string", "minLength": 1}, "date": {"type": "string", "format": "date"}, "approval": {"const": false}}}}]}
+  }
+}

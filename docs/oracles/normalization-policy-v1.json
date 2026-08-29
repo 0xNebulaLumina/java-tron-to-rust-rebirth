@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "policy_id": "oracle-normalization-v1",
+  "closed": true,
+  "fixture_local_rules_forbidden": true,
+  "review_owner": "C000.V architecture/security/license review",
+  "rules": [
+    {"id": "ephemeral_port", "allowed_classes": ["network", "api", "operations", "harness"], "allowed_pointers": ["/logs/*/fields/local_port", "/events/*/fields/local_port"], "replacement": "<EPHEMERAL_PORT>", "constraint": "integer 1024..65535 allocated by the runner"},
+    {"id": "process_id", "allowed_classes": ["operations", "harness"], "allowed_pointers": ["/logs/*/fields/process_id"], "replacement": "<PROCESS_ID>", "constraint": "positive integer for the runner process"},
+    {"id": "log_prefix", "allowed_classes": ["operations", "harness"], "allowed_pointers": ["/logs/*/fields/prefix"], "replacement": "<LOG_PREFIX>", "constraint": "runner-emitted timestamp/thread/logger prefix only"}
+  ],
+  "never_normalize": ["canonical bytes", "field presence", "logical state keys or values", "state delta order", "errors or status", "event order or consensus-visible event fields", "protocol/API payloads or headers", "hashes, signatures, identifiers, heights, timestamps used by behavior", "resource accounting", "exit codes"],
+  "change_control": {"requires": ["central policy revision", "architecture review", "security review", "new deliberate forbidden-normalization fixture"], "invalidates": ["all oracle evidence citing the old policy digest"]}
+}

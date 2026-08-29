@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "java_source_revision": "df50ce9676b94de0b10a605076adfd8728811384",
+  "runner_protocol": 1,
+  "fixture_schema": "schemas/oracle-fixture-v1.schema.json",
+  "result_schema": "schemas/oracle-result-v1.schema.json",
+  "mismatch_schema": "schemas/mismatch-report-v1.schema.json",
+  "normalization_policy": "normalization-policy-v1.json",
+  "governance_schemas": [
+    "schemas/threat-model-v1.schema.json",
+    "schemas/security-finding-v1.schema.json",
+    "schemas/license-provenance-v1.schema.json",
+    "schemas/ownership-ledger-v1.schema.json",
+    "../governance/behavior-manifest-v1.schema.json"
+  ],
+  "ledgers": [
+    {
+      "path": "production-ownership.v1.json",
+      "ledger": "production-ownership",
+      "row_count": 9216,
+      "sha256": "daa3fff02d748ffd9c43b90b8f0cebf92f5a1ac46cd0f3eea48d6066f224420d"
+    },
+    {
+      "path": "java-test-ownership.v1.json",
+      "ledger": "java-test-ownership",
+      "row_count": 3439,
+      "sha256": "6b39d2c86d9e8dda0fc305d0029c0f72eb07a7b8df185bf88025e1e451e1004f"
+    }
+  ],
+  "regeneration": {
+    "command": ["python3", "tools/reference-runner/generate-ledgers.py"],
+    "generator_version": 2,
+    "domain_inventory_sha256": "e4506c584da9bee95bd8b7939502d869ab5cf062cefdd47973b8c93055f94a6d",
+    "unknown_policy": "fail",
+    "required_checks": [
+      "owner exists in docs/PORTING_TRACKER.json",
+      "acceptance gate exists in docs/PORTING_TRACKER.json",
+      "owner and gate belong to the same chunk",
+      "every included source path matches a reviewed domain"
+    ]
+  },
+  "fixtures": [
+    "fixtures/v1/positive.json",
+    "fixtures/v1/negative.json",
+    "fixtures/v1/mismatch-output.json",
+    "fixtures/v1/mismatch-state.json",
+    "fixtures/v1/mismatch-error.json",
+    "fixtures/v1/mismatch-forbidden-normalization.json",
+    "fixtures/v1/mismatch-normalization-forbidden-class.json",
+    "fixtures/v1/mismatch-normalization-forbidden-pointer.json"
+  ],
+  "implementations": [
+    "../../tools/reference-runner/java-runner",
+    "../../tools/reference-runner/rust-runner"
+  ],
+  "status": "C000 complete: 14/14 artifact audit cases pass; 19/19 evidence records valid",
+  "approval": {
+    "review_approvals": {
+      "architecture": "RV-0001",
+      "security": "RV-0002",
+      "license": "RV-0003"
+    },
+    "platform_complete": true
+  }
+}

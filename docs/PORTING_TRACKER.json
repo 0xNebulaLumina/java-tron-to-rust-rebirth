@@ -3,7 +3,7 @@
   "authoritative": true,
   "projection": "docs/PORTING_CHECKLIST.md",
   "dependency_contract": {
-    "edge_values": "stable substantive or .V item IDs only",
+    "edge_values": "stable substantive item IDs Cddd.dd or bounded family IDs Cddd.ddA-Z, plus Cddd.V verification IDs only",
     "chunk_headers": "derived metadata only",
     "v_gate_closure": "each .V directly depends on every substantive child in its chunk",
     "terminal_closure": {
@@ -48,33 +48,68 @@
       "kind": "substantive",
       "description": "Define workspace crates for protocol, primitives, config, crypto, shielded, storage, state, TVM, execution, consensus, network, APIs, events/metrics, node, and toolkit; prohibit dependency cycles; publish the owning-crate/gate map.",
       "dependencies": [],
-      "status": "[ ]",
+      "status": "[x]",
       "readiness": "ready",
-      "owner": null,
+      "owner": "c000-foundation",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0006"
+      ],
       "blocker": null,
       "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "adoptions": [
+        "AD-0034",
+        "AD-0035",
+        "AD-0036",
+        "AD-0037",
+        "AD-0038",
+        "AD-0039",
+        "AD-0040",
+        "AD-0041",
+        "AD-0042",
+        "AD-0043",
+        "AD-0044",
+        "AD-0045",
+        "AD-0046",
+        "AD-0047",
+        "AD-0048",
+        "AD-0049",
+        "AD-0050"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.02",
       "chunk": "C000",
       "kind": "substantive",
-      "description": "Pin Rust and Java toolchains, source revision, supported Linux/macOS x86_64/aarch64 platform/backend matrix, feature policy, unsafe policy, and reproducible artifact provenance.",
+      "description": "Pin Rust and Java toolchains, source revision, the initial supported Linux x86_64 GNU platform/backend/feature row, unsafe policy, and reproducible artifact provenance. Reserve Linux aarch64 and macOS x86_64/aarch64 stable row IDs for explicit later enablement with native executors and evidence without narrowing protocol behavior or migration scope.",
       "dependencies": [
         "C000.01"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-foundation",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0007"
+      ],
       "blocker": null,
-      "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "decisions": ["docs/architecture/toolchains-and-platforms.md"],
+      "adoptions": [
+        "AD-0002",
+        "AD-0030",
+        "AD-0031",
+        "AD-0032",
+        "AD-0033",
+        "AD-0051",
+        "AD-0073",
+        "AD-0074",
+        "AD-0075",
+        "AD-0076",
+        "AD-0077",
+        "AD-0078"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.03",
@@ -84,15 +119,17 @@
       "dependencies": [
         "C000.02"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-foundation",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0008"
+      ],
       "blocker": null,
       "decisions": [],
       "adoptions": [],
-      "last_updated": null
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.04",
@@ -102,15 +139,22 @@
       "dependencies": [
         "C000.03"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-oracles-ledgers",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0009"
+      ],
       "blocker": null,
       "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "adoptions": [
+        "AD-0018",
+        "AD-0019",
+        "AD-0024",
+        "AD-0025"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.05",
@@ -120,15 +164,34 @@
       "dependencies": [
         "C000.04"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-oracles-ledgers",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0010"
+      ],
       "blocker": null,
       "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "adoptions": [
+        "AD-0009",
+        "AD-0010",
+        "AD-0011",
+        "AD-0012",
+        "AD-0013",
+        "AD-0014",
+        "AD-0015",
+        "AD-0016",
+        "AD-0021",
+        "AD-0023",
+        "AD-0059",
+        "AD-0060",
+        "AD-0061",
+        "AD-0067",
+        "AD-0071",
+        "AD-0072"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.06",
@@ -138,15 +201,19 @@
       "dependencies": [
         "C000.05"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-oracles-ledgers",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0011"
+      ],
       "blocker": null,
-      "decisions": [],
+      "decisions": [
+        "DR-001"
+      ],
       "adoptions": [],
-      "last_updated": null
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.07",
@@ -156,15 +223,21 @@
       "dependencies": [
         "C000.06"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-oracles-ledgers",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0012"
+      ],
       "blocker": null,
       "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "adoptions": [
+        "AD-0022",
+        "AD-0026",
+        "AD-0027"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.08",
@@ -174,15 +247,22 @@
       "dependencies": [
         "C000.07"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-oracles-ledgers",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0013"
+      ],
       "blocker": null,
       "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "adoptions": [
+        "AD-0020",
+        "AD-0028",
+        "AD-0057",
+        "AD-0068"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.09",
@@ -192,15 +272,22 @@
       "dependencies": [
         "C000.08"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-oracles-ledgers",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0014"
+      ],
       "blocker": null,
       "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "adoptions": [
+        "AD-0017",
+        "AD-0029",
+        "AD-0058",
+        "AD-0069"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.10",
@@ -210,15 +297,24 @@
       "dependencies": [
         "C000.09"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-governance",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0015"
+      ],
       "blocker": null,
-      "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "decisions": [
+        "docs/governance/tracker-evidence-dependency-contract.md",
+        "docs/governance/tracker-v1.schema.json"
+      ],
+      "adoptions": [
+        "AD-0008",
+        "AD-0062",
+        "AD-0070"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.11",
@@ -228,15 +324,24 @@
       "dependencies": [
         "C000.10"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-governance",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0016"
+      ],
       "blocker": null,
-      "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "decisions": [
+        "docs/governance/DD-template.md",
+        "docs/governance/dependency-decision-v1.schema.json",
+        "docs/governance/dependency-decisions.v1.json",
+        "docs/governance/adoption-inventory-v1.schema.json"
+      ],
+      "adoptions": [
+        "AD-0005"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.12",
@@ -246,15 +351,19 @@
       "dependencies": [
         "C000.11"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-governance",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0017"
+      ],
       "blocker": null,
-      "decisions": [],
+      "decisions": [
+        "docs/architecture/DR-004-custom-actuator-extensions.md"
+      ],
       "adoptions": [],
-      "last_updated": null
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.13",
@@ -264,33 +373,63 @@
       "dependencies": [
         "C000.12"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-governance",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0001"
+      ],
       "blocker": null,
-      "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "decisions": [
+        "docs/governance/behavior-manifest-v1.schema.json",
+        "docs/governance/evidence-v1.schema.json",
+        "docs/governance/independent-review-v1.schema.json",
+        "docs/architecture/cross-domain-seams.v1.json"
+      ],
+      "adoptions": [
+        "AD-0004",
+        "AD-0006",
+        "AD-0007"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.14",
       "chunk": "C000",
       "kind": "substantive",
-      "description": "Publish the continuously enforced platform manifest for every C000.02 OS/architecture/backend/feature row, marking native versus cross-built/emulated execution and the applicable compile, differential/unit, native-resource, FFI, packaging and smoke commands.",
+      "description": "Publish the continuously enforced platform manifest for the C000.02 initially supported Linux x86_64 GNU row, marking native versus cross-built/emulated execution and the applicable compile, differential/unit, native-resource, FFI, packaging and smoke commands. Record reserved later rows and explicit enablement conditions without treating them as C000 blockers.",
       "dependencies": [
+        "C000.02",
         "C000.13"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-governance",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0002",
+        "EV-0003",
+        "EV-0004",
+        "EV-0005"
+      ],
       "blocker": null,
-      "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "decisions": [
+        "docs/architecture/platform-manifest.v1.json"
+      ],
+      "adoptions": [
+        "AD-0001",
+        "AD-0053",
+        "AD-0054",
+        "AD-0055",
+        "AD-0056",
+        "AD-0064",
+        "AD-0065",
+        "AD-0066",
+        "AD-0079",
+        "AD-0080"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.15",
@@ -300,21 +439,28 @@
       "dependencies": [
         "C000.14"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "c000-governance",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0018"
+      ],
       "blocker": null,
-      "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "decisions": [
+        "docs/governance/adoption-inventory.v1.json",
+        "tools/tracker/validate.py"
+      ],
+      "adoptions": [
+        "AD-0003"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C000.V",
       "chunk": "C000",
       "kind": "verification",
-      "description": "Architecture/security/license review approves C000 policy artifacts; ledger, tracker, dependency/adoption and platform validators report zero gaps; both runners pass positive and negative protobuf-free fixtures and intentional mismatch detection.",
+      "description": "Architecture/security/license review approves C000 policy artifacts; ledger, tracker, dependency/adoption and platform validators report zero gaps; every applicable cell on the initially supported Linux x86_64 GNU row has current native evidence or reviewed non-applicability; both runners pass positive and negative protobuf-free fixtures and intentional mismatch detection. Reserved later platform rows neither satisfy nor block C000.V until explicitly enabled.",
       "dependencies": [
         "C000.01",
         "C000.02",
@@ -332,15 +478,24 @@
         "C000.14",
         "C000.15"
       ],
-      "status": "[ ]",
-      "readiness": "blocked",
-      "owner": null,
+      "status": "[x]",
+      "readiness": "ready",
+      "owner": "orchestrator",
       "branch_or_pr": null,
-      "evidence": [],
+      "evidence": [
+        "EV-0019"
+      ],
       "blocker": null,
-      "decisions": [],
-      "adoptions": [],
-      "last_updated": null
+      "decisions": [
+        "RV-0001",
+        "RV-0002",
+        "RV-0003"
+      ],
+      "adoptions": [
+        "AD-0052",
+        "AD-0063"
+      ],
+      "last_updated": "2026-08-29"
     },
     {
       "id": "C001.01",
@@ -351,7 +506,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "blocked",
+      "readiness": "ready",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -369,7 +524,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "blocked",
+      "readiness": "ready",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -387,7 +542,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "blocked",
+      "readiness": "ready",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -405,7 +560,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "blocked",
+      "readiness": "ready",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -423,7 +578,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "blocked",
+      "readiness": "ready",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -441,7 +596,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "blocked",
+      "readiness": "ready",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -459,7 +614,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "blocked",
+      "readiness": "ready",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -477,7 +632,7 @@
         "C000.V"
       ],
       "status": "[ ]",
-      "readiness": "blocked",
+      "readiness": "ready",
       "owner": null,
       "branch_or_pr": null,
       "evidence": [],
@@ -5809,7 +5964,7 @@
       "description": 0,
       "dependencies": 0
     },
-    "edges": 1031,
+    "edges": 1032,
     "unknown_edges": 0,
     "duplicate_edges": 0,
     "self_edges": 0,

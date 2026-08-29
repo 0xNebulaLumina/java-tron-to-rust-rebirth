@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:java-tron-rust:tracker:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "authoritative", "projection", "dependency_contract", "mandatory_edges", "records", "validation"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "authoritative": {"const": true},
+    "projection": {"const": "docs/PORTING_CHECKLIST.md"},
+    "dependency_contract": {"type": "object"},
+    "mandatory_edges": {"type": "object", "additionalProperties": {"const": true}},
+    "records": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/record"}},
+    "validation": {"type": "object"}
+  },
+  "$defs": {
+    "item_id": {"type": "string", "pattern": "^C[0-9]{3}\\.(?:[0-9]{2}[A-Z]?|V)$"},
+    "record": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "chunk", "kind", "description", "dependencies", "status", "readiness", "owner", "branch_or_pr", "evidence", "blocker", "decisions", "adoptions", "last_updated"],
+      "properties": {
+        "id": {"$ref": "#/$defs/item_id"}, "chunk": {"type": "string", "pattern": "^C[0-9]{3}$"},
+        "kind": {"enum": ["substantive", "verification"]}, "description": {"type": "string", "minLength": 1},
+        "dependencies": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/item_id"}},
+        "status": {"enum": ["[ ]", "[-]", "[x]", "[D]"]}, "readiness": {"enum": ["ready", "blocked"]},
+        "owner": {"type": ["string", "null"]}, "branch_or_pr": {"type": ["string", "null"]},
+        "evidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EV-[0-9]{4,}$"}}, "blocker": {"type": ["object", "null"]},
+        "decisions": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}, "adoptions": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^AD-[0-9]{4,}$"}},
+        "last_updated": {"type": ["string", "null"], "format": "date"}
+      }
+    }
+  }
+}

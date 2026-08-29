@@ -1,0 +1,32 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/tron-protocol",
+    "crates/tron-primitives",
+    "crates/tron-config",
+    "crates/tron-crypto",
+    "crates/tron-shielded",
+    "crates/tron-storage",
+    "crates/tron-state",
+    "crates/tron-tvm",
+    "crates/tron-execution",
+    "crates/tron-consensus",
+    "crates/tron-network",
+    "crates/tron-apis",
+    "crates/tron-events-metrics",
+    "crates/tron-node",
+    "crates/tron-toolkit",
+]
+
+[workspace.package]
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.85.1"
+license = "LGPL-3.0-only"
+publish = false
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = "warn"

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "evidence_id": "EV-0011",
+  "owning_item": "C000.06",
+  "command": [
+    "tools/platform/run",
+    "c000-artifacts"
+  ],
+  "environment": {
+    "repository_revision": "df50ce9676b94de0b10a605076adfd8728811384",
+    "tree_state": "dirty",
+    "toolchains": {
+      "python": "3.12.3",
+      "git": "git version 2.43.0",
+      "runner": "tools/platform/run sha256:cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770",
+      "auditor": "tools/platform/c000_artifacts.py sha256:d1f74cdfa3201f561343a270400f43783bafd586d0ca32d1ec86dc2fea72b4fb"
+    },
+    "platform_row": "P-LINUX-X64",
+    "target": "x86_64-unknown-linux-gnu",
+    "host_os": "linux",
+    "host_architecture": "x86_64",
+    "execution": "native",
+    "working_directory": ".",
+    "cells": [],
+    "backend": "B-RUST-DEFAULT",
+    "features": []
+  },
+  "run_id": "c000-artifacts-20260829-141131Z-once",
+  "cases": [
+    {
+      "expected": {
+        "artifacts_present": true,
+        "documents_parse": true,
+        "semantic_contracts_current": true
+      },
+      "id": "C000.06",
+      "observed": {
+        "artifact_count": 1,
+        "issues": []
+      },
+      "outcome": "pass",
+      "skip_disposition": null
+    }
+  ],
+  "started_at": "2026-08-29T14:11:31Z",
+  "ended_at": "2026-08-29T14:11:31Z",
+  "observed_exit_code": 0,
+  "observed_status": "pass",
+  "expected": {
+    "artifacts_present": true,
+    "documents_parse": true,
+    "semantic_contracts_current": true
+  },
+  "observed": {
+    "artifact_count": 1,
+    "issues": []
+  },
+  "stdout": {
+    "path": "docs/governance/evidence/EV-0011.stdout.txt",
+    "sha256": "ad2417fe052041207aa002e0b3361b40981b1e2bafe085d1fc0839cd778035df"
+  },
+  "stderr": {
+    "path": "docs/governance/evidence/EV-0011.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "artifacts": [
+    {
+      "path": "docs/architecture/DR-001-rust-storage-boundary.md",
+      "sha256": "510dcd994d6ee53aab00fe56dc2c2fce8b785ef5285d609a59558606bc0e08e4"
+    }
+  ],
+  "invalidation_edges": [
+    {
+      "kind": "generator",
+      "identity": "tools/platform/run",
+      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+    },
+    {
+      "kind": "generator",
+      "identity": "tools/platform/c000_artifacts.py",
+      "sha256": "d1f74cdfa3201f561343a270400f43783bafd586d0ca32d1ec86dc2fea72b4fb"
+    },
+    {
+      "kind": "schema",
+      "identity": "docs/governance/evidence-v1.schema.json",
+      "sha256": "249ecc36508d27bd609babb49f7cc35d2bf18abd448265a330c8dde414ce6c6f"
+    },
+    {
+      "kind": "source",
+      "identity": "docs/architecture/DR-001-rust-storage-boundary.md",
+      "sha256": "510dcd994d6ee53aab00fe56dc2c2fce8b785ef5285d609a59558606bc0e08e4"
+    }
+  ],
+  "review_bindings": [],
+  "retention_until": "2027-08-29"
+}

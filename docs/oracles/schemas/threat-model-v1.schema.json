@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:java-tron-rust:threat-model:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "model_id", "covered_revisions", "assets", "trust_boundaries", "adversaries", "assumptions", "threats", "resource_limits", "plaintext_interfaces", "review"],
+  "properties": {
+    "schema_version": {"const": 1}, "model_id": {"type": "string"}, "covered_revisions": {"type": "object", "additionalProperties": {"type": "string"}},
+    "assets": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "trust_boundaries": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "adversaries": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "assumptions": {"type": "array", "items": {"type": "string"}},
+    "threats": {"type": "array", "items": {"type": "object", "required": ["id", "asset", "boundary", "scenario", "severity", "mitigations", "verification_cases", "owner", "gate"], "properties": {"id": {"type": "string", "pattern": "^THR-[0-9]{4,}$"}, "asset": {"type": "string"}, "boundary": {"type": "string"}, "scenario": {"type": "string"}, "severity": {"enum": ["critical", "high", "medium", "low"]}, "mitigations": {"type": "array", "items": {"type": "string"}}, "verification_cases": {"type": "array", "items": {"type": "string"}}, "owner": {"type": "string"}, "gate": {"type": "string"}}}},
+    "resource_limits": {"type": "array", "items": {"type": "object", "required": ["surface", "resource", "numeric_limit", "overflow_behavior", "case_ids"], "properties": {"surface": {"type": "string"}, "resource": {"enum": ["input_bytes", "allocation", "recursion", "cpu", "disk", "descriptors", "tasks", "queue", "connections", "concurrency", "timeout", "rate"]}, "numeric_limit": {"type": "integer", "minimum": 0}, "overflow_behavior": {"type": "string"}, "case_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}}}}},
+    "plaintext_interfaces": {"type": "array", "items": {"type": "object", "required": ["surface", "binding", "authentication", "confidentiality", "exposure_guidance", "limits"], "properties": {"surface": {"type": "string"}, "binding": {"type": "string"}, "authentication": {"type": "string"}, "confidentiality": {"type": "string"}, "exposure_guidance": {"type": "string"}, "limits": {"type": "array", "items": {"type": "string"}}}}},
+    "review": {"type": "object", "required": ["status", "reviewer", "date", "reopen_triggers"], "properties": {"status": {"enum": ["pending", "approved", "rejected"]}, "reviewer": {"type": ["string", "null"]}, "date": {"type": ["string", "null"], "format": "date"}, "reopen_triggers": {"type": "array", "minItems": 1, "items": {"type": "string"}}}}
+  }
+}

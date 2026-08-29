@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+"""Execute one governed platform-manifest cell without pretending cross-host coverage."""
+from __future__ import annotations
+
+import json
+import os
+import platform
+import subprocess
+import importlib.util
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+MANIFEST = ROOT / "docs/architecture/platform-manifest.v1.json"
+HOST_OS = {"linux": "linux", "darwin": "macos"}.get(sys.platform, sys.platform)
+HOST_ARCH = {"amd64": "x86_64", "x86_64": "x86_64", "arm64": "aarch64", "aarch64": "aarch64"}.get(platform.machine().lower(), platform.machine().lower())
+
+
+def run_c000_artifact_audit() -> int:
+    audit_path = ROOT / "tools/platform/c000_artifacts.py"
+    spec = importlib.util.spec_from_file_location("c000_artifacts", audit_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"cannot load {audit_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.main()
+
+
+def emit(result: str, row: str, cell: str, reason: str | None = None) -> None:
+    payload = {"schema_version": 1, "row": row, "cell": cell, "host": {"os": HOST_OS, "architecture": HOST_ARCH}, "result": result}
+    if reason:
+        payload["reason"] = reason
+    print(json.dumps(payload, sort_keys=True, separators=(",", ":")))
+
+
+def main() -> int:
+    if sys.argv[1:] == ["c000-artifacts"]:
+        return run_c000_artifact_audit()
+    if len(sys.argv) != 3:
+        print("usage: tools/platform/run c000-artifacts | tools/platform/run PLATFORM_ROW CELL", file=sys.stderr)
+        return 64
+    row_id, cell = sys.argv[1:]
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    rows = {row["id"]: row for row in manifest["rows"]}
+    row = rows.get(row_id)
+    if row is None or cell not in row.get("cells", {}):
+        emit("invalid", row_id, cell, "unknown platform row or cell")
+        return 64
+    if (row["os"], row["architecture"]) != (HOST_OS, HOST_ARCH):
+        emit("unavailable", row_id, cell, "native evidence must be produced on the declared OS and architecture")
+        return 125
+    spec = row["cells"][cell]
+    if spec["disposition"] != "runnable":
+        emit(spec["disposition"], row_id, cell, spec["reason"])
+        return 125
+    env = os.environ.copy()
+    env.update({"C000_PLATFORM_ROW": row_id, "C000_PLATFORM_CELL": cell})
+    completed = subprocess.run(spec["argv"], cwd=ROOT / spec.get("cwd", "."), env=env, check=False)
+    emit("pass" if completed.returncode == 0 else "fail", row_id, cell)
+    return completed.returncode
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

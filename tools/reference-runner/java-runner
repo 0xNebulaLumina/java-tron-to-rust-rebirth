@@ -1,0 +1,3 @@
+#!/bin/sh
+set -eu
+exec python3 "$(dirname "$0")/runner.py" --runner java --implementation c000-java-reference-adapter --toolchain "java boundary adapter; python3-stdlib neutral core" "$@"

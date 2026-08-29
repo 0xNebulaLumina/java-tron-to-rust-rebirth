@@ -1,0 +1,54 @@
+{
+  "case_id": "HARNESS.NEGATIVE",
+  "description": "Behavior-neutral C000 runner contract fixture",
+  "environment": {
+    "clock": {
+      "mode": "fixed",
+      "unix_millis": 1700000000000
+    },
+    "filesystem_order": "unsigned-byte-lexicographic",
+    "locale": "C.UTF-8",
+    "network": "disabled",
+    "random_seed": "0000000000000000000000000000000000000000000000000000000000000000",
+    "timezone": "UTC"
+  },
+  "expected": {
+    "error": {
+      "code": "NEGATIVE_FIXTURE",
+      "details": {
+        "boundary": 0
+      },
+      "domain": "validation",
+      "message": "deterministic negative case",
+      "retryable": false
+    },
+    "events": [],
+    "exit_code": 10,
+    "logs": [],
+    "output": {
+      "presence": "absent"
+    },
+    "state_deltas": [],
+    "status": "error"
+  },
+  "identity": {
+    "fixture_revision": "c000-v1",
+    "generator": {
+      "name": "c000-fixture-author",
+      "version": "1"
+    },
+    "java_source_revision": "df50ce9676b94de0b10a605076adfd8728811384",
+    "schema_id": "urn:java-tron-rust:oracle:fixture:v1"
+  },
+  "initial_state": [],
+  "input": {
+    "operation": "protocol_skeleton"
+  },
+  "normalizations": [],
+  "oracle_class": "harness",
+  "schema_version": 1,
+  "tags": [
+    "c000",
+    "protocol-skeleton"
+  ]
+}

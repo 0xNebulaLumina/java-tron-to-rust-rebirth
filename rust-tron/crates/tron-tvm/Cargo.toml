@@ -1,0 +1,17 @@
+[package]
+name = "tron-tvm"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+tron-crypto = { path = "../tron-crypto" }
+tron-primitives = { path = "../tron-primitives" }
+tron-protocol = { path = "../tron-protocol" }
+tron-shielded = { path = "../tron-shielded" }
+tron-state = { path = "../tron-state" }
+
+[lints]
+workspace = true

@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "evidence_id": "EV-0014",
+  "owning_item": "C000.09",
+  "command": [
+    "tools/platform/run",
+    "c000-artifacts"
+  ],
+  "environment": {
+    "repository_revision": "df50ce9676b94de0b10a605076adfd8728811384",
+    "tree_state": "dirty",
+    "toolchains": {
+      "python": "3.12.3",
+      "git": "git version 2.43.0",
+      "runner": "tools/platform/run sha256:cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770",
+      "auditor": "tools/platform/c000_artifacts.py sha256:d1f74cdfa3201f561343a270400f43783bafd586d0ca32d1ec86dc2fea72b4fb"
+    },
+    "platform_row": "P-LINUX-X64",
+    "target": "x86_64-unknown-linux-gnu",
+    "host_os": "linux",
+    "host_architecture": "x86_64",
+    "execution": "native",
+    "working_directory": ".",
+    "cells": [],
+    "backend": "B-RUST-DEFAULT",
+    "features": []
+  },
+  "run_id": "c000-artifacts-20260829-141131Z-once",
+  "cases": [
+    {
+      "expected": {
+        "artifacts_present": true,
+        "documents_parse": true,
+        "semantic_contracts_current": true
+      },
+      "id": "C000.09",
+      "observed": {
+        "artifact_count": 3,
+        "issues": []
+      },
+      "outcome": "pass",
+      "skip_disposition": null
+    }
+  ],
+  "started_at": "2026-08-29T14:11:31Z",
+  "ended_at": "2026-08-29T14:11:31Z",
+  "observed_exit_code": 0,
+  "observed_status": "pass",
+  "expected": {
+    "artifacts_present": true,
+    "documents_parse": true,
+    "semantic_contracts_current": true
+  },
+  "observed": {
+    "artifact_count": 3,
+    "issues": []
+  },
+  "stdout": {
+    "path": "docs/governance/evidence/EV-0014.stdout.txt",
+    "sha256": "ad2417fe052041207aa002e0b3361b40981b1e2bafe085d1fc0839cd778035df"
+  },
+  "stderr": {
+    "path": "docs/governance/evidence/EV-0014.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "artifacts": [
+    {
+      "path": "docs/oracles/java-test-ownership.v1.json",
+      "sha256": "6b39d2c86d9e8dda0fc305d0029c0f72eb07a7b8df185bf88025e1e451e1004f"
+    },
+    {
+      "path": "docs/oracles/schemas/ownership-ledger-v1.schema.json",
+      "sha256": "fcee680065acf8bd9230b9e77e2d90319c811c404ea656e5b56d6ef36018c528"
+    },
+    {
+      "path": "tools/reference-runner/generate-ledgers.py",
+      "sha256": "feba8260a50870330d2462f5a201ffa64852e8841f10fd4ff7293f11419aefe1"
+    }
+  ],
+  "invalidation_edges": [
+    {
+      "kind": "generator",
+      "identity": "tools/platform/run",
+      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+    },
+    {
+      "kind": "generator",
+      "identity": "tools/platform/c000_artifacts.py",
+      "sha256": "d1f74cdfa3201f561343a270400f43783bafd586d0ca32d1ec86dc2fea72b4fb"
+    },
+    {
+      "kind": "schema",
+      "identity": "docs/governance/evidence-v1.schema.json",
+      "sha256": "249ecc36508d27bd609babb49f7cc35d2bf18abd448265a330c8dde414ce6c6f"
+    },
+    {
+      "kind": "source",
+      "identity": "docs/oracles/java-test-ownership.v1.json",
+      "sha256": "6b39d2c86d9e8dda0fc305d0029c0f72eb07a7b8df185bf88025e1e451e1004f"
+    },
+    {
+      "kind": "schema",
+      "identity": "docs/oracles/schemas/ownership-ledger-v1.schema.json",
+      "sha256": "fcee680065acf8bd9230b9e77e2d90319c811c404ea656e5b56d6ef36018c528"
+    },
+    {
+      "kind": "generator",
+      "identity": "tools/reference-runner/generate-ledgers.py",
+      "sha256": "feba8260a50870330d2462f5a201ffa64852e8841f10fd4ff7293f11419aefe1"
+    }
+  ],
+  "review_bindings": [],
+  "retention_until": "2027-08-29"
+}

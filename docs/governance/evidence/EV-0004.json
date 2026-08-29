@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "evidence_id": "EV-0004",
+  "owning_item": "C000.14",
+  "command": [
+    "python3",
+    "tools/platform/c000_differential.py"
+  ],
+  "environment": {
+    "repository_revision": "df50ce9676b94de0b10a605076adfd8728811384",
+    "tree_state": "dirty",
+    "toolchains": {
+      "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2",
+      "python": "Python 3.12.3"
+    },
+    "platform_row": "P-LINUX-X64",
+    "target": "x86_64-unknown-linux-gnu",
+    "host_os": "linux",
+    "host_architecture": "x86_64",
+    "execution": "native",
+    "backend": "B-RUST-DEFAULT",
+    "features": [],
+    "cells": [
+      "differential"
+    ],
+    "working_directory": "."
+  },
+  "run_id": "c000-20260829-ev-0004-001",
+  "cases": [
+    {
+      "id": "positive",
+      "outcome": "pass",
+      "expected": {
+        "match": true
+      },
+      "observed": {
+        "case": "positive",
+        "compare_exit": 0,
+        "expected_match": true,
+        "fixture_sha256": "aa32a0a57c7c17885a6aac20809d14f961be15fd2e350e0d42f0d4d431ce68d6",
+        "java_exit": 0,
+        "mismatch_kinds": [],
+        "observed_match": true,
+        "outcome": "pass",
+        "rust_exit": 0
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "negative",
+      "outcome": "pass",
+      "expected": {
+        "match": true
+      },
+      "observed": {
+        "case": "negative",
+        "compare_exit": 0,
+        "expected_match": true,
+        "fixture_sha256": "e626eebc2f25e6717715bade230fce8260ab0ca8fb1bd7670d45f74aaca9245b",
+        "java_exit": 10,
+        "mismatch_kinds": [],
+        "observed_match": true,
+        "outcome": "pass",
+        "rust_exit": 10
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "mismatch-output",
+      "outcome": "pass",
+      "expected": {
+        "match": false
+      },
+      "observed": {
+        "case": "mismatch-output",
+        "compare_exit": 20,
+        "expected_match": false,
+        "fixture_sha256": "accae08c09be4a36bb41886c61ebc7c37cf2255157bd9453e1d986d6f727e6a1",
+        "java_exit": 0,
+        "mismatch_kinds": [
+          "output"
+        ],
+        "observed_match": false,
+        "outcome": "pass",
+        "rust_exit": 0
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "mismatch-state",
+      "outcome": "pass",
+      "expected": {
+        "match": false
+      },
+      "observed": {
+        "case": "mismatch-state",
+        "compare_exit": 20,
+        "expected_match": false,
+        "fixture_sha256": "29f22f2038eb9b209a56ee2eeb860aceeb00ae615e697feb63f5ddeb118186b8",
+        "java_exit": 0,
+        "mismatch_kinds": [
+          "state"
+        ],
+        "observed_match": false,
+        "outcome": "pass",
+        "rust_exit": 0
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "mismatch-error",
+      "outcome": "pass",
+      "expected": {
+        "match": false
+      },
+      "observed": {
+        "case": "mismatch-error",
+        "compare_exit": 20,
+        "expected_match": false,
+        "fixture_sha256": "37a6a62bfbf7ba355637da04400f764707b7068dc0ac9a494a66522ee8193530",
+        "java_exit": 10,
+        "mismatch_kinds": [
+          "error"
+        ],
+        "observed_match": false,
+        "outcome": "pass",
+        "rust_exit": 10
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "mismatch-forbidden-normalization",
+      "outcome": "pass",
+      "expected": {
+        "match": false
+      },
+      "observed": {
+        "case": "mismatch-forbidden-normalization",
+        "compare_exit": 20,
+        "expected_match": false,
+        "fixture_sha256": "4842e34f710e223d457649faf73d344d0b12cb7baf92bbf9cf88ece065b71f05",
+        "java_exit": 0,
+        "mismatch_kinds": [
+          "forbidden_normalization"
+        ],
+        "observed_match": false,
+        "outcome": "pass",
+        "rust_exit": 0
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "mismatch-normalization-forbidden-class",
+      "outcome": "pass",
+      "expected": {
+        "match": false
+      },
+      "observed": {
+        "case": "mismatch-normalization-forbidden-class",
+        "compare_exit": 20,
+        "expected_match": false,
+        "fixture_sha256": "4435daa383c4d7559a00a11aa79e5002a08e94948bd48a6a39974950c4c538b3",
+        "java_exit": 0,
+        "mismatch_kinds": [
+          "forbidden_normalization",
+          "log"
+        ],
+        "observed_match": false,
+        "outcome": "pass",
+        "rust_exit": 0
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "mismatch-normalization-forbidden-pointer",
+      "outcome": "pass",
+      "expected": {
+        "match": false
+      },
+      "observed": {
+        "case": "mismatch-normalization-forbidden-pointer",
+        "compare_exit": 20,
+        "expected_match": false,
+        "fixture_sha256": "ad1616d90a7f148200b40a079aca401724a40a0a3af0a86032a5da92c6907af3",
+        "java_exit": 0,
+        "mismatch_kinds": [
+          "event",
+          "forbidden_normalization"
+        ],
+        "observed_match": false,
+        "outcome": "pass",
+        "rust_exit": 0
+      },
+      "skip_disposition": null
+    }
+  ],
+  "started_at": "2026-08-29T13:17:00Z",
+  "ended_at": "2026-08-29T13:17:01Z",
+  "observed_exit_code": 0,
+  "observed_status": "pass",
+  "expected": {
+    "case_count": 8,
+    "all": "pass"
+  },
+  "observed": {
+    "case_count": 8,
+    "all": "pass"
+  },
+  "stdout": {
+    "path": "docs/governance/evidence/EV-0004.stdout.txt",
+    "sha256": "a79695311a316d27e7d94f1c6fb7baaf5f196674862f28badf38b450219ac298"
+  },
+  "stderr": {
+    "path": "docs/governance/evidence/EV-0004.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "artifacts": [],
+  "invalidation_edges": [
+    {
+      "kind": "platform-manifest",
+      "identity": "docs/architecture/platform-manifest.v1.json",
+      "sha256": "638856206e95e8d8291fee6f295d82d0a29a7bb0b0d6d3b062758ee2227b39d2"
+    },
+    {
+      "kind": "schema",
+      "identity": "docs/governance/evidence-v1.schema.json",
+      "sha256": "249ecc36508d27bd609babb49f7cc35d2bf18abd448265a330c8dde414ce6c6f"
+    },
+    {
+      "kind": "generator",
+      "identity": "tools/platform/c000_differential.py",
+      "sha256": "65bc44ccde4d59cbe6dea783dce98963bdcb16954b69fd3b22f806be2f2a99e0"
+    },
+    {
+      "kind": "generator",
+      "identity": "tools/reference-runner/runner.py",
+      "sha256": "cff1909a30e6f84ee43b776536db4041e4766b78e1d08f3494eb2406472ef3db"
+    },
+    {
+      "kind": "normalization",
+      "identity": "docs/oracles/normalization-policy-v1.json",
+      "sha256": "ae8e332d42efa831f84130e37a0700b9204bd707bb6023609e21985179d8e897"
+    },
+    {
+      "kind": "schema",
+      "identity": "docs/oracles/schemas/oracle-fixture-v1.schema.json",
+      "sha256": "9e1c053e18b3c35ef8aa65eb974fa6cd869f66e12538138953994c6326e0f482"
+    },
+    {
+      "kind": "schema",
+      "identity": "docs/oracles/schemas/oracle-result-v1.schema.json",
+      "sha256": "f21a19efff4fb8749bae8b8eb2773e169f67c34788aff95654e72277d24725a4"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/mismatch-error.json",
+      "sha256": "37a6a62bfbf7ba355637da04400f764707b7068dc0ac9a494a66522ee8193530"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/mismatch-forbidden-normalization.json",
+      "sha256": "4842e34f710e223d457649faf73d344d0b12cb7baf92bbf9cf88ece065b71f05"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-class.json",
+      "sha256": "4435daa383c4d7559a00a11aa79e5002a08e94948bd48a6a39974950c4c538b3"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-pointer.json",
+      "sha256": "ad1616d90a7f148200b40a079aca401724a40a0a3af0a86032a5da92c6907af3"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/mismatch-output.json",
+      "sha256": "accae08c09be4a36bb41886c61ebc7c37cf2255157bd9453e1d986d6f727e6a1"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/mismatch-state.json",
+      "sha256": "29f22f2038eb9b209a56ee2eeb860aceeb00ae615e697feb63f5ddeb118186b8"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/negative.json",
+      "sha256": "e626eebc2f25e6717715bade230fce8260ab0ca8fb1bd7670d45f74aaca9245b"
+    },
+    {
+      "kind": "fixture",
+      "identity": "docs/oracles/fixtures/v1/positive.json",
+      "sha256": "aa32a0a57c7c17885a6aac20809d14f961be15fd2e350e0d42f0d4d431ce68d6"
+    }
+  ],
+  "review_bindings": [],
+  "retention_until": "2027-08-29"
+}

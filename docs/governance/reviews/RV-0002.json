@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "review_id": "RV-0002",
+  "owning_gate": "C000.V",
+  "review_class": "security",
+  "scope_rows": [
+    "C000.09",
+    "C000.10",
+    "C000.11",
+    "C000.12",
+    "C000.15"
+  ],
+  "seam_rows": [],
+  "covered_revisions": {
+    "repository": "df50ce9676b94de0b10a605076adfd8728811384"
+  },
+  "covered_artifacts": [
+    {
+      "path": "docs/governance/adoption-inventory.v1.json",
+      "sha256": "551b596d5e1a612dd0b3115f93c1b70e8763ab2c53664c1c90f0d5f0429ae1a9"
+    },
+    {
+      "path": "docs/governance/dependency-decisions.v1.json",
+      "sha256": "c9a4908f046b73d5a3a4fe07a3028b9a293629b6420d58472cca6117e9fbed1a"
+    },
+    {
+      "path": "tools/platform/run",
+      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+    },
+    {
+      "path": "tools/reference-runner/generate-ledgers.py",
+      "sha256": "feba8260a50870330d2462f5a201ffa64852e8841f10fd4ff7293f11419aefe1"
+    },
+    {
+      "path": "tools/reference-runner/java-runner",
+      "sha256": "deed7ed1b637cb82dc380c9da5eb56611ee8b8e8d172a74e592ca336a6298906"
+    },
+    {
+      "path": "tools/reference-runner/runner.py",
+      "sha256": "cff1909a30e6f84ee43b776536db4041e4766b78e1d08f3494eb2406472ef3db"
+    },
+    {
+      "path": "tools/reference-runner/rust-runner",
+      "sha256": "360ed657851ac05f7609da5fa6e0bf78a283086789b4f1eb71c487ab41a870b9"
+    },
+    {
+      "path": "tools/tracker/validate.py",
+      "sha256": "48495d1355e28108ee83722f61c933e6f43d5e739075c56c0de7020f6062f6c4"
+    },
+    {
+      "path": "rust-tron/rust-toolchain.toml",
+      "sha256": "8adfc1727670e54730d1c2bdfec839504cb9cd2d95c4fb7cf11b5874c3f38f80"
+    },
+    {
+      "path": "java-tron/gradle/wrapper/gradle-wrapper.jar",
+      "sha256": "3dc39ad650d40f6c029bd8ff605c6d95865d657dbfdeacdb079db0ddfffedf9f"
+    },
+    {
+      "path": "java-tron/gradlew",
+      "sha256": "261d896f782ec3181add62d77d5b1b9e1d0d599757ec108d857bad1eec2e7615"
+    }
+  ],
+  "reviewers": [
+    {
+      "identity": "C000 Security Reviewer SR-01",
+      "role": "security",
+      "independent_of_authors": true,
+      "conflicts": [],
+      "recusals": []
+    },
+    {
+      "identity": "C000 Security Closure Reviewer SR-02",
+      "role": "closure",
+      "independent_of_authors": true,
+      "conflicts": [],
+      "recusals": []
+    }
+  ],
+  "findings": [],
+  "reruns": ["EV-0003", "EV-0004", "EV-0005"],
+  "closure": {
+    "status": "approved",
+    "reviewer": "C000 Security Closure Reviewer SR-02",
+    "date": "2026-08-29",
+    "approval": true
+  },
+  "retention_until": "2027-08-29",
+  "invalidation_triggers": [
+    "covered repository revision changes",
+    "covered artifact digest changes",
+    "adoption decision or disposition changes",
+    "new or reopened finding",
+    "tool command, dependency, privilege, network, or runtime boundary changes"
+  ]
+}

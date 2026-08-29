@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:java-tron-rust:oracle:mismatch:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "case_id", "match", "mismatches", "compared_result_digests", "normalization_policy_digest"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "case_id": {"type": "string"},
+    "match": {"type": "boolean"},
+    "mismatches": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["kind", "json_pointer", "expected", "actual"], "properties": {"kind": {"enum": ["output", "state", "error", "event", "log", "exit", "identity", "forbidden_normalization", "schema"]}, "json_pointer": {"type": "string"}, "expected": {}, "actual": {}, "message": {"type": "string"}}}},
+    "compared_result_digests": {"type": "object", "additionalProperties": false, "required": ["java", "rust"], "properties": {"java": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "rust": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}},
+    "normalization_policy_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}
