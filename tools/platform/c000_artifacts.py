@@ -127,20 +127,20 @@ def ledger_issues(path: str, expected_ledger: str) -> list[str]:
     return issues
 
 
-def governance_model() -> tuple[Any | None, dict[str, Any], str | None, str | None, dict[str, tuple[str, str, str, str]], dict[str, tuple[str, str, str, str]], dict[str, tuple[str, str, str, str]], bool, list[str]]:
+def governance_model() -> tuple[Any | None, dict[str, Any], str | None, str | None, dict[str, tuple[str, str, str, str]], dict[str, tuple[str, str, str, str]], str | None, dict[str, tuple[str, str, str, str]], bool, list[str]]:
     issues: list[str] = []
     try:
         validator = load_validator()
         tracker = load_json("docs/PORTING_TRACKER.json")
     except (OSError, json.JSONDecodeError, RuntimeError) as error:
-        return None, {}, None, None, {}, {}, {}, False, [f"cannot load governance model: {error}"]
+        return None, {}, None, None, {}, {}, None, {}, False, [f"cannot load governance model: {error}"]
     records = tracker.get("records", []) if isinstance(tracker, dict) else []
     by_id = {row.get("id"): row for row in records if isinstance(row, dict) and isinstance(row.get("id"), str)}
     current_revision = validator.repository_revision(issues)
-    subject_revision, subject_closure, subject_tree = validator.manifest_subject_revision(current_revision, issues)
+    subject_revision, subject_closure, subject_tree, java_source_revision = validator.manifest_subject_revision(current_revision, issues)
     descendant_tree = validator.committed_tree(current_revision, issues) if current_revision else {}
     tree_clean = validator.repository_tree_clean(issues)
-    return validator, by_id, current_revision, subject_revision, subject_closure, subject_tree, descendant_tree or {}, tree_clean, issues
+    return validator, by_id, current_revision, subject_revision, subject_closure, subject_tree, java_source_revision, descendant_tree or {}, tree_clean, issues
 
 
 def oracle_issues() -> list[str]:
@@ -183,15 +183,15 @@ def oracle_issues() -> list[str]:
     return issues
 
 
-def adoption_issues(validator: Any, by_id: dict[str, Any], subject_tree: dict[str, tuple[str, str, str, str]]) -> list[str]:
+def adoption_issues(validator: Any, by_id: dict[str, Any], subject_tree: dict[str, tuple[str, str, str, str]], java_source_revision: str | None) -> list[str]:
     issues: list[str] = []
-    records, valid = validator.adoption_contract(by_id, subject_tree, issues)
+    records, valid = validator.adoption_contract(by_id, subject_tree, java_source_revision, issues)
     if set(records) != valid:
         issues.append("adoption inventory contains non-current instances")
     return issues
 
 
-def task_case(task_id: str, validator: Any | None = None, by_id: dict[str, Any] | None = None, revision: str | None = None, subject_tree: dict[str, tuple[str, str, str, str]] | None = None) -> dict[str, Any]:
+def task_case(task_id: str, validator: Any | None = None, by_id: dict[str, Any] | None = None, revision: str | None = None, subject_tree: dict[str, tuple[str, str, str, str]] | None = None, java_source_revision: str | None = None) -> dict[str, Any]:
     paths = expand(TASK_ARTIFACTS[task_id])
     missing = [path for path in paths if not (ROOT / path).is_file()]
     for pattern in TASK_ARTIFACTS[task_id]:
@@ -210,7 +210,7 @@ def task_case(task_id: str, validator: Any | None = None, by_id: dict[str, Any] 
         if validator is None or by_id is None:
             issues.append("governance validator unavailable")
         else:
-            issues.extend(adoption_issues(validator, by_id, subject_tree or {}))
+            issues.extend(adoption_issues(validator, by_id, subject_tree or {}, java_source_revision))
     return {
         "id": task_id,
         "outcome": "fail" if issues else "pass",
@@ -256,11 +256,11 @@ def governed_artifact_paths() -> tuple[str, ...]:
     return tuple(sorted(path for path in paths if (ROOT / path).is_file()))
 
 
-def internal_governance_cases(validator: Any, by_id: dict[str, Any], subject_revision: str | None, subject_tree: dict[str, tuple[str, str, str, str]], descendant_tree: dict[str, tuple[str, str, str, str]], tree_clean: bool) -> tuple[dict[str, dict[str, Any]], dict[str, str], list[dict[str, str]]]:
+def internal_governance_cases(validator: Any, by_id: dict[str, Any], subject_revision: str | None, subject_tree: dict[str, tuple[str, str, str, str]], java_source_revision: str | None, descendant_tree: dict[str, tuple[str, str, str, str]], tree_clean: bool) -> tuple[dict[str, dict[str, Any]], dict[str, str], list[dict[str, str]]]:
     evidence_issues: list[str] = []
-    evidence, valid_evidence = validator.evidence_contract(subject_revision, subject_tree, descendant_tree, tree_clean, by_id, evidence_issues)
+    evidence, valid_evidence = validator.evidence_contract(subject_revision, subject_tree, java_source_revision, descendant_tree, tree_clean, by_id, evidence_issues)
     review_issues: list[str] = []
-    reviews, valid_reviews = validator.review_contract(subject_revision, subject_tree, tree_clean, by_id, evidence, valid_evidence, review_issues)
+    reviews, valid_reviews = validator.review_contract(subject_revision, subject_tree, java_source_revision, tree_clean, by_id, evidence, valid_evidence, review_issues)
     platform_issues: list[str] = []
     platform_ok = validator.platform_contract(subject_revision, evidence, valid_evidence, reviews, valid_reviews, platform_issues)
     c13_evidence = {ident for ident, record in evidence.items() if record.get("owning_item") == "C000.13"}
@@ -288,13 +288,13 @@ def internal_governance_cases(validator: Any, by_id: dict[str, Any], subject_rev
     return cases, approvals, [artifact(path) for path in paths]
 
 
-def verification_case(validator: Any | None, by_id: dict[str, Any], current_revision: str | None, subject_revision: str | None, subject_tree: dict[str, tuple[str, str, str, str]], descendant_tree: dict[str, tuple[str, str, str, str]], tree_clean: bool, model_issues: list[str]) -> dict[str, Any]:
-    task_results = {task_id: task_case(task_id, validator, by_id, current_revision, subject_tree) for task_id in TASK_ARTIFACTS}
+def verification_case(validator: Any | None, by_id: dict[str, Any], current_revision: str | None, subject_revision: str | None, subject_tree: dict[str, tuple[str, str, str, str]], java_source_revision: str | None, descendant_tree: dict[str, tuple[str, str, str, str]], tree_clean: bool, model_issues: list[str]) -> dict[str, Any]:
+    task_results = {task_id: task_case(task_id, validator, by_id, current_revision, subject_tree, java_source_revision) for task_id in TASK_ARTIFACTS}
     issues = list(model_issues)
     approvals: dict[str, str] = {}
     internal = {"C000.13": {"outcome": "fail", "issues": ["governance validator unavailable"]}, "C000.14": {"outcome": "fail", "issues": ["governance validator unavailable"], "platform_complete": False}}
     if validator is not None:
-        internal, approvals, _ = internal_governance_cases(validator, by_id, subject_revision, subject_tree, descendant_tree, tree_clean)
+        internal, approvals, _ = internal_governance_cases(validator, by_id, subject_revision, subject_tree, java_source_revision, descendant_tree, tree_clean)
     failed_tasks = [task_id for task_id, case in task_results.items() if case["outcome"] != "pass"]
     failed_internal = [task_id for task_id, case in internal.items() if case["outcome"] != "pass"]
     if failed_tasks:
@@ -313,9 +313,9 @@ def verification_case(validator: Any | None, by_id: dict[str, Any], current_revi
 
 
 def main() -> int:
-    validator, by_id, current_revision, subject_revision, _subject_closure, subject_tree, descendant_tree, tree_clean, model_issues = governance_model()
-    cases = [task_case(task_id, validator, by_id, current_revision, subject_tree) for task_id in EMITTED_TASKS]
-    cases.append(verification_case(validator, by_id, current_revision, subject_revision, subject_tree, descendant_tree, tree_clean, model_issues))
+    validator, by_id, current_revision, subject_revision, _subject_closure, subject_tree, java_source_revision, descendant_tree, tree_clean, model_issues = governance_model()
+    cases = [task_case(task_id, validator, by_id, current_revision, subject_tree, java_source_revision) for task_id in EMITTED_TASKS]
+    cases.append(verification_case(validator, by_id, current_revision, subject_revision, subject_tree, java_source_revision, descendant_tree, tree_clean, model_issues))
     failed = any(case["outcome"] != "pass" for case in cases)
     payload = {"schema_version": 1, "audit": "C000-artifacts", "outcome": "fail" if failed else "pass", "cases": cases}
     print(json.dumps(payload, sort_keys=True, separators=(",", ":")))
