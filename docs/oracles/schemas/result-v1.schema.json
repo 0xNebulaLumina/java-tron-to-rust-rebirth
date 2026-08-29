@@ -57,7 +57,8 @@
       ],
       "properties": {
         "java_source_revision": {
-          "const": "df50ce9676b94de0b10a605076adfd8728811384"
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
         },
         "runner_protocol": {
           "const": 1

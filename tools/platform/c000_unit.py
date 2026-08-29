@@ -101,7 +101,7 @@ def main() -> int:
         failed |= not passed
         outcomes.append({"case": f"runner-identify:{implementation}", "outcome": "pass" if passed else "fail", "exit_code": completed.returncode})
     adversarial = (
-        ("oversize-input", b" " * (runner.MAX_INPUT_BYTES + 1)),
+        ("oversize-input", b" " * (runner.MAX_FIXTURE_INPUT_BYTES + 1)),
         ("deep-input", (b'{"x":' * (runner.MAX_JSON_DEPTH + 1)) + b"null" + (b"}" * (runner.MAX_JSON_DEPTH + 1))),
         ("duplicate-key", b'{"schema_version":1,"schema_version":1}'),
     )

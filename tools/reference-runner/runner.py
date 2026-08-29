@@ -10,7 +10,8 @@ import re
 import sys
 from pathlib import Path
 
-MAX_INPUT_BYTES = 1_048_576
+MAX_FIXTURE_INPUT_BYTES = 1_048_576
+MAX_RESULT_INPUT_BYTES = 2_097_152
 MAX_JSON_DEPTH = 64
 MAX_JSON_ITEMS = 20_000
 MAX_STRING_BYTES = 262_144
@@ -20,13 +21,14 @@ MAX_SCHEMA_ERRORS = 1_000
 MAX_COMPARE_QUEUE = 40_000
 READ_CHUNK_BYTES = 65_536
 
-REVISION = "df50ce9676b94de0b10a605076adfd8728811384"
-PROTOCOL = 1
 ROOT = Path(__file__).resolve().parents[2]
 ORACLES = ROOT / "docs/oracles"
-POLICY = ORACLES / "normalization-policy-v1.json"
-FIXTURE_SCHEMA = ORACLES / "schemas/fixture-v1.schema.json"
-RESULT_SCHEMA = ORACLES / "schemas/result-v1.schema.json"
+MANIFEST = json.loads((ORACLES / "manifest.v1.json").read_text(encoding="utf-8"))
+REVISION = MANIFEST["java_source_revision"]
+PROTOCOL = MANIFEST["runner_protocol"]
+POLICY = ORACLES / MANIFEST["normalization_policy"]
+FIXTURE_SCHEMA = ORACLES / MANIFEST["fixture_schema"]
+RESULT_SCHEMA = ORACLES / MANIFEST["result_schema"]
 
 class ProtocolUsageError(ValueError):
     pass
@@ -49,19 +51,19 @@ def _reject_constant(value):
     raise ValueError(f"non-finite JSON number: {value}")
 
 
-def _read_limited(path):
+def _read_limited(path, max_bytes):
     stream = Path(path).open("rb") if path else sys.stdin.buffer
     close = path is not None
     try:
         chunks = []
         size = 0
         while True:
-            chunk = stream.read(min(READ_CHUNK_BYTES, MAX_INPUT_BYTES + 1 - size))
+            chunk = stream.read(min(READ_CHUNK_BYTES, max_bytes + 1 - size))
             if not chunk:
                 break
             size += len(chunk)
-            if size > MAX_INPUT_BYTES:
-                raise ValueError(f"resource limit exceeded: input bytes > {MAX_INPUT_BYTES}")
+            if size > max_bytes:
+                raise ValueError(f"resource limit exceeded: input bytes > {max_bytes}")
             chunks.append(chunk)
         return b"".join(chunks).decode("utf-8")
     finally:
@@ -90,8 +92,8 @@ def _enforce_json_limits(value):
             stack.extend((child, depth + 1) for child in current)
 
 
-def load_json(path):
-    value = json.loads(_read_limited(path), object_pairs_hook=_unique_object, parse_constant=_reject_constant)
+def load_json(path, max_bytes):
+    value = json.loads(_read_limited(path, max_bytes), object_pairs_hook=_unique_object, parse_constant=_reject_constant)
     _enforce_json_limits(value)
     return value
 
@@ -326,6 +328,9 @@ def _validate_normalization(applied, oracle_class, result, policy_by_id):
 
 def run_fixture(fixture, kind, identity):
     schema_errors = validate_schema(fixture, FIXTURE_SCHEMA)
+    fixture_identity = fixture.get("identity", {}) if isinstance(fixture, dict) else {}
+    if fixture_identity.get("java_source_revision") != REVISION:
+        schema_errors.append("/identity/java_source_revision: must match oracle manifest Java pin")
     if not schema_errors:
         schema_errors = _invariant_errors(fixture, fixture=True)
     operation = fixture.get("input", {}).get("operation") if isinstance(fixture.get("input"), dict) else None
@@ -429,6 +434,8 @@ def compare(java, rust):
     mismatches = []
     for label, result in (("java", java), ("rust", rust)):
         errors = validate_schema(result, RESULT_SCHEMA)
+        if result.get("identity", {}).get("java_source_revision") != REVISION:
+            errors.append("/identity/java_source_revision: must match oracle manifest Java pin")
         if len(errors) > MAX_SCHEMA_ERRORS:
             raise ValueError(f"resource limit exceeded: schema errors > {MAX_SCHEMA_ERRORS}")
         if not errors: errors = _invariant_errors(result)
@@ -474,7 +481,7 @@ def main():
         value, code = identity, 0
     elif args.command == "run":
         try:
-            fixture = load_json(args.fixture)
+            fixture = load_json(args.fixture, MAX_FIXTURE_INPUT_BYTES)
             if not isinstance(fixture, dict):
                 raise ValueError("fixture root must be an object")
             value = run_fixture(fixture, args.runner, identity)
@@ -483,7 +490,7 @@ def main():
         code = 0 if value["status"] == "ok" else value["exit_code"]
     else:
         try:
-            value = compare(load_json(args.java_result), load_json(args.rust_result))
+            value = compare(load_json(args.java_result, MAX_RESULT_INPUT_BYTES), load_json(args.rust_result, MAX_RESULT_INPUT_BYTES))
             code = 0 if value["match"] else 20
         except (OSError, UnicodeError, ValueError, TypeError, json.JSONDecodeError) as exc:
             value = invalid_result(args.runner, identity, f"comparison rejected: {exc}")

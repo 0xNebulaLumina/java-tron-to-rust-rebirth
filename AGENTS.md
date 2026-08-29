@@ -7,18 +7,17 @@ This repository exists to produce a complete, faithful Rust port of the checked-
 ## Required planning and tracking
 
 - Read `docs/PORTING_PLAN.md` before implementation work.
-- Treat `docs/PORTING_TRACKER.json` as the authoritative machine tracker and `docs/PORTING_CHECKLIST.md` as its reviewed human projection. Keep stable item IDs in commits and reviews, and preserve exact record/edge round-trip between both files.
-- Respect literal item-level dependencies. Every substantive and `.V` record has an explicit `dependencies[]` containing only stable substantive or `.V` IDs—never chunk IDs, ranges, prose, or partial annotations. Every `.V` directly closes all substantive children it owns; reject unknown, duplicate, self, cyclic, or omitted mandatory edges before implementation.
-- Tracker states are `[ ]` unchecked, `[-]` in progress, `[x]` checked, and `[D]` externally blocked. Never defer doable work. `[D]` requires an owner, evidence, unblock condition, and decision record.
-- Record compatibility decisions as `DR-###` and risks as `R-###`; include evidence and revisit triggers.
-
-- Machine tracker records must carry explicit item-level `dependencies[]`; readiness is derived only from checked dependencies with current evidence/approvals. Reject unknown, duplicate, self, and cyclic edges and stale evidence.
-- Evidence must bind exact cases to one immutable run, including observed exit/result, stdout/stderr hashes, timestamps, and per-case outcomes. Covered source/config/schema/toolchain changes invalidate the evidence.
-- Independent review records require named non-author reviewers, finite scope (including cross-domain seams), stable finding dispositions, fix-to-rerun linkage, and post-fix closure; covered changes invalidate approval.
-- Dependency, security, and license approval is per adoption and owned by the consuming tracker item; completing the repository-level policy does not pre-approve future crates, tools, FFI, schemas, fixtures, or parameters.
-- Qualification criteria must be frozen before governed execution: legal clean-room procedure precedes replacement fixture work, and the C030 release-gate specification precedes every governed qualification/review run.
-- Released binaries, containers, configuration bundles, native resources, and parameter packages require operator-verifiable authentication through a signed release manifest, out-of-band trust anchors with rotation/revocation, exact digests, SBOM/provenance attachment, offline verification, and substituted-channel rejection drills.
-- Terminal completion is non-self-authenticating: the validator produces a canonical candidate with every ordinary record and C031.13 valid and C031.V proposed `[x]` without citing its own run; an authenticated compare-and-swap committer outside the tracker graph atomically commits the exact candidate and issues an external receipt binding the candidate digest, repository revision, committed C031.V state, signer/tool identity, timestamps, and final tracker digest. Only receipt verification against the checked-in revision proves completion.
+- `docs/PORTING_TRACKER.json` is the only checked-in progress tracker. Do not create or maintain a second checklist or status projection.
+- Work strictly in chunk order from C000 through C031. Only the first non-done chunk may be active, in review, or externally blocked; every later chunk remains `todo`.
+- Preserve every stable C001-C031 item ID, `.V` gate ID, chunk boundary, and commit boundary. Do not move, merge, split, or renumber porting work.
+- Use `python3 tools/tracker/validate.py --status` for the current chunk summary and `python3 tools/tracker/validate.py --next` for the concrete next action. Run a chunk's stored commands with `python3 tools/tracker/validate.py --gate Cnnn`.
+- A gate is an ordinary ordered command list. Commands fail fast and never mutate tracker state. A stored `passed` value is only a resumability marker; required CI reruns the gate on the final checked-in tree.
+- After implementation, run the complete chunk gate and move the chunk to review. Reviewers record concise stable findings in the chunk's `review.findings`; fixes reset the gate, the complete gate is rerun, and findings are closed before approval.
+- Mark a chunk `done` only when every item is done, its gate passes, review is approved, every finding is closed, and no blocker remains. Commit the tracker update as an ordinary tracker-only completion commit after implementation and finding-fix commits.
+- Use a chunk blocker only for something genuinely external, with a concrete reason and observable unblock condition. Do not classify doable work as blocked.
+- Any change to gate commands, fixtures, normalization, or acceptance text while a chunk is active resets the gate and review state. Protected-branch review and required CI provide final-tree assurance; do not add tracker evidence envelopes, review manifests, governance signatures, CAS receipts, or external completion receipts.
+- Record compatibility decisions as `DR-###` and risks as `R-###`. Dependency versions belong in manifests and lockfiles, and each selection is accepted through its owning item's review and gate without a separate dependency-selection ledger. Semantic, security, and license risk is handled by normal design review, compatibility gates, and final qualification.
+- C031 retains all substantive domain and release reviews, security and license qualification, and product-authentication requirements, but deliberately discards tracker-specific evidence envelopes and CAS receipt machinery as redundant. Ordinary signed release artifacts and all C028-C030 authentication, SBOM/provenance, offline-verification, trust-anchor, and substituted-channel protections remain required.
 
 ## Compatibility rules
 

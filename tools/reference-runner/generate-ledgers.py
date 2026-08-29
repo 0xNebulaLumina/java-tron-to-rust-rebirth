@@ -5,10 +5,12 @@ Ownership is selected from the reviewed, ordered domain inventory below.  There 
 no default owner: a new Java module/path must be classified before regeneration.
 """
 from pathlib import Path
+import argparse
 import hashlib
 import json
 import re
 import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 JAVA = ROOT / "java-tron"
@@ -167,10 +169,10 @@ def files(test=False):
             yield path, rel
 
 
-def base_row(prefix, rel, line, sha, kind, identity):
+def base_row(prefix, rel, line, kind, identity):
     domain, item, gate = classify(rel)
     return {"id": stable(prefix, rel, kind, identity, line), "kind": kind,
-            "source": {"path": rel, "line": line, "sha256": sha},
+            "source": {"path": rel, "line": line},
             "domain": domain, "owning_item": item, "acceptance_gate": gate}
 
 
@@ -181,10 +183,10 @@ def production_rows():
     for path, rel in files(False):
         if path.suffix.lower() not in source_ext | resource_ext and path.name not in {"Dockerfile", "LICENSE", "NOTICE", "gradlew"}:
             continue
-        raw = path.read_bytes(); sha = hashlib.sha256(raw).hexdigest(); text = raw.decode("utf-8", errors="replace")
+        text = path.read_text(encoding="utf-8", errors="replace")
         kind = "source_file" if path.suffix.lower() in source_ext else "resource_or_script"
-        row = base_row("PROD", rel, 1, sha, kind, rel)
-        row.update({"symbol": rel, "category": "module" if kind == "source_file" else "resource/script", "acceptance_case_ids": [], "disposition": "port_or_review", "dependencies": [], "adoptions": []})
+        row = base_row("PROD", rel, 1, kind, rel)
+        row.update({"symbol": rel, "category": "module" if kind == "source_file" else "resource/script", "acceptance_case_ids": [], "disposition": "port_or_review"})
         rows.append(row)
         patterns = []
         if path.suffix == ".java":
@@ -195,8 +197,8 @@ def production_rows():
             for declaration_kind, pattern in patterns:
                 for match in re.finditer(pattern, line):
                     symbol = match.group(1).strip()
-                    declaration = base_row("PROD", rel, line_no, sha, declaration_kind, symbol)
-                    declaration.update({"symbol": symbol, "category": declaration_kind, "acceptance_case_ids": [], "disposition": "port_or_review", "dependencies": [], "adoptions": []})
+                    declaration = base_row("PROD", rel, line_no, declaration_kind, symbol)
+                    declaration.update({"symbol": symbol, "category": declaration_kind, "acceptance_case_ids": [], "disposition": "port_or_review"})
                     rows.append(declaration)
     return rows
 
@@ -204,6 +206,79 @@ def production_rows():
 TEST_ANNOTATION = re.compile(r"@(?:org\.junit[\w.]*\.)?(Test|ParameterizedTest|RepeatedTest|TestFactory|TestTemplate)\b")
 METHOD = re.compile(r"\b(?:public|protected|private)?\s*(?:static\s+)?(?:void|[\w<>, ?\[\].]+)\s+(\w+)\s*\([^;{}]*\)")
 JUNIT3 = re.compile(r"\bpublic\s+void\s+(test\w+)\s*\(\s*\)")
+
+def uncommented(line, in_block_comment):
+    """Return Java code outside comments and the continuing block-comment state."""
+    code = []
+    i = 0
+    quote = None
+    while i < len(line):
+        if in_block_comment:
+            end = line.find("*/", i)
+            if end < 0:
+                return "".join(code), True
+            in_block_comment = False
+            i = end + 2
+        elif quote:
+            code.append(line[i])
+            if line[i] == "\\" and i + 1 < len(line):
+                code.append(line[i + 1])
+                i += 2
+                continue
+            if line[i] == quote:
+                quote = None
+            i += 1
+        elif line.startswith("//", i):
+            break
+        elif line.startswith("/*", i):
+            in_block_comment = True
+            i += 2
+        else:
+            code.append(line[i])
+            if line[i] in {'"', "'"}:
+                quote = line[i]
+            i += 1
+    return "".join(code), in_block_comment
+
+
+def discovered_test_methods(lines):
+    pending = []
+    methods = []
+    in_block_comment = False
+    for line_no, line in enumerate(lines, 1):
+        code, in_block_comment = uncommented(line, in_block_comment)
+        stripped = code.strip()
+        if not stripped:
+            continue
+        if stripped.startswith("@"):
+            pending.append(stripped)
+        annotated = METHOD.search(code) if any(TEST_ANNOTATION.search(a) for a in pending) else None
+        junit3 = JUNIT3.search(code)
+        match = annotated or junit3
+        if match:
+            annotations = pending.copy() if annotated else ["JUnit3:test* convention"]
+            methods.append((match.group(1), line_no, annotations))
+            pending = []
+        elif not stripped.startswith("@") and not METHOD.search(code):
+            # A pending method annotation cannot cross an actual Java statement or
+            # declaration, but whitespace and all comment forms are compatible.
+            pending = []
+    return methods
+
+
+def validate_test_discovery():
+    synthetic = {
+        "lineComment": ["@Test", "// explanation", "public void lineComment() {}"],
+        "javadoc": ["@Test", "/**", " * explanation", " */", "public void javadoc() {}"],
+        "inlineBlock": ["@Test /* explanation */", "public void inlineBlock() {}"],
+    }
+    for name, lines in synthetic.items():
+        found = [method for method, _, _ in discovered_test_methods(lines)]
+        if found != [name]:
+            raise AssertionError(f"Java test discovery regression ({name}): {found}")
+    incompatible = ["@Test", "int intervening = 1;", "public void notATest() {}"]
+    if discovered_test_methods(incompatible):
+        raise AssertionError("Java test discovery retained an annotation across incompatible code")
 
 
 def static_expansions(annotations):
@@ -226,62 +301,57 @@ def test_rows():
     inherited_candidates = {}
     parsed = []
     for path, rel in files(True):
-        raw = path.read_bytes(); sha = hashlib.sha256(raw).hexdigest(); text = raw.decode("utf-8", errors="replace"); lines = text.splitlines()
-        parsed.append((path, rel, sha, lines))
+        text = path.read_text(encoding="utf-8", errors="replace"); lines = text.splitlines()
+        parsed.append((path, rel, lines))
         class_match = re.search(r"\bclass\s+(\w+)(?:\s+extends\s+(\w+))?", text)
         if class_match:
             inherited_candidates[class_match.group(1)] = (rel, class_match.group(2))
     declared_by_class = {}
-    for path, rel, sha, lines in parsed:
+    for path, rel, lines in parsed:
         if path.suffix != ".java":
-            row = base_row("TRES", rel, 1, sha, "test_resource", rel)
+            row = base_row("TRES", rel, 1, "test_resource", rel)
             row.update({"case": rel, "annotations": [], "parameter_sources": [], "expansion": {"status": "not_applicable", "identity": None}, "nested": False, "inherited": False, "generated": False, "ignored": False, "ignore_reason": None, "assumption_gated": False, "disposition": "provisional", "rust_case_ids": []})
             rows.append(row); continue
         text = "\n".join(lines)
         cm = re.search(r"\bclass\s+(\w+)(?:\s+extends\s+(\w+))?", text)
         class_name = cm.group(1) if cm else rel
         class_parameterized = bool(re.search(r"@RunWith\s*\(\s*(?:Parameterized|Enclosed)\.class", text))
-        pending = []; class_ignored = False; methods = []
-        for line_no, line in enumerate(lines, 1):
-            stripped = line.strip()
-            if stripped.startswith("@"): pending.append(stripped)
-            if ("@Ignore" in stripped or "@Disabled" in stripped) and re.search(r"\bclass\b", " ".join(pending) + " " + stripped): class_ignored = True
-            annotated = METHOD.search(line) if any(TEST_ANNOTATION.search(a) for a in pending) else None
-            junit3 = JUNIT3.search(line)
-            match = annotated or junit3
-            if match:
-                name = match.group(1); annotations = pending.copy() if annotated else ["JUnit3:test* convention"]
-                if class_parameterized and annotated:
-                    annotations.append("JUnit4:class-level parameter expansion")
-                params = [a for a in annotations if re.search(r"(?:ValueSource|CsvSource|MethodSource|EnumSource|ArgumentsSource|Parameters|DataProvider|RepeatedTest|class-level parameter)", a)]
-                expansions = static_expansions(annotations)
-                dynamic = (class_parameterized or any(re.search(r"(?:MethodSource|EnumSource|ArgumentsSource|Parameters|DataProvider|TestFactory|TestTemplate|ParameterizedTest)", a) for a in annotations)) and not expansions
-                identities = expansions or [("unresolved_dynamic" if dynamic else "single", name)]
-                for expansion_kind, expansion_value in identities:
-                    row = base_row("TCASE", rel, line_no, sha, "java_test_case", f"{name}:{expansion_kind}:{expansion_value}")
-                    ignored = class_ignored or any("Ignore" in a or "Disabled" in a for a in annotations)
-                    row.update({"case": name, "annotations": annotations, "parameter_sources": params,
-                                "expansion": {"status": "bounded_unresolved" if dynamic else "enumerated", "kind": expansion_kind, "identity": expansion_value},
-                                "nested": any("@Nested" in x for x in lines[:line_no]), "inherited": False,
-                                "generated": any(re.search(r"(?:TestFactory|ParameterizedTest|RepeatedTest)", a) for a in annotations),
-                                "ignored": ignored, "ignore_reason": next((a for a in annotations if "Ignore" in a or "Disabled" in a), None),
-                                "assumption_gated": any("Assum" in x for x in lines[line_no - 1:min(len(lines), line_no + 40)]),
-                                "disposition": "provisional", "rust_case_ids": []})
-                    rows.append(row)
-                methods.append((name, line_no, annotations))
-                pending = []
-            elif stripped and not stripped.startswith("@") and not stripped.startswith("//") and not METHOD.search(line):
-                pending = []
-        declared_by_class[class_name] = (rel, sha, methods)
+        class_ignored = bool(re.search(
+            r"@(?:Ignore|Disabled)\b(?:(?:\s|//[^\n]*(?:\n|$)|/\*.*?\*/)*)"
+            r"(?:public\s+|protected\s+|private\s+|abstract\s+|static\s+|final\s+)*class\b",
+            text,
+            re.DOTALL,
+        ))
+        methods = []
+        for name, line_no, annotations in discovered_test_methods(lines):
+            if class_parameterized and any(TEST_ANNOTATION.search(a) for a in annotations):
+                annotations.append("JUnit4:class-level parameter expansion")
+            params = [a for a in annotations if re.search(r"(?:ValueSource|CsvSource|MethodSource|EnumSource|ArgumentsSource|Parameters|DataProvider|RepeatedTest|class-level parameter)", a)]
+            expansions = static_expansions(annotations)
+            dynamic = (class_parameterized or any(re.search(r"(?:MethodSource|EnumSource|ArgumentsSource|Parameters|DataProvider|TestFactory|TestTemplate|ParameterizedTest)", a) for a in annotations)) and not expansions
+            identities = expansions or [("unresolved_dynamic" if dynamic else "single", name)]
+            for expansion_kind, expansion_value in identities:
+                row = base_row("TCASE", rel, line_no, "java_test_case", f"{name}:{expansion_kind}:{expansion_value}")
+                ignored = class_ignored or any("Ignore" in a or "Disabled" in a for a in annotations)
+                row.update({"case": name, "annotations": annotations, "parameter_sources": params,
+                            "expansion": {"status": "bounded_unresolved" if dynamic else "enumerated", "kind": expansion_kind, "identity": expansion_value},
+                            "nested": any("@Nested" in x for x in lines[:line_no]), "inherited": False,
+                            "generated": any(re.search(r"(?:TestFactory|ParameterizedTest|RepeatedTest)", a) for a in annotations),
+                            "ignored": ignored, "ignore_reason": next((a for a in annotations if "Ignore" in a or "Disabled" in a), None),
+                            "assumption_gated": any("Assum" in x for x in lines[line_no - 1:min(len(lines), line_no + 40)]),
+                            "disposition": "provisional", "rust_case_ids": []})
+                rows.append(row)
+            methods.append((name, line_no, annotations))
+        declared_by_class[class_name] = (rel, methods)
     # Exact inherited rows are emitted for concrete test subclasses whose parent is
     # another discovered test class.  Their IDs bind both declaration and inheritor.
     for child, (child_rel, parent) in inherited_candidates.items():
         if not parent or parent not in declared_by_class: continue
-        parent_rel, parent_sha, methods = declared_by_class[parent]
+        parent_rel, methods = declared_by_class[parent]
         _, item, gate = classify(child_rel)
         for name, line_no, annotations in methods:
             rows.append({"id": stable("TCASE", child_rel, parent_rel, name, "inherited"), "kind": "java_test_case",
-                         "source": {"path": parent_rel, "line": line_no, "sha256": parent_sha}, "domain": classify(child_rel)[0],
+                         "source": {"path": parent_rel, "line": line_no}, "domain": classify(child_rel)[0],
                          "case": f"{child}.{name}", "annotations": annotations, "parameter_sources": [],
                          "expansion": {"status": "enumerated", "kind": "inherited", "identity": child},
                          "nested": False, "inherited": True, "generated": False, "ignored": False, "ignore_reason": None,
@@ -289,24 +359,51 @@ def test_rows():
     return rows
 
 
-def emit():
+def documents():
     validate_domains()
+    validate_test_discovery()
     prods = sorted(production_rows(), key=lambda r: (r["source"]["path"], r["source"]["line"], r["id"]))
     tests = sorted(test_rows(), key=lambda r: (r["source"]["path"], r["source"]["line"], r["id"]))
+    required_tests = {
+        ("java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java", "noExitToAccount"),
+        ("java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java", "negativeTotalSupplyTest"),
+    }
+    discovered = {(row["source"]["path"], row["case"]) for row in tests if row["kind"] == "java_test_case"}
+    missing = sorted(required_tests - discovered)
+    if missing:
+        raise AssertionError(f"required Java tests missing from ownership ledger: {missing}")
     inventory_hash = hashlib.sha256(json.dumps(FRAMEWORK_DOMAINS + DOMAINS, separators=(",", ":")).encode()).hexdigest()
     common = {"schema_version": 1, "java_source_revision": REV,
-              "generator": {"path": "tools/reference-runner/generate-ledgers.py", "version": 3,
-                            "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()},
               "regeneration": {"command": ["python3", "tools/reference-runner/generate-ledgers.py"],
                                "domain_inventory_sha256": inventory_hash,
                                "tracker_input": "docs/PORTING_TRACKER.json",
                                "unknown_policy": "fail", "ordering": "source path, line, stable id"}}
     prod = {**common, "ledger": "production-ownership", "coverage": "reviewed Java module/registry domains; every included file and discovered declaration; unknown paths fail", "row_count": len(prods), "rows": prods}
     test = {**common, "ledger": "java-test-ownership", "coverage": "annotated JUnit 4/5, JUnit3 test* methods, statically enumerable parameter/repetition cases, inherited cases and exact bounded-unresolved dynamic expansion rows, plus test resources", "row_count": len(tests), "rows": tests}
-    (OUT / "production-ownership.v1.json").write_text(json.dumps(prod, indent=2, sort_keys=True) + "\n")
-    (OUT / "java-test-ownership.v1.json").write_text(json.dumps(test, indent=2, sort_keys=True) + "\n")
-    print(json.dumps({"production_rows": len(prods), "test_rows": len(tests), "domain_inventory_sha256": inventory_hash}))
+    return prod, test, inventory_hash
+
+
+def encoded(value):
+    return json.dumps(value, indent=2, sort_keys=True) + "\n"
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--check", action="store_true", help="verify checked-in ledgers without writing")
+    args = parser.parse_args()
+    prod, test, inventory_hash = documents()
+    outputs = ((OUT / "production-ownership.v1.json", encoded(prod)), (OUT / "java-test-ownership.v1.json", encoded(test)))
+    stale = [path.relative_to(ROOT).as_posix() for path, content in outputs if not path.is_file() or path.read_text(encoding="utf-8") != content]
+    if args.check:
+        if stale:
+            print("stale generated ledger(s): " + ", ".join(stale), file=sys.stderr)
+            return 1
+    else:
+        for path, content in outputs:
+            path.write_text(content, encoding="utf-8")
+    print(json.dumps({"production_rows": len(prod["rows"]), "test_rows": len(test["rows"]), "domain_inventory_sha256": inventory_hash, "checked": args.check}, sort_keys=True))
+    return 0
 
 
 if __name__ == "__main__":
-    emit()
+    raise SystemExit(main())

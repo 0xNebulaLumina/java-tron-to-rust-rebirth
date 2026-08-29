@@ -1,186 +1,32 @@
 {
   "schema_version": 1,
+  "java_source": {
+    "path": "java-tron",
+    "gitlink": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+    "origin": "https://github.com/tronprotocol/java-tron.git"
+  },
   "java_source_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
-  "java_source_origin": "https://github.com/tronprotocol/java-tron.git",
-  "java_source_path": "java-tron",
-  "java_source_identity": "gitlink:4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
   "runner_protocol": 1,
-  "fixture_schema": "schemas/oracle-fixture-v1.schema.json",
-  "result_schema": "schemas/oracle-result-v1.schema.json",
+  "fixture_schema": "schemas/fixture-v1.schema.json",
+  "result_schema": "schemas/result-v1.schema.json",
   "mismatch_schema": "schemas/mismatch-report-v1.schema.json",
   "normalization_policy": "normalization-policy-v1.json",
-  "governance_schemas": [
-    "schemas/threat-model-v1.schema.json",
-    "schemas/security-finding-v1.schema.json",
-    "schemas/license-provenance-v1.schema.json",
-    "schemas/ownership-ledger-v1.schema.json",
-    "../governance/behavior-manifest-v1.schema.json"
-  ],
   "ledgers": [
-    {
-      "path": "production-ownership.v1.json",
-      "ledger": "production-ownership",
-      "row_count": 9216,
-      "sha256": "dea5eb0ded9ba79957ff13280629c727a7358b672e2d7b68060cff662110d2e5"
-    },
-    {
-      "path": "java-test-ownership.v1.json",
-      "ledger": "java-test-ownership",
-      "row_count": 3439,
-      "sha256": "c59df7d6a9b2fbe94d52ceefd01a9fd648828ac231b3a7d5777ec473d07ed2a4"
-    }
+    "production-ownership.v1.json",
+    "java-test-ownership.v1.json"
   ],
-  "regeneration": {
-    "command": [
-      "python3",
-      "tools/reference-runner/generate-ledgers.py"
-    ],
-    "generator_version": 3,
-    "domain_inventory_sha256": "ca8466d63f700c7efffdc32a6addf5952ba6efa0b2790c44760ba4fadeb099b2",
-    "unknown_policy": "fail",
-    "required_checks": [
-      "owner exists in docs/PORTING_TRACKER.json",
-      "acceptance gate exists in docs/PORTING_TRACKER.json",
-      "owner and gate belong to the same chunk",
-      "every included source path matches a reviewed domain"
-    ]
-  },
   "fixtures": [
-    "fixtures/v1/positive.json",
-    "fixtures/v1/negative.json",
-    "fixtures/v1/mismatch-output.json",
-    "fixtures/v1/mismatch-state.json",
     "fixtures/v1/mismatch-error.json",
     "fixtures/v1/mismatch-forbidden-normalization.json",
     "fixtures/v1/mismatch-normalization-forbidden-class.json",
-    "fixtures/v1/mismatch-normalization-forbidden-pointer.json"
+    "fixtures/v1/mismatch-normalization-forbidden-pointer.json",
+    "fixtures/v1/mismatch-output.json",
+    "fixtures/v1/mismatch-state.json",
+    "fixtures/v1/negative.json",
+    "fixtures/v1/positive.json"
   ],
   "implementations": [
     "../../tools/reference-runner/java-runner",
     "../../tools/reference-runner/rust-runner"
-  ],
-  "status": "C000 incomplete: evidence and independent approvals must bind refs/tags/c000-subject and its exact governed closure",
-  "approval": {
-    "review_approvals": {
-      "architecture": null,
-      "security": null,
-      "license": null
-    },
-    "platform_complete": false
-  },
-  "subject_ref": "refs/tags/c000-subject",
-  "subject_tag_object": "7f0459e9f3eff4173cd70a7a0c0e4e83a9ce7e0f",
-  "subject_revision": "3e6b93bae4a7c12f590c9a63edf80a5c699d36ec",
-  "attestation": {
-    "algorithm": "git-ls-tree-v1",
-    "closure_sha256": "cbdb0733f31796b7f6198daf2b5add7f63fa7d39d58e521cea0ffb3dadb295ab",
-    "excluded_paths": [
-      "docs/PORTING_CHECKLIST.md",
-      "docs/PORTING_TRACKER.json",
-      "docs/architecture/platform-manifest.v1.json",
-      "docs/oracles/manifest.v1.json"
-    ],
-    "excluded_prefixes": [
-      "docs/governance/evidence/",
-      "docs/governance/reviews/"
-    ]
-  },
-  "fixture_provenance": [
-    {
-      "path": "fixtures/v1/positive.json",
-      "category": "newly_authored",
-      "evidence_chain": {
-        "generator_declaration": "identity.generator.name=c000-fixture-author; identity.generator.version=1",
-        "content_sha256": "aa32a0a57c7c17885a6aac20809d14f961be15fd2e350e0d42f0d4d431ce68d6",
-        "behavior_specification": "behavior-neutral C000 runner protocol skeleton",
-        "schema": "schemas/oracle-fixture-v1.schema.json",
-        "upstream_expressive_content": "none claimed; no copied or mechanically-derived java-tron bytes",
-        "review_disposition": "review_required for independent authorship and license confirmation"
-      }
-    },
-    {
-      "path": "fixtures/v1/negative.json",
-      "category": "newly_authored",
-      "evidence_chain": {
-        "generator_declaration": "identity.generator.name=c000-fixture-author; identity.generator.version=1",
-        "content_sha256": "e626eebc2f25e6717715bade230fce8260ab0ca8fb1bd7670d45f74aaca9245b",
-        "behavior_specification": "behavior-neutral C000 runner protocol skeleton",
-        "schema": "schemas/oracle-fixture-v1.schema.json",
-        "upstream_expressive_content": "none claimed; no copied or mechanically-derived java-tron bytes",
-        "review_disposition": "review_required for independent authorship and license confirmation"
-      }
-    },
-    {
-      "path": "fixtures/v1/mismatch-output.json",
-      "category": "newly_authored",
-      "evidence_chain": {
-        "generator_declaration": "identity.generator.name=c000-fixture-author; identity.generator.version=1",
-        "content_sha256": "accae08c09be4a36bb41886c61ebc7c37cf2255157bd9453e1d986d6f727e6a1",
-        "behavior_specification": "behavior-neutral C000 runner protocol skeleton",
-        "schema": "schemas/oracle-fixture-v1.schema.json",
-        "upstream_expressive_content": "none claimed; no copied or mechanically-derived java-tron bytes",
-        "review_disposition": "review_required for independent authorship and license confirmation"
-      }
-    },
-    {
-      "path": "fixtures/v1/mismatch-state.json",
-      "category": "newly_authored",
-      "evidence_chain": {
-        "generator_declaration": "identity.generator.name=c000-fixture-author; identity.generator.version=1",
-        "content_sha256": "29f22f2038eb9b209a56ee2eeb860aceeb00ae615e697feb63f5ddeb118186b8",
-        "behavior_specification": "behavior-neutral C000 runner protocol skeleton",
-        "schema": "schemas/oracle-fixture-v1.schema.json",
-        "upstream_expressive_content": "none claimed; no copied or mechanically-derived java-tron bytes",
-        "review_disposition": "review_required for independent authorship and license confirmation"
-      }
-    },
-    {
-      "path": "fixtures/v1/mismatch-error.json",
-      "category": "newly_authored",
-      "evidence_chain": {
-        "generator_declaration": "identity.generator.name=c000-fixture-author; identity.generator.version=1",
-        "content_sha256": "37a6a62bfbf7ba355637da04400f764707b7068dc0ac9a494a66522ee8193530",
-        "behavior_specification": "behavior-neutral C000 runner protocol skeleton",
-        "schema": "schemas/oracle-fixture-v1.schema.json",
-        "upstream_expressive_content": "none claimed; no copied or mechanically-derived java-tron bytes",
-        "review_disposition": "review_required for independent authorship and license confirmation"
-      }
-    },
-    {
-      "path": "fixtures/v1/mismatch-forbidden-normalization.json",
-      "category": "newly_authored",
-      "evidence_chain": {
-        "generator_declaration": "identity.generator.name=c000-fixture-author; identity.generator.version=1",
-        "content_sha256": "4842e34f710e223d457649faf73d344d0b12cb7baf92bbf9cf88ece065b71f05",
-        "behavior_specification": "behavior-neutral C000 runner protocol skeleton",
-        "schema": "schemas/oracle-fixture-v1.schema.json",
-        "upstream_expressive_content": "none claimed; no copied or mechanically-derived java-tron bytes",
-        "review_disposition": "review_required for independent authorship and license confirmation"
-      }
-    },
-    {
-      "path": "fixtures/v1/mismatch-normalization-forbidden-class.json",
-      "category": "newly_authored",
-      "evidence_chain": {
-        "generator_declaration": "identity.generator.name=c000-fixture-author; identity.generator.version=1",
-        "content_sha256": "4435daa383c4d7559a00a11aa79e5002a08e94948bd48a6a39974950c4c538b3",
-        "behavior_specification": "behavior-neutral C000 runner protocol skeleton",
-        "schema": "schemas/oracle-fixture-v1.schema.json",
-        "upstream_expressive_content": "none claimed; no copied or mechanically-derived java-tron bytes",
-        "review_disposition": "review_required for independent authorship and license confirmation"
-      }
-    },
-    {
-      "path": "fixtures/v1/mismatch-normalization-forbidden-pointer.json",
-      "category": "newly_authored",
-      "evidence_chain": {
-        "generator_declaration": "identity.generator.name=c000-fixture-author; identity.generator.version=1",
-        "content_sha256": "ad1616d90a7f148200b40a079aca401724a40a0a3af0a86032a5da92c6907af3",
-        "behavior_specification": "behavior-neutral C000 runner protocol skeleton",
-        "schema": "schemas/oracle-fixture-v1.schema.json",
-        "upstream_expressive_content": "none claimed; no copied or mechanically-derived java-tron bytes",
-        "review_disposition": "review_required for independent authorship and license confirmation"
-      }
-    }
   ]
 }

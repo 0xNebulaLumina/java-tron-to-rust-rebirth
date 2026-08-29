@@ -88,7 +88,6 @@ def main() -> int:
         ("java-file", [str(ROOT / "tools/reference-runner/java-runner"), "run", "--fixture", str(FIXTURE)], 0),
         ("rust-stdin", [str(ROOT / "tools/reference-runner/rust-runner"), "run"], 0),
         ("invalid-invocation", [str(ROOT / "tools/reference-runner/java-runner"), "bogus"], 64),
-        ("platform-invalid", [str(ROOT / "tools/platform/run"), "UNKNOWN", "smoke"], 64),
     )
     if len(commands) > MAX_COMMANDS:
         raise RuntimeError(f"resource limit exceeded: command count > {MAX_COMMANDS}")

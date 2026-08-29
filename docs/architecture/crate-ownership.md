@@ -21,7 +21,7 @@ L8  tron-apis       tron-events-metrics
 L9  tron-node       tron-toolkit
 ```
 
-Allowed edges are declared in each crate manifest. Adding an edge requires updating this map, retaining the layer order, and recording the consuming item's dependency/adoption decision where applicable.
+Allowed edges are declared in each crate manifest. Adding an edge requires updating this map, retaining the layer order, pinning the dependency in the applicable manifests and lockfiles, and passing the consuming item's review and gate.
 
 ## Owning crate and acceptance gate
 
@@ -43,4 +43,4 @@ Allowed edges are declared in each crate manifest. Adding an edge requires updat
 | `tron-node` | Full-node and Solidity-node composition roots and process lifecycle | C003, C019-C026, C028 | G-OPS, G-P2P, G-API, G-ARCH |
 | `tron-toolkit` | Rust-format operational and keystore command composition | C027 | G-OPS, G-FORMAT, G-ARCH |
 
-C000.01 owns this initial graph. Later crate additions or third-party dependencies do not inherit approval from C000; each consuming tracker item must carry its own adoption record and gate.
+C000.01 owns this initial graph. Later crate additions or third-party dependencies do not inherit approval from C000; each dependency must be pinned in the applicable manifests and lockfiles and reviewed and accepted through its consuming tracker item's gate.

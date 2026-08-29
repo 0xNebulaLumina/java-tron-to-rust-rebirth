@@ -15,8 +15,11 @@ RUNNER = ROOT / "tools/reference-runner/runner.py"
 FIXTURE = ROOT / "docs/oracles/fixtures/v1/positive.json"
 MAX_SUBPROCESSES = 40
 REPEATED_RUNS = 32
-MAX_TEMP_FILES = REPEATED_RUNS
-MAX_TOTAL_TEMP_BYTES = REPEATED_RUNS * MAX_STREAM_BYTES
+BOUNDARY_TEMP_FILES = 3
+MAX_TEMP_FILES = REPEATED_RUNS + BOUNDARY_TEMP_FILES
+MAX_TOTAL_TEMP_BYTES = MAX_TEMP_FILES * MAX_STREAM_BYTES
+FIXTURE_INPUT_BYTES = 1_048_576
+RESULT_INPUT_BYTES = 2_097_152
 
 
 def descriptor_count() -> int | None:
@@ -30,8 +33,8 @@ def case(name: str, passed: bool, **details: object) -> dict[str, object]:
 
 def main() -> int:
     cases: list[dict[str, object]] = []
-    planned_subprocesses = REPEATED_RUNS + 3
-    if planned_subprocesses > MAX_SUBPROCESSES or REPEATED_RUNS > MAX_TEMP_FILES:
+    planned_subprocesses = REPEATED_RUNS + 5
+    if planned_subprocesses > MAX_SUBPROCESSES or REPEATED_RUNS + BOUNDARY_TEMP_FILES > MAX_TEMP_FILES:
         raise RuntimeError("resource limit exceeded: native-resource subprocess or temporary-file count")
 
     before = descriptor_count()
@@ -53,6 +56,48 @@ def main() -> int:
                 repeated_ok = False
                 break
         cases.append(case("repeated-run-cleanup", repeated_ok, subprocesses=REPEATED_RUNS, temporary_bytes=total_temp_bytes))
+
+        seed = json.loads((temp_root / "result-0.json").read_bytes())
+        seed["diagnostics"] = ["x" * 4096] * 256
+        large_result_bytes = (json.dumps(seed, sort_keys=True, separators=(",", ":")) + "\n").encode()
+        large_java = temp_root / "large-java.json"
+        large_rust = temp_root / "large-rust.json"
+        large_java.write_bytes(large_result_bytes)
+        large_rust.write_bytes(large_result_bytes)
+        total_temp_bytes += len(large_result_bytes) * 2
+        large_compare = invoke([
+            sys.executable, str(RUNNER), "compare", "--java-result", str(large_java), "--rust-result", str(large_rust),
+        ])
+        try:
+            large_report = json.loads(large_compare.stdout)
+            large_accepted = large_report.get("match") is True
+        except (json.JSONDecodeError, AttributeError, UnicodeDecodeError):
+            large_accepted = False
+        cases.append(case(
+            "compare-accepts-result-above-fixture-ceiling",
+            FIXTURE_INPUT_BYTES < len(large_result_bytes) <= RESULT_INPUT_BYTES
+            and large_compare.returncode == 0 and large_accepted,
+            result_bytes=len(large_result_bytes), exit_code=large_compare.returncode,
+        ))
+
+        oversize_result = temp_root / "oversize-result.json"
+        oversize_result.write_bytes(b" " * (RESULT_INPUT_BYTES + 1))
+        total_temp_bytes += RESULT_INPUT_BYTES + 1
+        rejected_compare = invoke([
+            sys.executable, str(RUNNER), "compare", "--java-result", str(oversize_result), "--rust-result", str(large_rust),
+        ])
+        try:
+            rejected = json.loads(rejected_compare.stdout)
+            rejected_cleanly = rejected.get("status") == "invalid_fixture" and rejected.get("error", {}).get("code") == "INVALID_FIXTURE"
+        except (json.JSONDecodeError, AttributeError, UnicodeDecodeError):
+            rejected_cleanly = False
+        cases.append(case(
+            "compare-rejects-result-above-result-ceiling",
+            rejected_compare.returncode == 64 and rejected_cleanly
+            and b"input bytes > 2097152" in rejected_compare.stdout
+            and total_temp_bytes <= MAX_TOTAL_TEMP_BYTES,
+            exit_code=rejected_compare.returncode, total_temporary_bytes=total_temp_bytes,
+        ))
         escaped_path = str(temp_root)
 
     after = descriptor_count()

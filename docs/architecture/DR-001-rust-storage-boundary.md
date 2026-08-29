@@ -2,7 +2,6 @@
 
 **Status:** accepted architecture contract; implementation and verification remain C007/C028 obligations.  
 **Decision owner:** C000.06.  
-**Java source revision:** `df50ce9676b94de0b10a605076adfd8728811384`.
 
 Initial Rust releases must not open as Rust state, mutate, repair, migrate, lock, compact, checkpoint, rename, delete, or add files to a java-tron LevelDB/RocksDB directory. Physical compatibility is rejected; logical keys, values, ordering, roots, results, and observable behavior remain compatibility requirements.
 

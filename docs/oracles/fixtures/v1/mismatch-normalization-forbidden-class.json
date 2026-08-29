@@ -1,33 +1,56 @@
 {
-  "schema_version": 1,
   "case_id": "HARNESS.NORMALIZATION_FORBIDDEN_CLASS",
   "description": "Allowed normalization rule used by a forbidden oracle class",
-  "oracle_class": "consensus",
-  "identity": {
-    "java_source_revision": "df50ce9676b94de0b10a605076adfd8728811384",
-    "fixture_revision": "c000-v1",
-    "schema_id": "urn:java-tron-rust:oracle:fixture:v1",
-    "generator": {"name": "c000-fixture-author", "version": "1"}
-  },
   "environment": {
+    "clock": {
+      "mode": "fixed",
+      "unix_millis": 1700000000000
+    },
+    "filesystem_order": "unsigned-byte-lexicographic",
     "locale": "C.UTF-8",
-    "timezone": "UTC",
-    "clock": {"mode": "fixed", "unix_millis": 1700000000000},
-    "random_seed": "0000000000000000000000000000000000000000000000000000000000000000",
     "network": "disabled",
-    "filesystem_order": "unsigned-byte-lexicographic"
+    "random_seed": "0000000000000000000000000000000000000000000000000000000000000000",
+    "timezone": "UTC"
   },
-  "input": {"operation": "protocol_skeleton", "harness_mutation": "forbidden_class"},
-  "initial_state": [],
   "expected": {
-    "exit_code": 0,
-    "status": "ok",
-    "output": {"presence": "absent"},
     "error": null,
-    "state_deltas": [],
     "events": [],
-    "logs": [{"sequence": 0, "kind": "harness.log", "fields": {"message": "deterministic"}}]
+    "exit_code": 0,
+    "logs": [
+      {
+        "fields": {
+          "message": "deterministic"
+        },
+        "kind": "harness.log",
+        "sequence": 0
+      }
+    ],
+    "output": {
+      "presence": "absent"
+    },
+    "state_deltas": [],
+    "status": "ok"
+  },
+  "identity": {
+    "fixture_revision": "c000-v1",
+    "generator": {
+      "name": "c000-fixture-author",
+      "version": "1"
+    },
+    "java_source_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+    "schema_id": "urn:java-tron-rust:oracle:fixture:v1"
+  },
+  "initial_state": [],
+  "input": {
+    "harness_mutation": "forbidden_class",
+    "operation": "protocol_skeleton"
   },
   "normalizations": [],
-  "tags": ["c000", "protocol-skeleton", "forbidden-normalization"]
+  "oracle_class": "consensus",
+  "schema_version": 1,
+  "tags": [
+    "c000",
+    "protocol-skeleton",
+    "forbidden-normalization"
+  ]
 }

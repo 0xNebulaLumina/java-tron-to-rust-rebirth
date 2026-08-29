@@ -1,1215 +1,242 @@
 #!/usr/bin/env python3
-"""Dependency-free governance validator; it reports state and never mutates it."""
+"""Validate and report the simple v2 porting tracker."""
 from __future__ import annotations
 
-from collections import Counter
-import datetime as dt
-import hashlib
+import argparse
 import json
 import os
 import re
-import shutil
 import subprocess
 import sys
-import tomllib
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 TRACKER = ROOT / "docs/PORTING_TRACKER.json"
-CHECKLIST = ROOT / "docs/PORTING_CHECKLIST.md"
-ITEM_ID = r"C\d{3}\.(?:\d{2}[A-Z]?|V)"
-ITEM = re.compile(rf"^- \[( |-|x|D)\] \*\*({ITEM_ID})\*\*")
-DEPS = re.compile(r'^  \*\*dependencies\[\]:\*\* `(\[.*\])`$')
-EV_ID = re.compile(r"^EV-[0-9]{4,}$")
-RV_ID = re.compile(r"^RV-[0-9]{4,}$")
-C000_TARGETS = {f"C000.{n:02d}" for n in range(10, 16)}
-TODAY = dt.date.today()
-AUTHORIZED_SUBJECT_REF = "refs/tags/c000-subject"
-ATTESTATION_EXCLUSIONS = {
-    "docs/PORTING_TRACKER.json",
-    "docs/PORTING_CHECKLIST.md",
-    "docs/architecture/platform-manifest.v1.json",
-    "docs/oracles/manifest.v1.json",
-}
-ATTESTATION_PREFIXES = ("docs/governance/evidence/", "docs/governance/reviews/")
-ADOPTION_FORBIDDEN_PATHS = frozenset(ATTESTATION_EXCLUSIONS)
+CHUNK_STATUSES = {"todo", "active", "review", "blocked", "done"}
+ITEM_STATUSES = {"todo", "doing", "done"}
+GATE_STATUSES = {"unconfigured", "not_run", "failed", "passed"}
+REVIEW_STATES = {"not_started", "in_review", "changes_requested", "approved"}
+FINDING_STATUSES = {"open", "fixed", "closed"}
+CHUNK_FIELDS = {"id", "title", "status", "owner", "updated", "resume", "items", "gate", "review", "blocker"}
+ITEM_FIELDS = {"id", "description", "status", "note"}
+GATE_FIELDS = {"id", "description", "status", "commands", "last_failure"}
+COMMAND_FIELDS = {"name", "cwd", "argv", "timeout_seconds"}
+REVIEW_FIELDS = {"state", "round", "findings"}
+FINDING_FIELDS = {"id", "summary", "status", "resolution"}
+BLOCKER_FIELDS = {"reason", "unblock_condition"}
+SAFE_ENV = {"PATH": os.environ.get("PATH", ""), "HOME": os.environ.get("HOME", ""), "LANG": "C.UTF-8", "LC_ALL": "C.UTF-8"}
 
 
-def is_forbidden_adoption_source(path: object) -> bool:
-    return isinstance(path, str) and (path in ADOPTION_FORBIDDEN_PATHS or path.startswith(ATTESTATION_PREFIXES))
-
-
-REVIEW_CLASSES = {"architecture", "security", "license"}
-AUTHENTICATED_AGENT_ID = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)+$")
-ADOPTION_DISCOVERY_PATTERNS = (
-    "tools/platform/run",
-    "tools/platform/c000_*.py",
-    "tools/reference-runner/*.py",
-    "tools/reference-runner/java-runner",
-    "tools/reference-runner/rust-runner",
-    "tools/tracker/validate.py",
-    "docs/architecture/DR-004-custom-actuator-extensions.md",
-    "docs/oracles/fixtures/v1/*.json",
-    "docs/oracles/normalization-policy-v1.json",
-    "docs/oracles/runner-protocol.md",
-    "docs/oracles/*-ownership.v1.json",
-    "docs/oracles/schemas/*.json",
-    "docs/governance/*schema.json",
-    "docs/architecture/toolchains-and-platforms.md",
-    "java-tron/example/actuator-example/build.gradle",
-    "java-tron/example/actuator-example/src/main/java/org/tron/core/actuator/ExampleActuator.java",
-    "rust-tron/Cargo.toml",
-    "rust-tron/crates/*/Cargo.toml",
-    "rust-tron/Cargo.lock",
-    "rust-tron/rust-toolchain.toml",
-    "java-tron/gradlew",
-    "java-tron/build.gradle",
-    "java-tron/gradle/wrapper/*",
-)
-
-
-def repository_tree_clean(errors: list[str]) -> bool:
-    try:
-        result = subprocess.run(
-            ["git", "status", "--porcelain", "--untracked-files=all"],
-            cwd=ROOT,
-            check=True,
-            text=True,
-            capture_output=True,
-        )
-    except (OSError, subprocess.CalledProcessError) as exc:
-        fail(errors, f"cannot resolve repository tree state: {exc}")
-        return False
-    return not result.stdout
-
-
-def discovered_adoption_sources() -> set[str]:
-    paths = set()
-    for pattern in ADOPTION_DISCOVERY_PATTERNS:
-        for path in ROOT.glob(pattern):
-            if path.is_file():
-                paths.add(path.relative_to(ROOT).as_posix())
-    return paths
-
-
-def load(path: Path):
-    with path.open(encoding="utf-8") as handle:
-        return json.load(handle)
-
-
-def fail(errors: list[str], message: str):
-    errors.append(message)
-
-
-def digest(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
-def git(*args: str, text: bool = True) -> subprocess.CompletedProcess:
-    return subprocess.run(["git", *args], cwd=ROOT, check=True, text=text, capture_output=True)
-def submodule_git(*args: str, text: bool = True) -> subprocess.CompletedProcess:
-    return subprocess.run(["git", *args], cwd=ROOT / "java-tron", check=True, text=text, capture_output=True)
-
-
-
-
-def local_git_config(name: str) -> str:
-    value = git("config", "--local", "--get", name).stdout.strip()
-    if not value:
-        raise ValueError(f"local Git config {name} is absent or empty")
+def load_tracker() -> dict[str, Any]:
+    with TRACKER.open(encoding="utf-8") as handle:
+        value = json.load(handle)
+    if not isinstance(value, dict):
+        raise ValueError("tracker root must be an object")
     return value
 
 
-def project_local_git_path(name: str) -> Path:
-    value = local_git_config(name)
-    path = Path(os.path.expanduser(value))
-    if not path.is_absolute():
-        path = ROOT / path
-    path = path.resolve()
-    if path != ROOT and ROOT not in path.parents:
-        raise ValueError(f"{name} must resolve inside the project")
-    if not path.is_file():
-        raise ValueError(f"project-local {name} file is missing")
-    return path
-
-
-def repository_revision(errors: list[str]) -> str | None:
-    try:
-        revision = git("rev-parse", "--verify", "HEAD^{commit}").stdout.strip()
-        if not re.fullmatch(r"[0-9a-f]{40}", revision):
-            raise ValueError("repository does not use full SHA-1 object names")
-        return revision
-    except (OSError, ValueError, subprocess.CalledProcessError) as exc:
-        fail(errors, f"cannot resolve repository revision: {exc}")
-        return None
-
-def authorized_subject_revision(errors: list[str]) -> str | None:
-    try:
-        tag_object = git("rev-parse", "--verify", AUTHORIZED_SUBJECT_REF).stdout.strip()
-        if not re.fullmatch(r"[0-9a-f]{40}", tag_object):
-            raise ValueError("authorized tag does not resolve to a full object name")
-        pinned_object = local_git_config("port.c000SubjectTagObject")
-        if not re.fullmatch(r"[0-9a-f]{40}", pinned_object) or pinned_object != tag_object:
-            raise ValueError("authorized tag object does not exactly match local port.c000SubjectTagObject pin")
-        project_local_git_path("gpg.ssh.allowedSignersFile")
-        project_local_git_path("gpg.ssh.revocationFile")
-        if git("cat-file", "-t", tag_object).stdout.strip() != "tag":
-            raise ValueError("authorized subject ref must be an annotated tag, not a lightweight tag")
-        tag_contents = git("cat-file", "-p", tag_object).stdout
-        if "-----BEGIN SSH SIGNATURE-----" not in tag_contents:
-            raise ValueError("authorized annotated tag must carry an SSH signature")
-        git("verify-tag", tag_object)
-        header = tag_contents.split("\n\n", 1)[0].splitlines()
-        fields = dict(line.split(" ", 1) for line in header if " " in line)
-        subject = fields.get("object")
-        if fields.get("type") != "commit" or not isinstance(subject, str) or not re.fullmatch(r"[0-9a-f]{40}", subject):
-            raise ValueError("authorized annotated tag must directly target one full commit object")
-        if git("rev-parse", "--verify", f"{AUTHORIZED_SUBJECT_REF}^{{commit}}").stdout.strip() != subject:
-            raise ValueError("authorized tag has ambiguous or indirect commit resolution")
-        return subject
-    except (OSError, ValueError, subprocess.CalledProcessError) as exc:
-        fail(errors, f"cannot verify immutable authorized subject {AUTHORIZED_SUBJECT_REF}: {exc}")
-        return None
-
-
-def excluded_attestation_path(path: str) -> bool:
-    return path in ATTESTATION_EXCLUSIONS or path.startswith(ATTESTATION_PREFIXES)
-def java_subject_entry(path: str, java_source_revision: str | None, errors: list[str]) -> tuple[str, str, str, str] | None:
-    prefix = "java-tron/"
-    if not path.startswith(prefix):
-        return None
-    relative = path[len(prefix):]
-    parts = relative.split("/")
-    if not relative or any(part in {"", ".", ".."} for part in parts) or "\\" in relative:
-        fail(errors, f"subject path escapes or is not canonical: {path!r}")
-        return None
-    if not isinstance(java_source_revision, str) or not re.fullmatch(r"[0-9a-f]{40}", java_source_revision):
-        fail(errors, "oracle manifest java_source_revision is not a full object name")
-        return None
-    try:
-        raw = submodule_git("ls-tree", "-z", java_source_revision, "--", f":(literal){relative}", text=False).stdout
-        records = [record for record in raw.split(b"\0") if record]
-        if len(records) != 1:
-            raise ValueError(f"path does not name exactly one object at the pinned java-tron commit: {path}")
-        metadata, encoded_path = records[0].split(b"\t", 1)
-        mode, object_type, object_id = metadata.decode("ascii").split()
-        if encoded_path.decode("utf-8") != relative or object_type != "blob":
-            raise ValueError(f"path is not a blob at the pinned java-tron commit: {path}")
-        content = submodule_git("cat-file", "blob", object_id, text=False).stdout
-        return mode, object_type, object_id, hashlib.sha256(content).hexdigest()
-    except (OSError, UnicodeError, ValueError, subprocess.CalledProcessError) as exc:
-        fail(errors, f"cannot resolve pinned java-tron subject blob {path!r}: {exc}")
-        return None
-
-
-def validate_java_subject(subject_tree, oracle_manifest, errors: list[str]) -> str | None:
-    revision = oracle_manifest.get("java_source_revision") if isinstance(oracle_manifest, dict) else None
-    gitlink = subject_tree.get("java-tron") if isinstance(subject_tree, dict) else None
-    try:
-        if not isinstance(revision, str) or not re.fullmatch(r"[0-9a-f]{40}", revision):
-            raise ValueError("oracle manifest java_source_revision is not a full object name")
-        if gitlink is None or gitlink[:3] != ("160000", "commit", revision):
-            raise ValueError("subject java-tron gitlink does not exactly match oracle manifest java_source_revision")
-        if Path(submodule_git("rev-parse", "--show-toplevel").stdout.strip()).resolve() != (ROOT / "java-tron").resolve():
-            raise ValueError("java-tron is not an initialized local submodule repository")
-        if submodule_git("rev-parse", "--is-shallow-repository").stdout.strip() != "false":
-            raise ValueError("java-tron local object database is shallow")
-        submodule_git("cat-file", "-e", f"{revision}^{{commit}}")
-        if submodule_git("rev-parse", "--verify", f"{revision}^{{commit}}").stdout.strip() != revision:
-            raise ValueError("java_source_revision does not resolve to the exact commit object")
-        if submodule_git("rev-parse", "--verify", "HEAD^{commit}").stdout.strip() != revision:
-            raise ValueError("java-tron checkout has drifted from the subject gitlink")
-        return revision
-    except (OSError, ValueError, subprocess.CalledProcessError) as exc:
-        fail(errors, f"cannot verify pinned java-tron subject object database: {exc}")
-        return None
-
-
-
-
-def committed_tree(revision: str, errors: list[str]) -> dict[str, tuple[str, str, str, str]] | None:
-    try:
-        raw = git("ls-tree", "-rz", "--full-tree", revision, text=False).stdout
-        tree = {}
-        for record in raw.split(b"\0"):
-            if not record:
-                continue
-            metadata, encoded_path = record.split(b"\t", 1)
-            mode, object_type, object_id = metadata.decode("ascii").split()
-            path = encoded_path.decode("utf-8")
-            if path in tree or path.startswith("/") or ".." in Path(path).parts:
-                raise ValueError(f"ambiguous committed path {path!r}")
-            content_sha256 = hashlib.sha256(git("cat-file", "blob", object_id, text=False).stdout).hexdigest() if object_type == "blob" else object_id
-            tree[path] = (mode, object_type, object_id, content_sha256)
-        return tree
-    except (OSError, UnicodeError, ValueError, subprocess.CalledProcessError) as exc:
-        fail(errors, f"cannot resolve committed tree at {revision}: {exc}")
-        return None
-
-
-def committed_closure(revision: str, errors: list[str]) -> dict[str, tuple[str, str, str, str]] | None:
-    tree = committed_tree(revision, errors)
-    if tree is None:
-        return None
-    return {path: entry for path, entry in tree.items() if not excluded_attestation_path(path)}
-
-
-def closure_digest(closure: dict[str, tuple[str, str, str, str]]) -> str:
-    canonical = b"".join(
-        f"{path}\0{mode}\0{object_type}\0{object_id}\0{sha256}\n".encode()
-        for path, (mode, object_type, object_id, sha256) in sorted(closure.items())
-    )
-    return hashlib.sha256(canonical).hexdigest()
-
-
-def validate_history_identity(subject: str, head: str | None, errors: list[str]) -> bool:
-    try:
-        if git("rev-parse", "--is-shallow-repository").stdout.strip() != "false":
-            raise ValueError("shallow history is not admissible")
-        graft_path = Path(git("rev-parse", "--git-path", "info/grafts").stdout.strip())
-        if not graft_path.is_absolute():
-            graft_path = ROOT / graft_path
-        if graft_path.exists() and graft_path.stat().st_size:
-            raise ValueError("git grafts are not admissible")
-        if git("replace", "-l").stdout.strip() or "GIT_REPLACE_REF_BASE" in os.environ:
-            raise ValueError("git replacement objects are not admissible")
-        git("cat-file", "-e", f"{subject}^{{commit}}")
-        if git("rev-parse", "--verify", f"{subject}^{{commit}}").stdout.strip() != subject:
-            raise ValueError("subject_revision does not name the exact commit object")
-        if head:
-            git("merge-base", "--is-ancestor", subject, head)
-        return True
-    except (OSError, ValueError, subprocess.CalledProcessError) as exc:
-        fail(errors, f"invalid subject revision/history: {exc}")
+def exact_fields(value: Any, fields: set[str], where: str, errors: list[str]) -> bool:
+    if not isinstance(value, dict):
+        errors.append(f"{where}: must be an object")
         return False
-
-
-def manifest_subject_revision(current_revision: str | None, errors: list[str]) -> tuple[str | None, dict[str, tuple[str, str, str, str]], dict[str, tuple[str, str, str, str]], str | None]:
-    manifests = {
-        "platform": load(ROOT / "docs/architecture/platform-manifest.v1.json"),
-        "oracle": load(ROOT / "docs/oracles/manifest.v1.json"),
-    }
-    subjects = {name: manifest.get("subject_revision") if isinstance(manifest, dict) else None for name, manifest in manifests.items()}
-    subject = authorized_subject_revision(errors)
-    if subject is None:
-        return None, {}, {}, None
-    if any(value != subject for value in subjects.values()):
-        fail(errors, f"platform and oracle manifests must exactly match immutable {AUTHORIZED_SUBJECT_REF} target {subject}; retagging is prohibited, publish a new authorization ref instead")
-        return None, {}, {}, None
-    if not validate_history_identity(subject, current_revision, errors):
-        return None, {}, {}, None
-    subject_tree = committed_tree(subject, errors)
-    subject_closure = {path: entry for path, entry in subject_tree.items() if not excluded_attestation_path(path)} if subject_tree is not None else None
-    head_closure = committed_closure(current_revision, errors) if current_revision else None
-    if subject_tree is None or subject_closure is None or head_closure is None:
-        return None, {}, {}, None
-    java_source_revision = validate_java_subject(subject_tree, manifests["oracle"], errors)
-    if subject_closure != head_closure:
-        changed = sorted(set(subject_closure) ^ set(head_closure) | {path for path in set(subject_closure) & set(head_closure) if subject_closure[path] != head_closure[path]})
-        fail(errors, f"governed input closure drifted after subject_revision: {changed}")
-    expected_digest = closure_digest(subject_closure)
-    for name, manifest in manifests.items():
-        policy = manifest.get("attestation") if isinstance(manifest, dict) else None
-        if not isinstance(policy, dict) or policy.get("closure_sha256") != expected_digest or policy.get("algorithm") != "git-ls-tree-v1" or policy.get("excluded_paths") != sorted(ATTESTATION_EXCLUSIONS) or policy.get("excluded_prefixes") != list(ATTESTATION_PREFIXES):
-            fail(errors, f"{name} manifest does not bind the authorized exact governed closure")
-    return subject, subject_closure, subject_tree, java_source_revision
-
-def reject_supersession_cycles(records, field: str, errors: list[str]):
-    for start in records:
-        seen, current = set(), start
-        while current in records and current not in seen:
-            seen.add(current)
-            value = records[current].get(field)
-            current = value if isinstance(value, str) else ""
-        if current in seen:
-            fail(errors, f"attestation supersession cycle includes {current}")
-            return
-
-
-def checklist_projection(errors: list[str]):
-    rows, pending = {}, None
-    for number, line in enumerate(CHECKLIST.read_text(encoding="utf-8").splitlines(), 1):
-        item = ITEM.match(line)
-        if item:
-            pending = (item.group(2), f"[{item.group(1)}]", number)
-            continue
-        dep = DEPS.match(line)
-        if dep and pending:
-            ident, status, item_line = pending
-            if ident in rows:
-                fail(errors, f"checklist:{item_line}: duplicate {ident}")
-            try:
-                dependencies = json.loads(dep.group(1))
-            except json.JSONDecodeError as exc:
-                fail(errors, f"checklist:{number}: invalid dependencies JSON: {exc}")
-                dependencies = []
-            rows[ident] = (status, dependencies)
-            pending = None
-    if pending:
-        fail(errors, f"checklist:{pending[2]}: missing dependencies[] for {pending[0]}")
-    return rows
-
-
-def graph_contract(tracker, projection, errors):
-    records = tracker.get("records")
-    if not isinstance(records, list):
-        fail(errors, "tracker records must be an array")
-        return {}, {}
-    by_id, edge_count = {}, 0
-    for index, record in enumerate(records):
-        ident = record.get("id")
-        if not isinstance(ident, str) or not re.fullmatch(ITEM_ID, ident):
-            fail(errors, f"records[{index}]: invalid id")
-            continue
-        if ident in by_id:
-            fail(errors, f"duplicate tracker record {ident}")
-        by_id[ident] = record
-        dependencies = record.get("dependencies")
-        if not isinstance(dependencies, list):
-            fail(errors, f"{ident}: dependencies must be an explicit array")
-            continue
-        edge_count += len(dependencies)
-        if len(dependencies) != len(set(dependencies)):
-            fail(errors, f"{ident}: duplicate dependency")
-        if ident in dependencies:
-            fail(errors, f"{ident}: self dependency")
-        if record.get("status") not in {"[ ]", "[-]", "[x]", "[D]"}:
-            fail(errors, f"{ident}: illegal status")
-        if record.get("readiness") not in {"ready", "blocked"}:
-            fail(errors, f"{ident}: illegal readiness")
-    unknown = duplicate = self_edges = 0
-    for ident, record in by_id.items():
-        dependencies = record.get("dependencies", [])
-        duplicate += len(dependencies) - len(set(dependencies))
-        self_edges += ident in dependencies
-        for dependency in dependencies:
-            if dependency not in by_id:
-                unknown += 1
-                fail(errors, f"{ident}: unknown dependency {dependency}")
-        projected = projection.get(ident)
-        if projected is None:
-            fail(errors, f"{ident}: missing checklist projection")
-        elif projected != (record.get("status"), dependencies):
-            fail(errors, f"{ident}: checklist status/dependencies mismatch")
-    for ident in projection.keys() - by_id.keys():
-        fail(errors, f"{ident}: checklist record missing from tracker")
-    state, cycles = {}, set()
-    def visit(ident):
-        if state.get(ident) == 1:
-            cycles.add(ident)
-            return
-        if state.get(ident) == 2:
-            return
-        state[ident] = 1
-        for dep in by_id[ident].get("dependencies", []):
-            if dep in by_id:
-                visit(dep)
-        state[ident] = 2
-    for ident in by_id:
-        visit(ident)
-    for ident in sorted(cycles):
-        fail(errors, f"cycle includes {ident}")
-    missing_children = 0
-    chunks = {}
-    for record in by_id.values():
-        chunks.setdefault(record.get("chunk"), []).append(record)
-    for chunk, rows in chunks.items():
-        gate = by_id.get(f"{chunk}.V")
-        children = {row["id"] for row in rows if row.get("kind") == "substantive"}
-        missing = children - set(gate.get("dependencies", []) if gate else [])
-        missing_children += len(missing)
-        if missing:
-            fail(errors, f"{chunk}.V: missing substantive child dependencies: {sorted(missing)}")
-    stats = {"records": len(by_id), "projection_records": len(projection), "edges": edge_count, "unknown_edges": unknown, "duplicate_edges": duplicate, "self_edges": self_edges, "cycle_records": len(cycles), "v_missing_children": missing_children, "roots": sorted(ident for ident, row in by_id.items() if not row.get("dependencies"))}
-    return by_id, stats
-
-
-def subject_artifact_ok(entry, label: str, subject_tree, java_source_revision: str | None, errors: list[str]) -> bool:
-    if not isinstance(entry, dict) or set(entry) != {"path", "mode", "sha256"}:
-        fail(errors, f"{label}: artifact must contain exactly path, mode, and sha256")
-        return False
-    path, mode, sha256 = entry.get("path"), entry.get("mode"), entry.get("sha256")
-    if not isinstance(path, str) or excluded_attestation_path(path):
-        fail(errors, f"{label}: unknown, excluded, or self-referential subject artifact {path!r}")
-        return False
-    entry_data = java_subject_entry(path, java_source_revision, errors) if path.startswith("java-tron/") else subject_tree.get(path)
-    if entry_data is None:
-        fail(errors, f"{label}: unknown subject artifact {path!r}")
-        return False
-    actual_mode, object_type, _object_id, actual_sha256 = entry_data
-    if object_type != "blob" or mode != actual_mode or sha256 != actual_sha256:
-        fail(errors, f"{label}: subject blob/mode digest mismatch for {path}")
+    actual = set(value)
+    if actual != fields:
+        errors.append(f"{where}: fields must be exactly {sorted(fields)} (found {sorted(actual)})")
         return False
     return True
 
 
-def subject_input_ok(entry, label: str, subject_tree, java_source_revision: str | None, errors: list[str]) -> bool:
-    if not isinstance(entry, dict) or set(entry) != {"path", "sha256"}:
-        fail(errors, f"{label}: input artifact must contain exactly path and sha256")
-        return False
-    path, sha256 = entry.get("path"), entry.get("sha256")
-    if not isinstance(path, str) or excluded_attestation_path(path):
-        fail(errors, f"{label}: unknown, excluded, or self-referential subject input {path!r}")
-        return False
-    entry_data = java_subject_entry(path, java_source_revision, errors) if path.startswith("java-tron/") else subject_tree.get(path)
-    if entry_data is None:
-        fail(errors, f"{label}: unknown subject input {path!r}")
-        return False
-    _mode, object_type, _object_id, actual_sha256 = entry_data
-    if object_type != "blob" or sha256 != actual_sha256:
-        fail(errors, f"{label}: subject blob digest mismatch for {path}")
-        return False
-    return True
+def text(value: Any) -> bool:
+    return isinstance(value, str) and bool(value.strip())
 
 
+def validate(data: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    if set(data) != {"schema_version", "chunks"}:
+        errors.append("tracker: fields must be exactly schema_version and chunks")
+    if data.get("schema_version") != 2:
+        errors.append("tracker: schema_version must be 2")
+    chunks = data.get("chunks")
+    if not isinstance(chunks, list):
+        return errors + ["tracker: chunks must be an array"]
+    expected_ids = [f"C{i:03d}" for i in range(32)]
+    if [chunk.get("id") if isinstance(chunk, dict) else None for chunk in chunks] != expected_ids:
+        errors.append("tracker: chunks must be exactly C000 through C031 in order")
+    seen_item_ids: set[str] = set()
+    non_done_seen = False
+    current_seen = False
+    for index, chunk in enumerate(chunks):
+        where = expected_ids[index] if index < len(expected_ids) else f"chunks[{index}]"
+        if not exact_fields(chunk, CHUNK_FIELDS, where, errors):
+            continue
+        cid = chunk["id"]
+        status = chunk["status"]
+        if status not in CHUNK_STATUSES:
+            errors.append(f"{cid}: invalid status {status!r}")
+        if not text(chunk["title"]):
+            errors.append(f"{cid}: title must be non-empty")
+        if chunk["owner"] is not None and not text(chunk["owner"]):
+            errors.append(f"{cid}: owner must be null or non-empty")
+        if chunk["updated"] is not None and not text(chunk["updated"]):
+            errors.append(f"{cid}: updated must be null or non-empty")
+        if status in {"active", "review", "blocked"}:
+            if not text(chunk["owner"]): errors.append(f"{cid}: {status} chunk requires owner")
+            if not text(chunk["resume"]): errors.append(f"{cid}: {status} chunk requires a concrete resume action")
+        elif chunk["resume"] is not None:
+            errors.append(f"{cid}: {status} chunk must have null resume")
+        if status == "done":
+            if non_done_seen: errors.append(f"{cid}: completed chunks must form a contiguous prefix")
+        else:
+            non_done_seen = True
+        if status in {"active", "review", "blocked"}:
+            if current_seen: errors.append(f"{cid}: only the first unfinished chunk may be current")
+            current_seen = True
+        if non_done_seen and status == "todo" and current_seen:
+            pass
+        elif non_done_seen and status == "todo" and any(isinstance(c, dict) and c.get("status") in {"active", "review", "blocked"} for c in chunks[index + 1:]):
+            errors.append(f"{cid}: a later chunk cannot be current")
+        items = chunk["items"]
+        if not isinstance(items, list) or not items:
+            errors.append(f"{cid}: items must be a non-empty array")
+            items = []
+        for pos, item in enumerate(items):
+            iw = f"{cid}.items[{pos}]"
+            if not exact_fields(item, ITEM_FIELDS, iw, errors): continue
+            iid = item["id"]
+            if not isinstance(iid, str) or not re.fullmatch(re.escape(cid) + r"\.\d{2}[A-Z]?", iid): errors.append(f"{iw}: invalid item id")
+            elif iid in seen_item_ids: errors.append(f"{iw}: duplicate item id {iid}")
+            else: seen_item_ids.add(iid)
+            if not text(item["description"]): errors.append(f"{iw}: description must be non-empty")
+            if item["status"] not in ITEM_STATUSES: errors.append(f"{iw}: invalid item status")
+            if item["note"] is not None and not text(item["note"]): errors.append(f"{iw}: note must be null or non-empty")
+            if status == "todo" and item["status"] != "todo": errors.append(f"{iw}: future chunk items must be todo")
+        gate = chunk["gate"]
+        if exact_fields(gate, GATE_FIELDS, f"{cid}.gate", errors):
+            if gate["id"] != f"{cid}.V": errors.append(f"{cid}.gate: id must be {cid}.V")
+            if not text(gate["description"]): errors.append(f"{cid}.gate: description must be non-empty")
+            if gate["status"] not in GATE_STATUSES: errors.append(f"{cid}.gate: invalid status")
+            commands = gate["commands"]
+            if not isinstance(commands, list): errors.append(f"{cid}.gate: commands must be an array"); commands = []
+            if gate["status"] == "unconfigured" and commands: errors.append(f"{cid}.gate: unconfigured gate must have no commands")
+            if gate["status"] != "unconfigured" and not commands: errors.append(f"{cid}.gate: configured gate requires commands")
+            if any(isinstance(i, dict) and i.get("status") == "doing" for i in items) and not commands: errors.append(f"{cid}.gate: commands must be frozen before work starts")
+            if status == "todo" and gate["status"] != "unconfigured": errors.append(f"{cid}.gate: future chunk gate must be unconfigured")
+            for pos, command in enumerate(commands):
+                cw = f"{cid}.gate.commands[{pos}]"
+                if not exact_fields(command, COMMAND_FIELDS, cw, errors): continue
+                if not text(command["name"]): errors.append(f"{cw}: name must be non-empty")
+                cwd = command["cwd"]
+                if not text(cwd): errors.append(f"{cw}: cwd must be non-empty")
+                else:
+                    resolved = (ROOT / cwd).resolve()
+                    if resolved != ROOT and ROOT not in resolved.parents: errors.append(f"{cw}: cwd escapes repository")
+                argv = command["argv"]
+                if not isinstance(argv, list) or not argv or any(not text(arg) or "\x00" in arg for arg in argv): errors.append(f"{cw}: argv must be a non-empty string array")
+                timeout = command["timeout_seconds"]
+                if not isinstance(timeout, int) or isinstance(timeout, bool) or not 1 <= timeout <= 3600: errors.append(f"{cw}: timeout_seconds must be 1..3600")
+            if gate["last_failure"] is not None and not text(gate["last_failure"]): errors.append(f"{cid}.gate: last_failure must be null or non-empty")
+        review = chunk["review"]
+        if exact_fields(review, REVIEW_FIELDS, f"{cid}.review", errors):
+            if review["state"] not in REVIEW_STATES: errors.append(f"{cid}.review: invalid state")
+            if not isinstance(review["round"], int) or isinstance(review["round"], bool) or review["round"] < 0: errors.append(f"{cid}.review: round must be a non-negative integer")
+            findings = review["findings"]
+            if not isinstance(findings, list): errors.append(f"{cid}.review: findings must be an array"); findings = []
+            finding_ids: set[str] = set()
+            for pos, finding in enumerate(findings):
+                fw = f"{cid}.review.findings[{pos}]"
+                if not exact_fields(finding, FINDING_FIELDS, fw, errors): continue
+                fid = finding["id"]
+                if not text(fid) or fid in finding_ids: errors.append(f"{fw}: finding id must be non-empty and unique")
+                else: finding_ids.add(fid)
+                if not text(finding["summary"]): errors.append(f"{fw}: summary must be non-empty")
+                if finding["status"] not in FINDING_STATUSES: errors.append(f"{fw}: invalid status")
+                if finding["resolution"] is not None and not text(finding["resolution"]): errors.append(f"{fw}: resolution must be null or non-empty")
+                if finding["status"] == "fixed" and not text(finding["resolution"]): errors.append(f"{fw}: fixed finding requires resolution")
+            if status == "todo" and (review["state"] != "not_started" or review["round"] != 0 or findings): errors.append(f"{cid}.review: future chunk review must be untouched")
+        blocker = chunk["blocker"]
+        if status == "blocked":
+            if exact_fields(blocker, BLOCKER_FIELDS, f"{cid}.blocker", errors):
+                if not text(blocker["reason"]) or not text(blocker["unblock_condition"]): errors.append(f"{cid}.blocker: fields must be non-empty")
+        elif blocker is not None:
+            errors.append(f"{cid}: blocker is allowed only for blocked chunks")
+        if status == "done":
+            if any(i.get("status") != "done" for i in items if isinstance(i, dict)): errors.append(f"{cid}: done chunk requires all items done")
+            if gate.get("status") != "passed": errors.append(f"{cid}: done chunk requires passed gate")
+            if review.get("state") != "approved": errors.append(f"{cid}: done chunk requires approved review")
+            if any(f.get("status") != "closed" for f in review.get("findings", []) if isinstance(f, dict)): errors.append(f"{cid}: done chunk requires closed findings")
+    return errors
 
-def artifact_ok(entry, label: str, subject_tree, descendant_tree, errors: list[str]) -> bool:
-    if not isinstance(entry, dict) or set(entry) != {"path", "sha256"}:
-        fail(errors, f"{label}: malformed descendant output artifact reference")
-        return False
-    path_value, sha256 = entry.get("path"), entry.get("sha256")
-    if not isinstance(path_value, str) or not path_value.startswith(ATTESTATION_PREFIXES) or not re.fullmatch(r"[0-9a-f]{64}", str(sha256)):
-        fail(errors, f"{label}: output must be a hash-bound path under an evidence directory")
-        return False
-    if path_value in subject_tree:
-        fail(errors, f"{label}: output artifact is present in the subject and is not descendant-only: {path_value}")
-        return False
-    entry_data = descendant_tree.get(path_value)
-    if entry_data is None or entry_data[1] != "blob" or entry_data[3] != sha256:
-        fail(errors, f"{label}: output is missing from the committed descendant or has a digest mismatch: {path_value}")
-        return False
-    return True
+
+def current_chunk(data: dict[str, Any]) -> dict[str, Any] | None:
+    return next((chunk for chunk in data["chunks"] if chunk["status"] != "done"), None)
 
 
-def evidence_contract(subject: str | None, subject_tree, java_source_revision: str | None, descendant_tree, tree_clean: bool, by_id, errors: list[str]):
-    records, valid = {}, set()
-    required = {"schema_version", "evidence_id", "owning_item", "subject_revision", "subject_artifacts", "command", "environment", "run_id", "cases", "started_at", "ended_at", "observed_exit_code", "observed_status", "expected", "observed", "stdout", "stderr", "artifacts", "invalidation_edges", "review_bindings", "retention_until", "supersedes"}
-    environment_fields = {"tree_state", "toolchains", "platform_row", "target", "host_os", "host_architecture", "execution", "working_directory", "cells", "backend", "features"}
-    for path in sorted((ROOT / "docs/governance/evidence").glob("*.json")):
-        before = len(errors)
+def print_status(data: dict[str, Any]) -> None:
+    for chunk in data["chunks"]:
+        gate = chunk["gate"]
+        marker = " *" if chunk is current_chunk(data) else ""
+        print(f"{chunk['id']} {chunk['status']:<7} gate={gate['status']}{marker} {chunk['title']}")
+
+
+def print_next(data: dict[str, Any]) -> None:
+    chunk = current_chunk(data)
+    if chunk is None:
+        print("All chunks are done.")
+        return
+    item = next((item for item in chunk["items"] if item["status"] != "done"), None)
+    print(f"chunk: {chunk['id']} {chunk['title']}")
+    if item: print(f"item: {item['id']} [{item['status']}] {item['description']}")
+    if chunk["resume"]: print(f"resume: {chunk['resume']}")
+    if chunk["blocker"]:
+        print(f"blocker: {chunk['blocker']['reason']}")
+        print(f"unblocks when: {chunk['blocker']['unblock_condition']}")
+    print(f"gate: python3 tools/tracker/validate.py --gate {chunk['id']}")
+    for command in chunk["gate"]["commands"]:
+        print(f"  ({command['cwd']}) {' '.join(command['argv'])}")
+
+
+def run_gate(data: dict[str, Any], chunk_id: str) -> int:
+    chunk = next((value for value in data["chunks"] if value["id"] == chunk_id), None)
+    if chunk is None:
+        print(f"unknown chunk: {chunk_id}", file=sys.stderr); return 2
+    commands = chunk["gate"]["commands"]
+    if not commands:
+        print(f"{chunk_id}: gate is unconfigured", file=sys.stderr); return 2
+    for index, command in enumerate(commands, 1):
+        print(f"[{index}/{len(commands)}] {command['name']}: ({command['cwd']}) {' '.join(command['argv'])}", flush=True)
         try:
-            ev = load(path)
-        except (OSError, json.JSONDecodeError) as exc:
-            fail(errors, f"{path.relative_to(ROOT)}: invalid JSON: {exc}")
-            continue
-        if not isinstance(ev, dict):
-            fail(errors, f"{path.relative_to(ROOT)}: evidence must be an object")
-            continue
-        ident = ev.get("evidence_id")
-        if not isinstance(ident, str) or not EV_ID.fullmatch(ident) or path.stem != ident:
-            fail(errors, f"{path.relative_to(ROOT)}: invalid evidence identity")
-            continue
-        records[ident] = ev
-        missing, unknown = required - ev.keys(), set(ev) - required
-        if ev.get("schema_version") != 1 or missing or unknown:
-            fail(errors, f"{ident}: schema fields invalid; missing={sorted(missing)} unknown={sorted(unknown)}")
-        owner = ev.get("owning_item")
-        if owner not in by_id:
-            fail(errors, f"{ident}: unknown owning item {owner}")
-        if subject and ev.get("subject_revision") != subject:
-            fail(errors, f"{ident}: subject revision is stale")
-        environment = ev.get("environment")
-        if not isinstance(environment, dict) or set(environment) != environment_fields:
-            fail(errors, f"{ident}: environment schema fields invalid")
-            environment = {}
-        if environment.get("tree_state") != "clean" or not tree_clean:
-            fail(errors, f"{ident}: attestation validation requires a clean worktree and index")
-        subject_artifacts = ev.get("subject_artifacts")
-        if not isinstance(subject_artifacts, list) or not subject_artifacts:
-            fail(errors, f"{ident}: subject_artifacts must be non-empty")
-            subject_artifacts = []
-        subject_paths = [entry.get("path") for entry in subject_artifacts if isinstance(entry, dict)]
-        for index, artifact in enumerate(subject_artifacts):
-            subject_artifact_ok(artifact, f"{ident}.subject_artifacts[{index}]", subject_tree, java_source_revision, errors)
-        if len(subject_paths) != len(subject_artifacts) or len(subject_paths) != len(set(subject_paths)):
-            fail(errors, f"{ident}: malformed or duplicate subject artifact path")
-        command = ev.get("command")
-        if not isinstance(command, list) or not command or not all(isinstance(arg, str) and arg for arg in command):
-            fail(errors, f"{ident}: command must be a non-empty string array")
-        if not isinstance(environment.get("toolchains"), dict) or not environment.get("toolchains"):
-            fail(errors, f"{ident}: invalid toolchain binding")
-        for field in ("features", "cells"):
-            value = environment.get(field)
-            if not isinstance(value, list) or len(value) != len(set(value)) or not all(isinstance(item, str) for item in value):
-                fail(errors, f"{ident}: invalid {field} binding")
-        if owner == "C000.14" and not environment.get("cells"):
-            fail(errors, f"{ident}: platform evidence must bind cells")
-        if environment.get("execution") != "native" or not all(isinstance(environment.get(field), str) and environment[field] for field in ("target", "host_os", "host_architecture", "working_directory", "platform_row", "backend")):
-            fail(errors, f"{ident}: invalid target/native environment binding")
-        bindings = ev.get("review_bindings")
-        if not isinstance(bindings, list) or len(bindings) != len(set(bindings)) or not all(isinstance(value, str) and RV_ID.fullmatch(value) for value in bindings):
-            fail(errors, f"{ident}: invalid review bindings")
-        supersedes = ev.get("supersedes")
-        if supersedes is not None and (not isinstance(supersedes, str) or not EV_ID.fullmatch(supersedes) or supersedes == ident):
-            fail(errors, f"{ident}: invalid supersedes edge")
-        try:
-            started = dt.datetime.fromisoformat(ev["started_at"].replace("Z", "+00:00"))
-            ended = dt.datetime.fromisoformat(ev["ended_at"].replace("Z", "+00:00"))
-            if ended < started:
-                fail(errors, f"{ident}: evidence ends before it starts")
-            if dt.date.fromisoformat(ev["retention_until"]) < TODAY:
-                fail(errors, f"{ident}: retention expired")
-        except (KeyError, AttributeError, TypeError, ValueError):
-            fail(errors, f"{ident}: invalid evidence timestamps/retention")
-        for name in ("stdout", "stderr"):
-            artifact_ok(ev.get(name), f"{ident}.{name}", subject_tree, descendant_tree, errors)
-        artifacts = ev.get("artifacts")
-        if not isinstance(artifacts, list):
-            fail(errors, f"{ident}: artifacts must be an array")
-            artifacts = []
-        for index, artifact in enumerate(artifacts):
-            artifact_ok(artifact, f"{ident}.artifacts[{index}]", subject_tree, descendant_tree, errors)
-        output_entries = [ev.get("stdout"), ev.get("stderr"), *artifacts]
-        output_paths = [entry.get("path") for entry in output_entries if isinstance(entry, dict)]
-        if len(output_paths) != len(output_entries) or len(output_paths) != len(set(output_paths)):
-            fail(errors, f"{ident}: malformed or duplicate descendant output artifact path")
-        edges = ev.get("invalidation_edges")
-        if not isinstance(edges, list) or not edges:
-            fail(errors, f"{ident}: invalidation_edges must be non-empty")
-            edges = []
-        for index, edge in enumerate(edges):
-            if not isinstance(edge, dict) or set(edge) != {"kind", "path", "mode", "sha256"}:
-                fail(errors, f"{ident}.invalidation_edges[{index}]: schema invalid")
-            else:
-                subject_artifact_ok({key: edge[key] for key in ("path", "mode", "sha256")}, f"{ident}.invalidation_edges[{index}]", subject_tree, java_source_revision, errors)
-        cases = ev.get("cases")
-        if not isinstance(cases, list) or not cases:
-            fail(errors, f"{ident}: no cases")
-            cases = []
-        case_ids = []
-        for index, case in enumerate(cases):
-            if not isinstance(case, dict) or set(case) != {"id", "outcome", "expected", "observed", "skip_disposition"}:
-                fail(errors, f"{ident}.cases[{index}]: schema invalid")
-                continue
-            case_ids.append(case.get("id"))
-            if case.get("outcome") == "skip" and not isinstance(case.get("skip_disposition"), dict):
-                fail(errors, f"{ident}:{case.get('id')}: ungoverned skip")
-            if case.get("outcome") != "skip" and case.get("skip_disposition") is not None:
-                fail(errors, f"{ident}:{case.get('id')}: unexpected skip disposition")
-        if len(case_ids) != len(set(case_ids)):
-            fail(errors, f"{ident}: duplicate case id")
-        if ev.get("observed_status") not in {"pass", "fail"} or not isinstance(ev.get("observed_exit_code"), int):
-            fail(errors, f"{ident}: invalid observed result")
-        if ev.get("observed_status") == "pass" and (ev.get("observed_exit_code") != 0 or any(case.get("outcome") != "pass" for case in cases)):
-            fail(errors, f"{ident}: pass status contradicts exit/case outcome")
-        if len(errors) == before:
-            valid.add(ident)
-    reject_supersession_cycles(records, "supersedes", errors)
-    superseded = {ev.get("supersedes") for ev in records.values() if isinstance(ev, dict) and ev.get("supersedes")}
-    valid -= superseded
-    return records, valid
-
-def review_contract(subject: str | None, subject_tree, java_source_revision: str | None, tree_clean: bool, by_id, evidence, valid_evidence, errors: list[str]):
-    records, valid = {}, set()
-    required_fields = {"schema_version", "review_id", "owning_gate", "review_class", "scope_rows", "seam_rows", "subject_revision", "subject_artifacts", "authors", "owners", "reviewers", "findings", "reruns", "closure", "retention_until", "invalidation_triggers", "supersedes"}
-    seams_document = load(ROOT / "docs/architecture/cross-domain-seams.v1.json")
-    seam_rows = seams_document.get("rows", []) if isinstance(seams_document, dict) else []
-    seams_by_class = {
-        review_class: {row.get("id") for row in seam_rows if isinstance(row, dict) and review_class in row.get("review_classes", [])}
-        for review_class in REVIEW_CLASSES
-    }
-    c000_rows = {ident for ident in by_id if ident.startswith("C000.")}
-    adoption = load(ROOT / "docs/governance/adoption-inventory.v1.json")
-    adoption_consumers = {entry.get("consuming_item") for entry in adoption.get("instances", []) if isinstance(entry, dict)} if isinstance(adoption, dict) else set()
-    scopes_by_class = {
-        "architecture": c000_rows,
-        "security": {row for row in adoption_consumers if row in by_id} | {"C000.V"},
-        "license": {row for row in adoption_consumers if row in by_id} | {"C000.12", "C000.V"},
-    }
-    governance_schemas = {path.relative_to(ROOT).as_posix() for path in (ROOT / "docs/governance").glob("*schema.json") if path.is_file()}
-    adoption_artifacts = discovered_adoption_sources() | {"docs/governance/adoption-inventory.v1.json", "docs/governance/dependency-decisions.v1.json"}
-    artifacts_by_class = {
-        "architecture": governance_schemas | {"docs/architecture/cross-domain-seams.v1.json", "docs/architecture/platform-manifest.v1.json", "docs/architecture/toolchains-and-platforms.md"},
-        "security": adoption_artifacts,
-        "license": adoption_artifacts | {"docs/architecture/DR-004-custom-actuator-extensions.md", "java-tron/example/actuator-example/build.gradle", "java-tron/example/actuator-example/src/main/java/org/tron/core/actuator/ExampleActuator.java"},
-    }
-    for path in sorted((ROOT / "docs/governance/reviews").glob("*.json")):
-        before = len(errors)
-        try:
-            review = load(path)
-        except (OSError, json.JSONDecodeError) as exc:
-            fail(errors, f"{path.relative_to(ROOT)}: invalid JSON: {exc}")
-            continue
-        if not isinstance(review, dict):
-            fail(errors, f"{path.relative_to(ROOT)}: review must be an object")
-            continue
-        ident = review.get("review_id")
-        if not isinstance(ident, str) or not RV_ID.fullmatch(ident) or path.stem != ident:
-            fail(errors, f"{path.relative_to(ROOT)}: invalid review identity")
-            continue
-        if ident in records:
-            fail(errors, f"duplicate review {ident}")
-        records[ident] = review
-        if review.get("schema_version") != 1 or set(review) != required_fields:
-            fail(errors, f"{ident}: schema version/fields invalid")
-        gate, review_class = review.get("owning_gate"), review.get("review_class")
-        if gate not in by_id or not isinstance(gate, str) or not gate.endswith(".V"):
-            fail(errors, f"{ident}: invalid owning gate")
-        if review_class not in REVIEW_CLASSES:
-            fail(errors, f"{ident}: invalid review class")
-            continue
-        for field in ("scope_rows", "seam_rows", "reruns", "invalidation_triggers"):
-            value = review.get(field)
-            strings = isinstance(value, list) and all(isinstance(entry, str) and entry for entry in value)
-            if not strings or (field in {"scope_rows", "invalidation_triggers"} and not value) or (strings and len(value) != len(set(value))):
-                fail(errors, f"{ident}: invalid {field}")
-        if set(review.get("scope_rows", [])) != scopes_by_class[review_class]:
-            fail(errors, f"{ident}: incomplete {review_class} scope rows")
-        if set(review.get("seam_rows", [])) != seams_by_class[review_class]:
-            fail(errors, f"{ident}: incomplete {review_class} seam rows")
-        if subject and review.get("subject_revision") != subject:
-            fail(errors, f"{ident}: subject revision is stale or malformed")
-        artifacts = review.get("subject_artifacts")
-        artifact_paths = {entry.get("path") for entry in artifacts if isinstance(entry, dict)} if isinstance(artifacts, list) else set()
-        if artifact_paths != artifacts_by_class[review_class] or len(artifact_paths) != len(artifacts or []):
-            fail(errors, f"{ident}: subject artifacts are not the exact required {review_class} set")
-        for index, artifact in enumerate(artifacts if isinstance(artifacts, list) else []):
-            subject_artifact_ok(artifact, f"{ident}.subject_artifacts[{index}]", subject_tree, java_source_revision, errors)
-        author_ids, owner_ids, reviewer_ids, closure_ids = set(), set(), set(), set()
-        for field, destination in (("authors", author_ids), ("owners", owner_ids)):
-            entries = review.get(field)
-            if not isinstance(entries, list) or not entries:
-                fail(errors, f"{ident}: {field} must identify authenticated agents")
-                continue
-            for index, entry in enumerate(entries):
-                expected = {"agent_id", "artifact_paths"} if field == "authors" else {"agent_id", "scope_rows", "seam_rows"}
-                if not isinstance(entry, dict) or set(entry) != expected or not AUTHENTICATED_AGENT_ID.fullmatch(str(entry.get("agent_id", ""))):
-                    fail(errors, f"{ident}.{field}[{index}]: malformed authenticated attribution")
-                    continue
-                destination.add(entry["agent_id"])
-        attributed_artifacts = {path for entry in review.get("authors", []) if isinstance(entry, dict) for path in entry.get("artifact_paths", []) if isinstance(path, str)}
-        owned_scope = {row for entry in review.get("owners", []) if isinstance(entry, dict) for row in entry.get("scope_rows", []) if isinstance(row, str)}
-        owned_seams = {row for entry in review.get("owners", []) if isinstance(entry, dict) for row in entry.get("seam_rows", []) if isinstance(row, str)}
-        if attributed_artifacts != artifact_paths or owned_scope != set(review.get("scope_rows", [])) or owned_seams != set(review.get("seam_rows", [])):
-            fail(errors, f"{ident}: authorship/ownership does not cover the exact reviewed artifacts, scope rows, and seams")
-        reviewers = review.get("reviewers")
-        if not isinstance(reviewers, list) or not reviewers:
-            fail(errors, f"{ident}: reviewers must be a non-empty array")
-            reviewers = []
-        for index, reviewer in enumerate(reviewers):
-            expected = {"agent_id", "identity", "role", "independent_of_authors", "conflicts", "recusals"}
-            if not isinstance(reviewer, dict) or set(reviewer) != expected or not AUTHENTICATED_AGENT_ID.fullmatch(str(reviewer.get("agent_id", ""))) or reviewer.get("independent_of_authors") is not True or reviewer.get("role") not in {"primary", "secondary", "security", "license", "closure"} or not isinstance(reviewer.get("conflicts"), list) or not isinstance(reviewer.get("recusals"), list):
-                fail(errors, f"{ident}.reviewers[{index}]: schema/authentication/independence invalid")
-                continue
-            reviewer_ids.add(reviewer["agent_id"])
-            if reviewer.get("role") == "closure":
-                closure_ids.add(reviewer["agent_id"])
-        if len(reviewer_ids) != len(reviewers) or reviewer_ids & (author_ids | owner_ids):
-            fail(errors, f"{ident}: reviewer/author/owner separation violated")
-        rerun_values = review.get("reruns", [])
-        reruns = set(rerun_values) if isinstance(rerun_values, list) else set()
-        for rerun in reruns:
-            if rerun not in evidence or rerun not in valid_evidence or evidence[rerun].get("observed_status") != "pass":
-                fail(errors, f"{ident}: rerun evidence is not current and passing: {rerun}")
-        findings = review.get("findings")
-        rerun_owners = {evidence[rerun].get("owning_item") for rerun in reruns if rerun in evidence and rerun in valid_evidence}
-        if not isinstance(findings, list):
-            fail(errors, f"{ident}: findings must be an array")
-            findings = []
-        finding_ids = []
-        for index, finding in enumerate(findings):
-            fields = {"id", "severity", "disposition", "fix_revision", "required_rerun_ids"}
-            if not isinstance(finding, dict) or set(finding) != fields:
-                fail(errors, f"{ident}.findings[{index}]: schema invalid")
-                continue
-            finding_ids.append(finding.get("id"))
-            required_reruns = set(finding.get("required_rerun_ids", [])) if isinstance(finding.get("required_rerun_ids"), list) else set()
-            if not required_reruns.issubset(reruns):
-                fail(errors, f"{ident}:{finding.get('id')}: required rerun is not review-bound")
-        if len(finding_ids) != len(set(finding_ids)):
-            fail(errors, f"{ident}: duplicate finding id")
-        closure = review.get("closure")
-        if not isinstance(closure, dict) or set(closure) != {"status", "reviewer_agent_id", "date", "approval"} or closure.get("status") not in {"pending", "approved", "rejected"}:
-            fail(errors, f"{ident}: closure schema invalid")
-            closure = {}
-        if closure.get("status") == "approved":
-            closure_agent = closure.get("reviewer_agent_id")
-            if not tree_clean or closure.get("approval") is not True or closure_agent not in closure_ids or closure_agent in (author_ids | owner_ids) or len(closure_ids) != 1:
-                fail(errors, f"{ident}: approval lacks a separated authenticated closure reviewer on a clean descendant")
-            if not reruns or rerun_owners != set(review.get("scope_rows", [])) or any(evidence[rerun].get("subject_revision") != subject for rerun in reruns if rerun in evidence):
-                fail(errors, f"{ident}: approval lacks one current subject-bound rerun for every required scope row")
-            if any(f.get("disposition") != "fixed" or not isinstance(f.get("fix_revision"), str) or not validate_history_identity(f["fix_revision"], subject, errors) or not f.get("required_rerun_ids") for f in findings):
-                fail(errors, f"{ident}: approved review has unresolved or invalid findings")
-        elif closure.get("approval") is not False or closure.get("reviewer_agent_id") is not None or closure.get("date") is not None:
-            fail(errors, f"{ident}: non-approved closure must remain unclaimed")
-        try:
-            if dt.date.fromisoformat(review["retention_until"]) < TODAY:
-                fail(errors, f"{ident}: retention expired")
-        except (KeyError, TypeError, ValueError):
-            fail(errors, f"{ident}: invalid retention date")
-        supersedes = review.get("supersedes")
-        if supersedes is not None and (not isinstance(supersedes, str) or not RV_ID.fullmatch(supersedes) or supersedes == ident):
-            fail(errors, f"{ident}: invalid supersedes edge")
-        if len(errors) == before:
-            valid.add(ident)
-    reject_supersession_cycles(records, "supersedes", errors)
-    superseded = {review.get("supersedes") for review in records.values() if isinstance(review, dict) and review.get("supersedes")}
-    valid -= superseded
-    return records, valid
-
-def platform_contract(subject_revision, evidence, valid_evidence, reviews, valid_reviews, errors: list[str]) -> bool:
-    manifest = load(ROOT / "docs/architecture/platform-manifest.v1.json")
-    expected_initial = {"P-LINUX-X64"}
-    expected_reserved = {"P-LINUX-ARM64", "P-MACOS-X64", "P-MACOS-ARM64"}
-    complete = True
-    if not isinstance(manifest, dict):
-        fail(errors, "platform manifest must be an object")
-        return False
-    rows = manifest.get("rows")
-    reserved_rows = manifest.get("planned_platform_enablement")
-    if not isinstance(rows, list):
-        fail(errors, "platform manifest rows must be an array")
-        rows, complete = [], False
-    if not isinstance(reserved_rows, list):
-        fail(errors, "platform planned enablement must be an array")
-        reserved_rows, complete = [], False
-    ids = [row.get("id") for row in rows if isinstance(row, dict)]
-    reserved_ids = [row.get("id") for row in reserved_rows if isinstance(row, dict)]
-    initial_ids = {row.get("id") for row in rows if isinstance(row, dict) and row.get("support") == "initial"}
-    cell_contract = manifest.get("cell_contract")
-    required_values = cell_contract.get("required") if isinstance(cell_contract, dict) else None
-    required = set(required_values) if isinstance(required_values, list) and all(isinstance(value, str) for value in required_values) else set()
-    if manifest.get("schema_version") != 1 or manifest.get("subject_revision") != subject_revision:
-        fail(errors, "platform manifest schema/subject revision is invalid")
-    if initial_ids != expected_initial or set(ids) != expected_initial or len(ids) != len(expected_initial):
-        fail(errors, "platform manifest must contain the initial Linux x86_64 policy row exactly once")
-    if set(reserved_ids) != expected_reserved or len(reserved_ids) != len(expected_reserved) or any(not isinstance(row, dict) or row.get("support") != "reserved_later_enablement" or row.get("c000_blocker") is not False for row in reserved_rows):
-        fail(errors, "platform manifest must contain each non-blocking reserved later-enablement row exactly once")
-    if required != {"compile", "differential", "unit", "native_resource", "ffi", "packaging", "smoke"}:
-        fail(errors, "platform manifest cell contract is incomplete")
-    feature_sets = manifest.get("feature_sets")
-    if not isinstance(feature_sets, list):
-        fail(errors, "platform feature_sets must be an array")
-        feature_sets, complete = [], False
-    features_by_id = {entry.get("id"): entry.get("features") for entry in feature_sets if isinstance(entry, dict)}
-    if features_by_id.get("F-PRODUCTION-DEFAULT") != []:
-        fail(errors, "F-PRODUCTION-DEFAULT must match the Cargo workspace's empty declared feature set")
-    backend_sets = manifest.get("backend_sets")
-    if not isinstance(backend_sets, list):
-        fail(errors, "platform backend_sets must be an array")
-        backend_sets, complete = [], False
-    backends = {entry.get("id") for entry in backend_sets if isinstance(entry, dict)}
-    passing_count = 0
-    reviewed_not_applicable_count = 0
-    runner_value = manifest.get("runner")
-    runner = ROOT / runner_value if isinstance(runner_value, str) else None
-    if runner is None or not runner.is_file() or not runner.stat().st_mode & 0o111:
-        fail(errors, "platform runner is missing or not executable")
-        complete = False
-    for row in rows:
-        if not isinstance(row, dict):
-            fail(errors, "platform manifest row must be an object")
-            complete = False
-            continue
-        row_id = row.get("id")
-        cells = row.get("cells", {})
-        if not isinstance(cells, dict):
-            fail(errors, f"{row_id}: cells must be an object")
-            complete = False
-            continue
-        row_features = features_by_id.get(row.get("feature_set"))
-        if row.get("support") != "initial" or row.get("execution") != "native" or row.get("backend") not in backends or row_features is None:
-            fail(errors, f"{row_id}: invalid initial/native/backend/feature binding")
-            complete = False
-        if set(cells) != required:
-            fail(errors, f"{row_id}: incomplete cell matrix")
-            complete = False
-        for cell_name, cell in cells.items():
-            label = f"{row_id}.{cell_name}"
-            if not isinstance(cell, dict):
-                fail(errors, f"{label}: cell must be an object")
-                complete = False
-                continue
-            disposition = cell.get("disposition")
-            refs = cell.get("evidence")
-            refs_valid = isinstance(refs, list) and all(isinstance(ref, str) for ref in refs)
-            if disposition not in {"runnable", "deferred", "unavailable", "not_applicable"} or not refs_valid or (refs_valid and len(refs) != len(set(refs))):
-                fail(errors, f"{label}: invalid disposition/evidence list")
-                complete = False
-                continue
-            argv = cell.get("argv")
-            if disposition == "runnable":
-                cwd = cell.get("cwd")
-                executable = argv[0] if isinstance(argv, list) and argv else None
-                if not executable or not all(isinstance(arg, str) and arg for arg in argv) or not isinstance(cwd, str) or not (ROOT / cwd).is_dir() or ("/" in executable and not (ROOT / executable).is_file()) or ("/" not in executable and shutil.which(executable) is None):
-                    fail(errors, f"{label}: runnable command/cwd does not exist")
-                    complete = False
-            elif not isinstance(cell.get("reason"), str) or not cell.get("reason"):
-                fail(errors, f"{label}: governed disposition lacks reason")
-                complete = False
-            else:
-                availability = row.get("availability")
-                row_unblock = availability.get("unblock_condition") if isinstance(availability, dict) else None
-                if disposition != "not_applicable" and not (cell.get("unblock_condition") or row_unblock):
-                    fail(errors, f"{label}: blocking disposition lacks unblock condition")
-                    complete = False
-            passing = False
-            if disposition == "runnable":
-                for ref in refs:
-                    if not EV_ID.fullmatch(ref):
-                        fail(errors, f"{label}: invalid evidence id {ref!r}")
-                        continue
-                    ev = evidence.get(ref)
-                    if not isinstance(ev, dict):
-                        fail(errors, f"{label}: unknown evidence {ref}")
-                        continue
-                    environment = ev.get("environment")
-                    if not isinstance(environment, dict):
-                        environment = {}
-                    environment_cells = environment.get("cells") if isinstance(environment.get("cells"), list) else []
-                    executable = argv[0] if isinstance(argv, list) and argv else None
-                    required_tools = {"cargo", "rustc"} if executable == "cargo" else {"python"}
-                    expected_cwd = cell.get("cwd", ".")
-                    toolchains = environment.get("toolchains")
-                    bound = ref in valid_evidence and ev.get("owning_item") == "C000.14" and ev.get("observed_status") == "pass" and ev.get("command") == argv and environment.get("platform_row") == row_id and environment.get("target") == row.get("target") and environment.get("host_os") == row.get("os") and environment.get("host_architecture") == row.get("architecture") and environment.get("execution") == "native" and environment.get("working_directory") == expected_cwd and environment.get("backend") == row.get("backend") and environment.get("features") == row_features and cell_name in environment_cells and isinstance(toolchains, dict) and required_tools.issubset(toolchains)
-                    if not bound:
-                        fail(errors, f"{label}: evidence {ref} lacks full command/target/native/toolchain/backend/feature/cell binding")
-                    passing |= bound
-            if disposition == "not_applicable":
-                review_refs = cell.get("review_bindings")
-                refs_well_formed = isinstance(review_refs, list) and bool(review_refs) and all(isinstance(ref, str) and RV_ID.fullmatch(ref) for ref in review_refs)
-                reviewed = refs_well_formed and len(review_refs) == len(set(review_refs))
-                for ref in review_refs if refs_well_formed else []:
-                    review = reviews.get(ref)
-                    closure = review.get("closure") if isinstance(review, dict) else None
-                    reviewed &= ref in valid_reviews and isinstance(closure, dict) and review.get("owning_gate") == "C000.V" and closure.get("status") == "approved" and closure.get("approval") is True
-                reviewed &= not refs
-                if not reviewed or not all(isinstance(cell.get(field), str) and cell[field] for field in ("review_scope", "reopen_condition")):
-                    fail(errors, f"{label}: not_applicable disposition lacks approved bound review/reopen contract")
-                passing = reviewed
-                if passing:
-                    reviewed_not_applicable_count += 1
-            elif disposition == "runnable" and passing:
-                passing_count += 1
-            if disposition not in {"runnable", "not_applicable"} or not passing:
-                complete = False
-    computed = {"initial_supported_rows": len(expected_initial), "manifest_rows": len(rows), "reserved_later_rows": len(reserved_rows), "missing_initial_rows": len(expected_initial - initial_ids), "duplicates": len(ids) - len(set(ids)), "native_cells_required": len(expected_initial) * len(required), "native_cells_passing": passing_count, "reviewed_not_applicable_cells": reviewed_not_applicable_count, "result": "complete" if complete else "incomplete"}
-    if manifest.get("coverage") != computed:
-        fail(errors, f"platform coverage is stale; computed {computed}")
-    return complete
-
-def adoption_contract(by_id, subject_tree, java_source_revision: str | None, reviews, valid_reviews, errors: list[str]):
-    decisions = load(ROOT / "docs/governance/dependency-decisions.v1.json")
-    decision_rows = decisions.get("decisions", []) if isinstance(decisions, dict) else []
-    decision_ids = {entry.get("id") for entry in decision_rows if isinstance(entry, dict) and re.fullmatch(r"DD-[0-9]{3}", str(entry.get("id", "")))}
-    if not isinstance(decision_rows, list) or len(decision_ids) != len(decision_rows):
-        fail(errors, "dependency decisions contain malformed or duplicate IDs")
-    adoption = load(ROOT / "docs/governance/adoption-inventory.v1.json")
-    sources = adoption.get("generated_from", []) if isinstance(adoption, dict) else []
-    if not isinstance(sources, list):
-        fail(errors, "adoption inventory: generated_from must be an array")
-        sources = []
-    discovered = discovered_adoption_sources()
-    forbidden_discovered = sorted(path for path in discovered if is_forbidden_adoption_source(path))
-    if forbidden_discovered:
-        fail(errors, f"descendant attestation files entered adoption discovery: {forbidden_discovered}")
-    listed_sources = {source.get("path") for source in sources if isinstance(source, dict)}
-    if listed_sources != discovered or len(listed_sources) != len(sources):
-        fail(errors, f"adoption inventory source discovery mismatch; missing={sorted(discovered - listed_sources)} extra={sorted(listed_sources - discovered)}")
-    generation = adoption.get("generation_contract") if isinstance(adoption, dict) else None
-    if not isinstance(generation, dict) or generation.get("discovery_roots") != list(ADOPTION_DISCOVERY_PATTERNS):
-        fail(errors, "adoption inventory discovery roots are stale or incomplete")
-    for index, source in enumerate(sources):
-        subject_input_ok(source, f"dependency inventory input[{index}]", subject_tree, java_source_revision, errors)
-    instances = adoption.get("instances", []) if isinstance(adoption, dict) else []
-    if not isinstance(instances, list):
-        fail(errors, "adoption inventory: instances must be an array")
-        instances = []
-    forbidden_sources = sorted(path for path in listed_sources if is_forbidden_adoption_source(path))
-    forbidden_instances = sorted({entry.get("source") for entry in instances if isinstance(entry, dict) and is_forbidden_adoption_source(entry.get("source"))}) if isinstance(instances, list) else []
-    forbidden_decisions = sorted({path for row in decision_rows if isinstance(row, dict) for path in row.get("exact_inputs", []) if is_forbidden_adoption_source(path)})
-    if forbidden_sources or forbidden_instances or forbidden_decisions:
-        fail(errors, f"descendant attestation files cannot be adoption inputs; generated_from={forbidden_sources} instances={forbidden_instances} decisions={forbidden_decisions}")
-
-    expected = set()
-    for source in discovered:
-        if source == "docs/architecture/toolchains-and-platforms.md":
-            expected.add((source, "C000.02", "parameter", source))
-        elif source == "docs/architecture/DR-004-custom-actuator-extensions.md":
-            expected.add((source, "C000.12", "parameter", source))
-        elif source.startswith("docs/governance/"):
-            consumer = {"adoption-inventory-v1.schema.json": "C000.15", "dependency-decision-v1.schema.json": "C000.11", "tracker-v1.schema.json": "C000.10"}.get(Path(source).name, "C000.13")
-            expected.add((source, consumer, "schema_source", source))
-        elif source.startswith("docs/oracles/fixtures/"):
-            expected.add((source, "C000.05", "fixture_source", source))
-        elif source.endswith("production-ownership.v1.json"):
-            expected.add((source, "C000.08", "parameter", source))
-        elif source.endswith("java-test-ownership.v1.json"):
-            expected.add((source, "C000.09", "parameter", source))
-        elif source.endswith("normalization-policy-v1.json"):
-            expected.add((source, "C000.04", "parameter", source))
-        elif source.endswith("runner-protocol.md"):
-            expected.add((source, "C000.05", "parameter", source))
-        elif source.startswith("docs/oracles/schemas/"):
-            name = Path(source).name
-            if name == "ownership-ledger-v1.schema.json":
-                expected |= {(source, "C000.08", "schema_source", source), (source, "C000.09", "schema_source", source)}
-            else:
-                consumer = "C000.07" if name in {"license-provenance-v1.schema.json", "security-finding-v1.schema.json", "threat-model-v1.schema.json"} else "C000.05" if name == "mismatch-report-v1.schema.json" else "C000.04"
-                expected.add((source, consumer, "schema_source", source))
-        elif source.startswith("java-tron/example/actuator-example/"):
-            expected.add((source, "C000.12", "provenance_source", source))
-        elif source == "java-tron/build.gradle":
-            expected.add((source, "C000.02", "parameter", source))
-        elif source.startswith("java-tron/gradle/wrapper/") or source == "java-tron/gradlew":
-            expected.add((source, "C000.02", "tool", source))
-        elif source == "rust-tron/rust-toolchain.toml":
-            expected.add((source, "C000.02", "parameter", source))
-        elif source == "rust-tron/Cargo.lock" or source.endswith("Cargo.toml"):
-            expected.add((source, "C000.01", "parameter", source))
-        elif source == "tools/platform/run":
-            expected.add((source, "C000.14", "tool", source))
-        elif source.startswith("tools/platform/"):
-            consumer = "C000.V" if source.endswith("c000_artifacts.py") else "C000.14"
-            expected.add((source, consumer, "tool", source))
-        elif source.endswith("generate-ledgers.py"):
-            expected |= {(source, "C000.08", "tool", source), (source, "C000.09", "tool", source)}
-        elif source.endswith("runner.py"):
-            expected.add((source, "C000.05", "tool", source))
-        elif source.endswith("java-runner") or source.endswith("rust-runner"):
-            expected.add((source, "C000.05", "tool", source))
-        elif source == "tools/tracker/validate.py":
-            expected.add((source, "C000.10", "tool", source))
-
-    runtime_expected = {
-        ("tools/platform/c000_artifacts.py", "C000.V", "runtime", "Python 3 command runtime"),
-        *((source, "C000.14", "runtime", "Python 3 command runtime") for source in discovered if source.startswith("tools/platform/c000_") and not source.endswith("c000_artifacts.py")),
-        ("tools/reference-runner/runner.py", "C000.05", "runtime", "Python 3 command runtime"),
-        ("tools/reference-runner/generate-ledgers.py", "C000.08", "runtime", "Python 3 command runtime"),
-        ("tools/reference-runner/generate-ledgers.py", "C000.09", "runtime", "Python 3 command runtime"),
-        ("tools/tracker/validate.py", "C000.10", "runtime", "Python 3 command runtime"),
-        ("tools/reference-runner/java-runner", "C000.05", "runtime", "POSIX /bin/sh runtime"),
-        ("tools/reference-runner/rust-runner", "C000.05", "runtime", "POSIX /bin/sh runtime"),
-        *(("rust-tron/rust-toolchain.toml", "C000.02", "tool", name) for name in ("rustc", "Cargo", "rustup", "clippy", "rustfmt", "rust-docs")),
-    }
-    expected |= runtime_expected
-    expected_counts = Counter(expected)
-    actual_counts = Counter((entry.get("source"), entry.get("consuming_item"), entry.get("kind"), entry.get("name")) for entry in instances if isinstance(entry, dict))
-    if actual_counts != expected_counts:
-        fail(errors, f"adoption instances/consumers mismatch; expected={sorted(expected_counts.items())} actual={sorted(actual_counts.items())}")
-
-    try:
-        lock = tomllib.loads((ROOT / "rust-tron/Cargo.lock").read_text(encoding="utf-8"))
-        workspace_names = {tomllib.loads(path.read_text(encoding="utf-8")).get("package", {}).get("name") for path in (ROOT / "rust-tron").glob("**/Cargo.toml")}
-        external = {(package.get("name"), package.get("version")) for package in lock.get("package", []) if package.get("name") not in workspace_names}
-        recorded_external = {(entry.get("name"), entry.get("exact_version")) for entry in instances if isinstance(entry, dict) and entry.get("source") == "rust-tron/Cargo.lock" and entry.get("kind") == "runtime"}
-        if external != recorded_external:
-            fail(errors, f"Cargo.lock external package adoption mismatch; expected={sorted(external)} recorded={sorted(recorded_external)}")
-    except (OSError, tomllib.TOMLDecodeError) as exc:
-        fail(errors, f"cannot derive Cargo.lock adoptions: {exc}")
-
-    records, structurally_valid = {}, set()
-    for index, instance in enumerate(instances):
-        before = len(errors)
-        if not isinstance(instance, dict):
-            fail(errors, f"adoption inventory instance[{index}]: expected object")
-            continue
-        ident = instance.get("id")
-        label = ident if isinstance(ident, str) else f"adoption inventory instance[{index}]"
-        if not isinstance(ident, str) or not re.fullmatch(r"AD-[0-9]{4,}", ident) or ident in records:
-            fail(errors, f"{label}: invalid or duplicate adoption id")
-        records[ident] = instance
-        consumer, gate = instance.get("consuming_item"), instance.get("local_gate")
-        if consumer not in by_id or gate not in by_id or not isinstance(gate, str) or not gate.endswith(".V"):
-            fail(errors, f"{label}: invalid consumer/local gate binding")
-        if instance.get("decision") not in decision_ids:
-            fail(errors, f"{label}: unknown dependency decision")
-        for field in ("security", "license"):
-            disposition = instance.get(field)
-            if not isinstance(disposition, dict) or disposition.get("status") not in {"approved", "not_applicable", "recorded", "review_required", "rejected"} or not isinstance(disposition.get("rationale"), str) or not disposition.get("rationale"):
-                fail(errors, f"{label}: malformed {field} disposition")
-        if instance.get("status") not in {"recorded", "review_required", "approved", "rejected", "retired"}:
-            fail(errors, f"{label}: invalid adoption status")
-        source, exact = instance.get("source"), instance.get("exact_version")
-        if not isinstance(source, str) or not source or not isinstance(exact, str) or not exact:
-            fail(errors, f"{label}: malformed source/version identity")
-        elif (ROOT / source).is_file() and exact.startswith("sha256:") and (not re.fullmatch(r"sha256:[0-9a-f]{64}", exact) or exact[7:] != digest(ROOT / source)):
-            fail(errors, f"{label}: source digest drift")
-        if len(errors) == before:
-            structurally_valid.add(ident)
-
-    review_ids = {"security": "RV-0002", "license": "RV-0003"}
-    inventory_path = "docs/governance/adoption-inventory.v1.json"
-    decisions_path = "docs/governance/dependency-decisions.v1.json"
-
-    def review_covers(instance, review_class):
-        review_id = review_ids[review_class]
-        review = reviews.get(review_id)
-        if review_id not in valid_reviews or not isinstance(review, dict) or review.get("review_class") != review_class:
-            return False
-        closure = review.get("closure")
-        if not isinstance(closure, dict) or closure.get("status") != "approved" or closure.get("approval") is not True:
-            return False
-        if instance.get("consuming_item") not in review.get("scope_rows", []):
-            return False
-        artifacts = review.get("subject_artifacts", [])
-        covered = {artifact.get("path") for artifact in artifacts if isinstance(artifact, dict)}
-        return {inventory_path, decisions_path}.issubset(covered)
-
-    valid = set()
-    for ident in structurally_valid:
-        instance = records[ident]
-        dispositions_accepted = all(instance[field]["status"] != "rejected" for field in ("security", "license"))
-        reviews_cover = all(review_covers(instance, review_class) for review_class in review_ids)
-        if instance.get("status") not in {"rejected", "retired"} and dispositions_accepted and reviews_cover:
-            valid.add(ident)
-    current_by_consumer = {}
-    for ident, instance in records.items():
-        consumer = instance.get("consuming_item") if isinstance(instance, dict) else None
-        if consumer in by_id and instance.get("status") != "retired":
-            current_by_consumer.setdefault(consumer, set()).add(ident)
-    for consumer, row in by_id.items():
-        references = row.get("adoptions", [])
-        if not isinstance(references, list):
-            continue
-        actual = set(references)
-        expected_refs = current_by_consumer.get(consumer, set())
-        if actual != expected_refs or len(actual) != len(references):
-            fail(errors, f"{consumer}: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected={sorted(expected_refs)} actual={sorted(actual)}")
-    return records, valid
+            completed = subprocess.run(command["argv"], cwd=ROOT / command["cwd"], env=SAFE_ENV, timeout=command["timeout_seconds"])
+        except (OSError, subprocess.TimeoutExpired) as error:
+            print(f"FAIL {command['name']}: {error}", file=sys.stderr); return 1
+        if completed.returncode:
+            print(f"FAIL {command['name']}: exit {completed.returncode}", file=sys.stderr); return completed.returncode
+        print(f"PASS {command['name']}")
+    print(f"PASS {chunk_id} gate")
+    return 0
 
 
-def artifact_contract(by_id, errors):
-    predicates = {"ledger": True, "projection": True}
-    seams = load(ROOT / "docs/architecture/cross-domain-seams.v1.json")
-    rows = seams.get("rows") if isinstance(seams, dict) else None
-    if not isinstance(rows, list):
-        fail(errors, "cross-domain seam rows must be an array")
-        rows = []
-    ids = [row.get("id") for row in rows if isinstance(row, dict)]
-    if len(ids) != len(rows) or len(ids) != len(set(ids)):
-        fail(errors, "malformed or duplicate seam id")
-    for row in rows:
-        if not isinstance(row, dict):
-            continue
-        ownership = all(isinstance(row.get(field), str) and row.get(field).strip() for field in ("primary", "secondary"))
-        review_classes = row.get("review_classes")
-        if not ownership or row.get("review_gate") not in by_id or not isinstance(review_classes, list) or not review_classes or not set(review_classes).issubset(REVIEW_CLASSES) or len(review_classes) != len(set(review_classes)):
-            fail(errors, f"{row.get('id')}: incomplete/unknown seam ownership or review scope")
-    oracle_manifest = load(ROOT / "docs/oracles/manifest.v1.json")
-    java_source_revision = oracle_manifest.get("java_source_revision") if isinstance(oracle_manifest, dict) else None
-    for name in ("production-ownership.v1.json", "java-test-ownership.v1.json"):
-        ledger = load(ROOT / "docs/oracles" / name)
-        ledger_rows = ledger.get("rows", []) if isinstance(ledger, dict) else []
-        ok = isinstance(ledger_rows, list) and ledger.get("row_count") == len(ledger_rows) and ledger.get("java_source_revision") == java_source_revision and isinstance(ledger.get("regeneration"), dict) and ledger["regeneration"].get("unknown_policy") == "fail"
-        row_ids = [row.get("id") for row in ledger_rows if isinstance(row, dict)]
-        ok &= len(row_ids) == len(ledger_rows) == len(set(row_ids))
-        for row in ledger_rows:
-            if not isinstance(row, dict) or row.get("owning_item") not in by_id or row.get("acceptance_gate") not in by_id:
-                ok = False
-                break
-        if not ok:
-            fail(errors, f"docs/oracles/{name}: stale or incomplete ownership ledger")
-            predicates["ledger"] = False
-    if isinstance(oracle_manifest, dict) and "C000.V execution and approval not complete" in str(oracle_manifest.get("status", "")):
-        predicates["projection"] = False
-    for path in (ROOT / "docs").rglob("behavior-manifest*.json"):
-        if path.name.endswith(".schema.json"):
-            continue
-        document = load(path)
-        coverage = document.get("coverage", {}) if isinstance(document, dict) else {}
-        if coverage.get("result") != "pass" or any(coverage.get(key) != 0 for key in ("unowned", "duplicate_owned", "missing_case", "unknown_owner")):
-            fail(errors, f"{path.relative_to(ROOT)}: behavior ownership coverage gap")
-            predicates["ledger"] = False
-    return predicates
-
-
-def derived_contract(tracker, by_id, evidence, valid_evidence, reviews, valid_reviews, adoptions, valid_adoptions, platform_complete, predicates, stats, errors):
-    effective, visiting = {}, set()
-    def completed(ident):
-        if ident in effective:
-            return effective[ident]
-        if ident in visiting:
-            return False
-        visiting.add(ident)
-        row = by_id[ident]
-        refs = row.get("evidence")
-        if not isinstance(refs, list):
-            fail(errors, f"{ident}: evidence must be an exact EV-id array")
-            refs = []
-        evidence_ok = bool(refs)
-        for ref in refs:
-            if not isinstance(ref, str) or not EV_ID.fullmatch(ref):
-                fail(errors, f"{ident}: invalid evidence reference {ref!r}")
-                evidence_ok = False
-            elif ref not in evidence:
-                fail(errors, f"{ident}: unknown evidence {ref}")
-                evidence_ok = False
-            elif ref not in valid_evidence or evidence[ref].get("owning_item") != ident or evidence[ref].get("observed_status") != "pass":
-                fail(errors, f"{ident}: evidence {ref} is stale, failed, or owned elsewhere")
-                evidence_ok = False
-        adoption_refs = row.get("adoptions", [])
-        adoption_ok = isinstance(adoption_refs, list)
-        for ref in adoption_refs if isinstance(adoption_refs, list) else []:
-            if ref not in adoptions:
-                fail(errors, f"{ident}: unknown adoption {ref}")
-                adoption_ok = False
-            elif ref not in valid_adoptions or adoptions[ref].get("consuming_item") != ident:
-                fail(errors, f"{ident}: adoption {ref} is unapproved, stale, or owned elsewhere")
-                adoption_ok = False
-        deps_ok = all(completed(dep) for dep in row.get("dependencies", []) if dep in by_id)
-        gate_ok = True
-        if ident in {"C000.08", "C000.09"}:
-            gate_ok &= predicates["ledger"]
-        if ident == "C000.14":
-            gate_ok &= platform_complete
-        if ident == "C000.V":
-            approved = {review.get("review_class") for ref, review in reviews.items() if ref in valid_reviews and review.get("owning_gate") == ident and review.get("closure", {}).get("status") == "approved" and review.get("closure", {}).get("approval")}
-            gate_ok &= approved == {"architecture", "security", "license"} and platform_complete and predicates["ledger"] and predicates["projection"]
-        effective[ident] = row.get("status") == "[x]" and deps_ok and evidence_ok and adoption_ok and gate_ok
-        visiting.remove(ident)
-        return effective[ident]
-    for ident in by_id:
-        completed(ident)
-    for ident, row in by_id.items():
-        derived = "ready" if all(effective.get(dep, False) for dep in row.get("dependencies", [])) else "blocked"
-        if row.get("readiness") != derived:
-            fail(errors, f"{ident}: asserted readiness {row.get('readiness')} != derived {derived}")
-        if row.get("status") == "[x]" and not effective[ident]:
-            fail(errors, f"{ident}: completed without effective current evidence/dependencies/adoptions/gates")
-        if row.get("status") in {"[-]", "[x]"} and not row.get("owner"):
-            fail(errors, f"{ident}: active/completed state lacks owner")
-        if row.get("status") == "[D]":
-            blocker = row.get("blocker")
-            if not isinstance(blocker, dict) or not all(blocker.get(key) for key in ("owner", "unblock_condition", "decision", "evidence", "review_by")):
-                fail(errors, f"{ident}: deferred state lacks governed blocker")
-    summary = tracker.get("validation", {})
-    for key, value in stats.items():
-        if key in summary and summary.get(key) != value:
-            fail(errors, f"tracker validation summary {key} is stale")
-    if summary.get("result") == "pass" and errors:
-        fail(errors, "tracker validation summary claims pass for an invalid state")
-
-
-def governance_contract(by_id, errors):
-    for ident in C000_TARGETS:
-        record = by_id.get(ident, {})
-        if record.get("owner") != "c000-governance":
-            fail(errors, f"{ident}: owner must be c000-governance")
-        if record.get("last_updated") != "2026-08-29":
-            fail(errors, f"{ident}: last_updated must be 2026-08-29")
-
-
-def main():
-    errors = []
-    tracker = load(TRACKER)
-    revision = repository_revision(errors)
-    subject_revision, subject_closure, subject_tree, java_source_revision = manifest_subject_revision(revision, errors)
-    descendant_tree = committed_tree(revision, errors) if revision else {}
-    tree_clean = repository_tree_clean(errors)
-    projection = checklist_projection(errors)
-    by_id, stats = graph_contract(tracker, projection, errors)
-    governance_contract(by_id, errors)
-    evidence, valid_evidence = evidence_contract(subject_revision, subject_tree, java_source_revision, descendant_tree or {}, tree_clean, by_id, errors)
-    reviews, valid_reviews = review_contract(subject_revision, subject_tree, java_source_revision, tree_clean, by_id, evidence, valid_evidence, errors)
-    platform_complete = platform_contract(subject_revision, evidence, valid_evidence, reviews, valid_reviews, errors)
-    adoptions, valid_adoptions = adoption_contract(by_id, subject_tree, java_source_revision, reviews, valid_reviews, errors)
-    predicates = artifact_contract(by_id, errors)
-    derived_contract(tracker, by_id, evidence, valid_evidence, reviews, valid_reviews, adoptions, valid_adoptions, platform_complete, predicates, stats, errors)
-    report = {"schema_version": 1, "validator": "tools/tracker/validate.py", "repository_revision": revision, "subject_revision": subject_revision, "governed_closure_sha256": closure_digest(subject_closure) if subject_closure else None, "result": "fail" if errors else "pass", "derived": {"platform_complete": platform_complete, "evidence_records": len(evidence), "valid_evidence_records": len(valid_evidence), "review_records": len(reviews), "valid_review_records": len(valid_reviews), "adoption_records": len(adoptions), "valid_adoption_records": len(valid_adoptions), **predicates}, "errors": errors}
-    print(json.dumps(report, sort_keys=True, separators=(",", ":")))
-    return 1 if errors else 0
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument("--status", action="store_true")
+    modes.add_argument("--next", action="store_true")
+    modes.add_argument("--check", action="store_true")
+    modes.add_argument("--gate", metavar="Cnnn")
+    args = parser.parse_args()
+    try: data = load_tracker()
+    except (OSError, json.JSONDecodeError, ValueError) as error:
+        print(f"tracker error: {error}", file=sys.stderr); return 1
+    errors = validate(data)
+    if errors:
+        for error in errors: print(f"ERROR: {error}", file=sys.stderr)
+        return 1
+    if args.status: print_status(data)
+    elif args.next: print_next(data)
+    elif args.gate: return run_gate(data, args.gate)
+    else: print("PORTING_TRACKER.json: valid")
+    return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    raise SystemExit(main())

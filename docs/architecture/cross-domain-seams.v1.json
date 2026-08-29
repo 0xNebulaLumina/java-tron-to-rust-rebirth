@@ -1,130 +1,15 @@
 {
   "schema_version": 1,
-  "review_schema": "docs/governance/independent-review-v1.schema.json",
   "rows": [
-    {
-      "id": "SEAM-001",
-      "seam": "protocol extension descriptor \u2194 actuator dispatch",
-      "primary": "tron-protocol/C001",
-      "secondary": "tron-execution/C012,C016",
-      "review_gate": "C016.V",
-      "review_classes": [
-        "architecture",
-        "security"
-      ]
-    },
-    {
-      "id": "SEAM-002",
-      "seam": "custom actuator construction/query \u2194 admission/state",
-      "primary": "tron-apis/C022",
-      "secondary": "tron-execution/C012,C016",
-      "review_gate": "C022.V",
-      "review_classes": [
-        "architecture",
-        "security"
-      ]
-    },
-    {
-      "id": "SEAM-003",
-      "seam": "storage batch/session \u2194 fork rollback/replay",
-      "primary": "tron-state/C009,C011",
-      "secondary": "tron-storage/C007;tron-execution/C019",
-      "review_gate": "C019.V",
-      "review_classes": [
-        "architecture",
-        "security"
-      ]
-    },
-    {
-      "id": "SEAM-004",
-      "seam": "API cursor routing \u2194 HEAD/SOLIDITY/PBFT state",
-      "primary": "tron-apis/C022-C024,C026",
-      "secondary": "tron-state/C009",
-      "review_gate": "C026.V",
-      "review_classes": [
-        "architecture",
-        "security"
-      ]
-    },
-    {
-      "id": "SEAM-005",
-      "seam": "network message dispatch \u2194 consensus/block application",
-      "primary": "tron-network/C020-C021",
-      "secondary": "tron-consensus/C017-C018;tron-execution/C019",
-      "review_gate": "C021.V",
-      "review_classes": [
-        "architecture",
-        "security"
-      ]
-    },
-    {
-      "id": "SEAM-006",
-      "seam": "TVM execution \u2194 repository/state/billing",
-      "primary": "tron-tvm/C014-C015",
-      "secondary": "tron-execution/C016;tron-state/C008-C010",
-      "review_gate": "C016.V",
-      "review_classes": [
-        "architecture",
-        "security"
-      ]
-    },
-    {
-      "id": "SEAM-007",
-      "seam": "snapshot/resync \u2194 storage format and packaging",
-      "primary": "tron-storage/C007",
-      "secondary": "tron-node/C028;tron-toolkit/C027",
-      "review_gate": "C028.V",
-      "review_classes": [
-        "architecture",
-        "security"
-      ]
-    },
-    {
-      "id": "SEAM-008",
-      "seam": "release manifest \u2194 installed artifacts/SBOM/provenance",
-      "primary": "tron-node/C028",
-      "secondary": "security/license/C030",
-      "review_gate": "C030.V",
-      "review_classes": [
-        "architecture",
-        "security",
-        "license"
-      ]
-    },
-    {
-      "id": "SEAM-009",
-      "seam": "events/plugins \u2194 reorg rollback and API visibility",
-      "primary": "tron-events-metrics/C025",
-      "secondary": "tron-execution/C019;tron-apis/C022-C024",
-      "review_gate": "C025.V",
-      "review_classes": [
-        "architecture",
-        "security"
-      ]
-    },
-    {
-      "id": "SEAM-010",
-      "seam": "configuration/lifecycle \u2194 every composition root",
-      "primary": "tron-config/C003",
-      "secondary": "tron-node/C003,C028;tron-toolkit/C027",
-      "review_gate": "C028.V",
-      "review_classes": [
-        "architecture",
-        "security"
-      ]
-    }
-  ],
-  "ownership_contract": {
-    "primary": "owns interface contract, finite scope rows, integration cases and first review",
-    "secondary": "independently reviews caller/callee assumptions, failure/rollback and evidence",
-    "zero_gap": "Every cross-crate or cross-domain behavior-manifest edge must map to exactly one seam row; no row may lack primary, secondary, and review_gate."
-  },
-  "coverage": {
-    "rows": 10,
-    "unowned": 0,
-    "missing_secondary": 0,
-    "missing_gate": 0,
-    "duplicate_ids": 0,
-    "result": "pass"
-  }
+    {"id":"SEAM-001","seam":"protocol extension descriptor to actuator dispatch","chunks":["C001","C012","C016"],"crates":["tron-protocol","tron-execution"],"scenario":"Register, encode, dispatch, execute, and reject colliding custom actuators","gate":"C016.V"},
+    {"id":"SEAM-002","seam":"custom actuator construction and query to admission and state","chunks":["C012","C016","C022"],"crates":["tron-apis","tron-execution"],"scenario":"Construct, broadcast, execute, revert, and query an extension transaction","gate":"C022.V"},
+    {"id":"SEAM-003","seam":"storage batch and session to fork rollback and replay","chunks":["C007","C009","C011","C019"],"crates":["tron-storage","tron-state","tron-execution"],"scenario":"Apply a competing branch, switch forks, and reproduce the prior state","gate":"C019.V"},
+    {"id":"SEAM-004","seam":"API cursor routing to HEAD, SOLIDITY, and PBFT state","chunks":["C009","C022","C023","C024","C026"],"crates":["tron-state","tron-apis","tron-node"],"scenario":"Query identical data through each cursor surface during advancement and rollback","gate":"C026.V"},
+    {"id":"SEAM-005","seam":"network dispatch to consensus and block application","chunks":["C017","C018","C019","C020","C021"],"crates":["tron-network","tron-consensus","tron-execution"],"scenario":"Receive, validate, deduplicate, apply, relay, and reject malformed consensus traffic","gate":"C021.V"},
+    {"id":"SEAM-006","seam":"TVM execution to repository, state, and billing","chunks":["C008","C009","C010","C014","C015","C016"],"crates":["tron-tvm","tron-state","tron-execution"],"scenario":"Execute success, revert, exception, resource exhaustion, and precompile cases with exact deltas","gate":"C016.V"},
+    {"id":"SEAM-007","seam":"snapshot and resync to storage format and packaging","chunks":["C007","C027","C028"],"crates":["tron-storage","tron-toolkit","tron-node"],"scenario":"Authenticate, import, reject incompatible data, resume, and launch from a snapshot","gate":"C028.V"},
+    {"id":"SEAM-008","seam":"release manifest to installed artifacts, SBOM, and provenance","chunks":["C028","C030"],"crates":["tron-node","tron-toolkit"],"scenario":"Install and verify a signed release, then reject substituted artifacts and channels","gate":"C030.V"},
+    {"id":"SEAM-009","seam":"events and plugins to reorg rollback and API visibility","chunks":["C019","C022","C023","C024","C025"],"crates":["tron-events-metrics","tron-execution","tron-apis"],"scenario":"Emit, retract, replay, and query events across a fork switch","gate":"C025.V"},
+    {"id":"SEAM-010","seam":"configuration and lifecycle to composition roots","chunks":["C003","C027","C028"],"crates":["tron-config","tron-node","tron-toolkit"],"scenario":"Start, cancel, drain, restart, and reject invalid configuration for each binary","gate":"C028.V"}
+  ]
 }
