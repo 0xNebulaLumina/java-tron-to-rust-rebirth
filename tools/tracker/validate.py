@@ -107,6 +107,10 @@ def digest(path: Path) -> str:
 
 def git(*args: str, text: bool = True) -> subprocess.CompletedProcess:
     return subprocess.run(["git", *args], cwd=ROOT, check=True, text=text, capture_output=True)
+def submodule_git(*args: str, text: bool = True) -> subprocess.CompletedProcess:
+    return subprocess.run(["git", *args], cwd=ROOT / "java-tron", check=True, text=text, capture_output=True)
+
+
 
 
 def local_git_config(name: str) -> str:
@@ -170,6 +174,57 @@ def authorized_subject_revision(errors: list[str]) -> str | None:
 
 def excluded_attestation_path(path: str) -> bool:
     return path in ATTESTATION_EXCLUSIONS or path.startswith(ATTESTATION_PREFIXES)
+def java_subject_entry(path: str, java_source_revision: str | None, errors: list[str]) -> tuple[str, str, str, str] | None:
+    prefix = "java-tron/"
+    if not path.startswith(prefix):
+        return None
+    relative = path[len(prefix):]
+    parts = relative.split("/")
+    if not relative or any(part in {"", ".", ".."} for part in parts) or "\\" in relative:
+        fail(errors, f"subject path escapes or is not canonical: {path!r}")
+        return None
+    if not isinstance(java_source_revision, str) or not re.fullmatch(r"[0-9a-f]{40}", java_source_revision):
+        fail(errors, "oracle manifest java_source_revision is not a full object name")
+        return None
+    try:
+        raw = submodule_git("ls-tree", "-z", java_source_revision, "--", f":(literal){relative}", text=False).stdout
+        records = [record for record in raw.split(b"\0") if record]
+        if len(records) != 1:
+            raise ValueError(f"path does not name exactly one object at the pinned java-tron commit: {path}")
+        metadata, encoded_path = records[0].split(b"\t", 1)
+        mode, object_type, object_id = metadata.decode("ascii").split()
+        if encoded_path.decode("utf-8") != relative or object_type != "blob":
+            raise ValueError(f"path is not a blob at the pinned java-tron commit: {path}")
+        content = submodule_git("cat-file", "blob", object_id, text=False).stdout
+        return mode, object_type, object_id, hashlib.sha256(content).hexdigest()
+    except (OSError, UnicodeError, ValueError, subprocess.CalledProcessError) as exc:
+        fail(errors, f"cannot resolve pinned java-tron subject blob {path!r}: {exc}")
+        return None
+
+
+def validate_java_subject(subject_tree, oracle_manifest, errors: list[str]) -> str | None:
+    revision = oracle_manifest.get("java_source_revision") if isinstance(oracle_manifest, dict) else None
+    gitlink = subject_tree.get("java-tron") if isinstance(subject_tree, dict) else None
+    try:
+        if not isinstance(revision, str) or not re.fullmatch(r"[0-9a-f]{40}", revision):
+            raise ValueError("oracle manifest java_source_revision is not a full object name")
+        if gitlink is None or gitlink[:3] != ("160000", "commit", revision):
+            raise ValueError("subject java-tron gitlink does not exactly match oracle manifest java_source_revision")
+        if Path(submodule_git("rev-parse", "--show-toplevel").stdout.strip()).resolve() != (ROOT / "java-tron").resolve():
+            raise ValueError("java-tron is not an initialized local submodule repository")
+        if submodule_git("rev-parse", "--is-shallow-repository").stdout.strip() != "false":
+            raise ValueError("java-tron local object database is shallow")
+        submodule_git("cat-file", "-e", f"{revision}^{{commit}}")
+        if submodule_git("rev-parse", "--verify", f"{revision}^{{commit}}").stdout.strip() != revision:
+            raise ValueError("java_source_revision does not resolve to the exact commit object")
+        if submodule_git("rev-parse", "--verify", "HEAD^{commit}").stdout.strip() != revision:
+            raise ValueError("java-tron checkout has drifted from the subject gitlink")
+        return revision
+    except (OSError, ValueError, subprocess.CalledProcessError) as exc:
+        fail(errors, f"cannot verify pinned java-tron subject object database: {exc}")
+        return None
+
+
 
 
 def committed_tree(revision: str, errors: list[str]) -> dict[str, tuple[str, str, str, str]] | None:
@@ -229,7 +284,7 @@ def validate_history_identity(subject: str, head: str | None, errors: list[str])
         return False
 
 
-def manifest_subject_revision(current_revision: str | None, errors: list[str]) -> tuple[str | None, dict[str, tuple[str, str, str, str]], dict[str, tuple[str, str, str, str]]]:
+def manifest_subject_revision(current_revision: str | None, errors: list[str]) -> tuple[str | None, dict[str, tuple[str, str, str, str]], dict[str, tuple[str, str, str, str]], str | None]:
     manifests = {
         "platform": load(ROOT / "docs/architecture/platform-manifest.v1.json"),
         "oracle": load(ROOT / "docs/oracles/manifest.v1.json"),
@@ -237,17 +292,18 @@ def manifest_subject_revision(current_revision: str | None, errors: list[str]) -
     subjects = {name: manifest.get("subject_revision") if isinstance(manifest, dict) else None for name, manifest in manifests.items()}
     subject = authorized_subject_revision(errors)
     if subject is None:
-        return None, {}, {}
+        return None, {}, {}, None
     if any(value != subject for value in subjects.values()):
         fail(errors, f"platform and oracle manifests must exactly match immutable {AUTHORIZED_SUBJECT_REF} target {subject}; retagging is prohibited, publish a new authorization ref instead")
-        return None, {}, {}
+        return None, {}, {}, None
     if not validate_history_identity(subject, current_revision, errors):
-        return None, {}, {}
+        return None, {}, {}, None
     subject_tree = committed_tree(subject, errors)
     subject_closure = {path: entry for path, entry in subject_tree.items() if not excluded_attestation_path(path)} if subject_tree is not None else None
     head_closure = committed_closure(current_revision, errors) if current_revision else None
     if subject_tree is None or subject_closure is None or head_closure is None:
-        return None, {}, {}
+        return None, {}, {}, None
+    java_source_revision = validate_java_subject(subject_tree, manifests["oracle"], errors)
     if subject_closure != head_closure:
         changed = sorted(set(subject_closure) ^ set(head_closure) | {path for path in set(subject_closure) & set(head_closure) if subject_closure[path] != head_closure[path]})
         fail(errors, f"governed input closure drifted after subject_revision: {changed}")
@@ -256,7 +312,7 @@ def manifest_subject_revision(current_revision: str | None, errors: list[str]) -
         policy = manifest.get("attestation") if isinstance(manifest, dict) else None
         if not isinstance(policy, dict) or policy.get("closure_sha256") != expected_digest or policy.get("algorithm") != "git-ls-tree-v1" or policy.get("excluded_paths") != sorted(ATTESTATION_EXCLUSIONS) or policy.get("excluded_prefixes") != list(ATTESTATION_PREFIXES):
             fail(errors, f"{name} manifest does not bind the authorized exact governed closure")
-    return subject, subject_closure, subject_tree
+    return subject, subject_closure, subject_tree, java_source_revision
 
 def reject_supersession_cycles(records, field: str, errors: list[str]):
     for start in records:
@@ -368,29 +424,38 @@ def graph_contract(tracker, projection, errors):
     return by_id, stats
 
 
-def subject_artifact_ok(entry, label: str, subject_tree, errors: list[str]) -> bool:
+def subject_artifact_ok(entry, label: str, subject_tree, java_source_revision: str | None, errors: list[str]) -> bool:
     if not isinstance(entry, dict) or set(entry) != {"path", "mode", "sha256"}:
         fail(errors, f"{label}: artifact must contain exactly path, mode, and sha256")
         return False
     path, mode, sha256 = entry.get("path"), entry.get("mode"), entry.get("sha256")
-    if not isinstance(path, str) or excluded_attestation_path(path) or path not in subject_tree:
+    if not isinstance(path, str) or excluded_attestation_path(path):
         fail(errors, f"{label}: unknown, excluded, or self-referential subject artifact {path!r}")
         return False
-    actual_mode, object_type, _object_id, actual_sha256 = subject_tree[path]
+    entry_data = java_subject_entry(path, java_source_revision, errors) if path.startswith("java-tron/") else subject_tree.get(path)
+    if entry_data is None:
+        fail(errors, f"{label}: unknown subject artifact {path!r}")
+        return False
+    actual_mode, object_type, _object_id, actual_sha256 = entry_data
     if object_type != "blob" or mode != actual_mode or sha256 != actual_sha256:
         fail(errors, f"{label}: subject blob/mode digest mismatch for {path}")
         return False
     return True
 
-def subject_input_ok(entry, label: str, subject_tree, errors: list[str]) -> bool:
+
+def subject_input_ok(entry, label: str, subject_tree, java_source_revision: str | None, errors: list[str]) -> bool:
     if not isinstance(entry, dict) or set(entry) != {"path", "sha256"}:
         fail(errors, f"{label}: input artifact must contain exactly path and sha256")
         return False
     path, sha256 = entry.get("path"), entry.get("sha256")
-    if not isinstance(path, str) or excluded_attestation_path(path) or path not in subject_tree:
+    if not isinstance(path, str) or excluded_attestation_path(path):
         fail(errors, f"{label}: unknown, excluded, or self-referential subject input {path!r}")
         return False
-    _mode, object_type, _object_id, actual_sha256 = subject_tree[path]
+    entry_data = java_subject_entry(path, java_source_revision, errors) if path.startswith("java-tron/") else subject_tree.get(path)
+    if entry_data is None:
+        fail(errors, f"{label}: unknown subject input {path!r}")
+        return False
+    _mode, object_type, _object_id, actual_sha256 = entry_data
     if object_type != "blob" or sha256 != actual_sha256:
         fail(errors, f"{label}: subject blob digest mismatch for {path}")
         return False
@@ -416,7 +481,7 @@ def artifact_ok(entry, label: str, subject_tree, descendant_tree, errors: list[s
     return True
 
 
-def evidence_contract(subject: str | None, subject_tree, descendant_tree, tree_clean: bool, by_id, errors: list[str]):
+def evidence_contract(subject: str | None, subject_tree, java_source_revision: str | None, descendant_tree, tree_clean: bool, by_id, errors: list[str]):
     records, valid = {}, set()
     required = {"schema_version", "evidence_id", "owning_item", "subject_revision", "subject_artifacts", "command", "environment", "run_id", "cases", "started_at", "ended_at", "observed_exit_code", "observed_status", "expected", "observed", "stdout", "stderr", "artifacts", "invalidation_edges", "review_bindings", "retention_until", "supersedes"}
     environment_fields = {"tree_state", "toolchains", "platform_row", "target", "host_os", "host_architecture", "execution", "working_directory", "cells", "backend", "features"}
@@ -455,7 +520,7 @@ def evidence_contract(subject: str | None, subject_tree, descendant_tree, tree_c
             subject_artifacts = []
         subject_paths = [entry.get("path") for entry in subject_artifacts if isinstance(entry, dict)]
         for index, artifact in enumerate(subject_artifacts):
-            subject_artifact_ok(artifact, f"{ident}.subject_artifacts[{index}]", subject_tree, errors)
+            subject_artifact_ok(artifact, f"{ident}.subject_artifacts[{index}]", subject_tree, java_source_revision, errors)
         if len(subject_paths) != len(subject_artifacts) or len(subject_paths) != len(set(subject_paths)):
             fail(errors, f"{ident}: malformed or duplicate subject artifact path")
         command = ev.get("command")
@@ -506,7 +571,7 @@ def evidence_contract(subject: str | None, subject_tree, descendant_tree, tree_c
             if not isinstance(edge, dict) or set(edge) != {"kind", "path", "mode", "sha256"}:
                 fail(errors, f"{ident}.invalidation_edges[{index}]: schema invalid")
             else:
-                subject_artifact_ok({key: edge[key] for key in ("path", "mode", "sha256")}, f"{ident}.invalidation_edges[{index}]", subject_tree, errors)
+                subject_artifact_ok({key: edge[key] for key in ("path", "mode", "sha256")}, f"{ident}.invalidation_edges[{index}]", subject_tree, java_source_revision, errors)
         cases = ev.get("cases")
         if not isinstance(cases, list) or not cases:
             fail(errors, f"{ident}: no cases")
@@ -534,7 +599,7 @@ def evidence_contract(subject: str | None, subject_tree, descendant_tree, tree_c
     valid -= superseded
     return records, valid
 
-def review_contract(subject: str | None, subject_tree, tree_clean: bool, by_id, evidence, valid_evidence, errors: list[str]):
+def review_contract(subject: str | None, subject_tree, java_source_revision: str | None, tree_clean: bool, by_id, evidence, valid_evidence, errors: list[str]):
     records, valid = {}, set()
     required_fields = {"schema_version", "review_id", "owning_gate", "review_class", "scope_rows", "seam_rows", "subject_revision", "subject_artifacts", "authors", "owners", "reviewers", "findings", "reruns", "closure", "retention_until", "invalidation_triggers", "supersedes"}
     seams_document = load(ROOT / "docs/architecture/cross-domain-seams.v1.json")
@@ -599,7 +664,7 @@ def review_contract(subject: str | None, subject_tree, tree_clean: bool, by_id, 
         if artifact_paths != artifacts_by_class[review_class] or len(artifact_paths) != len(artifacts or []):
             fail(errors, f"{ident}: subject artifacts are not the exact required {review_class} set")
         for index, artifact in enumerate(artifacts if isinstance(artifacts, list) else []):
-            subject_artifact_ok(artifact, f"{ident}.subject_artifacts[{index}]", subject_tree, errors)
+            subject_artifact_ok(artifact, f"{ident}.subject_artifacts[{index}]", subject_tree, java_source_revision, errors)
         author_ids, owner_ids, reviewer_ids, closure_ids = set(), set(), set(), set()
         for field, destination in (("authors", author_ids), ("owners", owner_ids)):
             entries = review.get(field)
@@ -823,7 +888,7 @@ def platform_contract(subject_revision, evidence, valid_evidence, reviews, valid
         fail(errors, f"platform coverage is stale; computed {computed}")
     return complete
 
-def adoption_contract(by_id, subject_tree, errors: list[str]):
+def adoption_contract(by_id, subject_tree, java_source_revision: str | None, errors: list[str]):
     decisions = load(ROOT / "docs/governance/dependency-decisions.v1.json")
     decision_rows = decisions.get("decisions", []) if isinstance(decisions, dict) else []
     decision_ids = {entry.get("id") for entry in decision_rows if isinstance(entry, dict) and re.fullmatch(r"DD-[0-9]{3}", str(entry.get("id", "")))}
@@ -845,7 +910,7 @@ def adoption_contract(by_id, subject_tree, errors: list[str]):
     if not isinstance(generation, dict) or generation.get("discovery_roots") != list(ADOPTION_DISCOVERY_PATTERNS):
         fail(errors, "adoption inventory discovery roots are stale or incomplete")
     for index, source in enumerate(sources):
-        subject_input_ok(source, f"dependency inventory input[{index}]", subject_tree, errors)
+        subject_input_ok(source, f"dependency inventory input[{index}]", subject_tree, java_source_revision, errors)
     instances = adoption.get("instances", []) if isinstance(adoption, dict) else []
     if not isinstance(instances, list):
         fail(errors, "adoption inventory: instances must be an array")
@@ -1101,16 +1166,16 @@ def main():
     errors = []
     tracker = load(TRACKER)
     revision = repository_revision(errors)
-    subject_revision, subject_closure, subject_tree = manifest_subject_revision(revision, errors)
+    subject_revision, subject_closure, subject_tree, java_source_revision = manifest_subject_revision(revision, errors)
     descendant_tree = committed_tree(revision, errors) if revision else {}
     tree_clean = repository_tree_clean(errors)
     projection = checklist_projection(errors)
     by_id, stats = graph_contract(tracker, projection, errors)
     governance_contract(by_id, errors)
-    evidence, valid_evidence = evidence_contract(subject_revision, subject_tree, descendant_tree or {}, tree_clean, by_id, errors)
-    reviews, valid_reviews = review_contract(subject_revision, subject_tree, tree_clean, by_id, evidence, valid_evidence, errors)
+    evidence, valid_evidence = evidence_contract(subject_revision, subject_tree, java_source_revision, descendant_tree or {}, tree_clean, by_id, errors)
+    reviews, valid_reviews = review_contract(subject_revision, subject_tree, java_source_revision, tree_clean, by_id, evidence, valid_evidence, errors)
     platform_complete = platform_contract(subject_revision, evidence, valid_evidence, reviews, valid_reviews, errors)
-    adoptions, valid_adoptions = adoption_contract(by_id, subject_tree, errors)
+    adoptions, valid_adoptions = adoption_contract(by_id, subject_tree, java_source_revision, errors)
     predicates = artifact_contract(by_id, errors)
     derived_contract(tracker, by_id, evidence, valid_evidence, reviews, valid_reviews, adoptions, valid_adoptions, platform_complete, predicates, stats, errors)
     report = {"schema_version": 1, "validator": "tools/tracker/validate.py", "repository_revision": revision, "subject_revision": subject_revision, "governed_closure_sha256": closure_digest(subject_closure) if subject_closure else None, "result": "fail" if errors else "pass", "derived": {"platform_complete": platform_complete, "evidence_records": len(evidence), "valid_evidence_records": len(valid_evidence), "review_records": len(reviews), "valid_review_records": len(valid_reviews), "adoption_records": len(adoptions), "valid_adoption_records": len(valid_adoptions), **predicates}, "errors": errors}

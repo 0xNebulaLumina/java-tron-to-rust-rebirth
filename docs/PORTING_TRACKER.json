@@ -56,9 +56,6 @@
       "blocker": "Reset at active revision 65d7291: prior EV evidence is stale; regenerate clean-tree workspace/crate-map evidence after the C000 artifact runner and governed artifacts are repaired.",
       "decisions": [],
       "adoptions": [
-        "AD-0034",
-        "AD-0035",
-        "AD-0036",
         "AD-0037",
         "AD-0038",
         "AD-0039",
@@ -72,7 +69,10 @@
         "AD-0047",
         "AD-0048",
         "AD-0049",
-        "AD-0050"
+        "AD-0050",
+        "AD-0051",
+        "AD-0052",
+        "AD-0053"
       ],
       "last_updated": "2026-08-29"
     },
@@ -93,17 +93,17 @@
       "decisions": ["docs/architecture/toolchains-and-platforms.md"],
       "adoptions": [
         "AD-0002",
-        "AD-0030",
         "AD-0031",
-        "AD-0032",
-        "AD-0033",
-        "AD-0051",
-        "AD-0073",
-        "AD-0074",
-        "AD-0075",
-        "AD-0076",
-        "AD-0077",
-        "AD-0078"
+        "AD-0034",
+        "AD-0035",
+        "AD-0036",
+        "AD-0054",
+        "AD-0055",
+        "AD-0056",
+        "AD-0057",
+        "AD-0058",
+        "AD-0059",
+        "AD-0060"
       ],
       "last_updated": "2026-08-29"
     },
@@ -142,9 +142,10 @@
       "decisions": [],
       "adoptions": [
         "AD-0018",
-        "AD-0019",
+        "AD-0021",
         "AD-0024",
-        "AD-0025"
+        "AD-0025",
+        "AD-0028"
       ],
       "last_updated": "2026-08-29"
     },
@@ -172,14 +173,14 @@
         "AD-0014",
         "AD-0015",
         "AD-0016",
-        "AD-0021",
+        "AD-0020",
         "AD-0023",
-        "AD-0059",
-        "AD-0060",
-        "AD-0061",
-        "AD-0067",
-        "AD-0071",
-        "AD-0072"
+        "AD-0078",
+        "AD-0079",
+        "AD-0080",
+        "AD-0081",
+        "AD-0082",
+        "AD-0083"
       ],
       "last_updated": "2026-08-29"
     },
@@ -220,8 +221,8 @@
       "decisions": [],
       "adoptions": [
         "AD-0022",
-        "AD-0026",
-        "AD-0027"
+        "AD-0029",
+        "AD-0030"
       ],
       "last_updated": "2026-08-29"
     },
@@ -241,10 +242,10 @@
       "blocker": "Blocked by C000.07; production ledgers and ownership bindings are stale at active revision 65d7291 and require regeneration.",
       "decisions": [],
       "adoptions": [
-        "AD-0020",
-        "AD-0028",
-        "AD-0057",
-        "AD-0068"
+        "AD-0019",
+        "AD-0026",
+        "AD-0074",
+        "AD-0075"
       ],
       "last_updated": "2026-08-29"
     },
@@ -265,9 +266,9 @@
       "decisions": [],
       "adoptions": [
         "AD-0017",
-        "AD-0029",
-        "AD-0058",
-        "AD-0069"
+        "AD-0027",
+        "AD-0076",
+        "AD-0077"
       ],
       "last_updated": "2026-08-29"
     },
@@ -291,8 +292,8 @@
       ],
       "adoptions": [
         "AD-0008",
-        "AD-0062",
-        "AD-0070"
+        "AD-0084",
+        "AD-0085"
       ],
       "last_updated": "2026-08-29"
     },
@@ -338,7 +339,11 @@
       "decisions": [
         "docs/architecture/DR-004-custom-actuator-extensions.md"
       ],
-      "adoptions": [],
+      "adoptions": [
+        "AD-0001",
+        "AD-0032",
+        "AD-0033"
+      ],
       "last_updated": "2026-08-29"
     },
     {
@@ -387,16 +392,17 @@
         "docs/architecture/platform-manifest.v1.json"
       ],
       "adoptions": [
-        "AD-0001",
-        "AD-0053",
-        "AD-0054",
-        "AD-0055",
-        "AD-0056",
+        "AD-0063",
         "AD-0064",
         "AD-0065",
         "AD-0066",
-        "AD-0079",
-        "AD-0080"
+        "AD-0067",
+        "AD-0068",
+        "AD-0069",
+        "AD-0070",
+        "AD-0071",
+        "AD-0072",
+        "AD-0073"
       ],
       "last_updated": "2026-08-29"
     },
@@ -453,8 +459,8 @@
       "blocker": "Blocked by all C000 substantive items: active revision 65d7291 has no current clean-tree EV set or authenticated architecture/security/license closure; artifact runner and tracker validation fail.",
       "decisions": [],
       "adoptions": [
-        "AD-0052",
-        "AD-0063"
+        "AD-0061",
+        "AD-0062"
       ],
       "last_updated": "2026-08-29"
     },
