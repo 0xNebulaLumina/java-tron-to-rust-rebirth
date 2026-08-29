@@ -16,6 +16,8 @@ MAX_JSON_ITEMS = 20_000
 MAX_STRING_BYTES = 262_144
 MAX_OUTPUT_BYTES = 2_097_152
 MAX_MISMATCHES = 1_000
+MAX_SCHEMA_ERRORS = 1_000
+MAX_COMPARE_QUEUE = 40_000
 READ_CHUNK_BYTES = 65_536
 
 REVISION = "df50ce9676b94de0b10a605076adfd8728811384"
@@ -392,6 +394,8 @@ def differences(left, right, pointer=""):
     rows = []
     stack = [(left, right, pointer)]
     while stack:
+        if len(stack) > MAX_COMPARE_QUEUE:
+            raise ValueError(f"resource limit exceeded: comparison queue > {MAX_COMPARE_QUEUE}")
         left_value, right_value, current = stack.pop()
         if type(left_value) is not type(right_value):
             rows.append((current or "/", left_value, right_value))
@@ -425,6 +429,8 @@ def compare(java, rust):
     mismatches = []
     for label, result in (("java", java), ("rust", rust)):
         errors = validate_schema(result, RESULT_SCHEMA)
+        if len(errors) > MAX_SCHEMA_ERRORS:
+            raise ValueError(f"resource limit exceeded: schema errors > {MAX_SCHEMA_ERRORS}")
         if not errors: errors = _invariant_errors(result)
         for message in errors:
             mismatches.append({"kind": "schema", "json_pointer": f"/{label}", "expected": "schema-valid canonical result", "actual": message})
@@ -432,12 +438,16 @@ def compare(java, rust):
             message = _validate_normalization(applied, result.get("oracle_class"), result, policy_by_id)
             if message:
                 mismatches.append({"kind": "forbidden_normalization", "json_pointer": applied.get("json_pointer", "/normalizations_applied"), "expected": "central rule class, pointer, and value constraints", "actual": applied.get("rule"), "message": message})
+        if len(mismatches) > MAX_MISMATCHES:
+            raise ValueError(f"resource limit exceeded: mismatches > {MAX_MISMATCHES}")
     ignored = {"runner", "normalizations_applied", "diagnostics"}
     jl = copy.deepcopy({k: v for k, v in java.items() if k not in ignored}); rl = copy.deepcopy({k: v for k, v in rust.items() if k not in ignored})
     jl.get("identity", {}).pop("implementation", None); jl.get("identity", {}).pop("toolchain", None)
     rl.get("identity", {}).pop("implementation", None); rl.get("identity", {}).pop("toolchain", None)
     for pointer, expected, actual in differences(jl, rl):
         mismatches.append({"kind": mismatch_kind(pointer), "json_pointer": pointer, "expected": expected, "actual": actual})
+        if len(mismatches) > MAX_MISMATCHES:
+            raise ValueError(f"resource limit exceeded: mismatches > {MAX_MISMATCHES}")
     return {"schema_version": 1, "case_id": java.get("case_id", rust.get("case_id", "UNKNOWN")), "match": not mismatches, "mismatches": mismatches, "compared_result_digests": {"java": digest(java), "rust": digest(rust)}, "normalization_policy_digest": "sha256:" + hashlib.sha256(POLICY.read_bytes()).hexdigest()}
 
 

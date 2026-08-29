@@ -109,6 +109,26 @@ def git(*args: str, text: bool = True) -> subprocess.CompletedProcess:
     return subprocess.run(["git", *args], cwd=ROOT, check=True, text=text, capture_output=True)
 
 
+def local_git_config(name: str) -> str:
+    value = git("config", "--local", "--get", name).stdout.strip()
+    if not value:
+        raise ValueError(f"local Git config {name} is absent or empty")
+    return value
+
+
+def project_local_git_path(name: str) -> Path:
+    value = local_git_config(name)
+    path = Path(os.path.expanduser(value))
+    if not path.is_absolute():
+        path = ROOT / path
+    path = path.resolve()
+    if path != ROOT and ROOT not in path.parents:
+        raise ValueError(f"{name} must resolve inside the project")
+    if not path.is_file():
+        raise ValueError(f"project-local {name} file is missing")
+    return path
+
+
 def repository_revision(errors: list[str]) -> str | None:
     try:
         revision = git("rev-parse", "--verify", "HEAD^{commit}").stdout.strip()
@@ -124,9 +144,18 @@ def authorized_subject_revision(errors: list[str]) -> str | None:
         tag_object = git("rev-parse", "--verify", AUTHORIZED_SUBJECT_REF).stdout.strip()
         if not re.fullmatch(r"[0-9a-f]{40}", tag_object):
             raise ValueError("authorized tag does not resolve to a full object name")
+        pinned_object = local_git_config("port.c000SubjectTagObject")
+        if not re.fullmatch(r"[0-9a-f]{40}", pinned_object) or pinned_object != tag_object:
+            raise ValueError("authorized tag object does not exactly match local port.c000SubjectTagObject pin")
+        project_local_git_path("gpg.ssh.allowedSignersFile")
+        project_local_git_path("gpg.ssh.revocationFile")
         if git("cat-file", "-t", tag_object).stdout.strip() != "tag":
             raise ValueError("authorized subject ref must be an annotated tag, not a lightweight tag")
-        header = git("cat-file", "-p", tag_object).stdout.split("\n\n", 1)[0].splitlines()
+        tag_contents = git("cat-file", "-p", tag_object).stdout
+        if "-----BEGIN SSH SIGNATURE-----" not in tag_contents:
+            raise ValueError("authorized annotated tag must carry an SSH signature")
+        git("verify-tag", tag_object)
+        header = tag_contents.split("\n\n", 1)[0].splitlines()
         fields = dict(line.split(" ", 1) for line in header if " " in line)
         subject = fields.get("object")
         if fields.get("type") != "commit" or not isinstance(subject, str) or not re.fullmatch(r"[0-9a-f]{40}", subject):
@@ -135,7 +164,7 @@ def authorized_subject_revision(errors: list[str]) -> str | None:
             raise ValueError("authorized tag has ambiguous or indirect commit resolution")
         return subject
     except (OSError, ValueError, subprocess.CalledProcessError) as exc:
-        fail(errors, f"cannot resolve immutable authorized subject {AUTHORIZED_SUBJECT_REF}: {exc}")
+        fail(errors, f"cannot verify immutable authorized subject {AUTHORIZED_SUBJECT_REF}: {exc}")
         return None
 
 
@@ -354,22 +383,25 @@ def subject_artifact_ok(entry, label: str, subject_tree, errors: list[str]) -> b
     return True
 
 
-def artifact_ok(entry, label: str, errors: list[str]) -> bool:
+def artifact_ok(entry, label: str, subject_tree, descendant_tree, errors: list[str]) -> bool:
     if not isinstance(entry, dict) or set(entry) != {"path", "sha256"}:
-        fail(errors, f"{label}: malformed current artifact reference")
+        fail(errors, f"{label}: malformed descendant output artifact reference")
         return False
     path_value, sha256 = entry.get("path"), entry.get("sha256")
-    if not isinstance(path_value, str) or excluded_attestation_path(path_value) or not re.fullmatch(r"[0-9a-f]{64}", str(sha256)):
-        fail(errors, f"{label}: invalid or self-referential current artifact")
+    if not isinstance(path_value, str) or not path_value.startswith(ATTESTATION_PREFIXES) or not re.fullmatch(r"[0-9a-f]{64}", str(sha256)):
+        fail(errors, f"{label}: output must be a hash-bound path under an evidence directory")
         return False
-    path = (ROOT / path_value).resolve()
-    if ROOT not in path.parents or not path.is_file() or digest(path) != sha256:
-        fail(errors, f"{label}: missing, escaped, or digest-drifted artifact {path_value}")
+    if path_value in subject_tree:
+        fail(errors, f"{label}: output artifact is present in the subject and is not descendant-only: {path_value}")
+        return False
+    entry_data = descendant_tree.get(path_value)
+    if entry_data is None or entry_data[1] != "blob" or entry_data[3] != sha256:
+        fail(errors, f"{label}: output is missing from the committed descendant or has a digest mismatch: {path_value}")
         return False
     return True
 
 
-def evidence_contract(subject: str | None, subject_tree, tree_clean: bool, by_id, errors: list[str]):
+def evidence_contract(subject: str | None, subject_tree, descendant_tree, tree_clean: bool, by_id, errors: list[str]):
     records, valid = {}, set()
     required = {"schema_version", "evidence_id", "owning_item", "subject_revision", "subject_artifacts", "command", "environment", "run_id", "cases", "started_at", "ended_at", "observed_exit_code", "observed_status", "expected", "observed", "stdout", "stderr", "artifacts", "invalidation_edges", "review_bindings", "retention_until", "supersedes"}
     environment_fields = {"tree_state", "toolchains", "platform_row", "target", "host_os", "host_architecture", "execution", "working_directory", "cells", "backend", "features"}
@@ -440,13 +472,17 @@ def evidence_contract(subject: str | None, subject_tree, tree_clean: bool, by_id
         except (KeyError, AttributeError, TypeError, ValueError):
             fail(errors, f"{ident}: invalid evidence timestamps/retention")
         for name in ("stdout", "stderr"):
-            artifact_ok(ev.get(name), f"{ident}.{name}", errors)
+            artifact_ok(ev.get(name), f"{ident}.{name}", subject_tree, descendant_tree, errors)
         artifacts = ev.get("artifacts")
         if not isinstance(artifacts, list):
             fail(errors, f"{ident}: artifacts must be an array")
             artifacts = []
         for index, artifact in enumerate(artifacts):
-            artifact_ok(artifact, f"{ident}.artifacts[{index}]", errors)
+            artifact_ok(artifact, f"{ident}.artifacts[{index}]", subject_tree, descendant_tree, errors)
+        output_entries = [ev.get("stdout"), ev.get("stderr"), *artifacts]
+        output_paths = [entry.get("path") for entry in output_entries if isinstance(entry, dict)]
+        if len(output_paths) != len(output_entries) or len(output_paths) != len(set(output_paths)):
+            fail(errors, f"{ident}: malformed or duplicate descendant output artifact path")
         edges = ev.get("invalidation_edges")
         if not isinstance(edges, list) or not edges:
             fail(errors, f"{ident}: invalidation_edges must be non-empty")
@@ -1051,11 +1087,12 @@ def main():
     tracker = load(TRACKER)
     revision = repository_revision(errors)
     subject_revision, subject_closure, subject_tree = manifest_subject_revision(revision, errors)
+    descendant_tree = committed_tree(revision, errors) if revision else {}
     tree_clean = repository_tree_clean(errors)
     projection = checklist_projection(errors)
     by_id, stats = graph_contract(tracker, projection, errors)
     governance_contract(by_id, errors)
-    evidence, valid_evidence = evidence_contract(subject_revision, subject_tree, tree_clean, by_id, errors)
+    evidence, valid_evidence = evidence_contract(subject_revision, subject_tree, descendant_tree or {}, tree_clean, by_id, errors)
     reviews, valid_reviews = review_contract(subject_revision, subject_tree, tree_clean, by_id, evidence, valid_evidence, errors)
     platform_complete = platform_contract(subject_revision, evidence, valid_evidence, reviews, valid_reviews, errors)
     adoptions, valid_adoptions = adoption_contract(by_id, errors)
