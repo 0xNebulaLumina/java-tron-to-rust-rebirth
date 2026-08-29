@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0006",
   "owning_item": "C000.14",
-  "subject_revision": "bc0a489f6f982f64d90dd05a38109944879c2e26",
+  "subject_revision": "6b5ed14e342db9ac9afc820315dfe2daf45b6b2a",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -47,7 +47,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-154017Z-0006",
+  "run_id": "c000-descendant-20260829-161350Z-6b5ed14e-0006",
   "cases": [
     {
       "id": "repeated-run-cleanup",
@@ -56,8 +56,8 @@
         "outcome": "pass"
       },
       "observed": {
-        "outcome": "pass",
-        "observer": "orchestrator"
+        "subprocesses": 32,
+        "temporary_bytes": 27744
       },
       "skip_disposition": null
     },
@@ -68,8 +68,8 @@
         "outcome": "pass"
       },
       "observed": {
-        "outcome": "pass",
-        "observer": "orchestrator"
+        "after": 4,
+        "before": 4
       },
       "skip_disposition": null
     },
@@ -79,44 +79,65 @@
       "expected": {
         "outcome": "pass"
       },
-      "observed": {
-        "outcome": "pass",
-        "observer": "orchestrator"
-      },
+      "observed": {},
       "skip_disposition": null
     },
     {
-      "id": "timeout-process-cleanup",
+      "id": "stdout-overflow-kills-and-reaps",
       "outcome": "pass",
       "expected": {
         "outcome": "pass"
       },
       "observed": {
-        "outcome": "pass",
-        "observer": "orchestrator"
+        "after": 4,
+        "before": 4,
+        "captured_bytes": 2097152,
+        "exit_code": 70
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "stderr-overflow-kills-and-reaps",
+      "outcome": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
+      "observed": {
+        "exit_code": 70
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "timeout-kills-and-reaps",
+      "outcome": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
+      "observed": {
+        "after": 4,
+        "before": 4,
+        "elapsed_milliseconds": 10003,
+        "exit_code": 124
       },
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:40:17Z",
-  "ended_at": "2026-08-29T15:40:17Z",
+  "started_at": "2026-08-29T16:13:51Z",
+  "ended_at": "2026-08-29T16:14:02Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
-    "outcome": "pass",
-    "case_count": 4
+    "exit_code": 0
   },
   "observed": {
-    "outcome": "pass",
-    "case_count": 4,
-    "observer": "orchestrator"
+    "exit_code": 0
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0006.20260829-154017Z.stdout.txt",
-    "sha256": "ab8af83f18ea27eb9a589626e17b7b89f6e0bf31f97694de739856eb1012079d"
+    "path": "docs/governance/evidence/EV-0006.20260829-161350Z-6b5ed14e-0006.stdout.txt",
+    "sha256": "3a46489510f6913b7793bb1fc9456bfe63332c9dadcec520828b74ad5cbb03dd"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0006.20260829-154017Z.stderr.txt",
+    "path": "docs/governance/evidence/EV-0006.20260829-161350Z-6b5ed14e-0006.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],

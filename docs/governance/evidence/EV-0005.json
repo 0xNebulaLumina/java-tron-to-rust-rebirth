@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0005",
   "owning_item": "C000.14",
-  "subject_revision": "bc0a489f6f982f64d90dd05a38109944879c2e26",
+  "subject_revision": "6b5ed14e342db9ac9afc820315dfe2daf45b6b2a",
   "subject_artifacts": [
     {
       "path": "docs/architecture/license-provenance-policy.md",
@@ -48,71 +48,61 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-154017Z-0005",
+  "run_id": "c000-descendant-20260829-161350Z-6b5ed14e-0005",
   "cases": [
     {
       "id": "ffi",
-      "outcome": "skip",
+      "outcome": "pass",
       "expected": {
         "disposition": "not_applicable",
         "reviewed": true
       },
       "observed": {
         "disposition": "not_applicable",
-        "reviewed": false,
+        "reason": "C000 introduces no foreign-function boundary, linked native library, generated binding, or cross-language in-process call",
+        "reopen_condition": "any FFI declaration, generated binding, native link, or in-process foreign call is introduced",
         "review_bindings": []
       },
-      "skip_disposition": {
-        "status": "not-applicable",
-        "reason": "ffi has no C000 runtime surface but independent review is pending",
-        "owner": "C000.14",
-        "unblock_condition": "authenticated security/tooling and license/provenance/tooling reviews approve ffi non-applicability",
-        "review_by": "2027-08-29"
-      }
+      "skip_disposition": null
     },
     {
       "id": "packaging",
-      "outcome": "skip",
+      "outcome": "pass",
       "expected": {
         "disposition": "not_applicable",
         "reviewed": true
       },
       "observed": {
         "disposition": "not_applicable",
-        "reviewed": false,
+        "reason": "C000 defines architecture governance and behavior-neutral verification tooling but no distributable binary, archive, image, installer, or release artifact",
+        "reopen_condition": "a C000-produced distributable or release artifact is introduced",
         "review_bindings": []
       },
-      "skip_disposition": {
-        "status": "not-applicable",
-        "reason": "packaging has no C000 runtime surface but independent review is pending",
-        "owner": "C000.14",
-        "unblock_condition": "authenticated security/tooling and license/provenance/tooling reviews approve packaging non-applicability",
-        "review_by": "2027-08-29"
-      }
+      "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:40:17Z",
-  "ended_at": "2026-08-29T15:40:17Z",
-  "observed_exit_code": 125,
-  "observed_status": "fail",
+  "started_at": "2026-08-29T16:13:51Z",
+  "ended_at": "2026-08-29T16:13:51Z",
+  "observed_exit_code": 0,
+  "observed_status": "pass",
   "expected": {
-    "reviewed_not_applicable": [
-      "ffi",
-      "packaging"
+    "dispositions": [
+      "not_applicable"
     ]
   },
   "observed": {
-    "pending_review": [
+    "pending_independent_review": [
       "ffi",
       "packaging"
-    ]
+    ],
+    "command_exit_code": 0
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0005.20260829-154017Z.stdout.txt",
-    "sha256": "945d192d8fe234ceff9a2f6fa452e1f9aebffbe80c89d8b88517830d5c53d599"
+    "path": "docs/governance/evidence/EV-0005.20260829-161350Z-6b5ed14e-0005.stdout.txt",
+    "sha256": "749f8161ccfbcbe8fb8d4857e90cfb230a05bc998445932330e54fdc19854684"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0005.20260829-154017Z.stderr.txt",
+    "path": "docs/governance/evidence/EV-0005.20260829-161350Z-6b5ed14e-0005.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],

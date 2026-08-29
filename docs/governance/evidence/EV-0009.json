@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0009",
   "owning_item": "C000.04",
-  "subject_revision": "bc0a489f6f982f64d90dd05a38109944879c2e26",
+  "subject_revision": "6b5ed14e342db9ac9afc820315dfe2daf45b6b2a",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -32,7 +32,7 @@
     {
       "path": "tools/platform/c000_artifacts.py",
       "mode": "100755",
-      "sha256": "54b1d4edac59b67964350ebde7ba12f07b40a4eadd7b78ce62aeec5a091419ab"
+      "sha256": "e2c3d877c1c73f166befbe78cea8a6361339b3788f8e1af792c9c2a0af3cef21"
     },
     {
       "path": "tools/platform/run",
@@ -42,7 +42,7 @@
     {
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "b66248102e7cf3202a27c06e1fcd564b67f6b8f95f93ac91325e820a8aceca94"
+      "sha256": "4df090bc5dfb8c681047f6b22cf6860a30f3cca426731b23dc4915361c5375a1"
     }
   ],
   "command": [
@@ -65,25 +65,25 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-154017Z-0009",
+  "run_id": "c000-descendant-20260829-161350Z-6b5ed14e-0009",
   "cases": [
     {
-      "id": "C000.04",
-      "outcome": "pass",
       "expected": {
         "artifacts_present": true,
         "documents_parse": true,
         "semantic_contracts_current": true
       },
+      "id": "C000.04",
       "observed": {
         "artifact_count": 5,
         "issues": []
       },
+      "outcome": "pass",
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:40:17Z",
-  "ended_at": "2026-08-29T15:40:17Z",
+  "started_at": "2026-08-29T16:14:02Z",
+  "ended_at": "2026-08-29T16:14:05Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
@@ -102,11 +102,11 @@
     }
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0009.20260829-154017Z.stdout.txt",
-    "sha256": "82a4aad5afecc8935a1230c6dc2a6fc8c4797fef8aaa77e8e4d779c2aabedc86"
+    "path": "docs/governance/evidence/EV-0009.20260829-161350Z-6b5ed14e-0009.stdout.txt",
+    "sha256": "c053db83efe8f977530345ad279b5a63b82c1249aa94b9e05a7b09f1f48b2b6e"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0009.20260829-154017Z.stderr.txt",
+    "path": "docs/governance/evidence/EV-0009.20260829-161350Z-6b5ed14e-0009.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
@@ -145,7 +145,7 @@
       "kind": "generator",
       "path": "tools/platform/c000_artifacts.py",
       "mode": "100755",
-      "sha256": "54b1d4edac59b67964350ebde7ba12f07b40a4eadd7b78ce62aeec5a091419ab"
+      "sha256": "e2c3d877c1c73f166befbe78cea8a6361339b3788f8e1af792c9c2a0af3cef21"
     },
     {
       "kind": "generator",
@@ -157,7 +157,7 @@
       "kind": "source",
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "b66248102e7cf3202a27c06e1fcd564b67f6b8f95f93ac91325e820a8aceca94"
+      "sha256": "4df090bc5dfb8c681047f6b22cf6860a30f3cca426731b23dc4915361c5375a1"
     }
   ],
   "review_bindings": [],

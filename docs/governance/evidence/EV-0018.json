@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0018",
   "owning_item": "C000.15",
-  "subject_revision": "bc0a489f6f982f64d90dd05a38109944879c2e26",
+  "subject_revision": "6b5ed14e342db9ac9afc820315dfe2daf45b6b2a",
   "subject_artifacts": [
     {
       "path": "docs/governance/adoption-inventory-v1.schema.json",
@@ -12,7 +12,7 @@
     {
       "path": "docs/governance/adoption-inventory.v1.json",
       "mode": "100644",
-      "sha256": "590accdaeff166e56138435ced672956180fbff060ddd53e10424a967529c767"
+      "sha256": "05457aec87cd82d4cf705f0a5c5655dff31350b00844a30cfdd5cf8c76a954bc"
     },
     {
       "path": "docs/governance/dependency-decisions.v1.json",
@@ -37,7 +37,7 @@
     {
       "path": "tools/platform/c000_artifacts.py",
       "mode": "100755",
-      "sha256": "54b1d4edac59b67964350ebde7ba12f07b40a4eadd7b78ce62aeec5a091419ab"
+      "sha256": "e2c3d877c1c73f166befbe78cea8a6361339b3788f8e1af792c9c2a0af3cef21"
     },
     {
       "path": "tools/platform/run",
@@ -47,7 +47,7 @@
     {
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "b66248102e7cf3202a27c06e1fcd564b67f6b8f95f93ac91325e820a8aceca94"
+      "sha256": "4df090bc5dfb8c681047f6b22cf6860a30f3cca426731b23dc4915361c5375a1"
     }
   ],
   "command": [
@@ -70,38 +70,27 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-154017Z-0018",
+  "run_id": "c000-descendant-20260829-161350Z-6b5ed14e-0018",
   "cases": [
     {
-      "id": "C000.15",
-      "outcome": "fail",
       "expected": {
         "artifacts_present": true,
         "documents_parse": true,
         "semantic_contracts_current": true
       },
+      "id": "C000.15",
       "observed": {
         "artifact_count": 5,
         "issues": [
-          "C000.01: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected=['AD-0037', 'AD-0038', 'AD-0039', 'AD-0040', 'AD-0041', 'AD-0042', 'AD-0043', 'AD-0044', 'AD-0045', 'AD-0046', 'AD-0047', 'AD-0048', 'AD-0049', 'AD-0050', 'AD-0051', 'AD-0052', 'AD-0053'] actual=['AD-0034', 'AD-0035', 'AD-0036', 'AD-0037', 'AD-0038', 'AD-0039', 'AD-0040', 'AD-0041', 'AD-0042', 'AD-0043', 'AD-0044', 'AD-0045', 'AD-0046', 'AD-0047', 'AD-0048', 'AD-0049', 'AD-0050']",
-          "C000.02: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected=['AD-0002', 'AD-0031', 'AD-0034', 'AD-0035', 'AD-0036', 'AD-0054', 'AD-0055', 'AD-0056', 'AD-0057', 'AD-0058', 'AD-0059', 'AD-0060'] actual=['AD-0002', 'AD-0030', 'AD-0031', 'AD-0032', 'AD-0033', 'AD-0051', 'AD-0073', 'AD-0074', 'AD-0075', 'AD-0076', 'AD-0077', 'AD-0078']",
-          "C000.04: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected=['AD-0018', 'AD-0021', 'AD-0024', 'AD-0025', 'AD-0028'] actual=['AD-0018', 'AD-0019', 'AD-0024', 'AD-0025']",
-          "C000.05: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected=['AD-0009', 'AD-0010', 'AD-0011', 'AD-0012', 'AD-0013', 'AD-0014', 'AD-0015', 'AD-0016', 'AD-0020', 'AD-0023', 'AD-0078', 'AD-0079', 'AD-0080', 'AD-0081', 'AD-0082', 'AD-0083'] actual=['AD-0009', 'AD-0010', 'AD-0011', 'AD-0012', 'AD-0013', 'AD-0014', 'AD-0015', 'AD-0016', 'AD-0021', 'AD-0023', 'AD-0059', 'AD-0060', 'AD-0061', 'AD-0067', 'AD-0071', 'AD-0072']",
-          "C000.07: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected=['AD-0022', 'AD-0029', 'AD-0030'] actual=['AD-0022', 'AD-0026', 'AD-0027']",
-          "C000.08: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected=['AD-0019', 'AD-0026', 'AD-0074', 'AD-0075'] actual=['AD-0020', 'AD-0028', 'AD-0057', 'AD-0068']",
-          "C000.09: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected=['AD-0017', 'AD-0027', 'AD-0076', 'AD-0077'] actual=['AD-0017', 'AD-0029', 'AD-0058', 'AD-0069']",
-          "C000.10: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected=['AD-0008', 'AD-0084', 'AD-0085'] actual=['AD-0008', 'AD-0062', 'AD-0070']",
-          "C000.12: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected=['AD-0001', 'AD-0032', 'AD-0033'] actual=[]",
-          "C000.14: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected=['AD-0063', 'AD-0064', 'AD-0065', 'AD-0066', 'AD-0067', 'AD-0068', 'AD-0069', 'AD-0070', 'AD-0071', 'AD-0072', 'AD-0073'] actual=['AD-0001', 'AD-0053', 'AD-0054', 'AD-0055', 'AD-0056', 'AD-0064', 'AD-0065', 'AD-0066', 'AD-0079', 'AD-0080']",
-          "C000.V: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected=['AD-0061', 'AD-0062'] actual=['AD-0052', 'AD-0063']",
           "adoption inventory contains non-current instances"
         ]
       },
+      "outcome": "fail",
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:40:17Z",
-  "ended_at": "2026-08-29T15:40:17Z",
+  "started_at": "2026-08-29T16:14:02Z",
+  "ended_at": "2026-08-29T16:14:05Z",
   "observed_exit_code": 1,
   "observed_status": "fail",
   "expected": {
@@ -120,11 +109,11 @@
     }
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0018.20260829-154017Z.stdout.txt",
-    "sha256": "82a4aad5afecc8935a1230c6dc2a6fc8c4797fef8aaa77e8e4d779c2aabedc86"
+    "path": "docs/governance/evidence/EV-0018.20260829-161350Z-6b5ed14e-0018.stdout.txt",
+    "sha256": "c053db83efe8f977530345ad279b5a63b82c1249aa94b9e05a7b09f1f48b2b6e"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0018.20260829-154017Z.stderr.txt",
+    "path": "docs/governance/evidence/EV-0018.20260829-161350Z-6b5ed14e-0018.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
@@ -139,7 +128,7 @@
       "kind": "source",
       "path": "docs/governance/adoption-inventory.v1.json",
       "mode": "100644",
-      "sha256": "590accdaeff166e56138435ced672956180fbff060ddd53e10424a967529c767"
+      "sha256": "05457aec87cd82d4cf705f0a5c5655dff31350b00844a30cfdd5cf8c76a954bc"
     },
     {
       "kind": "source",
@@ -169,7 +158,7 @@
       "kind": "generator",
       "path": "tools/platform/c000_artifacts.py",
       "mode": "100755",
-      "sha256": "54b1d4edac59b67964350ebde7ba12f07b40a4eadd7b78ce62aeec5a091419ab"
+      "sha256": "e2c3d877c1c73f166befbe78cea8a6361339b3788f8e1af792c9c2a0af3cef21"
     },
     {
       "kind": "generator",
@@ -181,7 +170,7 @@
       "kind": "source",
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "b66248102e7cf3202a27c06e1fcd564b67f6b8f95f93ac91325e820a8aceca94"
+      "sha256": "4df090bc5dfb8c681047f6b22cf6860a30f3cca426731b23dc4915361c5375a1"
     }
   ],
   "review_bindings": [],

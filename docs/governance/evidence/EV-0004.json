@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0004",
   "owning_item": "C000.14",
-  "subject_revision": "bc0a489f6f982f64d90dd05a38109944879c2e26",
+  "subject_revision": "6b5ed14e342db9ac9afc820315dfe2daf45b6b2a",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -97,7 +97,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-154017Z-0004",
+  "run_id": "c000-descendant-20260829-161350Z-6b5ed14e-0004",
   "cases": [
     {
       "id": "positive",
@@ -106,14 +106,12 @@
         "match": true
       },
       "observed": {
-        "case": "positive",
         "compare_exit": 0,
         "expected_match": true,
         "fixture_sha256": "aa32a0a57c7c17885a6aac20809d14f961be15fd2e350e0d42f0d4d431ce68d6",
         "java_exit": 0,
         "mismatch_kinds": [],
         "observed_match": true,
-        "outcome": "pass",
         "rust_exit": 0
       },
       "skip_disposition": null
@@ -125,14 +123,12 @@
         "match": true
       },
       "observed": {
-        "case": "negative",
         "compare_exit": 0,
         "expected_match": true,
         "fixture_sha256": "e626eebc2f25e6717715bade230fce8260ab0ca8fb1bd7670d45f74aaca9245b",
         "java_exit": 10,
         "mismatch_kinds": [],
         "observed_match": true,
-        "outcome": "pass",
         "rust_exit": 10
       },
       "skip_disposition": null
@@ -144,7 +140,6 @@
         "match": false
       },
       "observed": {
-        "case": "mismatch-output",
         "compare_exit": 20,
         "expected_match": false,
         "fixture_sha256": "accae08c09be4a36bb41886c61ebc7c37cf2255157bd9453e1d986d6f727e6a1",
@@ -153,7 +148,6 @@
           "output"
         ],
         "observed_match": false,
-        "outcome": "pass",
         "rust_exit": 0
       },
       "skip_disposition": null
@@ -165,7 +159,6 @@
         "match": false
       },
       "observed": {
-        "case": "mismatch-state",
         "compare_exit": 20,
         "expected_match": false,
         "fixture_sha256": "29f22f2038eb9b209a56ee2eeb860aceeb00ae615e697feb63f5ddeb118186b8",
@@ -174,7 +167,6 @@
           "state"
         ],
         "observed_match": false,
-        "outcome": "pass",
         "rust_exit": 0
       },
       "skip_disposition": null
@@ -186,7 +178,6 @@
         "match": false
       },
       "observed": {
-        "case": "mismatch-error",
         "compare_exit": 20,
         "expected_match": false,
         "fixture_sha256": "37a6a62bfbf7ba355637da04400f764707b7068dc0ac9a494a66522ee8193530",
@@ -195,7 +186,6 @@
           "error"
         ],
         "observed_match": false,
-        "outcome": "pass",
         "rust_exit": 10
       },
       "skip_disposition": null
@@ -207,7 +197,6 @@
         "match": false
       },
       "observed": {
-        "case": "mismatch-forbidden-normalization",
         "compare_exit": 20,
         "expected_match": false,
         "fixture_sha256": "4842e34f710e223d457649faf73d344d0b12cb7baf92bbf9cf88ece065b71f05",
@@ -216,7 +205,6 @@
           "forbidden_normalization"
         ],
         "observed_match": false,
-        "outcome": "pass",
         "rust_exit": 0
       },
       "skip_disposition": null
@@ -228,7 +216,6 @@
         "match": false
       },
       "observed": {
-        "case": "mismatch-normalization-forbidden-class",
         "compare_exit": 20,
         "expected_match": false,
         "fixture_sha256": "4435daa383c4d7559a00a11aa79e5002a08e94948bd48a6a39974950c4c538b3",
@@ -238,7 +225,6 @@
           "log"
         ],
         "observed_match": false,
-        "outcome": "pass",
         "rust_exit": 0
       },
       "skip_disposition": null
@@ -250,7 +236,6 @@
         "match": false
       },
       "observed": {
-        "case": "mismatch-normalization-forbidden-pointer",
         "compare_exit": 20,
         "expected_match": false,
         "fixture_sha256": "ad1616d90a7f148200b40a079aca401724a40a0a3af0a86032a5da92c6907af3",
@@ -260,30 +245,36 @@
           "forbidden_normalization"
         ],
         "observed_match": false,
-        "outcome": "pass",
         "rust_exit": 0
       },
       "skip_disposition": null
+    },
+    {
+      "id": "temp-cleanup",
+      "outcome": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
+      "observed": {},
+      "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:40:17Z",
-  "ended_at": "2026-08-29T15:40:17Z",
+  "started_at": "2026-08-29T16:13:50Z",
+  "ended_at": "2026-08-29T16:13:51Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
-    "case_count": 8,
-    "all_pass": true
+    "exit_code": 0
   },
   "observed": {
-    "case_count": 8,
-    "all_pass": true
+    "exit_code": 0
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0004.20260829-154017Z.stdout.txt",
-    "sha256": "6351b31b44e1ba5534c85908157df85398e6128962c9e429fe7017559ffd77f4"
+    "path": "docs/governance/evidence/EV-0004.20260829-161350Z-6b5ed14e-0004.stdout.txt",
+    "sha256": "84f15bf4329a22b683c0e20f458b0f09c51c4f85bdda11774abd91412c654d6a"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0004.20260829-154017Z.stderr.txt",
+    "path": "docs/governance/evidence/EV-0004.20260829-161350Z-6b5ed14e-0004.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],

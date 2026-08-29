@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0003",
   "owning_item": "C000.14",
-  "subject_revision": "bc0a489f6f982f64d90dd05a38109944879c2e26",
+  "subject_revision": "6b5ed14e342db9ac9afc820315dfe2daf45b6b2a",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -92,7 +92,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-154017Z-0003",
+  "run_id": "c000-descendant-20260829-161350Z-6b5ed14e-0003",
   "cases": [
     {
       "id": "fixture-schema:mismatch-error",
@@ -101,9 +101,7 @@
         "outcome": "pass"
       },
       "observed": {
-        "case": "fixture-schema:mismatch-error",
-        "errors": [],
-        "outcome": "pass"
+        "errors": []
       },
       "skip_disposition": null
     },
@@ -114,9 +112,7 @@
         "outcome": "pass"
       },
       "observed": {
-        "case": "fixture-schema:mismatch-forbidden-normalization",
-        "errors": [],
-        "outcome": "pass"
+        "errors": []
       },
       "skip_disposition": null
     },
@@ -127,9 +123,7 @@
         "outcome": "pass"
       },
       "observed": {
-        "case": "fixture-schema:mismatch-normalization-forbidden-class",
-        "errors": [],
-        "outcome": "pass"
+        "errors": []
       },
       "skip_disposition": null
     },
@@ -140,9 +134,7 @@
         "outcome": "pass"
       },
       "observed": {
-        "case": "fixture-schema:mismatch-normalization-forbidden-pointer",
-        "errors": [],
-        "outcome": "pass"
+        "errors": []
       },
       "skip_disposition": null
     },
@@ -153,9 +145,7 @@
         "outcome": "pass"
       },
       "observed": {
-        "case": "fixture-schema:mismatch-output",
-        "errors": [],
-        "outcome": "pass"
+        "errors": []
       },
       "skip_disposition": null
     },
@@ -166,9 +156,7 @@
         "outcome": "pass"
       },
       "observed": {
-        "case": "fixture-schema:mismatch-state",
-        "errors": [],
-        "outcome": "pass"
+        "errors": []
       },
       "skip_disposition": null
     },
@@ -179,9 +167,7 @@
         "outcome": "pass"
       },
       "observed": {
-        "case": "fixture-schema:negative",
-        "errors": [],
-        "outcome": "pass"
+        "errors": []
       },
       "skip_disposition": null
     },
@@ -192,9 +178,7 @@
         "outcome": "pass"
       },
       "observed": {
-        "case": "fixture-schema:positive",
-        "errors": [],
-        "outcome": "pass"
+        "errors": []
       },
       "skip_disposition": null
     },
@@ -205,9 +189,7 @@
         "outcome": "pass"
       },
       "observed": {
-        "case": "runner-identify:java",
-        "exit_code": 0,
-        "outcome": "pass"
+        "exit_code": 0
       },
       "skip_disposition": null
     },
@@ -218,31 +200,60 @@
         "outcome": "pass"
       },
       "observed": {
-        "case": "runner-identify:rust",
-        "exit_code": 0,
+        "exit_code": 0
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "resource:oversize-input",
+      "outcome": "pass",
+      "expected": {
         "outcome": "pass"
+      },
+      "observed": {
+        "exit_code": 64
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "resource:deep-input",
+      "outcome": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
+      "observed": {
+        "exit_code": 64
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "resource:duplicate-key",
+      "outcome": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
+      "observed": {
+        "exit_code": 64
       },
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:40:17Z",
-  "ended_at": "2026-08-29T15:40:17Z",
+  "started_at": "2026-08-29T16:13:50Z",
+  "ended_at": "2026-08-29T16:13:50Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
-    "case_count": 10,
-    "all_pass": true
+    "exit_code": 0
   },
   "observed": {
-    "case_count": 10,
-    "all_pass": true
+    "exit_code": 0
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0003.20260829-154017Z.stdout.txt",
-    "sha256": "3c662819ced125446d18645896e70534fa749041b4d428e637f811db0f9084a2"
+    "path": "docs/governance/evidence/EV-0003.20260829-161350Z-6b5ed14e-0003.stdout.txt",
+    "sha256": "a75e959c52b2fc9a7fb31f86927387144add67a4148b34b130e870c07673a8fb"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0003.20260829-154017Z.stderr.txt",
+    "path": "docs/governance/evidence/EV-0003.20260829-161350Z-6b5ed14e-0003.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
