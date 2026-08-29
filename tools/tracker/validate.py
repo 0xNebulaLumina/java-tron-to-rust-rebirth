@@ -382,6 +382,21 @@ def subject_artifact_ok(entry, label: str, subject_tree, errors: list[str]) -> b
         return False
     return True
 
+def subject_input_ok(entry, label: str, subject_tree, errors: list[str]) -> bool:
+    if not isinstance(entry, dict) or set(entry) != {"path", "sha256"}:
+        fail(errors, f"{label}: input artifact must contain exactly path and sha256")
+        return False
+    path, sha256 = entry.get("path"), entry.get("sha256")
+    if not isinstance(path, str) or excluded_attestation_path(path) or path not in subject_tree:
+        fail(errors, f"{label}: unknown, excluded, or self-referential subject input {path!r}")
+        return False
+    _mode, object_type, _object_id, actual_sha256 = subject_tree[path]
+    if object_type != "blob" or sha256 != actual_sha256:
+        fail(errors, f"{label}: subject blob digest mismatch for {path}")
+        return False
+    return True
+
+
 
 def artifact_ok(entry, label: str, subject_tree, descendant_tree, errors: list[str]) -> bool:
     if not isinstance(entry, dict) or set(entry) != {"path", "sha256"}:
@@ -808,7 +823,7 @@ def platform_contract(subject_revision, evidence, valid_evidence, reviews, valid
         fail(errors, f"platform coverage is stale; computed {computed}")
     return complete
 
-def adoption_contract(by_id, errors: list[str]):
+def adoption_contract(by_id, subject_tree, errors: list[str]):
     decisions = load(ROOT / "docs/governance/dependency-decisions.v1.json")
     decision_rows = decisions.get("decisions", []) if isinstance(decisions, dict) else []
     decision_ids = {entry.get("id") for entry in decision_rows if isinstance(entry, dict) and re.fullmatch(r"DD-[0-9]{3}", str(entry.get("id", "")))}
@@ -830,7 +845,7 @@ def adoption_contract(by_id, errors: list[str]):
     if not isinstance(generation, dict) or generation.get("discovery_roots") != list(ADOPTION_DISCOVERY_PATTERNS):
         fail(errors, "adoption inventory discovery roots are stale or incomplete")
     for index, source in enumerate(sources):
-        artifact_ok(source, f"dependency inventory input[{index}]", errors)
+        subject_input_ok(source, f"dependency inventory input[{index}]", subject_tree, errors)
     instances = adoption.get("instances", []) if isinstance(adoption, dict) else []
     if not isinstance(instances, list):
         fail(errors, "adoption inventory: instances must be an array")
@@ -1095,7 +1110,7 @@ def main():
     evidence, valid_evidence = evidence_contract(subject_revision, subject_tree, descendant_tree or {}, tree_clean, by_id, errors)
     reviews, valid_reviews = review_contract(subject_revision, subject_tree, tree_clean, by_id, evidence, valid_evidence, errors)
     platform_complete = platform_contract(subject_revision, evidence, valid_evidence, reviews, valid_reviews, errors)
-    adoptions, valid_adoptions = adoption_contract(by_id, errors)
+    adoptions, valid_adoptions = adoption_contract(by_id, subject_tree, errors)
     predicates = artifact_contract(by_id, errors)
     derived_contract(tracker, by_id, evidence, valid_evidence, reviews, valid_reviews, adoptions, valid_adoptions, platform_complete, predicates, stats, errors)
     report = {"schema_version": 1, "validator": "tools/tracker/validate.py", "repository_revision": revision, "subject_revision": subject_revision, "governed_closure_sha256": closure_digest(subject_closure) if subject_closure else None, "result": "fail" if errors else "pass", "derived": {"platform_complete": platform_complete, "evidence_records": len(evidence), "valid_evidence_records": len(valid_evidence), "review_records": len(reviews), "valid_review_records": len(valid_reviews), "adoption_records": len(adoptions), "valid_adoption_records": len(valid_adoptions), **predicates}, "errors": errors}

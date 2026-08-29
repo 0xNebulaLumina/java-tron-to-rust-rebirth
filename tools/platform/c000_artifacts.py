@@ -182,9 +182,9 @@ def oracle_issues() -> list[str]:
     return issues
 
 
-def adoption_issues(validator: Any, by_id: dict[str, Any]) -> list[str]:
+def adoption_issues(validator: Any, by_id: dict[str, Any], subject_tree: dict[str, tuple[str, str, str, str]]) -> list[str]:
     issues: list[str] = []
-    records, valid = validator.adoption_contract(by_id, issues)
+    records, valid = validator.adoption_contract(by_id, subject_tree, issues)
     if set(records) != valid:
         issues.append("adoption inventory contains non-current instances")
     return issues
@@ -209,7 +209,7 @@ def task_case(task_id: str, validator: Any | None = None, by_id: dict[str, Any] 
         if validator is None or by_id is None:
             issues.append("governance validator unavailable")
         else:
-            issues.extend(adoption_issues(validator, by_id))
+            issues.extend(adoption_issues(validator, by_id, subject_tree or {}))
     return {
         "id": task_id,
         "outcome": "fail" if issues else "pass",
