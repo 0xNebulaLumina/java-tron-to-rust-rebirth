@@ -197,10 +197,11 @@
     "rule": "The validator resolves each EV/RV reference, verifies immutable hashes, freshness, revision, and native execution, derives readiness, and rejects completed gates with deferred, unavailable, unrun, stale, failed, or unapproved applicable cells on supported rows. Reserved later-enablement rows are outside C000 until explicitly promoted by reviewed tracker change."
   },
   "subject_ref": "refs/tags/c000-subject",
-  "subject_revision": "f7e717045d35c1af45bef281f6d7865933df65bc",
+  "subject_tag_object": "98d10fb5c6da9d5e849223eea0813efa56403e2e",
+  "subject_revision": "e038789736346891c140f84be8852462b17e7202",
   "attestation": {
     "algorithm": "git-ls-tree-v1",
-    "closure_sha256": "e07108019399f59bdde3bd433845831c1daa8b165361d14c7cb9deb82820033f",
+    "closure_sha256": "63a9c8058a51c763f6fa94b829788adcfac71ed798f3e115801239563c3edfdb",
     "excluded_paths": [
       "docs/PORTING_CHECKLIST.md",
       "docs/PORTING_TRACKER.json",
