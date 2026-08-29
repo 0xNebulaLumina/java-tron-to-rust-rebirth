@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "source": "java-tron C002 primitive boundary semantics",
+  "vectors": {
+    "merkle": [
+      {"id":"C002.F.001","name":"empty","leaves":[],"pair_inputs_hex":[],"hash_calls":0,"odd_promotions":0,"root":"0000000000000000000000000000000000000000000000000000000000000000"},
+      {"id":"C002.F.002","name":"single-promoted","leaves":["0101010101010101010101010101010101010101010101010101010101010101"],"pair_inputs_hex":[],"hash_calls":0,"odd_promotions":0,"root":"0101010101010101010101010101010101010101010101010101010101010101"},
+      {"id":"C002.F.003","name":"three-odd-promotion","leaves":["0101010101010101010101010101010101010101010101010101010101010101","0202020202020202020202020202020202020202020202020202020202020202","0303030303030303030303030303030303030303030303030303030303030303"],"pair_inputs_hex":["01010101010101010101010101010101010101010101010101010101010101010202020202020202020202020202020202020202020202020202020202020202","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa0303030303030303030303030303030303030303030303030303030303030303"],"hash_calls":2,"odd_promotions":1,"duplicates_last":false,"root":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
+    ],
+    "tapos": [
+      {"id":"C002.F.004","height":72623859790382856,"ref_block_bytes":"0708"},
+      {"id":"C002.F.005","height":-1,"ref_block_bytes":"ffff"},
+      {"id":"C002.F.006","block_id":"000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f","ref_block_hash":"08090a0b0c0d0e0f"}
+    ],
+    "wire_hash_boundaries": [
+      {"id":"C002.F.007","operation":"transaction_id","input_hex":"1122","excluded_hex":"aabb","digest_calls":1,"digest_output_byte":1,"result_hex":"0101010101010101010101010101010101010101010101010101010101010101"},
+      {"id":"C002.F.008","operation":"transaction_full_hash","input_hex":"aabb","includes_signatures":true,"digest_calls":1,"digest_output_byte":1,"result_hex":"0101010101010101010101010101010101010101010101010101010101010101"},
+      {"id":"C002.F.009","operation":"block_id","input_hex":"3344","height":1,"overlay":"height big-endian into digest[0..8]","digest_calls":1,"digest_output_byte":1,"result_hex":"0000000000000001010101010101010101010101010101010101010101010101"},
+      {"id":"C002.F.010","operation":"transaction_provider_isolation","input_hex":"1122","provider_a_byte":17,"provider_b_byte":34,"expected_a_byte":17,"expected_b_byte":34,"calls_each":1},
+      {"id":"C002.F.011","operation":"block_provider_isolation","input_hex":"3344","height":1,"provider_a_suffix":17,"provider_b_suffix":34,"expected_a_suffix":17,"expected_b_suffix":34,"calls_each":1,"expected_a_hex":"0000000000000001111111111111111111111111111111111111111111111111","expected_b_hex":"0000000000000001222222222222222222222222222222222222222222222222"}
+    ],
+    "arithmetic": [
+      {"id":"C002.F.012","operation":"add_i64","mode":"strict","left":9223372036854775807,"right":1,"error":"overflow"},
+      {"id":"C002.F.013","operation":"add_i64","mode":"legacy","left":9223372036854775807,"right":1,"error":"overflow"},
+      {"id":"C002.F.014","operation":"subtract_i64","mode":"strict","left":-9223372036854775808,"right":1,"error":"overflow"},
+      {"id":"C002.F.015","operation":"subtract_i64","mode":"legacy","left":-9223372036854775808,"right":1,"error":"overflow"},
+      {"id":"C002.F.016","operation":"multiply_i64","mode":"strict","left":9223372036854775807,"right":2,"error":"overflow"},
+      {"id":"C002.F.017","operation":"multiply_i64","mode":"legacy","left":9223372036854775807,"right":2,"error":"overflow"},
+      {"id":"C002.F.018","operation":"policy","allow_strict_math":false,"disable_java_lang_math":false,"arithmetic_mode":"legacy","provider_method":"legacy_pow"},
+      {"id":"C002.F.019","operation":"policy","allow_strict_math":false,"disable_java_lang_math":true,"arithmetic_mode":"strict","provider_method":"legacy_pow"},
+      {"id":"C002.F.020","operation":"policy","allow_strict_math":true,"disable_java_lang_math":false,"arithmetic_mode":"legacy","provider_method":"strict_pow"},
+      {"id":"C002.F.021","operation":"policy","allow_strict_math":true,"disable_java_lang_math":true,"arithmetic_mode":"strict","provider_method":"strict_pow"}
+    ],
+    "unicode_keys": [
+      {"id":"C002.F.022","operation":"locale_root_lowercase_key","input":"TRON-I_09","output":"tron-i_09"},
+      {"id":"C002.F.023","operation":"locale_root_uppercase_key","input":"tron-i_09","output":"TRON-I_09"},
+      {"id":"C002.F.024","operation":"locale_root_lowercase_key","input":"ΟΣ","output":"ος"},
+      {"id":"C002.F.025","operation":"locale_root_lowercase_key","input":"ΟΣΑ","output":"οσα"},
+      {"id":"C002.F.036","operation":"locale_root_lowercase_key","input":"İ","output":"i̇"},
+      {"id":"C002.F.037","operation":"locale_root_lowercase_key","input":"iIıİ","output":"iiıi̇"},
+      {"id":"C002.F.038","operation":"locale_root_uppercase_key","input":"iIıİ","output":"IIIİ"},
+      {"id":"C002.F.039","operation":"locale_root_uppercase_key","input":"ß","output":"SS"},
+      {"id":"C002.F.040","operation":"locale_root_lowercase_key","input":"𐐀","output":"𐐨"},
+      {"id":"C002.F.041","operation":"locale_root_uppercase_key","input":"𐐨","output":"𐐀"}
+    ],
+    "block_id_comparators": [
+      {"id":"C002.F.026","operation":"height_compare","left_height":1,"right_height":1,"left_suffix":0,"right_suffix":255,"ordering":"equal"},
+      {"id":"C002.F.027","operation":"total_bytes_compare","left_height":1,"right_height":1,"left_suffix":0,"right_suffix":255,"ordering":"less"}
+    ],
+    "market": [
+      {"id":"C002.F.028","name":"unsigned-pair","left":"80","right":"7f","ordering":"greater"},
+      {"id":"C002.F.029","name":"zero-head","operation":"compare_price_key","left_price":[0,0],"right_price":[1,1],"ordering":"less"},
+      {"id":"C002.F.030","name":"overflow-fallback","left_price":[9223372036854775807,9223372036854775807],"right_price":[9223372036854775806,9223372036854775807],"ordering":"less","path":"BigInteger"},
+      {"id":"C002.F.031","name":"positive-long-truncation","bytes":"ffffffffffffffff","result":-1}
+    ],
+    "bigint_fixed_bytes": [
+      {"id":"C002.F.032","operation":"bigint_to_fixed_bytes","input":66051,"width":2,"output_hex":"0203","boundary":"overlong_positive_preserves_source_start"},
+      {"id":"C002.F.033","operation":"bigint_to_fixed_bytes","input":128,"width":1,"output_hex":"80","boundary":"positive_leading_sign"},
+      {"id":"C002.F.034","operation":"bigint_to_fixed_bytes","input":-129,"width":1,"output_hex":"7f","boundary":"negative_leading_sign"},
+      {"id":"C002.F.035","operation":"bigint_to_fixed_bytes","input":-66052,"width":1,"output_hex":"fe","boundary":"overlong_negative_preserves_source_start"}
+    ]
+  }
+}

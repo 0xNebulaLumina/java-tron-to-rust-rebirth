@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "scope": "C002 source-derived common and chain primitive compatibility surface",
+  "source_revision": "checked-in java-tron tree",
+  "coverage": [
+    {"id":"C002.01","rust":"types.rs","java_sources":[{"path":"java-tron/common/src/main/java/org/tron/common/utils/Sha256Hash.java","sha256":"1ac3630b8bd67a41ba060aa7971e62d083473cb69ef0f2efb052350b96a316c6"},{"path":"java-tron/chainbase/src/main/java/org/tron/core/capsule/BlockCapsule.java","sha256":"992d7517db28f737134a892108fada37948b3ba3d5c40180d69a9d057a451000"}]},
+    {"id":"C002.02","rust":"bytes.rs","java_sources":[{"path":"java-tron/common/src/main/java/org/tron/common/utils/ByteArray.java","sha256":"ca97f4234a5a35e4dd5011b2f75c0ecfa1069c4cc20c514a508e059e27888a71"},{"path":"java-tron/common/src/main/java/org/tron/common/utils/ByteUtil.java","sha256":"9eb4075dd7b6b36420b3fb994b83a4d3acb4836dbf62beada5570272f954fbe2"},{"path":"java-tron/common/src/main/java/org/tron/common/utils/FastByteComparisons.java","sha256":"8dd5720ca75adb09dce67e4294c29052a00baefef25b821496d95bf861bbe2f1"},{"path":"java-tron/common/src/main/java/org/tron/core/db/ByteArrayWrapper.java","sha256":"6187741fbca23913b5431d26b09bedf09a5246185930a3d6b77a330f7beca3bf"}]},
+    {"id":"C002.03","rust":"arithmetic.rs,time.rs","java_sources":[{"path":"java-tron/common/src/main/java/org/tron/common/math/Maths.java","sha256":"b6f3179a61a27960207395cb373c7b47d1dad8943a6bbdd910b3121d6789697b"},{"path":"java-tron/common/src/main/java/org/tron/common/math/StrictMathWrapper.java","sha256":"0720e9ce06483f21f5fd065be23c0165d4b16f557a86f59972cfbd636da5053f"},{"path":"java-tron/platform/src/main/java/x86/org/tron/common/math/MathWrapper.java","sha256":"eb0994d7eadcd45589b39ff7f7e34fb8e4ab9adf40cd08edab1e7823ef7477d3"},{"path":"java-tron/platform/src/main/java/arm/org/tron/common/math/MathWrapper.java","sha256":"cc9dc6adb8308ba15af94fced667f68a1ccc1b9739c98b6effa338bcb2ba5e77"},{"path":"java-tron/common/src/main/java/org/tron/common/utils/Time.java","sha256":"68fbc28864b82c742da20d1cb27ea91a2777f92f865da298901a42c3b80c7a8d"}]},
+    {"id":"C002.04","rust":"wire.rs,types.rs","java_sources":[{"path":"java-tron/chainbase/src/main/java/org/tron/core/capsule/TransactionCapsule.java","sha256":"516296bd553357efb30c602516f005625ee116d6c7c4357b3279f10a14399123"},{"path":"java-tron/chainbase/src/main/java/org/tron/core/capsule/BlockCapsule.java","sha256":"992d7517db28f737134a892108fada37948b3ba3d5c40180d69a9d057a451000"}]},
+    {"id":"C002.05","rust":"merkle.rs","java_sources":[{"path":"java-tron/common/src/main/java/org/tron/common/utils/MerkleRoot.java","sha256":"eff0df5597b69d08d87b7941439908c6dc7f1568b76c6f42ebf3ee23e60e0f34"},{"path":"java-tron/chainbase/src/main/java/org/tron/core/capsule/BlockCapsule.java","sha256":"992d7517db28f737134a892108fada37948b3ba3d5c40180d69a9d057a451000"}]},
+    {"id":"C002.06","rust":"tapos.rs","java_sources":[{"path":"java-tron/chainbase/src/main/java/org/tron/core/capsule/TransactionCapsule.java","sha256":"516296bd553357efb30c602516f005625ee116d6c7c4357b3279f10a14399123"}]},
+    {"id":"C002.07","rust":"market.rs","java_sources":[{"path":"java-tron/platform/src/main/java/common/org/tron/common/utils/MarketComparator.java","sha256":"a0800ded109727d4a315953db3327796e4647c87417ffd8d16b0374f18b3ca62"}]}
+  ],
+  "cross_chunk_seams": [
+    {"chunk":"C004","boundary":"C002 supplies typed IDs, raw hash-input boundaries, and digest injection; C004 owns crypto engine selection and digest correctness."},
+    {"chunk":"C008","boundary":"C002 supplies typed IDs, key bytes, ordering, BlockId, Tapos, and clocks; C008 owns capsule and logical store-schema behavior."},
+    {"chunk":"C006","boundary":"C002 supplies generic fixed bytes, ordering, arithmetic, and injected clocks; C006 owns Sapling and shielded cryptographic behavior."}
+  ]
+}

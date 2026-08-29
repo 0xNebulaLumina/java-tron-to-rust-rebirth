@@ -32,6 +32,40 @@ All time enters through injected traits with units encoded in types. Consensus s
 
 Randomness enters through an injected, purpose-specific source. Consensus-visible shuffles and fixtures use specified deterministic algorithms and seeds. Secret-key generation uses an approved cryptographic source that cannot be substituted with deterministic test randomness in production. General-purpose library calls to ambient randomness are prohibited.
 
+### Primitive digest, arithmetic, and clock boundaries
+
+`tron-primitives` owns fixed-width addresses, hashes and IDs, but does not own a
+digest engine. Hash construction accepts a narrow `DigestProvider`; concrete
+SHA-256 and SM3 implementations are supplied by the later `tron-crypto` layer.
+This preserves the L0 dependency direction and keeps serialized bytes as the
+explicit input to every digest operation. Wire values do not keep provider-agnostic
+digest caches: each ID/hash request consults its supplied provider, so sequential or
+concurrent use of distinct algorithms cannot reuse or poison another provider's result.
+
+Integer wrapper selection is explicit through `ArithmeticMode`, selected only by
+`MathPolicy.disable_java_lang_math`. Both wrapper modes use exact checked add,
+subtract, and multiply and report overflow; neither mode wraps. The independent
+`MathPolicy.allow_strict_math` flag selects only the injected `PowProvider` path.
+Host floating-point `pow` is not exposed to consensus; providers operate on raw
+IEEE-754 bit patterns. Java floor division rounds toward negative infinity, and
+BigInteger division truncates toward zero.
+
+`BlockId` equality and hashing cover all 32 bytes and it deliberately implements no
+`Ord`/`PartialOrd`: Java-compatible height-only comparison is `height_compare`, while
+callers that truly require a total key order must opt into `total_bytes_compare`.
+
+Locale.ROOT key casing uses Rust 1.85's pinned full-string `str::to_lowercase()` and
+`str::to_uppercase()` mappings. This preserves contextual and expanding Unicode
+casing without normalization or a runtime dependency. The accepted domain is valid
+Unicode scalar values represented by Rust `str`; unpaired Java UTF-16 surrogates are
+outside that contract.
+
+Wall and monotonic clocks are separate injected traits. Consensus functions
+receive a `ConsensusTime` value chosen by their caller and have no clock trait,
+so they cannot consult ambient process time. Deterministic fixed/manual clocks
+are available for composition tests; monotonic instants are duration values and
+must never be serialized as wall timestamps.
+
 ## Cancellation and task ownership
 
 The composition root owns one process cancellation source and creates child scopes for services and bounded operations. Cancellation propagates root-to-leaf; failures propagate leaf-to-root with typed cause and service identity. Dropping a future is not the shutdown protocol. Every spawned task is registered to exactly one service, has a bounded termination contract, and is joined before that service reports stopped. Detached tasks are prohibited.

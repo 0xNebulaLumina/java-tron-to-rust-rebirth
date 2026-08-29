@@ -331,65 +331,91 @@
     {
       "id": "C002",
       "title": "Deterministic primitives and byte semantics",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-08-29",
       "resume": null,
       "items": [
         {
           "id": "C002.01",
           "description": "Fixed-width address/hash/block-ID/transaction-ID types with validated conversions.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed and reviewed with the final C002 gate results: 83 Java vectors, 41 fixtures, 3 cross-domain seams, 13 Rust tests, and the locked workspace check all passed."
         },
         {
           "id": "C002.02",
           "description": "Big/little-endian, Java byte/string/locale ordering, fixed-width concatenation, and slice helpers.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed and reviewed with deterministic Java byte, string, locale, concatenation, slice, and ordering semantics covered by the final passing C002 vectors and fixtures."
         },
         {
           "id": "C002.03",
           "description": "Strict and legacy arithmetic/overflow/floor behavior; forbid consensus use of nondeterministic floating-point APIs.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed and reviewed with strict and legacy arithmetic, overflow, floor, and policy boundaries covered by the final passing C002 vectors and fixtures."
         },
         {
           "id": "C002.04",
           "description": "Transaction raw/full hash boundaries and block raw-header ID with height overwrite/equality semantics.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed and reviewed with transaction and block hash boundaries, BlockId height overwrite/equality/comparison behavior, and digest-provider isolation covered by the final passing C002 vectors and fixtures."
         },
         {
           "id": "C002.05",
           "description": "Merkle pair hashing, odd-leaf promotion, and empty zero root.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed and reviewed with exact Merkle pair hashing, root construction, odd-leaf promotion, and empty-root behavior covered by the final passing C002 fixtures and Rust tests."
         },
         {
           "id": "C002.06",
           "description": "Tapos low-two-byte key and middle-eight-byte hash helpers.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed and reviewed with Tapos low-two-byte keys and middle-eight-byte hash extraction covered by the final passing C002 fixtures and Rust tests."
         },
         {
           "id": "C002.07",
           "description": "Market comparator and rational cross-multiplication ordering.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed and reviewed with market comparator and rational cross-multiplication ordering covered by the final passing C002 fixtures and Rust tests."
         }
       ],
       "gate": {
         "id": "C002.V",
-        "description": "Java vectors pass in all boundary, ordering, and overflow cases.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: all 83 Java vectors, 41 fixtures, 3 cross-domain seams, and 13 Rust tests pass, and the Rust workspace all-targets check passes with the lockfile enforced.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C002 source coverage and vector manifest",
+            "cwd": ".",
+            "argv": ["python3", "tools/primitives/c002_gate.py"],
+            "timeout_seconds": 60
+          },
+          {
+            "name": "C002 Rust boundary vectors",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "--locked", "-p", "tron-primitives", "--test", "c002_boundaries", "--test", "c002_java_vectors"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "Rust workspace all-targets check",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "check", "--workspace", "--all-targets", "--locked"],
+            "timeout_seconds": 300
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C002.R.01",
+            "summary": "Final review required confirmation of ambient-clock isolation, exact Merkle behavior, digest-provider boundaries, BlockId postprocessing, byte/math operations, strict fixture consumption, and the complete locked validation results.",
+            "status": "closed",
+            "resolution": "Approved after confirming the final gate results: 83 Java vectors, 41 fixtures, 3 cross-domain seams, and 13 Rust tests pass; the locked Rust workspace all-targets check also passes. C002 is complete and the next ready item is C003.01."
+          }
+        ]
       },
       "blocker": null
     },
