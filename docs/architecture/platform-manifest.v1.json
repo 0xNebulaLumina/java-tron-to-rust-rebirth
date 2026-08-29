@@ -67,7 +67,7 @@
             "--workspace"
           ],
           "cwd": "rust-tron",
-          "evidence": ["EV-0002"]
+          "evidence": []
         },
         "unit": {
           "disposition": "runnable",
@@ -76,7 +76,7 @@
             "tools/platform/c000_unit.py"
           ],
           "cwd": ".",
-          "evidence": ["EV-0003"]
+          "evidence": []
         },
         "differential": {
           "disposition": "runnable",
@@ -86,14 +86,15 @@
           ],
           "cwd": ".",
           "case_count": 8,
-          "evidence": ["EV-0004"]
+          "evidence": []
         },
         "native_resource": {
-          "disposition": "not_applicable",
-          "reason": "C000 introduces no native allocation, handle, lifetime, cleanup, or failure surface; the Rust workspace forbids unsafe code and adopts no native library",
-          "review_bindings": [],
-          "review_scope": "security/tooling and license/provenance/tooling",
-          "reopen_condition": "any native dependency, unsafe code, OS resource ownership, or native handle surface is introduced",
+          "disposition": "runnable",
+          "argv": [
+            "python3",
+            "tools/platform/c000_native_resource.py"
+          ],
+          "cwd": ".",
           "evidence": []
         },
         "ffi": {
@@ -113,11 +114,12 @@
           "evidence": []
         },
         "smoke": {
-          "disposition": "not_applicable",
-          "reason": "C000 has no node or service runtime surface to start, probe, and stop; executable C000 tooling is covered by focused unit and eight-case differential cells",
-          "review_bindings": [],
-          "review_scope": "security/tooling and license/provenance/tooling",
-          "reopen_condition": "a C000 runtime process, node, service, or operator-facing executable surface is introduced",
+          "disposition": "runnable",
+          "argv": [
+            "python3",
+            "tools/platform/c000_smoke.py"
+          ],
+          "cwd": ".",
           "evidence": []
         }
       }
@@ -174,7 +176,7 @@
     "missing_initial_rows": 0,
     "duplicates": 0,
     "native_cells_required": 7,
-    "native_cells_passing": 3,
+    "native_cells_passing": 0,
     "reviewed_not_applicable_cells": 0,
     "result": "incomplete"
   },
@@ -184,10 +186,11 @@
     "approval_gate": "C000.V",
     "rule": "The validator resolves each EV/RV reference, verifies immutable hashes, freshness, revision, and native execution, derives readiness, and rejects completed gates with deferred, unavailable, unrun, stale, failed, or unapproved applicable cells on supported rows. Reserved later-enablement rows are outside C000 until explicitly promoted by reviewed tracker change."
   },
-  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
+  "subject_ref": "refs/tags/c000-subject",
+  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
   "attestation": {
     "algorithm": "git-ls-tree-v1",
-    "closure_sha256": "14cf4e6307169ca56217915f6e8aacfcb79c10d86cdc3d6585abefc5e4a0c43f",
+    "closure_sha256": "f12904b1c027e86eaf26ff9caa9f94607b9535d64e675c27ed14d99c70fd8bc7",
     "excluded_paths": [
       "docs/PORTING_CHECKLIST.md",
       "docs/PORTING_TRACKER.json",

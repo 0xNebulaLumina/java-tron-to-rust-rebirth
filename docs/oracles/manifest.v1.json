@@ -59,7 +59,7 @@
     "../../tools/reference-runner/java-runner",
     "../../tools/reference-runner/rust-runner"
   ],
-  "status": "C000 incomplete: evidence and independent approvals must bind the exact clean current HEAD",
+  "status": "C000 incomplete: evidence and independent approvals must bind refs/tags/c000-subject and its exact governed closure",
   "approval": {
     "review_approvals": {
       "architecture": null,
@@ -68,10 +68,11 @@
     },
     "platform_complete": false
   },
-  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
+  "subject_ref": "refs/tags/c000-subject",
+  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
   "attestation": {
     "algorithm": "git-ls-tree-v1",
-    "closure_sha256": "14cf4e6307169ca56217915f6e8aacfcb79c10d86cdc3d6585abefc5e4a0c43f",
+    "closure_sha256": "f12904b1c027e86eaf26ff9caa9f94607b9535d64e675c27ed14d99c70fd8bc7",
     "excluded_paths": [
       "docs/PORTING_CHECKLIST.md",
       "docs/PORTING_TRACKER.json",
