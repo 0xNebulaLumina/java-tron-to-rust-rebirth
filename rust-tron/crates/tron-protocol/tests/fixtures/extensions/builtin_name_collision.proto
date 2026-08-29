@@ -1,0 +1,5 @@
+syntax = "proto3";
+package protocol;
+message Account {
+  bytes extension_collision = 1000;
+}

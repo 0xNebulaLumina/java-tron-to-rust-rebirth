@@ -1,0 +1,1031 @@
+{
+  "schema_version": 1,
+  "scope": "C001.06 byte-level golden compatibility corpus",
+  "families": [
+    "transaction",
+    "block",
+    "account",
+    "shielded",
+    "pbft",
+    "inventory",
+    "api-return"
+  ],
+  "requirements": {
+    "malformed": "each family has a truncated length-delimited negative fixture",
+    "unknown_field": "each family has a legal field 19000 varint fixture accepted by decoders",
+    "map_order": "Account contains equivalent maps in distinct entry order",
+    "presence": "Transaction.raw distinguishes absent timestamp from explicitly encoded default",
+    "any": "extension Any preserves canonical type URL and value bytes",
+    "size": "every fixture records exact encoded size and SHA-256",
+    "rust_raw_wire": "all fixtures decode through generated Rust types behind a boundary retaining exact original bytes",
+    "rust_constructed_maps": "map-bearing constructed messages use the public bounded insertion-ordered encoder and reproduce protobuf-java entry order",
+    "java_constructed_maps": "protobuf-java 3.25.8 DynamicMessage outputs cover forward and reverse insertion for every descriptor map field"
+  },
+  "rust_encoding_decision": {
+    "raw_inbound": "hash, signature, network, and API relay paths emit retained original bytes exactly, including unknown fields, explicit defaults, duplicate fields, and original map-entry order",
+    "mutation": "decoded messages are immutable while preservation applies; mutation or construction consumes/leaves the preservation boundary and requires explicit constructed encoding",
+    "constructed": "constructed map-bearing messages use the public bounded insertion-ordered encoder; direct prost Message::encode is non-compatible and forbidden at observable boundaries",
+    "java_distinction": "constructed-message determinism does not claim Java raw-byte preservation; only retained inbound bytes provide byte identity",
+    "java_constructed": "the ordered API reproduces Java forward insertion bytes and Java reverse insertion bytes for all 15 descriptor map fields; retained raw inbound bytes remain exact",
+    "direct_encode": "direct prost Message::encode for constructed map-bearing messages is not a Java-compatibility encoding API and must not be used where bytes are observable"
+  },
+  "fixtures": [
+    {
+      "case_id": "transaction-canonical",
+      "family": "transaction",
+      "class": "canonical",
+      "message": "protocol.Transaction",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction.bin",
+      "size": 36,
+      "sha256": "f99c73d4dccc29c58f511a40212309c8d8fd707ccdc4f2a0dd727d5e64d72cfe",
+      "expect": "encode_exact",
+      "source": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction.textproto"
+    },
+    {
+      "case_id": "transaction-unknown",
+      "family": "transaction",
+      "class": "unknown_field",
+      "message": "protocol.Transaction",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction-unknown.bin",
+      "size": 40,
+      "sha256": "84f4fc8ab7baa1ba72b1a205b7bda6d8a72a230911e7d42301ca7e674d8d6a69",
+      "expect": "decode_ok"
+    },
+    {
+      "case_id": "transaction-malformed",
+      "family": "transaction",
+      "class": "malformed",
+      "message": "protocol.Transaction",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction-malformed.bin",
+      "size": 41,
+      "sha256": "35cd63bc050ae4b10ce4e86e1383c2e0ee5ebb7c2227110a1d37df10fa74d010",
+      "expect": "decode_error"
+    },
+    {
+      "case_id": "block-canonical",
+      "family": "block",
+      "class": "canonical",
+      "message": "protocol.Block",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/block.bin",
+      "size": 41,
+      "sha256": "a61b89ce9ca15aebbc9a531aee5f5b7cae42b2678c13034311309cb54084c77d",
+      "expect": "encode_exact",
+      "source": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/block.textproto"
+    },
+    {
+      "case_id": "block-unknown",
+      "family": "block",
+      "class": "unknown_field",
+      "message": "protocol.Block",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/block-unknown.bin",
+      "size": 45,
+      "sha256": "4711b0a4b7634574a51fd9a769ef94566002132f1a6f3118f2d3a05085ddf7d0",
+      "expect": "decode_ok"
+    },
+    {
+      "case_id": "block-malformed",
+      "family": "block",
+      "class": "malformed",
+      "message": "protocol.Block",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/block-malformed.bin",
+      "size": 46,
+      "sha256": "8f2fe06c9e7682451d688a16a553ed2cecece70e7910d4f4f67aaa29140b0ad1",
+      "expect": "decode_error"
+    },
+    {
+      "case_id": "account-canonical",
+      "family": "account",
+      "class": "canonical",
+      "message": "protocol.Account",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account.bin",
+      "size": 30,
+      "sha256": "9944ee2f8e64a6361b8b1808b610c51de23b63507f9db661f5fb0c8c4b7aa5a2",
+      "expect": "encode_exact",
+      "source": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account.textproto"
+    },
+    {
+      "case_id": "account-unknown",
+      "family": "account",
+      "class": "unknown_field",
+      "message": "protocol.Account",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account-unknown.bin",
+      "size": 34,
+      "sha256": "84d7641866fe8d5019feb89ebae88055b1aa812a559c3ca09b9765c39d30ebb5",
+      "expect": "decode_ok"
+    },
+    {
+      "case_id": "account-malformed",
+      "family": "account",
+      "class": "malformed",
+      "message": "protocol.Account",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account-malformed.bin",
+      "size": 35,
+      "sha256": "e311fad6d6667764165b7b5b5c52cc9acde5bcf70857d3868d0c1387a451bbfd",
+      "expect": "decode_error"
+    },
+    {
+      "case_id": "shielded-canonical",
+      "family": "shielded",
+      "class": "canonical",
+      "message": "protocol.SpendDescription",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded.bin",
+      "size": 45,
+      "sha256": "4efc0cb022bc769f6f31b8ef09250ae9c185fb5753abf7a3952dc5e9b34546e7",
+      "expect": "encode_exact",
+      "source": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded.textproto"
+    },
+    {
+      "case_id": "shielded-unknown",
+      "family": "shielded",
+      "class": "unknown_field",
+      "message": "protocol.SpendDescription",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded-unknown.bin",
+      "size": 49,
+      "sha256": "23e2fae52853adb713142c97ea0926eb4f3cfe6bab3ba5d77baaa52c4ce76e19",
+      "expect": "decode_ok"
+    },
+    {
+      "case_id": "shielded-malformed",
+      "family": "shielded",
+      "class": "malformed",
+      "message": "protocol.SpendDescription",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded-malformed.bin",
+      "size": 50,
+      "sha256": "f8efda95d80932ad6b457720c849e0c0650d7f6dbe35b37896b2846c8175a872",
+      "expect": "decode_error"
+    },
+    {
+      "case_id": "pbft-canonical",
+      "family": "pbft",
+      "class": "canonical",
+      "message": "protocol.PBFTMessage",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft.bin",
+      "size": 34,
+      "sha256": "b92cf2a5c5316d95d498b6bfc8343081153a5b3e5ed154feeb17ed27f48b46eb",
+      "expect": "encode_exact",
+      "source": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft.textproto"
+    },
+    {
+      "case_id": "pbft-unknown",
+      "family": "pbft",
+      "class": "unknown_field",
+      "message": "protocol.PBFTMessage",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft-unknown.bin",
+      "size": 38,
+      "sha256": "44b9dbe0d8b442964cba6a1bf32670511b547a495da641b083c6a4d2a3959642",
+      "expect": "decode_ok"
+    },
+    {
+      "case_id": "pbft-malformed",
+      "family": "pbft",
+      "class": "malformed",
+      "message": "protocol.PBFTMessage",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft-malformed.bin",
+      "size": 39,
+      "sha256": "e6efc4edca388c641be98ac14ac1e4716eef08783c439df4d0808b4c93deca7b",
+      "expect": "decode_error"
+    },
+    {
+      "case_id": "inventory-canonical",
+      "family": "inventory",
+      "class": "canonical",
+      "message": "protocol.Inventory",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory.bin",
+      "size": 28,
+      "sha256": "7ce3f8974d0721d6f936c908702453f8e804e891f4f6c41a311f737dc458577a",
+      "expect": "encode_exact",
+      "source": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory.textproto"
+    },
+    {
+      "case_id": "inventory-unknown",
+      "family": "inventory",
+      "class": "unknown_field",
+      "message": "protocol.Inventory",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory-unknown.bin",
+      "size": 32,
+      "sha256": "4e8c08c50b9a7bb57d72bc98de5f9218ac98ceaf1ef0acc2d05bdfa97e767a96",
+      "expect": "decode_ok"
+    },
+    {
+      "case_id": "inventory-malformed",
+      "family": "inventory",
+      "class": "malformed",
+      "message": "protocol.Inventory",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory-malformed.bin",
+      "size": 33,
+      "sha256": "481a3464413f2d642935f88232cc0b52c64588e905b7f4cc1191a21de56b4989",
+      "expect": "decode_error"
+    },
+    {
+      "case_id": "api-return-canonical",
+      "family": "api-return",
+      "class": "canonical",
+      "message": "protocol.Return",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return.bin",
+      "size": 25,
+      "sha256": "a486012b83d172853b6208a2fb6203ad101b6a45f8e8b9625b3b1ead0a138a00",
+      "expect": "encode_exact",
+      "source": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return.textproto"
+    },
+    {
+      "case_id": "api-return-unknown",
+      "family": "api-return",
+      "class": "unknown_field",
+      "message": "protocol.Return",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return-unknown.bin",
+      "size": 29,
+      "sha256": "e096fe191d5328b99abf824a8da0ed80c70ae1b3f196520d61bf45b677f8bbe4",
+      "expect": "decode_ok"
+    },
+    {
+      "case_id": "api-return-malformed",
+      "family": "api-return",
+      "class": "malformed",
+      "message": "protocol.Return",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return-malformed.bin",
+      "size": 30,
+      "sha256": "7d8db22084dbf80a5679b0da0688c4235695cf5d73990bcfbc70167b8397464e",
+      "expect": "decode_error"
+    },
+    {
+      "case_id": "account-map-reversed",
+      "family": "account",
+      "class": "map_order",
+      "message": "protocol.Account",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account-map-reversed.bin",
+      "size": 30,
+      "sha256": "1d8a3252cf5b7859ca5cda63fb46bd0195450bea1f9e9bd488c699047d14e552",
+      "expect": "decode_ok"
+    },
+    {
+      "case_id": "presence-absent",
+      "family": "transaction",
+      "class": "presence_absent",
+      "message": "protocol.Transaction",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/presence-absent.bin",
+      "size": 2,
+      "sha256": "102b51b9765a56a3e899f7cf0ee38e5251f9c503b357b330a49183eb7b155604",
+      "expect": "decode_ok"
+    },
+    {
+      "case_id": "presence-default",
+      "family": "transaction",
+      "class": "presence_default",
+      "message": "protocol.Transaction",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/presence-default.bin",
+      "size": 4,
+      "sha256": "ddb9e1637c9f715b3e562becff5348e49b6ada3497a3e2aa92e1d4d89ad91e6e",
+      "expect": "decode_ok"
+    },
+    {
+      "case_id": "extension-any-canonical",
+      "family": "Any",
+      "class": "any",
+      "message": "google.protobuf.Any",
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/extensions/example_any.bin",
+      "size": 97,
+      "sha256": "7704d5a42a0e10118daf23fea05d7d963e2e78a09f978103d859f9add529f0d1",
+      "expect": "decode_ok",
+      "type_url": "type.googleapis.com/org.tron.example.actuator.ExampleContract"
+    }
+  ],
+  "java_map_serialization": {
+    "runtime": "com.google.protobuf:protobuf-java:3.25.8",
+    "jar_sha256": "72bdb32eb38cafb7dcd288262c29a34d57cba2e19101af9685155ba8c0a56008",
+    "resolver": "tools/protocol/java/build.gradle#printProtobufJavaJar",
+    "helper": "tools/protocol/java/MapSerializationOracle.java",
+    "descriptor": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+    "rows": [
+      {
+        "field": "protocol.Account.asset",
+        "forward_hex": "32050a0141100132050a015a1009",
+        "reverse_hex": "32050a015a100932050a01411001"
+      },
+      {
+        "field": "protocol.Account.assetV2",
+        "forward_hex": "c203050a01411001c203050a015a1009",
+        "reverse_hex": "c203050a015a1009c203050a01411001"
+      },
+      {
+        "field": "protocol.Account.free_asset_net_usage",
+        "forward_hex": "a201050a01411001a201050a015a1009",
+        "reverse_hex": "a201050a015a1009a201050a01411001"
+      },
+      {
+        "field": "protocol.Account.free_asset_net_usageV2",
+        "forward_hex": "da03050a01411001da03050a015a1009",
+        "reverse_hex": "da03050a015a1009da03050a01411001"
+      },
+      {
+        "field": "protocol.Account.latest_asset_operation_time",
+        "forward_hex": "9201050a014110019201050a015a1009",
+        "reverse_hex": "9201050a015a10099201050a01411001"
+      },
+      {
+        "field": "protocol.Account.latest_asset_operation_timeV2",
+        "forward_hex": "d203050a01411001d203050a015a1009",
+        "reverse_hex": "d203050a015a1009d203050a01411001"
+      },
+      {
+        "field": "protocol.AccountNetMessage.assetNetLimit",
+        "forward_hex": "32050a0141100132050a015a1009",
+        "reverse_hex": "32050a015a100932050a01411001"
+      },
+      {
+        "field": "protocol.AccountNetMessage.assetNetUsed",
+        "forward_hex": "2a050a014110012a050a015a1009",
+        "reverse_hex": "2a050a015a10092a050a01411001"
+      },
+      {
+        "field": "protocol.AccountResourceMessage.assetNetLimit",
+        "forward_hex": "32050a0141100132050a015a1009",
+        "reverse_hex": "32050a015a100932050a01411001"
+      },
+      {
+        "field": "protocol.AccountResourceMessage.assetNetUsed",
+        "forward_hex": "2a050a014110012a050a015a1009",
+        "reverse_hex": "2a050a015a10092a050a01411001"
+      },
+      {
+        "field": "protocol.NodeInfo.cheatWitnessInfoMap",
+        "forward_hex": "5a060a01411201415a060a015a12015a",
+        "reverse_hex": "5a060a015a12015a5a060a0141120141"
+      },
+      {
+        "field": "protocol.Proposal.parameters",
+        "forward_hex": "1a04080110011a0408091009",
+        "reverse_hex": "1a04080910091a0408011001"
+      },
+      {
+        "field": "protocol.ProposalCreateContract.parameters",
+        "forward_hex": "120408011001120408091009",
+        "reverse_hex": "120408091009120408011001"
+      },
+      {
+        "field": "protocol.Transaction.Result.cancel_unfreezeV2_amount",
+        "forward_hex": "e201050a01411001e201050a015a1009",
+        "reverse_hex": "e201050a015a1009e201050a01411001"
+      },
+      {
+        "field": "protocol.TransactionInfo.cancel_unfreezeV2_amount",
+        "forward_hex": "ea01050a01411001ea01050a015a1009",
+        "reverse_hex": "ea01050a015a1009ea01050a01411001"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account-malformed.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical truncated field 19001 length-delimited append declaring length 5 with one payload byte of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account.bin",
+          "sha256": "9944ee2f8e64a6361b8b1808b610c51de23b63507f9db661f5fb0c8c4b7aa5a2"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/account.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/account-malformed.bin').write_bytes(s+bytes.fromhex('caa3090578'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "e311fad6d6667764165b7b5b5c52cc9acde5bcf70857d3868d0c1387a451bbfd"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account-map-reversed.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical map-entry reorder of the project-authored canonical Account fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account.bin",
+          "sha256": "9944ee2f8e64a6361b8b1808b610c51de23b63507f9db661f5fb0c8c4b7aa5a2"
+        }
+      ],
+      "generator": "Python bytes.replace",
+      "generator_version": "Python 3 / C001 map-order mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; p=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/account.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/account-map-reversed.bin').write_bytes(p.replace(bytes.fromhex('32050a015a100932050a01411001'), bytes.fromhex('32050a0141100132050a015a1009')))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "1d8a3252cf5b7859ca5cda63fb46bd0195450bea1f9e9bd488c699047d14e552"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account-unknown.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical legal field 19000 varint value 1 append of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account.bin",
+          "sha256": "9944ee2f8e64a6361b8b1808b610c51de23b63507f9db661f5fb0c8c4b7aa5a2"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/account.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/account-unknown.bin').write_bytes(s+bytes.fromhex('c0a30901'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "84d7641866fe8d5019feb89ebae88055b1aa812a559c3ca09b9765c39d30ebb5"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "protoc encoding of the corresponding project-authored canonical textproto input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account.textproto",
+          "sha256": "c0707a5f09160f91126817a71ce60967b89724c3dc867d9ebfda6eaf76486be8"
+        },
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        }
+      ],
+      "generator": "tools/protocol/c001_gate.py::protoc_codec encode path through protoc_vendored",
+      "generator_version": "protoc-bin-vendored 3.1.0 / libprotoc 28.2 / C001 PROTOS constant",
+      "command": "protoc_codec(\"encode\", \"protocol.Account\", Path(\"rust-tron/crates/tron-protocol/tests/fixtures/protocol/account.textproto\").read_bytes()) with --proto_path=rust-tron/crates/tron-protocol/proto and every path in c001_gate.py::PROTOS",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "9944ee2f8e64a6361b8b1808b610c51de23b63507f9db661f5fb0c8c4b7aa5a2"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/account.textproto",
+      "kind": "textproto",
+      "category": "newly_authored",
+      "origin": "original project-authored C001 canonical wire-case text input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        },
+        {
+          "path": "docs/oracles/protocol-conformance.v1.json",
+          "sha256": "a5a087e2a4f905cb47b8c0aa17fa9563326277fa1a820e07e3b1e3f1537e2f25"
+        }
+      ],
+      "generator": "manual-authorship",
+      "generator_version": "C001 fixture authorship recipe v1",
+      "command": "manual UTF-8 textproto authorship for protocol.Account against protocol.v1.pb; no generator command",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "c0707a5f09160f91126817a71ce60967b89724c3dc867d9ebfda6eaf76486be8"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return-malformed.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical truncated field 19001 length-delimited append declaring length 5 with one payload byte of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return.bin",
+          "sha256": "a486012b83d172853b6208a2fb6203ad101b6a45f8e8b9625b3b1ead0a138a00"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return-malformed.bin').write_bytes(s+bytes.fromhex('caa3090578'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "7d8db22084dbf80a5679b0da0688c4235695cf5d73990bcfbc70167b8397464e"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return-unknown.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical legal field 19000 varint value 1 append of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return.bin",
+          "sha256": "a486012b83d172853b6208a2fb6203ad101b6a45f8e8b9625b3b1ead0a138a00"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return-unknown.bin').write_bytes(s+bytes.fromhex('c0a30901'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "e096fe191d5328b99abf824a8da0ed80c70ae1b3f196520d61bf45b677f8bbe4"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "protoc encoding of the corresponding project-authored canonical textproto input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return.textproto",
+          "sha256": "228fbd1fe0792b128e0c86afa3d4c82d80d717e24f301d1f25095512cfc9ab58"
+        },
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        }
+      ],
+      "generator": "tools/protocol/c001_gate.py::protoc_codec encode path through protoc_vendored",
+      "generator_version": "protoc-bin-vendored 3.1.0 / libprotoc 28.2 / C001 PROTOS constant",
+      "command": "protoc_codec(\"encode\", \"protocol.Return\", Path(\"rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return.textproto\").read_bytes()) with --proto_path=rust-tron/crates/tron-protocol/proto and every path in c001_gate.py::PROTOS",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "a486012b83d172853b6208a2fb6203ad101b6a45f8e8b9625b3b1ead0a138a00"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/api-return.textproto",
+      "kind": "textproto",
+      "category": "newly_authored",
+      "origin": "original project-authored C001 canonical wire-case text input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        },
+        {
+          "path": "docs/oracles/protocol-conformance.v1.json",
+          "sha256": "a5a087e2a4f905cb47b8c0aa17fa9563326277fa1a820e07e3b1e3f1537e2f25"
+        }
+      ],
+      "generator": "manual-authorship",
+      "generator_version": "C001 fixture authorship recipe v1",
+      "command": "manual UTF-8 textproto authorship for protocol.Return against protocol.v1.pb; no generator command",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "228fbd1fe0792b128e0c86afa3d4c82d80d717e24f301d1f25095512cfc9ab58"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/block-malformed.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical truncated field 19001 length-delimited append declaring length 5 with one payload byte of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/block.bin",
+          "sha256": "a61b89ce9ca15aebbc9a531aee5f5b7cae42b2678c13034311309cb54084c77d"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/block.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/block-malformed.bin').write_bytes(s+bytes.fromhex('caa3090578'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "8f2fe06c9e7682451d688a16a553ed2cecece70e7910d4f4f67aaa29140b0ad1"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/block-unknown.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical legal field 19000 varint value 1 append of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/block.bin",
+          "sha256": "a61b89ce9ca15aebbc9a531aee5f5b7cae42b2678c13034311309cb54084c77d"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/block.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/block-unknown.bin').write_bytes(s+bytes.fromhex('c0a30901'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "4711b0a4b7634574a51fd9a769ef94566002132f1a6f3118f2d3a05085ddf7d0"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/block.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "protoc encoding of the corresponding project-authored canonical textproto input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/block.textproto",
+          "sha256": "b80cf082b8883aa0e1df6cdfb6067aae9643a6871ec62c3eef3c33250d010a0c"
+        },
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        }
+      ],
+      "generator": "tools/protocol/c001_gate.py::protoc_codec encode path through protoc_vendored",
+      "generator_version": "protoc-bin-vendored 3.1.0 / libprotoc 28.2 / C001 PROTOS constant",
+      "command": "protoc_codec(\"encode\", \"protocol.Block\", Path(\"rust-tron/crates/tron-protocol/tests/fixtures/protocol/block.textproto\").read_bytes()) with --proto_path=rust-tron/crates/tron-protocol/proto and every path in c001_gate.py::PROTOS",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "a61b89ce9ca15aebbc9a531aee5f5b7cae42b2678c13034311309cb54084c77d"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/block.textproto",
+      "kind": "textproto",
+      "category": "newly_authored",
+      "origin": "original project-authored C001 canonical wire-case text input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        },
+        {
+          "path": "docs/oracles/protocol-conformance.v1.json",
+          "sha256": "a5a087e2a4f905cb47b8c0aa17fa9563326277fa1a820e07e3b1e3f1537e2f25"
+        }
+      ],
+      "generator": "manual-authorship",
+      "generator_version": "C001 fixture authorship recipe v1",
+      "command": "manual UTF-8 textproto authorship for protocol.Block against protocol.v1.pb; no generator command",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "b80cf082b8883aa0e1df6cdfb6067aae9643a6871ec62c3eef3c33250d010a0c"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory-malformed.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical truncated field 19001 length-delimited append declaring length 5 with one payload byte of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory.bin",
+          "sha256": "7ce3f8974d0721d6f936c908702453f8e804e891f4f6c41a311f737dc458577a"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory-malformed.bin').write_bytes(s+bytes.fromhex('caa3090578'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "481a3464413f2d642935f88232cc0b52c64588e905b7f4cc1191a21de56b4989"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory-unknown.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical legal field 19000 varint value 1 append of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory.bin",
+          "sha256": "7ce3f8974d0721d6f936c908702453f8e804e891f4f6c41a311f737dc458577a"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory-unknown.bin').write_bytes(s+bytes.fromhex('c0a30901'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "4e8c08c50b9a7bb57d72bc98de5f9218ac98ceaf1ef0acc2d05bdfa97e767a96"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "protoc encoding of the corresponding project-authored canonical textproto input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory.textproto",
+          "sha256": "591eaacb9d476af64ad4a42b1f00a08be2967327df26ea7eda3264afc73fa492"
+        },
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        }
+      ],
+      "generator": "tools/protocol/c001_gate.py::protoc_codec encode path through protoc_vendored",
+      "generator_version": "protoc-bin-vendored 3.1.0 / libprotoc 28.2 / C001 PROTOS constant",
+      "command": "protoc_codec(\"encode\", \"protocol.Inventory\", Path(\"rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory.textproto\").read_bytes()) with --proto_path=rust-tron/crates/tron-protocol/proto and every path in c001_gate.py::PROTOS",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "7ce3f8974d0721d6f936c908702453f8e804e891f4f6c41a311f737dc458577a"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/inventory.textproto",
+      "kind": "textproto",
+      "category": "newly_authored",
+      "origin": "original project-authored C001 canonical wire-case text input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        },
+        {
+          "path": "docs/oracles/protocol-conformance.v1.json",
+          "sha256": "a5a087e2a4f905cb47b8c0aa17fa9563326277fa1a820e07e3b1e3f1537e2f25"
+        }
+      ],
+      "generator": "manual-authorship",
+      "generator_version": "C001 fixture authorship recipe v1",
+      "command": "manual UTF-8 textproto authorship for protocol.Inventory against protocol.v1.pb; no generator command",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "591eaacb9d476af64ad4a42b1f00a08be2967327df26ea7eda3264afc73fa492"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft-malformed.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical truncated field 19001 length-delimited append declaring length 5 with one payload byte of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft.bin",
+          "sha256": "b92cf2a5c5316d95d498b6bfc8343081153a5b3e5ed154feeb17ed27f48b46eb"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft-malformed.bin').write_bytes(s+bytes.fromhex('caa3090578'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "e6efc4edca388c641be98ac14ac1e4716eef08783c439df4d0808b4c93deca7b"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft-unknown.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical legal field 19000 varint value 1 append of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft.bin",
+          "sha256": "b92cf2a5c5316d95d498b6bfc8343081153a5b3e5ed154feeb17ed27f48b46eb"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft-unknown.bin').write_bytes(s+bytes.fromhex('c0a30901'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "44b9dbe0d8b442964cba6a1bf32670511b547a495da641b083c6a4d2a3959642"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "protoc encoding of the corresponding project-authored canonical textproto input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft.textproto",
+          "sha256": "4824db75f1ca979fd668b3f80991209d256dbef57ff0772d8e871f8e792becf3"
+        },
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        }
+      ],
+      "generator": "tools/protocol/c001_gate.py::protoc_codec encode path through protoc_vendored",
+      "generator_version": "protoc-bin-vendored 3.1.0 / libprotoc 28.2 / C001 PROTOS constant",
+      "command": "protoc_codec(\"encode\", \"protocol.PBFTMessage\", Path(\"rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft.textproto\").read_bytes()) with --proto_path=rust-tron/crates/tron-protocol/proto and every path in c001_gate.py::PROTOS",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "b92cf2a5c5316d95d498b6bfc8343081153a5b3e5ed154feeb17ed27f48b46eb"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/pbft.textproto",
+      "kind": "textproto",
+      "category": "newly_authored",
+      "origin": "original project-authored C001 canonical wire-case text input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        },
+        {
+          "path": "docs/oracles/protocol-conformance.v1.json",
+          "sha256": "a5a087e2a4f905cb47b8c0aa17fa9563326277fa1a820e07e3b1e3f1537e2f25"
+        }
+      ],
+      "generator": "manual-authorship",
+      "generator_version": "C001 fixture authorship recipe v1",
+      "command": "manual UTF-8 textproto authorship for protocol.PBFTMessage against protocol.v1.pb; no generator command",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "4824db75f1ca979fd668b3f80991209d256dbef57ff0772d8e871f8e792becf3"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/presence-absent.bin",
+      "kind": "binary",
+      "category": "newly_authored",
+      "origin": "original project-authored C001 field-presence wire vector",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        },
+        {
+          "path": "docs/oracles/protocol-conformance.v1.json",
+          "sha256": "a5a087e2a4f905cb47b8c0aa17fa9563326277fa1a820e07e3b1e3f1537e2f25"
+        }
+      ],
+      "generator": "Python bytes.fromhex",
+      "generator_version": "Python 3 / C001 fixture authorship recipe v1",
+      "command": "python3 -c \"from pathlib import Path; Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/presence-absent.bin').write_bytes(bytes.fromhex('0a00'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "102b51b9765a56a3e899f7cf0ee38e5251f9c503b357b330a49183eb7b155604"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/presence-default.bin",
+      "kind": "binary",
+      "category": "newly_authored",
+      "origin": "original project-authored C001 field-presence wire vector",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        },
+        {
+          "path": "docs/oracles/protocol-conformance.v1.json",
+          "sha256": "a5a087e2a4f905cb47b8c0aa17fa9563326277fa1a820e07e3b1e3f1537e2f25"
+        }
+      ],
+      "generator": "Python bytes.fromhex",
+      "generator_version": "Python 3 / C001 fixture authorship recipe v1",
+      "command": "python3 -c \"from pathlib import Path; Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/presence-default.bin').write_bytes(bytes.fromhex('0a027000'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "ddb9e1637c9f715b3e562becff5348e49b6ada3497a3e2aa92e1d4d89ad91e6e"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded-malformed.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical truncated field 19001 length-delimited append declaring length 5 with one payload byte of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded.bin",
+          "sha256": "4efc0cb022bc769f6f31b8ef09250ae9c185fb5753abf7a3952dc5e9b34546e7"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded-malformed.bin').write_bytes(s+bytes.fromhex('caa3090578'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "f8efda95d80932ad6b457720c849e0c0650d7f6dbe35b37896b2846c8175a872"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded-unknown.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical legal field 19000 varint value 1 append of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded.bin",
+          "sha256": "4efc0cb022bc769f6f31b8ef09250ae9c185fb5753abf7a3952dc5e9b34546e7"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded-unknown.bin').write_bytes(s+bytes.fromhex('c0a30901'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "23e2fae52853adb713142c97ea0926eb4f3cfe6bab3ba5d77baaa52c4ce76e19"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "protoc encoding of the corresponding project-authored canonical textproto input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded.textproto",
+          "sha256": "52bd6fdad9a71b215d9c8bd1228fa2925ab6c25aec88c90719be22eb053869a1"
+        },
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        }
+      ],
+      "generator": "tools/protocol/c001_gate.py::protoc_codec encode path through protoc_vendored",
+      "generator_version": "protoc-bin-vendored 3.1.0 / libprotoc 28.2 / C001 PROTOS constant",
+      "command": "protoc_codec(\"encode\", \"protocol.SpendDescription\", Path(\"rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded.textproto\").read_bytes()) with --proto_path=rust-tron/crates/tron-protocol/proto and every path in c001_gate.py::PROTOS",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "4efc0cb022bc769f6f31b8ef09250ae9c185fb5753abf7a3952dc5e9b34546e7"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/shielded.textproto",
+      "kind": "textproto",
+      "category": "newly_authored",
+      "origin": "original project-authored C001 canonical wire-case text input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        },
+        {
+          "path": "docs/oracles/protocol-conformance.v1.json",
+          "sha256": "a5a087e2a4f905cb47b8c0aa17fa9563326277fa1a820e07e3b1e3f1537e2f25"
+        }
+      ],
+      "generator": "manual-authorship",
+      "generator_version": "C001 fixture authorship recipe v1",
+      "command": "manual UTF-8 textproto authorship for protocol.SpendDescription against protocol.v1.pb; no generator command",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "52bd6fdad9a71b215d9c8bd1228fa2925ab6c25aec88c90719be22eb053869a1"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction-malformed.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical truncated field 19001 length-delimited append declaring length 5 with one payload byte of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction.bin",
+          "sha256": "f99c73d4dccc29c58f511a40212309c8d8fd707ccdc4f2a0dd727d5e64d72cfe"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction-malformed.bin').write_bytes(s+bytes.fromhex('caa3090578'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "35cd63bc050ae4b10ce4e86e1383c2e0ee5ebb7c2227110a1d37df10fa74d010"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction-unknown.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "mechanical legal field 19000 varint value 1 append of the project-authored canonical fixture",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction.bin",
+          "sha256": "f99c73d4dccc29c58f511a40212309c8d8fd707ccdc4f2a0dd727d5e64d72cfe"
+        }
+      ],
+      "generator": "Python byte append",
+      "generator_version": "Python 3 / C001 wire-mutation recipe v1",
+      "command": "python3 -c \"from pathlib import Path; s=Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction.bin').read_bytes(); Path('rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction-unknown.bin').write_bytes(s+bytes.fromhex('c0a30901'))\"",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "84f4fc8ab7baa1ba72b1a205b7bda6d8a72a230911e7d42301ca7e674d8d6a69"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction.bin",
+      "kind": "binary",
+      "category": "mechanically_derived",
+      "origin": "protoc encoding of the corresponding project-authored canonical textproto input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction.textproto",
+          "sha256": "be48384db86d965ebf54f173552d21e9f84e15603f98c75a591950c66d058837"
+        },
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        }
+      ],
+      "generator": "tools/protocol/c001_gate.py::protoc_codec encode path through protoc_vendored",
+      "generator_version": "protoc-bin-vendored 3.1.0 / libprotoc 28.2 / C001 PROTOS constant",
+      "command": "protoc_codec(\"encode\", \"protocol.Transaction\", Path(\"rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction.textproto\").read_bytes()) with --proto_path=rust-tron/crates/tron-protocol/proto and every path in c001_gate.py::PROTOS",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "f99c73d4dccc29c58f511a40212309c8d8fd707ccdc4f2a0dd727d5e64d72cfe"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/tests/fixtures/protocol/transaction.textproto",
+      "kind": "textproto",
+      "category": "newly_authored",
+      "origin": "original project-authored C001 canonical wire-case text input",
+      "source_inputs": [
+        {
+          "path": "rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+          "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+        },
+        {
+          "path": "docs/oracles/protocol-conformance.v1.json",
+          "sha256": "a5a087e2a4f905cb47b8c0aa17fa9563326277fa1a820e07e3b1e3f1537e2f25"
+        }
+      ],
+      "generator": "manual-authorship",
+      "generator_version": "C001 fixture authorship recipe v1",
+      "command": "manual UTF-8 textproto authorship for protocol.Transaction against protocol.v1.pb; no generator command",
+      "origin_revision": "C001.06/protocol-fixtures.v1",
+      "license_and_notices": "project-authored test data; no copied third-party fixture content or third-party notices",
+      "distribution": "repository test fixture only; distributed with source inputs and provenance, not as production or upstream java-tron data",
+      "sha256": "be48384db86d965ebf54f173552d21e9f84e15603f98c75a591950c66d058837"
+    }
+  ]
+}

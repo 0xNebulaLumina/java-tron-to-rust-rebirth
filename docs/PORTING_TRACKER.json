@@ -203,71 +203,128 @@
     {
       "id": "C001",
       "title": "Canonical protobuf and generated APIs",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-08-29",
       "resume": null,
       "items": [
         {
           "id": "C001.01",
           "description": "Synchronize all 17 canonical schemas under protocol core/contracts/api, including Google imports and licenses.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Synchronized all 17 canonical schemas; python3 tools/protocol/c001_gate.py passed the complete 17-schema inventory."
         },
         {
           "id": "C001.02",
           "description": "Pin protobuf/gRPC generator/runtime and generate a deterministic descriptor set.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Pinned protobuf/gRPC generation and produced the deterministic descriptor set; the C001 gate passed descriptor and source drift checks."
         },
         {
           "id": "C001.03",
-          "description": "Preserve packages, field tags, enum numbers/names, gaps, maps, nested types, `Any` type URLs, deprecated methods, and misspellings.",
-          "status": "todo",
-          "note": null
+          "description": "Preserve packages, field tags, enum numbers/names, gaps, maps, nested types, `Any` type URLs, deprecated methods, and misspellings; constructed map fields must reproduce protobuf-java insertion order through the bounded ordered-map API, while raw decoded messages preserve original bytes.",
+          "status": "done",
+          "note": "Explicit compatibility decision: retained inbound bytes are the only raw byte-preserving path; direct prost Message::encode on map-bearing constructed messages is non-compatible and forbidden at observable boundaries. The public bounded ordered-map encoder covers every canonical key/value wire-kind combination, and the final C001 gates confirm Rust forward == Java forward and Rust reverse == Java reverse for all 15 descriptor map fields plus transactional entry/byte bounds."
         },
         {
           "id": "C001.04",
           "description": "Generate Wallet, WalletSolidity, WalletExtension, Database, Monitor, Network, and TronZksnark client/server surfaces.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Generated all seven canonical tonic client/server surfaces and API re-exports; c001_gate.py passed 7 services and 204 methods, and protocol_surface passed all 3 tests."
         },
         {
           "id": "C001.05",
           "description": "Port enum-zero lint with the 21 legacy allowlist and schema synchronization checks.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Ported enum-zero lint with the exact 21-entry live allowlist and descriptor synchronization guards; c001_gate.py passed all 21 enums."
         },
         {
           "id": "C001.06",
           "description": "Add encode/decode/unknown-field/malformed golden fixtures for high-risk transaction, block, account, shielded, PBFT, inventory, and API messages.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Added source-derived canonical, unknown-field, malformed, map-order, presence, Any, and exact-size fixtures for all seven required high-risk message families; c001_gate.py passed all 25 fixtures."
         },
         {
           "id": "C001.07",
           "description": "Generate the versioned protocol conformance manifest for every schema/message/enum/service/method, defining descriptor normalization plus applicable encode/decode/malformed/unknown-field/`Any`/map-order/presence/size cases; zero unmapped rows.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Generated a zero-unmapped versioned inventory owning all 17 schemas, 247 messages, 21 enums, 7 services, and 204 methods with per-message conformance applicability; c001_gate.py passed the complete inventory."
         },
         {
           "id": "C001.08",
-          "description": "Own the DR-004 extension protobuf boundary: define checked descriptor/schema registration or runtime loading, deterministic registration order, full-name and `Any` type URL formation, numeric `ContractType` allocation/encoding, built-in/extension and extension/extension collision errors, and example-derived canonical descriptor/`Any`/transaction-contract/malformed/collision byte fixtures.",
-          "status": "todo",
-          "note": null
+          "description": "Own the DR-004 extension protobuf boundary: define checked descriptor/schema registration or runtime loading, deterministic registration order, full-name and `Any` type URL formation, numeric `ContractType` allocation/encoding, built-in/extension and extension/extension collision errors, and canonical descriptor/`Any`/transaction-contract/malformed/collision byte fixtures for the newly authored Rust extension namespace.",
+          "status": "done",
+          "note": "Completed descriptor registration, collision checks, canonical type URL and ContractType bytes for a newly authored Rust descriptor namespace. The Java actuator example has no protobuf identity, so C001 makes no example-derivation or Java-compatibility claim; any downstream Java-compatible custom-actuator identity remains a later C012/C016/C022 integration decision."
         }
       ],
       "gate": {
         "id": "C001.V",
-        "description": "Canonical and extension descriptor/byte-level Java comparisons pass; every C001.08 type-URL/`ContractType`/collision fixture passes; no unreviewed schema delta, and C012/C016/C022 remain blocked until this gate is `[x]`.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Canonical descriptor metadata and byte-level Java comparisons pass; every C001.08 Rust-namespace type-URL/`ContractType`/collision fixture passes; no unreviewed schema delta, and C012/C016/C022 remain blocked until this gate is `[x]`.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "protocol inventory, source, descriptor, lint, and fixture drift",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/protocol/c001_gate.py"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "canonical generated protocol surface",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "--locked",
+              "-p",
+              "tron-protocol",
+              "--test",
+              "protocol_surface"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "DR-004 extension descriptor and bytes",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "--locked",
+              "-p",
+              "tron-protocol",
+              "--test",
+              "extension_registry"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "Rust workspace all-targets check",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "check",
+              "--workspace",
+              "--all-targets",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C001-R1-001",
+            "summary": "Constructed protobuf map encoding previously canonicalized generated BTreeMap order, so reverse Rust insertion did not reproduce protobuf-java reverse insertion bytes.",
+            "status": "closed",
+            "resolution": "The bounded ordered-map API reproduces protobuf-java forward and reverse insertion bytes for all 15 canonical map fields, and the final C001 gates pass."
+          }
+        ]
       },
       "blocker": null
     },

@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "scope": "newly authored Rust descriptor and wire ABI only; no Java compatibility or runtime actuator behavior",
+  "abi_classification": {
+    "category": "newly_authored",
+    "namespace_owner": "rust-tron",
+    "java_compatible": false,
+    "java_example_derived": false,
+    "canonical_java_custom_contract_type": 20,
+    "rust_extension_contract_type_min": 1000,
+    "rust_extension_contract_type_max": 1999,
+    "decision": "DR-004"
+  },
+  "example": {
+    "extension_id": "org.tron.example.actuator",
+    "message_full_name": "org.tron.example.actuator.ExampleContract",
+    "type_url": "type.googleapis.com/org.tron.example.actuator.ExampleContract",
+    "contract_type": 1000,
+    "descriptor_sha256": "1e340f78469d9adcd0a242311304919beba2fa6a2bc0ba5c02cd7ea18f557595"
+  },
+  "fixtures": [
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/example_actuator.proto",
+      "size": 543,
+      "sha256": "a2d0ceb24e47e8dcc8c208253458c72c0feedafdcfa8d427953c21bd9b2f36d7",
+      "class": "descriptor_source",
+      "provenance": {
+        "category": "newly_authored",
+        "origin": "authored in this Rust port for DR-004; no upstream source or revision",
+        "generator": "none; manually authored proto3 source",
+        "inputs": [],
+        "modification_method": "original project authorship",
+        "license_and_notices": "project-authored test source; contains no copied third-party notices",
+        "distribution": "source test fixture only; not an approved Java-compatible or runtime extension ABI distribution"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/example_actuator.pb",
+      "size": 309,
+      "sha256": "1e340f78469d9adcd0a242311304919beba2fa6a2bc0ba5c02cd7ea18f557595",
+      "class": "descriptor",
+      "provenance": {
+        "category": "mechanically_derived",
+        "origin": "generated solely from the newly authored example_actuator.proto in this manifest",
+        "generator": "protoc-bin-vendored 3.1.0 (libprotoc 28.2; Cargo.lock checksum dd89a830d0eab2502c81a9b8226d446a52998bb78e5e33cb2637c0cdd6068d99) via protoc_vendored helper",
+        "inputs": [
+          "example_actuator.proto@sha256:a2d0ceb24e47e8dcc8c208253458c72c0feedafdcfa8d427953c21bd9b2f36d7"
+        ],
+        "modification_method": "FileDescriptorSet generation with source-info omitted; no post-generation semantic edits",
+        "license_and_notices": "inherits the project-authored input; generator is a build tool and contributes no copied fixture content",
+        "distribution": "binary test fixture only; not an approved Java-compatible or runtime extension ABI distribution"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/example_contract.bin",
+      "size": 32,
+      "sha256": "882aa1918ebad6ea148cf53250c957242e520c1eae2f44a5005993e5f080be67",
+      "class": "message",
+      "provenance": {
+        "category": "newly_authored",
+        "origin": "canonical wire example designed for DR-004 in this Rust port",
+        "generator": "manual protobuf wire construction, frozen as exact hex in extension_registry.rs",
+        "inputs": [
+          "example_actuator.proto@sha256:a2d0ceb24e47e8dcc8c208253458c72c0feedafdcfa8d427953c21bd9b2f36d7",
+          "owner_address=0x41 followed by twenty 0x11 bytes",
+          "payload=UTF-8 example"
+        ],
+        "modification_method": "original deterministic field encoding",
+        "license_and_notices": "project-authored test data; no third-party notices",
+        "distribution": "binary test fixture only; not Java-produced and not approved for runtime interchange"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/example_any.bin",
+      "size": 97,
+      "sha256": "7704d5a42a0e10118daf23fea05d7d963e2e78a09f978103d859f9add529f0d1",
+      "class": "any",
+      "provenance": {
+        "category": "mechanically_derived",
+        "origin": "DR-004 canonical Any wrapping of the newly authored message fixture",
+        "generator": "manual protobuf wire construction, frozen as exact hex in extension_registry.rs",
+        "inputs": [
+          "example_contract.bin@sha256:882aa1918ebad6ea148cf53250c957242e520c1eae2f44a5005993e5f080be67",
+          "type.googleapis.com/org.tron.example.actuator.ExampleContract"
+        ],
+        "modification_method": "deterministic Any field encoding; no later edits",
+        "license_and_notices": "inherits project-authored inputs; no third-party notices",
+        "distribution": "binary test fixture only; not Java-produced and not approved for runtime interchange"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/example_transaction_contract.bin",
+      "size": 102,
+      "sha256": "5f28d7ca8de67521a93507f897c6d805288027890f7087254fef74c84e4ab2e2",
+      "class": "transaction_contract",
+      "provenance": {
+        "category": "mechanically_derived",
+        "origin": "DR-004 Rust extension transaction wrapper around the newly authored Any fixture",
+        "generator": "manual protobuf wire construction, frozen as exact hex in extension_registry.rs",
+        "inputs": [
+          "example_any.bin@sha256:7704d5a42a0e10118daf23fea05d7d963e2e78a09f978103d859f9add529f0d1",
+          "new Rust extension ContractType=1000"
+        ],
+        "modification_method": "deterministic Transaction.Contract field encoding; no later edits",
+        "license_and_notices": "inherits project-authored inputs; no third-party notices",
+        "distribution": "binary test fixture only; ContractType 1000 is not a Java enum value and this is not approved for Java interchange"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/malformed_descriptor.bin",
+      "size": 308,
+      "sha256": "5d4019537c65bf015f771222f886ec58cc41de67ca95d9cb7a88add7ef05a625",
+      "class": "malformed_descriptor",
+      "provenance": {
+        "category": "mechanically_derived",
+        "origin": "negative test mutation of the newly authored descriptor fixture",
+        "generator": "one-byte truncation of example_actuator.pb",
+        "inputs": [
+          "example_actuator.pb@sha256:1e340f78469d9adcd0a242311304919beba2fa6a2bc0ba5c02cd7ea18f557595"
+        ],
+        "modification_method": "removed the final byte, producing a deliberately undecodable FileDescriptorSet",
+        "license_and_notices": "inherits project-authored input; no third-party notices",
+        "distribution": "negative binary test fixture only; must never be loaded or shipped as an extension descriptor"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/builtin_name_collision.proto",
+      "size": 93,
+      "sha256": "b9b5e4007582b01c0ef514f0a0b6ff16d819b8140e67504bc256a7a9b4e56db8",
+      "class": "built_in_identity_collision_source",
+      "provenance": {
+        "category": "newly_authored",
+        "origin": "minimal negative-test schema authored in this Rust port for DR-004",
+        "generator": "none; manually authored proto3 source",
+        "inputs": [],
+        "modification_method": "original project authorship using the canonical built-in full name protocol.Account solely as collision input",
+        "license_and_notices": "project-authored test source; no Java source content copied",
+        "distribution": "negative source test fixture only; must not be distributed as an extension schema"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/builtin_name_collision.pb",
+      "size": 111,
+      "sha256": "0296ccb8f5ad01e3bf132d077c5e2528ef3b7277ac9d87cd2f722bed3c4af866",
+      "class": "built_in_identity_collision",
+      "provenance": {
+        "category": "mechanically_derived",
+        "origin": "generated solely from the newly authored builtin_name_collision.proto in this manifest",
+        "generator": "protoc-bin-vendored 3.1.0 (libprotoc 28.2; Cargo.lock checksum dd89a830d0eab2502c81a9b8226d446a52998bb78e5e33cb2637c0cdd6068d99) via protoc_vendored helper",
+        "inputs": [
+          "builtin_name_collision.proto@sha256:b9b5e4007582b01c0ef514f0a0b6ff16d819b8140e67504bc256a7a9b4e56db8"
+        ],
+        "modification_method": "FileDescriptorSet generation with source-info omitted; no post-generation edits",
+        "license_and_notices": "inherits project-authored input; generator is a build tool and contributes no copied fixture content",
+        "distribution": "negative binary test fixture only; must not be loaded or shipped as an extension descriptor"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/alternate_actuator.proto",
+      "size": 85,
+      "sha256": "71ca8062e6c9c8888917061c51399830da1cf21801821732b80210af97c4aa27",
+      "class": "independent_descriptor_source",
+      "provenance": {
+        "category": "newly_authored",
+        "origin": "minimal independent positive-test schema authored for DR-004 registry ordering",
+        "generator": "none; manually authored proto3 source",
+        "inputs": [],
+        "modification_method": "original project authorship",
+        "license_and_notices": "project-authored test source; no copied third-party notices",
+        "distribution": "source test fixture only"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/alternate_actuator.pb",
+      "size": 85,
+      "sha256": "d2f28b8d8d35d79b819d7398633eee8a6cbf50c8f016e358ef20647ffc313fbf",
+      "class": "independent_descriptor",
+      "provenance": {
+        "category": "mechanically_derived",
+        "origin": "generated solely from alternate_actuator.proto",
+        "generator": "protoc-bin-vendored 3.1.0 (libprotoc 28.2; Cargo.lock checksum dd89a830d0eab2502c81a9b8226d446a52998bb78e5e33cb2637c0cdd6068d99) via protoc_vendored helper",
+        "inputs": [
+          "alternate_actuator.proto@sha256:71ca8062e6c9c8888917061c51399830da1cf21801821732b80210af97c4aa27"
+        ],
+        "modification_method": "FileDescriptorSet generation with source-info omitted",
+        "license_and_notices": "inherits project-authored input",
+        "distribution": "binary test fixture only"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/unique_selected_builtin_collision.proto",
+      "size": 163,
+      "sha256": "95d3a9a5e455b07a15527cb33437dff275bc6f974cc7927a27ec79463b479b05",
+      "class": "secondary_built_in_collision_source",
+      "provenance": {
+        "category": "newly_authored",
+        "origin": "unique selected message importing the project-authored protocol.Account collision fixture",
+        "generator": "none; manually authored proto3 source",
+        "inputs": [
+          "builtin_name_collision.proto@sha256:b9b5e4007582b01c0ef514f0a0b6ff16d819b8140e67504bc256a7a9b4e56db8"
+        ],
+        "modification_method": "original negative-test authorship",
+        "license_and_notices": "project-authored test source",
+        "distribution": "negative source test fixture only"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/unique_selected_builtin_collision.pb",
+      "size": 294,
+      "sha256": "50a5362476743bf4a6ed3d7fc068d1b56e5def7f358ddbebe44f6aa64b9458d2",
+      "class": "secondary_built_in_collision",
+      "provenance": {
+        "category": "mechanically_derived",
+        "origin": "generated from unique_selected_builtin_collision.proto with its imported collision fixture",
+        "generator": "protoc-bin-vendored 3.1.0 (libprotoc 28.2; Cargo.lock checksum dd89a830d0eab2502c81a9b8226d446a52998bb78e5e33cb2637c0cdd6068d99) via protoc_vendored helper",
+        "inputs": [
+          "unique_selected_builtin_collision.proto@sha256:95d3a9a5e455b07a15527cb33437dff275bc6f974cc7927a27ec79463b479b05",
+          "builtin_name_collision.proto@sha256:b9b5e4007582b01c0ef514f0a0b6ff16d819b8140e67504bc256a7a9b4e56db8"
+        ],
+        "modification_method": "FileDescriptorSet generation with imports included and source-info omitted",
+        "license_and_notices": "inherits project-authored inputs",
+        "distribution": "negative binary test fixture only"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/cross_collision_one.proto",
+      "size": 118,
+      "sha256": "1b9de41c27c834e6447bb0443265dd2f4259ea41cf0eb5958a57a3676ea9eb38",
+      "class": "cross_extension_collision_source",
+      "provenance": {
+        "category": "newly_authored",
+        "origin": "first unique-selected schema sharing a non-selected message identity",
+        "generator": "none; manually authored proto3 source",
+        "inputs": [],
+        "modification_method": "original negative-test authorship",
+        "license_and_notices": "project-authored test source",
+        "distribution": "negative source test fixture only"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/cross_collision_one.pb",
+      "size": 111,
+      "sha256": "629edccec5e7607817dc0c076d0c9f3a2318935aec97c89eade76d0c4dba72be",
+      "class": "cross_extension_collision_descriptor",
+      "provenance": {
+        "category": "mechanically_derived",
+        "origin": "generated solely from cross_collision_one.proto",
+        "generator": "protoc-bin-vendored 3.1.0 (libprotoc 28.2; Cargo.lock checksum dd89a830d0eab2502c81a9b8226d446a52998bb78e5e33cb2637c0cdd6068d99) via protoc_vendored helper",
+        "inputs": [
+          "cross_collision_one.proto@sha256:1b9de41c27c834e6447bb0443265dd2f4259ea41cf0eb5958a57a3676ea9eb38"
+        ],
+        "modification_method": "FileDescriptorSet generation with source-info omitted",
+        "license_and_notices": "inherits project-authored input",
+        "distribution": "negative binary test fixture only"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/cross_collision_two.proto",
+      "size": 119,
+      "sha256": "91e2056f3386fdd98d07af94cd1357ea754bc20533f9e34f6a760af10f1a94f2",
+      "class": "cross_extension_collision_source",
+      "provenance": {
+        "category": "newly_authored",
+        "origin": "second unique-selected schema sharing a non-selected message identity",
+        "generator": "none; manually authored proto3 source",
+        "inputs": [],
+        "modification_method": "original negative-test authorship",
+        "license_and_notices": "project-authored test source",
+        "distribution": "negative source test fixture only"
+      }
+    },
+    {
+      "path": "../../rust-tron/crates/tron-protocol/tests/fixtures/extensions/cross_collision_two.pb",
+      "size": 112,
+      "sha256": "f665ad4ee6728269495d9213a17b8831391f622ce59e66d5852a2bae211f0f1c",
+      "class": "cross_extension_collision_descriptor",
+      "provenance": {
+        "category": "mechanically_derived",
+        "origin": "generated solely from cross_collision_two.proto",
+        "generator": "protoc-bin-vendored 3.1.0 (libprotoc 28.2; Cargo.lock checksum dd89a830d0eab2502c81a9b8226d446a52998bb78e5e33cb2637c0cdd6068d99) via protoc_vendored helper",
+        "inputs": [
+          "cross_collision_two.proto@sha256:91e2056f3386fdd98d07af94cd1357ea754bc20533f9e34f6a760af10f1a94f2"
+        ],
+        "modification_method": "FileDescriptorSet generation with source-info omitted",
+        "license_and_notices": "inherits project-authored input",
+        "distribution": "negative binary test fixture only"
+      }
+    }
+  ],
+  "collision_classes": [
+    "built_in_full_name",
+    "built_in_contract_type",
+    "extension_id",
+    "descriptor_file_name",
+    "extension_selected_full_name",
+    "extension_contributed_symbol",
+    "extension_contract_type"
+  ],
+  "resource_limits": {
+    "batch_count": 64,
+    "descriptor_bytes": 1048576,
+    "files_per_descriptor": 128,
+    "symbols_per_descriptor": 8192,
+    "message_nesting": 32
+  },
+  "validation_precedence": [
+    "bounded batch collection",
+    "declared extension ID and full-name syntax",
+    "descriptor byte bound and SHA-256 digest",
+    "descriptor decoding and bounded file/symbol/nesting inventory",
+    "declared message presence",
+    "built-in selected-name and contract-type collisions",
+    "Rust extension allocation range",
+    "extension ID, selected-name, file, contributed-symbol, and contract-type collisions"
+  ],
+  "generator": {
+    "helper": "rust-tron/crates/tron-protocol/src/bin/protoc_vendored.rs",
+    "cargo_package": "protoc-bin-vendored",
+    "cargo_version": "3.1.0",
+    "cargo_checksum": "dd89a830d0eab2502c81a9b8226d446a52998bb78e5e33cb2637c0cdd6068d99",
+    "protoc_version": "libprotoc 28.2"
+  }
+}

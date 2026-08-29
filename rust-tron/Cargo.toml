@@ -25,6 +25,14 @@ rust-version = "1.85.1"
 license = "LGPL-3.0-only"
 publish = false
 
+[workspace.dependencies]
+prost = "=0.13.5"
+prost-build = "=0.13.5"
+prost-types = "=0.13.5"
+protoc-bin-vendored = "=3.1.0"
+tonic = "=0.12.3"
+tonic-build = "=0.12.3"
+
 [workspace.lints.rust]
 unsafe_code = "forbid"
 

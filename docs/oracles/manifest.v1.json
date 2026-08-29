@@ -6,6 +6,27 @@
     "origin": "https://github.com/tronprotocol/java-tron.git"
   },
   "java_source_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "protocol_sources": {
+    "java_tron_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+    "canonical_root": "../../rust-tron/crates/tron-protocol/proto",
+    "canonical_schema_count": 17,
+    "google_any": {
+      "source": "https://github.com/protocolbuffers/protobuf/blob/v3.25.8/src/google/protobuf/any.proto",
+      "revision": "v3.25.8",
+      "sha256": "bcf5de6ce463b1a38ff76b77955aa7e580b4ec12af34a927b1d45c9efb0faf66",
+      "license": "BSD-3-Clause",
+      "license_file": "../../rust-tron/crates/tron-protocol/proto/google/LICENSE"
+    },
+    "descriptor": {
+      "artifact": "../../rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+      "metadata": "../../rust-tron/crates/tron-protocol/descriptors/protocol.v1.json",
+      "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+    }
+  },
+  "protocol_surface": "protocol-surface.v1.json",
+  "dr004_extension_fixtures": "dr004-extension-fixtures.v1.json",
+  "protocol_conformance": "protocol-conformance.v1.json",
+  "protocol_fixtures": "protocol-fixtures.v1.json",
   "runner_protocol": 1,
   "fixture_schema": "schemas/fixture-v1.schema.json",
   "result_schema": "schemas/result-v1.schema.json",

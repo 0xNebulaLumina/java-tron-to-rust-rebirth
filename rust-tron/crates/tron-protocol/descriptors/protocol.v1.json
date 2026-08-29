@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "artifact": "descriptors/protocol.v1.pb",
+  "artifact_sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912",
+  "java_tron_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "rust_toolchain": {
+    "channel": "1.85.1",
+    "profile": "minimal",
+    "components": [
+      "cargo",
+      "clippy",
+      "rust-docs",
+      "rustfmt"
+    ],
+    "targets": [
+      "aarch64-apple-darwin",
+      "aarch64-unknown-linux-gnu",
+      "x86_64-apple-darwin",
+      "x86_64-unknown-linux-gnu"
+    ]
+  },
+  "build_rs_sha256": "9915ddd40aae8aecc7c86027bdb31e3fbba252314f16f268ad45ee53c64f5b1b",
+  "generator": {
+    "packages": {
+      "prost": {
+        "version": "0.13.5",
+        "checksum": "2796faa41db3ec313a31f7624d9286acf277b52de526150b7e69f3debf891ee5"
+      },
+      "prost-build": {
+        "version": "0.13.5",
+        "checksum": "be769465445e8c1474e9c5dac2018218498557af32d9ed057325ec9a41ae81bf"
+      },
+      "prost-types": {
+        "version": "0.13.5",
+        "checksum": "52c2c1bf36ddb1a1c396b3601a3cec27c2462e45f07c386894ec3ccf5332bd16"
+      },
+      "tonic": {
+        "version": "0.12.3",
+        "checksum": "877c5b330756d856ffcc4553ab34a5684481ade925ecc54bcd1bf02b1d0d4d52"
+      },
+      "tonic-build": {
+        "version": "0.12.3",
+        "checksum": "9557ce109ea773b399c9b9e5dca39294110b74f1f342cb347a80d1fce8c26a11"
+      },
+      "protoc-bin-vendored": {
+        "version": "3.1.0",
+        "checksum": "dd89a830d0eab2502c81a9b8226d446a52998bb78e5e33cb2637c0cdd6068d99"
+      }
+    },
+    "protoc_source": "protoc-bin-vendored",
+    "protoc_version": "libprotoc 28.2"
+  },
+  "options": {
+    "root_input_count": 17,
+    "include_root": "proto",
+    "include_imports": true,
+    "include_source_info_during_generation": true,
+    "compile_well_known_types": true,
+    "well_known_input": "google/protobuf/any.proto",
+    "map_representation": "BTreeMap for every generated map field",
+    "build_client": true,
+    "build_server": true
+  },
+  "service_surfaces": [
+    "protocol.Database",
+    "protocol.Monitor",
+    "protocol.Network",
+    "protocol.TronZksnark",
+    "protocol.Wallet",
+    "protocol.WalletExtension",
+    "protocol.WalletSolidity"
+  ],
+  "normalization": [
+    "sort FileDescriptorProto entries lexicographically by name",
+    "clear every source_code_info field",
+    "encode the FileDescriptorSet with prost 0.13.5"
+  ],
+  "inputs": [
+    {
+      "path": "proto/api/api.proto",
+      "sha256": "5dec5d12ee2e88fda559523e074e454ebda562415b908557ffcb422523224b81"
+    },
+    {
+      "path": "proto/api/zksnark.proto",
+      "sha256": "f3be595eb40aff190b3c1d1b79e9ee07cb1fbbc668fca8b69cb566d0a75e819e"
+    },
+    {
+      "path": "proto/core/Discover.proto",
+      "sha256": "87fd67a605956f8308fa88b3d97101d03ad55616b15a55b5f9253fe279205f78"
+    },
+    {
+      "path": "proto/core/Tron.proto",
+      "sha256": "6982f5177850db3c5048005f8f222827d925052fbb8c93b0d041b20ed774aed3"
+    },
+    {
+      "path": "proto/core/TronInventoryItems.proto",
+      "sha256": "d85f2e2fd8de49216343be44bbf49722958f54ef11737ec236ba325ea02de9d4"
+    },
+    {
+      "path": "proto/core/contract/account_contract.proto",
+      "sha256": "8b185d719f250052768a341c00bb15c6ba280bbac73b99d9af5c218b960eecfe"
+    },
+    {
+      "path": "proto/core/contract/asset_issue_contract.proto",
+      "sha256": "3df981582ae1f5852b7c22b5ae99363c2b1be6427ee7c83df211cbde3b38bcb3"
+    },
+    {
+      "path": "proto/core/contract/balance_contract.proto",
+      "sha256": "e2275249dbe115d8e90d48a4b11c54ba2027cb635e9bedbf7aadfaa328db4cc4"
+    },
+    {
+      "path": "proto/core/contract/common.proto",
+      "sha256": "cc3dfa352f15761129f52a082ef49f3635b5f19fac62c114f4f5cfbb29a86d88"
+    },
+    {
+      "path": "proto/core/contract/exchange_contract.proto",
+      "sha256": "d0ce0e6e5d97cfe8ef19c1b47e32e79413feb8a5408bda0258e592947035e032"
+    },
+    {
+      "path": "proto/core/contract/market_contract.proto",
+      "sha256": "bac327d448dff9681f52446b93ff95dad66a6f2b35aecfc8e4565cc432244cc4"
+    },
+    {
+      "path": "proto/core/contract/proposal_contract.proto",
+      "sha256": "ccdbebd95b9874ba9a14f6554649723d92e7d71e337312bae90c80f57372e0c4"
+    },
+    {
+      "path": "proto/core/contract/shield_contract.proto",
+      "sha256": "cdd6be885d2b2781735bb60117ecefc912ce2cc7bbc693a482452bee36ce2443"
+    },
+    {
+      "path": "proto/core/contract/smart_contract.proto",
+      "sha256": "a838490e394db56e4945f1c327201aebdccd1762b5ec8f5a9cac7eb3d4e84f8b"
+    },
+    {
+      "path": "proto/core/contract/storage_contract.proto",
+      "sha256": "5e27e9094e314115d1d0001ccadef3c357ac012b5b399eda9f619cd9e4e5b9ff"
+    },
+    {
+      "path": "proto/core/contract/vote_asset_contract.proto",
+      "sha256": "98da89b3b1f21ce71e640a964414522b190667d05cf609be6bb455fae96a35fc"
+    },
+    {
+      "path": "proto/core/contract/witness_contract.proto",
+      "sha256": "44171f6055460f3a86aabbcce554b1aa13d2db7e9b7d049d707408e9f7e30467"
+    },
+    {
+      "path": "proto/google/protobuf/any.proto",
+      "sha256": "bcf5de6ce463b1a38ff76b77955aa7e580b4ec12af34a927b1d45c9efb0faf66"
+    }
+  ],
+  "google_any_provenance": {
+    "source": "https://github.com/protocolbuffers/protobuf/blob/v3.25.8/src/google/protobuf/any.proto",
+    "revision": "v3.25.8",
+    "license": "BSD-3-Clause",
+    "license_file": "proto/google/LICENSE",
+    "license_sha256": "6e5e117324afd944dcf67f36cf329843bc1a92229a8cd9bb573d7a83130fea7d",
+    "sha256": "bcf5de6ce463b1a38ff76b77955aa7e580b4ec12af34a927b1d45c9efb0faf66"
+  }
+}

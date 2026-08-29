@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package org.tron.example.actuator;
+
+option java_package = "org.tron.example.actuator";
+option java_outer_classname = "ExampleActuatorProtocol";
+
+// Newly authored descriptor-only Rust extension ABI fixture; it is not derived from or claimed
+// compatible with java-tron's actuator-example module. Runtime behavior is out of C001 scope.
+message ExampleContract {
+  bytes owner_address = 1;
+  bytes payload = 2;
+}
+
+message AlternateContract {
+  bytes owner_address = 1;
+}
+
+message LateContract {
+  bytes owner_address = 1;
+}

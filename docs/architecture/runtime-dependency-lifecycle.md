@@ -70,4 +70,19 @@ Shutdown is reverse dependency order with explicit phases:
 
 Signals, operator requests, fatal service failures, and startup failures all enter the same cancellation path. No component may call process exit directly except the composition root after shutdown completes.
 
+## Protobuf wire compatibility boundary
+
+Inbound protobuf messages that can be hashed, signed, relayed, or returned byte-for-byte retain
+their original wire bytes. Decoding provides an immutable known-field view; it does not authorize
+re-encoding because prost discards unknown fields and cannot reproduce duplicate fields, explicit
+defaults, or original map-entry order.
+
+Constructed or mutated messages with no map fields may use the explicit constructed-message
+encoder. For every map-bearing message, direct `prost::Message::encode` is non-compatible and
+forbidden at observable boundaries: generated Rust maps do not retain the insertion order emitted
+by protobuf-java. Callers must instead supply insertion-ordered pairs to `tron-protocol`'s bounded
+`OrderedMapEncoder`, selecting the method for the descriptor's key/value wire kinds. Forward and
+reverse insertion are distinct compatibility cases and must reproduce the corresponding Java bytes.
+Resource bounds are mandatory and a rejected entry must leave accumulated bytes unchanged.
+
 This C000.03 document defines structure only. Concrete traits and behavior belong to their owning implementation chunks and remain subject to C000.V architecture review.

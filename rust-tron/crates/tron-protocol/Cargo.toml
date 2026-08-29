@@ -6,5 +6,20 @@ rust-version.workspace = true
 license.workspace = true
 publish.workspace = true
 
+[dependencies]
+prost.workspace = true
+tonic.workspace = true
+prost-types.workspace = true
+sha2 = "=0.10.9"
+prost-reflect = "=0.14.7"
+protoc-bin-vendored.workspace = true
+
+[build-dependencies]
+prost.workspace = true
+prost-build.workspace = true
+prost-types.workspace = true
+protoc-bin-vendored.workspace = true
+tonic-build.workspace = true
+
 [lints]
 workspace = true

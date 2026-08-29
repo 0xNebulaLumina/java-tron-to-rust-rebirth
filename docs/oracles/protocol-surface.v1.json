@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "descriptor": "../../rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+  "generation": {
+    "prost": "0.13.5",
+    "prost-build": "0.13.5",
+    "tonic": "0.12.3",
+    "tonic-build": "0.12.3",
+    "protoc-bin-vendored": "3.1.0",
+    "protoc_source": "protoc-bin-vendored",
+    "root_input_count": 17,
+    "include_root": "proto",
+    "include_imports": true,
+    "include_source_info_during_generation": true,
+    "compile_well_known_types": true,
+    "well_known_input": "google/protobuf/any.proto",
+    "build_client": true,
+    "build_server": true,
+    "normalization": [
+      "sort FileDescriptorProto entries lexicographically by name",
+      "clear every source_code_info field",
+      "encode the FileDescriptorSet with prost 0.13.5"
+    ]
+  },
+  "families": {
+    "schema_identity": {
+      "file_count": 18,
+      "canonical_tron_schema_count": 17,
+      "packages": ["google.protobuf", "protocol"],
+      "guard": "normalized descriptor byte equality"
+    },
+    "services": {
+      "protocol.Wallet": 147,
+      "protocol.WalletSolidity": 47,
+      "protocol.WalletExtension": 4,
+      "protocol.Database": 4,
+      "protocol.Monitor": 1,
+      "protocol.Network": 0,
+      "protocol.TronZksnark": 1
+    },
+    "wire_shapes": [
+      "protocol.Transaction.raw",
+      "protocol.Transaction.Contract.parameter:google.protobuf.Any",
+      "protocol.Transaction.Contract.ContractType",
+      "protocol.Account.asset:map<string,int64>",
+      "protocol.SmartContract.ABI.Entry.EntryType",
+      "protocol.TransactionExtention",
+      "protocol.BlockExtention",
+      "protocol.EstimateEnergyMessage",
+      "protocol.IvkDecryptTRC20Parameters.events:deprecated",
+      "protocol.OvkDecryptTRC20Parameters.events:deprecated"
+    ],
+    "legacy_enum_zero_allowlist": [
+      "core/contract/common.proto:ResourceCode",
+      "core/contract/smart_contract.proto:SmartContract.ABI.Entry.EntryType",
+      "core/contract/smart_contract.proto:SmartContract.ABI.Entry.StateMutabilityType",
+      "core/Tron.proto:AccountType",
+      "core/Tron.proto:ReasonCode",
+      "core/Tron.proto:Proposal.State",
+      "core/Tron.proto:MarketOrder.State",
+      "core/Tron.proto:Permission.PermissionType",
+      "core/Tron.proto:Transaction.Contract.ContractType",
+      "core/Tron.proto:Transaction.Result.code",
+      "core/Tron.proto:Transaction.Result.contractResult",
+      "core/Tron.proto:TransactionInfo.code",
+      "core/Tron.proto:BlockInventory.Type",
+      "core/Tron.proto:Inventory.InventoryType",
+      "core/Tron.proto:Items.ItemType",
+      "core/Tron.proto:PBFTMessage.MsgType",
+      "core/Tron.proto:PBFTMessage.DataType",
+      "api/api.proto:Return.response_code",
+      "api/api.proto:TransactionSignWeight.Result.response_code",
+      "api/api.proto:TransactionApprovedList.Result.response_code",
+      "api/zksnark.proto:ZksnarkResponse.Code"
+    ]
+  }
+}

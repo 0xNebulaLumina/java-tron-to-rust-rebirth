@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    protobufJava
+}
+
+dependencies {
+    protobufJava 'com.google.protobuf:protobuf-java:3.25.8'
+}
+
+tasks.register('printProtobufJavaJar') {
+    doLast {
+        def files = configurations.protobufJava.resolve()
+        if (files.size() != 1) {
+            throw new GradleException("expected one protobuf-java artifact, got ${files}")
+        }
+        println files.first().absolutePath
+    }
+}

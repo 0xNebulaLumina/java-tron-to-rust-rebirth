@@ -1,0 +1,8 @@
+syntax = "proto3";
+package org.tron.extension.guard;
+
+import "builtin_name_collision.proto";
+
+message UniqueSelectedContract {
+  protocol.Account secondary = 1;
+}

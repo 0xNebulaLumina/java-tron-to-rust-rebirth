@@ -1,0 +1,6772 @@
+{
+  "schema_version": 1,
+  "java_tron_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "descriptor": "../../rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+  "descriptor_sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912",
+  "normalization": [
+    "protoc --include_imports without source info",
+    "sort FileDescriptorProto by name",
+    "preserve each FileDescriptorProto byte encoding"
+  ],
+  "case_definitions": {
+    "encode": "canonical source-derived message encodes to expected bytes",
+    "decode": "expected bytes decode with the declared message type",
+    "malformed": "truncated or invalid wire input is rejected",
+    "unknown_field": "well-formed unknown fields are accepted and do not alter known values",
+    "any": "Any type URL is type.googleapis.com/<fully-qualified-name> and value bytes are canonical",
+    "map_order": "logical map equality is independent of encoded entry order; canonical fixture order is explicit",
+    "presence": "absent versus explicitly encoded default is covered where wire presence is observable",
+    "size": "encoded byte count is asserted before size-sensitive hashing or transport"
+  },
+  "counts": {
+    "schema": 17,
+    "message": 247,
+    "enum": 21,
+    "service": 7,
+    "method": 204
+  },
+  "unmapped_rows": 0,
+  "rows": [
+    {
+      "kind": "schema",
+      "id": "api/api.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Return",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockReference",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.WitnessList",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ProposalList",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ExchangeList",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AssetIssueList",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockList",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionList",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionIdList",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DelegatedResourceMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DelegatedResourceList",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.GetAvailableUnfreezeCountRequestMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.GetAvailableUnfreezeCountResponseMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.CanDelegatedMaxSizeRequestMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.CanDelegatedMaxSizeResponseMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.CanWithdrawUnfreezeAmountRequestMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.CanWithdrawUnfreezeAmountResponseMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PricesResponseMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NodeList",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Node",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Address",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.EmptyMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NumberMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BytesMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TimeMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockReq",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockLimit",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionLimit",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountPaginated",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TimePaginatedMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountNetMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": true,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountNetMessage.AssetNetUsedEntry",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountNetMessage.AssetNetLimitEntry",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountResourceMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": true,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountResourceMessage.AssetNetUsedEntry",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountResourceMessage.AssetNetLimitEntry",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PaginatedMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionExtention",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.EstimateEnergyMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockExtention",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockListExtention",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionListExtention",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockIncrementalMerkleTree",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionSignWeight",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionSignWeight.Result",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionApprovedList",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionApprovedList.Result",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.IvkDecryptParameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.IvkDecryptAndMarkParameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.OvkDecryptParameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DecryptNotes",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DecryptNotes.NoteTx",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DecryptNotesMarked",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DecryptNotesMarked.NoteTx",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Note",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SpendNote",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ReceiveNote",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PrivateParameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PrivateParametersWithoutAsk",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SpendAuthSigParameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NfParameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ExpandedSpendingKeyMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ViewingKeyMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.IncomingViewingKeyMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DiversifierMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.IncomingViewingKeyDiversifierMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PaymentAddressMessage",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ShieldedAddressInfo",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NoteParameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SpendResult",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionInfoList",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SpendNoteTRC20",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PrivateShieldedTRC20Parameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PrivateShieldedTRC20ParametersWithoutAsk",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ShieldedTRC20Parameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.IvkDecryptTRC20Parameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.OvkDecryptTRC20Parameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DecryptNotesTRC20",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DecryptNotesTRC20.NoteTx",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NfTRC20Parameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NullifierResult",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ShieldedTRC20TriggerContractParameters",
+      "schema": "api/api.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.Return.response_code",
+      "schema": "api/api.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.TransactionSignWeight.Result.response_code",
+      "schema": "api/api.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.TransactionApprovedList.Result.response_code",
+      "schema": "api/api.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "service",
+      "id": "protocol.Wallet",
+      "schema": "api/api.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetAccount",
+      "schema": "api/api.proto",
+      "input": "protocol.Account",
+      "output": "protocol.Account",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetAccountById",
+      "schema": "api/api.proto",
+      "input": "protocol.Account",
+      "output": "protocol.Account",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetAccountBalance",
+      "schema": "api/api.proto",
+      "input": "protocol.AccountBalanceRequest",
+      "output": "protocol.AccountBalanceResponse",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetBlockBalanceTrace",
+      "schema": "api/api.proto",
+      "input": "protocol.BlockBalanceTrace.BlockIdentifier",
+      "output": "protocol.BlockBalanceTrace",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateTransaction",
+      "schema": "api/api.proto",
+      "input": "protocol.TransferContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateTransaction2",
+      "schema": "api/api.proto",
+      "input": "protocol.TransferContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/BroadcastTransaction",
+      "schema": "api/api.proto",
+      "input": "protocol.Transaction",
+      "output": "protocol.Return",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UpdateAccount",
+      "schema": "api/api.proto",
+      "input": "protocol.AccountUpdateContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/SetAccountId",
+      "schema": "api/api.proto",
+      "input": "protocol.SetAccountIdContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UpdateAccount2",
+      "schema": "api/api.proto",
+      "input": "protocol.AccountUpdateContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/VoteWitnessAccount",
+      "schema": "api/api.proto",
+      "input": "protocol.VoteWitnessContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UpdateSetting",
+      "schema": "api/api.proto",
+      "input": "protocol.UpdateSettingContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UpdateEnergyLimit",
+      "schema": "api/api.proto",
+      "input": "protocol.UpdateEnergyLimitContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/VoteWitnessAccount2",
+      "schema": "api/api.proto",
+      "input": "protocol.VoteWitnessContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateAssetIssue",
+      "schema": "api/api.proto",
+      "input": "protocol.AssetIssueContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateAssetIssue2",
+      "schema": "api/api.proto",
+      "input": "protocol.AssetIssueContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UpdateWitness",
+      "schema": "api/api.proto",
+      "input": "protocol.WitnessUpdateContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UpdateWitness2",
+      "schema": "api/api.proto",
+      "input": "protocol.WitnessUpdateContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateAccount",
+      "schema": "api/api.proto",
+      "input": "protocol.AccountCreateContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateAccount2",
+      "schema": "api/api.proto",
+      "input": "protocol.AccountCreateContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateWitness",
+      "schema": "api/api.proto",
+      "input": "protocol.WitnessCreateContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateWitness2",
+      "schema": "api/api.proto",
+      "input": "protocol.WitnessCreateContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/TransferAsset",
+      "schema": "api/api.proto",
+      "input": "protocol.TransferAssetContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/TransferAsset2",
+      "schema": "api/api.proto",
+      "input": "protocol.TransferAssetContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ParticipateAssetIssue",
+      "schema": "api/api.proto",
+      "input": "protocol.ParticipateAssetIssueContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ParticipateAssetIssue2",
+      "schema": "api/api.proto",
+      "input": "protocol.ParticipateAssetIssueContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/FreezeBalance",
+      "schema": "api/api.proto",
+      "input": "protocol.FreezeBalanceContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/FreezeBalance2",
+      "schema": "api/api.proto",
+      "input": "protocol.FreezeBalanceContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/FreezeBalanceV2",
+      "schema": "api/api.proto",
+      "input": "protocol.FreezeBalanceV2Contract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UnfreezeBalance",
+      "schema": "api/api.proto",
+      "input": "protocol.UnfreezeBalanceContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UnfreezeBalance2",
+      "schema": "api/api.proto",
+      "input": "protocol.UnfreezeBalanceContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UnfreezeBalanceV2",
+      "schema": "api/api.proto",
+      "input": "protocol.UnfreezeBalanceV2Contract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UnfreezeAsset",
+      "schema": "api/api.proto",
+      "input": "protocol.UnfreezeAssetContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UnfreezeAsset2",
+      "schema": "api/api.proto",
+      "input": "protocol.UnfreezeAssetContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/WithdrawBalance",
+      "schema": "api/api.proto",
+      "input": "protocol.WithdrawBalanceContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/WithdrawBalance2",
+      "schema": "api/api.proto",
+      "input": "protocol.WithdrawBalanceContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/WithdrawExpireUnfreeze",
+      "schema": "api/api.proto",
+      "input": "protocol.WithdrawExpireUnfreezeContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/DelegateResource",
+      "schema": "api/api.proto",
+      "input": "protocol.DelegateResourceContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UnDelegateResource",
+      "schema": "api/api.proto",
+      "input": "protocol.UnDelegateResourceContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CancelAllUnfreezeV2",
+      "schema": "api/api.proto",
+      "input": "protocol.CancelAllUnfreezeV2Contract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UpdateAsset",
+      "schema": "api/api.proto",
+      "input": "protocol.UpdateAssetContract",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UpdateAsset2",
+      "schema": "api/api.proto",
+      "input": "protocol.UpdateAssetContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ProposalCreate",
+      "schema": "api/api.proto",
+      "input": "protocol.ProposalCreateContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ProposalApprove",
+      "schema": "api/api.proto",
+      "input": "protocol.ProposalApproveContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ProposalDelete",
+      "schema": "api/api.proto",
+      "input": "protocol.ProposalDeleteContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/BuyStorage",
+      "schema": "api/api.proto",
+      "input": "protocol.BuyStorageContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/BuyStorageBytes",
+      "schema": "api/api.proto",
+      "input": "protocol.BuyStorageBytesContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/SellStorage",
+      "schema": "api/api.proto",
+      "input": "protocol.SellStorageContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ExchangeCreate",
+      "schema": "api/api.proto",
+      "input": "protocol.ExchangeCreateContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ExchangeInject",
+      "schema": "api/api.proto",
+      "input": "protocol.ExchangeInjectContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ExchangeWithdraw",
+      "schema": "api/api.proto",
+      "input": "protocol.ExchangeWithdrawContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ExchangeTransaction",
+      "schema": "api/api.proto",
+      "input": "protocol.ExchangeTransactionContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/MarketSellAsset",
+      "schema": "api/api.proto",
+      "input": "protocol.MarketSellAssetContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/MarketCancelOrder",
+      "schema": "api/api.proto",
+      "input": "protocol.MarketCancelOrderContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetMarketOrderById",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.MarketOrder",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetMarketOrderByAccount",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.MarketOrderList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetMarketPriceByPair",
+      "schema": "api/api.proto",
+      "input": "protocol.MarketOrderPair",
+      "output": "protocol.MarketPriceList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetMarketOrderListByPair",
+      "schema": "api/api.proto",
+      "input": "protocol.MarketOrderPair",
+      "output": "protocol.MarketOrderList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetMarketPairList",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.MarketOrderPairList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ListNodes",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.NodeList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetAssetIssueByAccount",
+      "schema": "api/api.proto",
+      "input": "protocol.Account",
+      "output": "protocol.AssetIssueList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetAccountNet",
+      "schema": "api/api.proto",
+      "input": "protocol.Account",
+      "output": "protocol.AccountNetMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetAccountResource",
+      "schema": "api/api.proto",
+      "input": "protocol.Account",
+      "output": "protocol.AccountResourceMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetAssetIssueByName",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.AssetIssueContract",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetAssetIssueListByName",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.AssetIssueList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetAssetIssueById",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.AssetIssueContract",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetNowBlock",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.Block",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetNowBlock2",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.BlockExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetBlockByNum",
+      "schema": "api/api.proto",
+      "input": "protocol.NumberMessage",
+      "output": "protocol.Block",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetBlockByNum2",
+      "schema": "api/api.proto",
+      "input": "protocol.NumberMessage",
+      "output": "protocol.BlockExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetTransactionCountByBlockNum",
+      "schema": "api/api.proto",
+      "input": "protocol.NumberMessage",
+      "output": "protocol.NumberMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetBlockById",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.Block",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetBlockByLimitNext",
+      "schema": "api/api.proto",
+      "input": "protocol.BlockLimit",
+      "output": "protocol.BlockList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetBlockByLimitNext2",
+      "schema": "api/api.proto",
+      "input": "protocol.BlockLimit",
+      "output": "protocol.BlockListExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetBlockByLatestNum",
+      "schema": "api/api.proto",
+      "input": "protocol.NumberMessage",
+      "output": "protocol.BlockList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetBlockByLatestNum2",
+      "schema": "api/api.proto",
+      "input": "protocol.NumberMessage",
+      "output": "protocol.BlockListExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetTransactionById",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/DeployContract",
+      "schema": "api/api.proto",
+      "input": "protocol.CreateSmartContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetContract",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.SmartContract",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetContractInfo",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.SmartContractDataWrapper",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/TriggerContract",
+      "schema": "api/api.proto",
+      "input": "protocol.TriggerSmartContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/TriggerConstantContract",
+      "schema": "api/api.proto",
+      "input": "protocol.TriggerSmartContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/EstimateEnergy",
+      "schema": "api/api.proto",
+      "input": "protocol.TriggerSmartContract",
+      "output": "protocol.EstimateEnergyMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ClearContractABI",
+      "schema": "api/api.proto",
+      "input": "protocol.ClearABIContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ListWitnesses",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.WitnessList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetPaginatedNowWitnessList",
+      "schema": "api/api.proto",
+      "input": "protocol.PaginatedMessage",
+      "output": "protocol.WitnessList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetDelegatedResource",
+      "schema": "api/api.proto",
+      "input": "protocol.DelegatedResourceMessage",
+      "output": "protocol.DelegatedResourceList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetDelegatedResourceV2",
+      "schema": "api/api.proto",
+      "input": "protocol.DelegatedResourceMessage",
+      "output": "protocol.DelegatedResourceList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetDelegatedResourceAccountIndex",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.DelegatedResourceAccountIndex",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetDelegatedResourceAccountIndexV2",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.DelegatedResourceAccountIndex",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetCanDelegatedMaxSize",
+      "schema": "api/api.proto",
+      "input": "protocol.CanDelegatedMaxSizeRequestMessage",
+      "output": "protocol.CanDelegatedMaxSizeResponseMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetAvailableUnfreezeCount",
+      "schema": "api/api.proto",
+      "input": "protocol.GetAvailableUnfreezeCountRequestMessage",
+      "output": "protocol.GetAvailableUnfreezeCountResponseMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetCanWithdrawUnfreezeAmount",
+      "schema": "api/api.proto",
+      "input": "protocol.CanWithdrawUnfreezeAmountRequestMessage",
+      "output": "protocol.CanWithdrawUnfreezeAmountResponseMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ListProposals",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.ProposalList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetPaginatedProposalList",
+      "schema": "api/api.proto",
+      "input": "protocol.PaginatedMessage",
+      "output": "protocol.ProposalList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetProposalById",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.Proposal",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ListExchanges",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.ExchangeList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetPaginatedExchangeList",
+      "schema": "api/api.proto",
+      "input": "protocol.PaginatedMessage",
+      "output": "protocol.ExchangeList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetExchangeById",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.Exchange",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetChainParameters",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.ChainParameters",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetAssetIssueList",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.AssetIssueList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetPaginatedAssetIssueList",
+      "schema": "api/api.proto",
+      "input": "protocol.PaginatedMessage",
+      "output": "protocol.AssetIssueList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/TotalTransaction",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.NumberMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetNextMaintenanceTime",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.NumberMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetTransactionInfoById",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.TransactionInfo",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/AccountPermissionUpdate",
+      "schema": "api/api.proto",
+      "input": "protocol.AccountPermissionUpdateContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetTransactionSignWeight",
+      "schema": "api/api.proto",
+      "input": "protocol.Transaction",
+      "output": "protocol.TransactionSignWeight",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetTransactionApprovedList",
+      "schema": "api/api.proto",
+      "input": "protocol.Transaction",
+      "output": "protocol.TransactionApprovedList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetNodeInfo",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.NodeInfo",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetRewardInfo",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.NumberMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetBrokerageInfo",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.NumberMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/UpdateBrokerage",
+      "schema": "api/api.proto",
+      "input": "protocol.UpdateBrokerageContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateShieldedTransaction",
+      "schema": "api/api.proto",
+      "input": "protocol.PrivateParameters",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetMerkleTreeVoucherInfo",
+      "schema": "api/api.proto",
+      "input": "protocol.OutputPointInfo",
+      "output": "protocol.IncrementalMerkleVoucherInfo",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ScanNoteByIvk",
+      "schema": "api/api.proto",
+      "input": "protocol.IvkDecryptParameters",
+      "output": "protocol.DecryptNotes",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ScanAndMarkNoteByIvk",
+      "schema": "api/api.proto",
+      "input": "protocol.IvkDecryptAndMarkParameters",
+      "output": "protocol.DecryptNotesMarked",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ScanNoteByOvk",
+      "schema": "api/api.proto",
+      "input": "protocol.OvkDecryptParameters",
+      "output": "protocol.DecryptNotes",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetSpendingKey",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.BytesMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetExpandedSpendingKey",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.ExpandedSpendingKeyMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetAkFromAsk",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.BytesMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetNkFromNsk",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.BytesMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetIncomingViewingKey",
+      "schema": "api/api.proto",
+      "input": "protocol.ViewingKeyMessage",
+      "output": "protocol.IncomingViewingKeyMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetDiversifier",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.DiversifierMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetNewShieldedAddress",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.ShieldedAddressInfo",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetZenPaymentAddress",
+      "schema": "api/api.proto",
+      "input": "protocol.IncomingViewingKeyDiversifierMessage",
+      "output": "protocol.PaymentAddressMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetRcm",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.BytesMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/IsSpend",
+      "schema": "api/api.proto",
+      "input": "protocol.NoteParameters",
+      "output": "protocol.SpendResult",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateShieldedTransactionWithoutSpendAuthSig",
+      "schema": "api/api.proto",
+      "input": "protocol.PrivateParametersWithoutAsk",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetShieldTransactionHash",
+      "schema": "api/api.proto",
+      "input": "protocol.Transaction",
+      "output": "protocol.BytesMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateSpendAuthSig",
+      "schema": "api/api.proto",
+      "input": "protocol.SpendAuthSigParameters",
+      "output": "protocol.BytesMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateShieldNullifier",
+      "schema": "api/api.proto",
+      "input": "protocol.NfParameters",
+      "output": "protocol.BytesMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateShieldedContractParameters",
+      "schema": "api/api.proto",
+      "input": "protocol.PrivateShieldedTRC20Parameters",
+      "output": "protocol.ShieldedTRC20Parameters",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateShieldedContractParametersWithoutAsk",
+      "schema": "api/api.proto",
+      "input": "protocol.PrivateShieldedTRC20ParametersWithoutAsk",
+      "output": "protocol.ShieldedTRC20Parameters",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ScanShieldedTRC20NotesByIvk",
+      "schema": "api/api.proto",
+      "input": "protocol.IvkDecryptTRC20Parameters",
+      "output": "protocol.DecryptNotesTRC20",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/ScanShieldedTRC20NotesByOvk",
+      "schema": "api/api.proto",
+      "input": "protocol.OvkDecryptTRC20Parameters",
+      "output": "protocol.DecryptNotesTRC20",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/IsShieldedTRC20ContractNoteSpent",
+      "schema": "api/api.proto",
+      "input": "protocol.NfTRC20Parameters",
+      "output": "protocol.NullifierResult",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetTriggerInputForShieldedTRC20Contract",
+      "schema": "api/api.proto",
+      "input": "protocol.ShieldedTRC20TriggerContractParameters",
+      "output": "protocol.BytesMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/CreateCommonTransaction",
+      "schema": "api/api.proto",
+      "input": "protocol.Transaction",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetTransactionInfoByBlockNum",
+      "schema": "api/api.proto",
+      "input": "protocol.NumberMessage",
+      "output": "protocol.TransactionInfoList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetBurnTrx",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.NumberMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetTransactionFromPending",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetTransactionListFromPending",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.TransactionIdList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetPendingSize",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.NumberMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetBlock",
+      "schema": "api/api.proto",
+      "input": "protocol.BlockReq",
+      "output": "protocol.BlockExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetBandwidthPrices",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.PricesResponseMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetEnergyPrices",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.PricesResponseMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Wallet/GetMemoFee",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.PricesResponseMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "service",
+      "id": "protocol.WalletSolidity",
+      "schema": "api/api.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetAccount",
+      "schema": "api/api.proto",
+      "input": "protocol.Account",
+      "output": "protocol.Account",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetAccountById",
+      "schema": "api/api.proto",
+      "input": "protocol.Account",
+      "output": "protocol.Account",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/ListWitnesses",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.WitnessList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetPaginatedNowWitnessList",
+      "schema": "api/api.proto",
+      "input": "protocol.PaginatedMessage",
+      "output": "protocol.WitnessList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetAssetIssueList",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.AssetIssueList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetPaginatedAssetIssueList",
+      "schema": "api/api.proto",
+      "input": "protocol.PaginatedMessage",
+      "output": "protocol.AssetIssueList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetAssetIssueByName",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.AssetIssueContract",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetAssetIssueListByName",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.AssetIssueList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetAssetIssueById",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.AssetIssueContract",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetNowBlock",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.Block",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetNowBlock2",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.BlockExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetBlockByNum",
+      "schema": "api/api.proto",
+      "input": "protocol.NumberMessage",
+      "output": "protocol.Block",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetBlockByNum2",
+      "schema": "api/api.proto",
+      "input": "protocol.NumberMessage",
+      "output": "protocol.BlockExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetTransactionCountByBlockNum",
+      "schema": "api/api.proto",
+      "input": "protocol.NumberMessage",
+      "output": "protocol.NumberMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetDelegatedResource",
+      "schema": "api/api.proto",
+      "input": "protocol.DelegatedResourceMessage",
+      "output": "protocol.DelegatedResourceList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetDelegatedResourceV2",
+      "schema": "api/api.proto",
+      "input": "protocol.DelegatedResourceMessage",
+      "output": "protocol.DelegatedResourceList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetDelegatedResourceAccountIndex",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.DelegatedResourceAccountIndex",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetDelegatedResourceAccountIndexV2",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.DelegatedResourceAccountIndex",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetCanDelegatedMaxSize",
+      "schema": "api/api.proto",
+      "input": "protocol.CanDelegatedMaxSizeRequestMessage",
+      "output": "protocol.CanDelegatedMaxSizeResponseMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetAvailableUnfreezeCount",
+      "schema": "api/api.proto",
+      "input": "protocol.GetAvailableUnfreezeCountRequestMessage",
+      "output": "protocol.GetAvailableUnfreezeCountResponseMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetCanWithdrawUnfreezeAmount",
+      "schema": "api/api.proto",
+      "input": "protocol.CanWithdrawUnfreezeAmountRequestMessage",
+      "output": "protocol.CanWithdrawUnfreezeAmountResponseMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetExchangeById",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.Exchange",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/ListExchanges",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.ExchangeList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetTransactionById",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.Transaction",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetTransactionInfoById",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.TransactionInfo",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetMerkleTreeVoucherInfo",
+      "schema": "api/api.proto",
+      "input": "protocol.OutputPointInfo",
+      "output": "protocol.IncrementalMerkleVoucherInfo",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/ScanNoteByIvk",
+      "schema": "api/api.proto",
+      "input": "protocol.IvkDecryptParameters",
+      "output": "protocol.DecryptNotes",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/ScanAndMarkNoteByIvk",
+      "schema": "api/api.proto",
+      "input": "protocol.IvkDecryptAndMarkParameters",
+      "output": "protocol.DecryptNotesMarked",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/ScanNoteByOvk",
+      "schema": "api/api.proto",
+      "input": "protocol.OvkDecryptParameters",
+      "output": "protocol.DecryptNotes",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/IsSpend",
+      "schema": "api/api.proto",
+      "input": "protocol.NoteParameters",
+      "output": "protocol.SpendResult",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/ScanShieldedTRC20NotesByIvk",
+      "schema": "api/api.proto",
+      "input": "protocol.IvkDecryptTRC20Parameters",
+      "output": "protocol.DecryptNotesTRC20",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/ScanShieldedTRC20NotesByOvk",
+      "schema": "api/api.proto",
+      "input": "protocol.OvkDecryptTRC20Parameters",
+      "output": "protocol.DecryptNotesTRC20",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/IsShieldedTRC20ContractNoteSpent",
+      "schema": "api/api.proto",
+      "input": "protocol.NfTRC20Parameters",
+      "output": "protocol.NullifierResult",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetRewardInfo",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.NumberMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetBrokerageInfo",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.NumberMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/TriggerConstantContract",
+      "schema": "api/api.proto",
+      "input": "protocol.TriggerSmartContract",
+      "output": "protocol.TransactionExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/EstimateEnergy",
+      "schema": "api/api.proto",
+      "input": "protocol.TriggerSmartContract",
+      "output": "protocol.EstimateEnergyMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetTransactionInfoByBlockNum",
+      "schema": "api/api.proto",
+      "input": "protocol.NumberMessage",
+      "output": "protocol.TransactionInfoList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetMarketOrderById",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.MarketOrder",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetMarketOrderByAccount",
+      "schema": "api/api.proto",
+      "input": "protocol.BytesMessage",
+      "output": "protocol.MarketOrderList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetMarketPriceByPair",
+      "schema": "api/api.proto",
+      "input": "protocol.MarketOrderPair",
+      "output": "protocol.MarketPriceList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetMarketOrderListByPair",
+      "schema": "api/api.proto",
+      "input": "protocol.MarketOrderPair",
+      "output": "protocol.MarketOrderList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetMarketPairList",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.MarketOrderPairList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetBurnTrx",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.NumberMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetBlock",
+      "schema": "api/api.proto",
+      "input": "protocol.BlockReq",
+      "output": "protocol.BlockExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetBandwidthPrices",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.PricesResponseMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletSolidity/GetEnergyPrices",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.PricesResponseMessage",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "service",
+      "id": "protocol.WalletExtension",
+      "schema": "api/api.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletExtension/GetTransactionsFromThis",
+      "schema": "api/api.proto",
+      "input": "protocol.AccountPaginated",
+      "output": "protocol.TransactionList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletExtension/GetTransactionsFromThis2",
+      "schema": "api/api.proto",
+      "input": "protocol.AccountPaginated",
+      "output": "protocol.TransactionListExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletExtension/GetTransactionsToThis",
+      "schema": "api/api.proto",
+      "input": "protocol.AccountPaginated",
+      "output": "protocol.TransactionList",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.WalletExtension/GetTransactionsToThis2",
+      "schema": "api/api.proto",
+      "input": "protocol.AccountPaginated",
+      "output": "protocol.TransactionListExtention",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "service",
+      "id": "protocol.Database",
+      "schema": "api/api.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Database/getBlockReference",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.BlockReference",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Database/GetDynamicProperties",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.DynamicProperties",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Database/GetNowBlock",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.Block",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Database/GetBlockByNum",
+      "schema": "api/api.proto",
+      "input": "protocol.NumberMessage",
+      "output": "protocol.Block",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "service",
+      "id": "protocol.Monitor",
+      "schema": "api/api.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.Monitor/GetStatsInfo",
+      "schema": "api/api.proto",
+      "input": "protocol.EmptyMessage",
+      "output": "protocol.MetricsInfo",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "service",
+      "id": "protocol.Network",
+      "schema": "api/api.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "api/zksnark.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ZksnarkRequest",
+      "schema": "api/zksnark.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ZksnarkResponse",
+      "schema": "api/zksnark.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.ZksnarkResponse.Code",
+      "schema": "api/zksnark.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "service",
+      "id": "protocol.TronZksnark",
+      "schema": "api/zksnark.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "method",
+      "id": "protocol.TronZksnark/CheckZksnarkProof",
+      "schema": "api/zksnark.proto",
+      "input": "protocol.ZksnarkRequest",
+      "output": "protocol.ZksnarkResponse",
+      "client_streaming": false,
+      "server_streaming": false,
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/Discover.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Endpoint",
+      "schema": "core/Discover.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PingMessage",
+      "schema": "core/Discover.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PongMessage",
+      "schema": "core/Discover.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.FindNeighbours",
+      "schema": "core/Discover.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Neighbours",
+      "schema": "core/Discover.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BackupMessage",
+      "schema": "core/Discover.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountId",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Vote",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Proposal",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": true,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Proposal.ParametersEntry",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Exchange",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MarketOrder",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MarketOrderList",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MarketOrderPairList",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MarketOrderPair",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MarketAccountOrder",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MarketPrice",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MarketPriceList",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MarketOrderIdList",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ChainParameters",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ChainParameters.ChainParameter",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Account",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": true,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Account.Frozen",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Account.AssetEntry",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Account.AssetV2Entry",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Account.LatestAssetOperationTimeEntry",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Account.LatestAssetOperationTimeV2Entry",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Account.FreeAssetNetUsageEntry",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Account.FreeAssetNetUsageV2Entry",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Account.AccountResource",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Account.FreezeV2",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Account.UnFreezeV2",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Key",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DelegatedResource",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.authority",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Permission",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Witness",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Votes",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TXOutput",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TXInput",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TXInput.raw",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TXOutputs",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ResourceReceipt",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MarketOrderDetail",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Transaction",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Transaction.Contract",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": true,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Transaction.Result",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": true,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Transaction.Result.CancelUnfreezeV2AmountEntry",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Transaction.raw",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": true,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionInfo.Log",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionInfo.CancelUnfreezeV2AmountEntry",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionRet",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Transactions",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockHeader",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockHeader.raw",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Block",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ChainInventory",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ChainInventory.BlockId",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockInventory",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockInventory.BlockId",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Inventory",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.Items",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DynamicProperties",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DisconnectMessage",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.HelloMessage",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.HelloMessage.BlockId",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.InternalTransaction",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.InternalTransaction.CallValueInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DelegatedResourceAccountIndex",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NodeInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": true,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NodeInfo.CheatWitnessInfoMapEntry",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NodeInfo.PeerInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NodeInfo.ConfigNodeInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NodeInfo.MachineInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NodeInfo.MachineInfo.MemoryDescInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.NodeInfo.MachineInfo.DeadLockThreadInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MetricsInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MetricsInfo.NodeInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MetricsInfo.BlockChainInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MetricsInfo.BlockChainInfo.Witness",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MetricsInfo.BlockChainInfo.DupWitness",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MetricsInfo.RateInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MetricsInfo.NetInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MetricsInfo.NetInfo.ApiInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MetricsInfo.NetInfo.ApiInfo.ApiDetailInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MetricsInfo.NetInfo.DisconnectionDetailInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MetricsInfo.NetInfo.LatencyInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MetricsInfo.NetInfo.LatencyInfo.LatencyDetailInfo",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PBFTMessage",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PBFTMessage.Raw",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PBFTCommitResult",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SRL",
+      "schema": "core/Tron.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.Proposal.State",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.MarketOrder.State",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.Permission.PermissionType",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.Transaction.Contract.ContractType",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.Transaction.Result.code",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.Transaction.Result.contractResult",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.TransactionInfo.code",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.BlockInventory.Type",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.Inventory.InventoryType",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.Items.ItemType",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.PBFTMessage.MsgType",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.PBFTMessage.DataType",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.AccountType",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.ReasonCode",
+      "schema": "core/Tron.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/TronInventoryItems.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.InventoryItems",
+      "schema": "core/TronInventoryItems.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/contract/account_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountCreateContract",
+      "schema": "core/contract/account_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountUpdateContract",
+      "schema": "core/contract/account_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SetAccountIdContract",
+      "schema": "core/contract/account_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountPermissionUpdateContract",
+      "schema": "core/contract/account_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/contract/asset_issue_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AssetIssueContract",
+      "schema": "core/contract/asset_issue_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AssetIssueContract.FrozenSupply",
+      "schema": "core/contract/asset_issue_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransferAssetContract",
+      "schema": "core/contract/asset_issue_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.UnfreezeAssetContract",
+      "schema": "core/contract/asset_issue_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.UpdateAssetContract",
+      "schema": "core/contract/asset_issue_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ParticipateAssetIssueContract",
+      "schema": "core/contract/asset_issue_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/contract/balance_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.FreezeBalanceContract",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.UnfreezeBalanceContract",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.WithdrawBalanceContract",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransferContract",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionBalanceTrace",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TransactionBalanceTrace.Operation",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockBalanceTrace",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BlockBalanceTrace.BlockIdentifier",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountTrace",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountIdentifier",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountBalanceRequest",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AccountBalanceResponse",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.FreezeBalanceV2Contract",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.UnfreezeBalanceV2Contract",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.WithdrawExpireUnfreezeContract",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.DelegateResourceContract",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.UnDelegateResourceContract",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.CancelAllUnfreezeV2Contract",
+      "schema": "core/contract/balance_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/contract/common.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.ResourceCode",
+      "schema": "core/contract/common.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/contract/exchange_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ExchangeCreateContract",
+      "schema": "core/contract/exchange_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ExchangeInjectContract",
+      "schema": "core/contract/exchange_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ExchangeWithdrawContract",
+      "schema": "core/contract/exchange_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ExchangeTransactionContract",
+      "schema": "core/contract/exchange_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/contract/market_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MarketSellAssetContract",
+      "schema": "core/contract/market_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MarketCancelOrderContract",
+      "schema": "core/contract/market_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/contract/proposal_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ProposalApproveContract",
+      "schema": "core/contract/proposal_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ProposalCreateContract",
+      "schema": "core/contract/proposal_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": true,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ProposalCreateContract.ParametersEntry",
+      "schema": "core/contract/proposal_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ProposalDeleteContract",
+      "schema": "core/contract/proposal_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/contract/shield_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.AuthenticationPath",
+      "schema": "core/contract/shield_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.MerklePath",
+      "schema": "core/contract/shield_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.OutputPoint",
+      "schema": "core/contract/shield_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.OutputPointInfo",
+      "schema": "core/contract/shield_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.PedersenHash",
+      "schema": "core/contract/shield_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.IncrementalMerkleTree",
+      "schema": "core/contract/shield_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.IncrementalMerkleVoucher",
+      "schema": "core/contract/shield_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.IncrementalMerkleVoucherInfo",
+      "schema": "core/contract/shield_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SpendDescription",
+      "schema": "core/contract/shield_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ReceiveDescription",
+      "schema": "core/contract/shield_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ShieldedTransferContract",
+      "schema": "core/contract/shield_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/contract/smart_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SmartContract",
+      "schema": "core/contract/smart_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SmartContract.ABI",
+      "schema": "core/contract/smart_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SmartContract.ABI.Entry",
+      "schema": "core/contract/smart_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SmartContract.ABI.Entry.Param",
+      "schema": "core/contract/smart_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ContractState",
+      "schema": "core/contract/smart_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.CreateSmartContract",
+      "schema": "core/contract/smart_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.TriggerSmartContract",
+      "schema": "core/contract/smart_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.ClearABIContract",
+      "schema": "core/contract/smart_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.UpdateSettingContract",
+      "schema": "core/contract/smart_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.UpdateEnergyLimitContract",
+      "schema": "core/contract/smart_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SmartContractDataWrapper",
+      "schema": "core/contract/smart_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.SmartContract.ABI.Entry.EntryType",
+      "schema": "core/contract/smart_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "enum",
+      "id": "protocol.SmartContract.ABI.Entry.StateMutabilityType",
+      "schema": "core/contract/smart_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/contract/storage_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BuyStorageBytesContract",
+      "schema": "core/contract/storage_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.BuyStorageContract",
+      "schema": "core/contract/storage_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.SellStorageContract",
+      "schema": "core/contract/storage_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.UpdateBrokerageContract",
+      "schema": "core/contract/storage_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/contract/vote_asset_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.VoteAssetContract",
+      "schema": "core/contract/vote_asset_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "schema",
+      "id": "core/contract/witness_contract.proto",
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.WitnessCreateContract",
+      "schema": "core/contract/witness_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.WitnessUpdateContract",
+      "schema": "core/contract/witness_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.VoteWitnessContract",
+      "schema": "core/contract/witness_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    },
+    {
+      "kind": "message",
+      "id": "protocol.VoteWitnessContract.Vote",
+      "schema": "core/contract/witness_contract.proto",
+      "cases": {
+        "encode": true,
+        "decode": true,
+        "malformed": true,
+        "unknown_field": true,
+        "any": false,
+        "map_order": false,
+        "presence": true,
+        "size": true
+      },
+      "owner_item": "C001.07",
+      "gate": "C001.V"
+    }
+  ]
+}
