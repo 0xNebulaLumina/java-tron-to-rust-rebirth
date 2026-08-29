@@ -10,14 +10,29 @@ import re
 import sys
 from pathlib import Path
 
+MAX_INPUT_BYTES = 1_048_576
+MAX_JSON_DEPTH = 64
+MAX_JSON_ITEMS = 20_000
+MAX_STRING_BYTES = 262_144
+MAX_OUTPUT_BYTES = 2_097_152
+MAX_MISMATCHES = 1_000
+READ_CHUNK_BYTES = 65_536
+
 REVISION = "df50ce9676b94de0b10a605076adfd8728811384"
 PROTOCOL = 1
 ROOT = Path(__file__).resolve().parents[2]
 ORACLES = ROOT / "docs/oracles"
 POLICY = ORACLES / "normalization-policy-v1.json"
-FIXTURE_SCHEMA = ORACLES / "schemas/oracle-fixture-v1.schema.json"
-RESULT_SCHEMA = ORACLES / "schemas/oracle-result-v1.schema.json"
+FIXTURE_SCHEMA = ORACLES / "schemas/fixture-v1.schema.json"
+RESULT_SCHEMA = ORACLES / "schemas/result-v1.schema.json"
 
+class ProtocolUsageError(ValueError):
+    pass
+
+
+class ProtocolArgumentParser(argparse.ArgumentParser):
+    def error(self, message):
+        raise ProtocolUsageError(message)
 
 def _unique_object(pairs):
     out = {}
@@ -32,13 +47,58 @@ def _reject_constant(value):
     raise ValueError(f"non-finite JSON number: {value}")
 
 
+def _read_limited(path):
+    stream = Path(path).open("rb") if path else sys.stdin.buffer
+    close = path is not None
+    try:
+        chunks = []
+        size = 0
+        while True:
+            chunk = stream.read(min(READ_CHUNK_BYTES, MAX_INPUT_BYTES + 1 - size))
+            if not chunk:
+                break
+            size += len(chunk)
+            if size > MAX_INPUT_BYTES:
+                raise ValueError(f"resource limit exceeded: input bytes > {MAX_INPUT_BYTES}")
+            chunks.append(chunk)
+        return b"".join(chunks).decode("utf-8")
+    finally:
+        if close:
+            stream.close()
+
+
+def _enforce_json_limits(value):
+    stack = [(value, 1)]
+    items = 0
+    while stack:
+        current, depth = stack.pop()
+        if depth > MAX_JSON_DEPTH:
+            raise ValueError(f"resource limit exceeded: JSON depth > {MAX_JSON_DEPTH}")
+        items += 1
+        if items > MAX_JSON_ITEMS:
+            raise ValueError(f"resource limit exceeded: JSON items > {MAX_JSON_ITEMS}")
+        if isinstance(current, str) and len(current.encode("utf-8")) > MAX_STRING_BYTES:
+            raise ValueError(f"resource limit exceeded: string bytes > {MAX_STRING_BYTES}")
+        if isinstance(current, dict):
+            for key, child in current.items():
+                if len(key.encode("utf-8")) > MAX_STRING_BYTES:
+                    raise ValueError(f"resource limit exceeded: string bytes > {MAX_STRING_BYTES}")
+                stack.append((child, depth + 1))
+        elif isinstance(current, list):
+            stack.extend((child, depth + 1) for child in current)
+
+
 def load_json(path):
-    text = Path(path).read_text(encoding="utf-8") if path else sys.stdin.read()
-    return json.loads(text, object_pairs_hook=_unique_object, parse_constant=_reject_constant)
+    value = json.loads(_read_limited(path), object_pairs_hook=_unique_object, parse_constant=_reject_constant)
+    _enforce_json_limits(value)
+    return value
 
 
 def canonical(value):
-    return (json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False) + "\n").encode()
+    encoded = (json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False) + "\n").encode()
+    if len(encoded) > MAX_OUTPUT_BYTES:
+        raise ValueError(f"resource limit exceeded: output bytes > {MAX_OUTPUT_BYTES}")
+    return encoded
 
 
 def digest(value):
@@ -99,6 +159,8 @@ def _schema_errors(value, schema, root, pointer=""):
         return errors + [f"{pointer or '/'}: expected {expected_type}"]
     if isinstance(value, str) and "pattern" in schema and re.search(schema["pattern"], value) is None:
         errors.append(f"{pointer or '/'}: string does not match required pattern")
+    if isinstance(value, str) and len(value) > schema.get("maxLength", len(value)):
+        errors.append(f"{pointer or '/'}: string exceeds maximum length")
     if isinstance(value, int) and not isinstance(value, bool) and value < schema.get("minimum", value):
         errors.append(f"{pointer or '/'}: integer is below minimum")
     if isinstance(value, dict):
@@ -115,9 +177,13 @@ def _schema_errors(value, schema, root, pointer=""):
             if isinstance(child_schema, dict):
                 escaped = key.replace("~", "~0").replace("/", "~1")
                 errors.extend(_schema_errors(child, child_schema, root, f"{pointer}/{escaped}"))
+        if len(value) > schema.get("maxProperties", len(value)):
+            errors.append(f"{pointer or '/'}: object exceeds maximum properties")
     if isinstance(value, list):
         if schema.get("uniqueItems") and len({canonical(item) for item in value}) != len(value):
             errors.append(f"{pointer or '/'}: array items must be unique")
+        if len(value) > schema.get("maxItems", len(value)):
+            errors.append(f"{pointer or '/'}: array exceeds maximum items")
         if isinstance(schema.get("items"), dict):
             for index, child in enumerate(value):
                 errors.extend(_schema_errors(child, schema["items"], root, f"{pointer}/{index}"))
@@ -134,6 +200,7 @@ def _schema_errors(value, schema, root, pointer=""):
 
 
 def validate_schema(value, path):
+    _enforce_json_limits(value)
     schema = json.loads(path.read_text(encoding="utf-8"))
     return _schema_errors(value, schema, schema)
 
@@ -307,34 +374,50 @@ def run_fixture(fixture, kind, identity):
 
 
 def mismatch_kind(pointer):
-    if pointer.startswith("/state_deltas"): return "state"
-    if pointer.startswith("/error"): return "error"
-    if pointer.startswith("/events"): return "event"
-    if pointer.startswith("/logs"): return "log"
-    if pointer.startswith("/exit_code") or pointer.startswith("/status"): return "exit"
-    if pointer.startswith("/identity"): return "identity"
+    if pointer.startswith("/state_deltas"):
+        return "state"
+    if pointer.startswith("/error"):
+        return "error"
+    if pointer.startswith("/events"):
+        return "event"
+    if pointer.startswith("/logs"):
+        return "log"
+    if pointer.startswith("/exit_code") or pointer.startswith("/status"):
+        return "exit"
+    if pointer.startswith("/identity"):
+        return "identity"
     return "output"
 
-
 def differences(left, right, pointer=""):
-    if type(left) is not type(right): return [(pointer or "/", left, right)]
-    if isinstance(left, dict):
-        rows = []
-        for key in sorted(set(left) | set(right)):
-            p = pointer + "/" + key.replace("~", "~0").replace("/", "~1")
-            if key not in left: rows.append((p, None, right[key]))
-            elif key not in right: rows.append((p, left[key], None))
-            else: rows.extend(differences(left[key], right[key], p))
-        return rows
-    if isinstance(left, list):
-        rows = []
-        for i in range(max(len(left), len(right))):
-            p = pointer + f"/{i}"
-            if i >= len(left): rows.append((p, None, right[i]))
-            elif i >= len(right): rows.append((p, left[i], None))
-            else: rows.extend(differences(left[i], right[i], p))
-        return rows
-    return [] if left == right else [(pointer or "/", left, right)]
+    rows = []
+    stack = [(left, right, pointer)]
+    while stack:
+        left_value, right_value, current = stack.pop()
+        if type(left_value) is not type(right_value):
+            rows.append((current or "/", left_value, right_value))
+        elif isinstance(left_value, dict):
+            for key in reversed(sorted(set(left_value) | set(right_value))):
+                child = current + "/" + key.replace("~", "~0").replace("/", "~1")
+                if key not in left_value:
+                    rows.append((child, None, right_value[key]))
+                elif key not in right_value:
+                    rows.append((child, left_value[key], None))
+                else:
+                    stack.append((left_value[key], right_value[key], child))
+        elif isinstance(left_value, list):
+            for index in reversed(range(max(len(left_value), len(right_value)))):
+                child = current + f"/{index}"
+                if index >= len(left_value):
+                    rows.append((child, None, right_value[index]))
+                elif index >= len(right_value):
+                    rows.append((child, left_value[index], None))
+                else:
+                    stack.append((left_value[index], right_value[index], child))
+        elif left_value != right_value:
+            rows.append((current or "/", left_value, right_value))
+        if len(rows) > MAX_MISMATCHES:
+            raise ValueError(f"resource limit exceeded: mismatches > {MAX_MISMATCHES}")
+    return rows
 
 
 def compare(java, rust):
@@ -359,33 +442,49 @@ def compare(java, rust):
 
 
 def main():
-    parser = argparse.ArgumentParser()
+    parser = ProtocolArgumentParser(add_help=True)
     parser.add_argument("--runner", choices=("java", "rust"), default="java")
     parser.add_argument("--implementation")
     parser.add_argument("--toolchain")
-    sub = parser.add_subparsers(dest="command", required=True)
+    sub = parser.add_subparsers(dest="command", required=True, parser_class=ProtocolArgumentParser)
     run = sub.add_parser("run"); run.add_argument("--fixture")
     sub.add_parser("identify")
     cmp_parser = sub.add_parser("compare"); cmp_parser.add_argument("--java-result", required=True); cmp_parser.add_argument("--rust-result", required=True)
-    args = parser.parse_args()
+    try:
+        args = parser.parse_args()
+    except ProtocolUsageError as exc:
+        kind = "rust" if "--runner" in sys.argv and sys.argv[sys.argv.index("--runner") + 1:sys.argv.index("--runner") + 2] == ["rust"] else "java"
+        identity = identify(kind, f"c000-{kind}-protocol-adapter", "python3-stdlib behavior-neutral protocol core")
+        sys.stdout.buffer.write(canonical(invalid_result(kind, identity, f"invalid invocation: {exc}")))
+        return 64
     implementation = args.implementation or f"c000-{args.runner}-protocol-adapter"
     toolchain = args.toolchain or "python3-stdlib behavior-neutral protocol core"
     identity = identify(args.runner, implementation, toolchain)
-    if args.command == "identify": value, code = identity, 0
+    if args.command == "identify":
+        value, code = identity, 0
     elif args.command == "run":
         try:
             fixture = load_json(args.fixture)
-            if not isinstance(fixture, dict): raise ValueError("fixture root must be an object")
+            if not isinstance(fixture, dict):
+                raise ValueError("fixture root must be an object")
             value = run_fixture(fixture, args.runner, identity)
         except (OSError, UnicodeError, ValueError, TypeError, json.JSONDecodeError) as exc:
             value = invalid_result(args.runner, identity, str(exc))
         code = 0 if value["status"] == "ok" else value["exit_code"]
     else:
         try:
-            value = compare(load_json(args.java_result), load_json(args.rust_result)); code = 0 if value["match"] else 20
+            value = compare(load_json(args.java_result), load_json(args.rust_result))
+            code = 0 if value["match"] else 20
         except (OSError, UnicodeError, ValueError, TypeError, json.JSONDecodeError) as exc:
-            sys.stderr.write(f"runner protocol error: {exc}\n"); return 64
-    sys.stdout.buffer.write(canonical(value)); return code
+            value = invalid_result(args.runner, identity, f"comparison rejected: {exc}")
+            code = 64
+    try:
+        sys.stdout.buffer.write(canonical(value))
+    except ValueError as exc:
+        fallback = invalid_result(args.runner, identity, str(exc))
+        sys.stdout.buffer.write(canonical(fallback))
+        return 64
+    return code
 
 
 if __name__ == "__main__":

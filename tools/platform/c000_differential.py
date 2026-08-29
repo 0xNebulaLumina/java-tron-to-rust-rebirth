@@ -12,6 +12,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 RUNNER = ROOT / "tools/reference-runner/runner.py"
 FIXTURES = ROOT / "docs/oracles/fixtures/v1"
+SUBPROCESS_TIMEOUT_SECONDS = 10
+MAX_CAPTURE_BYTES = 2_097_152
 CASES = (
     ("positive.json", True),
     ("negative.json", True),
@@ -25,9 +27,16 @@ CASES = (
 
 
 def run(*args: str) -> subprocess.CompletedProcess[bytes]:
-    return subprocess.run(
-        [sys.executable, str(RUNNER), *args], cwd=ROOT, check=False, capture_output=True
-    )
+    try:
+        completed = subprocess.run(
+            [sys.executable, str(RUNNER), *args], cwd=ROOT, check=False, capture_output=True,
+            timeout=SUBPROCESS_TIMEOUT_SECONDS,
+        )
+    except subprocess.TimeoutExpired as exc:
+        return subprocess.CompletedProcess(args, 124, (exc.stdout or b"")[:MAX_CAPTURE_BYTES], (exc.stderr or b"")[:MAX_CAPTURE_BYTES])
+    if len(completed.stdout) > MAX_CAPTURE_BYTES or len(completed.stderr) > MAX_CAPTURE_BYTES:
+        return subprocess.CompletedProcess(args, 70, completed.stdout[:MAX_CAPTURE_BYTES], b"resource limit exceeded: captured output")
+    return completed
 
 
 def main() -> int:
@@ -68,6 +77,10 @@ def main() -> int:
                 "mismatch_kinds": mismatch_kinds,
                 "fixture_sha256": hashlib.sha256(fixture.read_bytes()).hexdigest(),
             })
+        cleanup_path = str(work)
+    cleanup_passed = not Path(cleanup_path).exists()
+    failed |= not cleanup_passed
+    outcomes.append({"case": "temp-cleanup", "outcome": "pass" if cleanup_passed else "fail"})
     print(json.dumps({"schema_version": 1, "cell": "differential", "cases": outcomes}, sort_keys=True, separators=(",", ":")))
     return 1 if failed else 0
 

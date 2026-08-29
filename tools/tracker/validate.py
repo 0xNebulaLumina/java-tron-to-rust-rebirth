@@ -24,7 +24,7 @@ EV_ID = re.compile(r"^EV-[0-9]{4,}$")
 RV_ID = re.compile(r"^RV-[0-9]{4,}$")
 C000_TARGETS = {f"C000.{n:02d}" for n in range(10, 16)}
 TODAY = dt.date.today()
-GOVERNED_BASELINE = "c37b72b04cdf8209fdf1fb4d67f749518f2084b9"
+AUTHORIZED_SUBJECT_REF = "refs/tags/c000-subject"
 ATTESTATION_EXCLUSIONS = {
     "docs/PORTING_TRACKER.json",
     "docs/PORTING_CHECKLIST.md",
@@ -48,6 +48,7 @@ ADOPTION_DISCOVERY_PATTERNS = (
     "tools/reference-runner/java-runner",
     "tools/reference-runner/rust-runner",
     "tools/tracker/validate.py",
+    "docs/architecture/DR-004-custom-actuator-extensions.md",
     "docs/oracles/fixtures/v1/*.json",
     "docs/oracles/normalization-policy-v1.json",
     "docs/oracles/runner-protocol.md",
@@ -55,6 +56,8 @@ ADOPTION_DISCOVERY_PATTERNS = (
     "docs/oracles/schemas/*.json",
     "docs/governance/*schema.json",
     "docs/architecture/toolchains-and-platforms.md",
+    "java-tron/example/actuator-example/build.gradle",
+    "java-tron/example/actuator-example/src/main/java/org/tron/core/actuator/ExampleActuator.java",
     "rust-tron/Cargo.toml",
     "rust-tron/crates/*/Cargo.toml",
     "rust-tron/Cargo.lock",
@@ -114,6 +117,25 @@ def repository_revision(errors: list[str]) -> str | None:
         return revision
     except (OSError, ValueError, subprocess.CalledProcessError) as exc:
         fail(errors, f"cannot resolve repository revision: {exc}")
+        return None
+
+def authorized_subject_revision(errors: list[str]) -> str | None:
+    try:
+        tag_object = git("rev-parse", "--verify", AUTHORIZED_SUBJECT_REF).stdout.strip()
+        if not re.fullmatch(r"[0-9a-f]{40}", tag_object):
+            raise ValueError("authorized tag does not resolve to a full object name")
+        if git("cat-file", "-t", tag_object).stdout.strip() != "tag":
+            raise ValueError("authorized subject ref must be an annotated tag, not a lightweight tag")
+        header = git("cat-file", "-p", tag_object).stdout.split("\n\n", 1)[0].splitlines()
+        fields = dict(line.split(" ", 1) for line in header if " " in line)
+        subject = fields.get("object")
+        if fields.get("type") != "commit" or not isinstance(subject, str) or not re.fullmatch(r"[0-9a-f]{40}", subject):
+            raise ValueError("authorized annotated tag must directly target one full commit object")
+        if git("rev-parse", "--verify", f"{AUTHORIZED_SUBJECT_REF}^{{commit}}").stdout.strip() != subject:
+            raise ValueError("authorized tag has ambiguous or indirect commit resolution")
+        return subject
+    except (OSError, ValueError, subprocess.CalledProcessError) as exc:
+        fail(errors, f"cannot resolve immutable authorized subject {AUTHORIZED_SUBJECT_REF}: {exc}")
         return None
 
 
@@ -184,12 +206,11 @@ def manifest_subject_revision(current_revision: str | None, errors: list[str]) -
         "oracle": load(ROOT / "docs/oracles/manifest.v1.json"),
     }
     subjects = {name: manifest.get("subject_revision") if isinstance(manifest, dict) else None for name, manifest in manifests.items()}
-    subject = subjects["platform"]
-    if any(value != subject for value in subjects.values()):
-        fail(errors, "platform and oracle manifests must attest the same subject_revision")
+    subject = authorized_subject_revision(errors)
+    if subject is None:
         return None, {}, {}
-    if not isinstance(subject, str) or not re.fullmatch(r"[0-9a-f]{40}", subject) or subject != GOVERNED_BASELINE:
-        fail(errors, f"manifest subject_revision must equal authorized full commit {GOVERNED_BASELINE}")
+    if any(value != subject for value in subjects.values()):
+        fail(errors, f"platform and oracle manifests must exactly match immutable {AUTHORIZED_SUBJECT_REF} target {subject}; retagging is prohibited, publish a new authorization ref instead")
         return None, {}, {}
     if not validate_history_identity(subject, current_revision, errors):
         return None, {}, {}
@@ -477,14 +498,14 @@ def review_contract(subject: str | None, subject_tree, tree_clean: bool, by_id, 
     scopes_by_class = {
         "architecture": c000_rows,
         "security": {row for row in adoption_consumers if row in by_id} | {"C000.V"},
-        "license": {row for row in adoption_consumers if row in by_id} | {"C000.V"},
+        "license": {row for row in adoption_consumers if row in by_id} | {"C000.12", "C000.V"},
     }
     governance_schemas = {path.relative_to(ROOT).as_posix() for path in (ROOT / "docs/governance").glob("*schema.json") if path.is_file()}
     adoption_artifacts = discovered_adoption_sources() | {"docs/governance/adoption-inventory.v1.json", "docs/governance/dependency-decisions.v1.json"}
     artifacts_by_class = {
         "architecture": governance_schemas | {"docs/architecture/cross-domain-seams.v1.json", "docs/architecture/platform-manifest.v1.json", "docs/architecture/toolchains-and-platforms.md"},
         "security": adoption_artifacts,
-        "license": adoption_artifacts,
+        "license": adoption_artifacts | {"docs/architecture/DR-004-custom-actuator-extensions.md", "java-tron/example/actuator-example/build.gradle", "java-tron/example/actuator-example/src/main/java/org/tron/core/actuator/ExampleActuator.java"},
     }
     for path in sorted((ROOT / "docs/governance/reviews").glob("*.json")):
         before = len(errors)
@@ -788,6 +809,8 @@ def adoption_contract(by_id, errors: list[str]):
     for source in discovered:
         if source == "docs/architecture/toolchains-and-platforms.md":
             expected.add((source, "C000.02", "parameter", source))
+        elif source == "docs/architecture/DR-004-custom-actuator-extensions.md":
+            expected.add((source, "C000.12", "parameter", source))
         elif source.startswith("docs/governance/"):
             consumer = {"adoption-inventory-v1.schema.json": "C000.15", "dependency-decision-v1.schema.json": "C000.11", "tracker-v1.schema.json": "C000.10"}.get(Path(source).name, "C000.13")
             expected.add((source, consumer, "schema_source", source))
@@ -808,6 +831,8 @@ def adoption_contract(by_id, errors: list[str]):
             else:
                 consumer = "C000.07" if name in {"license-provenance-v1.schema.json", "security-finding-v1.schema.json", "threat-model-v1.schema.json"} else "C000.05" if name == "mismatch-report-v1.schema.json" else "C000.04"
                 expected.add((source, consumer, "schema_source", source))
+        elif source.startswith("java-tron/example/actuator-example/"):
+            expected.add((source, "C000.12", "provenance_source", source))
         elif source == "java-tron/build.gradle":
             expected.add((source, "C000.02", "parameter", source))
         elif source.startswith("java-tron/gradle/wrapper/") or source == "java-tron/gradlew":
@@ -884,6 +909,19 @@ def adoption_contract(by_id, errors: list[str]):
             fail(errors, f"{label}: source digest drift")
         if len(errors) == before and instance.get("status") in {"recorded", "approved"} and all(instance[field]["status"] in {"approved", "not_applicable"} for field in ("security", "license")):
             valid.add(ident)
+    current_by_consumer = {}
+    for ident, instance in records.items():
+        consumer = instance.get("consuming_item") if isinstance(instance, dict) else None
+        if consumer in by_id and instance.get("status") != "retired":
+            current_by_consumer.setdefault(consumer, set()).add(ident)
+    for consumer, row in by_id.items():
+        references = row.get("adoptions", [])
+        if not isinstance(references, list):
+            continue
+        actual = set(references)
+        expected_refs = current_by_consumer.get(consumer, set())
+        if actual != expected_refs or len(actual) != len(references):
+            fail(errors, f"{consumer}: tracker projection error: obsolete or incomplete AD references; remove superseded IDs and replace the adoptions array atomically with current inventory IDs; expected={sorted(expected_refs)} actual={sorted(actual)}")
     return records, valid
 
 

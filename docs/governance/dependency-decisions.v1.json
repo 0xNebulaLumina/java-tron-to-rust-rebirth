@@ -5,7 +5,7 @@
   "decisions": [
     {
       "id": "DD-001",
-      "scope": "Checked-in C000 Python tools and their Python 3 command runtime",
+      "scope": "Checked-in C000 Python tools and pinned current-host CPython 3.12.3 command runtime",
       "exact_inputs": [
         "tools/platform/run",
         "tools/platform/c000_artifacts.py",
@@ -19,18 +19,19 @@
       "status": "review_required",
       "security_disposition": "pending authenticated independent security review of the current inventory hashes",
       "license_disposition": "pending authenticated independent license review of the current inventory hashes",
-      "rationale": "The scripts use the Python standard library only and are C000 governance, inventory, validation, and oracle tooling. Approval is limited to the inventory hashes and does not approve Python packages or a production Rust dependency.",
+      "rationale": "The scripts use the Python standard library only. Current-host identity is Ubuntu python3.12 3.12.3-1ubuntu0.15 at /usr/bin/python3.12, executable sha256:1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118. Authenticated Ubuntu package origin, source/license correspondence, and package archive digest are not retained locally, so security and license remain review_required until those artifacts and an independent review bind this executable. This tooling scope does not approve Python packages or a production Rust dependency.",
       "approval_required_before_release": true,
       "invalidation_triggers": [
         "script digest changes",
         "third-party Python import added",
-        "python3 runtime identity changes",
+        "Python version, package build, executable path, or executable digest changes",
+        "package/archive origin or digest changes",
         "execution role changes"
       ]
     },
     {
       "id": "DD-002",
-      "scope": "Checked-in POSIX shell launchers for C000 reference runners",
+      "scope": "Checked-in POSIX shell launchers and pinned current-host dash 0.5.12 /bin/sh implementation",
       "exact_inputs": [
         "tools/reference-runner/java-runner",
         "tools/reference-runner/rust-runner"
@@ -38,17 +39,18 @@
       "status": "review_required",
       "security_disposition": "pending authenticated independent security review of the current inventory hashes",
       "license_disposition": "pending authenticated independent license review of the current inventory hashes",
-      "rationale": "The launchers are narrow C000 process boundaries. Approval does not extend to a substituted shell, Java/Rust program, production process supervisor, or runtime dependency.",
+      "rationale": "The launchers are narrow C000 process boundaries. Current-host /bin/sh resolves to Ubuntu dash 0.5.12-6ubuntu5 at /usr/bin/dash, executable sha256:86d31f6fb799e91fa21bad341484564510ca287703a16e9e46c53338776f4f42. Authenticated Ubuntu package origin, source/license correspondence, and package archive digest are not retained locally, so review remains required until those artifacts bind the executable. This does not approve a substituted shell, Java/Rust program, production process supervisor, or runtime dependency.",
       "approval_required_before_release": true,
       "invalidation_triggers": [
         "launcher digest changes",
-        "shell runtime identity changes",
+        "shell version, package build, symlink target, path, or executable digest changes",
+        "package/archive origin or digest changes",
         "argument or environment forwarding changes"
       ]
     },
     {
       "id": "DD-003",
-      "scope": "Rust 1.85.1 C000 toolchain declaration, root and child Cargo workspace manifests, and lockfile",
+      "scope": "Rust 1.85.1 C000 toolchain declaration and current-host implementation identities, root and child Cargo workspace manifests, and lockfile",
       "exact_inputs": [
         "rust-tron/rust-toolchain.toml",
         "rust-tron/Cargo.toml",
@@ -72,7 +74,7 @@
       "status": "review_required",
       "security_disposition": "pending authenticated independent security review of the current inventory hashes",
       "license_disposition": "pending authenticated independent license review of the current inventory hashes",
-      "rationale": "Cargo.lock contains only workspace packages at C000. No third-party crate, feature set, native library, backend, or later dependency is approved.",
+      "rationale": "The current host proves rustc 1.85.1 (4eb161250 2025-03-15), sha256:f8d033fd72e878ec60493788c8bffec2e6c154dcab6f0cb4c145af8ada26a7ed; cargo 1.85.1 (d73d2caf9 2024-12-31), sha256:87e9ff02f95ea17d877e7c4eeb0f365f50fe3827f5afec132131ff3b8031a57e; and rustup 1.29.0 (28d1352db 2026-03-05), sha256:4acc9acc76d5079515b46346a485974457b5a79893cfb01112423c89aeb5aa10. Authenticated rustup/toolchain distribution origins, signatures, and archive digests are not retained locally and keep review_required; unblock with official channel metadata/signatures and retained archive hashes matching these installed binaries. Cargo.lock contains only workspace packages. No third-party crate, native library, backend, later feature set, or production dependency is approved.",
       "approval_required_before_release": true,
       "invalidation_triggers": [
         "toolchain version or component changes",
@@ -84,9 +86,11 @@
     },
     {
       "id": "DD-004",
-      "scope": "Java reference build declarations, checked-in Gradle 7.6.4 wrapper, and pinned Temurin policy",
+      "scope": "Java gitlink 4a21592 reference inputs, checked-in Gradle 7.6.4 wrapper, retained Gradle archive, and pending Temurin runtime policy",
       "exact_inputs": [
         "java-tron/build.gradle",
+        "java-tron/example/actuator-example/src/main/java/org/tron/core/actuator/ExampleActuator.java",
+        "java-tron/example/actuator-example/build.gradle",
         "java-tron/gradle/wrapper/gradle-wrapper.jar",
         "java-tron/gradle/wrapper/gradle-wrapper.properties",
         "java-tron/gradlew",
@@ -95,13 +99,14 @@
       "status": "review_required",
       "security_disposition": "pending authenticated independent security review of the current inventory hashes",
       "license_disposition": "pending authenticated independent license review of the current inventory hashes",
-      "rationale": "This decision inventories the Java reference-build boundary only. It does not approve Java build dependencies as Rust production dependencies, substituted JDKs, mutable downloads, or a production JVM dependency.",
+      "rationale": "The Java source identity is gitlink https://github.com/tronprotocol/java-tron.git@4a21592f95e37908b21bc3f611c6e7a1a67f09f3. The actuator-example build file and ExampleActuator.java are inventoried LGPL-3.0 reference inputs, not approved Rust production code or fixtures. The checked-in wrapper names https://services.gradle.org/distributions/gradle-7.6.4-bin.zip; the retained archive is sha256:bed1da33cca0f557ab13691c77f38bb67388119e4794d113e051039b80af9bb1 and wrapper JAR is sha256:3dc39ad650d40f6c029bd8ff605c6d95865d657dbfdeacdb079db0ddfffedf9f. No Temurin 8u462-b08 archive is retained; JDK review is unblocked only by authenticated release/signature metadata, archive SHA-256, extracted version output, and a native reference run. This does not approve Java build dependencies as Rust production dependencies, substituted JDKs, mutable downloads, or a production JVM dependency.",
       "approval_required_before_release": true,
       "invalidation_triggers": [
+        "java-tron gitlink or inventoried Java input digest changes",
         "wrapper or build declaration digest changes",
-        "Gradle URL or version changes",
-        "JDK vendor/version changes",
-        "archive digest changes",
+        "Gradle URL, version, revision, or archive digest changes",
+        "JDK vendor/version/origin/signature/archive digest changes",
+        "fixture provenance category, notices, or LGPL obligation analysis changes",
         "reference-build role changes"
       ]
     },
@@ -138,8 +143,8 @@
       ],
       "status": "review_required",
       "security_disposition": "not_applicable to inert repository data; parser and consumer behavior requires review against the current inventory hashes",
-      "license_disposition": "pending authenticated independent license review of the current inventory hashes",
-      "rationale": "These hashed governed inputs are adopted for deterministic C000 validation and drift detection. Descendant attestation envelopes are validated separately against the authorized subject closure and are not adoption inputs. This disposition is not third-party dependency, architecture, or production implementation approval.",
+      "license_disposition": "pending authenticated independent license/provenance review of every current inventory hash; repository-local, fixture, schema, and mechanically derived status is not license not_applicable",
+      "rationale": "These hashed governed inputs are adopted for deterministic C000 validation and drift detection. Every fixture must be classified copied, mechanically_derived, clean_room, or newly_authored and carry the corresponding evidence chain; all repository inputs require an affirmative license/provenance finding. Descendant attestation envelopes are validated separately and are not adoption inputs. This disposition is not third-party dependency, architecture, or production implementation approval.",
       "approval_required_before_release": true,
       "invalidation_triggers": [
         "input digest changes",

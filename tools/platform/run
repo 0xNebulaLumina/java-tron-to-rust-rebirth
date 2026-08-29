@@ -7,6 +7,7 @@ import os
 import platform
 import subprocess
 import importlib.util
+import tempfile
 import sys
 from pathlib import Path
 
@@ -14,6 +15,11 @@ ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "docs/architecture/platform-manifest.v1.json"
 HOST_OS = {"linux": "linux", "darwin": "macos"}.get(sys.platform, sys.platform)
 HOST_ARCH = {"amd64": "x86_64", "x86_64": "x86_64", "arm64": "aarch64", "aarch64": "aarch64"}.get(platform.machine().lower(), platform.machine().lower())
+SUBPROCESS_TIMEOUT_SECONDS = 30
+DIRECT_COMMANDS = {
+    "c000-smoke": ROOT / "tools/platform/c000_smoke.py",
+    "c000-native-resource": ROOT / "tools/platform/c000_native_resource.py",
+}
 
 
 def run_c000_artifact_audit() -> int:
@@ -36,8 +42,18 @@ def emit(result: str, row: str, cell: str, reason: str | None = None) -> None:
 def main() -> int:
     if sys.argv[1:] == ["c000-artifacts"]:
         return run_c000_artifact_audit()
+    if len(sys.argv) == 2 and sys.argv[1] in DIRECT_COMMANDS:
+        try:
+            completed = subprocess.run(
+                [sys.executable, str(DIRECT_COMMANDS[sys.argv[1]])], cwd=ROOT, check=False,
+                timeout=SUBPROCESS_TIMEOUT_SECONDS,
+            )
+        except subprocess.TimeoutExpired:
+            emit("fail", "P-LINUX-X64", sys.argv[1].removeprefix("c000-"), "subprocess timeout")
+            return 124
+        return completed.returncode
     if len(sys.argv) != 3:
-        print("usage: tools/platform/run c000-artifacts | tools/platform/run PLATFORM_ROW CELL", file=sys.stderr)
+        print("usage: tools/platform/run c000-artifacts | c000-smoke | c000-native-resource | PLATFORM_ROW CELL", file=sys.stderr)
         return 64
     row_id, cell = sys.argv[1:]
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
@@ -55,7 +71,16 @@ def main() -> int:
         return 125
     env = os.environ.copy()
     env.update({"C000_PLATFORM_ROW": row_id, "C000_PLATFORM_CELL": cell})
-    completed = subprocess.run(spec["argv"], cwd=ROOT / spec.get("cwd", "."), env=env, check=False)
+    try:
+        with tempfile.TemporaryDirectory(prefix="c000-platform-") as temp_dir:
+            env.update({"TMPDIR": temp_dir, "TMP": temp_dir, "TEMP": temp_dir})
+            completed = subprocess.run(
+                spec["argv"], cwd=ROOT / spec.get("cwd", "."), env=env, check=False,
+                timeout=SUBPROCESS_TIMEOUT_SECONDS,
+            )
+    except subprocess.TimeoutExpired:
+        emit("fail", row_id, cell, "subprocess timeout")
+        return 124
     emit("pass" if completed.returncode == 0 else "fail", row_id, cell)
     return completed.returncode
 

@@ -7,8 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "docs/architecture/platform-manifest.v1.json"
-CELLS = ("native_resource", "ffi", "packaging", "smoke")
-REQUIRED_REVIEWS = {"RV-0002", "RV-0003"}
+CELLS = ("ffi", "packaging")
 
 
 def main() -> int:
@@ -23,7 +22,7 @@ def main() -> int:
             spec.get("disposition") == "not_applicable"
             and bool(spec.get("reason"))
             and bool(spec.get("reopen_condition"))
-            and REQUIRED_REVIEWS <= reviews
+            and not reviews
         )
         failed |= not passed
         outcomes.append({

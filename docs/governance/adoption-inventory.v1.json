@@ -3,7 +3,7 @@
   "generated_from": [
     {
       "path": "docs/architecture/toolchains-and-platforms.md",
-      "sha256": "da6fbd2ac97cd2647a72e2084c35d35a5319ef811ab1b2792bc1977af0200ae0"
+      "sha256": "7a60dc0e198f9b74067cc4557cfe482825765c8b1412180b6e078b915db689a5"
     },
     {
       "path": "docs/governance/adoption-inventory-v1.schema.json",
@@ -108,6 +108,14 @@
     {
       "path": "java-tron/build.gradle",
       "sha256": "5ebee95958472a0ed9812f70ddbbba21039f627eeaab776fa281e504cce8526a"
+    },
+    {
+      "path": "java-tron/example/actuator-example/build.gradle",
+      "sha256": "c3687b864f6bf2d833320ddca65d22c4c7b42f1cc93f8bff90cacb10e98e7505"
+    },
+    {
+      "path": "java-tron/example/actuator-example/src/main/java/org/tron/core/actuator/ExampleActuator.java",
+      "sha256": "bc62d39322c56627ee46f4c0a0e941df961a5a76489d132918fa11be0f9c92b9"
     },
     {
       "path": "java-tron/gradle/wrapper/gradle-wrapper.jar",
@@ -239,7 +247,7 @@
       "id": "AD-0002",
       "name": "docs/architecture/toolchains-and-platforms.md",
       "kind": "parameter",
-      "exact_version": "sha256:da6fbd2ac97cd2647a72e2084c35d35a5319ef811ab1b2792bc1977af0200ae0",
+      "exact_version": "sha256:7a60dc0e198f9b74067cc4557cfe482825765c8b1412180b6e078b915db689a5",
       "features": [],
       "source": "docs/architecture/toolchains-and-platforms.md",
       "consuming_item": "C000.02",
@@ -250,10 +258,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -274,10 +282,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -298,10 +306,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -322,10 +330,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -346,10 +354,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -370,10 +378,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -394,10 +402,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -418,10 +426,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -442,10 +450,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -466,10 +474,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -490,10 +498,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -514,10 +522,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -538,10 +546,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -562,10 +570,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -586,10 +594,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -610,10 +618,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -634,10 +642,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -658,10 +666,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -682,10 +690,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -706,10 +714,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -730,10 +738,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -754,10 +762,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -778,10 +786,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -802,10 +810,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -826,10 +834,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -850,10 +858,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -874,10 +882,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -898,10 +906,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -994,10 +1002,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1018,10 +1026,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1042,10 +1050,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1066,10 +1074,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1090,10 +1098,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1114,10 +1122,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1138,10 +1146,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1162,10 +1170,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1186,10 +1194,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1210,10 +1218,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1234,10 +1242,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1258,10 +1266,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1282,10 +1290,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1306,10 +1314,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1330,10 +1338,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1354,10 +1362,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1378,10 +1386,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1402,10 +1410,10 @@
         "rationale": "Repository-local immutable input; external security approval is not applicable."
       },
       "license": {
-        "status": "not_applicable",
-        "rationale": "Repository-local project input; separate third-party license approval is not applicable."
+        "status": "review_required",
+        "rationale": "Repository-local status does not establish authorship or license compatibility; authenticated provenance/license review must bind this exact digest and its declared fixture derivation category when applicable."
       },
-      "status": "recorded",
+      "status": "review_required",
       "invalidation_triggers": [
         "source digest changes",
         "version, features, consumer, or execution role changes"
@@ -1677,9 +1685,9 @@
     },
     {
       "id": "AD-0063",
-      "name": "Python 3 command runtime",
+      "name": "CPython 3 command runtime",
       "kind": "runtime",
-      "exact_version": "unversioned python3 command",
+      "exact_version": "CPython 3.12.3; Ubuntu python3.12 3.12.3-1ubuntu0.15; /usr/bin/python3.12 sha256:1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118; package origin/archive digest review_required",
       "features": [
         "standard-library-only"
       ],
@@ -1697,15 +1705,17 @@
       },
       "status": "review_required",
       "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
+        "consumer source digest changes",
+        "Python version, package build, executable path, or executable digest changes",
+        "package/archive origin or digest changes",
+        "features, consumer, or execution role changes"
       ]
     },
     {
       "id": "AD-0064",
-      "name": "Python 3 command runtime",
+      "name": "CPython 3 command runtime",
       "kind": "runtime",
-      "exact_version": "unversioned python3 command",
+      "exact_version": "CPython 3.12.3; Ubuntu python3.12 3.12.3-1ubuntu0.15; /usr/bin/python3.12 sha256:1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118; package origin/archive digest review_required",
       "features": [
         "standard-library-only"
       ],
@@ -1723,15 +1733,17 @@
       },
       "status": "review_required",
       "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
+        "consumer source digest changes",
+        "Python version, package build, executable path, or executable digest changes",
+        "package/archive origin or digest changes",
+        "features, consumer, or execution role changes"
       ]
     },
     {
       "id": "AD-0065",
-      "name": "Python 3 command runtime",
+      "name": "CPython 3 command runtime",
       "kind": "runtime",
-      "exact_version": "unversioned python3 command",
+      "exact_version": "CPython 3.12.3; Ubuntu python3.12 3.12.3-1ubuntu0.15; /usr/bin/python3.12 sha256:1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118; package origin/archive digest review_required",
       "features": [
         "standard-library-only"
       ],
@@ -1749,15 +1761,17 @@
       },
       "status": "review_required",
       "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
+        "consumer source digest changes",
+        "Python version, package build, executable path, or executable digest changes",
+        "package/archive origin or digest changes",
+        "features, consumer, or execution role changes"
       ]
     },
     {
       "id": "AD-0066",
-      "name": "Python 3 command runtime",
+      "name": "CPython 3 command runtime",
       "kind": "runtime",
-      "exact_version": "unversioned python3 command",
+      "exact_version": "CPython 3.12.3; Ubuntu python3.12 3.12.3-1ubuntu0.15; /usr/bin/python3.12 sha256:1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118; package origin/archive digest review_required",
       "features": [
         "standard-library-only"
       ],
@@ -1775,15 +1789,17 @@
       },
       "status": "review_required",
       "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
+        "consumer source digest changes",
+        "Python version, package build, executable path, or executable digest changes",
+        "package/archive origin or digest changes",
+        "features, consumer, or execution role changes"
       ]
     },
     {
       "id": "AD-0067",
-      "name": "Python 3 command runtime",
+      "name": "CPython 3 command runtime",
       "kind": "runtime",
-      "exact_version": "unversioned python3 command",
+      "exact_version": "CPython 3.12.3; Ubuntu python3.12 3.12.3-1ubuntu0.15; /usr/bin/python3.12 sha256:1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118; package origin/archive digest review_required",
       "features": [
         "standard-library-only"
       ],
@@ -1801,15 +1817,17 @@
       },
       "status": "review_required",
       "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
+        "consumer source digest changes",
+        "Python version, package build, executable path, or executable digest changes",
+        "package/archive origin or digest changes",
+        "features, consumer, or execution role changes"
       ]
     },
     {
       "id": "AD-0068",
-      "name": "Python 3 command runtime",
+      "name": "CPython 3 command runtime",
       "kind": "runtime",
-      "exact_version": "unversioned python3 command",
+      "exact_version": "CPython 3.12.3; Ubuntu python3.12 3.12.3-1ubuntu0.15; /usr/bin/python3.12 sha256:1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118; package origin/archive digest review_required",
       "features": [
         "standard-library-only"
       ],
@@ -1827,15 +1845,17 @@
       },
       "status": "review_required",
       "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
+        "consumer source digest changes",
+        "Python version, package build, executable path, or executable digest changes",
+        "package/archive origin or digest changes",
+        "features, consumer, or execution role changes"
       ]
     },
     {
       "id": "AD-0069",
-      "name": "Python 3 command runtime",
+      "name": "CPython 3 command runtime",
       "kind": "runtime",
-      "exact_version": "unversioned python3 command",
+      "exact_version": "CPython 3.12.3; Ubuntu python3.12 3.12.3-1ubuntu0.15; /usr/bin/python3.12 sha256:1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118; package origin/archive digest review_required",
       "features": [
         "standard-library-only"
       ],
@@ -1853,15 +1873,17 @@
       },
       "status": "review_required",
       "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
+        "consumer source digest changes",
+        "Python version, package build, executable path, or executable digest changes",
+        "package/archive origin or digest changes",
+        "features, consumer, or execution role changes"
       ]
     },
     {
       "id": "AD-0070",
-      "name": "Python 3 command runtime",
+      "name": "CPython 3 command runtime",
       "kind": "runtime",
-      "exact_version": "unversioned python3 command",
+      "exact_version": "CPython 3.12.3; Ubuntu python3.12 3.12.3-1ubuntu0.15; /usr/bin/python3.12 sha256:1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118; package origin/archive digest review_required",
       "features": [
         "standard-library-only"
       ],
@@ -1879,15 +1901,17 @@
       },
       "status": "review_required",
       "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
+        "consumer source digest changes",
+        "Python version, package build, executable path, or executable digest changes",
+        "package/archive origin or digest changes",
+        "features, consumer, or execution role changes"
       ]
     },
     {
       "id": "AD-0071",
-      "name": "POSIX /bin/sh runtime",
+      "name": "POSIX /bin/sh runtime (dash)",
       "kind": "runtime",
-      "exact_version": "unversioned /bin/sh implementation",
+      "exact_version": "dash 0.5.12; Ubuntu dash 0.5.12-6ubuntu5; /bin/sh -> /usr/bin/dash sha256:86d31f6fb799e91fa21bad341484564510ca287703a16e9e46c53338776f4f42; package origin/archive digest review_required",
       "features": [
         "set -eu",
         "exec"
@@ -1906,15 +1930,17 @@
       },
       "status": "review_required",
       "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
+        "launcher source digest changes",
+        "shell version, package build, symlink target, path, or executable digest changes",
+        "package/archive origin or digest changes",
+        "features, consumer, or execution role changes"
       ]
     },
     {
       "id": "AD-0072",
-      "name": "POSIX /bin/sh runtime",
+      "name": "POSIX /bin/sh runtime (dash)",
       "kind": "runtime",
-      "exact_version": "unversioned /bin/sh implementation",
+      "exact_version": "dash 0.5.12; Ubuntu dash 0.5.12-6ubuntu5; /bin/sh -> /usr/bin/dash sha256:86d31f6fb799e91fa21bad341484564510ca287703a16e9e46c53338776f4f42; package origin/archive digest review_required",
       "features": [
         "set -eu",
         "exec"
@@ -1933,15 +1959,17 @@
       },
       "status": "review_required",
       "invalidation_triggers": [
-        "source digest changes",
-        "version, features, consumer, or execution role changes"
+        "launcher source digest changes",
+        "shell version, package build, symlink target, path, or executable digest changes",
+        "package/archive origin or digest changes",
+        "features, consumer, or execution role changes"
       ]
     },
     {
       "id": "AD-0073",
       "name": "rustc",
       "kind": "tool",
-      "exact_version": "1.85.1",
+      "exact_version": "1.85.1 (4eb161250 2025-03-15); x86_64-unknown-linux-gnu binary sha256:f8d033fd72e878ec60493788c8bffec2e6c154dcab6f0cb4c145af8ada26a7ed; distribution origin/archive digest review_required",
       "features": [],
       "source": "rust-tron/rust-toolchain.toml",
       "consuming_item": "C000.02",
@@ -1965,7 +1993,7 @@
       "id": "AD-0074",
       "name": "Cargo",
       "kind": "tool",
-      "exact_version": "1.85.1",
+      "exact_version": "1.85.1 (d73d2caf9 2024-12-31); x86_64-unknown-linux-gnu binary sha256:87e9ff02f95ea17d877e7c4eeb0f365f50fe3827f5afec132131ff3b8031a57e; distribution origin/archive digest review_required",
       "features": [
         "resolver-2"
       ],
@@ -1991,7 +2019,7 @@
       "id": "AD-0075",
       "name": "rustup",
       "kind": "tool",
-      "exact_version": "unversioned rustup distribution manager",
+      "exact_version": "1.29.0 (28d1352db 2026-03-05); binary sha256:4acc9acc76d5079515b46346a485974457b5a79893cfb01112423c89aeb5aa10; installer/archive origin and digest review_required",
       "features": [
         "minimal-profile",
         "four-targets"
@@ -2085,6 +2113,56 @@
         "source digest changes",
         "version, features, consumer, or execution role changes"
       ]
+    },
+    {
+      "features": [],
+      "consuming_item": "C000.07",
+      "local_gate": "C000.V",
+      "decision": "DD-004",
+      "security": {
+        "status": "not_applicable",
+        "rationale": "Inert Java reference input; executable consumer and build behavior are reviewed separately."
+      },
+      "license": {
+        "status": "review_required",
+        "rationale": "LGPL-3.0-covered java-tron reference input at gitlink 4a21592f95e37908b21bc3f611c6e7a1a67f09f3. Review must bind notices, modifications, Corresponding Source/source-offer duties, and any copied, mechanically-derived, or combined distribution use."
+      },
+      "status": "review_required",
+      "invalidation_triggers": [
+        "java-tron gitlink changes",
+        "source digest changes",
+        "license, notice, modification, provenance category, consumer, or distribution role changes"
+      ],
+      "id": "AD-0079",
+      "name": "java-tron actuator-example Gradle declaration",
+      "kind": "parameter",
+      "exact_version": "gitlink 4a21592f95e37908b21bc3f611c6e7a1a67f09f3 sha256:c3687b864f6bf2d833320ddca65d22c4c7b42f1cc93f8bff90cacb10e98e7505",
+      "source": "https://github.com/tronprotocol/java-tron.git@4a21592f95e37908b21bc3f611c6e7a1a67f09f3:example/actuator-example/build.gradle"
+    },
+    {
+      "features": [],
+      "consuming_item": "C000.07",
+      "local_gate": "C000.V",
+      "decision": "DD-004",
+      "security": {
+        "status": "not_applicable",
+        "rationale": "Inert Java reference input; executable consumer and build behavior are reviewed separately."
+      },
+      "license": {
+        "status": "review_required",
+        "rationale": "LGPL-3.0-covered java-tron reference input at gitlink 4a21592f95e37908b21bc3f611c6e7a1a67f09f3. Review must bind notices, modifications, Corresponding Source/source-offer duties, and any copied, mechanically-derived, or combined distribution use."
+      },
+      "status": "review_required",
+      "invalidation_triggers": [
+        "java-tron gitlink changes",
+        "source digest changes",
+        "license, notice, modification, provenance category, consumer, or distribution role changes"
+      ],
+      "id": "AD-0080",
+      "name": "java-tron ExampleActuator.java reference source",
+      "kind": "fixture_source",
+      "exact_version": "gitlink 4a21592f95e37908b21bc3f611c6e7a1a67f09f3 sha256:bc62d39322c56627ee46f4c0a0e941df961a5a76489d132918fa11be0f9c92b9",
+      "source": "https://github.com/tronprotocol/java-tron.git@4a21592f95e37908b21bc3f611c6e7a1a67f09f3:example/actuator-example/src/main/java/org/tron/core/actuator/ExampleActuator.java"
     }
   ],
   "generation_contract": {
@@ -2112,8 +2190,10 @@
       "rust-tron/rust-toolchain.toml",
       "java-tron/gradlew",
       "java-tron/build.gradle",
-      "java-tron/gradle/wrapper/*"
+      "java-tron/gradle/wrapper/*",
+      "java-tron/example/actuator-example/build.gradle",
+      "java-tron/example/actuator-example/src/main/java/org/tron/core/actuator/ExampleActuator.java"
     ],
-    "rule": "The validator independently enumerates this finite set, verifies every digest, requires a consuming-item adoption for every input and every actual consumer, derives external Cargo.lock packages, and rejects missing, extra, duplicate, drifted, obsolete, unknown-decision, or descendant-attestation adoptions. Platform/oracle manifests, evidence, reviews, and tracker/checklist projections are descendant envelopes validated separately against the authorized subject closure, never adoption inputs. Inventory-only and repository-input dispositions are records, not production dependency approvals."
+    "rule": "The validator independently enumerates this finite set, verifies every digest, requires a consuming-item adoption for every input and every actual consumer, derives external Cargo.lock packages, and rejects missing, extra, duplicate, drifted, obsolete, unknown-decision, or descendant-attestation adoptions. Platform/oracle manifests, evidence, reviews, and tracker/checklist projections are descendant envelopes validated separately against the authorized subject closure, never adoption inputs. Inventory-only and repository-input dispositions are records, not production dependency approvals. Java reference inputs are bound to gitlink 4a21592f95e37908b21bc3f611c6e7a1a67f09f3 and retain LGPL provenance review obligations."
   }
 }

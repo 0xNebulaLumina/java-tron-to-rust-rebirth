@@ -1,0 +1,451 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:java-tron-rust:oracle:fixture:v1",
+  "title": "java-tron/Rust differential oracle fixture v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case_id",
+    "oracle_class",
+    "identity",
+    "environment",
+    "input",
+    "expected",
+    "normalizations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_-]+\\.[A-Z0-9_.-]+$",
+      "maxLength": 256
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 4096
+    },
+    "oracle_class": {
+      "enum": [
+        "wire",
+        "crypto",
+        "state",
+        "tvm",
+        "block",
+        "consensus",
+        "network",
+        "api",
+        "operations",
+        "harness"
+      ]
+    },
+    "identity": {
+      "$ref": "#/$defs/identity"
+    },
+    "environment": {
+      "$ref": "#/$defs/environment"
+    },
+    "input": {
+      "$ref": "#/$defs/value"
+    },
+    "initial_state": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/state_entry"
+      },
+      "maxItems": 20000
+    },
+    "expected": {
+      "$ref": "#/$defs/expected"
+    },
+    "normalizations": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "ephemeral_port",
+          "process_id",
+          "log_prefix"
+        ]
+      },
+      "maxItems": 64
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 256
+      },
+      "maxItems": 256
+    }
+  },
+  "$defs": {
+    "bytes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "encoding",
+        "value"
+      ],
+      "properties": {
+        "encoding": {
+          "const": "hex-lower"
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^(?:[0-9a-f]{2})*$",
+          "maxLength": 524288
+        }
+      }
+    },
+    "presence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "presence"
+      ],
+      "properties": {
+        "presence": {
+          "enum": [
+            "absent",
+            "null",
+            "present"
+          ]
+        },
+        "value": {
+          "$ref": "#/$defs/value"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "presence": {
+                "const": "present"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "value"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "value": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "string",
+          "maxLength": 262144
+        },
+        {
+          "$ref": "#/$defs/bytes"
+        },
+        {
+          "$ref": "#/$defs/presence"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/value"
+          },
+          "maxItems": 20000
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/value"
+          },
+          "maxProperties": 20000
+        }
+      ]
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "java_source_revision",
+        "fixture_revision",
+        "schema_id",
+        "generator"
+      ],
+      "properties": {
+        "java_source_revision": {
+          "const": "df50ce9676b94de0b10a605076adfd8728811384"
+        },
+        "fixture_revision": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "schema_id": {
+          "const": "urn:java-tron-rust:oracle:fixture:v1"
+        },
+        "generator": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "version"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 256
+            },
+            "version": {
+              "type": "string",
+              "maxLength": 256
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            }
+          }
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "locale",
+        "timezone",
+        "clock",
+        "random_seed",
+        "network",
+        "filesystem_order"
+      ],
+      "properties": {
+        "locale": {
+          "const": "C.UTF-8"
+        },
+        "timezone": {
+          "const": "UTC"
+        },
+        "clock": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "unix_millis"
+          ],
+          "properties": {
+            "mode": {
+              "const": "fixed"
+            },
+            "unix_millis": {
+              "type": "integer"
+            }
+          }
+        },
+        "random_seed": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "network": {
+          "enum": [
+            "disabled",
+            "loopback-only"
+          ]
+        },
+        "filesystem_order": {
+          "const": "unsigned-byte-lexicographic"
+        }
+      }
+    },
+    "state_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "store",
+        "key",
+        "value"
+      ],
+      "properties": {
+        "store": {
+          "type": "string",
+          "maxLength": 1024
+        },
+        "key": {
+          "$ref": "#/$defs/bytes"
+        },
+        "value": {
+          "$ref": "#/$defs/presence"
+        }
+      }
+    },
+    "state_delta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "store",
+        "key",
+        "before",
+        "after"
+      ],
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "store": {
+          "type": "string",
+          "maxLength": 1024
+        },
+        "key": {
+          "$ref": "#/$defs/bytes"
+        },
+        "before": {
+          "$ref": "#/$defs/presence"
+        },
+        "after": {
+          "$ref": "#/$defs/presence"
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "domain",
+        "code",
+        "message",
+        "retryable"
+      ],
+      "properties": {
+        "domain": {
+          "enum": [
+            "fixture",
+            "protocol",
+            "validation",
+            "crypto",
+            "state",
+            "storage",
+            "execution",
+            "consensus",
+            "network",
+            "api",
+            "configuration",
+            "internal"
+          ]
+        },
+        "code": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 4096
+        },
+        "details": {
+          "$ref": "#/$defs/value"
+        },
+        "retryable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "kind",
+        "fields"
+      ],
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "kind": {
+          "type": "string",
+          "maxLength": 1024
+        },
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/value"
+          }
+        }
+      }
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exit_code",
+        "status",
+        "output",
+        "state_deltas",
+        "events",
+        "logs"
+      ],
+      "properties": {
+        "exit_code": {
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "error"
+          ]
+        },
+        "output": {
+          "$ref": "#/$defs/presence"
+        },
+        "error": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/error"
+            }
+          ]
+        },
+        "state_deltas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/state_delta"
+          },
+          "maxItems": 20000
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/event"
+          },
+          "maxItems": 20000
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/event"
+          },
+          "maxItems": 20000
+        }
+      }
+    }
+  }
+}
