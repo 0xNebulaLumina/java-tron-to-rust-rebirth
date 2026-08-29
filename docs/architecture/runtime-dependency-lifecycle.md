@@ -104,6 +104,62 @@ Shutdown is reverse dependency order with explicit phases:
 
 Signals, operator requests, fatal service failures, and startup failures all enter the same cancellation path. No component may call process exit directly except the composition root after shutdown completes.
 
+### C003 composition-root implementation
+
+`tron-config` parses an explicit argument iterator; it never reads process arguments. Each
+override is an `Option`, so a CLI default cannot overwrite a configured value merely because the
+field exists. Short aliases (`-c`, `-d`, `-h`, `-v`, `-w`, and `-p`) and the Java long names map to
+the same assigned field. Positional operands are seed nodes. Full node is the default mode;
+Solidity and keystore-factory modes are explicit and mutually exclusive. Parsing reports unknown
+options, missing values, invalid typed values, and conflicting modes as structured errors.
+
+Runtime configuration is assembled in one fixed pipeline: parse CLI, load reference plus selected
+config overlay, apply only assigned CLI fields (including `-w` witness enablement), apply the event
+subscription OR-stage, apply the platform storage-engine rule, then initialize witness credentials.
+Witness credential priority is CLI private key, configured `localwitness` private-key list, then
+configured `localwitnesskeystore` list with the CLI password. `node.witness` is runtime-only state
+set by CLI and has no HOCON key. The witness address follows the winning source: CLI address only
+accompanies a CLI key; configured address accompanies configured keys or keystores. Keystore
+decryption remains outside this chunk.
+
+Dynamic configuration reload exposes a value containing only active, passive, and derived trust
+node lists. It cannot replace storage, VM, genesis, committee, witness, API, or other immutable
+runtime configuration. The caller owns scheduling and cancellation of reload attempts; the config
+crate creates no watcher or background task.
+
+`tron-node` receives an immutable `Arc<Config>`, cancellation token, monotonic clock, and already
+constructed services through `NodeContext` and `ServiceGraph`. Constructors do not start work.
+Services declare names, earlier dependencies, and Full/Solidity/PBFT/witness/P2P gates. Their start
+and stop operations are externally cancellable async futures; the composition root bounds them with
+the exactly pinned Tokio runtime and injected per-operation deadlines. It cancels a timed-out future,
+waits for that owned operation to be dropped, and never detaches lifecycle work. Services own and
+join any tasks they create before their stop future completes.
+
+The graph rejects missing, duplicate, and forward dependencies before startup. Its explicit one-shot
+state machine is `New -> Starting -> Running -> Stopping -> Stopped`, with `Failed` recording a
+startup failure after a complete reverse unwind. `start` is accepted only from `New`; duplicate
+starts and starts after terminal shutdown fail with a typed transition error before any service is
+started. `shutdown` is accepted from `Running` and retried from `Stopping`; calls from `New` are
+typed transition errors, while calls after `Stopped` or fully unwound `Failed` are idempotent.
+
+The graph starts enabled services sequentially, cancels the shared root on timeout or failure, and
+reverse-unwinds only the services that completed startup. Every accepted start therefore either
+reaches `Running` or runs shutdown. A startup error whose unwind also fails returns both errors
+without discarding either service failure or timeout detail and leaves the graph in `Stopping` for
+retry. Shutdown continues in strict reverse order after failures or timeouts, but removes ownership
+only for services whose stop completed successfully. Timed-out and failed services remain registered
+for later shutdown retries; the graph becomes `Stopped` and subsequent shutdown calls become
+idempotent only after every registered service has stopped. Never-completing start and stop futures
+are bounded by the composition root. Restart is intentionally unsupported, so cancellation remains
+the original graph-wide token for its full lifetime.
+
+API selection is a composition plan, not an API implementation. Full and Solidity surfaces are
+mode-gated, PBFT surfaces additionally require `committee.allowPBFT == 1`, and enabled ports must be
+non-zero `u16` values unique across all selected HTTP, RPC, and JSON-RPC surfaces. P2P is a Full-mode
+capability and is categorically absent in Solidity and keystore-factory modes regardless of config;
+within Full mode it additionally requires P2P not to be disabled. Witness remains gated independently
+by its finalized configuration flag. Keystore-factory mode enables no node API surface.
+
 ## Protobuf wire compatibility boundary
 
 Inbound protobuf messages that can be hashed, signed, relayed, or returned byte-for-byte retain

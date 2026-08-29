@@ -8,6 +8,9 @@ publish.workspace = true
 
 [dependencies]
 tron-primitives = { path = "../tron-primitives" }
+hocon = { version = "=0.9.0", default-features = false, features = ["serde-support"] }
+serde = { version = "=1.0.219", features = ["derive"] }
+thiserror = "=2.0.12"
 
 [lints]
 workspace = true

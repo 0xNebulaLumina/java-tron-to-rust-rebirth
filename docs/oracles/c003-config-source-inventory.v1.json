@@ -1,0 +1,5409 @@
+{
+  "schemaVersion": 2,
+  "id": "c003-config-sources-v2",
+  "javaRevision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "sourceHashes": {
+    "java-tron/common/src/main/resources/reference.conf": "e472ae5e41abde5271a0ec0e19460ef3008010a86657b414d6b33376ecc70c89",
+    "java-tron/framework/src/main/resources/config.conf": "fb51f5ee508cefb4e0d4b0c1868029e385a997ee9b7468875c9d781d77b0ea2a",
+    "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java": "c4bfd29475c2a0c561bdf7a7699a62d930c96895978958b6c7d2ab2a962ea42d",
+    "java-tron/framework/src/main/java/org/tron/core/config/args/Args.java": "2d079708f890259f3dc371ffc4f50c09a3a9ef90e1c989f646f3c6b5d6c66a45",
+    "java-tron/framework/src/main/java/org/tron/core/config/args/DynamicArgs.java": "4fec6eb8bdf304fe3da9ad92db8a4d493b47b401cbde6ef776750eb2b44fb17b"
+  },
+  "bundles": [
+    {
+      "id": "reference",
+      "java": "java-tron/common/src/main/resources/reference.conf",
+      "rust": "rust-tron/crates/tron-config/src/reference.conf",
+      "sha256": "e472ae5e41abde5271a0ec0e19460ef3008010a86657b414d6b33376ecc70c89"
+    },
+    {
+      "id": "packaged",
+      "java": "java-tron/framework/src/main/resources/config.conf",
+      "rust": "rust-tron/crates/tron-config/src/config.conf",
+      "sha256": "fb51f5ee508cefb4e0d4b0c1868029e385a997ee9b7468875c9d781d77b0ea2a"
+    }
+  ],
+  "configKeys": [
+    {
+      "key": "block.checkFrozenTime",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 770
+        }
+      ],
+      "domain": "block",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.block.check_frozen_time",
+        "serdeKey": "checkFrozenTime",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "block.maintenanceTimeInterval",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 768
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 419
+        }
+      ],
+      "domain": "block",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.block.maintenance_time_interval",
+        "serdeKey": "maintenanceTimeInterval",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "block.needSyncCheck",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 767
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 418
+        }
+      ],
+      "domain": "block",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.block.need_sync_check",
+        "serdeKey": "needSyncCheck",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "block.proposalExpireTime",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 769
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 420
+        }
+      ],
+      "domain": "block",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.block.proposal_expire_time",
+        "serdeKey": "proposalExpireTime",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowAccountAssetOptimization",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 858
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowAccountAssetOptimization\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowAccountStateRoot",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 835
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_account_state_root",
+        "serdeKey": "allowAccountStateRoot",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowAdaptiveEnergy",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 824
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 438
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_adaptive_energy",
+        "serdeKey": "allowAdaptiveEnergy",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowAssetOptimization",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 859
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowAssetOptimization\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowBlackHoleOptimization",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 840
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_black_hole_optimization",
+        "serdeKey": "allowBlackHoleOptimization",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowCreationOfContracts",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 822
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 437
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_creation_of_contracts",
+        "serdeKey": "allowCreationOfContracts",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowDelegateOptimization",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 862
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowDelegateOptimization\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowDelegateResource",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 825
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_delegate_resource",
+        "serdeKey": "allowDelegateResource",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowDynamicEnergy",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 863
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowDynamicEnergy\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowEnergyAdjustment",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 853
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowEnergyAdjustment\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowHigherLimitForMaxCpuTimeOfOneTx",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 848
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowHigherLimitForMaxCpuTimeOfOneTx\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowMarketTransaction",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 833
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_market_transaction",
+        "serdeKey": "allowMarketTransaction",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowMultiSign",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 823
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_multi_sign",
+        "serdeKey": "allowMultiSign",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowNewResourceModel",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 841
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_new_resource_model",
+        "serdeKey": "allowNewResourceModel",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowNewReward",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 860
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowNewReward\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowNewRewardAlgorithm",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 849
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowNewRewardAlgorithm\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowOldRewardOpt",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 852
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowOldRewardOpt\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowOptimizedReturnValueOfChainId",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 850
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowOptimizedReturnValueOfChainId\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowPBFT",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 837
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_pbft",
+        "serdeKey": "allowPBFT",
+        "evidence": "#[serde(rename=\"allowPBFT\")]"
+      }
+    },
+    {
+      "key": "committee.allowProtoFilterNum",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 834
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_proto_filter_num",
+        "serdeKey": "allowProtoFilterNum",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowReceiptsMerkleRoot",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 842
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_receipts_merkle_root",
+        "serdeKey": "allowReceiptsMerkleRoot",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowSameTokenName",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 826
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_same_token_name",
+        "serdeKey": "allowSameTokenName",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowShieldedTRC20Transaction",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 831
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_shielded_trc20_transaction",
+        "serdeKey": "allowShieldedTRC20Transaction",
+        "evidence": "#[serde(rename=\"allowShieldedTRC20Transaction\")]"
+      }
+    },
+    {
+      "key": "committee.allowStrictMath",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 854
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowStrictMath\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowTransactionFeePool",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 839
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_transaction_fee_pool",
+        "serdeKey": "allowTransactionFeePool",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowTvmBlob",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 857
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowTvmBlob\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowTvmCancun",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 856
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowTvmCancun\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowTvmCompatibleEvm",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 847
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowTvmCompatibleEvm\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowTvmConstantinople",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 828
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_tvm_constantinople",
+        "serdeKey": "allowTvmConstantinople",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowTvmFreeze",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 843
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowTvmFreeze\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowTvmIstanbul",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 832
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_tvm_istanbul",
+        "serdeKey": "allowTvmIstanbul",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowTvmLondon",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 846
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowTvmLondon\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowTvmShangHai",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 851
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowTvmShangHai\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.allowTvmSolidity059",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 829
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_tvm_solidity059",
+        "serdeKey": "allowTvmSolidity059",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowTvmTransferTrc10",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 827
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.allow_tvm_transfer_trc10",
+        "serdeKey": "allowTvmTransferTrc10",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.allowTvmVote",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 844
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"allowTvmVote\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.changedDelegation",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 836
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.changed_delegation",
+        "serdeKey": "changedDelegation",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.consensusLogicOptimization",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 855
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"consensusLogicOptimization\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.dynamicEnergyIncreaseFactor",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 865
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"dynamicEnergyIncreaseFactor\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.dynamicEnergyMaxFactor",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 866
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"dynamicEnergyMaxFactor\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.dynamicEnergyThreshold",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 864
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"dynamicEnergyThreshold\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.forbidTransferToContract",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 830
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.committee.forbid_transfer_to_contract",
+        "serdeKey": "forbidTransferToContract",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "committee.memoFee",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 861
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"memoFee\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.pBFTExpireNum",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 838
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"pBFTExpireNum\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "committee.unfreezeDelayDays",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 845
+        }
+      ],
+      "domain": "committee",
+      "mapping": {
+        "kind": "manual",
+        "rustTarget": "Config.committee.remaining[\"unfreezeDelayDays\"]",
+        "evidence": "CommitteeConfig #[serde(flatten)] remaining"
+      }
+    },
+    {
+      "key": "crypto.engine",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 168
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 68
+        }
+      ],
+      "domain": "crypto",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.crypto.engine",
+        "serdeKey": "engine",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "enery.limit.block.num",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 172
+        }
+      ],
+      "domain": "enery",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.enery.limit.block.num",
+        "serdeKey": "num",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.contractParse",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 889
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 456
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.contract_parse",
+        "serdeKey": "contractParse",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.dbconfig",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 888
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 455
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.dbconfig",
+        "serdeKey": "dbconfig",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.enable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 871
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 442
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.enable",
+        "serdeKey": "enable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.filter.contractAddress",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 942
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 503
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.filter.contract_address",
+        "serdeKey": "contractAddress",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.filter.contractTopic",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 946
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 507
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.filter.contract_topic",
+        "serdeKey": "contractTopic",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.filter.fromblock",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 939
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 501
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.filter.fromblock",
+        "serdeKey": "fromblock",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.filter.toblock",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 940
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 502
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.filter.toblock",
+        "serdeKey": "toblock",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.native.bindport",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 876
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 445
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.native.bindport",
+        "serdeKey": "bindport",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.native.sendqueuelength",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 877
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 446
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.native.sendqueuelength",
+        "serdeKey": "sendqueuelength",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.native.useNativeQueue",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 875
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 444
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.native.use_native_queue",
+        "serdeKey": "useNativeQueue",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.path",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 884
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 453
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.path",
+        "serdeKey": "path",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.server",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 885
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 454
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.server",
+        "serdeKey": "server",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.startSyncBlockNum",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 883
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.start_sync_block_num",
+        "serdeKey": "startSyncBlockNum",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.topics",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 892
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 457
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.topics",
+        "serdeKey": "topics",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.topics.enable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 895
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 460
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.topics.enable",
+        "serdeKey": "enable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.topics.ethCompatible",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 906
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 469
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.topics.eth_compatible",
+        "serdeKey": "ethCompatible",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.topics.redundancy",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 917
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 480
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.topics.redundancy",
+        "serdeKey": "redundancy",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.topics.solidified",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 897
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 462
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.topics.solidified",
+        "serdeKey": "solidified",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.topics.topic",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 896
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 461
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.topics.topic",
+        "serdeKey": "topic",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.topics.triggerName",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 894
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 459
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.topics.trigger_name",
+        "serdeKey": "triggerName",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "event.subscribe.version",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 880
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 448
+        }
+      ],
+      "domain": "event",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.event.subscribe.version",
+        "serdeKey": "version",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "genesis.block.assets",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 576
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 240
+        }
+      ],
+      "domain": "genesis",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.genesis.block.assets",
+        "serdeKey": "assets",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "genesis.block.assets.accountName",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 578
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 242
+        }
+      ],
+      "domain": "genesis",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.genesis.block.assets.account_name",
+        "serdeKey": "accountName",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "genesis.block.assets.accountType",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 579
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 243
+        }
+      ],
+      "domain": "genesis",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.genesis.block.assets.account_type",
+        "serdeKey": "accountType",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "genesis.block.assets.address",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 580
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 244
+        }
+      ],
+      "domain": "genesis",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.genesis.block.assets.address",
+        "serdeKey": "address",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "genesis.block.assets.balance",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 581
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 245
+        }
+      ],
+      "domain": "genesis",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.genesis.block.assets.balance",
+        "serdeKey": "balance",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "genesis.block.parentHash",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 748
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 401
+        }
+      ],
+      "domain": "genesis",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.genesis.block.parent_hash",
+        "serdeKey": "parentHash",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "genesis.block.timestamp",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 743
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 399
+        }
+      ],
+      "domain": "genesis",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.genesis.block.timestamp",
+        "serdeKey": "timestamp",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "genesis.block.witnesses",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 603
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 261
+        }
+      ],
+      "domain": "genesis",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.genesis.block.witnesses",
+        "serdeKey": "witnesses",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "genesis.block.witnesses.address",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 605
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 263
+        }
+      ],
+      "domain": "genesis",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.genesis.block.witnesses.address",
+        "serdeKey": "address",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "genesis.block.witnesses.url",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 606
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 264
+        }
+      ],
+      "domain": "genesis",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.genesis.block.witnesses.url",
+        "serdeKey": "url",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "genesis.block.witnesses.voteCount",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 607
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 265
+        }
+      ],
+      "domain": "genesis",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.genesis.block.witnesses.vote_count",
+        "serdeKey": "voteCount",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "localwitness",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 758
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 410
+        }
+      ],
+      "domain": "localwitness",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.localwitness",
+        "serdeKey": "localwitness",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.active",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 247
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 102
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.active",
+        "serdeKey": "active",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.activeConnectFactor",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 413
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "approved-decision",
+        "decision": "Java transport tuning key is accepted but has no retained Rust runtime consumer"
+      }
+    },
+    {
+      "key": "node.agreeNodeCount",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 364
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.agree_node_count",
+        "serdeKey": "agreeNodeCount",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.backup.keepAliveInterval",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 159
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 59
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.backup.keep_alive_interval",
+        "serdeKey": "keepAliveInterval",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.backup.members",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 161
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 60
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.backup.members",
+        "serdeKey": "members",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.backup.port",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 157
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 57
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.backup.port",
+        "serdeKey": "port",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.backup.priority",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 158
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 58
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.backup.priority",
+        "serdeKey": "priority",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.blockCacheTimeout",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 355
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.block_cache_timeout",
+        "serdeKey": "blockCacheTimeout",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.blockProducedTimeOut",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 332
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.block_produced_time_out",
+        "serdeKey": "blockProducedTimeOut",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.connectFactor",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 414
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "approved-decision",
+        "decision": "Java transport tuning key is accepted but has no retained Rust runtime consumer"
+      }
+    },
+    {
+      "key": "node.disabledApi",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 446
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 168
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.disabled_api",
+        "serdeKey": "disabledApi",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.discovery.enable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 143
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 45
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.discovery.enable",
+        "serdeKey": "enable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.discovery.external.ip",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 145
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.discovery.external.ip",
+        "serdeKey": "ip",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.discovery.persist",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 144
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 46
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.discovery.persist",
+        "serdeKey": "persist",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.accessKeyId",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 397
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.access_key_id",
+        "serdeKey": "accessKeyId",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.accessKeySecret",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 399
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.access_key_secret",
+        "serdeKey": "accessKeySecret",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.aliyunDnsEndpoint",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 401
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.aliyun_dns_endpoint",
+        "serdeKey": "aliyunDnsEndpoint",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.awsHostZoneId",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 405
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.aws_host_zone_id",
+        "serdeKey": "awsHostZoneId",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.awsRegion",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 403
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.aws_region",
+        "serdeKey": "awsRegion",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.changeThreshold",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 393
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.change_threshold",
+        "serdeKey": "changeThreshold",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.dnsDomain",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 383
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.dns_domain",
+        "serdeKey": "dnsDomain",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.dnsPrivate",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 385
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.dns_private",
+        "serdeKey": "dnsPrivate",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.knownUrls",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 387
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.known_urls",
+        "serdeKey": "knownUrls",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.maxMergeSize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 391
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.max_merge_size",
+        "serdeKey": "maxMergeSize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.publish",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 381
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.publish",
+        "serdeKey": "publish",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.serverType",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 395
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.server_type",
+        "serdeKey": "serverType",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.staticNodes",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 389
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.static_nodes",
+        "serdeKey": "staticNodes",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dns.treeUrls",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 376
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 149
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dns.tree_urls",
+        "serdeKey": "treeUrls",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dynamicConfig.checkInterval",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 349
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dynamic_config.check_interval",
+        "serdeKey": "checkInterval",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.dynamicConfig.enable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 348
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.dynamic_config.enable",
+        "serdeKey": "enable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.effectiveCheckEnable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 344
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.effective_check_enable",
+        "serdeKey": "effectiveCheckEnable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.enableIpv6",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 341
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.enable_ipv6",
+        "serdeKey": "enableIpv6",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.fastForward",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 261
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 114
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.fast_forward",
+        "serdeKey": "fastForward",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.fetchBlock.timeout",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 192
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 86
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.fetch_block.timeout",
+        "serdeKey": "timeout",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.http.PBFTEnable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 272
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 124
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.http.pbft_enable",
+        "serdeKey": "PBFTEnable",
+        "evidence": "#[serde(rename=\"PBFTEnable\")]"
+      }
+    },
+    {
+      "key": "node.http.PBFTPort",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 273
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 125
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.http.pbft_port",
+        "serdeKey": "PBFTPort",
+        "evidence": "#[serde(rename=\"PBFTPort\")]"
+      }
+    },
+    {
+      "key": "node.http.fullNodeEnable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 268
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 120
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.http.full_node_enable",
+        "serdeKey": "fullNodeEnable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.http.fullNodePort",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 269
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 121
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.http.full_node_port",
+        "serdeKey": "fullNodePort",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.http.maxMessageSize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 277
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.http.max_message_size",
+        "serdeKey": "maxMessageSize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.http.solidityEnable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 270
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 122
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.http.solidity_enable",
+        "serdeKey": "solidityEnable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.http.solidityPort",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 271
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 123
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.http.solidity_port",
+        "serdeKey": "solidityPort",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.inactiveThreshold",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 233
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 96
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.inactive_threshold",
+        "serdeKey": "inactiveThreshold",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.isOpenFullTcpDisconnect",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 232
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 95
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.open_full_tcp_disconnect",
+        "serdeKey": "isOpenFullTcpDisconnect",
+        "evidence": "#[serde(rename=\"isOpenFullTcpDisconnect\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.httpFullNodeEnable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 420
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 155
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.http_full_node_enable",
+        "serdeKey": "httpFullNodeEnable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.httpFullNodePort",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 421
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 156
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.http_full_node_port",
+        "serdeKey": "httpFullNodePort",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.httpPBFTEnable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 424
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.http_pbft_enable",
+        "serdeKey": "httpPBFTEnable",
+        "evidence": "#[serde(rename=\"httpPBFTEnable\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.httpPBFTPort",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 425
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.http_pbft_port",
+        "serdeKey": "httpPBFTPort",
+        "evidence": "#[serde(rename=\"httpPBFTPort\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.httpSolidityEnable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 422
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.http_solidity_enable",
+        "serdeKey": "httpSolidityEnable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.httpSolidityPort",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 423
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.http_solidity_port",
+        "serdeKey": "httpSolidityPort",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.maxAddressSize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 430
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 159
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.max_address_size",
+        "serdeKey": "maxAddressSize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.maxBatchSize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 436
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 162
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.max_batch_size",
+        "serdeKey": "maxBatchSize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.maxBlockFilterNum",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 434
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 161
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.max_block_filter_num",
+        "serdeKey": "maxBlockFilterNum",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.maxBlockRange",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 428
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 158
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.max_block_range",
+        "serdeKey": "maxBlockRange",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.maxLogFilterNum",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 440
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 164
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.max_log_filter_num",
+        "serdeKey": "maxLogFilterNum",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.maxMessageSize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 442
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 165
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.max_message_size",
+        "serdeKey": "maxMessageSize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.maxResponseSize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 438
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 163
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.max_response_size",
+        "serdeKey": "maxResponseSize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.jsonrpc.maxSubTopics",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 432
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 160
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.jsonrpc.max_sub_topics",
+        "serdeKey": "maxSubTopics",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.listen.port",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 191
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 84
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.listen.port",
+        "serdeKey": "port",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.maxBlockInvPerSecond",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 229
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.max_block_inv_per_second",
+        "serdeKey": "maxBlockInvPerSecond",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.maxConnections",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 202
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 88
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.max_connections",
+        "serdeKey": "maxConnections",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.maxConnectionsWithSameIp",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 206
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 91
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.max_connections_with_same_ip",
+        "serdeKey": "maxConnectionsWithSameIp",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.maxFastForwardNum",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 234
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.max_fast_forward_num",
+        "serdeKey": "maxFastForwardNum",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.maxHttpConnectNumber",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 207
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 92
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.max_http_connect_number",
+        "serdeKey": "maxHttpConnectNumber",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.maxPendingBlockSize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 197
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.max_pending_block_size",
+        "serdeKey": "maxPendingBlockSize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.maxTps",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 227
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.max_tps",
+        "serdeKey": "maxTps",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.maxTransactionPendingSize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 358
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.max_transaction_pending_size",
+        "serdeKey": "maxTransactionPendingSize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.maxTrxCacheSize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 361
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.max_trx_cache_size",
+        "serdeKey": "maxTrxCacheSize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.maxUnsolidifiedBlocks",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 354
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.max_unsolidified_blocks",
+        "serdeKey": "maxUnsolidifiedBlocks",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.metrics.prometheus.enable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 178
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 73
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.metrics.prometheus.enable",
+        "serdeKey": "enable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.metrics.prometheus.port",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 179
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 74
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.metrics.prometheus.port",
+        "serdeKey": "port",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.metricsEnable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 239
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.metrics_enable",
+        "serdeKey": "metricsEnable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.minActiveConnections",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 204
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 90
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.min_active_connections",
+        "serdeKey": "minActiveConnections",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.minConnections",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 203
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 89
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.min_connections",
+        "serdeKey": "minConnections",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.minParticipationRate",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 208
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 93
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.min_participation_rate",
+        "serdeKey": "minParticipationRate",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.netMaxTrxPerSecond",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 335
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.net_max_trx_per_second",
+        "serdeKey": "netMaxTrxPerSecond",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.nodeDetectEnable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 338
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.node_detect_enable",
+        "serdeKey": "nodeDetectEnable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.openHistoryQueryWhenLiteFN",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 409
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.open_history_query_when_lite_fn",
+        "serdeKey": "openHistoryQueryWhenLiteFN",
+        "evidence": "#[serde(rename=\"openHistoryQueryWhenLiteFN\")]"
+      }
+    },
+    {
+      "key": "node.openPrintLog",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 219
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.open_print_log",
+        "serdeKey": "openPrintLog",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.openTransactionSort",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 223
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.open_transaction_sort",
+        "serdeKey": "openTransactionSort",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.p2p.version",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 243
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 99
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.p2p.version",
+        "serdeKey": "version",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.passive",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 254
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 108
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.passive",
+        "serdeKey": "passive",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.pendingTransactionTimeout",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 359
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.pending_transaction_timeout",
+        "serdeKey": "pendingTransactionTimeout",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.PBFTEnable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 286
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 133
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.pbft_enable",
+        "serdeKey": "PBFTEnable",
+        "evidence": "#[serde(rename=\"PBFTEnable\")]"
+      }
+    },
+    {
+      "key": "node.rpc.PBFTPort",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 287
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 134
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.pbft_port",
+        "serdeKey": "PBFTPort",
+        "evidence": "#[serde(rename=\"PBFTPort\")]"
+      }
+    },
+    {
+      "key": "node.rpc.enable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 282
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 129
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.enable",
+        "serdeKey": "enable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.flowControlWindow",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 296
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.flow_control_window",
+        "serdeKey": "flowControlWindow",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.maxConcurrentCallsPerConnection",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 293
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.max_concurrent_calls_per_connection",
+        "serdeKey": "maxConcurrentCallsPerConnection",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.maxConnectionAgeInMillis",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 302
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.max_connection_age_in_millis",
+        "serdeKey": "maxConnectionAgeInMillis",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.maxConnectionIdleInMillis",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 299
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 136
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.max_connection_idle_in_millis",
+        "serdeKey": "maxConnectionIdleInMillis",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.maxHeaderListSize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 309
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.max_header_list_size",
+        "serdeKey": "maxHeaderListSize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.maxMessageSize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 306
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.max_message_size",
+        "serdeKey": "maxMessageSize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.maxRstStream",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 312
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.max_rst_stream",
+        "serdeKey": "maxRstStream",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.minEffectiveConnection",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 318
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 137
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.min_effective_connection",
+        "serdeKey": "minEffectiveConnection",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.port",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 283
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 130
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.port",
+        "serdeKey": "port",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.reflectionService",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 321
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 140
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.reflection_service",
+        "serdeKey": "reflectionService",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.secondsPerWindow",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 315
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.seconds_per_window",
+        "serdeKey": "secondsPerWindow",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.solidityEnable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 284
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 131
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.solidity_enable",
+        "serdeKey": "solidityEnable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.solidityPort",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 285
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 132
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.solidity_port",
+        "serdeKey": "solidityPort",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.thread",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 290
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.thread",
+        "serdeKey": "thread",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.rpc.trxCacheEnable",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 322
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.rpc.trx_cache_enable",
+        "serdeKey": "trxCacheEnable",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.shieldedTransInPendingMaxCounts",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 368
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.shielded_trans_in_pending_max_counts",
+        "serdeKey": "shieldedTransInPendingMaxCounts",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.solidity.threads",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 329
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.solidity.threads",
+        "serdeKey": "threads",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.syncFetchBatchNum",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 195
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.sync_fetch_batch_num",
+        "serdeKey": "syncFetchBatchNum",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.trustNode",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 186
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 79
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.trust_node",
+        "serdeKey": "trustNode",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.unsolidifiedBlockCheck",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 353
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.unsolidified_block_check",
+        "serdeKey": "unsolidifiedBlockCheck",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.validContractProto.threads",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 371
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.valid_contract_proto.threads",
+        "serdeKey": "threads",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.validateSignThreadNum",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 200
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.validate_sign_thread_num",
+        "serdeKey": "validateSignThreadNum",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.walletExtensionApi",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 189
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 82
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.wallet_extension_api",
+        "serdeKey": "walletExtensionApi",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "node.zenTokenId",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 367
+        }
+      ],
+      "domain": "node",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.node.zen_token_id",
+        "serdeKey": "zenTokenId",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "rate.limiter.apiNonBlocking",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 519
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 194
+        }
+      ],
+      "domain": "rate",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.rate.limiter.api_non_blocking",
+        "serdeKey": "apiNonBlocking",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "rate.limiter.global.api.qps",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 517
+        }
+      ],
+      "domain": "rate",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.rate.limiter.global.api.qps",
+        "serdeKey": "qps",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "rate.limiter.global.ip.qps",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 515
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 192
+        }
+      ],
+      "domain": "rate",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.rate.limiter.global.ip.qps",
+        "serdeKey": "qps",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "rate.limiter.global.qps",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 513
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 190
+        }
+      ],
+      "domain": "rate",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.rate.limiter.global.qps",
+        "serdeKey": "qps",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "rate.limiter.http",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 466
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 177
+        }
+      ],
+      "domain": "rate",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.rate.limiter.http",
+        "serdeKey": "http",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "rate.limiter.p2p.disconnect",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 509
+        }
+      ],
+      "domain": "rate",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.rate.limiter.p2p.disconnect",
+        "serdeKey": "disconnect",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "rate.limiter.p2p.fetchInvData",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 508
+        }
+      ],
+      "domain": "rate",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.rate.limiter.p2p.fetch_inv_data",
+        "serdeKey": "fetchInvData",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "rate.limiter.p2p.syncBlockChain",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 507
+        }
+      ],
+      "domain": "rate",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.rate.limiter.p2p.sync_block_chain",
+        "serdeKey": "syncBlockChain",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "rate.limiter.rpc",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 485
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 180
+        }
+      ],
+      "domain": "rate",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.rate.limiter.rpc",
+        "serdeKey": "rpc",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "seed.node.ip.list",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 525
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 202
+        }
+      ],
+      "domain": "seed",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.seed.node.ip.list",
+        "serdeKey": "list",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.balance.history.lookup",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 120
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 38
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.balance.history.lookup",
+        "serdeKey": "lookup",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.checkpoint.sync",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 124
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.checkpoint.sync",
+        "serdeKey": "sync",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.checkpoint.version",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 123
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.checkpoint.version",
+        "serdeKey": "version",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.db.directory",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 48
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 9
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.db.directory",
+        "serdeKey": "directory",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.db.engine",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 39
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 7
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.db.engine",
+        "serdeKey": "engine",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.db.sync",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 46
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 8
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.db.sync",
+        "serdeKey": "sync",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.dbSettings.blocksize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 111
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 29
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.db_settings.blocksize",
+        "serdeKey": "blocksize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.dbSettings.compactThreads",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 110
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.db_settings.compact_threads",
+        "serdeKey": "compactThreads",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.dbSettings.level0FileNumCompactionTrigger",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 114
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 32
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.db_settings.level0_file_num_compaction_trigger",
+        "serdeKey": "level0FileNumCompactionTrigger",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.dbSettings.levelNumber",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 109
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 27
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.db_settings.level_number",
+        "serdeKey": "levelNumber",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.dbSettings.maxBytesForLevelBase",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 112
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 30
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.db_settings.max_bytes_for_level_base",
+        "serdeKey": "maxBytesForLevelBase",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.dbSettings.maxBytesForLevelMultiplier",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 113
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 31
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.db_settings.max_bytes_for_level_multiplier",
+        "serdeKey": "maxBytesForLevelMultiplier",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.dbSettings.maxOpenFiles",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 117
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 35
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.db_settings.max_open_files",
+        "serdeKey": "maxOpenFiles",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.dbSettings.targetFileSizeBase",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 115
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 33
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.db_settings.target_file_size_base",
+        "serdeKey": "targetFileSizeBase",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.dbSettings.targetFileSizeMultiplier",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 116
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 34
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.db_settings.target_file_size_multiplier",
+        "serdeKey": "targetFileSizeMultiplier",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.needToUpdateAsset",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 104
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 23
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.need_to_update_asset",
+        "serdeKey": "needToUpdateAsset",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.properties",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 102
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 15
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.properties",
+        "serdeKey": "properties",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.snapshot.maxFlushCount",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 133
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.snapshot.max_flush_count",
+        "serdeKey": "maxFlushCount",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.transHistory.switch",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 51
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 12
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.trans_history.switch_value",
+        "serdeKey": "switch",
+        "evidence": "#[serde(rename=\"switch\")]"
+      }
+    },
+    {
+      "key": "storage.txCache.estimatedTransactions",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 128
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.tx_cache.estimated_transactions",
+        "serdeKey": "estimatedTransactions",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "storage.txCache.initOptimization",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 130
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 41
+        }
+      ],
+      "domain": "storage",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.storage.tx_cache.init_optimization",
+        "serdeKey": "initOptimization",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "trx.expiration.timeInMilliseconds",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 777
+        }
+      ],
+      "domain": "trx",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.trx.expiration.time_in_milliseconds",
+        "serdeKey": "timeInMilliseconds",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "trx.reference.block",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 774
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 424
+        }
+      ],
+      "domain": "trx",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.trx.reference.block",
+        "serdeKey": "block",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.constantCallTimeoutMs",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 814
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.constant_call_timeout_ms",
+        "serdeKey": "constantCallTimeoutMs",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.estimateEnergy",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 799
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.estimate_energy",
+        "serdeKey": "estimateEnergy",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.estimateEnergyMaxRetry",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 802
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.estimate_energy_max_retry",
+        "serdeKey": "estimateEnergyMaxRetry",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.longRunningTime",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 796
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.long_running_time",
+        "serdeKey": "longRunningTime",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.lruCacheSize",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 786
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.lru_cache_size",
+        "serdeKey": "lruCacheSize",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.maxEnergyLimitForConstant",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 782
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 428
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.max_energy_limit_for_constant",
+        "serdeKey": "maxEnergyLimitForConstant",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.maxTimeRatio",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 784
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 430
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.max_time_ratio",
+        "serdeKey": "maxTimeRatio",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.minTimeRatio",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 783
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 429
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.min_time_ratio",
+        "serdeKey": "minTimeRatio",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.saveCancelAllUnfreezeV2Details",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 793
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.save_cancel_all_unfreeze_v2_details",
+        "serdeKey": "saveCancelAllUnfreezeV2Details",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.saveFeaturedInternalTx",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 790
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.save_featured_internal_tx",
+        "serdeKey": "saveFeaturedInternalTx",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.saveInternalTx",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 785
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 431
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.save_internal_tx",
+        "serdeKey": "saveInternalTx",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.supportConstant",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 781
+        },
+        {
+          "id": "packaged",
+          "path": "java-tron/framework/src/main/resources/config.conf",
+          "line": 427
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.support_constant",
+        "serdeKey": "supportConstant",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    },
+    {
+      "key": "vm.vmTrace",
+      "sources": [
+        {
+          "id": "reference",
+          "path": "java-tron/common/src/main/resources/reference.conf",
+          "line": 787
+        }
+      ],
+      "domain": "vm",
+      "mapping": {
+        "kind": "serde",
+        "rustTarget": "Config.vm.vm_trace",
+        "serdeKey": "vmTrace",
+        "evidence": "#[serde(rename_all=\"camelCase\")]"
+      }
+    }
+  ],
+  "cliOptions": [
+    {
+      "field": "shellConfFileName",
+      "javaType": "String",
+      "names": [
+        "-c",
+        "--config"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 22
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "-c",
+        "--config"
+      ]
+    },
+    {
+      "field": "outputDirectory",
+      "javaType": "String",
+      "names": [
+        "-d",
+        "--output-directory"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 25
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "-d",
+        "--output-directory"
+      ]
+    },
+    {
+      "field": "logbackPath",
+      "javaType": "String",
+      "names": [
+        "--log-config"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 29
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--log-config"
+      ]
+    },
+    {
+      "field": "help",
+      "javaType": "boolean",
+      "names": [
+        "-h",
+        "--help"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 32
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "-h",
+        "--help"
+      ]
+    },
+    {
+      "field": "version",
+      "javaType": "boolean",
+      "names": [
+        "-v",
+        "--version"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 35
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "-v",
+        "--version"
+      ]
+    },
+    {
+      "field": "witness",
+      "javaType": "boolean",
+      "names": [
+        "-w",
+        "--witness"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 38
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "-w",
+        "--witness"
+      ]
+    },
+    {
+      "field": "privateKey",
+      "javaType": "String",
+      "names": [
+        "-p",
+        "--private-key"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 41
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "-p",
+        "--private-key"
+      ]
+    },
+    {
+      "field": "witnessAddress",
+      "javaType": "String",
+      "names": [
+        "--witness-address"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 44
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--witness-address"
+      ]
+    },
+    {
+      "field": "password",
+      "javaType": "String",
+      "names": [
+        "--password"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 47
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--password"
+      ]
+    },
+    {
+      "field": "solidityNode",
+      "javaType": "boolean",
+      "names": [
+        "--solidity"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 50
+      },
+      "mode": "mode-selector",
+      "rustParserBranches": [
+        "--solidity"
+      ]
+    },
+    {
+      "field": "keystoreFactory",
+      "javaType": "boolean",
+      "names": [
+        "--keystore-factory"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 53
+      },
+      "mode": "mode-selector",
+      "rustParserBranches": [
+        "--keystore-factory"
+      ]
+    },
+    {
+      "field": "fastForward",
+      "javaType": "boolean",
+      "names": [
+        "--fast-forward"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 56
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--fast-forward"
+      ]
+    },
+    {
+      "field": "eventSubscribe",
+      "javaType": "boolean",
+      "names": [
+        "--es"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 60
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--es"
+      ]
+    },
+    {
+      "field": "p2pDisable",
+      "javaType": "boolean",
+      "names": [
+        "--p2p-disable"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": 1,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 64
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--p2p-disable"
+      ]
+    },
+    {
+      "field": "seedNodes",
+      "javaType": "List<String>",
+      "names": [],
+      "positional": true,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 68
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "<seed-nodes-positional>"
+      ]
+    },
+    {
+      "field": "storageDbDirectory",
+      "javaType": "String",
+      "names": [
+        "--storage-db-directory"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 74
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--storage-db-directory"
+      ]
+    },
+    {
+      "field": "storageDbEngine",
+      "javaType": "String",
+      "names": [
+        "--storage-db-engine"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 78
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--storage-db-engine"
+      ]
+    },
+    {
+      "field": "storageDbSynchronous",
+      "javaType": "String",
+      "names": [
+        "--storage-db-synchronous"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 83
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--storage-db-synchronous"
+      ]
+    },
+    {
+      "field": "storageIndexDirectory",
+      "javaType": "String",
+      "names": [
+        "--storage-index-directory"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 88
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--storage-index-directory"
+      ]
+    },
+    {
+      "field": "storageIndexSwitch",
+      "javaType": "String",
+      "names": [
+        "--storage-index-switch"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 92
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--storage-index-switch"
+      ]
+    },
+    {
+      "field": "storageTransactionHistorySwitch",
+      "javaType": "String",
+      "names": [
+        "--storage-transactionHistory-switch"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 97
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--storage-transactionHistory-switch"
+      ]
+    },
+    {
+      "field": "contractParseEnable",
+      "javaType": "String",
+      "names": [
+        "--contract-parse-enable"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 102
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--contract-parse-enable"
+      ]
+    },
+    {
+      "field": "supportConstant",
+      "javaType": "boolean",
+      "names": [
+        "--support-constant"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 109
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--support-constant"
+      ]
+    },
+    {
+      "field": "maxEnergyLimitForConstant",
+      "javaType": "long",
+      "names": [
+        "--max-energy-limit-for-constant"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 114
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--max-energy-limit-for-constant"
+      ]
+    },
+    {
+      "field": "lruCacheSize",
+      "javaType": "int",
+      "names": [
+        "--lru-cache-size"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 119
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--lru-cache-size"
+      ]
+    },
+    {
+      "field": "debug",
+      "javaType": "boolean",
+      "names": [
+        "--debug"
+      ],
+      "positional": false,
+      "deprecated": false,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 124
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--debug"
+      ]
+    },
+    {
+      "field": "minTimeRatio",
+      "javaType": "double",
+      "names": [
+        "--min-time-ratio"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 128
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--min-time-ratio"
+      ]
+    },
+    {
+      "field": "maxTimeRatio",
+      "javaType": "double",
+      "names": [
+        "--max-time-ratio"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 133
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--max-time-ratio"
+      ]
+    },
+    {
+      "field": "saveInternalTx",
+      "javaType": "boolean",
+      "names": [
+        "--save-internaltx"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 138
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--save-internaltx"
+      ]
+    },
+    {
+      "field": "saveFeaturedInternalTx",
+      "javaType": "boolean",
+      "names": [
+        "--save-featured-internaltx"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 143
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--save-featured-internaltx"
+      ]
+    },
+    {
+      "field": "saveCancelAllUnfreezeV2Details",
+      "javaType": "boolean",
+      "names": [
+        "--save-cancel-all-unfreeze-v2-details"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 149
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--save-cancel-all-unfreeze-v2-details"
+      ]
+    },
+    {
+      "field": "longRunningTime",
+      "javaType": "int",
+      "names": [
+        "--long-running-time"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 156
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--long-running-time"
+      ]
+    },
+    {
+      "field": "maxHttpConnectNumber",
+      "javaType": "int",
+      "names": [
+        "--max-connect-number"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 160
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--max-connect-number"
+      ]
+    },
+    {
+      "field": "rpcThreadNum",
+      "javaType": "int",
+      "names": [
+        "--rpc-thread"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 165
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--rpc-thread"
+      ]
+    },
+    {
+      "field": "solidityThreads",
+      "javaType": "int",
+      "names": [
+        "--solidity-thread"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 169
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--solidity-thread"
+      ]
+    },
+    {
+      "field": "validateSignThreadNum",
+      "javaType": "int",
+      "names": [
+        "--validate-sign-thread"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 173
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--validate-sign-thread"
+      ]
+    },
+    {
+      "field": "trustNodeAddr",
+      "javaType": "String",
+      "names": [
+        "--trust-node"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 177
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--trust-node"
+      ]
+    },
+    {
+      "field": "historyBalanceLookup",
+      "javaType": "boolean",
+      "names": [
+        "--history-balance-lookup"
+      ],
+      "positional": false,
+      "deprecated": true,
+      "arity": null,
+      "source": {
+        "path": "java-tron/framework/src/main/java/org/tron/core/config/args/CLIParameter.java",
+        "line": 181
+      },
+      "mode": "all",
+      "rustParserBranches": [
+        "--history-balance-lookup"
+      ]
+    }
+  ],
+  "aliases": [
+    {
+      "accepted": "-c",
+      "canonical": "--config",
+      "field": "shellConfFileName"
+    },
+    {
+      "accepted": "-d",
+      "canonical": "--output-directory",
+      "field": "outputDirectory"
+    },
+    {
+      "accepted": "-h",
+      "canonical": "--help",
+      "field": "help"
+    },
+    {
+      "accepted": "-v",
+      "canonical": "--version",
+      "field": "version"
+    },
+    {
+      "accepted": "-w",
+      "canonical": "--witness",
+      "field": "witness"
+    },
+    {
+      "accepted": "-p",
+      "canonical": "--private-key",
+      "field": "privateKey"
+    }
+  ],
+  "modes": [
+    "full",
+    "solidity",
+    "keystore-factory",
+    "witness",
+    "p2p-disabled",
+    "pbft"
+  ],
+  "precedenceLowToHigh": [
+    "reference",
+    "packaged-or-external",
+    "assigned-cli",
+    "event-stage",
+    "platform-stage",
+    "witness-stage"
+  ],
+  "dynamicReload": {
+    "mutable": [
+      "node.active",
+      "node.passive",
+      "derived node.trust"
+    ],
+    "immutableAllOtherKeys": true,
+    "javaSource": "java-tron/framework/src/main/java/org/tron/core/config/args/DynamicArgs.java"
+  },
+  "counts": {
+    "configKeys": 239,
+    "cliFields": 38,
+    "cliNames": 43,
+    "unmappedKeys": 0,
+    "unmappedOptions": 0
+  },
+  "unmappedKeys": [],
+  "unmappedOptions": []
+}

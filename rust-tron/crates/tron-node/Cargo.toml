@@ -20,6 +20,7 @@ tron-shielded = { path = "../tron-shielded" }
 tron-state = { path = "../tron-state" }
 tron-storage = { path = "../tron-storage" }
 tron-tvm = { path = "../tron-tvm" }
+tokio = { version = "=1.53.1", features = ["macros", "rt", "sync", "time"] }
 
 [lints]
 workspace = true

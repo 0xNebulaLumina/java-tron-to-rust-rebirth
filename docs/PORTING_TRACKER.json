@@ -422,71 +422,103 @@
     {
       "id": "C003",
       "title": "Configuration, CLI, and lifecycle",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-08-29",
       "resume": null,
       "items": [
         {
           "id": "C003.01",
           "description": "Port canonical defaults from `reference.conf` and packaged runtime config.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Canonical pinned reference and packaged defaults are bundled and source-hash gated."
         },
         {
           "id": "C003.02",
           "description": "Port Node/VM/Storage/Genesis/Block/Committee/Misc/Event/RateLimiter/Metrics models.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Typed configuration domains and compatibility bridge are implemented in tron-config."
         },
         {
           "id": "C003.03",
           "description": "Preserve key casing, aliases, typos, object-list parsing, clamps, sentinels, and platform constraints.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Java casing, aliases, typos, clamps, sentinels, object lists, and platform rules are preserved and inventoried."
         },
         {
           "id": "C003.04",
           "description": "Implement precedence: CLI parse → config → CLI override → event → platform → witness post-processing.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "The fixed config, assigned CLI, event, platform, and witness precedence pipeline is implemented."
         },
         {
           "id": "C003.05",
           "description": "Implement all FullNode/Solidity/witness/p2p-disabled/keystore-factory CLI options and seed operands.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "CLI aliases, modes, witness inputs, p2p disable, deprecated overrides, and positional seeds are implemented."
         },
         {
           "id": "C003.06",
           "description": "Port config parity, comments, depth, naming, and unique-port gates.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Configuration parity and enabled API unique-port validation are implemented."
         },
         {
           "id": "C003.08",
           "description": "Generate the stable config/CLI inventory with source locations, domains, aliases, modes and precedence edges; map defaults, invalid values, clamps, sentinels, duplicate ports, exit/stdout/stderr and side effects to executable Java/Rust cases with zero gaps.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Source-derived key/CLI inventory and differential fixture matrix require zero unmapped keys and options."
         },
         {
           "id": "C003.07",
           "description": "Define explicit service construction/start/stop order and failure propagation with no static mutable singleton.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Explicit dependency-injected service construction, ordered startup, reverse shutdown, cancellation, and failure aggregation are implemented."
         }
       ],
       "gate": {
         "id": "C003.V",
-        "description": "Every Java key and option is matched or covered by an approved decision; defaults/error/precedence differentials pass.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: all 239 configuration keys, 43 CLI names, 25 differential fixtures, 16 configuration tests, and 11 lifecycle tests pass, and the Rust workspace all-targets check passes with the lockfile enforced.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C003 source inventory and differential fixture gate",
+            "cwd": ".",
+            "argv": ["python3", "tools/config/c003_gate.py"],
+            "timeout_seconds": 60
+          },
+          {
+            "name": "C003 configuration differentials",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "--locked", "-p", "tron-config", "--test", "c003_config_differentials"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C003 lifecycle differentials",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "--locked", "-p", "tron-node", "--test", "c003_lifecycle_differentials"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "Rust workspace all-targets check",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "check", "--workspace", "--all-targets", "--locked"],
+            "timeout_seconds": 300
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C003.R.01",
+            "summary": "Final review required confirmation of complete config and CLI inventory coverage, differential fixture consumption, precedence and validation behavior, lifecycle ordering and failure propagation, and the complete locked validation results.",
+            "status": "closed",
+            "resolution": "Approved after confirming the final gate results: 239 configuration keys, 43 CLI names, 25 differential fixtures, 16 configuration tests, and 11 lifecycle tests pass; the locked Rust workspace all-targets check also passes. C003 is complete and the next ready item is C004.01."
+          }
+        ]
       },
       "blocker": null
     },
