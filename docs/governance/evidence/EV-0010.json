@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0010",
   "owning_item": "C000.05",
-  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
+  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -52,7 +52,7 @@
     {
       "path": "docs/oracles/runner-protocol.md",
       "mode": "100644",
-      "sha256": "cc02a0d33a1e3bd5661d022c06273e7dfe95a9497489ef3d36363b87be484e25"
+      "sha256": "dc48124b4614d3a9c8992ece5345dab68ade8b2dee4fcd52fe79d13e414e7e37"
     },
     {
       "path": "tools/platform/c000_artifacts.py",
@@ -62,7 +62,7 @@
     {
       "path": "tools/platform/run",
       "mode": "100755",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "sha256": "8ac6a65cfcd1be677cd47292d1e02325a3b45c035ec3bdbc2d0dc1545124e0d6"
     },
     {
       "path": "tools/reference-runner/java-runner",
@@ -72,7 +72,7 @@
     {
       "path": "tools/reference-runner/runner.py",
       "mode": "100755",
-      "sha256": "cff1909a30e6f84ee43b776536db4041e4766b78e1d08f3494eb2406472ef3db"
+      "sha256": "6a7dfa8c44415414bab3109ed25fc36340c8a72d37cf9ad4a5231fac8d5afbf6"
     },
     {
       "path": "tools/reference-runner/rust-runner",
@@ -82,7 +82,7 @@
     {
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
+      "sha256": "f7e871e189fedae9f71e470311ae36e4ec091625cb51d2fd65ff25b32312f35a"
     }
   ],
   "command": [
@@ -105,94 +105,50 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-151429Z-0010",
+  "run_id": "c000-descendant-20260829-152801Z-0010",
   "cases": [
     {
-      "id": "C000.05",
-      "outcome": "pass",
       "expected": {
         "artifacts_present": true,
         "documents_parse": true,
         "semantic_contracts_current": true
       },
+      "id": "C000.05",
       "observed": {
         "artifact_count": 12,
         "issues": []
       },
+      "outcome": "pass",
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:14:29Z",
-  "ended_at": "2026-08-29T15:14:29Z",
+  "started_at": "2026-08-29T15:28:01Z",
+  "ended_at": "2026-08-29T15:28:01Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
+    "cases": [
+      "C000.05"
+    ],
     "artifacts_present": true,
     "documents_parse": true,
     "semantic_contracts_current": true
   },
   "observed": {
-    "artifact_count": 12,
+    "case_outcomes": {
+      "C000.05": "pass"
+    },
     "issues": []
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0010.stdout.txt",
-    "sha256": "c391a0b1d984380e5c78e66819a397b0a290df669fd06c4afcd233ce8b660fda"
+    "sha256": "23f41e63843fb9588f903d1d5f95c375387249fd12d9a3fe923001a0e4448291"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0010.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
-  "artifacts": [
-    {
-      "path": "docs/oracles/fixtures/v1/mismatch-error.json",
-      "sha256": "37a6a62bfbf7ba355637da04400f764707b7068dc0ac9a494a66522ee8193530"
-    },
-    {
-      "path": "docs/oracles/fixtures/v1/mismatch-forbidden-normalization.json",
-      "sha256": "4842e34f710e223d457649faf73d344d0b12cb7baf92bbf9cf88ece065b71f05"
-    },
-    {
-      "path": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-class.json",
-      "sha256": "4435daa383c4d7559a00a11aa79e5002a08e94948bd48a6a39974950c4c538b3"
-    },
-    {
-      "path": "docs/oracles/fixtures/v1/mismatch-normalization-forbidden-pointer.json",
-      "sha256": "ad1616d90a7f148200b40a079aca401724a40a0a3af0a86032a5da92c6907af3"
-    },
-    {
-      "path": "docs/oracles/fixtures/v1/mismatch-output.json",
-      "sha256": "accae08c09be4a36bb41886c61ebc7c37cf2255157bd9453e1d986d6f727e6a1"
-    },
-    {
-      "path": "docs/oracles/fixtures/v1/mismatch-state.json",
-      "sha256": "29f22f2038eb9b209a56ee2eeb860aceeb00ae615e697feb63f5ddeb118186b8"
-    },
-    {
-      "path": "docs/oracles/fixtures/v1/negative.json",
-      "sha256": "e626eebc2f25e6717715bade230fce8260ab0ca8fb1bd7670d45f74aaca9245b"
-    },
-    {
-      "path": "docs/oracles/fixtures/v1/positive.json",
-      "sha256": "aa32a0a57c7c17885a6aac20809d14f961be15fd2e350e0d42f0d4d431ce68d6"
-    },
-    {
-      "path": "docs/oracles/runner-protocol.md",
-      "sha256": "cc02a0d33a1e3bd5661d022c06273e7dfe95a9497489ef3d36363b87be484e25"
-    },
-    {
-      "path": "tools/reference-runner/java-runner",
-      "sha256": "deed7ed1b637cb82dc380c9da5eb56611ee8b8e8d172a74e592ca336a6298906"
-    },
-    {
-      "path": "tools/reference-runner/runner.py",
-      "sha256": "cff1909a30e6f84ee43b776536db4041e4766b78e1d08f3494eb2406472ef3db"
-    },
-    {
-      "path": "tools/reference-runner/rust-runner",
-      "sha256": "360ed657851ac05f7609da5fa6e0bf78a283086789b4f1eb71c487ab41a870b9"
-    }
-  ],
+  "artifacts": [],
   "invalidation_edges": [
     {
       "kind": "schema",
@@ -252,7 +208,7 @@
       "kind": "source",
       "path": "docs/oracles/runner-protocol.md",
       "mode": "100644",
-      "sha256": "cc02a0d33a1e3bd5661d022c06273e7dfe95a9497489ef3d36363b87be484e25"
+      "sha256": "dc48124b4614d3a9c8992ece5345dab68ade8b2dee4fcd52fe79d13e414e7e37"
     },
     {
       "kind": "generator",
@@ -264,7 +220,7 @@
       "kind": "generator",
       "path": "tools/platform/run",
       "mode": "100755",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "sha256": "8ac6a65cfcd1be677cd47292d1e02325a3b45c035ec3bdbc2d0dc1545124e0d6"
     },
     {
       "kind": "source",
@@ -276,7 +232,7 @@
       "kind": "source",
       "path": "tools/reference-runner/runner.py",
       "mode": "100755",
-      "sha256": "cff1909a30e6f84ee43b776536db4041e4766b78e1d08f3494eb2406472ef3db"
+      "sha256": "6a7dfa8c44415414bab3109ed25fc36340c8a72d37cf9ad4a5231fac8d5afbf6"
     },
     {
       "kind": "source",
@@ -288,7 +244,7 @@
       "kind": "source",
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
+      "sha256": "f7e871e189fedae9f71e470311ae36e4ec091625cb51d2fd65ff25b32312f35a"
     }
   ],
   "review_bindings": [],

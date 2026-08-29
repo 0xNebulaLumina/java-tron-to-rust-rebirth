@@ -1,48 +1,43 @@
 {
   "schema_version": 1,
   "evidence_id": "EV-0007",
-  "owning_item": "C000.02",
-  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
+  "owning_item": "C000.14",
+  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
   "subject_artifacts": [
-    {
-      "path": "docs/architecture/toolchains-and-platforms.md",
-      "mode": "100644",
-      "sha256": "da6fbd2ac97cd2647a72e2084c35d35a5319ef811ab1b2792bc1977af0200ae0"
-    },
-    {
-      "path": "docs/architecture/toolchains-platform-policy.md",
-      "mode": "100644",
-      "sha256": "806265e2c674ae0987507f54158c57b14ddce7c444f33fb3452481ee6f9d5b69"
-    },
     {
       "path": "docs/governance/evidence-v1.schema.json",
       "mode": "100644",
       "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
     },
     {
-      "path": "rust-tron/rust-toolchain.toml",
-      "mode": "100644",
-      "sha256": "8adfc1727670e54730d1c2bdfec839504cb9cd2d95c4fb7cf11b5874c3f38f80"
+      "path": "tools/platform/c000_smoke.py",
+      "mode": "100755",
+      "sha256": "afffa85d0b70b6302bd013427b99b8defa04ee5cd1d9b167c546b42b6cd764c4"
     },
     {
-      "path": "tools/platform/c000_artifacts.py",
+      "path": "tools/reference-runner/java-runner",
       "mode": "100755",
-      "sha256": "54b1d4edac59b67964350ebde7ba12f07b40a4eadd7b78ce62aeec5a091419ab"
+      "sha256": "deed7ed1b637cb82dc380c9da5eb56611ee8b8e8d172a74e592ca336a6298906"
+    },
+    {
+      "path": "tools/reference-runner/rust-runner",
+      "mode": "100755",
+      "sha256": "360ed657851ac05f7609da5fa6e0bf78a283086789b4f1eb71c487ab41a870b9"
     },
     {
       "path": "tools/platform/run",
       "mode": "100755",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "sha256": "8ac6a65cfcd1be677cd47292d1e02325a3b45c035ec3bdbc2d0dc1545124e0d6"
     },
     {
-      "path": "tools/tracker/validate.py",
-      "mode": "100755",
-      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
+      "path": "docs/oracles/fixtures/v1/positive.json",
+      "mode": "100644",
+      "sha256": "aa32a0a57c7c17885a6aac20809d14f961be15fd2e350e0d42f0d4d431ce68d6"
     }
   ],
   "command": [
-    "tools/platform/run",
-    "c000-artifacts"
+    "python3",
+    "tools/platform/c000_smoke.py"
   ],
   "environment": {
     "tree_state": "clean",
@@ -56,108 +51,133 @@
     "host_architecture": "x86_64",
     "execution": "native",
     "working_directory": ".",
-    "cells": [],
+    "cells": [
+      "smoke"
+    ],
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-151429Z-0007",
+  "run_id": "c000-descendant-20260829-152801Z-0007",
   "cases": [
     {
-      "id": "C000.02",
+      "id": "java-file",
       "outcome": "pass",
       "expected": {
-        "artifacts_present": true,
-        "documents_parse": true,
-        "semantic_contracts_current": true
+        "outcome": "pass"
       },
       "observed": {
-        "artifact_count": 4,
-        "issues": []
+        "outcome": "pass",
+        "observer": "orchestrator"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "rust-stdin",
+      "outcome": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
+      "observed": {
+        "outcome": "pass",
+        "observer": "orchestrator"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "invalid-invocation",
+      "outcome": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
+      "observed": {
+        "outcome": "pass",
+        "observer": "orchestrator"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "platform-invalid",
+      "outcome": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
+      "observed": {
+        "outcome": "pass",
+        "observer": "orchestrator"
+      },
+      "skip_disposition": null
+    },
+    {
+      "id": "private-temp-cleanup",
+      "outcome": "pass",
+      "expected": {
+        "outcome": "pass"
+      },
+      "observed": {
+        "outcome": "pass",
+        "observer": "orchestrator"
       },
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:14:29Z",
-  "ended_at": "2026-08-29T15:14:29Z",
+  "started_at": "2026-08-29T15:28:01Z",
+  "ended_at": "2026-08-29T15:28:01Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
-    "artifacts_present": true,
-    "documents_parse": true,
-    "semantic_contracts_current": true
+    "outcome": "pass",
+    "case_count": 5
   },
   "observed": {
-    "artifact_count": 4,
-    "issues": []
+    "outcome": "pass",
+    "case_count": 5,
+    "observer": "orchestrator"
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0007.stdout.txt",
-    "sha256": "c391a0b1d984380e5c78e66819a397b0a290df669fd06c4afcd233ce8b660fda"
+    "sha256": "523b3cf70b19b2e79932ee9fdfdffb5e3d9bc25cd918cdddf51034e9ab1745db"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0007.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
-  "artifacts": [
-    {
-      "path": "docs/architecture/toolchains-and-platforms.md",
-      "sha256": "da6fbd2ac97cd2647a72e2084c35d35a5319ef811ab1b2792bc1977af0200ae0"
-    },
-    {
-      "path": "docs/architecture/toolchains-platform-policy.md",
-      "sha256": "806265e2c674ae0987507f54158c57b14ddce7c444f33fb3452481ee6f9d5b69"
-    },
-    {
-      "path": "java-tron/gradle/wrapper/gradle-wrapper.properties",
-      "sha256": "2e4b4b216e7444cdebfa9c542b8eac0548e85c94e0c709de9a6eb7a69cc9a975"
-    },
-    {
-      "path": "rust-tron/rust-toolchain.toml",
-      "sha256": "8adfc1727670e54730d1c2bdfec839504cb9cd2d95c4fb7cf11b5874c3f38f80"
-    }
-  ],
+  "artifacts": [],
   "invalidation_edges": [
     {
       "kind": "source",
-      "path": "docs/architecture/toolchains-and-platforms.md",
-      "mode": "100644",
-      "sha256": "da6fbd2ac97cd2647a72e2084c35d35a5319ef811ab1b2792bc1977af0200ae0"
-    },
-    {
-      "kind": "source",
-      "path": "docs/architecture/toolchains-platform-policy.md",
-      "mode": "100644",
-      "sha256": "806265e2c674ae0987507f54158c57b14ddce7c444f33fb3452481ee6f9d5b69"
-    },
-    {
-      "kind": "schema",
       "path": "docs/governance/evidence-v1.schema.json",
       "mode": "100644",
       "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
     },
     {
       "kind": "source",
-      "path": "rust-tron/rust-toolchain.toml",
-      "mode": "100644",
-      "sha256": "8adfc1727670e54730d1c2bdfec839504cb9cd2d95c4fb7cf11b5874c3f38f80"
-    },
-    {
-      "kind": "generator",
-      "path": "tools/platform/c000_artifacts.py",
+      "path": "tools/platform/c000_smoke.py",
       "mode": "100755",
-      "sha256": "54b1d4edac59b67964350ebde7ba12f07b40a4eadd7b78ce62aeec5a091419ab"
-    },
-    {
-      "kind": "generator",
-      "path": "tools/platform/run",
-      "mode": "100755",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "sha256": "afffa85d0b70b6302bd013427b99b8defa04ee5cd1d9b167c546b42b6cd764c4"
     },
     {
       "kind": "source",
-      "path": "tools/tracker/validate.py",
+      "path": "tools/reference-runner/java-runner",
       "mode": "100755",
-      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
+      "sha256": "deed7ed1b637cb82dc380c9da5eb56611ee8b8e8d172a74e592ca336a6298906"
+    },
+    {
+      "kind": "source",
+      "path": "tools/reference-runner/rust-runner",
+      "mode": "100755",
+      "sha256": "360ed657851ac05f7609da5fa6e0bf78a283086789b4f1eb71c487ab41a870b9"
+    },
+    {
+      "kind": "source",
+      "path": "tools/platform/run",
+      "mode": "100755",
+      "sha256": "8ac6a65cfcd1be677cd47292d1e02325a3b45c035ec3bdbc2d0dc1545124e0d6"
+    },
+    {
+      "kind": "source",
+      "path": "docs/oracles/fixtures/v1/positive.json",
+      "mode": "100644",
+      "sha256": "aa32a0a57c7c17885a6aac20809d14f961be15fd2e350e0d42f0d4d431ce68d6"
     }
   ],
   "review_bindings": [],

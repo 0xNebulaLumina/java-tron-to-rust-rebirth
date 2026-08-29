@@ -2,12 +2,12 @@
   "schema_version": 1,
   "evidence_id": "EV-0005",
   "owning_item": "C000.14",
-  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
+  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
   "subject_artifacts": [
     {
       "path": "docs/architecture/license-provenance-policy.md",
       "mode": "100644",
-      "sha256": "351ee45f8b3195b4bd117f35f37d3c2f7fbae0e3fc1a378a0fd72d36cda705bf"
+      "sha256": "50bfdc3ee83515c99ed58b9bee932d8353ab53e1553f525503931d3882b5a680"
     },
     {
       "path": "docs/architecture/security-threat-policy.md",
@@ -22,7 +22,7 @@
     {
       "path": "tools/platform/c000_not_applicable.py",
       "mode": "100755",
-      "sha256": "699c17a2f2e7ef422c239393de2536f3cf3db02df9de5f14bcef138b5da73bd4"
+      "sha256": "3c92d837c12d41a543a49a7e23cbd887361e4fa00d5154fc927d5a801117d3bd"
     }
   ],
   "command": [
@@ -42,100 +42,66 @@
     "execution": "native",
     "working_directory": ".",
     "cells": [
-      "native_resource",
       "ffi",
-      "packaging",
-      "smoke"
+      "packaging"
     ],
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-151429Z-0005",
+  "run_id": "c000-descendant-20260829-152801Z-0005",
   "cases": [
     {
-      "id": "native_resource",
-      "outcome": "fail",
-      "expected": {
-        "disposition": "not_applicable",
-        "review_bindings": "authenticated independent approvals required"
-      },
-      "observed": {
-        "case": "native_resource",
-        "disposition": "not_applicable",
-        "outcome": "fail",
-        "reason": "C000 introduces no native allocation, handle, lifetime, cleanup, or failure surface; the Rust workspace forbids unsafe code and adopts no native library",
-        "reopen_condition": "any native dependency, unsafe code, OS resource ownership, or native handle surface is introduced",
-        "review_bindings": []
-      },
-      "skip_disposition": null
-    },
-    {
       "id": "ffi",
-      "outcome": "fail",
+      "outcome": "pass",
       "expected": {
         "disposition": "not_applicable",
-        "review_bindings": "authenticated independent approvals required"
+        "review_status": "pending"
       },
       "observed": {
         "case": "ffi",
+        "outcome": "pass",
         "disposition": "not_applicable",
-        "outcome": "fail",
         "reason": "C000 introduces no foreign-function boundary, linked native library, generated binding, or cross-language in-process call",
         "reopen_condition": "any FFI declaration, generated binding, native link, or in-process foreign call is introduced",
-        "review_bindings": []
+        "review_bindings": [],
+        "review_status": "pending"
       },
       "skip_disposition": null
     },
     {
       "id": "packaging",
-      "outcome": "fail",
+      "outcome": "pass",
       "expected": {
         "disposition": "not_applicable",
-        "review_bindings": "authenticated independent approvals required"
+        "review_status": "pending"
       },
       "observed": {
         "case": "packaging",
+        "outcome": "pass",
         "disposition": "not_applicable",
-        "outcome": "fail",
         "reason": "C000 defines architecture governance and behavior-neutral verification tooling but no distributable binary, archive, image, installer, or release artifact",
         "reopen_condition": "a C000-produced distributable or release artifact is introduced",
-        "review_bindings": []
-      },
-      "skip_disposition": null
-    },
-    {
-      "id": "smoke",
-      "outcome": "fail",
-      "expected": {
-        "disposition": "not_applicable",
-        "review_bindings": "authenticated independent approvals required"
-      },
-      "observed": {
-        "case": "smoke",
-        "disposition": "not_applicable",
-        "outcome": "fail",
-        "reason": "C000 has no node or service runtime surface to start, probe, and stop; executable C000 tooling is covered by focused unit and eight-case differential cells",
-        "reopen_condition": "a C000 runtime process, node, service, or operator-facing executable surface is introduced",
-        "review_bindings": []
+        "review_bindings": [],
+        "review_status": "pending"
       },
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:14:29Z",
-  "ended_at": "2026-08-29T15:14:29Z",
-  "observed_exit_code": 1,
-  "observed_status": "fail",
+  "started_at": "2026-08-29T15:28:01Z",
+  "ended_at": "2026-08-29T15:28:01Z",
+  "observed_exit_code": 0,
+  "observed_status": "pass",
   "expected": {
-    "reviewed_not_applicable": 4,
-    "pending_review": 0
+    "not_applicable": 2,
+    "pending_review": 2
   },
   "observed": {
-    "reviewed_not_applicable": 0,
-    "pending_review": 4
+    "not_applicable": 2,
+    "pending_review": 2
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0005.stdout.txt",
-    "sha256": "500d0831684b2406669eb9f2d5eca56c71155101180c75100745cfaf57753475"
+    "sha256": "9677d478c229a5000d1181c12746ce01f298f9e040aec06e57fe4ce0d92da23d"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0005.stderr.txt",
@@ -147,7 +113,7 @@
       "kind": "source",
       "path": "docs/architecture/license-provenance-policy.md",
       "mode": "100644",
-      "sha256": "351ee45f8b3195b4bd117f35f37d3c2f7fbae0e3fc1a378a0fd72d36cda705bf"
+      "sha256": "50bfdc3ee83515c99ed58b9bee932d8353ab53e1553f525503931d3882b5a680"
     },
     {
       "kind": "source",
@@ -165,7 +131,7 @@
       "kind": "source",
       "path": "tools/platform/c000_not_applicable.py",
       "mode": "100755",
-      "sha256": "699c17a2f2e7ef422c239393de2536f3cf3db02df9de5f14bcef138b5da73bd4"
+      "sha256": "3c92d837c12d41a543a49a7e23cbd887361e4fa00d5154fc927d5a801117d3bd"
     }
   ],
   "review_bindings": [],

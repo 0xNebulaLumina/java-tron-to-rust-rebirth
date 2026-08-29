@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0004",
   "owning_item": "C000.14",
-  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
+  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -67,12 +67,12 @@
     {
       "path": "tools/platform/c000_differential.py",
       "mode": "100755",
-      "sha256": "65bc44ccde4d59cbe6dea783dce98963bdcb16954b69fd3b22f806be2f2a99e0"
+      "sha256": "4633f9ee2ea2ee4b2fc7665650a2ae40d4fde3c2b2b54e319f2bc4c142d6449f"
     },
     {
       "path": "tools/reference-runner/runner.py",
       "mode": "100755",
-      "sha256": "cff1909a30e6f84ee43b776536db4041e4766b78e1d08f3494eb2406472ef3db"
+      "sha256": "6a7dfa8c44415414bab3109ed25fc36340c8a72d37cf9ad4a5231fac8d5afbf6"
     }
   ],
   "command": [
@@ -97,7 +97,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-151429Z-0004",
+  "run_id": "c000-descendant-20260829-152801Z-0004",
   "cases": [
     {
       "id": "positive",
@@ -266,8 +266,8 @@
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:14:29Z",
-  "ended_at": "2026-08-29T15:14:29Z",
+  "started_at": "2026-08-29T15:28:01Z",
+  "ended_at": "2026-08-29T15:28:01Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
@@ -364,13 +364,13 @@
       "kind": "source",
       "path": "tools/platform/c000_differential.py",
       "mode": "100755",
-      "sha256": "65bc44ccde4d59cbe6dea783dce98963bdcb16954b69fd3b22f806be2f2a99e0"
+      "sha256": "4633f9ee2ea2ee4b2fc7665650a2ae40d4fde3c2b2b54e319f2bc4c142d6449f"
     },
     {
       "kind": "source",
       "path": "tools/reference-runner/runner.py",
       "mode": "100755",
-      "sha256": "cff1909a30e6f84ee43b776536db4041e4766b78e1d08f3494eb2406472ef3db"
+      "sha256": "6a7dfa8c44415414bab3109ed25fc36340c8a72d37cf9ad4a5231fac8d5afbf6"
     }
   ],
   "review_bindings": [],

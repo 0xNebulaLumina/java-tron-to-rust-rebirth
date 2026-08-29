@@ -2,12 +2,12 @@
   "schema_version": 1,
   "evidence_id": "EV-0017",
   "owning_item": "C000.12",
-  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
+  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
   "subject_artifacts": [
     {
       "path": "docs/architecture/DR-004-custom-actuator-extensions.md",
       "mode": "100644",
-      "sha256": "f4dda75755715856bffee2a8dd84d67e0ad16e6f801aa989cd2e751de95b41a9"
+      "sha256": "26a20a37a3843d6bcaf6dbf85dea34309a8e2c8db98e1f8c0038ac090c561483"
     },
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -22,12 +22,12 @@
     {
       "path": "tools/platform/run",
       "mode": "100755",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "sha256": "8ac6a65cfcd1be677cd47292d1e02325a3b45c035ec3bdbc2d0dc1545124e0d6"
     },
     {
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
+      "sha256": "f7e871e189fedae9f71e470311ae36e4ec091625cb51d2fd65ff25b32312f35a"
     }
   ],
   "command": [
@@ -50,56 +50,56 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-151429Z-0017",
+  "run_id": "c000-descendant-20260829-152801Z-0017",
   "cases": [
     {
-      "id": "C000.12",
-      "outcome": "pass",
       "expected": {
         "artifacts_present": true,
         "documents_parse": true,
         "semantic_contracts_current": true
       },
+      "id": "C000.12",
       "observed": {
         "artifact_count": 1,
         "issues": []
       },
+      "outcome": "pass",
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:14:29Z",
-  "ended_at": "2026-08-29T15:14:29Z",
+  "started_at": "2026-08-29T15:28:01Z",
+  "ended_at": "2026-08-29T15:28:01Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
+    "cases": [
+      "C000.12"
+    ],
     "artifacts_present": true,
     "documents_parse": true,
     "semantic_contracts_current": true
   },
   "observed": {
-    "artifact_count": 1,
+    "case_outcomes": {
+      "C000.12": "pass"
+    },
     "issues": []
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0017.stdout.txt",
-    "sha256": "c391a0b1d984380e5c78e66819a397b0a290df669fd06c4afcd233ce8b660fda"
+    "sha256": "23f41e63843fb9588f903d1d5f95c375387249fd12d9a3fe923001a0e4448291"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0017.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
-  "artifacts": [
-    {
-      "path": "docs/architecture/DR-004-custom-actuator-extensions.md",
-      "sha256": "f4dda75755715856bffee2a8dd84d67e0ad16e6f801aa989cd2e751de95b41a9"
-    }
-  ],
+  "artifacts": [],
   "invalidation_edges": [
     {
       "kind": "source",
       "path": "docs/architecture/DR-004-custom-actuator-extensions.md",
       "mode": "100644",
-      "sha256": "f4dda75755715856bffee2a8dd84d67e0ad16e6f801aa989cd2e751de95b41a9"
+      "sha256": "26a20a37a3843d6bcaf6dbf85dea34309a8e2c8db98e1f8c0038ac090c561483"
     },
     {
       "kind": "schema",
@@ -117,13 +117,13 @@
       "kind": "generator",
       "path": "tools/platform/run",
       "mode": "100755",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "sha256": "8ac6a65cfcd1be677cd47292d1e02325a3b45c035ec3bdbc2d0dc1545124e0d6"
     },
     {
       "kind": "source",
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
+      "sha256": "f7e871e189fedae9f71e470311ae36e4ec091625cb51d2fd65ff25b32312f35a"
     }
   ],
   "review_bindings": [],

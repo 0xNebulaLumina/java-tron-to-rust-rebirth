@@ -2,12 +2,12 @@
   "schema_version": 1,
   "evidence_id": "EV-0016",
   "owning_item": "C000.11",
-  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
+  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
   "subject_artifacts": [
     {
       "path": "docs/governance/DD-template.md",
       "mode": "100644",
-      "sha256": "1accc78d14d144f8b231bcef0ba65cc25e636cdff9e63cb78678f71883f9b265"
+      "sha256": "2a0e7cdca3084e8badfe9f2ae1245d3c62c0bf70e4cd3962dbd9fa6cca1264fb"
     },
     {
       "path": "docs/governance/adoption-inventory-v1.schema.json",
@@ -22,7 +22,7 @@
     {
       "path": "docs/governance/dependency-decisions.v1.json",
       "mode": "100644",
-      "sha256": "718ba2160289a62e674154b52a2ff8ab709a2bc4d66e857df01852275a52ad20"
+      "sha256": "eb9f59a1843225fb2547bf30afe9a1b381603524de0b3cc130ff1a51260d0397"
     },
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -37,12 +37,12 @@
     {
       "path": "tools/platform/run",
       "mode": "100755",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "sha256": "8ac6a65cfcd1be677cd47292d1e02325a3b45c035ec3bdbc2d0dc1545124e0d6"
     },
     {
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
+      "sha256": "f7e871e189fedae9f71e470311ae36e4ec091625cb51d2fd65ff25b32312f35a"
     }
   ],
   "command": [
@@ -65,68 +65,56 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-151429Z-0016",
+  "run_id": "c000-descendant-20260829-152801Z-0016",
   "cases": [
     {
-      "id": "C000.11",
-      "outcome": "pass",
       "expected": {
         "artifacts_present": true,
         "documents_parse": true,
         "semantic_contracts_current": true
       },
+      "id": "C000.11",
       "observed": {
         "artifact_count": 4,
         "issues": []
       },
+      "outcome": "pass",
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:14:29Z",
-  "ended_at": "2026-08-29T15:14:29Z",
+  "started_at": "2026-08-29T15:28:01Z",
+  "ended_at": "2026-08-29T15:28:01Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
+    "cases": [
+      "C000.11"
+    ],
     "artifacts_present": true,
     "documents_parse": true,
     "semantic_contracts_current": true
   },
   "observed": {
-    "artifact_count": 4,
+    "case_outcomes": {
+      "C000.11": "pass"
+    },
     "issues": []
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0016.stdout.txt",
-    "sha256": "c391a0b1d984380e5c78e66819a397b0a290df669fd06c4afcd233ce8b660fda"
+    "sha256": "23f41e63843fb9588f903d1d5f95c375387249fd12d9a3fe923001a0e4448291"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0016.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
-  "artifacts": [
-    {
-      "path": "docs/governance/DD-template.md",
-      "sha256": "1accc78d14d144f8b231bcef0ba65cc25e636cdff9e63cb78678f71883f9b265"
-    },
-    {
-      "path": "docs/governance/adoption-inventory-v1.schema.json",
-      "sha256": "dede0d4e6f683498282250604d65b5c341fa9176a5fa4d2d3b4d21a32299d612"
-    },
-    {
-      "path": "docs/governance/dependency-decision-v1.schema.json",
-      "sha256": "62336f1abdc5dbb7b6a8811447cb87fd41119a1941a03766b9d58f5c0857041d"
-    },
-    {
-      "path": "docs/governance/dependency-decisions.v1.json",
-      "sha256": "718ba2160289a62e674154b52a2ff8ab709a2bc4d66e857df01852275a52ad20"
-    }
-  ],
+  "artifacts": [],
   "invalidation_edges": [
     {
       "kind": "source",
       "path": "docs/governance/DD-template.md",
       "mode": "100644",
-      "sha256": "1accc78d14d144f8b231bcef0ba65cc25e636cdff9e63cb78678f71883f9b265"
+      "sha256": "2a0e7cdca3084e8badfe9f2ae1245d3c62c0bf70e4cd3962dbd9fa6cca1264fb"
     },
     {
       "kind": "source",
@@ -144,7 +132,7 @@
       "kind": "source",
       "path": "docs/governance/dependency-decisions.v1.json",
       "mode": "100644",
-      "sha256": "718ba2160289a62e674154b52a2ff8ab709a2bc4d66e857df01852275a52ad20"
+      "sha256": "eb9f59a1843225fb2547bf30afe9a1b381603524de0b3cc130ff1a51260d0397"
     },
     {
       "kind": "schema",
@@ -162,13 +150,13 @@
       "kind": "generator",
       "path": "tools/platform/run",
       "mode": "100755",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "sha256": "8ac6a65cfcd1be677cd47292d1e02325a3b45c035ec3bdbc2d0dc1545124e0d6"
     },
     {
       "kind": "source",
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
+      "sha256": "f7e871e189fedae9f71e470311ae36e4ec091625cb51d2fd65ff25b32312f35a"
     }
   ],
   "review_bindings": [],

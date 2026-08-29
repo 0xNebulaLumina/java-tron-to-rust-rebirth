@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0001",
   "owning_item": "C000.13",
-  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
+  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -12,13 +12,13 @@
     {
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
+      "sha256": "f7e871e189fedae9f71e470311ae36e4ec091625cb51d2fd65ff25b32312f35a"
     }
   ],
   "command": [
     "git",
     "rev-parse",
-    "cb662bdb0001e8498811b22f618f18a683d3f1cb"
+    "d346226f3f0b42cffa5f98b0abe6042311f01019"
   ],
   "environment": {
     "tree_state": "clean",
@@ -36,35 +36,35 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-151429Z-0001",
+  "run_id": "c000-descendant-20260829-152801Z-0001",
   "cases": [
     {
       "id": "repository-revision",
       "outcome": "pass",
       "expected": {
-        "revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb"
+        "revision": "d346226f3f0b42cffa5f98b0abe6042311f01019"
       },
       "observed": {
-        "revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
-        "descendant_revision": "cca46c1ba50cc5f4c0becbe99ff405b35779d571"
+        "revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
+        "descendant_revision": "6a4902172f7053f2466a7fbc525082621eb43208"
       },
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:14:29Z",
-  "ended_at": "2026-08-29T15:14:29Z",
+  "started_at": "2026-08-29T15:28:01Z",
+  "ended_at": "2026-08-29T15:28:01Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
-    "revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb"
+    "revision": "d346226f3f0b42cffa5f98b0abe6042311f01019"
   },
   "observed": {
-    "revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
-    "descendant_revision": "cca46c1ba50cc5f4c0becbe99ff405b35779d571"
+    "revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
+    "descendant_revision": "6a4902172f7053f2466a7fbc525082621eb43208"
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0001.stdout.txt",
-    "sha256": "21ff5f589a15886d04b9fc9d43d6ce63f503b73b1eb09f3de66a193570cdaea5"
+    "sha256": "3aed29226c7dcd14e44c7f9fbc3a3a2fb52ded1a0196e3e010e1389033f971b2"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0001.stderr.txt",
@@ -82,7 +82,7 @@
       "kind": "source",
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
+      "sha256": "f7e871e189fedae9f71e470311ae36e4ec091625cb51d2fd65ff25b32312f35a"
     }
   ],
   "review_bindings": [],

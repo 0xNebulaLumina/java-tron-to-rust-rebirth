@@ -1,18 +1,98 @@
 {
   "schema_version": 1,
   "evidence_id": "EV-0008",
-  "owning_item": "C000.03",
-  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
+  "owning_item": "C000.01",
+  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
   "subject_artifacts": [
     {
-      "path": "docs/architecture/runtime-dependency-lifecycle.md",
+      "path": "docs/architecture/crate-ownership.md",
       "mode": "100644",
-      "sha256": "852ded9b17c0735b5c7e0ea6e27924e8eae6441c161c415670d0ea3f8fcb5c89"
+      "sha256": "590593a0573220b846d2024d563d2047bb6777cff10610926c518638b549f774"
     },
     {
       "path": "docs/governance/evidence-v1.schema.json",
       "mode": "100644",
       "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
+    },
+    {
+      "path": "rust-tron/Cargo.toml",
+      "mode": "100644",
+      "sha256": "8691685741ed539c44def10375169ee0a94329677ae5c61e373540993b1491f6"
+    },
+    {
+      "path": "rust-tron/crates/tron-apis/Cargo.toml",
+      "mode": "100644",
+      "sha256": "fbc0226bbd4e36ab75ccf012581d7ffc17af6812b12ea96ab5f20cacbd716f84"
+    },
+    {
+      "path": "rust-tron/crates/tron-config/Cargo.toml",
+      "mode": "100644",
+      "sha256": "46b8615ae98c3e1e87ecbddc11d9c67fc641f44b0f0968b1f241fc0d5b62766a"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/Cargo.toml",
+      "mode": "100644",
+      "sha256": "e6da2be0249d142bc0b3eddde74be101bdc41c21b082811a648edb598103b794"
+    },
+    {
+      "path": "rust-tron/crates/tron-crypto/Cargo.toml",
+      "mode": "100644",
+      "sha256": "e03f9fa3557b5d1c182eb69bdf20d5f9785690eac28bce8eb7d7d048ef7604b0"
+    },
+    {
+      "path": "rust-tron/crates/tron-events-metrics/Cargo.toml",
+      "mode": "100644",
+      "sha256": "737f2d4434924493e21128de34b9ea615a1a79e6fa7693b8614c2061ca4a1ccf"
+    },
+    {
+      "path": "rust-tron/crates/tron-execution/Cargo.toml",
+      "mode": "100644",
+      "sha256": "28a4bda334eaa13b08e4ea9dfef837f3558d52bb8366169bd95e9a1e40b219f8"
+    },
+    {
+      "path": "rust-tron/crates/tron-network/Cargo.toml",
+      "mode": "100644",
+      "sha256": "be1cc1c7b61deb4ea520eb96f96fe0b6ab78f4ed2a58038bf7d13b29631887c5"
+    },
+    {
+      "path": "rust-tron/crates/tron-node/Cargo.toml",
+      "mode": "100644",
+      "sha256": "c06dfb9f83772be50fd65bd87c97f3060294d95b2dbd275eb25b1f90188809ad"
+    },
+    {
+      "path": "rust-tron/crates/tron-primitives/Cargo.toml",
+      "mode": "100644",
+      "sha256": "f299b3d584b17a74f60908f9b0186edb998d7852300ac4123b40975795d215f7"
+    },
+    {
+      "path": "rust-tron/crates/tron-protocol/Cargo.toml",
+      "mode": "100644",
+      "sha256": "6b5b45f097c505cb7c982f66e127eed4069278252b7b2833564035a6f3d48d20"
+    },
+    {
+      "path": "rust-tron/crates/tron-shielded/Cargo.toml",
+      "mode": "100644",
+      "sha256": "a8f3a72803a19c9ebf8efb222c26a6ad1570d7026b812743dd34376058379faa"
+    },
+    {
+      "path": "rust-tron/crates/tron-state/Cargo.toml",
+      "mode": "100644",
+      "sha256": "81f386e41efe8e66452fd722eb1272d2cc6df3683c44f56e5c63560bcfb65c65"
+    },
+    {
+      "path": "rust-tron/crates/tron-storage/Cargo.toml",
+      "mode": "100644",
+      "sha256": "8af101fe2d82104e587889812ace371fbfd4801bf6706a08f5c476621cea5f5a"
+    },
+    {
+      "path": "rust-tron/crates/tron-toolkit/Cargo.toml",
+      "mode": "100644",
+      "sha256": "7f0f44c9656782af5daa03011462032828c6aaedac3daf886148f30a6c48004c"
+    },
+    {
+      "path": "rust-tron/crates/tron-tvm/Cargo.toml",
+      "mode": "100644",
+      "sha256": "f29e8177a6c1317463f2d95abff66688f39a0f6b1424ea4ac4584e521d861dbe"
     },
     {
       "path": "tools/platform/c000_artifacts.py",
@@ -22,12 +102,32 @@
     {
       "path": "tools/platform/run",
       "mode": "100755",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "sha256": "8ac6a65cfcd1be677cd47292d1e02325a3b45c035ec3bdbc2d0dc1545124e0d6"
     },
     {
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
+      "sha256": "f7e871e189fedae9f71e470311ae36e4ec091625cb51d2fd65ff25b32312f35a"
+    },
+    {
+      "path": "docs/architecture/toolchains-and-platforms.md",
+      "mode": "100644",
+      "sha256": "7a60dc0e198f9b74067cc4557cfe482825765c8b1412180b6e078b915db689a5"
+    },
+    {
+      "path": "docs/architecture/toolchains-platform-policy.md",
+      "mode": "100644",
+      "sha256": "806265e2c674ae0987507f54158c57b14ddce7c444f33fb3452481ee6f9d5b69"
+    },
+    {
+      "path": "rust-tron/rust-toolchain.toml",
+      "mode": "100644",
+      "sha256": "8adfc1727670e54730d1c2bdfec839504cb9cd2d95c4fb7cf11b5874c3f38f80"
+    },
+    {
+      "path": "docs/architecture/runtime-dependency-lifecycle.md",
+      "mode": "100644",
+      "sha256": "852ded9b17c0735b5c7e0ea6e27924e8eae6441c161c415670d0ea3f8fcb5c89"
     }
   ],
   "command": [
@@ -50,80 +150,232 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-151429Z-0008",
+  "run_id": "c000-descendant-20260829-152801Z-0008",
   "cases": [
     {
-      "id": "C000.03",
-      "outcome": "pass",
       "expected": {
         "artifacts_present": true,
         "documents_parse": true,
         "semantic_contracts_current": true
       },
+      "id": "C000.01",
+      "observed": {
+        "artifact_count": 17,
+        "issues": []
+      },
+      "outcome": "pass",
+      "skip_disposition": null
+    },
+    {
+      "expected": {
+        "artifacts_present": true,
+        "documents_parse": true,
+        "semantic_contracts_current": true
+      },
+      "id": "C000.02",
+      "observed": {
+        "artifact_count": 4,
+        "issues": []
+      },
+      "outcome": "pass",
+      "skip_disposition": null
+    },
+    {
+      "expected": {
+        "artifacts_present": true,
+        "documents_parse": true,
+        "semantic_contracts_current": true
+      },
+      "id": "C000.03",
       "observed": {
         "artifact_count": 1,
         "issues": []
       },
+      "outcome": "pass",
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:14:29Z",
-  "ended_at": "2026-08-29T15:14:29Z",
+  "started_at": "2026-08-29T15:28:01Z",
+  "ended_at": "2026-08-29T15:28:01Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
+    "cases": [
+      "C000.01",
+      "C000.02",
+      "C000.03"
+    ],
     "artifacts_present": true,
     "documents_parse": true,
     "semantic_contracts_current": true
   },
   "observed": {
-    "artifact_count": 1,
+    "case_outcomes": {
+      "C000.01": "pass",
+      "C000.02": "pass",
+      "C000.03": "pass"
+    },
     "issues": []
   },
   "stdout": {
     "path": "docs/governance/evidence/EV-0008.stdout.txt",
-    "sha256": "c391a0b1d984380e5c78e66819a397b0a290df669fd06c4afcd233ce8b660fda"
+    "sha256": "23f41e63843fb9588f903d1d5f95c375387249fd12d9a3fe923001a0e4448291"
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0008.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
-  "artifacts": [
-    {
-      "path": "docs/architecture/runtime-dependency-lifecycle.md",
-      "sha256": "852ded9b17c0735b5c7e0ea6e27924e8eae6441c161c415670d0ea3f8fcb5c89"
-    }
-  ],
+  "artifacts": [],
   "invalidation_edges": [
     {
       "kind": "source",
-      "path": "docs/architecture/runtime-dependency-lifecycle.md",
+      "path": "docs/architecture/crate-ownership.md",
       "mode": "100644",
-      "sha256": "852ded9b17c0735b5c7e0ea6e27924e8eae6441c161c415670d0ea3f8fcb5c89"
+      "sha256": "590593a0573220b846d2024d563d2047bb6777cff10610926c518638b549f774"
     },
     {
-      "kind": "schema",
+      "kind": "source",
       "path": "docs/governance/evidence-v1.schema.json",
       "mode": "100644",
       "sha256": "286ee468e5e4903e0115381edbdd39c458ccbf717d4bbfb23eb21d764b1884d5"
     },
     {
-      "kind": "generator",
+      "kind": "source",
+      "path": "rust-tron/Cargo.toml",
+      "mode": "100644",
+      "sha256": "8691685741ed539c44def10375169ee0a94329677ae5c61e373540993b1491f6"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-apis/Cargo.toml",
+      "mode": "100644",
+      "sha256": "fbc0226bbd4e36ab75ccf012581d7ffc17af6812b12ea96ab5f20cacbd716f84"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-config/Cargo.toml",
+      "mode": "100644",
+      "sha256": "46b8615ae98c3e1e87ecbddc11d9c67fc641f44b0f0968b1f241fc0d5b62766a"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-consensus/Cargo.toml",
+      "mode": "100644",
+      "sha256": "e6da2be0249d142bc0b3eddde74be101bdc41c21b082811a648edb598103b794"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-crypto/Cargo.toml",
+      "mode": "100644",
+      "sha256": "e03f9fa3557b5d1c182eb69bdf20d5f9785690eac28bce8eb7d7d048ef7604b0"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-events-metrics/Cargo.toml",
+      "mode": "100644",
+      "sha256": "737f2d4434924493e21128de34b9ea615a1a79e6fa7693b8614c2061ca4a1ccf"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-execution/Cargo.toml",
+      "mode": "100644",
+      "sha256": "28a4bda334eaa13b08e4ea9dfef837f3558d52bb8366169bd95e9a1e40b219f8"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-network/Cargo.toml",
+      "mode": "100644",
+      "sha256": "be1cc1c7b61deb4ea520eb96f96fe0b6ab78f4ed2a58038bf7d13b29631887c5"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-node/Cargo.toml",
+      "mode": "100644",
+      "sha256": "c06dfb9f83772be50fd65bd87c97f3060294d95b2dbd275eb25b1f90188809ad"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-primitives/Cargo.toml",
+      "mode": "100644",
+      "sha256": "f299b3d584b17a74f60908f9b0186edb998d7852300ac4123b40975795d215f7"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-protocol/Cargo.toml",
+      "mode": "100644",
+      "sha256": "6b5b45f097c505cb7c982f66e127eed4069278252b7b2833564035a6f3d48d20"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-shielded/Cargo.toml",
+      "mode": "100644",
+      "sha256": "a8f3a72803a19c9ebf8efb222c26a6ad1570d7026b812743dd34376058379faa"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-state/Cargo.toml",
+      "mode": "100644",
+      "sha256": "81f386e41efe8e66452fd722eb1272d2cc6df3683c44f56e5c63560bcfb65c65"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-storage/Cargo.toml",
+      "mode": "100644",
+      "sha256": "8af101fe2d82104e587889812ace371fbfd4801bf6706a08f5c476621cea5f5a"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-toolkit/Cargo.toml",
+      "mode": "100644",
+      "sha256": "7f0f44c9656782af5daa03011462032828c6aaedac3daf886148f30a6c48004c"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/crates/tron-tvm/Cargo.toml",
+      "mode": "100644",
+      "sha256": "f29e8177a6c1317463f2d95abff66688f39a0f6b1424ea4ac4584e521d861dbe"
+    },
+    {
+      "kind": "source",
       "path": "tools/platform/c000_artifacts.py",
       "mode": "100755",
       "sha256": "54b1d4edac59b67964350ebde7ba12f07b40a4eadd7b78ce62aeec5a091419ab"
     },
     {
-      "kind": "generator",
+      "kind": "source",
       "path": "tools/platform/run",
       "mode": "100755",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "sha256": "8ac6a65cfcd1be677cd47292d1e02325a3b45c035ec3bdbc2d0dc1545124e0d6"
     },
     {
       "kind": "source",
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "934d5599357da999731d941b2502d4b3cacb3740866d080eaf8dcb07f65da1ec"
+      "sha256": "f7e871e189fedae9f71e470311ae36e4ec091625cb51d2fd65ff25b32312f35a"
+    },
+    {
+      "kind": "source",
+      "path": "docs/architecture/toolchains-and-platforms.md",
+      "mode": "100644",
+      "sha256": "7a60dc0e198f9b74067cc4557cfe482825765c8b1412180b6e078b915db689a5"
+    },
+    {
+      "kind": "source",
+      "path": "docs/architecture/toolchains-platform-policy.md",
+      "mode": "100644",
+      "sha256": "806265e2c674ae0987507f54158c57b14ddce7c444f33fb3452481ee6f9d5b69"
+    },
+    {
+      "kind": "source",
+      "path": "rust-tron/rust-toolchain.toml",
+      "mode": "100644",
+      "sha256": "8adfc1727670e54730d1c2bdfec839504cb9cd2d95c4fb7cf11b5874c3f38f80"
+    },
+    {
+      "kind": "source",
+      "path": "docs/architecture/runtime-dependency-lifecycle.md",
+      "mode": "100644",
+      "sha256": "852ded9b17c0735b5c7e0ea6e27924e8eae6441c161c415670d0ea3f8fcb5c89"
     }
   ],
   "review_bindings": [],

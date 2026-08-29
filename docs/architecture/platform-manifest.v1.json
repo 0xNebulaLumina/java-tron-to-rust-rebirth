@@ -67,7 +67,9 @@
             "--workspace"
           ],
           "cwd": "rust-tron",
-          "evidence": []
+          "evidence": [
+            "EV-0002"
+          ]
         },
         "unit": {
           "disposition": "runnable",
@@ -76,7 +78,9 @@
             "tools/platform/c000_unit.py"
           ],
           "cwd": ".",
-          "evidence": []
+          "evidence": [
+            "EV-0003"
+          ]
         },
         "differential": {
           "disposition": "runnable",
@@ -86,7 +90,9 @@
           ],
           "cwd": ".",
           "case_count": 8,
-          "evidence": []
+          "evidence": [
+            "EV-0004"
+          ]
         },
         "native_resource": {
           "disposition": "runnable",
@@ -95,7 +101,9 @@
             "tools/platform/c000_native_resource.py"
           ],
           "cwd": ".",
-          "evidence": []
+          "evidence": [
+            "EV-0006"
+          ]
         },
         "ffi": {
           "disposition": "not_applicable",
@@ -120,7 +128,9 @@
             "tools/platform/c000_smoke.py"
           ],
           "cwd": ".",
-          "evidence": []
+          "evidence": [
+            "EV-0007"
+          ]
         }
       }
     }
@@ -176,7 +186,7 @@
     "missing_initial_rows": 0,
     "duplicates": 0,
     "native_cells_required": 7,
-    "native_cells_passing": 0,
+    "native_cells_passing": 5,
     "reviewed_not_applicable_cells": 0,
     "result": "incomplete"
   },

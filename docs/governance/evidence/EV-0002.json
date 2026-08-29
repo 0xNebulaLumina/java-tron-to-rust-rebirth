@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0002",
   "owning_item": "C000.14",
-  "subject_revision": "cb662bdb0001e8498811b22f618f18a683d3f1cb",
+  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -97,7 +97,7 @@
     {
       "path": "tools/platform/run",
       "mode": "100755",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "sha256": "8ac6a65cfcd1be677cd47292d1e02325a3b45c035ec3bdbc2d0dc1545124e0d6"
     }
   ],
   "command": [
@@ -109,10 +109,9 @@
   "environment": {
     "tree_state": "clean",
     "toolchains": {
-      "python": "Python 3.12.3",
-      "git": "git version 2.43.0",
       "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
-      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)"
+      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+      "git": "git version 2.43.0"
     },
     "platform_row": "P-LINUX-X64",
     "target": "x86_64-unknown-linux-gnu",
@@ -126,7 +125,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-151429Z-0002",
+  "run_id": "c000-descendant-20260829-152801Z-0002",
   "cases": [
     {
       "id": "workspace-cargo-check",
@@ -140,8 +139,8 @@
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:14:29Z",
-  "ended_at": "2026-08-29T15:14:29Z",
+  "started_at": "2026-08-29T15:28:01Z",
+  "ended_at": "2026-08-29T15:28:01Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
@@ -156,7 +155,7 @@
   },
   "stderr": {
     "path": "docs/governance/evidence/EV-0002.stderr.txt",
-    "sha256": "23b9a21bbaf189889e08dc27ed8eba521021280c5852db22205f721db08b2c7c"
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
   "invalidation_edges": [
@@ -272,7 +271,7 @@
       "kind": "generator",
       "path": "tools/platform/run",
       "mode": "100755",
-      "sha256": "cba9a834f81c60c91fe36aeaa51046424103dafc5c14e1990af90e285b834770"
+      "sha256": "8ac6a65cfcd1be677cd47292d1e02325a3b45c035ec3bdbc2d0dc1545124e0d6"
     }
   ],
   "review_bindings": [],
