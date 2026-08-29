@@ -42,6 +42,7 @@
       ]
     },
     "scope_rows": {
+      "description": "Exact consuming tracker rows covered by this review. For adoption approval, coverage is combined with the exact reviewed adoption inventory and dependency-decision artifacts to bind each adoption ID, source, consumer, and decision.",
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
@@ -117,6 +118,7 @@
       "pattern": "^[0-9a-f]{40}$"
     },
     "subject_artifacts": {
+      "description": "Exact subject artifacts covered by the review. Current security and license adoption approval requires the hashed adoption inventory and dependency decisions together with the adoption consumer in scope_rows.",
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,

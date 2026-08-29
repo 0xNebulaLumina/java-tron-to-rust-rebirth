@@ -34,6 +34,7 @@
       }
     },
     "disposition": {
+      "description": "Governed subject disposition. review_required is structurally valid; effective approval is derived from current descendant independent reviews rather than written back into this inventory.",
       "type": "object", "additionalProperties": false,
       "required": ["status", "rationale"],
       "properties": {
@@ -56,7 +57,7 @@
         "decision": {"type": "string", "pattern": "^DD-[0-9]{3}$"},
         "security": {"$ref": "#/$defs/disposition"},
         "license": {"$ref": "#/$defs/disposition"},
-        "status": {"enum": ["recorded", "review_required", "approved", "rejected", "retired"]},
+        "status": {"description": "Governed subject status, not an assertion of effective adoption approval. review_required may remain after descendant review approval; rejected and retired are never effective.", "enum": ["recorded", "review_required", "approved", "rejected", "retired"]},
         "invalidation_triggers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}
       }
     }

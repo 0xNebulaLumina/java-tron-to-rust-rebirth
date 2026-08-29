@@ -888,7 +888,7 @@ def platform_contract(subject_revision, evidence, valid_evidence, reviews, valid
         fail(errors, f"platform coverage is stale; computed {computed}")
     return complete
 
-def adoption_contract(by_id, subject_tree, java_source_revision: str | None, errors: list[str]):
+def adoption_contract(by_id, subject_tree, java_source_revision: str | None, reviews, valid_reviews, errors: list[str]):
     decisions = load(ROOT / "docs/governance/dependency-decisions.v1.json")
     decision_rows = decisions.get("decisions", []) if isinstance(decisions, dict) else []
     decision_ids = {entry.get("id") for entry in decision_rows if isinstance(entry, dict) and re.fullmatch(r"DD-[0-9]{3}", str(entry.get("id", "")))}
@@ -998,7 +998,7 @@ def adoption_contract(by_id, subject_tree, java_source_revision: str | None, err
     except (OSError, tomllib.TOMLDecodeError) as exc:
         fail(errors, f"cannot derive Cargo.lock adoptions: {exc}")
 
-    records, valid = {}, set()
+    records, structurally_valid = {}, set()
     for index, instance in enumerate(instances):
         before = len(errors)
         if not isinstance(instance, dict):
@@ -1021,9 +1021,37 @@ def adoption_contract(by_id, subject_tree, java_source_revision: str | None, err
         if instance.get("status") not in {"recorded", "review_required", "approved", "rejected", "retired"}:
             fail(errors, f"{label}: invalid adoption status")
         source, exact = instance.get("source"), instance.get("exact_version")
-        if isinstance(source, str) and (ROOT / source).is_file() and isinstance(exact, str) and exact.startswith("sha256:") and exact[7:] != digest(ROOT / source):
+        if not isinstance(source, str) or not source or not isinstance(exact, str) or not exact:
+            fail(errors, f"{label}: malformed source/version identity")
+        elif (ROOT / source).is_file() and exact.startswith("sha256:") and (not re.fullmatch(r"sha256:[0-9a-f]{64}", exact) or exact[7:] != digest(ROOT / source)):
             fail(errors, f"{label}: source digest drift")
-        if len(errors) == before and instance.get("status") in {"recorded", "approved"} and all(instance[field]["status"] in {"approved", "not_applicable"} for field in ("security", "license")):
+        if len(errors) == before:
+            structurally_valid.add(ident)
+
+    review_ids = {"security": "RV-0002", "license": "RV-0003"}
+    inventory_path = "docs/governance/adoption-inventory.v1.json"
+    decisions_path = "docs/governance/dependency-decisions.v1.json"
+
+    def review_covers(instance, review_class):
+        review_id = review_ids[review_class]
+        review = reviews.get(review_id)
+        if review_id not in valid_reviews or not isinstance(review, dict) or review.get("review_class") != review_class:
+            return False
+        closure = review.get("closure")
+        if not isinstance(closure, dict) or closure.get("status") != "approved" or closure.get("approval") is not True:
+            return False
+        if instance.get("consuming_item") not in review.get("scope_rows", []):
+            return False
+        artifacts = review.get("subject_artifacts", [])
+        covered = {artifact.get("path") for artifact in artifacts if isinstance(artifact, dict)}
+        return {inventory_path, decisions_path}.issubset(covered)
+
+    valid = set()
+    for ident in structurally_valid:
+        instance = records[ident]
+        dispositions_accepted = all(instance[field]["status"] != "rejected" for field in ("security", "license"))
+        reviews_cover = all(review_covers(instance, review_class) for review_class in review_ids)
+        if instance.get("status") not in {"rejected", "retired"} and dispositions_accepted and reviews_cover:
             valid.add(ident)
     current_by_consumer = {}
     for ident, instance in records.items():
@@ -1175,7 +1203,7 @@ def main():
     evidence, valid_evidence = evidence_contract(subject_revision, subject_tree, java_source_revision, descendant_tree or {}, tree_clean, by_id, errors)
     reviews, valid_reviews = review_contract(subject_revision, subject_tree, java_source_revision, tree_clean, by_id, evidence, valid_evidence, errors)
     platform_complete = platform_contract(subject_revision, evidence, valid_evidence, reviews, valid_reviews, errors)
-    adoptions, valid_adoptions = adoption_contract(by_id, subject_tree, java_source_revision, errors)
+    adoptions, valid_adoptions = adoption_contract(by_id, subject_tree, java_source_revision, reviews, valid_reviews, errors)
     predicates = artifact_contract(by_id, errors)
     derived_contract(tracker, by_id, evidence, valid_evidence, reviews, valid_reviews, adoptions, valid_adoptions, platform_complete, predicates, stats, errors)
     report = {"schema_version": 1, "validator": "tools/tracker/validate.py", "repository_revision": revision, "subject_revision": subject_revision, "governed_closure_sha256": closure_digest(subject_closure) if subject_closure else None, "result": "fail" if errors else "pass", "derived": {"platform_complete": platform_complete, "evidence_records": len(evidence), "valid_evidence_records": len(valid_evidence), "review_records": len(reviews), "valid_review_records": len(valid_reviews), "adoption_records": len(adoptions), "valid_adoption_records": len(valid_adoptions), **predicates}, "errors": errors}
