@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0007",
   "owning_item": "C000.14",
-  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
+  "subject_revision": "bc0a489f6f982f64d90dd05a38109944879c2e26",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -12,7 +12,7 @@
     {
       "path": "tools/platform/c000_smoke.py",
       "mode": "100755",
-      "sha256": "afffa85d0b70b6302bd013427b99b8defa04ee5cd1d9b167c546b42b6cd764c4"
+      "sha256": "1aa4187be305525261e57aff460eeb9e7e721b659086f5b7c5e93e3fc7afb25c"
     },
     {
       "path": "tools/reference-runner/java-runner",
@@ -57,7 +57,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-152801Z-0007",
+  "run_id": "c000-descendant-20260829-154017Z-0007",
   "cases": [
     {
       "id": "java-file",
@@ -120,8 +120,8 @@
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:28:01Z",
-  "ended_at": "2026-08-29T15:28:01Z",
+  "started_at": "2026-08-29T15:40:17Z",
+  "ended_at": "2026-08-29T15:40:17Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
@@ -134,11 +134,11 @@
     "observer": "orchestrator"
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0007.stdout.txt",
+    "path": "docs/governance/evidence/EV-0007.20260829-154017Z.stdout.txt",
     "sha256": "523b3cf70b19b2e79932ee9fdfdffb5e3d9bc25cd918cdddf51034e9ab1745db"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0007.stderr.txt",
+    "path": "docs/governance/evidence/EV-0007.20260829-154017Z.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
@@ -153,7 +153,7 @@
       "kind": "source",
       "path": "tools/platform/c000_smoke.py",
       "mode": "100755",
-      "sha256": "afffa85d0b70b6302bd013427b99b8defa04ee5cd1d9b167c546b42b6cd764c4"
+      "sha256": "1aa4187be305525261e57aff460eeb9e7e721b659086f5b7c5e93e3fc7afb25c"
     },
     {
       "kind": "source",

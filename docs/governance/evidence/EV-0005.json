@@ -2,12 +2,12 @@
   "schema_version": 1,
   "evidence_id": "EV-0005",
   "owning_item": "C000.14",
-  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
+  "subject_revision": "bc0a489f6f982f64d90dd05a38109944879c2e26",
   "subject_artifacts": [
     {
       "path": "docs/architecture/license-provenance-policy.md",
       "mode": "100644",
-      "sha256": "50bfdc3ee83515c99ed58b9bee932d8353ab53e1553f525503931d3882b5a680"
+      "sha256": "b2f38df36dea372968f9a7445081e6a8f21ebaa694d142aed2186d5eb5d92c2a"
     },
     {
       "path": "docs/architecture/security-threat-policy.md",
@@ -48,63 +48,71 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-152801Z-0005",
+  "run_id": "c000-descendant-20260829-154017Z-0005",
   "cases": [
     {
       "id": "ffi",
-      "outcome": "pass",
+      "outcome": "skip",
       "expected": {
         "disposition": "not_applicable",
-        "review_status": "pending"
+        "reviewed": true
       },
       "observed": {
-        "case": "ffi",
-        "outcome": "pass",
         "disposition": "not_applicable",
-        "reason": "C000 introduces no foreign-function boundary, linked native library, generated binding, or cross-language in-process call",
-        "reopen_condition": "any FFI declaration, generated binding, native link, or in-process foreign call is introduced",
-        "review_bindings": [],
-        "review_status": "pending"
+        "reviewed": false,
+        "review_bindings": []
       },
-      "skip_disposition": null
+      "skip_disposition": {
+        "status": "not-applicable",
+        "reason": "ffi has no C000 runtime surface but independent review is pending",
+        "owner": "C000.14",
+        "unblock_condition": "authenticated security/tooling and license/provenance/tooling reviews approve ffi non-applicability",
+        "review_by": "2027-08-29"
+      }
     },
     {
       "id": "packaging",
-      "outcome": "pass",
+      "outcome": "skip",
       "expected": {
         "disposition": "not_applicable",
-        "review_status": "pending"
+        "reviewed": true
       },
       "observed": {
-        "case": "packaging",
-        "outcome": "pass",
         "disposition": "not_applicable",
-        "reason": "C000 defines architecture governance and behavior-neutral verification tooling but no distributable binary, archive, image, installer, or release artifact",
-        "reopen_condition": "a C000-produced distributable or release artifact is introduced",
-        "review_bindings": [],
-        "review_status": "pending"
+        "reviewed": false,
+        "review_bindings": []
       },
-      "skip_disposition": null
+      "skip_disposition": {
+        "status": "not-applicable",
+        "reason": "packaging has no C000 runtime surface but independent review is pending",
+        "owner": "C000.14",
+        "unblock_condition": "authenticated security/tooling and license/provenance/tooling reviews approve packaging non-applicability",
+        "review_by": "2027-08-29"
+      }
     }
   ],
-  "started_at": "2026-08-29T15:28:01Z",
-  "ended_at": "2026-08-29T15:28:01Z",
-  "observed_exit_code": 0,
-  "observed_status": "pass",
+  "started_at": "2026-08-29T15:40:17Z",
+  "ended_at": "2026-08-29T15:40:17Z",
+  "observed_exit_code": 125,
+  "observed_status": "fail",
   "expected": {
-    "not_applicable": 2,
-    "pending_review": 2
+    "reviewed_not_applicable": [
+      "ffi",
+      "packaging"
+    ]
   },
   "observed": {
-    "not_applicable": 2,
-    "pending_review": 2
+    "pending_review": [
+      "ffi",
+      "packaging"
+    ]
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0005.stdout.txt",
-    "sha256": "9677d478c229a5000d1181c12746ce01f298f9e040aec06e57fe4ce0d92da23d"
+    "path": "docs/governance/evidence/EV-0005.20260829-154017Z.stdout.txt",
+    "sha256": "945d192d8fe234ceff9a2f6fa452e1f9aebffbe80c89d8b88517830d5c53d599"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0005.stderr.txt",
+    "path": "docs/governance/evidence/EV-0005.20260829-154017Z.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
@@ -113,7 +121,7 @@
       "kind": "source",
       "path": "docs/architecture/license-provenance-policy.md",
       "mode": "100644",
-      "sha256": "50bfdc3ee83515c99ed58b9bee932d8353ab53e1553f525503931d3882b5a680"
+      "sha256": "b2f38df36dea372968f9a7445081e6a8f21ebaa694d142aed2186d5eb5d92c2a"
     },
     {
       "kind": "source",

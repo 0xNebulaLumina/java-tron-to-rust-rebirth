@@ -190,7 +190,7 @@ def adoption_issues(validator: Any, by_id: dict[str, Any]) -> list[str]:
     return issues
 
 
-def task_case(task_id: str, validator: Any | None = None, by_id: dict[str, Any] | None = None, revision: str | None = None) -> dict[str, Any]:
+def task_case(task_id: str, validator: Any | None = None, by_id: dict[str, Any] | None = None, revision: str | None = None, subject_tree: dict[str, tuple[str, str, str, str]] | None = None) -> dict[str, Any]:
     paths = expand(TASK_ARTIFACTS[task_id])
     missing = [path for path in paths if not (ROOT / path).is_file()]
     for pattern in TASK_ARTIFACTS[task_id]:
@@ -288,7 +288,7 @@ def internal_governance_cases(validator: Any, by_id: dict[str, Any], subject_rev
 
 
 def verification_case(validator: Any | None, by_id: dict[str, Any], current_revision: str | None, subject_revision: str | None, subject_tree: dict[str, tuple[str, str, str, str]], tree_clean: bool, model_issues: list[str]) -> dict[str, Any]:
-    task_results = {task_id: task_case(task_id, validator, by_id, current_revision) for task_id in TASK_ARTIFACTS}
+    task_results = {task_id: task_case(task_id, validator, by_id, current_revision, subject_tree) for task_id in TASK_ARTIFACTS}
     issues = list(model_issues)
     approvals: dict[str, str] = {}
     internal = {"C000.13": {"outcome": "fail", "issues": ["governance validator unavailable"]}, "C000.14": {"outcome": "fail", "issues": ["governance validator unavailable"], "platform_complete": False}}
@@ -313,7 +313,7 @@ def verification_case(validator: Any | None, by_id: dict[str, Any], current_revi
 
 def main() -> int:
     validator, by_id, current_revision, subject_revision, _subject_closure, subject_tree, tree_clean, model_issues = governance_model()
-    cases = [task_case(task_id, validator, by_id, current_revision) for task_id in EMITTED_TASKS]
+    cases = [task_case(task_id, validator, by_id, current_revision, subject_tree) for task_id in EMITTED_TASKS]
     cases.append(verification_case(validator, by_id, current_revision, subject_revision, subject_tree, tree_clean, model_issues))
     failed = any(case["outcome"] != "pass" for case in cases)
     payload = {"schema_version": 1, "audit": "C000-artifacts", "outcome": "fail" if failed else "pass", "cases": cases}

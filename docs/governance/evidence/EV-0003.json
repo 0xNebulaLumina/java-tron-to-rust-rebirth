@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0003",
   "owning_item": "C000.14",
-  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
+  "subject_revision": "bc0a489f6f982f64d90dd05a38109944879c2e26",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -62,12 +62,12 @@
     {
       "path": "tools/platform/c000_unit.py",
       "mode": "100755",
-      "sha256": "c5b14ba090a32eceeb9572d138025048ec6b7ac7c2a2a435fb2fea02b3959e33"
+      "sha256": "6cb140da23ff81a2da7053e07a5611232e0909d4a37474790c31eddb5c428436"
     },
     {
       "path": "tools/reference-runner/runner.py",
       "mode": "100755",
-      "sha256": "6a7dfa8c44415414bab3109ed25fc36340c8a72d37cf9ad4a5231fac8d5afbf6"
+      "sha256": "e0df161581a901f975205dd4f503f61c875ee333b97928ac38c9e02a0c290560"
     }
   ],
   "command": [
@@ -92,7 +92,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-152801Z-0003",
+  "run_id": "c000-descendant-20260829-154017Z-0003",
   "cases": [
     {
       "id": "fixture-schema:mismatch-error",
@@ -225,8 +225,8 @@
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:28:01Z",
-  "ended_at": "2026-08-29T15:28:01Z",
+  "started_at": "2026-08-29T15:40:17Z",
+  "ended_at": "2026-08-29T15:40:17Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
@@ -238,11 +238,11 @@
     "all_pass": true
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0003.stdout.txt",
+    "path": "docs/governance/evidence/EV-0003.20260829-154017Z.stdout.txt",
     "sha256": "3c662819ced125446d18645896e70534fa749041b4d428e637f811db0f9084a2"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0003.stderr.txt",
+    "path": "docs/governance/evidence/EV-0003.20260829-154017Z.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
@@ -317,13 +317,13 @@
       "kind": "source",
       "path": "tools/platform/c000_unit.py",
       "mode": "100755",
-      "sha256": "c5b14ba090a32eceeb9572d138025048ec6b7ac7c2a2a435fb2fea02b3959e33"
+      "sha256": "6cb140da23ff81a2da7053e07a5611232e0909d4a37474790c31eddb5c428436"
     },
     {
       "kind": "source",
       "path": "tools/reference-runner/runner.py",
       "mode": "100755",
-      "sha256": "6a7dfa8c44415414bab3109ed25fc36340c8a72d37cf9ad4a5231fac8d5afbf6"
+      "sha256": "e0df161581a901f975205dd4f503f61c875ee333b97928ac38c9e02a0c290560"
     }
   ],
   "review_bindings": [],

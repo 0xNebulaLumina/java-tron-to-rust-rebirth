@@ -2,7 +2,7 @@
   "schema_version": 1,
   "evidence_id": "EV-0004",
   "owning_item": "C000.14",
-  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
+  "subject_revision": "bc0a489f6f982f64d90dd05a38109944879c2e26",
   "subject_artifacts": [
     {
       "path": "docs/governance/evidence-v1.schema.json",
@@ -67,12 +67,12 @@
     {
       "path": "tools/platform/c000_differential.py",
       "mode": "100755",
-      "sha256": "4633f9ee2ea2ee4b2fc7665650a2ae40d4fde3c2b2b54e319f2bc4c142d6449f"
+      "sha256": "f0eadbf5bda3cbc70c0e2b494043c296e67044bd0cc6806c5a0c0931c718c61f"
     },
     {
       "path": "tools/reference-runner/runner.py",
       "mode": "100755",
-      "sha256": "6a7dfa8c44415414bab3109ed25fc36340c8a72d37cf9ad4a5231fac8d5afbf6"
+      "sha256": "e0df161581a901f975205dd4f503f61c875ee333b97928ac38c9e02a0c290560"
     }
   ],
   "command": [
@@ -97,7 +97,7 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-152801Z-0004",
+  "run_id": "c000-descendant-20260829-154017Z-0004",
   "cases": [
     {
       "id": "positive",
@@ -266,8 +266,8 @@
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:28:01Z",
-  "ended_at": "2026-08-29T15:28:01Z",
+  "started_at": "2026-08-29T15:40:17Z",
+  "ended_at": "2026-08-29T15:40:17Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
@@ -279,11 +279,11 @@
     "all_pass": true
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0004.stdout.txt",
+    "path": "docs/governance/evidence/EV-0004.20260829-154017Z.stdout.txt",
     "sha256": "6351b31b44e1ba5534c85908157df85398e6128962c9e429fe7017559ffd77f4"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0004.stderr.txt",
+    "path": "docs/governance/evidence/EV-0004.20260829-154017Z.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
@@ -364,13 +364,13 @@
       "kind": "source",
       "path": "tools/platform/c000_differential.py",
       "mode": "100755",
-      "sha256": "4633f9ee2ea2ee4b2fc7665650a2ae40d4fde3c2b2b54e319f2bc4c142d6449f"
+      "sha256": "f0eadbf5bda3cbc70c0e2b494043c296e67044bd0cc6806c5a0c0931c718c61f"
     },
     {
       "kind": "source",
       "path": "tools/reference-runner/runner.py",
       "mode": "100755",
-      "sha256": "6a7dfa8c44415414bab3109ed25fc36340c8a72d37cf9ad4a5231fac8d5afbf6"
+      "sha256": "e0df161581a901f975205dd4f503f61c875ee333b97928ac38c9e02a0c290560"
     }
   ],
   "review_bindings": [],

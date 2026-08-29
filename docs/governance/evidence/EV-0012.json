@@ -2,12 +2,12 @@
   "schema_version": 1,
   "evidence_id": "EV-0012",
   "owning_item": "C000.07",
-  "subject_revision": "d346226f3f0b42cffa5f98b0abe6042311f01019",
+  "subject_revision": "bc0a489f6f982f64d90dd05a38109944879c2e26",
   "subject_artifacts": [
     {
       "path": "docs/architecture/license-provenance-policy.md",
       "mode": "100644",
-      "sha256": "50bfdc3ee83515c99ed58b9bee932d8353ab53e1553f525503931d3882b5a680"
+      "sha256": "b2f38df36dea372968f9a7445081e6a8f21ebaa694d142aed2186d5eb5d92c2a"
     },
     {
       "path": "docs/architecture/security-threat-policy.md",
@@ -47,7 +47,7 @@
     {
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "f7e871e189fedae9f71e470311ae36e4ec091625cb51d2fd65ff25b32312f35a"
+      "sha256": "b66248102e7cf3202a27c06e1fcd564b67f6b8f95f93ac91325e820a8aceca94"
     }
   ],
   "command": [
@@ -70,47 +70,48 @@
     "backend": "B-RUST-DEFAULT",
     "features": []
   },
-  "run_id": "c000-descendant-20260829-152801Z-0012",
+  "run_id": "c000-descendant-20260829-154017Z-0012",
   "cases": [
     {
+      "id": "C000.07",
+      "outcome": "pass",
       "expected": {
         "artifacts_present": true,
         "documents_parse": true,
         "semantic_contracts_current": true
       },
-      "id": "C000.07",
       "observed": {
         "artifact_count": 5,
         "issues": []
       },
-      "outcome": "pass",
       "skip_disposition": null
     }
   ],
-  "started_at": "2026-08-29T15:28:01Z",
-  "ended_at": "2026-08-29T15:28:01Z",
+  "started_at": "2026-08-29T15:40:17Z",
+  "ended_at": "2026-08-29T15:40:17Z",
   "observed_exit_code": 0,
   "observed_status": "pass",
   "expected": {
-    "cases": [
+    "selected_cases": [
       "C000.07"
     ],
-    "artifacts_present": true,
-    "documents_parse": true,
-    "semantic_contracts_current": true
+    "outcome": "pass"
   },
   "observed": {
+    "selected_cases": [
+      "C000.07"
+    ],
+    "audit_outcome": "fail",
     "case_outcomes": {
       "C000.07": "pass"
-    },
-    "issues": []
+    }
   },
   "stdout": {
-    "path": "docs/governance/evidence/EV-0012.stdout.txt",
-    "sha256": "23f41e63843fb9588f903d1d5f95c375387249fd12d9a3fe923001a0e4448291"
+    "path": "docs/governance/evidence/EV-0012.20260829-154017Z.stdout.txt",
+    "sha256": "82a4aad5afecc8935a1230c6dc2a6fc8c4797fef8aaa77e8e4d779c2aabedc86"
   },
   "stderr": {
-    "path": "docs/governance/evidence/EV-0012.stderr.txt",
+    "path": "docs/governance/evidence/EV-0012.20260829-154017Z.stderr.txt",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifacts": [],
@@ -119,7 +120,7 @@
       "kind": "source",
       "path": "docs/architecture/license-provenance-policy.md",
       "mode": "100644",
-      "sha256": "50bfdc3ee83515c99ed58b9bee932d8353ab53e1553f525503931d3882b5a680"
+      "sha256": "b2f38df36dea372968f9a7445081e6a8f21ebaa694d142aed2186d5eb5d92c2a"
     },
     {
       "kind": "source",
@@ -167,7 +168,7 @@
       "kind": "source",
       "path": "tools/tracker/validate.py",
       "mode": "100755",
-      "sha256": "f7e871e189fedae9f71e470311ae36e4ec091625cb51d2fd65ff25b32312f35a"
+      "sha256": "b66248102e7cf3202a27c06e1fcd564b67f6b8f95f93ac91325e820a8aceca94"
     }
   ],
   "review_bindings": [],
