@@ -160,6 +160,24 @@ capability and is categorically absent in Solidity and keystore-factory modes re
 within Full mode it additionally requires P2P not to be disabled. Witness remains gated independently
 by its finalized configuration flag. Keystore-factory mode enables no node API surface.
 
+## C005 keystore persistence boundary
+
+The keystore core exposes new, import, list, direct-load, and password-update operations without
+owning CLI presentation. Creation and update always emit standard-scrypt V3 wallets. Cryptographic
+randomness and UUID generation are injectable through `KeystoreRandom`; new-key tests inject the
+`PrivateKey` itself, so deterministic fixtures do not consume process randomness.
+
+Import has two independent policies. `force_duplicate` permits another file for an address already
+present in the directory; `overwrite` permits replacing the requested destination. Neither implies
+the other. Update requires exactly one strict-scan match and derives the replacement address from
+the decrypted private key instead of copying the JSON declaration.
+
+Directory discovery parses strict JSON, bounds each entry to 8 KiB, and opens entries relative to a retained directory descriptor without following links. Every keystore-containing directory is required to be owned by the effective UID with exact POSIX mode 0700; violations return typed `InsecureDirectory`. Each scan, mutation, publication, and update holds an exclusive descriptor-backed advisory lock for the whole operation. Corrupt, BOM-prefixed, unquoted-field, oversized, symlink, and non-regular entries are reported as typed skip warnings. File ownership or POSIX mode violations are typed security errors rather than silent skips.
+
+A configured direct-load path uses descriptor-relative nofollow traversal for every parent component. Only the final component may be a symbolic link: it is resolved with `readlinkat`, its target parent is independently anchored and secured, and the target is opened nofollow from that same resolution. The resulting `DirectLoadFollowedSymlink` warning therefore cannot describe a different pathname observation than the file that was opened. Direct load uses the legacy parser that accepts unquoted field names. All opened keystore files require effective-UID ownership and exact mode 0600.
+
+Sensitive JSON is written to a create-new 0600 temporary file in the locked destination directory and flushed with `fsync`. Overwrite first moves the stable original to a descriptor-relative backup, publishes the replacement through the retained descriptor, verifies the parent identity, and syncs the directory. Any failure after publication removes the replacement and restores the original backup before the lock is released; successful completion removes the backup. Existing regular files are replaced only when overwrite is explicit. Parent symbolic links are rejected. Same-UID or root processes that disregard the advisory lock are outside this threat boundary because they can already read, replace, and delete the user's keys. Non-POSIX persistence remains explicitly unsupported.
+
 ## Protobuf wire compatibility boundary
 
 Inbound protobuf messages that can be hashed, signed, relayed, or returned byte-for-byte retain

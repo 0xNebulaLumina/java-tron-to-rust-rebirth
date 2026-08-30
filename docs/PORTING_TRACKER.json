@@ -610,47 +610,79 @@
     {
       "id": "C005",
       "title": "Keystore core",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-08-30",
       "resume": null,
       "items": [
         {
           "id": "C005.01",
           "description": "JSON schema, KDF/cipher/MAC, address, version, and SM2 selection compatibility.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented V3 schema, bounded KDF/cipher/MAC compatibility, address verification, version validation, and explicit secp256k1/SM2 engine selection."
         },
         {
           "id": "C005.02",
           "description": "Password text/file rules including whitespace, BOM, multiline, empty, and malformed input.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented Java-compatible password normalization, UTF-16 length validation, bounded no-follow password files, BOM/malformed UTF-8 behavior, and strict single/update line rules."
         },
         {
           "id": "C005.03",
           "description": "New/import/list/update core operations.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented core new/import/list/update APIs with injected cryptographic randomness and UUIDs, independent duplicate-address force and destination-overwrite policies, strict scan versus compatible direct-load JSON behavior, and standard-scrypt updates."
         },
         {
           "id": "C005.04",
           "description": "Atomic replace, cleanup, overwrite/force, symlink refusal, ownership and POSIX 0600.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented same-directory create-new 0600 temporary writes, file and directory fsync, rename and failure cleanup, mutation/scan symlink refusal, direct-load follow-with-warning, typed ownership/mode errors, and explicit Windows limitations."
         }
       ],
       "gate": {
         "id": "C005.V",
-        "description": "Cross-open Java/Rust fixtures and all corrupt/password/filesystem cases pass.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: the authenticated Java oracle produced 37 vectors, all 4 exhaustive Rust dispatch tests pass, and the Rust workspace all-targets check passes with the lockfile enforced.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C005 Java oracle",
+            "cwd": ".",
+            "argv": ["python3", "tools/keystore/c005_oracle.py"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C005 provenance and vector gate",
+            "cwd": ".",
+            "argv": ["python3", "tools/keystore/c005_gate.py"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C005 exhaustive keystore dispatch tests",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-crypto", "--test", "c005_vectors", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "Rust workspace all-targets check",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "check", "--workspace", "--all-targets", "--locked"],
+            "timeout_seconds": 300
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C005.R.01",
+            "summary": "Final review required confirmation of authenticated Java-oracle provenance, exhaustive Rust keystore dispatch coverage, and the complete locked workspace validation result.",
+            "status": "closed",
+            "resolution": "Approved after confirming the final gate results: the authenticated Java oracle produced 37 vectors, all 4 exhaustive Rust dispatch tests pass, and the locked Rust workspace all-targets check passes. C005 is complete and the next ready item is C006.01."
+          }
+        ]
       },
       "blocker": null
     },

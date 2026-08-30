@@ -10,6 +10,8 @@ Trust boundaries include P2P and discovery, gRPC/HTTP/JSON-RPC, events and plugi
 
 Adversaries include remote peers and clients, malicious contracts, blocks, snapshots, plugins and fixtures, compromised dependency or distribution channels, local unprivileged users, dishonest infrastructure, and accidental operators. Root, kernel, hardware, and provisioned trust anchors are outside the application boundary, with their assumptions stated.
 
+The C005 keystore filesystem boundary treats other local UIDs and pathname redirection as adversarial. Every keystore-containing directory must be owned by the effective UID with mode 0700, and each operation holds an exclusive descriptor-backed advisory lock across discovery, validation, mutation, publication, and rollback. Parent components are traversed descriptor-relative without following symbolic links. Same-UID and root processes that ignore the advisory lock are explicitly outside this boundary: they already have authority to read, replace, or delete the user's keys. This exclusion does not permit pathname-based publication or weaken final-file ownership and 0600 checks.
+
 ## Severity and closure
 
 - **critical:** practical consensus divergence, unauthorized secret extraction, remote code execution, release-authentication bypass, or irreversible widespread state corruption. Blocks merge and release.

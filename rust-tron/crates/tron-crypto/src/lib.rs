@@ -2,12 +2,14 @@
 //!
 //! SHA-256/SM3 engine selection is explicit. Legacy Keccak is deliberately
 //! separate from FIPS SHA-3. Signing APIs accept already-computed 32-byte
-//! prehashes and do not own keystore behavior.
+//! prehashes; keystore format and cryptographic compatibility live in [`keystore`].
 
 mod address;
 mod contract_address;
 mod digest;
 mod engine;
+pub mod keystore;
+pub mod keystore_store;
 mod permission;
 mod secp256k1;
 mod signature;

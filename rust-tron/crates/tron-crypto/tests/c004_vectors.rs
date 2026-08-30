@@ -188,6 +188,7 @@ fn java_oracle_key_and_address_vectors() {
         assert_eq!(key.private_bytes().to_vec(), bytes(vector, "private_key_hex"));
         assert_eq!(key.public_key().to_uncompressed_sec1().to_vec(), bytes(vector, "public_key_uncompressed_hex"));
         assert_eq!(derive_address(&key.public_key()).as_bytes(), bytes(vector, "address_hex"));
+        assert_eq!(encode_address_base58check(engine(text(vector, "id")), &derive_address(&key.public_key())), text(vector, "address_base58check"));
     }
 }
 

@@ -21,6 +21,11 @@ impl Secp256k1Key {
 
     pub fn private_bytes(&self) -> [u8; 32] { self.secret.to_bytes().into() }
 
+    pub(crate) fn with_private_bytes<T>(&self, use_bytes: impl FnOnce(&[u8]) -> T) -> T {
+        let bytes = zeroize::Zeroizing::new(self.secret.to_bytes());
+        use_bytes(bytes.as_slice())
+    }
+
     pub fn public_key(&self) -> Secp256k1PublicKey { Secp256k1PublicKey(self.secret.public_key()) }
 
     pub fn sign_prehash(&self, hash: &[u8]) -> Result<RecoverableSignature, CryptoError> {

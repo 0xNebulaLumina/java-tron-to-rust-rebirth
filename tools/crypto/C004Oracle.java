@@ -45,8 +45,8 @@ public final class C004Oracle {
     first=vec(j,first,"C004.HASH.KECCAK256", "\"input_utf8\":\"C004 fixed hash input\",\"output_hex\":\""+hx(keccak(input,256))+"\"");
     first=vec(j,first,"C004.HASH.KECCAK512", "\"input_utf8\":\"C004 fixed hash input\",\"output_hex\":\""+hx(keccak(input,512))+"\"");
     first=vec(j,first,"C004.HASH.RIPEMD160", "\"input_utf8\":\"C004 fixed hash input\",\"output_hex\":\""+hx(ripemd(input))+"\"");
-    first=vec(j,first,"C004.KEY.SECP256K1", "\"private_key_hex\":\""+hx(PRIVATE_ONE)+"\",\"public_key_uncompressed_hex\":\""+hx(secpPub)+"\",\"address_hex\":\""+hx(secpAddress)+"\"");
-    first=vec(j,first,"C004.KEY.SM2", "\"private_key_hex\":\""+hx(PRIVATE_ONE)+"\",\"public_key_uncompressed_hex\":\""+hx(sm2Pub)+"\",\"address_hex\":\""+hx(sm2Address)+"\"");
+    first=vec(j,first,"C004.KEY.SECP256K1", "\"private_key_hex\":\""+hx(PRIVATE_ONE)+"\",\"public_key_uncompressed_hex\":\""+hx(secpPub)+"\",\"address_hex\":\""+hx(secpAddress)+"\",\"address_base58check\":\""+base58check(secpAddress,false)+"\"");
+    first=vec(j,first,"C004.KEY.SM2", "\"private_key_hex\":\""+hx(PRIVATE_ONE)+"\",\"public_key_uncompressed_hex\":\""+hx(sm2Pub)+"\",\"address_hex\":\""+hx(sm2Address)+"\",\"address_base58check\":\""+base58check(sm2Address,true)+"\"");
     first=vec(j,first,"C004.SIG.SECP256K1", sigFields(secp,secpSig,"low_s",true));
     first=vec(j,first,"C004.SIG.SECP256K1.HIGH_S", sigFields(secp,new Sig(secpSig.r,secp.n.subtract(secpSig.s),secpSig.recid^1),"recover_and_verify",true));
     first=vec(j,first,"C004.SIG.SM2", sigFields(sm2,sm2Sig,"verify_and_recover_compatibility",verifySm2(sm2,PREHASH,sm2Sig)));
