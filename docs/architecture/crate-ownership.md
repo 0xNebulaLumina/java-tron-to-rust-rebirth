@@ -32,7 +32,7 @@ Allowed edges are declared in each crate manifest. Adding an edge requires updat
 | `tron-config` | Typed configuration, CLI model, lifecycle declarations | C003 | G-OPS, G-ARCH |
 | `tron-crypto` | Hash engines, keys, signatures, addresses, keystore core | C004-C005 | G-CRYPTO, G-SEC, G-LICENSE |
 | `tron-shielded` | Sapling primitives, parameters, native/FFI adapter boundary | C006 | G-CRYPTO, G-SEC, G-LICENSE, G-ARCH |
-| `tron-storage` | Rust disk format, KV backend, migrations, snapshots | C007 | G-FORMAT, G-STATE, G-ARCH |
+| `tron-storage` | Rust disk format, KV backend, migrations, snapshots; initial pure-Rust `rustlog-v1` WAL/snapshot format and backend-independent market ordering | C007 | G-FORMAT, G-STATE, G-ARCH |
 | `tron-state` | Capsules, logical schemas, revoking sessions, cursors, genesis, fork graph | C008-C011 | G-STATE, G-FORMAT |
 | `tron-tvm` | TVM repository, interpreter, opcodes, precompiles | C014-C015 | G-TVM, G-CRYPTO |
 | `tron-execution` | Actuators, admission, trace, billing, pending state, block processing | C012-C013, C016, C019 | G-STATE, G-TVM, G-CONSENSUS |

@@ -26,3 +26,46 @@ Operators may initialize an empty Rust directory and resynchronize from genesis,
 Errors are stable categories: `java_format`, `ambiguous_nonempty`, `manifest_missing`, `manifest_corrupt`, `format_unknown`, `format_newer`, `wrong_network`, `wrong_genesis`, `backend_unsupported`, `features_unsupported`, `partial_migration`, `locked`, `permission`, and `integrity`. Each is actionable and never silently falls back to initialization.
 
 Revisit only through a new decision record after a Java importer demonstrates read-only source handling, canonical logical-state extraction, state-root equality, crash safety, provenance, and byte/state differential validation. Until then, documentation, CLI, and tooling must say “resync/import verified Rust snapshot,” never “reuse Java database.”
+
+## C007 implementation contract
+
+The canonical filename is `tron-storage.manifest`. Manifest version 1 is a deterministic,
+line-oriented, CRC32-checksummed record whose required fields are `manifest_version`,
+`schema_version`, `network`, `genesis`, `backend`, `backend_format`, sorted required
+`features`, active `generation`, `state`, `parent_generation`, and `state_root`. Duplicate,
+missing, malformed, unknown-version, newer-version, wrong-identity, and unsupported fields
+fail before a backend or lock is opened. Generation data lives under `generation-N`.
+
+The C007 detector performs only directory enumeration, metadata reads, and bounded file reads.
+It recognizes `engine.properties`, LevelDB `CURRENT`/`LOG`/`MANIFEST-*`/`.ldb` markers and
+RocksDB `IDENTITY`/`OPTIONS-*`/`.sst` markers. Java, ambiguous, corrupt, partial-migration,
+newer, wrong-identity, and unsupported directories are rejected without creating a lock,
+temporary file, marker, backup, generation, or manifest. Fresh initialization accepts only a
+missing or empty directory. It first publishes a canonical CRC32-checksummed
+`tron-storage.initializing` journal with an explicit `journal`, `generation`, or `manifest`
+phase, then publishes generation zero before the manifest. Recovery accepts only the exact
+phase-appropriate remnants: the journal alone, the journal plus `generation-0`, or those
+entries plus one manifest temporary/final entry at the publication boundary. Java markers
+and migration/snapshot remnants take classification precedence; unknown, mixed, malformed,
+or phase-inconsistent trees are rejected read-only rather than cleaned or initialized.
+
+Supported Rust-to-Rust migration edges stage `.migration-N`, persist
+`tron-storage.migration`, fsync staged files and directories, preserve a checksummed prior
+manifest backup, rename the staged generation, and atomically switch the manifest. Every
+durable phase has an injectable fault boundary. A pre-switch interruption is explicitly
+rolled back and retried; a post-switch interruption resumes by validating the selected
+generation and removing the journal. Clean resync intent is recorded separately in
+`tron-storage.clean-resync`. Writing that marker requires the expected `StorageIdentity` and
+first classifies the directory read-only: Java, ambiguous, corrupt, partial, newer, and
+incompatible inputs are rejected without writes. For a valid Rust store it retains a
+`SecureDir`, acquires a shared storage lock, and revalidates the manifest identity and active
+generation before descriptor-relative atomic marker installation and file/directory fsync.
+Rust snapshot imports require an injected signature/trust verifier and materializer, exact
+network/genesis/schema/backend identity, and exact logical root equality before atomic
+publication. C028 owns trust-anchor selection and policy.
+
+The implementation exposes stable categories for Java format, ambiguous/nonempty input,
+missing/corrupt/unknown/newer manifests, wrong network/genesis, unsupported backend/features,
+partial migration, lock/concurrent open, permission, disk-full, integrity, snapshot
+authentication/incompatibility, and unsupported migration. None implies initialization or
+repair fallback.

@@ -762,65 +762,78 @@
     {
       "id": "C007",
       "title": "Rust storage format and backend",
-      "status": "todo",
-      "owner": null,
-      "updated": null,
+      "status": "done",
+      "owner": "rust-storage",
+      "updated": "2026-08-30",
       "resume": null,
       "items": [
         {
           "id": "C007.01",
           "description": "KV backend API: get/put/delete, atomic batches, ordered iterators, range/prefix, flush, checkpoint.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed the Rust-owned rustlog-v1 KV API with atomic batches, ordered range/prefix iteration, flush, durable close, checkpoint, and reopen coverage."
         },
         {
           "id": "C007.02",
           "description": "Logical market ordering independent of backend comparator quirks.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed deterministic logical market ordering by pair, rational price, and full-key tie break, including overflow and malformed-key coverage."
         },
         {
           "id": "C007.03",
           "description": "Rust manifest with format/schema/network/genesis/backend/features identity.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed the checksummed canonical Rust manifest with exact format, schema, network, genesis, backend, feature, and identity validation."
         },
         {
           "id": "C007.04",
           "description": "Detect and reject Java LevelDB/RocksDB directories without writes.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed bounded read-only classification and rejection of Java LevelDB/RocksDB and ambiguous storage trees with complete-tree no-write proofs."
         },
         {
           "id": "C007.05",
           "description": "Atomic Rust-version migration framework with preflight, backup, crash recovery, rollback, and resumability rules.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed generation-based migration with preflight, staging, backup, crash recovery, rollback before switch, and resumable cleanup after switch."
         },
         {
           "id": "C007.06",
           "description": "Fresh initialization, clean resync marker/state, verified snapshot import boundary.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed fresh initialization, identity-bound authenticated empty-destination snapshot import, and clean-resync state recording."
         },
         {
           "id": "C007.07",
           "description": "Corruption, disk-full, lock, permissions, concurrent-open, unknown/newer-version errors.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed stable corruption, disk-full, permission, concurrent-open/lock, unknown/newer-version, filesystem replacement, and poisoned-state errors."
         }
       ],
       "gate": {
         "id": "C007.V",
-        "description": "Reopen/crash/migrate/rollback/reject/order/atomicity matrix passes on every applicable C000.14 OS/architecture/backend/feature row, including native-resource and FFI checks where present.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: the reconciled inventory has 0 Java-test rows and 15 named Rust proofs; all 43 storage contract tests pass across backend/order (9), format/migration/snapshot (15), and failure/crash/error (19); all 23 qualification scenarios pass for the sole enabled native pure-Rust Linux x86_64 rustlog-v1 row with no FFI or native resources; Linux aarch64 remains explicitly disabled/future; and the locked tron-storage all-targets workspace check passes.",
+        "status": "passed",
+        "commands": [
+          {"name":"C007 inventory, vectors and matrix gate","cwd":".","argv":["python3","tools/storage/c007_gate.py"],"timeout_seconds":300},
+          {"name":"C007 backend, ordering, batch and reopen","cwd":"rust-tron","argv":["cargo","test","-p","tron-storage","--test","backend_contract","--test","market_order","--locked"],"timeout_seconds":300},
+          {"name":"C007 manifest, reject, migration, rollback, resume, snapshot and resync","cwd":"rust-tron","argv":["cargo","test","-p","tron-storage","--test","format_contract","--locked"],"timeout_seconds":300},
+          {"name":"C007 crash, corrupt, lock, permission and disk-full categories","cwd":"rust-tron","argv":["cargo","test","-p","tron-storage","--test","failure_contract","--locked"],"timeout_seconds":300},
+          {"name":"C007 pure-Rust storage all-targets check","cwd":"rust-tron","argv":["cargo","check","-p","tron-storage","--all-targets","--locked"],"timeout_seconds":300}
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C007.R.01",
+            "summary": "Final review required confirmation of the authenticated inventory and vectors, complete storage contract matrix, platform qualification, and locked workspace result.",
+            "status": "closed",
+            "resolution": "Approved after confirming the final results: 0 Java-test rows reconcile to 15 named Rust proofs; all 43 storage tests pass (9 backend/order, 15 format/migration/snapshot, 19 failure/crash/error); all 23 matrix scenarios pass on the sole enabled native pure-Rust Linux x86_64 rustlog-v1 row with no FFI or native resources; Linux aarch64 remains disabled/future; and the locked tron-storage all-targets check passes. All findings are closed, review is approved, C007 is complete, and the next ready item is C008.01."
+          }
+        ]
       },
       "blocker": null
     },

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "scope": "C007 physical-storage reference inventory reconciled to canonical production owners; C007 claims Rust contracts, not Java production ownership",
+  "java_markers": [
+    {"name":"engine.properties","classification":"java_engine_selection"},
+    {"name":"CURRENT","classification":"leveldb_or_rocksdb"},
+    {"name":"LOG","classification":"leveldb_or_rocksdb"},
+    {"name":"LOG.old","classification":"leveldb_or_rocksdb"},
+    {"name":"LOCK","classification":"leveldb_or_rocksdb"},
+    {"prefix":"MANIFEST-","classification":"leveldb_or_rocksdb"},
+    {"prefix":"OPTIONS-","classification":"rocksdb"},
+    {"suffix":".sst","classification":"rocksdb_or_leveldb"},
+    {"suffix":".ldb","classification":"leveldb"},
+    {"prefix":"IDENTITY","classification":"rocksdb"}
+  ],
+  "sources": [
+    {"path":"java-tron/chainbase/src/main/java/org/tron/core/db/common/DbSourceInter.java","canonical_owner":"C008.11","canonical_gate":"C008.V","c007_contract":"Java-format marker semantics are rejection inputs only; logical database abstraction remains C008"},
+    {"path":"java-tron/chainbase/src/main/java/org/tron/common/storage/leveldb/LevelDbDataSourceImpl.java","canonical_owner":"C009.06","canonical_gate":"C009.V","c007_contract":"byte get/put/delete, ordered iteration, batch write, reset and close behavior are Rust backend reference contracts"},
+    {"path":"java-tron/chainbase/src/main/java/org/tron/common/storage/rocksdb/RocksDbDataSourceImpl.java","canonical_owner":"C009.06","canonical_gate":"C009.V","c007_contract":"byte get/put/delete, ordered iteration, atomic batch, checkpoint and corruption behavior are Rust backend reference contracts"},
+    {"path":"java-tron/chainbase/src/main/java/org/tron/common/utils/StorageUtils.java","canonical_owner":"C009.06","canonical_gate":"C009.V","c007_contract":"market-store comparator selection is a Rust ordering reference contract"},
+    {"path":"java-tron/platform/src/main/java/common/org/tron/common/utils/MarketOrderPriceComparatorForLevelDB.java","canonical_owner":"C006.06","canonical_gate":"C006.V","c007_contract":"pair then rational price ordering with deterministic byte-key behavior is covered by Rust ordering tests"},
+    {"path":"java-tron/platform/src/main/java/x86/org/tron/common/utils/MarketOrderPriceComparatorForRocksDB.java","canonical_owner":"C006.06","canonical_gate":"C006.V","c007_contract":"x86 comparator behavior is a semantic reference only; C007 has no Rust FFI dependency"},
+    {"path":"java-tron/platform/src/main/java/arm/org/tron/common/utils/MarketOrderPriceComparatorForRocksDB.java","canonical_owner":"C006.06","canonical_gate":"C006.V","c007_contract":"aarch64 comparator behavior remains owned by C006; the C007 platform row is future and disabled"}
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "id": "P-LINUX-X64",
+      "os": "linux",
+      "architecture": "x86_64",
+      "target": "x86_64-unknown-linux-gnu",
+      "backend": "rustlog-v1",
+      "features": ["rustlog-v1"],
+      "runtime": "pure-rust",
+      "native_resources": "none",
+      "ffi": "none",
+      "enabled": true,
+      "state": "qualification",
+      "commands": [
+        "C007 backend, ordering, batch and reopen",
+        "C007 manifest, reject, migration, rollback, resume, snapshot and resync",
+        "C007 crash, corrupt, lock, permission and disk-full categories",
+        "C007 pure-Rust storage all-targets check"
+      ]
+    },
+    {
+      "id": "P-LINUX-ARM64",
+      "os": "linux",
+      "architecture": "aarch64",
+      "target": "aarch64-unknown-linux-gnu",
+      "backend": "rustlog-v1",
+      "features": ["rustlog-v1"],
+      "runtime": "pure-rust",
+      "native_resources": "none",
+      "ffi": "none",
+      "enabled": false,
+      "state": "future",
+      "reason": "C000 reserves this stable row ID, but no native executor or native runtime evidence enables it. Cross-compilation is not proof."
+    }
+  ],
+  "migration_phases": ["Preflight","StagingCreated","DataWritten","DataSynced","JournalSynced","BackupSynced","GenerationPublished","ManifestSwitched","DirectorySynced","CleanupSynced"],
+  "storage_error_categories": ["Io","DiskFull","Permission","ConcurrentOpen","Locked","Corruption","InvalidOptions","InvalidCheckpoint","MarketKey","Format","Poisoned"],
+  "write_phases": ["Append","Flush","Sync","Truncate","RollbackSync","Metadata","Compaction"],
+  "corruption_categories": ["InvalidWalHeader","InvalidSnapshotHeader","WalChecksum","SnapshotChecksum","FrameTooLarge","KeyTooLarge","ValueTooLarge","TooManyOperations","TooManySnapshotEntries","InvalidOperation","InvalidEncoding","TrailingSnapshotBytes"],
+  "scenarios": [
+    {"id":"backend","proofs":[{"file":"rust-tron/crates/tron-storage/tests/backend_contract.rs","symbol":"byte_api_batch_and_ordered_queries"}]},
+    {"id":"writable_rejection","proofs":[{"file":"rust-tron/crates/tron-storage/tests/backend_contract.rs","symbol":"writable_open_rejects_every_format_class_without_writes"}]},
+    {"id":"initialization_locking","proofs":[{"file":"rust-tron/crates/tron-storage/tests/backend_contract.rs","symbol":"concurrent_fresh_initialization_has_one_locked_loser_and_complete_generation"},{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"active_initialization_journal_is_untouched_by_second_opener"},{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"inspect_to_open_path_and_nonempty_swaps_fail_without_mutation"}]},
+    {"id":"initialization_classification","proofs":[{"file":"rust-tron/crates/tron-storage/tests/backend_contract.rs","symbol":"writable_open_rejects_every_format_class_without_writes"},{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"initialization_classification_precedence_and_malformed_trees_are_no_write"}]},
+    {"id":"initialization_recovery","proofs":[{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"legitimate_abrupt_initialization_phases_recover_deterministically"}]},
+    {"id":"ordering","proofs":[{"file":"rust-tron/crates/tron-storage/tests/market_order.rs","symbol":"logical_market_order_uses_price_then_full_key_tie_break"},{"file":"rust-tron/crates/tron-storage/tests/market_order.rs","symbol":"overflow_path_and_malformed_keys_are_deterministic"}]},
+    {"id":"filesystem_security","proofs":[{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"rejects_symlinked_storage_components_and_planted_files"},{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"retained_directory_and_lock_inodes_survive_path_replacement"}]},
+    {"id":"batch_atomicity","proofs":[{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"rustlog_vectors_batch_atomicity_reopen_and_corruption"}]},
+    {"id":"reopen","proofs":[{"file":"rust-tron/crates/tron-storage/tests/backend_contract.rs","symbol":"flush_checkpoint_reopen_and_exclusive_lock"},{"file":"rust-tron/crates/tron-storage/tests/backend_contract.rs","symbol":"recovery_truncates_incomplete_tail_but_reports_checksum_corruption"}]},
+    {"id":"durable_close","proofs":[{"file":"rust-tron/crates/tron-storage/tests/backend_contract.rs","symbol":"default_write_policy_defers_sync_but_consuming_close_is_durable"},{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"shutdown_sync_failure_is_returned_before_lock_release"}]},
+    {"id":"write_commit_points","proofs":[{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"write_commit_points_are_atomic_across_reopen"},{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"rollback_failures_poison_reject_operations_and_retain_lock"},{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"post_commit_metadata_and_compaction_failures_are_maintenance_errors"},{"file":"rust-tron/crates/tron-storage/tests/backend_contract.rs","symbol":"default_write_policy_defers_sync_but_consuming_close_is_durable"}]},
+    {"id":"corrupt","proofs":[{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"rustlog_vectors_batch_atomicity_reopen_and_corruption"},{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"snapshot_entry_limit_rejects_compact_and_checkpoint_without_partial_snapshot"},{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"manifest_identity_corruption_and_newer_versions_are_stable"},{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"manifest_rejects_unknown_fields_and_noncanonical_features"}]},
+    {"id":"lock","proofs":[{"file":"rust-tron/crates/tron-storage/tests/backend_contract.rs","symbol":"flush_checkpoint_reopen_and_exclusive_lock"},{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"lock_permission_and_disk_full_categories_are_stable"}]},
+    {"id":"permission","proofs":[{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"permission_denial_is_mandatory_under_dropped_credentials"}]},
+    {"id":"diskfull","proofs":[{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"lock_permission_and_disk_full_categories_are_stable"}]},
+    {"id":"crash","proofs":[{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"checkpoint_crash_child_terminates_at_publication_stage"},{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"abrupt_migration_process_death_releases_lock_and_recovers_durable_journal"},{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"snapshot_import_materializer_failure_and_abrupt_phases_are_retry_safe"}]},
+    {"id":"checkpoint","proofs":[{"file":"rust-tron/crates/tron-storage/tests/backend_contract.rs","symbol":"flush_checkpoint_reopen_and_exclusive_lock"},{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"checkpoint_failure_injection_cleans_or_recovers_and_retries"},{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"checkpoint_crash_child_terminates_at_publication_stage"}]},
+    {"id":"migration","proofs":[{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"migration_crash_rollback_resume_and_snapshot_resync_matrix"},{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"abrupt_migration_process_death_releases_lock_and_recovers_durable_journal"},{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"migration_root_replacement_fails_before_publication_and_never_reopens_path"}]},
+    {"id":"rollback","proofs":[{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"migration_crash_rollback_resume_and_snapshot_resync_matrix"}]},
+    {"id":"resume","proofs":[{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"migration_crash_rollback_resume_and_snapshot_resync_matrix"}]},
+    {"id":"snapshot","proofs":[{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"snapshot_import_materializer_failure_and_abrupt_phases_are_retry_safe"},{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"snapshot_import_rejects_oversize_growing_source_before_verification_or_materialization"}]},
+    {"id":"resource_bounds","proofs":[{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"snapshot_import_rejects_oversize_growing_source_before_verification_or_materialization"},{"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"growing_manifest_is_rejected_at_the_bounded_read_boundary"}]},
+    {"id":"resync","proofs":[{"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbol":"migration_crash_rollback_resume_and_snapshot_resync_matrix"}]}
+  ]
+}

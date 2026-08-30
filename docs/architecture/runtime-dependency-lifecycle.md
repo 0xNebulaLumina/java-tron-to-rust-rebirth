@@ -186,6 +186,34 @@ The default live-context bound is 64 and may be replaced only by an explicit pos
 
 Proving contexts accumulate spend trapdoors minus output trapdoors only after successful proof creation and use that sum for the binding signature. Verification contexts record only accepted spends and outputs; every proposed mutation is replayed into a fresh context before commit. The stateless `new` verification APIs allocate no handles. Pre-ZIP212 note encryption/decryption/recovery is synchronous and owns all ciphertext, memo, and key bytes; it starts no task and retains no global state. The C006.06 gRPC client owns a reusable tonic channel and a one-per-client in-flight semaphore; request permits are released on every success, transport failure, service failure, and timeout. It applies fixed connect/request deadlines and does not retry, queue, discover, or silently downgrade failures.
 
+## C007 storage lifecycle
+
+The composition root supplies immutable storage identity, supported schema/backend/features,
+migration edge, durable-phase fault injector when testing, and snapshot verifier/materializer.
+`tron-storage` reads no environment variables and chooses no network, genesis, trust anchor,
+signature policy, migration policy, or resync origin implicitly. Snapshot verification is a
+synchronous local boundary; C028 composes its trust policy into the narrow verifier trait.
+
+Initialization is `inspect read-only -> validate identity -> acquire exclusive access -> open
+selected generation`. A RustLog write records the current WAL offset and appends one complete
+checksummed frame. Append, flush, or policy-required sync failure before the commit point triggers
+a truncate back to that offset followed by a WAL sync; rollback failure poisons the handle, which
+retains its exclusive lock and rejects subsequent fallible operations. Only after the configured
+WAL durability policy succeeds does the in-memory map change. Automatic compaction is maintenance
+after that commit point: its failure is reported separately on the handle and never changes a
+committed write from success to error.
+
+The composition root must invoke the consuming, fallible storage close path during shutdown and
+handle its result; dropping storage is only a best-effort fallback and never a successful-shutdown
+signal. Close flushes the WAL, syncs its data, syncs an installed snapshot when present, and syncs
+the selected generation directory before releasing the exclusive lock. A close error is returned
+only after that ordered attempt completes and terminal ownership drops the still-held lock; the
+fallback drop repeats the same sync sequence best-effort. Migration and import run before ordinary
+backend activation and publish exactly one selected generation by atomic manifest replacement.
+Recovery is an explicit startup/tool operation: pre-switch journals must roll back and retry, while
+post-switch journals validate and resume cleanup. Constructors start no task, and no
+migration/import work is detached.
+
 ## Protobuf wire compatibility boundary
 
 Inbound protobuf messages that can be hashed, signed, relayed, or returned byte-for-byte retain

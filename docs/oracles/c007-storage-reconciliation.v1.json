@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "status": "reconciled_to_canonical_ledgers",
+  "java_test_ledger_rows": 0,
+  "java_test_ledger_row_ids": [],
+  "explanation": "The canonical java-test ownership ledger assigns no rows to C007.V. Java production references in the C007 inventory retain their concrete C006/C008/C009 owners; C007 claims only the listed Rust replacement proofs.",
+  "ownership_seams": [
+    {"owner":"C007","surface":"physical backend, manifest, migration, Java-format rejection, ordering primitive and operational errors"},
+    {"owner":"C008","surface":"logical store keys, values, capsules and state-root reconciliation"},
+    {"owner":"C028","surface":"release snapshots, operational resync drills and artifact authentication"}
+  ],
+  "rust_proofs": [
+    {"file":"rust-tron/crates/tron-storage/tests/backend_contract.rs","symbols":["writable_open_rejects_every_format_class_without_writes","byte_api_batch_and_ordered_queries","flush_checkpoint_reopen_and_exclusive_lock","recovery_truncates_incomplete_tail_but_reports_checksum_corruption"]},
+    {"file":"rust-tron/crates/tron-storage/tests/market_order.rs","symbols":["logical_market_order_uses_price_then_full_key_tie_break","overflow_path_and_malformed_keys_are_deterministic"]},
+    {"file":"rust-tron/crates/tron-storage/tests/format_contract.rs","symbols":["java_markers_are_rejected_without_writes","manifest_identity_corruption_and_newer_versions_are_stable","manifest_rejects_unknown_fields_and_noncanonical_features","migration_crash_rollback_resume_and_snapshot_resync_matrix"]},
+    {"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbols":["rustlog_vectors_batch_atomicity_reopen_and_corruption","lock_permission_and_disk_full_categories_are_stable","permission_denial_is_mandatory_under_dropped_credentials","rejects_symlinked_storage_components_and_planted_files","retained_directory_and_lock_inodes_survive_path_replacement"]}
+  ]
+}

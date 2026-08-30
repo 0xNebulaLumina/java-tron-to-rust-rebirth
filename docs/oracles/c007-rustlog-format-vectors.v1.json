@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "backend": "rustlog-v1",
+  "integer_encoding": "unsigned little-endian u32",
+  "checksum": "CRC-32/ISO-HDLC over the frame payload or snapshot body",
+  "vectors": [
+    {
+      "id": "empty-wal",
+      "kind": "wal_file",
+      "hex": "524c4f4757414c31",
+      "meaning": "RLOGWAL1 header and no committed frames"
+    },
+    {
+      "id": "put-a-1",
+      "kind": "batch_payload",
+      "hex": "010000000001000000610100000031",
+      "operations": [{"put":{"key_hex":"61","value_hex":"31"}}]
+    },
+    {
+      "id": "delete-a",
+      "kind": "batch_payload",
+      "hex": "01000000010100000061",
+      "operations": [{"delete":{"key_hex":"61"}}]
+    },
+    {
+      "id": "empty-snapshot-file",
+      "kind": "snapshot_file",
+      "hex": "524c4f47534e503104000000000000001cdf442100000000",
+      "entry_count": 0
+    },
+    {
+      "id": "too-many-snapshot-entries",
+      "kind": "corruption",
+      "variant": "TooManySnapshotEntries",
+      "actual": 2,
+      "maximum": 1,
+      "proof": {
+        "file": "rust-tron/crates/tron-storage/tests/failure_contract.rs",
+        "symbol": "snapshot_entry_limit_rejects_compact_and_checkpoint_without_partial_snapshot"
+      }
+    },
+    {
+      "id": "write-commit-points",
+      "kind": "write_failure_contract",
+      "phases": ["Append", "Flush", "Sync", "Truncate", "RollbackSync", "Metadata", "Compaction"],
+      "pre_commit_error": "Io",
+      "rollback_error": "Poisoned",
+      "post_commit_error_channel": "maintenance_error",
+      "proofs": [
+        {"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"write_commit_points_are_atomic_across_reopen"},
+        {"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"rollback_failures_poison_reject_operations_and_retain_lock"},
+        {"file":"rust-tron/crates/tron-storage/tests/failure_contract.rs","symbol":"post_commit_metadata_and_compaction_failures_are_maintenance_errors"},
+        {"file":"rust-tron/crates/tron-storage/tests/backend_contract.rs","symbol":"default_write_policy_defers_sync_but_consuming_close_is_durable"}
+      ]
+    }
+  ],
+  "invariants": [
+    "A WAL frame is length_le_u32 || crc32_le_u32 || payload.",
+    "A batch is operation_count_le_u32 followed by ordered tagged operations; tag 0 is put and tag 1 is delete.",
+    "A snapshot is RLOGSNP1 || payload_length_le_u64 || crc32_le_u32(payload) || payload; payload starts with entry_count_le_u32 and sorted key/value entries.",
+    "Incomplete final WAL frame is truncated on reopen; a complete bad-checksum frame is corruption.",
+    "Only a whole decoded frame mutates the recovered map, preserving batch atomicity.",
+    "Snapshot encoding and decoding enforce the same max_snapshot_entries bound; over-limit encoding fails before a temporary snapshot file is created.",
+    "A returned write error is absent after reopen; a successful write is present after reopen.",
+    "Rollback failure poisons the handle, retains its exclusive lock, and rejects subsequent operations.",
+    "Metadata and compaction failures occur after commit and are reported only through maintenance_error.",
+    "The default write policy flushes but defers synchronization until an explicit durable boundary."
+  ]
+}
