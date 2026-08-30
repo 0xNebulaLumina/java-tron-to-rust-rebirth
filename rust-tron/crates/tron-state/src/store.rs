@@ -4,6 +4,8 @@ use std::sync::{Arc, Mutex, MutexGuard};
 use tron_storage::{RustLog, WriteBatch, WriteFaultInjector};
 
 const NAMESPACE_VERSION: u8 = 1;
+const INTERNAL_NAMESPACE_VERSION: u8 = 2;
+const CHECKPOINT_INTERNAL_NAMESPACE: u8 = 1;
 
 #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub enum StoreKind {
@@ -17,6 +19,20 @@ pub enum StoreKind {
     RewardVi, Common, Checkpoint, Temporary,
 }
 impl StoreKind {
+    pub const ALL: [Self; 45] = [
+        Self::Account, Self::AccountIdIndex, Self::AccountIndex, Self::AccountAsset,
+        Self::AssetIssue, Self::AssetIssueV2, Self::Block, Self::BlockIndex, Self::Transaction,
+        Self::TransactionCache, Self::TransactionRet, Self::TransactionHistory, Self::RecentBlock,
+        Self::RecentTransaction, Self::Contract, Self::Abi, Self::Code, Self::ContractState,
+        Self::StorageRow, Self::Witness, Self::WitnessSchedule, Self::Votes, Self::Proposal,
+        Self::Exchange, Self::ExchangeV2, Self::MarketAccount, Self::MarketOrder,
+        Self::MarketPairToPrice, Self::MarketPairPriceToOrder, Self::DelegatedResource,
+        Self::DelegatedResourceAccountIndex, Self::DynamicProperties, Self::IncrementalMerkleTree,
+        Self::Nullifier, Self::ZkProof, Self::TreeBlockIndex, Self::SectionBloom,
+        Self::AccountTrace, Self::BalanceTrace, Self::Delegation, Self::Pbft, Self::RewardVi,
+        Self::Common, Self::Checkpoint, Self::Temporary,
+    ];
+
     #[must_use]
     pub const fn db_name(self) -> &'static str { match self {
         Self::Account => "account", Self::AccountIdIndex => "accountid-index",
@@ -86,8 +102,25 @@ impl StateStore {
         Ok(TypedStore { state: self.clone(), name: StoreName::new(name)? })
     }
     #[must_use] pub fn store(&self, kind: StoreKind) -> TypedStore { TypedStore { state: self.clone(), name: kind.name() } }
+    #[must_use] pub(crate) fn store_by_name(&self, name: StoreName) -> TypedStore { TypedStore { state: self.clone(), name } }
+    #[must_use]
+    pub(crate) fn checkpoint_metadata(&self) -> InternalStore {
+        InternalStore { state: self.clone(), namespace: CHECKPOINT_INTERNAL_NAMESPACE }
+    }
+    pub fn flush(&self) -> tron_storage::Result<()> { self.lock().flush() }
     #[must_use] pub fn batch(&self) -> StateWriteBatch { StateWriteBatch { state: self.clone(), batch: WriteBatch::new() } }
     fn lock(&self) -> MutexGuard<'_, RustLog> { self.log.lock().unwrap_or_else(std::sync::PoisonError::into_inner) }
+    pub(crate) fn snapshot_names(&self, names: &[StoreName]) -> std::collections::BTreeMap<StoreName, std::collections::BTreeMap<Vec<u8>, Vec<u8>>> {
+        let log = self.lock();
+        names.iter().cloned().map(|name| {
+            let physical_prefix = physical_key(&name, &[]);
+            let namespace_length = physical_prefix.len();
+            let rows = log.prefix(&physical_prefix, usize::MAX).into_iter()
+                .map(|(key, value)| (key[namespace_length..].to_vec(), value))
+                .collect();
+            (name, rows)
+        }).collect()
+    }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -122,6 +155,40 @@ impl TypedStore {
         if !self.contains_key(key) { return Ok(false); }
         self.delete(key)?; Ok(true)
     }
+}
+
+fn internal_physical_key(namespace: u8, key: &[u8]) -> Vec<u8> {
+    let mut physical = Vec::with_capacity(2 + key.len());
+    physical.push(INTERNAL_NAMESPACE_VERSION);
+    physical.push(namespace);
+    physical.extend_from_slice(key);
+    physical
+}
+
+#[derive(Clone)]
+pub(crate) struct InternalStore { state: StateStore, namespace: u8 }
+impl InternalStore {
+    #[must_use]
+    pub(crate) fn get(&self, key: &[u8]) -> Option<Vec<u8>> {
+        self.state.lock().get(&internal_physical_key(self.namespace, key))
+    }
+    #[must_use]
+    pub(crate) fn batch(&self) -> InternalWriteBatch {
+        InternalWriteBatch { state: self.state.clone(), namespace: self.namespace, batch: WriteBatch::new() }
+    }
+}
+
+pub(crate) struct InternalWriteBatch { state: StateStore, namespace: u8, batch: WriteBatch }
+impl InternalWriteBatch {
+    pub(crate) fn put(&mut self, key: &[u8], value: &[u8]) -> &mut Self {
+        self.batch.put(internal_physical_key(self.namespace, key), value.to_vec());
+        self
+    }
+    pub(crate) fn delete(&mut self, key: &[u8]) -> &mut Self {
+        self.batch.delete(internal_physical_key(self.namespace, key));
+        self
+    }
+    pub(crate) fn commit(self) -> tron_storage::Result<()> { self.state.lock().write(self.batch) }
 }
 
 /// C009 overlay handoff: collect operations from any logical store and commit them in one RustLog WAL frame.

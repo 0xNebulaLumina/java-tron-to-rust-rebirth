@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "owner": "C009",
+  "checkpoint_format": {
+    "magic": "TSTKCP02",
+    "checksum": "sha256",
+    "integer_order": "big-endian",
+    "atomic_seam": "tron_storage::WriteBatch",
+    "journal_keys": ["stack/journal", "stack/staged", "stack/current"],
+    "crash_phases": ["BeforeStage", "AfterStage", "BeforePublish", "AfterPublish"],
+    "limits": ["max_stack", "max_flush_count", "max_bytes"]
+  },
+  "contracts": [
+    {"id":"C009.03-stack","source":"rust-tron/crates/tron-state/src/checkpoint.rs","symbols":["CheckpointStack::persist_with","CheckpointStack::recover","CheckpointStack::retreat","CheckpointStack::relink","CheckpointStack::flush_bounded"]},
+    {"id":"C009.04-pending","source":"rust-tron/crates/tron-state/src/pending.rs","symbols":["PendingSession::child","PendingSession::merge_child","PendingSession::reset","PendingSession::drop"]},
+    {"id":"C009.05-cursors","source":"rust-tron/crates/tron-state/src/cursor.rs","symbols":["HeadCursor","SolidityCursor","PbftCursor","CursorSet::new","CursorSet::validate_identity","SessionManager::record_checkpoint","CheckpointStack::record"]},
+    {"id":"C009.06-isolation","source":"rust-tron/crates/tron-state/src/session.rs","symbols":["SessionManager::build_session","SessionManager::build_session_enabled","SessionManager::read_view","SessionManager::session_view","SessionManager::record_checkpoint","SessionManager::shutdown_aggregated","DurableStore::get","DurableStore::put"]},
+    {"id":"C009.02-nested-finalization","source":"rust-tron/crates/tron-state/src/session.rs","symbols":["Session::child","Session::commit","Session::revoke","Session::merge","Session::close","SessionManager::pop","SessionManager::shutdown"]},
+    {"id":"C009.03-checkpoint-linearization","source":"rust-tron/crates/tron-state/src/checkpoint.rs","symbols":["SessionManager::checkpoint_state_with","SessionManager::checkpoint_operation","SessionManager::replace_checkpoint_state_from","SessionManager::retreat_checkpoint_with","CheckpointStack::persist_with","CheckpointStack::recover","CheckpointStack::relink","CheckpointStack::retreat"]}
+  ],
+  "checkpoint_linearization": {
+    "lock_scope": "manager state mutation lock from layer capture through staged and current durable publication",
+    "included_commits": "every commit completed before lock acquisition",
+    "concurrent_commits": "blocked until publication completes",
+    "competing_persists": "serialized; an older captured stack cannot publish after a newer stack",
+    "recovery_and_relink": "journal recovery and in-memory replacement share the same mutation lock"
+  },
+  "nested_finalization": {
+    "identity_basis": "session layer identity, not current stack top",
+    "committed_descendants": "may remain above a parent finalized by commit",
+    "parent_commit": "marks only the parent layer committed and preserves descendants",
+    "parent_revoke": "discards the parent layer and every descendant",
+    "parent_merge": "folds the parent and every descendant in stack order into the predecessor",
+    "active_and_abandoned": "cascade removal accounts for every live descendant and removes abandoned suffixes",
+    "negative_pbft_offset": "returns NegativePbftOffset; only a missing PBFT point falls back to solidity"
+  },
+  "isolation": {
+    "manager_read_view": "immutable durable root plus every committed non-abandoned overlay (logical HEAD); excludes active speculative overlays",
+    "manager_session_view": "same immutable logical HEAD as manager_read_view; committed overlays remain visible before physical flush and active speculative overlays are excluded",
+    "durable_store_read": "public physical durable-root read capability; excludes every overlay regardless of commit state",
+    "durable_store_mutation": "rejected while any ordinary or pending session is active; checkpoint and flush root writes remain manager-locked",
+    "session_parent_capability": "manager constructors create roots only at active depth zero; nested layers require the live top Session or PendingSession parent capability",
+    "checkpoint_read_view": "materialized immutable committed state keyed by checkpoint identity",
+    "checkpoint_ancestry": "each checkpoint retains identity, parent identity, block point, and state snapshot",
+    "same_session_writes": "serialized by manager mutex",
+    "different_read_views": "independent immutable values"
+  }
+}

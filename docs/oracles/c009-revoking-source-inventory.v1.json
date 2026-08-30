@@ -1,0 +1,118 @@
+{
+  "case_count": 155,
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "schema_version": 1,
+  "source_count": 22,
+  "sources": [
+    {
+      "case_count": 10,
+      "path": "java-tron/framework/src/test/java/org/tron/common/storage/CheckOrInitEngineTest.java",
+      "sha256": "e13615a02bd74d73aa2c19790392ad4504ad31af8db050b81c3f1cccc6e2067c"
+    },
+    {
+      "case_count": 14,
+      "path": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "sha256": "a02c9b0ee37b599e3293befd053a247017342c6c2261c4597a51445abc894000"
+    },
+    {
+      "case_count": 5,
+      "path": "java-tron/framework/src/test/java/org/tron/common/storage/leveldb/LevelDbDataSourceImplTest.java",
+      "sha256": "6c2647f59b69820c88bd6b0f5edca175802ed4ece51240c9f4601461fba324bc"
+    },
+    {
+      "case_count": 5,
+      "path": "java-tron/framework/src/test/java/org/tron/common/storage/rocksdb/RocksDbDataSourceImplTest.java",
+      "sha256": "51e3f647f48d5de27b45b4b4a940ad19af5837623e45e2adcbd003b93eccddbc"
+    },
+    {
+      "case_count": 1,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/ByteArrayWrapperTest.java",
+      "sha256": "ae54003d5b90f2ba498e6d687d8a81cbadfa08ba8b9608bdbe4733169e47ce1b"
+    },
+    {
+      "case_count": 5,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/CheckPointV2StoreTest.java",
+      "sha256": "a23951efadea204d9f4154d3d1f415b481a19e48f67dbbbd905051d587fc485e"
+    },
+    {
+      "case_count": 2,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/DBIteratorTest.java",
+      "sha256": "b57c48935e3eca54c1ab49c51165df74c084397bfd4191396f07f47d9b95f591"
+    },
+    {
+      "case_count": 16,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "sha256": "57c5493bbb18cf585eec19285ede6c8bbd3e8b03fd42c9c6aef90bf958eeb06a"
+    },
+    {
+      "case_count": 6,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashVmTest.java",
+      "sha256": "4ae8c7195269ffab9f44c43ecf745324bec4318d105e56a3db89929565e3c810"
+    },
+    {
+      "case_count": 5,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
+      "sha256": "b06bc30368d90d98835664f7b92b42afd0b3804ce19f35ff7f4813d2915b014a"
+    },
+    {
+      "case_count": 17,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "sha256": "ccbc5bbaee524040397d8072da6cafd2ec0882876f478c501717a243de6a55ea"
+    },
+    {
+      "case_count": 36,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "sha256": "a4d0c00203a78bcc3545381db22f46d81cedab626063ec8bfa993ff59cf4e16e"
+    },
+    {
+      "case_count": 1,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/SerializedTest.java",
+      "sha256": "e0d00be725f7e6298b507989d6df82b2e2d153b2e110be6310b8fc94a0e7c8a9"
+    },
+    {
+      "case_count": 7,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/TronDatabaseTest.java",
+      "sha256": "095b42a0a146283715ed5b76d5411c5fedb1df656a291d24e0b34d26bf2f94af"
+    },
+    {
+      "case_count": 1,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/TxCacheDBInitTest.java",
+      "sha256": "55e2ec91dcbd243cad1e77a34cbeea03a2eaacbd55fed462ead4696d3519bd6b"
+    },
+    {
+      "case_count": 1,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/TxCacheDBTest.java",
+      "sha256": "b3ce631588a17eb4dc7fa6fedecd9c518f5d46233d3dbaf7f38f91591d0f0265"
+    },
+    {
+      "case_count": 2,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db2/ChainbaseTest.java",
+      "sha256": "1c72cf8cced4e2039518d5599a46afdcabc090eacfdcf4fbddd27e937ec9c021"
+    },
+    {
+      "case_count": 1,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db2/CheckpointV2Test.java",
+      "sha256": "b448dd551a46ec4dd1ef37a1c398a0038148bd439459b7b1eef5b376bf84e8e1"
+    },
+    {
+      "case_count": 8,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db2/RevokingDbWithCacheNewValueTest.java",
+      "sha256": "0a7cd301d584025dedd4d097a78eb9d5cee6eab71fcedf218651aa330abafaaf"
+    },
+    {
+      "case_count": 3,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotImplTest.java",
+      "sha256": "2604989c150f513a3b18e9c4102547fa52d15b20baf93dcd232dd25687018218"
+    },
+    {
+      "case_count": 4,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotManagerTest.java",
+      "sha256": "7014abe39c872fb8cc22388bcded125dfdfba32fa53854351a9f105b0f74b985"
+    },
+    {
+      "case_count": 5,
+      "path": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotRootTest.java",
+      "sha256": "30c9c6cd48af132b7a93ee43d4093504f95119cd813681d30d251fccfe583f63"
+    }
+  ]
+}

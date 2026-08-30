@@ -1,0 +1,1447 @@
+{
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "rows": [
+    {
+      "disposition": "reassigned",
+      "java_case": "testLevelDbDetectedWhenExpectingRocksDb",
+      "java_line": 41,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/CheckOrInitEngineTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-61D81C38153693E8"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testCannotCreateDir",
+      "java_line": 59,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/CheckOrInitEngineTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-9A9B38B501CDC5A6"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testCannotCreateEngineFile",
+      "java_line": 73,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/CheckOrInitEngineTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-A808CB228922D2D1"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testCannotWritePropertyFile",
+      "java_line": 89,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/CheckOrInitEngineTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-3D1866C6BF2DC6C1"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testEngineMismatch",
+      "java_line": 118,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/CheckOrInitEngineTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-544F6127B47053EC"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testSuccessfulFirstTimeInit",
+      "java_line": 144,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/CheckOrInitEngineTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-81F0DEA570A85734"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testSuccessfulExistingEngine",
+      "java_line": 169,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/CheckOrInitEngineTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-3636928C80CB0674"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testCurrentFileExistsWithNoEngineFile",
+      "java_line": 191,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/CheckOrInitEngineTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-97FFDFDA01F8EB73"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testCurrentFileExistsEngineFileExists",
+      "java_line": 216,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/CheckOrInitEngineTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-37B9C44709A1CB23"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testEmptyStringEngine",
+      "java_line": 242,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/CheckOrInitEngineTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-9939DC890C43E0F5"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testPutGet",
+      "java_line": 119,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-DF5D422BD486E473"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testReset",
+      "java_line": 145,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-5D4B6E2F7521CC11"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testupdateByBatchInner",
+      "java_line": 161,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-486989C1BD8E63A2"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testdeleteData",
+      "java_line": 201,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-4F7619CC51D88177"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testallKeys",
+      "java_line": 214,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-4680DFD8B89BD34D"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testLockReleased",
+      "java_line": 236,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-9889768530D9872D"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "allKeysTest",
+      "java_line": 244,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-58B0E6325D7C45AC"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "getValuesNext",
+      "java_line": 285,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-94E4F2D153DEA588"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testGetTotal",
+      "java_line": 298,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-6DB1B389807C3AC5"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "getKeysNext",
+      "java_line": 314,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-FE32B29855D07014"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "prefixQueryTest",
+      "java_line": 330,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-B5FEF5E0DE7DC32C"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testGetNext",
+      "java_line": 361,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-9CC0BB0233721353"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testGetlatestValues",
+      "java_line": 382,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-4C2B0F15EA9257CE"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testNewInstance",
+      "java_line": 397,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-D56AF9F8A2679AEE"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "initDbTest",
+      "java_line": 87,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/leveldb/LevelDbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-C0BD2D3229DEF9B4"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testCheckOrInitEngine",
+      "java_line": 95,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/leveldb/LevelDbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-B8D930025A066549"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testLevelDbOpenRocksDb",
+      "java_line": 118,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/leveldb/LevelDbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-F8DEF03E90006E7B"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "slowOpen",
+      "java_line": 139,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/leveldb/LevelDbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-2424859A27B2E8E5"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "fastOpen",
+      "java_line": 173,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/leveldb/LevelDbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-8962E36D44895DF7"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "initDbTest",
+      "java_line": 57,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/rocksdb/RocksDbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-D86D33D7CE942957"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testCheckOrInitEngine",
+      "java_line": 65,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/rocksdb/RocksDbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-1A0DD9BEB85237D7"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testRocksDbOpenLevelDb",
+      "java_line": 91,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/rocksdb/RocksDbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-F5AEAD743EA49BCB"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testRocksDbOpenLevelDb2",
+      "java_line": 106,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/rocksdb/RocksDbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-67B5AF0E67304243"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "backupAndDelete",
+      "java_line": 127,
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/storage/rocksdb/RocksDbDataSourceImplTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-C54E0194CB69405C"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "createByteArray",
+      "java_line": 12,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ByteArrayWrapperTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-BB3796B067F61A8F"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testStubMethods",
+      "java_line": 46,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/CheckPointV2StoreTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-7F22D7A2A6543F1A",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-7F22D7A2A6543F1A"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testCloseWithRealResources",
+      "java_line": 77,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/CheckPointV2StoreTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-427822B5FC0A8B52"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testCloseReleasesAllResources",
+      "java_line": 84,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/CheckPointV2StoreTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-11007D58F34FE02D"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testCloseWhenDbSourceThrows",
+      "java_line": 104,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/CheckPointV2StoreTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-D22271201E9F8038"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testCloseDbSourceWhenWriteOptionsThrows",
+      "java_line": 122,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/CheckPointV2StoreTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-9C73A75AD63D8B8A"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testLevelDb",
+      "java_line": 34,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DBIteratorTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-BF24E4BABAB3834E"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testRocksDb",
+      "java_line": 83,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DBIteratorTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-6D22B91E592B3020"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "activationDeploysContractAndFlagIsSet",
+      "java_line": 75,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-75B16DEAF591BE40"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "writeAfterActivationFillsStorageSlot",
+      "java_line": 93,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-95477C36C5ABDE2F"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "vmRepositoryReadsBackWrittenHash",
+      "java_line": 114,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-8E65A6339383F073"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "noWriteBeforeActivation",
+      "java_line": 143,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-CE99D1A554C80CE4"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "writeForBlock1StoresGenesisHashAtSlot0",
+      "java_line": 170,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-B8D76D8FA81F44B0"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "writeIsNoOpForGenesisBlock",
+      "java_line": 194,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-AFB87C529D902905"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "deploySkipsWhenForeignBytecodePresent",
+      "java_line": 218,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-96DAE18A51BA07DE"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "deploySkipsWhenForeignContractPresent",
+      "java_line": 232,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-B39A8813F30E9906"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "generateBlockWritesParentHashBeforeTxLoop",
+      "java_line": 273,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-C35A3531EADCDF86"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "deployUpgradesPreExistingNormalAccountPreservingBalance",
+      "java_line": 319,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-8A530979363FFF13"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "deployCreatesCodeContractAndAccount",
+      "java_line": 337,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-116DC404CAF005EF"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "writeStoresParentHashAtCorrectSlot",
+      "java_line": 368,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-11106198AAB6E61D"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "writeUsesRingBufferModulo",
+      "java_line": 389,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-2339C6379ECFEBF5"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "beforeDeployNothingIsWritten",
+      "java_line": 411,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-5375689E40AD9CAE"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "writeIsNoOpBeforeDeploy",
+      "java_line": 427,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-E460E6A5EB2A7336"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "writeIsNoOpOnForeignCode",
+      "java_line": 451,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-4802A71C43E3312B"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "vmReturnsWrittenHashForBlockInWindow",
+      "java_line": 139,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashVmTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-B2617EA27313B3A6"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "vmReturnsZeroForUnwrittenSlot",
+      "java_line": 161,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashVmTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-B11A891235DB7D78"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "vmRevertsForFutureBlock",
+      "java_line": 179,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashVmTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-EA9B51692842EFF9"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "vmRevertsForBlockOutsideWindow",
+      "java_line": 195,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashVmTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-560A68E46397B682"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "vmRevertsForBadCalldataLength",
+      "java_line": 211,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashVmTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-5E7FC172E7DE318D"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "vmExecutionDoesNotInvalidOpcodeUnderShanghai",
+      "java_line": 228,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashVmTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-EB0FC8571467C3D8"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testStartBlock",
+      "java_line": 39,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-DC962C8486AEB077"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testPushGetBlock",
+      "java_line": 50,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-4FC0EDF1C0D78E1B"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "checkWeakReference",
+      "java_line": 76,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-3502FD0040F2328C"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testGetBranch",
+      "java_line": 104,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-F8C35B5DF3CB7207"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testIsNotEmpty",
+      "java_line": 163,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-C70C87BC73F43547"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "processTransactionCostTimeMoreThan100",
+      "java_line": 80,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-973597755289CF29"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testInitAutoStop",
+      "java_line": 201,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-864774AC93B965F1"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testInitAutoStop1",
+      "java_line": 223,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-CE2F4C3130D0E611"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testInitAutoStop2",
+      "java_line": 244,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-D4E7262386CD81D7"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testInitAutoStop3",
+      "java_line": 266,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-BC9B88C572DD5279"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testInitAutoStop4",
+      "java_line": 288,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-68FE265CD6D52877"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testInitAutoStop5",
+      "java_line": 310,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-B83090A2F3DB8676"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testProcessTransaction",
+      "java_line": 332,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-A8CD0D262972F9F8"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testProcessTransaction1",
+      "java_line": 345,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-6BE03B0483A887C3"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testRePush",
+      "java_line": 368,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-7785DFE4C42C44CC"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testRePush1",
+      "java_line": 386,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-20BA41D5C25E4AAA"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testPostSolidityFilter",
+      "java_line": 435,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C024",
+      "rationale": "Filter, trigger, and externally observed API/event routing belong to C024.",
+      "stable_id": "TCASE-A018B2B32E0CCF80"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testReOrgLogsFilter",
+      "java_line": 445,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-3CFDF1E98BD93BE0"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testPostContractTriggerProcessesSync",
+      "java_line": 466,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C024",
+      "rationale": "Filter, trigger, and externally observed API/event routing belong to C024.",
+      "stable_id": "TCASE-87A4901403CA57A8"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testPostContractTriggerSwallowsThrowable",
+      "java_line": 523,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C024",
+      "rationale": "Filter, trigger, and externally observed API/event routing belong to C024.",
+      "stable_id": "TCASE-E91A33B73B4F0AE4"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testSwitchForkRejectsBlockWithInvalidSignature",
+      "java_line": 586,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-BABF7FA8E4C0961F"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testSwitchForkPassesValidSignatureBlockToApply",
+      "java_line": 655,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-9AE831C5B9BC51DD"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "updateRecentTransaction",
+      "java_line": 183,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-657B4146935AC323"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "setBlockReference",
+      "java_line": 216,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-190384CFC0C2E4EC"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "pushBlock",
+      "java_line": 268,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-BCC382044C7110A7"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "transactionTest",
+      "java_line": 306,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-D30EC57F5898E512"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "GetterInstanceTest",
+      "java_line": 336,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-21E43CE52998EC85"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "entityTest",
+      "java_line": 359,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-48C05716A9C0C761"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "getHeadTest",
+      "java_line": 377,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-091A09E825FA91F7"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "adjustBalanceTest",
+      "java_line": 397,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-3B62E9FB0F111007"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "adjustAssetBalanceV2Test",
+      "java_line": 453,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-44E575C16A552EBB"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "pushBlockInvalidMerkelRoot",
+      "java_line": 505,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-156D51E787A2AEB5"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "adjustTotalShieldPoolValueTest",
+      "java_line": 525,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-6A481D85D2DB7B22"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "pushBlockTooMuchShieldedTransactions",
+      "java_line": 550,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-B7E1EBD8853DEC4C"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "pushSwitchFork",
+      "java_line": 582,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-81DA1938E8A7FCAC"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "fork",
+      "java_line": 715,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-7DD0FC105B6C8E0C"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "getVerifyTxsTest",
+      "java_line": 822,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-453A9DC1594CB314"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "getVerifyTxsSkipsBlockWhenPermissionTxAlreadyConsumed",
+      "java_line": 891,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-179E21D1501983AE"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "doNotSwitch",
+      "java_line": 932,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-68E5278DDA72BEBE"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "switchBack",
+      "java_line": 1046,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-2690C5CAF0847FAB"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testExpireTransaction",
+      "java_line": 1229,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-2E2FEC9A983BB8F5"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testTooBigTransaction",
+      "java_line": 1244,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-05EC33CF882CAB71"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testExpiration",
+      "java_line": 1277,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C029",
+      "rationale": "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work.",
+      "stable_id": "TCASE-82498F8D199860E5"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testGetTransactionInfoByBlockNum",
+      "java_line": 1301,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-367831ED06AA1E78"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "isExchangeTransactionBypassedWhenHardenedEnabled",
+      "java_line": 1342,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-D2326AAF1777BA43"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "isExchangeTransactionNonExchangeContractReturnsFalse",
+      "java_line": 1370,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-E5BE8B28706A2E32"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "blockTrigger",
+      "java_line": 1388,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C024",
+      "rationale": "Filter, trigger, and externally observed API/event routing belong to C024.",
+      "stable_id": "TCASE-7873A7A4CC85E1D6"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testReOrgContractTriggerClearsMap",
+      "java_line": 1398,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-E441B37A7633C5D0"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testReOrgBlockTriggerRemoved",
+      "java_line": 1464,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-CEB85C968C48B3A5"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testReApplyBlockEvents",
+      "java_line": 1501,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-0EA9048ED8932B0B"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testReOrgBlockTrigger",
+      "java_line": 1531,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-DB8637F6293B8296"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testPostSolidityTriggerSolidified",
+      "java_line": 1549,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C024",
+      "rationale": "Filter, trigger, and externally observed API/event routing belong to C024.",
+      "stable_id": "TCASE-8231F5487ED7C994"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testClearSolidityContractTriggerCache",
+      "java_line": 1572,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C024",
+      "rationale": "Filter, trigger, and externally observed API/event routing belong to C024.",
+      "stable_id": "TCASE-1823C9498B115697"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testRePushResetsVerifiedOnOwnerAddressSetHit",
+      "java_line": 1607,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-680C9C6418B9887D"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testGetCachedTransactionSize",
+      "java_line": 1636,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-8EBC4B1A4B725924"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testIsTooManyPendingIncludesPushQueue",
+      "java_line": 1660,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C016",
+      "rationale": "Admission, transaction processing, pending capacity, and requeue behavior belong to C016.",
+      "stable_id": "TCASE-2DE6B3B903EA2B42"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "switchForkShouldPostFullNodeFilterForNewBranch",
+      "java_line": 1695,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-445DFE780C8628B2"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "switchForkShouldResetTransactionSignVerifiedOnNewBranch",
+      "java_line": 1783,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+      "owner": "C019",
+      "rationale": "Fork graph, branch switching, replay, and signature-cache invalidation belong to C019.",
+      "stable_id": "TCASE-415547BAFCF5689F"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "SerializedSize",
+      "java_line": 19,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/SerializedTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-47B49FBB97A2D092"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "TestInit",
+      "java_line": 71,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TronDatabaseTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-68A06D3A1D0D096F"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "TestIterator",
+      "java_line": 78,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TronDatabaseTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-EB254BACB781B6F7"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "TestIsNotEmpty",
+      "java_line": 85,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TronDatabaseTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-2092C1953593D295"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "TestGetUnchecked",
+      "java_line": 92,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TronDatabaseTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-E1DF68AA462FB88B"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "TestClose",
+      "java_line": 98,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TronDatabaseTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-EA7AEAF320D5907B"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "TestGetFromRoot",
+      "java_line": 104,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TronDatabaseTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-AC9879AA6BCF9D64",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-AC9879AA6BCF9D64"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testDoCloseDbSourceCalledWhenWriteOptionsThrows",
+      "java_line": 112,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TronDatabaseTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-EDD0146E5B8B1934"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "reload",
+      "java_line": 48,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TxCacheDBInitTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-8AFB009FA267D003"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "putTransactionTest",
+      "java_line": 26,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TxCacheDBTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-4FA1DA05AE45DF6A"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testPrefixQueryForLeveldb",
+      "java_line": 61,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/ChainbaseTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-334B4A6DCED54967"
+    },
+    {
+      "disposition": "reassigned",
+      "java_case": "testPrefixQueryForRocksdb",
+      "java_line": 73,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/ChainbaseTest.java",
+      "owner": "C007",
+      "rationale": "Physical backend, engine selection, iterator/resource lifecycle, and root-store plumbing belong to C007.",
+      "stable_id": "TCASE-EB96B5843743A5CD"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testCheckpointV2",
+      "java_line": 48,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/CheckpointV2Test.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-92CFE24A1561EFE9",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-92CFE24A1561EFE9"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testPop",
+      "java_line": 34,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/RevokingDbWithCacheNewValueTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-7FC454E3B1629473",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-7FC454E3B1629473"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testMerge",
+      "java_line": 64,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/RevokingDbWithCacheNewValueTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-9EDABBC5A805320A",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-9EDABBC5A805320A"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testRevoke",
+      "java_line": 96,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/RevokingDbWithCacheNewValueTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-75BE19BDB7792CCA",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-75BE19BDB7792CCA"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testGetlatestValues",
+      "java_line": 156,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/RevokingDbWithCacheNewValueTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-34E5F70F775D3FC6",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-34E5F70F775D3FC6"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testGetValuesNext",
+      "java_line": 183,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/RevokingDbWithCacheNewValueTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-91CECB06125D2E4C",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-91CECB06125D2E4C"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testGetKeysNext",
+      "java_line": 211,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/RevokingDbWithCacheNewValueTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-41ED2AFC00A053F2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-41ED2AFC00A053F2"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testGetKeysNextWithSameKey",
+      "java_line": 282,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/RevokingDbWithCacheNewValueTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-8F21C7D27800964B",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-8F21C7D27800964B"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testGetKeysNextWithSameKeyOrderCheck",
+      "java_line": 364,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/RevokingDbWithCacheNewValueTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-C5F7660FD104C040",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-C5F7660FD104C040"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testMergeRoot",
+      "java_line": 41,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotImplTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-57E24680B6EB3329",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-57E24680B6EB3329"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testMergeAhead",
+      "java_line": 71,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotImplTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-53A408BB0C7E2E66",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-53A408BB0C7E2E66"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testMergeOverride",
+      "java_line": 139,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotImplTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-92AC5F8878398A81",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-92AC5F8878398A81"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testRefresh",
+      "java_line": 47,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotManagerTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-74AF83CC7A05854D",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-74AF83CC7A05854D"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testClose",
+      "java_line": 78,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotManagerTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-A8CF96E0075500FF",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-A8CF96E0075500FF"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testCheckError",
+      "java_line": 99,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotManagerTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-D485BA56D167AB34",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-D485BA56D167AB34"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testFlushError",
+      "java_line": 107,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotManagerTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-79E4247FED8321BC",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-79E4247FED8321BC"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testRemove",
+      "java_line": 45,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotRootTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-2AD93580C9B8E018",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-2AD93580C9B8E018"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testMerge",
+      "java_line": 57,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotRootTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-7FFECAD616246BAF",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-7FFECAD616246BAF"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testMergeList",
+      "java_line": 74,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotRootTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-913763B50C69237E",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-913763B50C69237E"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testSecondCacheCheck",
+      "java_line": 112,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotRootTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-C82B1F48B914A3E1",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-C82B1F48B914A3E1"
+    },
+    {
+      "dispatch_kind": "parameterized_case",
+      "disposition": "rust",
+      "java_case": "testSecondCacheCheckAddDb",
+      "java_line": 132,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotRootTest.java",
+      "owner": "C009",
+      "rust_case_id": "snapshot::TCASE-23FD53DD52350BB7",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id",
+      "stable_id": "TCASE-23FD53DD52350BB7"
+    }
+  ],
+  "schema_version": 1
+}

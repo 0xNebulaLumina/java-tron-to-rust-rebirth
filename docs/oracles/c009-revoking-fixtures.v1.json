@@ -1,0 +1,836 @@
+{
+  "checkpoint_cases": [
+    {
+      "case_id": "checkpoint::BeforeStage",
+      "phase": "BeforeStage",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_publication_recovery_relink_retreat_and_limits"
+    },
+    {
+      "case_id": "checkpoint::AfterStage",
+      "phase": "AfterStage",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_publication_recovery_relink_retreat_and_limits"
+    },
+    {
+      "case_id": "checkpoint::BeforePublish",
+      "phase": "BeforePublish",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_publication_recovery_relink_retreat_and_limits"
+    },
+    {
+      "case_id": "checkpoint::AfterPublish",
+      "phase": "AfterPublish",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_publication_recovery_relink_retreat_and_limits"
+    },
+    {
+      "case_id": "checkpoint::publication-linearization",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_publication_serializes_commits_and_competing_persists"
+    },
+    {
+      "case_id": "checkpoint::restart-history",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_restart_history_and_retreat_publication_are_atomic"
+    },
+    {
+      "case_id": "checkpoint::failed-retreat-publication",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_restart_history_and_retreat_publication_are_atomic"
+    },
+    {
+      "case_id": "checkpoint::successful-retreat-publication",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_restart_history_and_retreat_publication_are_atomic"
+    },
+    {
+      "case_id": "checkpoint::envelope-exact-max-bytes",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_publication_recovery_relink_retreat_and_limits"
+    },
+    {
+      "case_id": "checkpoint::envelope-one-over-max-bytes",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_publication_recovery_relink_retreat_and_limits"
+    },
+    {
+      "case_id": "checkpoint::internal-metadata-isolation",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_publication_recovery_relink_retreat_and_limits"
+    },
+    {
+      "case_id": "checkpoint::constant-state-bounded-publication",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_publication_recovery_relink_retreat_and_limits"
+    }
+  ],
+  "cursor_cases": [
+    {
+      "case_id": "cursor::typed-offset",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::typed_cursor_fallback_clamp_offset_and_speculative_isolation"
+    },
+    {
+      "case_id": "cursor::negative-offset-error",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::typed_cursor_fallback_clamp_offset_and_speculative_isolation"
+    },
+    {
+      "case_id": "cursor::missing-pbft-fallback",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::typed_cursor_fallback_clamp_offset_and_speculative_isolation"
+    },
+    {
+      "case_id": "cursor::durable-read-isolation",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::typed_cursor_fallback_clamp_offset_and_speculative_isolation"
+    },
+    {
+      "case_id": "cursor::immutable-checkpoint-history",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::typed_cursor_fallback_clamp_offset_and_speculative_isolation"
+    },
+    {
+      "case_id": "cursor::identity-ancestry-validation",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::typed_cursor_fallback_clamp_offset_and_speculative_isolation"
+    },
+    {
+      "case_id": "cursor::fresh-manager-restart",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_restart_history_and_retreat_publication_are_atomic"
+    },
+    {
+      "case_id": "cursor::retreat-removes-heads",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::checkpoint_restart_history_and_retreat_publication_are_atomic"
+    }
+  ],
+  "isolation_cases": [
+    {
+      "case_id": "isolation::cross-store-flush-view-race",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::cross_store_flush_and_view_capture_never_tear"
+    },
+    {
+      "case_id": "isolation::manager-clone-parent-capability",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::cloned_manager_cannot_join_or_interfere_with_pending_stack"
+    },
+    {
+      "case_id": "isolation::pending-child-capability",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::cloned_manager_cannot_join_or_interfere_with_pending_stack"
+    },
+    {
+      "case_id": "isolation::durable-mutation-active-rejection",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::durable_mutation_is_rejected_under_ordinary_session_and_revoke_preserves_root"
+    },
+    {
+      "case_id": "isolation::revoke-preserves-durable-root",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::durable_mutation_is_rejected_under_ordinary_session_and_revoke_preserves_root"
+    },
+    {
+      "case_id": "shutdown::flush-and-error-aggregation",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::lifecycle_shutdown_flushes_committed_and_aggregates_disposition_errors"
+    }
+  ],
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "java_snapshot_cases": [
+    {
+      "case_id": "snapshot::TCASE-7F22D7A2A6543F1A",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-AC9879AA6BCF9D64",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-92CFE24A1561EFE9",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-7FC454E3B1629473",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-9EDABBC5A805320A",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-75BE19BDB7792CCA",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-34E5F70F775D3FC6",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-91CECB06125D2E4C",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-41ED2AFC00A053F2",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-8F21C7D27800964B",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-C5F7660FD104C040",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-57E24680B6EB3329",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-53A408BB0C7E2E66",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-92AC5F8878398A81",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-74AF83CC7A05854D",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-A8CF96E0075500FF",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-D485BA56D167AB34",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-79E4247FED8321BC",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-2AD93580C9B8E018",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-7FFECAD616246BAF",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-913763B50C69237E",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-C82B1F48B914A3E1",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    },
+    {
+      "case_id": "snapshot::TCASE-23FD53DD52350BB7",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::direct_java_snapshot_cases_dispatch_by_case_id"
+    }
+  ],
+  "pending_cases": [
+    {
+      "case_id": "pending::child-merge-reset-commit-close-drop",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::pending_child_merge_reset_commit_close_and_drop_are_atomic"
+    },
+    {
+      "case_id": "pending::failed-commit-close-reservation",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::failed_pending_commit_can_close_and_release_reservation"
+    }
+  ],
+  "schema_version": 1,
+  "test_symbols": [
+    "direct_java_snapshot_cases_dispatch_by_case_id",
+    "exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+    "nested_commit_merge_pop_destroy_and_disabled_session_matrix",
+    "manager_view_exposes_committed_child_without_active_speculation",
+    "committed_child_composes_with_parent_finalization_by_identity",
+    "lifecycle_shutdown_flushes_committed_and_aggregates_disposition_errors",
+    "checkpoint_publication_recovery_relink_retreat_and_limits",
+    "checkpoint_restart_history_and_retreat_publication_are_atomic",
+    "pending_child_merge_reset_commit_close_and_drop_are_atomic",
+    "failed_pending_commit_can_close_and_release_reservation",
+    "cloned_manager_cannot_join_or_interfere_with_pending_stack",
+    "durable_mutation_is_rejected_under_ordinary_session_and_revoke_preserves_root",
+    "cross_store_flush_and_view_capture_never_tear",
+    "typed_cursor_fallback_clamp_offset_and_speculative_isolation",
+    "checkpoint_publication_serializes_commits_and_competing_persists"
+  ],
+  "transition_cases": [
+    {
+      "case_id": "session::commit-merge-pop-destroy-disabled",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::nested_commit_merge_pop_destroy_and_disabled_session_matrix"
+    },
+    {
+      "case_id": "session::committed-child-parent-finalization",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::committed_child_composes_with_parent_finalization_by_identity"
+    }
+  ],
+  "transition_matrix": [
+    {
+      "case_id": "store::Account",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Account",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::AccountIdIndex",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "AccountIdIndex",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::AccountIndex",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "AccountIndex",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::AccountAsset",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "AccountAsset",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::AssetIssue",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "AssetIssue",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::AssetIssueV2",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "AssetIssueV2",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Block",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Block",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::BlockIndex",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "BlockIndex",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Transaction",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Transaction",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::TransactionCache",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "TransactionCache",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::TransactionRet",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "TransactionRet",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::TransactionHistory",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "TransactionHistory",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::RecentBlock",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "RecentBlock",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::RecentTransaction",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "RecentTransaction",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Contract",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Contract",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Abi",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Abi",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Code",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Code",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::ContractState",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "ContractState",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::StorageRow",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "StorageRow",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Witness",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Witness",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::WitnessSchedule",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "WitnessSchedule",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Votes",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Votes",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Proposal",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Proposal",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Exchange",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Exchange",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::ExchangeV2",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "ExchangeV2",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::MarketAccount",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "MarketAccount",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::MarketOrder",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "MarketOrder",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::MarketPairToPrice",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "MarketPairToPrice",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::MarketPairPriceToOrder",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "MarketPairPriceToOrder",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::DelegatedResource",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "DelegatedResource",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::DelegatedResourceAccountIndex",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "DelegatedResourceAccountIndex",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::DynamicProperties",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "DynamicProperties",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::IncrementalMerkleTree",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "IncrementalMerkleTree",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Nullifier",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Nullifier",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::ZkProof",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "ZkProof",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::TreeBlockIndex",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "TreeBlockIndex",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::SectionBloom",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "SectionBloom",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::AccountTrace",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "AccountTrace",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::BalanceTrace",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "BalanceTrace",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Delegation",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Delegation",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Pbft",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Pbft",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::RewardVi",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "RewardVi",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Common",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Common",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Checkpoint",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Checkpoint",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    },
+    {
+      "case_id": "store::Temporary",
+      "proof": "rust-tron/crates/tron-state/tests/revoking_contract.rs::exhaustive_45_store_transition_matrix_restores_root_after_revoke",
+      "store": "Temporary",
+      "transitions": [
+        "root_put",
+        "outer_put",
+        "child_put",
+        "child_merge",
+        "outer_revoke",
+        "root_restored"
+      ]
+    }
+  ]
+}

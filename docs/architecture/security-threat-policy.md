@@ -88,3 +88,23 @@ or snapshot symlinks fail closed and cannot redirect storage I/O outside the ret
 and root processes that deliberately bypass the common advisory lock are outside this boundary; this
 exclusion does not permit pathname-based publication or weaken ownership, mode, no-follow, or
 inode-safe cleanup checks.
+
+## C009 revoking state and cursor boundary
+
+Speculative state is capability-scoped. `SessionManager::read_view` and
+`SessionManager::session_view` capture the same immutable logical HEAD: the durable root plus every
+committed, non-abandoned overlay, while excluding all active speculative overlays. Committed
+overlays remain logically visible before physical flush; abandoned overlays never re-enter a read
+view. Direct `DurableStore` reads are intentionally different and expose only the physical durable
+root. Session mutation is serialized, while cloned immutable views permit unrelated readers to
+proceed without observing later commits or speculative writes. Pending execution owns an outer
+revocable layer, and child effects enter it only through explicit merge; reset, close, and drop
+revoke the held speculative state.
+
+Checkpoint stacks use a bounded Rust-owned canonical encoding with a SHA-256 checksum. Staging,
+journaling, publication, retreat, and relink use the C007 atomic batch boundary; recovery accepts only
+a staged image matching its durable journal checksum. Stack depth, encoded bytes, retreat count, and
+flush count are policy-bounded. HEAD, SOLIDITY, and PBFT are distinct immutable cursor types carrying
+checkpoint identity; PBFT offsets reject negative values, missing cursors fall back toward HEAD, and
+cursor block numbers clamp to their validated parent root. Shutdown attempts both overlay disposition
+and durable flush and returns all observed failures rather than hiding a later close error.
