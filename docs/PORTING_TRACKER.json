@@ -642,7 +642,7 @@
       ],
       "gate": {
         "id": "C005.V",
-        "description": "Passed: the authenticated Java oracle produced 37 vectors, all 4 exhaustive Rust dispatch tests pass, and the Rust workspace all-targets check passes with the lockfile enforced.",
+        "description": "Passed: the authenticated Java oracle produced 37 vectors, all 5 Rust tests pass including password FIFO coverage, and the Rust workspace all-targets check passes with the lockfile enforced.",
         "status": "passed",
         "commands": [
           {
@@ -680,7 +680,7 @@
             "id": "C005.R.01",
             "summary": "Final review required confirmation of authenticated Java-oracle provenance, exhaustive Rust keystore dispatch coverage, and the complete locked workspace validation result.",
             "status": "closed",
-            "resolution": "Approved after confirming the final gate results: the authenticated Java oracle produced 37 vectors, all 4 exhaustive Rust dispatch tests pass, and the locked Rust workspace all-targets check passes. C005 is complete and the next ready item is C006.01."
+            "resolution": "Approved after confirming the final secured implementation and gate results: the authenticated Java oracle produced 37 vectors, all 5 Rust tests pass including password FIFO coverage, and the locked Rust workspace all-targets check passes. All findings are closed, review is approved, C005 is complete, and the next ready item is C006.01."
           }
         ]
       },
