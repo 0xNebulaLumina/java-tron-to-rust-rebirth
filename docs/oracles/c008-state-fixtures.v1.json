@@ -1,0 +1,6166 @@
+{
+  "generator": {
+    "byte_helper": "java-tron/common/src/main/java/org/tron/common/utils/ByteArray.java",
+    "generated_protocol": "java-tron/protocol/src/main/java/org/tron/protos/Protocol.java",
+    "path": "tools/state/C008Oracle.java",
+    "sha256": "fa2a2f856f85938a919b79aa9a5b6dc0f6b6428647bb21f6dd5664e3c9acc69e"
+  },
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "market_price_logical_order": {
+    "count_limit": 2,
+    "head_key_hex": "313030303030310000000000000000000000003130303030303200000000000000000000000000000000000000000000000000000000",
+    "input_keys_lexicographic_hex": [
+      "313030303030310000000000000000000000003130303030303200000000000000000000000000000000000000010000000000000002",
+      "313030303030310000000000000000000000003130303030303200000000000000000000000000000000000000020000000000000003",
+      "313030303030310000000000000000000000003130303030303200000000000000000000000000000000000000030000000000000004"
+    ],
+    "java_order_keys_after_limit_hex": [
+      "313030303030310000000000000000000000003130303030303200000000000000000000000000000000000000030000000000000004",
+      "313030303030310000000000000000000000003130303030303200000000000000000000000000000000000000020000000000000003"
+    ],
+    "java_order_prices_after_limit": [
+      [
+        3,
+        4
+      ],
+      [
+        2,
+        3
+      ]
+    ]
+  },
+  "rows": [
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "account",
+      "id": "store-Account",
+      "key_hex": "4101",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Account",
+      "store": "Account",
+      "unknown_value_hex": null,
+      "value_hex": "1a0241012002"
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "accountid-index",
+      "id": "store-AccountIdIndex",
+      "key_hex": "6d697865642d636173652d6964",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "AccountIdIndex",
+      "store": "AccountIdIndex",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "account-index",
+      "id": "store-AccountIndex",
+      "key_hex": "6163636f756e742d6e616d65",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "AccountIndex",
+      "store": "AccountIndex",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "account-asset",
+      "id": "store-AccountAsset",
+      "key_hex": "410131303030303031",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "AccountAsset",
+      "store": "AccountAsset",
+      "unknown_value_hex": null,
+      "value_hex": "0000000000000004"
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "asset-issue",
+      "id": "store-AssetIssue",
+      "key_hex": "0000000000000005",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "AssetIssue",
+      "store": "AssetIssue",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "asset-issue-v2",
+      "id": "store-AssetIssueV2",
+      "key_hex": "0000000000000006",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "AssetIssueV2",
+      "store": "AssetIssueV2",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "block",
+      "id": "store-Block",
+      "key_hex": "0000000000000007",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Block",
+      "store": "Block",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "block-index",
+      "id": "store-BlockIndex",
+      "key_hex": "0000000000000008",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "BlockIndex",
+      "store": "BlockIndex",
+      "unknown_value_hex": null,
+      "value_hex": "0000000000000008"
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "trans",
+      "id": "store-Transaction",
+      "key_hex": "0000000000000009",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Transaction",
+      "store": "Transaction",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "trans-cache",
+      "id": "store-TransactionCache",
+      "key_hex": "000000000000000a",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "TransactionCache",
+      "store": "TransactionCache",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "transactionRetStore",
+      "id": "store-TransactionRet",
+      "key_hex": "000000000000000b",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "TransactionRet",
+      "store": "TransactionRet",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "transactionHistoryStore",
+      "id": "store-TransactionHistory",
+      "key_hex": "000000000000000c",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "TransactionHistory",
+      "store": "TransactionHistory",
+      "unknown_value_hex": null,
+      "value_hex": "000000000000000c"
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "recent-block",
+      "id": "store-RecentBlock",
+      "key_hex": "1234",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "RecentBlock",
+      "store": "RecentBlock",
+      "unknown_value_hex": null,
+      "value_hex": "08090a0b0c0d0e0f"
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "recent-transaction",
+      "id": "store-RecentTransaction",
+      "key_hex": "000000000000000e",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "RecentTransaction",
+      "store": "RecentTransaction",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "contract",
+      "id": "store-Contract",
+      "key_hex": "000000000000000f",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Contract",
+      "store": "Contract",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "abi",
+      "id": "store-Abi",
+      "key_hex": "0000000000000010",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Abi",
+      "store": "Abi",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "code",
+      "id": "store-Code",
+      "key_hex": "0000000000000011",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Code",
+      "store": "Code",
+      "unknown_value_hex": null,
+      "value_hex": "600056"
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "contract-state",
+      "id": "store-ContractState",
+      "key_hex": "0000000000000012",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "ContractState",
+      "store": "ContractState",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "storage-row",
+      "id": "store-StorageRow",
+      "key_hex": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "StorageRow",
+      "store": "StorageRow",
+      "unknown_value_hex": null,
+      "value_hex": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20"
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "witness",
+      "id": "store-Witness",
+      "key_hex": "0000000000000014",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Witness",
+      "store": "Witness",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "witness_schedule",
+      "id": "store-WitnessSchedule",
+      "key_hex": "6163746976655f7769746e6573736573",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "WitnessSchedule",
+      "store": "WitnessSchedule",
+      "unknown_value_hex": null,
+      "value_hex": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a"
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "votes",
+      "id": "store-Votes",
+      "key_hex": "0000000000000016",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Votes",
+      "store": "Votes",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "proposal",
+      "id": "store-Proposal",
+      "key_hex": "0000000000000017",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Proposal",
+      "store": "Proposal",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "exchange",
+      "id": "store-Exchange",
+      "key_hex": "0000000000000018",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Exchange",
+      "store": "Exchange",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "exchange-v2",
+      "id": "store-ExchangeV2",
+      "key_hex": "0000000000000019",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "ExchangeV2",
+      "store": "ExchangeV2",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "market_account",
+      "id": "store-MarketAccount",
+      "key_hex": "000000000000001a",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "MarketAccount",
+      "store": "MarketAccount",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "market_order",
+      "id": "store-MarketOrder",
+      "key_hex": "000000000000001b",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "MarketOrder",
+      "store": "MarketOrder",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "market_pair_to_price",
+      "id": "store-MarketPairToPrice",
+      "key_hex": "3130303030303100000000000000000000000031303030303032000000000000000000000000",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "MarketPairToPrice",
+      "store": "MarketPairToPrice",
+      "unknown_value_hex": null,
+      "value_hex": "000000000000001c"
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "market_pair_price_to_order",
+      "id": "store-MarketPairPriceToOrder",
+      "key_hex": "313030303030310000000000000000000000003130303030303200000000000000000000000000000000000000010000000000000002",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "MarketPairPriceToOrder",
+      "store": "MarketPairPriceToOrder",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "DelegatedResource",
+      "id": "store-DelegatedResource",
+      "key_hex": "020102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "DelegatedResource",
+      "store": "DelegatedResource",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "DelegatedResourceAccountIndex",
+      "id": "store-DelegatedResourceAccountIndex",
+      "key_hex": "000000000000001f",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "DelegatedResourceAccountIndex",
+      "store": "DelegatedResourceAccountIndex",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "properties",
+      "id": "store-DynamicProperties",
+      "key_hex": "0000000000000020",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "DynamicProperties",
+      "store": "DynamicProperties",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "IncrementalMerkleTree",
+      "id": "store-IncrementalMerkleTree",
+      "key_hex": "0000000000000021",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "IncrementalMerkleTree",
+      "store": "IncrementalMerkleTree",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "nullifier",
+      "id": "store-Nullifier",
+      "key_hex": "0000000000000022",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Nullifier",
+      "store": "Nullifier",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "zkProof",
+      "id": "store-ZkProof",
+      "key_hex": "0000000000000023",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "ZkProof",
+      "store": "ZkProof",
+      "unknown_value_hex": null,
+      "value_hex": "01"
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "tree-block-index",
+      "id": "store-TreeBlockIndex",
+      "key_hex": "0000000000000024",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "TreeBlockIndex",
+      "store": "TreeBlockIndex",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "section-bloom",
+      "id": "store-SectionBloom",
+      "key_hex": "0000000000000025",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "SectionBloom",
+      "store": "SectionBloom",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "account-trace",
+      "id": "store-AccountTrace",
+      "key_hex": "0000000000000026",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "AccountTrace",
+      "store": "AccountTrace",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "balance-trace",
+      "id": "store-BalanceTrace",
+      "key_hex": "0000000000000027",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "BalanceTrace",
+      "store": "BalanceTrace",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "delegation",
+      "id": "store-Delegation",
+      "key_hex": "0000000000000028",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Delegation",
+      "store": "Delegation",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "pbft-sign-data",
+      "id": "store-Pbft",
+      "key_hex": "0000000000000029",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Pbft",
+      "store": "Pbft",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "reward-vi",
+      "id": "store-RewardVi",
+      "key_hex": "000000000000002a",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "RewardVi",
+      "store": "RewardVi",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "common",
+      "id": "store-Common",
+      "key_hex": "000000000000002b",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Common",
+      "store": "Common",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "checkpoint",
+      "id": "store-Checkpoint",
+      "key_hex": "000000000000002c",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Checkpoint",
+      "store": "Checkpoint",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "exact-value-bytes",
+        "absent",
+        "present",
+        "delete"
+      ],
+      "db_name": "tmp",
+      "id": "store-Temporary",
+      "key_hex": "000000000000002d",
+      "known_field_tag": null,
+      "row_kind": "store",
+      "schema": "Temporary",
+      "store": "Temporary",
+      "unknown_value_hex": null,
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-AbiCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "AbiCapsule",
+      "store": null,
+      "unknown_value_hex": "0a020801f80701",
+      "value_hex": "0a020801"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-AccountCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "AccountCapsule",
+      "store": null,
+      "unknown_value_hex": "0a024102f80701",
+      "value_hex": "0a024102"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-AccountTraceCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "AccountTraceCapsule",
+      "store": null,
+      "unknown_value_hex": "0803f80701",
+      "value_hex": "0803"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-AssetIssueCapsule",
+      "key_hex": "",
+      "known_field_tag": 41,
+      "row_kind": "capsule",
+      "schema": "AssetIssueCapsule",
+      "store": null,
+      "unknown_value_hex": "ca0206633030382d34f80701",
+      "value_hex": "ca0206633030382d34"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-BlockBalanceTraceCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "BlockBalanceTraceCapsule",
+      "store": null,
+      "unknown_value_hex": "0a040a024106f80701",
+      "value_hex": "0a040a024106"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-BlockCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "BlockCapsule",
+      "store": null,
+      "unknown_value_hex": "0a060a040a024108f80701",
+      "value_hex": "0a060a040a024108"
+    },
+    {
+      "coverage": [
+        "raw-capsule-bytes"
+      ],
+      "db_name": null,
+      "id": "capsule-BytesCapsule",
+      "key_hex": "",
+      "known_field_tag": null,
+      "row_kind": "capsule",
+      "schema": "BytesCapsule",
+      "store": null,
+      "unknown_value_hex": null,
+      "value_hex": "0755"
+    },
+    {
+      "coverage": [
+        "raw-capsule-bytes"
+      ],
+      "db_name": null,
+      "id": "capsule-CodeCapsule",
+      "key_hex": "",
+      "known_field_tag": null,
+      "row_kind": "capsule",
+      "schema": "CodeCapsule",
+      "store": null,
+      "unknown_value_hex": null,
+      "value_hex": "0855"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-ContractCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "ContractCapsule",
+      "store": null,
+      "unknown_value_hex": "0a024109f80701",
+      "value_hex": "0a024109"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-ContractStateCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "ContractStateCapsule",
+      "store": null,
+      "unknown_value_hex": "080af80701",
+      "value_hex": "080a"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-DelegatedResourceAccountIndexCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "DelegatedResourceAccountIndexCapsule",
+      "store": null,
+      "unknown_value_hex": "0a02410bf80701",
+      "value_hex": "0a02410b"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-DelegatedResourceCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "DelegatedResourceCapsule",
+      "store": null,
+      "unknown_value_hex": "0a02410cf80701",
+      "value_hex": "0a02410c"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-ExchangeCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "ExchangeCapsule",
+      "store": null,
+      "unknown_value_hex": "080df80701",
+      "value_hex": "080d"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-IncrementalMerkleTreeCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "IncrementalMerkleTreeCapsule",
+      "store": null,
+      "unknown_value_hex": "0a040a02410ff80701",
+      "value_hex": "0a040a02410f"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-IncrementalMerkleVoucherCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "IncrementalMerkleVoucherCapsule",
+      "store": null,
+      "unknown_value_hex": "0a060a040a024111f80701",
+      "value_hex": "0a060a040a024111"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-MarketAccountOrderCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "MarketAccountOrderCapsule",
+      "store": null,
+      "unknown_value_hex": "0a024110f80701",
+      "value_hex": "0a024110"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-MarketOrderCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "MarketOrderCapsule",
+      "store": null,
+      "unknown_value_hex": "0a024111f80701",
+      "value_hex": "0a024111"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-MarketOrderIdListCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "MarketOrderIdListCapsule",
+      "store": null,
+      "unknown_value_hex": "0a024112f80701",
+      "value_hex": "0a024112"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-MarketPriceCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "MarketPriceCapsule",
+      "store": null,
+      "unknown_value_hex": "0813f80701",
+      "value_hex": "0813"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-PbftSignCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "PbftSignCapsule",
+      "store": null,
+      "unknown_value_hex": "0a024114f80701",
+      "value_hex": "0a024114"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-PedersenHashCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "PedersenHashCapsule",
+      "store": null,
+      "unknown_value_hex": "0a024115f80701",
+      "value_hex": "0a024115"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-ProposalCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "ProposalCapsule",
+      "store": null,
+      "unknown_value_hex": "0816f80701",
+      "value_hex": "0816"
+    },
+    {
+      "coverage": [
+        "raw-capsule-bytes"
+      ],
+      "db_name": null,
+      "id": "capsule-ProtoCapsule",
+      "key_hex": "",
+      "known_field_tag": null,
+      "row_kind": "capsule",
+      "schema": "ProtoCapsule",
+      "store": null,
+      "unknown_value_hex": null,
+      "value_hex": "1755"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-ReceiptCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "ReceiptCapsule",
+      "store": null,
+      "unknown_value_hex": "0818f80701",
+      "value_hex": "0818"
+    },
+    {
+      "coverage": [
+        "raw-capsule-bytes"
+      ],
+      "db_name": null,
+      "id": "capsule-StorageRowCapsule",
+      "key_hex": "",
+      "known_field_tag": null,
+      "row_kind": "capsule",
+      "schema": "StorageRowCapsule",
+      "store": null,
+      "unknown_value_hex": null,
+      "value_hex": "1955"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-TransactionCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "TransactionCapsule",
+      "store": null,
+      "unknown_value_hex": "0a040a02411bf80701",
+      "value_hex": "0a040a02411b"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-TransactionInfoCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "TransactionInfoCapsule",
+      "store": null,
+      "unknown_value_hex": "0a02411bf80701",
+      "value_hex": "0a02411b"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-TransactionResultCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "TransactionResultCapsule",
+      "store": null,
+      "unknown_value_hex": "081cf80701",
+      "value_hex": "081c"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-TransactionRetCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "TransactionRetCapsule",
+      "store": null,
+      "unknown_value_hex": "081df80701",
+      "value_hex": "081d"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-VotesCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "VotesCapsule",
+      "store": null,
+      "unknown_value_hex": "0a02411ef80701",
+      "value_hex": "0a02411e"
+    },
+    {
+      "coverage": [
+        "known-field-decode",
+        "raw-preservation",
+        "unknown-field-preservation",
+        "mutation-reencode"
+      ],
+      "db_name": null,
+      "id": "capsule-WitnessCapsule",
+      "key_hex": "",
+      "known_field_tag": 1,
+      "row_kind": "capsule",
+      "schema": "WitnessCapsule",
+      "store": null,
+      "unknown_value_hex": "0a02411ff80701",
+      "value_hex": "0a02411f"
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-LATEST_BLOCK_HEADER_TIMESTAMP",
+      "key_hex": "6c61746573745f626c6f636b5f6865616465725f74696d657374616d70",
+      "row_kind": "dynamic_key",
+      "schema": "LATEST_BLOCK_HEADER_TIMESTAMP",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-LATEST_BLOCK_HEADER_NUMBER",
+      "key_hex": "6c61746573745f626c6f636b5f6865616465725f6e756d626572",
+      "row_kind": "dynamic_key",
+      "schema": "LATEST_BLOCK_HEADER_NUMBER",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-LATEST_BLOCK_HEADER_HASH",
+      "key_hex": "6c61746573745f626c6f636b5f6865616465725f68617368",
+      "row_kind": "dynamic_key",
+      "schema": "LATEST_BLOCK_HEADER_HASH",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-STATE_FLAG",
+      "key_hex": "73746174655f666c6167",
+      "row_kind": "dynamic_key",
+      "schema": "STATE_FLAG",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-LATEST_SOLIDIFIED_BLOCK_NUM",
+      "key_hex": "4c41544553545f534f4c494449464945445f424c4f434b5f4e554d",
+      "row_kind": "dynamic_key",
+      "schema": "LATEST_SOLIDIFIED_BLOCK_NUM",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-LATEST_PROPOSAL_NUM",
+      "key_hex": "4c41544553545f50524f504f53414c5f4e554d",
+      "row_kind": "dynamic_key",
+      "schema": "LATEST_PROPOSAL_NUM",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-LATEST_EXCHANGE_NUM",
+      "key_hex": "4c41544553545f45584348414e47455f4e554d",
+      "row_kind": "dynamic_key",
+      "schema": "LATEST_EXCHANGE_NUM",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-BLOCK_FILLED_SLOTS",
+      "key_hex": "424c4f434b5f46494c4c45445f534c4f5453",
+      "row_kind": "dynamic_key",
+      "schema": "BLOCK_FILLED_SLOTS",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-BLOCK_FILLED_SLOTS_INDEX",
+      "key_hex": "424c4f434b5f46494c4c45445f534c4f54535f494e444558",
+      "row_kind": "dynamic_key",
+      "schema": "BLOCK_FILLED_SLOTS_INDEX",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-NEXT_MAINTENANCE_TIME",
+      "key_hex": "4e4558545f4d41494e54454e414e43455f54494d45",
+      "row_kind": "dynamic_key",
+      "schema": "NEXT_MAINTENANCE_TIME",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MAX_FROZEN_TIME",
+      "key_hex": "4d41585f46524f5a454e5f54494d45",
+      "row_kind": "dynamic_key",
+      "schema": "MAX_FROZEN_TIME",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MIN_FROZEN_TIME",
+      "key_hex": "4d494e5f46524f5a454e5f54494d45",
+      "row_kind": "dynamic_key",
+      "schema": "MIN_FROZEN_TIME",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MAX_FROZEN_SUPPLY_NUMBER",
+      "key_hex": "4d41585f46524f5a454e5f535550504c595f4e554d424552",
+      "row_kind": "dynamic_key",
+      "schema": "MAX_FROZEN_SUPPLY_NUMBER",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MAX_FROZEN_SUPPLY_TIME",
+      "key_hex": "4d41585f46524f5a454e5f535550504c595f54494d45",
+      "row_kind": "dynamic_key",
+      "schema": "MAX_FROZEN_SUPPLY_TIME",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MIN_FROZEN_SUPPLY_TIME",
+      "key_hex": "4d494e5f46524f5a454e5f535550504c595f54494d45",
+      "row_kind": "dynamic_key",
+      "schema": "MIN_FROZEN_SUPPLY_TIME",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-WITNESS_ALLOWANCE_FROZEN_TIME",
+      "key_hex": "5749544e4553535f414c4c4f57414e43455f46524f5a454e5f54494d45",
+      "row_kind": "dynamic_key",
+      "schema": "WITNESS_ALLOWANCE_FROZEN_TIME",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MAINTENANCE_TIME_INTERVAL",
+      "key_hex": "4d41494e54454e414e43455f54494d455f494e54455256414c",
+      "row_kind": "dynamic_key",
+      "schema": "MAINTENANCE_TIME_INTERVAL",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ACCOUNT_UPGRADE_COST",
+      "key_hex": "4143434f554e545f555047524144455f434f5354",
+      "row_kind": "dynamic_key",
+      "schema": "ACCOUNT_UPGRADE_COST",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-WITNESS_PAY_PER_BLOCK",
+      "key_hex": "5749544e4553535f5041595f5045525f424c4f434b",
+      "row_kind": "dynamic_key",
+      "schema": "WITNESS_PAY_PER_BLOCK",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-WITNESS_127_PAY_PER_BLOCK",
+      "key_hex": "5749544e4553535f3132375f5041595f5045525f424c4f434b",
+      "row_kind": "dynamic_key",
+      "schema": "WITNESS_127_PAY_PER_BLOCK",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-WITNESS_STANDBY_ALLOWANCE",
+      "key_hex": "5749544e4553535f5354414e4442595f414c4c4f57414e4345",
+      "row_kind": "dynamic_key",
+      "schema": "WITNESS_STANDBY_ALLOWANCE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ENERGY_FEE",
+      "key_hex": "454e455247595f464545",
+      "row_kind": "dynamic_key",
+      "schema": "ENERGY_FEE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MAX_CPU_TIME_OF_ONE_TX",
+      "key_hex": "4d41585f4350555f54494d455f4f465f4f4e455f5458",
+      "row_kind": "dynamic_key",
+      "schema": "MAX_CPU_TIME_OF_ONE_TX",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-CREATE_ACCOUNT_FEE",
+      "key_hex": "4352454154455f4143434f554e545f464545",
+      "row_kind": "dynamic_key",
+      "schema": "CREATE_ACCOUNT_FEE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT",
+      "key_hex": "4352454154455f4e45575f4143434f554e545f4645455f494e5f53595354454d5f434f4e5452414354",
+      "row_kind": "dynamic_key",
+      "schema": "CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-CREATE_NEW_ACCOUNT_BANDWIDTH_RATE",
+      "key_hex": "4352454154455f4e45575f4143434f554e545f42414e4457494454485f52415445",
+      "row_kind": "dynamic_key",
+      "schema": "CREATE_NEW_ACCOUNT_BANDWIDTH_RATE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TRANSACTION_FEE",
+      "key_hex": "5452414e53414354494f4e5f464545",
+      "row_kind": "dynamic_key",
+      "schema": "TRANSACTION_FEE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ASSET_ISSUE_FEE",
+      "key_hex": "41535345545f49535355455f464545",
+      "row_kind": "dynamic_key",
+      "schema": "ASSET_ISSUE_FEE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-UPDATE_ACCOUNT_PERMISSION_FEE",
+      "key_hex": "5550444154455f4143434f554e545f5045524d495353494f4e5f464545",
+      "row_kind": "dynamic_key",
+      "schema": "UPDATE_ACCOUNT_PERMISSION_FEE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MULTI_SIGN_FEE",
+      "key_hex": "4d554c54495f5349474e5f464545",
+      "row_kind": "dynamic_key",
+      "schema": "MULTI_SIGN_FEE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-SHIELDED_TRANSACTION_FEE",
+      "key_hex": "534849454c4445445f5452414e53414354494f4e5f464545",
+      "row_kind": "dynamic_key",
+      "schema": "SHIELDED_TRANSACTION_FEE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-SHIELDED_TRANSACTION_CREATE_ACCOUNT_FEE",
+      "key_hex": "534849454c4445445f5452414e53414354494f4e5f4352454154455f4143434f554e545f464545",
+      "row_kind": "dynamic_key",
+      "schema": "SHIELDED_TRANSACTION_CREATE_ACCOUNT_FEE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_SHIELDED_POOL_VALUE",
+      "key_hex": "544f54414c5f534849454c4445445f504f4f4c5f56414c5545",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_SHIELDED_POOL_VALUE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-EXCHANGE_CREATE_FEE",
+      "key_hex": "45584348414e47455f4352454154455f464545",
+      "row_kind": "dynamic_key",
+      "schema": "EXCHANGE_CREATE_FEE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-EXCHANGE_BALANCE_LIMIT",
+      "key_hex": "45584348414e47455f42414c414e43455f4c494d4954",
+      "row_kind": "dynamic_key",
+      "schema": "EXCHANGE_BALANCE_LIMIT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_TRANSACTION_COST",
+      "key_hex": "544f54414c5f5452414e53414354494f4e5f434f5354",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_TRANSACTION_COST",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_CREATE_ACCOUNT_COST",
+      "key_hex": "544f54414c5f4352454154455f4143434f554e545f434f5354",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_CREATE_ACCOUNT_COST",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_CREATE_WITNESS_COST",
+      "key_hex": "544f54414c5f4352454154455f5749544e4553535f464545",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_CREATE_WITNESS_COST",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_STORAGE_POOL",
+      "key_hex": "544f54414c5f53544f524147455f504f4f4c",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_STORAGE_POOL",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_STORAGE_TAX",
+      "key_hex": "544f54414c5f53544f524147455f544158",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_STORAGE_TAX",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_STORAGE_RESERVED",
+      "key_hex": "544f54414c5f53544f524147455f5245534552564544",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_STORAGE_RESERVED",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-STORAGE_EXCHANGE_TAX_RATE",
+      "key_hex": "53544f524147455f45584348414e47455f5441585f52415445",
+      "row_kind": "dynamic_key",
+      "schema": "STORAGE_EXCHANGE_TAX_RATE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-VERSION_NUMBER",
+      "key_hex": "56455253494f4e5f4e554d424552",
+      "row_kind": "dynamic_key",
+      "schema": "VERSION_NUMBER",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-REMOVE_THE_POWER_OF_THE_GR",
+      "key_hex": "52454d4f56455f5448455f504f5745525f4f465f5448455f4752",
+      "row_kind": "dynamic_key",
+      "schema": "REMOVE_THE_POWER_OF_THE_GR",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_DELEGATE_RESOURCE",
+      "key_hex": "414c4c4f575f44454c45474154455f5245534f55524345",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_DELEGATE_RESOURCE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_ADAPTIVE_ENERGY",
+      "key_hex": "414c4c4f575f41444150544956455f454e45524759",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_ADAPTIVE_ENERGY",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_UPDATE_ACCOUNT_NAME",
+      "key_hex": "414c4c4f575f5550444154455f4143434f554e545f4e414d45",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_UPDATE_ACCOUNT_NAME",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_SAME_TOKEN_NAME",
+      "key_hex": "20414c4c4f575f53414d455f544f4b454e5f4e414d45",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_SAME_TOKEN_NAME",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_CREATION_OF_CONTRACTS",
+      "key_hex": "414c4c4f575f4352454154494f4e5f4f465f434f4e545241435453",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_CREATION_OF_CONTRACTS",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_SIGN_NUM",
+      "key_hex": "544f54414c5f5349474e5f4e554d",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_SIGN_NUM",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_MULTI_SIGN",
+      "key_hex": "414c4c4f575f4d554c54495f5349474e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_MULTI_SIGN",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOKEN_ID_NUM",
+      "key_hex": "544f4b454e5f49445f4e554d",
+      "row_kind": "dynamic_key",
+      "schema": "TOKEN_ID_NUM",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOKEN_UPDATE_DONE",
+      "key_hex": "544f4b454e5f5550444154455f444f4e45",
+      "row_kind": "dynamic_key",
+      "schema": "TOKEN_UPDATE_DONE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ABI_MOVE_DONE",
+      "key_hex": "4142495f4d4f56455f444f4e45",
+      "row_kind": "dynamic_key",
+      "schema": "ABI_MOVE_DONE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_TRANSFER_TRC10",
+      "key_hex": "414c4c4f575f54564d5f5452414e534645525f5452433130",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_TRANSFER_TRC10",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_SHIELDED_TRANSACTION",
+      "key_hex": "414c4c4f575f534849454c4445445f5452414e53414354494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_SHIELDED_TRANSACTION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_SHIELDED_TRC20_TRANSACTION",
+      "key_hex": "414c4c4f575f534849454c4445445f54524332305f5452414e53414354494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_SHIELDED_TRC20_TRANSACTION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_ISTANBUL",
+      "key_hex": "414c4c4f575f54564d5f495354414e42554c",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_ISTANBUL",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_CONSTANTINOPLE",
+      "key_hex": "414c4c4f575f54564d5f434f4e5354414e54494e4f504c45",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_CONSTANTINOPLE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_SOLIDITY_059",
+      "key_hex": "414c4c4f575f54564d5f534f4c49444954595f303539",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_SOLIDITY_059",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-FORBID_TRANSFER_TO_CONTRACT",
+      "key_hex": "464f524249445f5452414e534645525f544f5f434f4e5452414354",
+      "row_kind": "dynamic_key",
+      "schema": "FORBID_TRANSFER_TO_CONTRACT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_PROTO_FILTER_NUM",
+      "key_hex": "414c4c4f575f50524f544f5f46494c5445525f4e554d",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_PROTO_FILTER_NUM",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-AVAILABLE_CONTRACT_TYPE",
+      "key_hex": "415641494c41424c455f434f4e54524143545f54595045",
+      "row_kind": "dynamic_key",
+      "schema": "AVAILABLE_CONTRACT_TYPE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ACTIVE_DEFAULT_OPERATIONS",
+      "key_hex": "4143544956455f44454641554c545f4f5045524154494f4e53",
+      "row_kind": "dynamic_key",
+      "schema": "ACTIVE_DEFAULT_OPERATIONS",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_ACCOUNT_STATE_ROOT",
+      "key_hex": "414c4c4f575f4143434f554e545f53544154455f524f4f54",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_ACCOUNT_STATE_ROOT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-CURRENT_CYCLE_NUMBER",
+      "key_hex": "43555252454e545f4359434c455f4e554d424552",
+      "row_kind": "dynamic_key",
+      "schema": "CURRENT_CYCLE_NUMBER",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-CHANGE_DELEGATION",
+      "key_hex": "4348414e47455f44454c45474154494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "CHANGE_DELEGATION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_PBFT",
+      "key_hex": "414c4c4f575f50424654",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_PBFT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_MARKET_TRANSACTION",
+      "key_hex": "414c4c4f575f4d41524b45545f5452414e53414354494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_MARKET_TRANSACTION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MARKET_SELL_FEE",
+      "key_hex": "4d41524b45545f53454c4c5f464545",
+      "row_kind": "dynamic_key",
+      "schema": "MARKET_SELL_FEE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MARKET_CANCEL_FEE",
+      "key_hex": "4d41524b45545f43414e43454c5f464545",
+      "row_kind": "dynamic_key",
+      "schema": "MARKET_CANCEL_FEE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MARKET_QUANTITY_LIMIT",
+      "key_hex": "4d41524b45545f5155414e544954595f4c494d4954",
+      "row_kind": "dynamic_key",
+      "schema": "MARKET_QUANTITY_LIMIT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TRANSACTION_FEE_POOL",
+      "key_hex": "414c4c4f575f5452414e53414354494f4e5f4645455f504f4f4c",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TRANSACTION_FEE_POOL",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TRANSACTION_FEE_POOL",
+      "key_hex": "5452414e53414354494f4e5f4645455f504f4f4c",
+      "row_kind": "dynamic_key",
+      "schema": "TRANSACTION_FEE_POOL",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MAX_FEE_LIMIT",
+      "key_hex": "4d41585f4645455f4c494d4954",
+      "row_kind": "dynamic_key",
+      "schema": "MAX_FEE_LIMIT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-BURN_TRX_AMOUNT",
+      "key_hex": "4255524e5f5452585f414d4f554e54",
+      "row_kind": "dynamic_key",
+      "schema": "BURN_TRX_AMOUNT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_BLACKHOLE_OPTIMIZATION",
+      "key_hex": "414c4c4f575f424c41434b484f4c455f4f5054494d495a4154494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_BLACKHOLE_OPTIMIZATION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_NEW_RESOURCE_MODEL",
+      "key_hex": "414c4c4f575f4e45575f5245534f555243455f4d4f44454c",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_NEW_RESOURCE_MODEL",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_FREEZE",
+      "key_hex": "414c4c4f575f54564d5f465245455a45",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_FREEZE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_VOTE",
+      "key_hex": "414c4c4f575f54564d5f564f5445",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_VOTE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_LONDON",
+      "key_hex": "414c4c4f575f54564d5f4c4f4e444f4e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_LONDON",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_COMPATIBLE_EVM",
+      "key_hex": "414c4c4f575f54564d5f434f4d50415449424c455f45564d",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_COMPATIBLE_EVM",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-NEW_REWARD_ALGORITHM_EFFECTIVE_CYCLE",
+      "key_hex": "4e45575f5245574152445f414c474f524954484d5f4546464543544956455f4359434c45",
+      "row_kind": "dynamic_key",
+      "schema": "NEW_REWARD_ALGORITHM_EFFECTIVE_CYCLE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_ACCOUNT_ASSET_OPTIMIZATION",
+      "key_hex": "414c4c4f575f4143434f554e545f41535345545f4f5054494d495a4154494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_ACCOUNT_ASSET_OPTIMIZATION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_ASSET_OPTIMIZATION",
+      "key_hex": "414c4c4f575f41535345545f4f5054494d495a4154494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_ASSET_OPTIMIZATION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ENERGY_PRICE_HISTORY",
+      "key_hex": "454e455247595f50524943455f484953544f5259",
+      "row_kind": "dynamic_key",
+      "schema": "ENERGY_PRICE_HISTORY",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ENERGY_PRICE_HISTORY_DONE",
+      "key_hex": "454e455247595f50524943455f484953544f52595f444f4e45",
+      "row_kind": "dynamic_key",
+      "schema": "ENERGY_PRICE_HISTORY_DONE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-BANDWIDTH_PRICE_HISTORY",
+      "key_hex": "42414e4457494454485f50524943455f484953544f5259",
+      "row_kind": "dynamic_key",
+      "schema": "BANDWIDTH_PRICE_HISTORY",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-BANDWIDTH_PRICE_HISTORY_DONE",
+      "key_hex": "42414e4457494454485f50524943455f484953544f52595f444f4e45",
+      "row_kind": "dynamic_key",
+      "schema": "BANDWIDTH_PRICE_HISTORY_DONE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-SET_BLACKHOLE_ACCOUNT_PERMISSION",
+      "key_hex": "5345545f424c41434b484f4c455f4143434f554e545f5045524d495353494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "SET_BLACKHOLE_ACCOUNT_PERMISSION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_HIGHER_LIMIT_FOR_MAX_CPU_TIME_OF_ONE_TX",
+      "key_hex": "414c4c4f575f4849474845525f4c494d49545f464f525f4d41585f4350555f54494d455f4f465f4f4e455f5458",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_HIGHER_LIMIT_FOR_MAX_CPU_TIME_OF_ONE_TX",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_NEW_REWARD",
+      "key_hex": "414c4c4f575f4e45575f524557415244",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_NEW_REWARD",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "paired-default-source"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MEMO_FEE",
+      "key_hex": "4d454d4f5f464545",
+      "row_kind": "dynamic_key",
+      "schema": "MEMO_FEE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes",
+        "paired-default-derived-atomic-repair"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MEMO_FEE_HISTORY",
+      "key_hex": "4d454d4f5f4645455f484953544f5259",
+      "row_kind": "dynamic_key",
+      "schema": "MEMO_FEE_HISTORY",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_DELEGATE_OPTIMIZATION",
+      "key_hex": "414c4c4f575f44454c45474154455f4f5054494d495a4154494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_DELEGATE_OPTIMIZATION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_DYNAMIC_ENERGY",
+      "key_hex": "414c4c4f575f44594e414d49435f454e45524759",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_DYNAMIC_ENERGY",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-DYNAMIC_ENERGY_THRESHOLD",
+      "key_hex": "44594e414d49435f454e455247595f5448524553484f4c44",
+      "row_kind": "dynamic_key",
+      "schema": "DYNAMIC_ENERGY_THRESHOLD",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-DYNAMIC_ENERGY_INCREASE_FACTOR",
+      "key_hex": "44594e414d49435f454e455247595f494e4352454153455f464143544f52",
+      "row_kind": "dynamic_key",
+      "schema": "DYNAMIC_ENERGY_INCREASE_FACTOR",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-DYNAMIC_ENERGY_MAX_FACTOR",
+      "key_hex": "44594e414d49435f454e455247595f4d41585f464143544f52",
+      "row_kind": "dynamic_key",
+      "schema": "DYNAMIC_ENERGY_MAX_FACTOR",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-UNFREEZE_DELAY_DAYS",
+      "key_hex": "554e465245455a455f44454c41595f44415953",
+      "row_kind": "dynamic_key",
+      "schema": "UNFREEZE_DELAY_DAYS",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_OPTIMIZED_RETURN_VALUE_OF_CHAIN_ID",
+      "key_hex": "414c4c4f575f4f5054494d495a45445f52455455524e5f56414c55455f4f465f434841494e5f4944",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_OPTIMIZED_RETURN_VALUE_OF_CHAIN_ID",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_SHANGHAI",
+      "key_hex": "414c4c4f575f54564d5f5348414e47484149",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_SHANGHAI",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_CANCEL_ALL_UNFREEZE_V2",
+      "key_hex": "414c4c4f575f43414e43454c5f414c4c5f554e465245455a455f5632",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_CANCEL_ALL_UNFREEZE_V2",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MAX_DELEGATE_LOCK_PERIOD",
+      "key_hex": "4d41585f44454c45474154455f4c4f434b5f504552494f44",
+      "row_kind": "dynamic_key",
+      "schema": "MAX_DELEGATE_LOCK_PERIOD",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_OLD_REWARD_OPT",
+      "key_hex": "414c4c4f575f4f4c445f5245574152445f4f5054",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_OLD_REWARD_OPT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_ENERGY_ADJUSTMENT",
+      "key_hex": "414c4c4f575f454e455247595f41444a5553544d454e54",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_ENERGY_ADJUSTMENT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-MAX_CREATE_ACCOUNT_TX_SIZE",
+      "key_hex": "4d41585f4352454154455f4143434f554e545f54585f53495a45",
+      "row_kind": "dynamic_key",
+      "schema": "MAX_CREATE_ACCOUNT_TX_SIZE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_STRICT_MATH",
+      "key_hex": "414c4c4f575f5354524943545f4d415448",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_STRICT_MATH",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-CONSENSUS_LOGIC_OPTIMIZATION",
+      "key_hex": "434f4e53454e5355535f4c4f4749435f4f5054494d495a4154494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "CONSENSUS_LOGIC_OPTIMIZATION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_CANCUN",
+      "key_hex": "414c4c4f575f54564d5f43414e43554e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_CANCUN",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_BLOB",
+      "key_hex": "414c4c4f575f54564d5f424c4f42",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_BLOB",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-PROPOSAL_EXPIRE_TIME",
+      "key_hex": "50524f504f53414c5f4558504952455f54494d45",
+      "row_kind": "dynamic_key",
+      "schema": "PROPOSAL_EXPIRE_TIME",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_SELFDESTRUCT_RESTRICTION",
+      "key_hex": "414c4c4f575f54564d5f53454c4644455354525543545f5245535452494354494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_SELFDESTRUCT_RESTRICTION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_OSAKA",
+      "key_hex": "414c4c4f575f54564d5f4f53414b41",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_OSAKA",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_TVM_PRAGUE",
+      "key_hex": "414c4c4f575f54564d5f505241475545",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_TVM_PRAGUE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-BLOCK_HASH_HISTORY_INSTALLED",
+      "key_hex": "424c4f434b5f484153485f484953544f52595f494e5354414c4c4544",
+      "row_kind": "dynamic_key",
+      "schema": "BLOCK_HASH_HISTORY_INSTALLED",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_HARDEN_RESOURCE_CALCULATION",
+      "key_hex": "414c4c4f575f48415244454e5f5245534f555243455f43414c43554c4154494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_HARDEN_RESOURCE_CALCULATION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ALLOW_HARDEN_EXCHANGE_CALCULATION",
+      "key_hex": "414c4c4f575f48415244454e5f45584348414e47455f43414c43554c4154494f4e",
+      "row_kind": "dynamic_key",
+      "schema": "ALLOW_HARDEN_EXCHANGE_CALCULATION",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TURKISH_KEY_MIGRATION_DONE",
+      "key_hex": "5455524b4953485f4b45595f4d4947524154494f4e5f444f4e45",
+      "row_kind": "dynamic_key",
+      "schema": "TURKISH_KEY_MIGRATION_DONE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ONE_DAY_NET_LIMIT",
+      "key_hex": "4f4e455f4441595f4e45545f4c494d4954",
+      "row_kind": "dynamic_key",
+      "schema": "ONE_DAY_NET_LIMIT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-PUBLIC_NET_USAGE",
+      "key_hex": "5055424c49435f4e45545f5553414745",
+      "row_kind": "dynamic_key",
+      "schema": "PUBLIC_NET_USAGE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-PUBLIC_NET_LIMIT",
+      "key_hex": "5055424c49435f4e45545f4c494d4954",
+      "row_kind": "dynamic_key",
+      "schema": "PUBLIC_NET_LIMIT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-PUBLIC_NET_TIME",
+      "key_hex": "5055424c49435f4e45545f54494d45",
+      "row_kind": "dynamic_key",
+      "schema": "PUBLIC_NET_TIME",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-FREE_NET_LIMIT",
+      "key_hex": "465245455f4e45545f4c494d4954",
+      "row_kind": "dynamic_key",
+      "schema": "FREE_NET_LIMIT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_NET_WEIGHT",
+      "key_hex": "544f54414c5f4e45545f574549474854",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_NET_WEIGHT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_NET_LIMIT",
+      "key_hex": "544f54414c5f4e45545f4c494d4954",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_NET_LIMIT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_ENERGY_TARGET_LIMIT",
+      "key_hex": "544f54414c5f454e455247595f5441524745545f4c494d4954",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_ENERGY_TARGET_LIMIT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_ENERGY_CURRENT_LIMIT",
+      "key_hex": "544f54414c5f454e455247595f43555252454e545f4c494d4954",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_ENERGY_CURRENT_LIMIT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_ENERGY_AVERAGE_USAGE",
+      "key_hex": "544f54414c5f454e455247595f415645524147455f5553414745",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_ENERGY_AVERAGE_USAGE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_ENERGY_AVERAGE_TIME",
+      "key_hex": "544f54414c5f454e455247595f415645524147455f54494d45",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_ENERGY_AVERAGE_TIME",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_ENERGY_WEIGHT",
+      "key_hex": "544f54414c5f454e455247595f574549474854",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_ENERGY_WEIGHT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_TRON_POWER_WEIGHT",
+      "key_hex": "544f54414c5f54524f4e5f504f5745525f574549474854",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_TRON_POWER_WEIGHT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-TOTAL_ENERGY_LIMIT",
+      "key_hex": "544f54414c5f454e455247595f4c494d4954",
+      "row_kind": "dynamic_key",
+      "schema": "TOTAL_ENERGY_LIMIT",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-BLOCK_ENERGY_USAGE",
+      "key_hex": "424c4f434b5f454e455247595f5553414745",
+      "row_kind": "dynamic_key",
+      "schema": "BLOCK_ENERGY_USAGE",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ADAPTIVE_RESOURCE_LIMIT_MULTIPLIER",
+      "key_hex": "41444150544956455f5245534f555243455f4c494d49545f4d554c5449504c494552",
+      "row_kind": "dynamic_key",
+      "schema": "ADAPTIVE_RESOURCE_LIMIT_MULTIPLIER",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-key-bytes"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-key-ADAPTIVE_RESOURCE_LIMIT_TARGET_RATIO",
+      "key_hex": "41444150544956455f5245534f555243455f4c494d49545f5441524745545f524154494f",
+      "row_kind": "dynamic_key",
+      "schema": "ADAPTIVE_RESOURCE_LIMIT_TARGET_RATIO",
+      "store": "DynamicProperties",
+      "value_hex": ""
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-000-getTotalSignNum",
+      "key_hex": "544f54414c5f5349474e5f4e554d",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalSignNum",
+      "store": "DynamicProperties",
+      "value_hex": "00000005"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-001-getAllowMultiSign",
+      "key_hex": "414c4c4f575f4d554c54495f5349474e",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowMultiSign",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-002-getLatestBlockHeaderTimestamp",
+      "key_hex": "6c61746573745f626c6f636b5f6865616465725f74696d657374616d70",
+      "row_kind": "dynamic_default",
+      "schema": "getLatestBlockHeaderTimestamp",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-003-getLatestBlockHeaderNumber",
+      "key_hex": "6c61746573745f626c6f636b5f6865616465725f6e756d626572",
+      "row_kind": "dynamic_default",
+      "schema": "getLatestBlockHeaderNumber",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-004-getLatestBlockHeaderHash",
+      "key_hex": "6c61746573745f626c6f636b5f6865616465725f68617368",
+      "row_kind": "dynamic_default",
+      "schema": "getLatestBlockHeaderHash",
+      "store": "DynamicProperties",
+      "value_hex": "00"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-005-getStateFlag",
+      "key_hex": "73746174655f666c6167",
+      "row_kind": "dynamic_default",
+      "schema": "getStateFlag",
+      "store": "DynamicProperties",
+      "value_hex": "00000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-006-getLatestSolidifiedBlockNum",
+      "key_hex": "4c41544553545f534f4c494449464945445f424c4f434b5f4e554d",
+      "row_kind": "dynamic_default",
+      "schema": "getLatestSolidifiedBlockNum",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-007-getLatestProposalNum",
+      "key_hex": "4c41544553545f50524f504f53414c5f4e554d",
+      "row_kind": "dynamic_default",
+      "schema": "getLatestProposalNum",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-008-getLatestExchangeNum",
+      "key_hex": "4c41544553545f45584348414e47455f4e554d",
+      "row_kind": "dynamic_default",
+      "schema": "getLatestExchangeNum",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-009-getBlockFilledSlotsIndex",
+      "key_hex": "424c4f434b5f46494c4c45445f534c4f54535f494e444558",
+      "row_kind": "dynamic_default",
+      "schema": "getBlockFilledSlotsIndex",
+      "store": "DynamicProperties",
+      "value_hex": "00000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-010-getTokenIdNum",
+      "key_hex": "544f4b454e5f49445f4e554d",
+      "row_kind": "dynamic_default",
+      "schema": "getTokenIdNum",
+      "store": "DynamicProperties",
+      "value_hex": "00000000000f4240"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-011-getTokenUpdateDone",
+      "key_hex": "544f4b454e5f5550444154455f444f4e45",
+      "row_kind": "dynamic_default",
+      "schema": "getTokenUpdateDone",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-012-getAbiMoveDone",
+      "key_hex": "4142495f4d4f56455f444f4e45",
+      "row_kind": "dynamic_default",
+      "schema": "getAbiMoveDone",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-013-getMaxFrozenTime",
+      "key_hex": "4d41585f46524f5a454e5f54494d45",
+      "row_kind": "dynamic_default",
+      "schema": "getMaxFrozenTime",
+      "store": "DynamicProperties",
+      "value_hex": "00000003"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-014-getMinFrozenTime",
+      "key_hex": "4d494e5f46524f5a454e5f54494d45",
+      "row_kind": "dynamic_default",
+      "schema": "getMinFrozenTime",
+      "store": "DynamicProperties",
+      "value_hex": "00000003"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-015-getMaxFrozenSupplyNumber",
+      "key_hex": "4d41585f46524f5a454e5f535550504c595f4e554d424552",
+      "row_kind": "dynamic_default",
+      "schema": "getMaxFrozenSupplyNumber",
+      "store": "DynamicProperties",
+      "value_hex": "0000000a"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-016-getMaxFrozenSupplyTime",
+      "key_hex": "4d41585f46524f5a454e5f535550504c595f54494d45",
+      "row_kind": "dynamic_default",
+      "schema": "getMaxFrozenSupplyTime",
+      "store": "DynamicProperties",
+      "value_hex": "00000e44"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-017-getMinFrozenSupplyTime",
+      "key_hex": "4d494e5f46524f5a454e5f535550504c595f54494d45",
+      "row_kind": "dynamic_default",
+      "schema": "getMinFrozenSupplyTime",
+      "store": "DynamicProperties",
+      "value_hex": "00000001"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-018-getWitnessAllowanceFrozenTime",
+      "key_hex": "5749544e4553535f414c4c4f57414e43455f46524f5a454e5f54494d45",
+      "row_kind": "dynamic_default",
+      "schema": "getWitnessAllowanceFrozenTime",
+      "store": "DynamicProperties",
+      "value_hex": "00000001"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-019-getWitnessPayPerBlock",
+      "key_hex": "5749544e4553535f5041595f5045525f424c4f434b",
+      "row_kind": "dynamic_default",
+      "schema": "getWitnessPayPerBlock",
+      "store": "DynamicProperties",
+      "value_hex": "0000000001e84800"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-020-getWitnessStandbyAllowance",
+      "key_hex": "5749544e4553535f5354414e4442595f414c4c4f57414e4345",
+      "row_kind": "dynamic_default",
+      "schema": "getWitnessStandbyAllowance",
+      "store": "DynamicProperties",
+      "value_hex": "0000001ad2748000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-021-getMaintenanceTimeInterval",
+      "key_hex": "4d41494e54454e414e43455f54494d455f494e54455256414c",
+      "row_kind": "dynamic_default",
+      "schema": "getMaintenanceTimeInterval",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-022-getAccountUpgradeCost",
+      "key_hex": "4143434f554e545f555047524144455f434f5354",
+      "row_kind": "dynamic_default",
+      "schema": "getAccountUpgradeCost",
+      "store": "DynamicProperties",
+      "value_hex": "0000000253fca1c0"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-023-getPublicNetUsage",
+      "key_hex": "5055424c49435f4e45545f5553414745",
+      "row_kind": "dynamic_default",
+      "schema": "getPublicNetUsage",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-024-getOneDayNetLimit",
+      "key_hex": "4f4e455f4441595f4e45545f4c494d4954",
+      "row_kind": "dynamic_default",
+      "schema": "getOneDayNetLimit",
+      "store": "DynamicProperties",
+      "value_hex": "0000000d693a4000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-025-getPublicNetLimit",
+      "key_hex": "5055424c49435f4e45545f4c494d4954",
+      "row_kind": "dynamic_default",
+      "schema": "getPublicNetLimit",
+      "store": "DynamicProperties",
+      "value_hex": "000000035a4e9000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-026-getPublicNetTime",
+      "key_hex": "5055424c49435f4e45545f54494d45",
+      "row_kind": "dynamic_default",
+      "schema": "getPublicNetTime",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-027-getFreeNetLimit",
+      "key_hex": "465245455f4e45545f4c494d4954",
+      "row_kind": "dynamic_default",
+      "schema": "getFreeNetLimit",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000001388"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-028-getTotalNetWeight",
+      "key_hex": "544f54414c5f4e45545f574549474854",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalNetWeight",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-029-getTotalNetLimit",
+      "key_hex": "544f54414c5f4e45545f4c494d4954",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalNetLimit",
+      "store": "DynamicProperties",
+      "value_hex": "0000000a0eebb000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-030-getTotalEnergyWeight",
+      "key_hex": "544f54414c5f454e455247595f574549474854",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalEnergyWeight",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-031-getTotalTronPowerWeight",
+      "key_hex": "544f54414c5f54524f4e5f504f5745525f574549474854",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalTronPowerWeight",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-032-getAllowAdaptiveEnergy",
+      "key_hex": "414c4c4f575f41444150544956455f454e45524759",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowAdaptiveEnergy",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-033-getAdaptiveResourceLimitTargetRatio",
+      "key_hex": "41444150544956455f5245534f555243455f4c494d49545f5441524745545f524154494f",
+      "row_kind": "dynamic_default",
+      "schema": "getAdaptiveResourceLimitTargetRatio",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000003840"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-034-getTotalEnergyLimit",
+      "key_hex": "544f54414c5f454e455247595f4c494d4954",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalEnergyLimit",
+      "store": "DynamicProperties",
+      "value_hex": "0000000ba43b7400"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-035-getEnergyFee",
+      "key_hex": "454e455247595f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getEnergyFee",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000064"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-036-getMaxCpuTimeOfOneTx",
+      "key_hex": "4d41585f4350555f54494d455f4f465f4f4e455f5458",
+      "row_kind": "dynamic_default",
+      "schema": "getMaxCpuTimeOfOneTx",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000032"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-037-getCreateAccountFee",
+      "key_hex": "4352454154455f4143434f554e545f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getCreateAccountFee",
+      "store": "DynamicProperties",
+      "value_hex": "00000000000186a0"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-038-getShieldedTransactionFee",
+      "key_hex": "534849454c4445445f5452414e53414354494f4e5f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getShieldedTransactionFee",
+      "store": "DynamicProperties",
+      "value_hex": "00000000000186a0"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-039-getShieldedTransactionCreateAccountFee",
+      "key_hex": "534849454c4445445f5452414e53414354494f4e5f4352454154455f4143434f554e545f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getShieldedTransactionCreateAccountFee",
+      "store": "DynamicProperties",
+      "value_hex": "00000000000f4240"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-040-getTotalShieldedPoolValue",
+      "key_hex": "544f54414c5f534849454c4445445f504f4f4c5f56414c5545",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalShieldedPoolValue",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-041-getCreateNewAccountFeeInSystemContract",
+      "key_hex": "4352454154455f4e45575f4143434f554e545f4645455f494e5f53595354454d5f434f4e5452414354",
+      "row_kind": "dynamic_default",
+      "schema": "getCreateNewAccountFeeInSystemContract",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-042-getCreateNewAccountBandwidthRate",
+      "key_hex": "4352454154455f4e45575f4143434f554e545f42414e4457494454485f52415445",
+      "row_kind": "dynamic_default",
+      "schema": "getCreateNewAccountBandwidthRate",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000001"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-043-getTransactionFee",
+      "key_hex": "5452414e53414354494f4e5f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getTransactionFee",
+      "store": "DynamicProperties",
+      "value_hex": "000000000000000a"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-044-getAssetIssueFee",
+      "key_hex": "41535345545f49535355455f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getAssetIssueFee",
+      "store": "DynamicProperties",
+      "value_hex": "000000003d090000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-045-getUpdateAccountPermissionFee",
+      "key_hex": "5550444154455f4143434f554e545f5045524d495353494f4e5f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getUpdateAccountPermissionFee",
+      "store": "DynamicProperties",
+      "value_hex": "0000000005f5e100"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-046-getMultiSignFee",
+      "key_hex": "4d554c54495f5349474e5f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getMultiSignFee",
+      "store": "DynamicProperties",
+      "value_hex": "00000000000f4240"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-047-getExchangeCreateFee",
+      "key_hex": "45584348414e47455f4352454154455f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getExchangeCreateFee",
+      "store": "DynamicProperties",
+      "value_hex": "000000003d090000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-048-getExchangeBalanceLimit",
+      "key_hex": "45584348414e47455f42414c414e43455f4c494d4954",
+      "row_kind": "dynamic_default",
+      "schema": "getExchangeBalanceLimit",
+      "store": "DynamicProperties",
+      "value_hex": "00038d7ea4c68000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-049-getAllowMarketTransaction",
+      "key_hex": "414c4c4f575f4d41524b45545f5452414e53414354494f4e",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowMarketTransaction",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-050-getMarketSellFee",
+      "key_hex": "4d41524b45545f53454c4c5f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getMarketSellFee",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-051-getMarketCancelFee",
+      "key_hex": "4d41524b45545f43414e43454c5f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getMarketCancelFee",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-052-getMarketQuantityLimit",
+      "key_hex": "4d41524b45545f5155414e544954595f4c494d4954",
+      "row_kind": "dynamic_default",
+      "schema": "getMarketQuantityLimit",
+      "store": "DynamicProperties",
+      "value_hex": "00038d7ea4c68000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-053-getAllowTransactionFeePool",
+      "key_hex": "414c4c4f575f5452414e53414354494f4e5f4645455f504f4f4c",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowTransactionFeePool",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-054-getTransactionFeePool",
+      "key_hex": "5452414e53414354494f4e5f4645455f504f4f4c",
+      "row_kind": "dynamic_default",
+      "schema": "getTransactionFeePool",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-055-getTotalTransactionCost",
+      "key_hex": "544f54414c5f5452414e53414354494f4e5f434f5354",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalTransactionCost",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-056-getTotalCreateWitnessCost",
+      "key_hex": "544f54414c5f4352454154455f5749544e4553535f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalCreateWitnessCost",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-057-getTotalCreateAccountCost",
+      "key_hex": "544f54414c5f4352454154455f4143434f554e545f434f5354",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalCreateAccountCost",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-058-getTotalStoragePool",
+      "key_hex": "544f54414c5f53544f524147455f504f4f4c",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalStoragePool",
+      "store": "DynamicProperties",
+      "value_hex": "00005af3107a4000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-059-getTotalStorageTax",
+      "key_hex": "544f54414c5f53544f524147455f544158",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalStorageTax",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-060-getTotalStorageReserved",
+      "key_hex": "544f54414c5f53544f524147455f5245534552564544",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalStorageReserved",
+      "store": "DynamicProperties",
+      "value_hex": "0000002000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-061-getStorageExchangeTaxRate",
+      "key_hex": "53544f524147455f45584348414e47455f5441585f52415445",
+      "row_kind": "dynamic_default",
+      "schema": "getStorageExchangeTaxRate",
+      "store": "DynamicProperties",
+      "value_hex": "000000000000000a"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-062-getRemoveThePowerOfTheGr",
+      "key_hex": "52454d4f56455f5448455f504f5745525f4f465f5448455f4752",
+      "row_kind": "dynamic_default",
+      "schema": "getRemoveThePowerOfTheGr",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-063-getAllowDelegateResource",
+      "key_hex": "414c4c4f575f44454c45474154455f5245534f55524345",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowDelegateResource",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-064-getAllowTvmTransferTrc10",
+      "key_hex": "414c4c4f575f54564d5f5452414e534645525f5452433130",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowTvmTransferTrc10",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-065-getAllowTvmConstantinople",
+      "key_hex": "414c4c4f575f54564d5f434f4e5354414e54494e4f504c45",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowTvmConstantinople",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-066-getAllowTvmSolidity059",
+      "key_hex": "414c4c4f575f54564d5f534f4c49444954595f303539",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowTvmSolidity059",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-067-getForbidTransferToContract",
+      "key_hex": "464f524249445f5452414e534645525f544f5f434f4e5452414354",
+      "row_kind": "dynamic_default",
+      "schema": "getForbidTransferToContract",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-068-getAvailableContractType",
+      "key_hex": "20414c4c4f575f53414d455f544f4b454e5f4e414d45",
+      "row_kind": "dynamic_default",
+      "schema": "getAvailableContractType",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-069-getActiveDefaultOperations",
+      "key_hex": "414c4c4f575f5550444154455f4143434f554e545f4e414d45",
+      "row_kind": "dynamic_default",
+      "schema": "getActiveDefaultOperations",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-070-getAllowSameTokenName",
+      "key_hex": "414c4c4f575f4352454154494f4e5f4f465f434f4e545241435453",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowSameTokenName",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-071-getAllowUpdateAccountName",
+      "key_hex": "414c4c4f575f534849454c4445445f5452414e53414354494f4e",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowUpdateAccountName",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-072-getAllowCreationOfContracts",
+      "key_hex": "414c4c4f575f534849454c4445445f54524332305f5452414e53414354494f4e",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowCreationOfContracts",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-073-getAllowShieldedTransaction",
+      "key_hex": "414c4c4f575f54564d5f495354414e42554c",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowShieldedTransaction",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-074-getAllowShieldedTRC20Transaction",
+      "key_hex": "4e4558545f4d41494e54454e414e43455f54494d45",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowShieldedTRC20Transaction",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-075-getAllowTvmIstanbul",
+      "key_hex": "544f54414c5f454e455247595f43555252454e545f4c494d4954",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowTvmIstanbul",
+      "store": "DynamicProperties",
+      "value_hex": "0000000ba43b7400"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-076-getBlockFilledSlots",
+      "key_hex": "544f54414c5f454e455247595f5441524745545f4c494d4954",
+      "row_kind": "dynamic_default",
+      "schema": "getBlockFilledSlots",
+      "store": "DynamicProperties",
+      "value_hex": "000000000034fb5e"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-077-getNextMaintenanceTime",
+      "key_hex": "544f54414c5f454e455247595f415645524147455f5553414745",
+      "row_kind": "dynamic_default",
+      "schema": "getNextMaintenanceTime",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-078-getTotalEnergyCurrentLimit",
+      "key_hex": "41444150544956455f5245534f555243455f4c494d49545f4d554c5449504c494552",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalEnergyCurrentLimit",
+      "store": "DynamicProperties",
+      "value_hex": "00000000000003e8"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-079-getTotalEnergyTargetLimit",
+      "key_hex": "544f54414c5f454e455247595f415645524147455f54494d45",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalEnergyTargetLimit",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-080-getTotalEnergyAverageUsage",
+      "key_hex": "424c4f434b5f454e455247595f5553414745",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalEnergyAverageUsage",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-081-getAdaptiveResourceLimitMultiplier",
+      "key_hex": "414c4c4f575f4143434f554e545f53544154455f524f4f54",
+      "row_kind": "dynamic_default",
+      "schema": "getAdaptiveResourceLimitMultiplier",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-082-getTotalEnergyAverageTime",
+      "key_hex": "414c4c4f575f50524f544f5f46494c5445525f4e554d",
+      "row_kind": "dynamic_default",
+      "schema": "getTotalEnergyAverageTime",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-083-getBlockEnergyUsage",
+      "key_hex": "4348414e47455f44454c45474154494f4e",
+      "row_kind": "dynamic_default",
+      "schema": "getBlockEnergyUsage",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-084-getAllowAccountStateRoot",
+      "key_hex": "414c4c4f575f50424654",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowAccountStateRoot",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-085-getAllowProtoFilterNum",
+      "key_hex": "4d41585f4645455f4c494d4954",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowProtoFilterNum",
+      "store": "DynamicProperties",
+      "value_hex": "000000003b9aca00"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-086-getChangeDelegation",
+      "key_hex": "4255524e5f5452585f414d4f554e54",
+      "row_kind": "dynamic_default",
+      "schema": "getChangeDelegation",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-087-getAllowPBFT",
+      "key_hex": "414c4c4f575f424c41434b484f4c455f4f5054494d495a4154494f4e",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowPBFT",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-088-getMaxFeeLimit",
+      "key_hex": "414c4c4f575f4e45575f5245534f555243455f4d4f44454c",
+      "row_kind": "dynamic_default",
+      "schema": "getMaxFeeLimit",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-089-getBurnTrxAmount",
+      "key_hex": "414c4c4f575f54564d5f465245455a45",
+      "row_kind": "dynamic_default",
+      "schema": "getBurnTrxAmount",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-090-getAllowBlackHoleOptimization",
+      "key_hex": "414c4c4f575f54564d5f564f5445",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowBlackHoleOptimization",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-091-getAllowNewResourceModel",
+      "key_hex": "414c4c4f575f54564d5f4c4f4e444f4e",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowNewResourceModel",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-092-getAllowTvmFreeze",
+      "key_hex": "414c4c4f575f54564d5f434f4d50415449424c455f45564d",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowTvmFreeze",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-093-getAllowTvmVote",
+      "key_hex": "414c4c4f575f41535345545f4f5054494d495a4154494f4e",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowTvmVote",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-094-getAllowTvmLondon",
+      "key_hex": "414c4c4f575f4143434f554e545f41535345545f4f5054494d495a4154494f4e",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowTvmLondon",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-095-getAllowTvmCompatibleEvm",
+      "key_hex": "454e455247595f50524943455f484953544f52595f444f4e45",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowTvmCompatibleEvm",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-096-getEnergyPriceHistoryDone",
+      "key_hex": "454e455247595f50524943455f484953544f5259",
+      "row_kind": "dynamic_default",
+      "schema": "getEnergyPriceHistoryDone",
+      "store": "DynamicProperties",
+      "value_hex": "303a313030"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-097-getEnergyPriceHistory",
+      "key_hex": "42414e4457494454485f50524943455f484953544f52595f444f4e45",
+      "row_kind": "dynamic_default",
+      "schema": "getEnergyPriceHistory",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-098-getBandwidthPriceHistoryDone",
+      "key_hex": "42414e4457494454485f50524943455f484953544f5259",
+      "row_kind": "dynamic_default",
+      "schema": "getBandwidthPriceHistoryDone",
+      "store": "DynamicProperties",
+      "value_hex": "303a3130"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-099-getBandwidthPriceHistory",
+      "key_hex": "5345545f424c41434b484f4c455f4143434f554e545f5045524d495353494f4e",
+      "row_kind": "dynamic_default",
+      "schema": "getBandwidthPriceHistory",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-100-getSetBlackholeAccountPermission",
+      "key_hex": "414c4c4f575f4849474845525f4c494d49545f464f525f4d41585f4350555f54494d455f4f465f4f4e455f5458",
+      "row_kind": "dynamic_default",
+      "schema": "getSetBlackholeAccountPermission",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-101-getAllowHigherLimitForMaxCpuTimeOfOneTx",
+      "key_hex": "4e45575f5245574152445f414c474f524954484d5f4546464543544956455f4359434c45",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowHigherLimitForMaxCpuTimeOfOneTx",
+      "store": "DynamicProperties",
+      "value_hex": "7fffffffffffffff"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-102-getAllowNewReward",
+      "key_hex": "414c4c4f575f4e45575f524557415244",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowNewReward",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-103-getMemoFee",
+      "key_hex": "4d454d4f5f464545",
+      "row_kind": "dynamic_default",
+      "schema": "getMemoFee",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-104-getAllowDelegateOptimization",
+      "key_hex": "414c4c4f575f44454c45474154455f4f5054494d495a4154494f4e",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowDelegateOptimization",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-105-getUnfreezeDelayDays",
+      "key_hex": "554e465245455a455f44454c41595f44415953",
+      "row_kind": "dynamic_default",
+      "schema": "getUnfreezeDelayDays",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-106-getAllowOptimizedReturnValueOfChainId",
+      "key_hex": "414c4c4f575f4f5054494d495a45445f52455455524e5f56414c55455f4f465f434841494e5f4944",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowOptimizedReturnValueOfChainId",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-107-getAllowDynamicEnergy",
+      "key_hex": "414c4c4f575f44594e414d49435f454e45524759",
+      "row_kind": "dynamic_default",
+      "schema": "getAllowDynamicEnergy",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-108-getDynamicEnergyThreshold",
+      "key_hex": "44594e414d49435f454e455247595f5448524553484f4c44",
+      "row_kind": "dynamic_default",
+      "schema": "getDynamicEnergyThreshold",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-109-getDynamicEnergyIncreaseFactor",
+      "key_hex": "44594e414d49435f454e455247595f494e4352454153455f464143544f52",
+      "row_kind": "dynamic_default",
+      "schema": "getDynamicEnergyIncreaseFactor",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "coverage": [
+        "exact-initializer-key-bytes",
+        "exact-initializer-value-bytes",
+        "initialize-if-absent"
+      ],
+      "db_name": "properties",
+      "id": "dynamic-default-110-getDynamicEnergyMaxFactor",
+      "key_hex": "44594e414d49435f454e455247595f4d41585f464143544f52",
+      "row_kind": "dynamic_default",
+      "schema": "getDynamicEnergyMaxFactor",
+      "store": "DynamicProperties",
+      "value_hex": "0000000000000000"
+    }
+  ],
+  "rows_sha256": "58542df7e8d0f4e2041a6ccb597c03db5a5cb08d4fd38013d24a8f52d2823f3e",
+  "rust_dispatch": {
+    "capsule-AbiCapsule": {
+      "case_id": "capsule-AbiCapsule",
+      "enum_variant": "CapsuleAbiCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-AccountCapsule": {
+      "case_id": "capsule-AccountCapsule",
+      "enum_variant": "CapsuleAccountCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-AccountTraceCapsule": {
+      "case_id": "capsule-AccountTraceCapsule",
+      "enum_variant": "CapsuleAccountTraceCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-AssetIssueCapsule": {
+      "case_id": "capsule-AssetIssueCapsule",
+      "enum_variant": "CapsuleAssetIssueCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-BlockBalanceTraceCapsule": {
+      "case_id": "capsule-BlockBalanceTraceCapsule",
+      "enum_variant": "CapsuleBlockBalanceTraceCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-BlockCapsule": {
+      "case_id": "capsule-BlockCapsule",
+      "enum_variant": "CapsuleBlockCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-BytesCapsule": {
+      "case_id": "capsule-BytesCapsule",
+      "enum_variant": "CapsuleBytesCapsule",
+      "function_kind": "raw_capsule"
+    },
+    "capsule-CodeCapsule": {
+      "case_id": "capsule-CodeCapsule",
+      "enum_variant": "CapsuleCodeCapsule",
+      "function_kind": "raw_capsule"
+    },
+    "capsule-ContractCapsule": {
+      "case_id": "capsule-ContractCapsule",
+      "enum_variant": "CapsuleContractCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-ContractStateCapsule": {
+      "case_id": "capsule-ContractStateCapsule",
+      "enum_variant": "CapsuleContractStateCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-DelegatedResourceAccountIndexCapsule": {
+      "case_id": "capsule-DelegatedResourceAccountIndexCapsule",
+      "enum_variant": "CapsuleDelegatedResourceAccountIndexCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-DelegatedResourceCapsule": {
+      "case_id": "capsule-DelegatedResourceCapsule",
+      "enum_variant": "CapsuleDelegatedResourceCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-ExchangeCapsule": {
+      "case_id": "capsule-ExchangeCapsule",
+      "enum_variant": "CapsuleExchangeCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-IncrementalMerkleTreeCapsule": {
+      "case_id": "capsule-IncrementalMerkleTreeCapsule",
+      "enum_variant": "CapsuleIncrementalMerkleTreeCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-IncrementalMerkleVoucherCapsule": {
+      "case_id": "capsule-IncrementalMerkleVoucherCapsule",
+      "enum_variant": "CapsuleIncrementalMerkleVoucherCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-MarketAccountOrderCapsule": {
+      "case_id": "capsule-MarketAccountOrderCapsule",
+      "enum_variant": "CapsuleMarketAccountOrderCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-MarketOrderCapsule": {
+      "case_id": "capsule-MarketOrderCapsule",
+      "enum_variant": "CapsuleMarketOrderCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-MarketOrderIdListCapsule": {
+      "case_id": "capsule-MarketOrderIdListCapsule",
+      "enum_variant": "CapsuleMarketOrderIdListCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-MarketPriceCapsule": {
+      "case_id": "capsule-MarketPriceCapsule",
+      "enum_variant": "CapsuleMarketPriceCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-PbftSignCapsule": {
+      "case_id": "capsule-PbftSignCapsule",
+      "enum_variant": "CapsulePbftSignCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-PedersenHashCapsule": {
+      "case_id": "capsule-PedersenHashCapsule",
+      "enum_variant": "CapsulePedersenHashCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-ProposalCapsule": {
+      "case_id": "capsule-ProposalCapsule",
+      "enum_variant": "CapsuleProposalCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-ProtoCapsule": {
+      "case_id": "capsule-ProtoCapsule",
+      "enum_variant": "CapsuleProtoCapsule",
+      "function_kind": "raw_capsule"
+    },
+    "capsule-ReceiptCapsule": {
+      "case_id": "capsule-ReceiptCapsule",
+      "enum_variant": "CapsuleReceiptCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-StorageRowCapsule": {
+      "case_id": "capsule-StorageRowCapsule",
+      "enum_variant": "CapsuleStorageRowCapsule",
+      "function_kind": "raw_capsule"
+    },
+    "capsule-TransactionCapsule": {
+      "case_id": "capsule-TransactionCapsule",
+      "enum_variant": "CapsuleTransactionCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-TransactionInfoCapsule": {
+      "case_id": "capsule-TransactionInfoCapsule",
+      "enum_variant": "CapsuleTransactionInfoCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-TransactionResultCapsule": {
+      "case_id": "capsule-TransactionResultCapsule",
+      "enum_variant": "CapsuleTransactionResultCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-TransactionRetCapsule": {
+      "case_id": "capsule-TransactionRetCapsule",
+      "enum_variant": "CapsuleTransactionRetCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-VotesCapsule": {
+      "case_id": "capsule-VotesCapsule",
+      "enum_variant": "CapsuleVotesCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "capsule-WitnessCapsule": {
+      "case_id": "capsule-WitnessCapsule",
+      "enum_variant": "CapsuleWitnessCapsule",
+      "function_kind": "protobuf_capsule"
+    },
+    "dynamic-default-000-getTotalSignNum": {
+      "case_id": "dynamic-default-000-getTotalSignNum",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-001-getAllowMultiSign": {
+      "case_id": "dynamic-default-001-getAllowMultiSign",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-002-getLatestBlockHeaderTimestamp": {
+      "case_id": "dynamic-default-002-getLatestBlockHeaderTimestamp",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-003-getLatestBlockHeaderNumber": {
+      "case_id": "dynamic-default-003-getLatestBlockHeaderNumber",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-004-getLatestBlockHeaderHash": {
+      "case_id": "dynamic-default-004-getLatestBlockHeaderHash",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-005-getStateFlag": {
+      "case_id": "dynamic-default-005-getStateFlag",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-006-getLatestSolidifiedBlockNum": {
+      "case_id": "dynamic-default-006-getLatestSolidifiedBlockNum",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-007-getLatestProposalNum": {
+      "case_id": "dynamic-default-007-getLatestProposalNum",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-008-getLatestExchangeNum": {
+      "case_id": "dynamic-default-008-getLatestExchangeNum",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-009-getBlockFilledSlotsIndex": {
+      "case_id": "dynamic-default-009-getBlockFilledSlotsIndex",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-010-getTokenIdNum": {
+      "case_id": "dynamic-default-010-getTokenIdNum",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-011-getTokenUpdateDone": {
+      "case_id": "dynamic-default-011-getTokenUpdateDone",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-012-getAbiMoveDone": {
+      "case_id": "dynamic-default-012-getAbiMoveDone",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-013-getMaxFrozenTime": {
+      "case_id": "dynamic-default-013-getMaxFrozenTime",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-014-getMinFrozenTime": {
+      "case_id": "dynamic-default-014-getMinFrozenTime",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-015-getMaxFrozenSupplyNumber": {
+      "case_id": "dynamic-default-015-getMaxFrozenSupplyNumber",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-016-getMaxFrozenSupplyTime": {
+      "case_id": "dynamic-default-016-getMaxFrozenSupplyTime",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-017-getMinFrozenSupplyTime": {
+      "case_id": "dynamic-default-017-getMinFrozenSupplyTime",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-018-getWitnessAllowanceFrozenTime": {
+      "case_id": "dynamic-default-018-getWitnessAllowanceFrozenTime",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-019-getWitnessPayPerBlock": {
+      "case_id": "dynamic-default-019-getWitnessPayPerBlock",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-020-getWitnessStandbyAllowance": {
+      "case_id": "dynamic-default-020-getWitnessStandbyAllowance",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-021-getMaintenanceTimeInterval": {
+      "case_id": "dynamic-default-021-getMaintenanceTimeInterval",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-022-getAccountUpgradeCost": {
+      "case_id": "dynamic-default-022-getAccountUpgradeCost",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-023-getPublicNetUsage": {
+      "case_id": "dynamic-default-023-getPublicNetUsage",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-024-getOneDayNetLimit": {
+      "case_id": "dynamic-default-024-getOneDayNetLimit",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-025-getPublicNetLimit": {
+      "case_id": "dynamic-default-025-getPublicNetLimit",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-026-getPublicNetTime": {
+      "case_id": "dynamic-default-026-getPublicNetTime",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-027-getFreeNetLimit": {
+      "case_id": "dynamic-default-027-getFreeNetLimit",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-028-getTotalNetWeight": {
+      "case_id": "dynamic-default-028-getTotalNetWeight",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-029-getTotalNetLimit": {
+      "case_id": "dynamic-default-029-getTotalNetLimit",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-030-getTotalEnergyWeight": {
+      "case_id": "dynamic-default-030-getTotalEnergyWeight",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-031-getTotalTronPowerWeight": {
+      "case_id": "dynamic-default-031-getTotalTronPowerWeight",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-032-getAllowAdaptiveEnergy": {
+      "case_id": "dynamic-default-032-getAllowAdaptiveEnergy",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-033-getAdaptiveResourceLimitTargetRatio": {
+      "case_id": "dynamic-default-033-getAdaptiveResourceLimitTargetRatio",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-034-getTotalEnergyLimit": {
+      "case_id": "dynamic-default-034-getTotalEnergyLimit",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-035-getEnergyFee": {
+      "case_id": "dynamic-default-035-getEnergyFee",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-036-getMaxCpuTimeOfOneTx": {
+      "case_id": "dynamic-default-036-getMaxCpuTimeOfOneTx",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-037-getCreateAccountFee": {
+      "case_id": "dynamic-default-037-getCreateAccountFee",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-038-getShieldedTransactionFee": {
+      "case_id": "dynamic-default-038-getShieldedTransactionFee",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-039-getShieldedTransactionCreateAccountFee": {
+      "case_id": "dynamic-default-039-getShieldedTransactionCreateAccountFee",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-040-getTotalShieldedPoolValue": {
+      "case_id": "dynamic-default-040-getTotalShieldedPoolValue",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-041-getCreateNewAccountFeeInSystemContract": {
+      "case_id": "dynamic-default-041-getCreateNewAccountFeeInSystemContract",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-042-getCreateNewAccountBandwidthRate": {
+      "case_id": "dynamic-default-042-getCreateNewAccountBandwidthRate",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-043-getTransactionFee": {
+      "case_id": "dynamic-default-043-getTransactionFee",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-044-getAssetIssueFee": {
+      "case_id": "dynamic-default-044-getAssetIssueFee",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-045-getUpdateAccountPermissionFee": {
+      "case_id": "dynamic-default-045-getUpdateAccountPermissionFee",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-046-getMultiSignFee": {
+      "case_id": "dynamic-default-046-getMultiSignFee",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-047-getExchangeCreateFee": {
+      "case_id": "dynamic-default-047-getExchangeCreateFee",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-048-getExchangeBalanceLimit": {
+      "case_id": "dynamic-default-048-getExchangeBalanceLimit",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-049-getAllowMarketTransaction": {
+      "case_id": "dynamic-default-049-getAllowMarketTransaction",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-050-getMarketSellFee": {
+      "case_id": "dynamic-default-050-getMarketSellFee",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-051-getMarketCancelFee": {
+      "case_id": "dynamic-default-051-getMarketCancelFee",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-052-getMarketQuantityLimit": {
+      "case_id": "dynamic-default-052-getMarketQuantityLimit",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-053-getAllowTransactionFeePool": {
+      "case_id": "dynamic-default-053-getAllowTransactionFeePool",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-054-getTransactionFeePool": {
+      "case_id": "dynamic-default-054-getTransactionFeePool",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-055-getTotalTransactionCost": {
+      "case_id": "dynamic-default-055-getTotalTransactionCost",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-056-getTotalCreateWitnessCost": {
+      "case_id": "dynamic-default-056-getTotalCreateWitnessCost",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-057-getTotalCreateAccountCost": {
+      "case_id": "dynamic-default-057-getTotalCreateAccountCost",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-058-getTotalStoragePool": {
+      "case_id": "dynamic-default-058-getTotalStoragePool",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-059-getTotalStorageTax": {
+      "case_id": "dynamic-default-059-getTotalStorageTax",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-060-getTotalStorageReserved": {
+      "case_id": "dynamic-default-060-getTotalStorageReserved",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-061-getStorageExchangeTaxRate": {
+      "case_id": "dynamic-default-061-getStorageExchangeTaxRate",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-062-getRemoveThePowerOfTheGr": {
+      "case_id": "dynamic-default-062-getRemoveThePowerOfTheGr",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-063-getAllowDelegateResource": {
+      "case_id": "dynamic-default-063-getAllowDelegateResource",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-064-getAllowTvmTransferTrc10": {
+      "case_id": "dynamic-default-064-getAllowTvmTransferTrc10",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-065-getAllowTvmConstantinople": {
+      "case_id": "dynamic-default-065-getAllowTvmConstantinople",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-066-getAllowTvmSolidity059": {
+      "case_id": "dynamic-default-066-getAllowTvmSolidity059",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-067-getForbidTransferToContract": {
+      "case_id": "dynamic-default-067-getForbidTransferToContract",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-068-getAvailableContractType": {
+      "case_id": "dynamic-default-068-getAvailableContractType",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-069-getActiveDefaultOperations": {
+      "case_id": "dynamic-default-069-getActiveDefaultOperations",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-070-getAllowSameTokenName": {
+      "case_id": "dynamic-default-070-getAllowSameTokenName",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-071-getAllowUpdateAccountName": {
+      "case_id": "dynamic-default-071-getAllowUpdateAccountName",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-072-getAllowCreationOfContracts": {
+      "case_id": "dynamic-default-072-getAllowCreationOfContracts",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-073-getAllowShieldedTransaction": {
+      "case_id": "dynamic-default-073-getAllowShieldedTransaction",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-074-getAllowShieldedTRC20Transaction": {
+      "case_id": "dynamic-default-074-getAllowShieldedTRC20Transaction",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-075-getAllowTvmIstanbul": {
+      "case_id": "dynamic-default-075-getAllowTvmIstanbul",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-076-getBlockFilledSlots": {
+      "case_id": "dynamic-default-076-getBlockFilledSlots",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-077-getNextMaintenanceTime": {
+      "case_id": "dynamic-default-077-getNextMaintenanceTime",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-078-getTotalEnergyCurrentLimit": {
+      "case_id": "dynamic-default-078-getTotalEnergyCurrentLimit",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-079-getTotalEnergyTargetLimit": {
+      "case_id": "dynamic-default-079-getTotalEnergyTargetLimit",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-080-getTotalEnergyAverageUsage": {
+      "case_id": "dynamic-default-080-getTotalEnergyAverageUsage",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-081-getAdaptiveResourceLimitMultiplier": {
+      "case_id": "dynamic-default-081-getAdaptiveResourceLimitMultiplier",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-082-getTotalEnergyAverageTime": {
+      "case_id": "dynamic-default-082-getTotalEnergyAverageTime",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-083-getBlockEnergyUsage": {
+      "case_id": "dynamic-default-083-getBlockEnergyUsage",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-084-getAllowAccountStateRoot": {
+      "case_id": "dynamic-default-084-getAllowAccountStateRoot",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-085-getAllowProtoFilterNum": {
+      "case_id": "dynamic-default-085-getAllowProtoFilterNum",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-086-getChangeDelegation": {
+      "case_id": "dynamic-default-086-getChangeDelegation",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-087-getAllowPBFT": {
+      "case_id": "dynamic-default-087-getAllowPBFT",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-088-getMaxFeeLimit": {
+      "case_id": "dynamic-default-088-getMaxFeeLimit",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-089-getBurnTrxAmount": {
+      "case_id": "dynamic-default-089-getBurnTrxAmount",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-090-getAllowBlackHoleOptimization": {
+      "case_id": "dynamic-default-090-getAllowBlackHoleOptimization",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-091-getAllowNewResourceModel": {
+      "case_id": "dynamic-default-091-getAllowNewResourceModel",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-092-getAllowTvmFreeze": {
+      "case_id": "dynamic-default-092-getAllowTvmFreeze",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-093-getAllowTvmVote": {
+      "case_id": "dynamic-default-093-getAllowTvmVote",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-094-getAllowTvmLondon": {
+      "case_id": "dynamic-default-094-getAllowTvmLondon",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-095-getAllowTvmCompatibleEvm": {
+      "case_id": "dynamic-default-095-getAllowTvmCompatibleEvm",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-096-getEnergyPriceHistoryDone": {
+      "case_id": "dynamic-default-096-getEnergyPriceHistoryDone",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-097-getEnergyPriceHistory": {
+      "case_id": "dynamic-default-097-getEnergyPriceHistory",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-098-getBandwidthPriceHistoryDone": {
+      "case_id": "dynamic-default-098-getBandwidthPriceHistoryDone",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-099-getBandwidthPriceHistory": {
+      "case_id": "dynamic-default-099-getBandwidthPriceHistory",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-100-getSetBlackholeAccountPermission": {
+      "case_id": "dynamic-default-100-getSetBlackholeAccountPermission",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-101-getAllowHigherLimitForMaxCpuTimeOfOneTx": {
+      "case_id": "dynamic-default-101-getAllowHigherLimitForMaxCpuTimeOfOneTx",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-102-getAllowNewReward": {
+      "case_id": "dynamic-default-102-getAllowNewReward",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-103-getMemoFee": {
+      "case_id": "dynamic-default-103-getMemoFee",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-104-getAllowDelegateOptimization": {
+      "case_id": "dynamic-default-104-getAllowDelegateOptimization",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-105-getUnfreezeDelayDays": {
+      "case_id": "dynamic-default-105-getUnfreezeDelayDays",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-106-getAllowOptimizedReturnValueOfChainId": {
+      "case_id": "dynamic-default-106-getAllowOptimizedReturnValueOfChainId",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-107-getAllowDynamicEnergy": {
+      "case_id": "dynamic-default-107-getAllowDynamicEnergy",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-108-getDynamicEnergyThreshold": {
+      "case_id": "dynamic-default-108-getDynamicEnergyThreshold",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-109-getDynamicEnergyIncreaseFactor": {
+      "case_id": "dynamic-default-109-getDynamicEnergyIncreaseFactor",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-default-110-getDynamicEnergyMaxFactor": {
+      "case_id": "dynamic-default-110-getDynamicEnergyMaxFactor",
+      "enum_variant": "DynamicDefault",
+      "function_kind": "dynamic_default"
+    },
+    "dynamic-key-ABI_MOVE_DONE": {
+      "case_id": "dynamic-key-ABI_MOVE_DONE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ACCOUNT_UPGRADE_COST": {
+      "case_id": "dynamic-key-ACCOUNT_UPGRADE_COST",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ACTIVE_DEFAULT_OPERATIONS": {
+      "case_id": "dynamic-key-ACTIVE_DEFAULT_OPERATIONS",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ADAPTIVE_RESOURCE_LIMIT_MULTIPLIER": {
+      "case_id": "dynamic-key-ADAPTIVE_RESOURCE_LIMIT_MULTIPLIER",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ADAPTIVE_RESOURCE_LIMIT_TARGET_RATIO": {
+      "case_id": "dynamic-key-ADAPTIVE_RESOURCE_LIMIT_TARGET_RATIO",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_ACCOUNT_ASSET_OPTIMIZATION": {
+      "case_id": "dynamic-key-ALLOW_ACCOUNT_ASSET_OPTIMIZATION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_ACCOUNT_STATE_ROOT": {
+      "case_id": "dynamic-key-ALLOW_ACCOUNT_STATE_ROOT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_ADAPTIVE_ENERGY": {
+      "case_id": "dynamic-key-ALLOW_ADAPTIVE_ENERGY",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_ASSET_OPTIMIZATION": {
+      "case_id": "dynamic-key-ALLOW_ASSET_OPTIMIZATION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_BLACKHOLE_OPTIMIZATION": {
+      "case_id": "dynamic-key-ALLOW_BLACKHOLE_OPTIMIZATION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_CANCEL_ALL_UNFREEZE_V2": {
+      "case_id": "dynamic-key-ALLOW_CANCEL_ALL_UNFREEZE_V2",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_CREATION_OF_CONTRACTS": {
+      "case_id": "dynamic-key-ALLOW_CREATION_OF_CONTRACTS",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_DELEGATE_OPTIMIZATION": {
+      "case_id": "dynamic-key-ALLOW_DELEGATE_OPTIMIZATION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_DELEGATE_RESOURCE": {
+      "case_id": "dynamic-key-ALLOW_DELEGATE_RESOURCE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_DYNAMIC_ENERGY": {
+      "case_id": "dynamic-key-ALLOW_DYNAMIC_ENERGY",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_ENERGY_ADJUSTMENT": {
+      "case_id": "dynamic-key-ALLOW_ENERGY_ADJUSTMENT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_HARDEN_EXCHANGE_CALCULATION": {
+      "case_id": "dynamic-key-ALLOW_HARDEN_EXCHANGE_CALCULATION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_HARDEN_RESOURCE_CALCULATION": {
+      "case_id": "dynamic-key-ALLOW_HARDEN_RESOURCE_CALCULATION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_HIGHER_LIMIT_FOR_MAX_CPU_TIME_OF_ONE_TX": {
+      "case_id": "dynamic-key-ALLOW_HIGHER_LIMIT_FOR_MAX_CPU_TIME_OF_ONE_TX",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_MARKET_TRANSACTION": {
+      "case_id": "dynamic-key-ALLOW_MARKET_TRANSACTION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_MULTI_SIGN": {
+      "case_id": "dynamic-key-ALLOW_MULTI_SIGN",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_NEW_RESOURCE_MODEL": {
+      "case_id": "dynamic-key-ALLOW_NEW_RESOURCE_MODEL",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_NEW_REWARD": {
+      "case_id": "dynamic-key-ALLOW_NEW_REWARD",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_OLD_REWARD_OPT": {
+      "case_id": "dynamic-key-ALLOW_OLD_REWARD_OPT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_OPTIMIZED_RETURN_VALUE_OF_CHAIN_ID": {
+      "case_id": "dynamic-key-ALLOW_OPTIMIZED_RETURN_VALUE_OF_CHAIN_ID",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_PBFT": {
+      "case_id": "dynamic-key-ALLOW_PBFT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_PROTO_FILTER_NUM": {
+      "case_id": "dynamic-key-ALLOW_PROTO_FILTER_NUM",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_SAME_TOKEN_NAME": {
+      "case_id": "dynamic-key-ALLOW_SAME_TOKEN_NAME",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_SHIELDED_TRANSACTION": {
+      "case_id": "dynamic-key-ALLOW_SHIELDED_TRANSACTION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_SHIELDED_TRC20_TRANSACTION": {
+      "case_id": "dynamic-key-ALLOW_SHIELDED_TRC20_TRANSACTION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_STRICT_MATH": {
+      "case_id": "dynamic-key-ALLOW_STRICT_MATH",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TRANSACTION_FEE_POOL": {
+      "case_id": "dynamic-key-ALLOW_TRANSACTION_FEE_POOL",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_BLOB": {
+      "case_id": "dynamic-key-ALLOW_TVM_BLOB",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_CANCUN": {
+      "case_id": "dynamic-key-ALLOW_TVM_CANCUN",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_COMPATIBLE_EVM": {
+      "case_id": "dynamic-key-ALLOW_TVM_COMPATIBLE_EVM",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_CONSTANTINOPLE": {
+      "case_id": "dynamic-key-ALLOW_TVM_CONSTANTINOPLE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_FREEZE": {
+      "case_id": "dynamic-key-ALLOW_TVM_FREEZE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_ISTANBUL": {
+      "case_id": "dynamic-key-ALLOW_TVM_ISTANBUL",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_LONDON": {
+      "case_id": "dynamic-key-ALLOW_TVM_LONDON",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_OSAKA": {
+      "case_id": "dynamic-key-ALLOW_TVM_OSAKA",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_PRAGUE": {
+      "case_id": "dynamic-key-ALLOW_TVM_PRAGUE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_SELFDESTRUCT_RESTRICTION": {
+      "case_id": "dynamic-key-ALLOW_TVM_SELFDESTRUCT_RESTRICTION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_SHANGHAI": {
+      "case_id": "dynamic-key-ALLOW_TVM_SHANGHAI",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_SOLIDITY_059": {
+      "case_id": "dynamic-key-ALLOW_TVM_SOLIDITY_059",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_TRANSFER_TRC10": {
+      "case_id": "dynamic-key-ALLOW_TVM_TRANSFER_TRC10",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_TVM_VOTE": {
+      "case_id": "dynamic-key-ALLOW_TVM_VOTE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ALLOW_UPDATE_ACCOUNT_NAME": {
+      "case_id": "dynamic-key-ALLOW_UPDATE_ACCOUNT_NAME",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ASSET_ISSUE_FEE": {
+      "case_id": "dynamic-key-ASSET_ISSUE_FEE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-AVAILABLE_CONTRACT_TYPE": {
+      "case_id": "dynamic-key-AVAILABLE_CONTRACT_TYPE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-BANDWIDTH_PRICE_HISTORY": {
+      "case_id": "dynamic-key-BANDWIDTH_PRICE_HISTORY",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-BANDWIDTH_PRICE_HISTORY_DONE": {
+      "case_id": "dynamic-key-BANDWIDTH_PRICE_HISTORY_DONE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-BLOCK_ENERGY_USAGE": {
+      "case_id": "dynamic-key-BLOCK_ENERGY_USAGE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-BLOCK_FILLED_SLOTS": {
+      "case_id": "dynamic-key-BLOCK_FILLED_SLOTS",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-BLOCK_FILLED_SLOTS_INDEX": {
+      "case_id": "dynamic-key-BLOCK_FILLED_SLOTS_INDEX",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-BLOCK_HASH_HISTORY_INSTALLED": {
+      "case_id": "dynamic-key-BLOCK_HASH_HISTORY_INSTALLED",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-BURN_TRX_AMOUNT": {
+      "case_id": "dynamic-key-BURN_TRX_AMOUNT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-CHANGE_DELEGATION": {
+      "case_id": "dynamic-key-CHANGE_DELEGATION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-CONSENSUS_LOGIC_OPTIMIZATION": {
+      "case_id": "dynamic-key-CONSENSUS_LOGIC_OPTIMIZATION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-CREATE_ACCOUNT_FEE": {
+      "case_id": "dynamic-key-CREATE_ACCOUNT_FEE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-CREATE_NEW_ACCOUNT_BANDWIDTH_RATE": {
+      "case_id": "dynamic-key-CREATE_NEW_ACCOUNT_BANDWIDTH_RATE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT": {
+      "case_id": "dynamic-key-CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-CURRENT_CYCLE_NUMBER": {
+      "case_id": "dynamic-key-CURRENT_CYCLE_NUMBER",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-DYNAMIC_ENERGY_INCREASE_FACTOR": {
+      "case_id": "dynamic-key-DYNAMIC_ENERGY_INCREASE_FACTOR",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-DYNAMIC_ENERGY_MAX_FACTOR": {
+      "case_id": "dynamic-key-DYNAMIC_ENERGY_MAX_FACTOR",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-DYNAMIC_ENERGY_THRESHOLD": {
+      "case_id": "dynamic-key-DYNAMIC_ENERGY_THRESHOLD",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ENERGY_FEE": {
+      "case_id": "dynamic-key-ENERGY_FEE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ENERGY_PRICE_HISTORY": {
+      "case_id": "dynamic-key-ENERGY_PRICE_HISTORY",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ENERGY_PRICE_HISTORY_DONE": {
+      "case_id": "dynamic-key-ENERGY_PRICE_HISTORY_DONE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-EXCHANGE_BALANCE_LIMIT": {
+      "case_id": "dynamic-key-EXCHANGE_BALANCE_LIMIT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-EXCHANGE_CREATE_FEE": {
+      "case_id": "dynamic-key-EXCHANGE_CREATE_FEE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-FORBID_TRANSFER_TO_CONTRACT": {
+      "case_id": "dynamic-key-FORBID_TRANSFER_TO_CONTRACT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-FREE_NET_LIMIT": {
+      "case_id": "dynamic-key-FREE_NET_LIMIT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-LATEST_BLOCK_HEADER_HASH": {
+      "case_id": "dynamic-key-LATEST_BLOCK_HEADER_HASH",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-LATEST_BLOCK_HEADER_NUMBER": {
+      "case_id": "dynamic-key-LATEST_BLOCK_HEADER_NUMBER",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-LATEST_BLOCK_HEADER_TIMESTAMP": {
+      "case_id": "dynamic-key-LATEST_BLOCK_HEADER_TIMESTAMP",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-LATEST_EXCHANGE_NUM": {
+      "case_id": "dynamic-key-LATEST_EXCHANGE_NUM",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-LATEST_PROPOSAL_NUM": {
+      "case_id": "dynamic-key-LATEST_PROPOSAL_NUM",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-LATEST_SOLIDIFIED_BLOCK_NUM": {
+      "case_id": "dynamic-key-LATEST_SOLIDIFIED_BLOCK_NUM",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MAINTENANCE_TIME_INTERVAL": {
+      "case_id": "dynamic-key-MAINTENANCE_TIME_INTERVAL",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MARKET_CANCEL_FEE": {
+      "case_id": "dynamic-key-MARKET_CANCEL_FEE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MARKET_QUANTITY_LIMIT": {
+      "case_id": "dynamic-key-MARKET_QUANTITY_LIMIT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MARKET_SELL_FEE": {
+      "case_id": "dynamic-key-MARKET_SELL_FEE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MAX_CPU_TIME_OF_ONE_TX": {
+      "case_id": "dynamic-key-MAX_CPU_TIME_OF_ONE_TX",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MAX_CREATE_ACCOUNT_TX_SIZE": {
+      "case_id": "dynamic-key-MAX_CREATE_ACCOUNT_TX_SIZE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MAX_DELEGATE_LOCK_PERIOD": {
+      "case_id": "dynamic-key-MAX_DELEGATE_LOCK_PERIOD",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MAX_FEE_LIMIT": {
+      "case_id": "dynamic-key-MAX_FEE_LIMIT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MAX_FROZEN_SUPPLY_NUMBER": {
+      "case_id": "dynamic-key-MAX_FROZEN_SUPPLY_NUMBER",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MAX_FROZEN_SUPPLY_TIME": {
+      "case_id": "dynamic-key-MAX_FROZEN_SUPPLY_TIME",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MAX_FROZEN_TIME": {
+      "case_id": "dynamic-key-MAX_FROZEN_TIME",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MEMO_FEE": {
+      "case_id": "dynamic-key-MEMO_FEE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MEMO_FEE_HISTORY": {
+      "case_id": "dynamic-key-MEMO_FEE_HISTORY",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MIN_FROZEN_SUPPLY_TIME": {
+      "case_id": "dynamic-key-MIN_FROZEN_SUPPLY_TIME",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MIN_FROZEN_TIME": {
+      "case_id": "dynamic-key-MIN_FROZEN_TIME",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-MULTI_SIGN_FEE": {
+      "case_id": "dynamic-key-MULTI_SIGN_FEE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-NEW_REWARD_ALGORITHM_EFFECTIVE_CYCLE": {
+      "case_id": "dynamic-key-NEW_REWARD_ALGORITHM_EFFECTIVE_CYCLE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-NEXT_MAINTENANCE_TIME": {
+      "case_id": "dynamic-key-NEXT_MAINTENANCE_TIME",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-ONE_DAY_NET_LIMIT": {
+      "case_id": "dynamic-key-ONE_DAY_NET_LIMIT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-PROPOSAL_EXPIRE_TIME": {
+      "case_id": "dynamic-key-PROPOSAL_EXPIRE_TIME",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-PUBLIC_NET_LIMIT": {
+      "case_id": "dynamic-key-PUBLIC_NET_LIMIT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-PUBLIC_NET_TIME": {
+      "case_id": "dynamic-key-PUBLIC_NET_TIME",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-PUBLIC_NET_USAGE": {
+      "case_id": "dynamic-key-PUBLIC_NET_USAGE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-REMOVE_THE_POWER_OF_THE_GR": {
+      "case_id": "dynamic-key-REMOVE_THE_POWER_OF_THE_GR",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-SET_BLACKHOLE_ACCOUNT_PERMISSION": {
+      "case_id": "dynamic-key-SET_BLACKHOLE_ACCOUNT_PERMISSION",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-SHIELDED_TRANSACTION_CREATE_ACCOUNT_FEE": {
+      "case_id": "dynamic-key-SHIELDED_TRANSACTION_CREATE_ACCOUNT_FEE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-SHIELDED_TRANSACTION_FEE": {
+      "case_id": "dynamic-key-SHIELDED_TRANSACTION_FEE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-STATE_FLAG": {
+      "case_id": "dynamic-key-STATE_FLAG",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-STORAGE_EXCHANGE_TAX_RATE": {
+      "case_id": "dynamic-key-STORAGE_EXCHANGE_TAX_RATE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOKEN_ID_NUM": {
+      "case_id": "dynamic-key-TOKEN_ID_NUM",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOKEN_UPDATE_DONE": {
+      "case_id": "dynamic-key-TOKEN_UPDATE_DONE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_CREATE_ACCOUNT_COST": {
+      "case_id": "dynamic-key-TOTAL_CREATE_ACCOUNT_COST",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_CREATE_WITNESS_COST": {
+      "case_id": "dynamic-key-TOTAL_CREATE_WITNESS_COST",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_ENERGY_AVERAGE_TIME": {
+      "case_id": "dynamic-key-TOTAL_ENERGY_AVERAGE_TIME",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_ENERGY_AVERAGE_USAGE": {
+      "case_id": "dynamic-key-TOTAL_ENERGY_AVERAGE_USAGE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_ENERGY_CURRENT_LIMIT": {
+      "case_id": "dynamic-key-TOTAL_ENERGY_CURRENT_LIMIT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_ENERGY_LIMIT": {
+      "case_id": "dynamic-key-TOTAL_ENERGY_LIMIT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_ENERGY_TARGET_LIMIT": {
+      "case_id": "dynamic-key-TOTAL_ENERGY_TARGET_LIMIT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_ENERGY_WEIGHT": {
+      "case_id": "dynamic-key-TOTAL_ENERGY_WEIGHT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_NET_LIMIT": {
+      "case_id": "dynamic-key-TOTAL_NET_LIMIT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_NET_WEIGHT": {
+      "case_id": "dynamic-key-TOTAL_NET_WEIGHT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_SHIELDED_POOL_VALUE": {
+      "case_id": "dynamic-key-TOTAL_SHIELDED_POOL_VALUE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_SIGN_NUM": {
+      "case_id": "dynamic-key-TOTAL_SIGN_NUM",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_STORAGE_POOL": {
+      "case_id": "dynamic-key-TOTAL_STORAGE_POOL",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_STORAGE_RESERVED": {
+      "case_id": "dynamic-key-TOTAL_STORAGE_RESERVED",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_STORAGE_TAX": {
+      "case_id": "dynamic-key-TOTAL_STORAGE_TAX",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_TRANSACTION_COST": {
+      "case_id": "dynamic-key-TOTAL_TRANSACTION_COST",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TOTAL_TRON_POWER_WEIGHT": {
+      "case_id": "dynamic-key-TOTAL_TRON_POWER_WEIGHT",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TRANSACTION_FEE": {
+      "case_id": "dynamic-key-TRANSACTION_FEE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TRANSACTION_FEE_POOL": {
+      "case_id": "dynamic-key-TRANSACTION_FEE_POOL",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-TURKISH_KEY_MIGRATION_DONE": {
+      "case_id": "dynamic-key-TURKISH_KEY_MIGRATION_DONE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-UNFREEZE_DELAY_DAYS": {
+      "case_id": "dynamic-key-UNFREEZE_DELAY_DAYS",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-UPDATE_ACCOUNT_PERMISSION_FEE": {
+      "case_id": "dynamic-key-UPDATE_ACCOUNT_PERMISSION_FEE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-VERSION_NUMBER": {
+      "case_id": "dynamic-key-VERSION_NUMBER",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-WITNESS_127_PAY_PER_BLOCK": {
+      "case_id": "dynamic-key-WITNESS_127_PAY_PER_BLOCK",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-WITNESS_ALLOWANCE_FROZEN_TIME": {
+      "case_id": "dynamic-key-WITNESS_ALLOWANCE_FROZEN_TIME",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-WITNESS_PAY_PER_BLOCK": {
+      "case_id": "dynamic-key-WITNESS_PAY_PER_BLOCK",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "dynamic-key-WITNESS_STANDBY_ALLOWANCE": {
+      "case_id": "dynamic-key-WITNESS_STANDBY_ALLOWANCE",
+      "enum_variant": "DynamicKey",
+      "function_kind": "dynamic_key"
+    },
+    "store-Abi": {
+      "case_id": "store-Abi",
+      "enum_variant": "StoreAbi",
+      "function_kind": "store_codec"
+    },
+    "store-Account": {
+      "case_id": "store-Account",
+      "enum_variant": "StoreAccount",
+      "function_kind": "store_codec"
+    },
+    "store-AccountAsset": {
+      "case_id": "store-AccountAsset",
+      "enum_variant": "StoreAccountAsset",
+      "function_kind": "store_codec"
+    },
+    "store-AccountIdIndex": {
+      "case_id": "store-AccountIdIndex",
+      "enum_variant": "StoreAccountIdIndex",
+      "function_kind": "store_codec"
+    },
+    "store-AccountIndex": {
+      "case_id": "store-AccountIndex",
+      "enum_variant": "StoreAccountIndex",
+      "function_kind": "store_codec"
+    },
+    "store-AccountTrace": {
+      "case_id": "store-AccountTrace",
+      "enum_variant": "StoreAccountTrace",
+      "function_kind": "store_codec"
+    },
+    "store-AssetIssue": {
+      "case_id": "store-AssetIssue",
+      "enum_variant": "StoreAssetIssue",
+      "function_kind": "store_codec"
+    },
+    "store-AssetIssueV2": {
+      "case_id": "store-AssetIssueV2",
+      "enum_variant": "StoreAssetIssueV2",
+      "function_kind": "store_codec"
+    },
+    "store-BalanceTrace": {
+      "case_id": "store-BalanceTrace",
+      "enum_variant": "StoreBalanceTrace",
+      "function_kind": "store_codec"
+    },
+    "store-Block": {
+      "case_id": "store-Block",
+      "enum_variant": "StoreBlock",
+      "function_kind": "store_codec"
+    },
+    "store-BlockIndex": {
+      "case_id": "store-BlockIndex",
+      "enum_variant": "StoreBlockIndex",
+      "function_kind": "store_codec"
+    },
+    "store-Checkpoint": {
+      "case_id": "store-Checkpoint",
+      "enum_variant": "StoreCheckpoint",
+      "function_kind": "store_codec"
+    },
+    "store-Code": {
+      "case_id": "store-Code",
+      "enum_variant": "StoreCode",
+      "function_kind": "store_codec"
+    },
+    "store-Common": {
+      "case_id": "store-Common",
+      "enum_variant": "StoreCommon",
+      "function_kind": "store_codec"
+    },
+    "store-Contract": {
+      "case_id": "store-Contract",
+      "enum_variant": "StoreContract",
+      "function_kind": "store_codec"
+    },
+    "store-ContractState": {
+      "case_id": "store-ContractState",
+      "enum_variant": "StoreContractState",
+      "function_kind": "store_codec"
+    },
+    "store-DelegatedResource": {
+      "case_id": "store-DelegatedResource",
+      "enum_variant": "StoreDelegatedResource",
+      "function_kind": "store_codec"
+    },
+    "store-DelegatedResourceAccountIndex": {
+      "case_id": "store-DelegatedResourceAccountIndex",
+      "enum_variant": "StoreDelegatedResourceAccountIndex",
+      "function_kind": "store_codec"
+    },
+    "store-Delegation": {
+      "case_id": "store-Delegation",
+      "enum_variant": "StoreDelegation",
+      "function_kind": "store_codec"
+    },
+    "store-DynamicProperties": {
+      "case_id": "store-DynamicProperties",
+      "enum_variant": "StoreDynamicProperties",
+      "function_kind": "store_codec"
+    },
+    "store-Exchange": {
+      "case_id": "store-Exchange",
+      "enum_variant": "StoreExchange",
+      "function_kind": "store_codec"
+    },
+    "store-ExchangeV2": {
+      "case_id": "store-ExchangeV2",
+      "enum_variant": "StoreExchangeV2",
+      "function_kind": "store_codec"
+    },
+    "store-IncrementalMerkleTree": {
+      "case_id": "store-IncrementalMerkleTree",
+      "enum_variant": "StoreIncrementalMerkleTree",
+      "function_kind": "store_codec"
+    },
+    "store-MarketAccount": {
+      "case_id": "store-MarketAccount",
+      "enum_variant": "StoreMarketAccount",
+      "function_kind": "store_codec"
+    },
+    "store-MarketOrder": {
+      "case_id": "store-MarketOrder",
+      "enum_variant": "StoreMarketOrder",
+      "function_kind": "store_codec"
+    },
+    "store-MarketPairPriceToOrder": {
+      "case_id": "store-MarketPairPriceToOrder",
+      "enum_variant": "StoreMarketPairPriceToOrder",
+      "function_kind": "store_codec"
+    },
+    "store-MarketPairToPrice": {
+      "case_id": "store-MarketPairToPrice",
+      "enum_variant": "StoreMarketPairToPrice",
+      "function_kind": "store_codec"
+    },
+    "store-Nullifier": {
+      "case_id": "store-Nullifier",
+      "enum_variant": "StoreNullifier",
+      "function_kind": "store_codec"
+    },
+    "store-Pbft": {
+      "case_id": "store-Pbft",
+      "enum_variant": "StorePbft",
+      "function_kind": "store_codec"
+    },
+    "store-Proposal": {
+      "case_id": "store-Proposal",
+      "enum_variant": "StoreProposal",
+      "function_kind": "store_codec"
+    },
+    "store-RecentBlock": {
+      "case_id": "store-RecentBlock",
+      "enum_variant": "StoreRecentBlock",
+      "function_kind": "store_codec"
+    },
+    "store-RecentTransaction": {
+      "case_id": "store-RecentTransaction",
+      "enum_variant": "StoreRecentTransaction",
+      "function_kind": "store_codec"
+    },
+    "store-RewardVi": {
+      "case_id": "store-RewardVi",
+      "enum_variant": "StoreRewardVi",
+      "function_kind": "store_codec"
+    },
+    "store-SectionBloom": {
+      "case_id": "store-SectionBloom",
+      "enum_variant": "StoreSectionBloom",
+      "function_kind": "store_codec"
+    },
+    "store-StorageRow": {
+      "case_id": "store-StorageRow",
+      "enum_variant": "StoreStorageRow",
+      "function_kind": "store_codec"
+    },
+    "store-Temporary": {
+      "case_id": "store-Temporary",
+      "enum_variant": "StoreTemporary",
+      "function_kind": "store_codec"
+    },
+    "store-Transaction": {
+      "case_id": "store-Transaction",
+      "enum_variant": "StoreTransaction",
+      "function_kind": "store_codec"
+    },
+    "store-TransactionCache": {
+      "case_id": "store-TransactionCache",
+      "enum_variant": "StoreTransactionCache",
+      "function_kind": "store_codec"
+    },
+    "store-TransactionHistory": {
+      "case_id": "store-TransactionHistory",
+      "enum_variant": "StoreTransactionHistory",
+      "function_kind": "store_codec"
+    },
+    "store-TransactionRet": {
+      "case_id": "store-TransactionRet",
+      "enum_variant": "StoreTransactionRet",
+      "function_kind": "store_codec"
+    },
+    "store-TreeBlockIndex": {
+      "case_id": "store-TreeBlockIndex",
+      "enum_variant": "StoreTreeBlockIndex",
+      "function_kind": "store_codec"
+    },
+    "store-Votes": {
+      "case_id": "store-Votes",
+      "enum_variant": "StoreVotes",
+      "function_kind": "store_codec"
+    },
+    "store-Witness": {
+      "case_id": "store-Witness",
+      "enum_variant": "StoreWitness",
+      "function_kind": "store_codec"
+    },
+    "store-WitnessSchedule": {
+      "case_id": "store-WitnessSchedule",
+      "enum_variant": "StoreWitnessSchedule",
+      "function_kind": "store_codec"
+    },
+    "store-ZkProof": {
+      "case_id": "store-ZkProof",
+      "enum_variant": "StoreZkProof",
+      "function_kind": "store_codec"
+    }
+  },
+  "schema_version": 3
+}

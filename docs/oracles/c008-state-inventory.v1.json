@@ -1,0 +1,2187 @@
+{
+  "capsules": [
+    {
+      "class": "AbiCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/AbiCapsule.java",
+      "sha256": "739b4bea0ee3393cbacb81002a1f9e7a832754f9dee49b7c62eb92fdb7e443a8"
+    },
+    {
+      "class": "AccountCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/AccountCapsule.java",
+      "sha256": "e3a8c59829b2041855e3edc1fbfdc59f55d2d321a0a0851b1cddaf8394b7ebc7"
+    },
+    {
+      "class": "AccountTraceCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/AccountTraceCapsule.java",
+      "sha256": "9eee2bcb94bc44e8a29093f87b92b7a29abe1e3811f74784f7cc0922b1ae3b7d"
+    },
+    {
+      "class": "AssetIssueCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/AssetIssueCapsule.java",
+      "sha256": "99aadae5349d140dbf51ebb9e495ac7815f4b6a300ebecb96f04f86fc1545f4b"
+    },
+    {
+      "class": "BlockBalanceTraceCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/BlockBalanceTraceCapsule.java",
+      "sha256": "7c748c6072768f12a90790a85cab88efba53c5a1d5e7eabf63b0d8b2ca00756c"
+    },
+    {
+      "class": "BlockCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/BlockCapsule.java",
+      "sha256": "992d7517db28f737134a892108fada37948b3ba3d5c40180d69a9d057a451000"
+    },
+    {
+      "class": "BytesCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/BytesCapsule.java",
+      "sha256": "35cbcc0cda7c042ca47b1cf0568c92818ad1c609fd553d0d13f4df8d073f9232"
+    },
+    {
+      "class": "CodeCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/CodeCapsule.java",
+      "sha256": "7ce49132fe7ae0b4e12373f1abe61c9d1098fa63f139199c3b024d3603b6b157"
+    },
+    {
+      "class": "ContractCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/ContractCapsule.java",
+      "sha256": "21baa0ba9232efa535b635c108c06d191edb9ab3b63065a8746c805e76b7795c"
+    },
+    {
+      "class": "ContractStateCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/ContractStateCapsule.java",
+      "sha256": "391be3ca680d68215970abaaea52c578fbd131a0ce5a53598595d8ddfdcec3ac"
+    },
+    {
+      "class": "DelegatedResourceAccountIndexCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/DelegatedResourceAccountIndexCapsule.java",
+      "sha256": "9c031edd3fe42ea2d90d243e0403305600d567e112a44c667361a63c2c499f1d"
+    },
+    {
+      "class": "DelegatedResourceCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/DelegatedResourceCapsule.java",
+      "sha256": "ef194778ccc67055b10b1e77043bf5bbb67134e24670673132fc467c8ed6d7d6"
+    },
+    {
+      "class": "ExchangeCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/ExchangeCapsule.java",
+      "sha256": "b238d53586fd5e2a39b87ba2f4182981e2dd5c4d95e60abdb15310c5e77b43a0"
+    },
+    {
+      "class": "IncrementalMerkleTreeCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/IncrementalMerkleTreeCapsule.java",
+      "sha256": "fd2da1919e2930c7cf568d1e8d157f65df1639573e1866b1e6ac48f3553976d5"
+    },
+    {
+      "class": "IncrementalMerkleVoucherCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/IncrementalMerkleVoucherCapsule.java",
+      "sha256": "5a39e709d4d0687694aae71f23e2430ce0014fe2ed42c85546dc664fa27953f4"
+    },
+    {
+      "class": "MarketAccountOrderCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/MarketAccountOrderCapsule.java",
+      "sha256": "f6eb239ff3cdf168c6e0d39c567773bf57a91742c4230388325ea65ba7da5afb"
+    },
+    {
+      "class": "MarketOrderCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/MarketOrderCapsule.java",
+      "sha256": "266d4a89fed2508dc42957cadce9d3b2af594df67156f5dba6ad6bc88fbdabb4"
+    },
+    {
+      "class": "MarketOrderIdListCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/MarketOrderIdListCapsule.java",
+      "sha256": "a335c45056bb8381b9c1dd28eb255204aca230e184e1c2ef889f2c0ef5b5690f"
+    },
+    {
+      "class": "MarketPriceCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/MarketPriceCapsule.java",
+      "sha256": "0ccb293b17a50b6dac346ce0ffd9535a720a61a491b4e8a40376053f7546e2a0"
+    },
+    {
+      "class": "PbftSignCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/PbftSignCapsule.java",
+      "sha256": "1cdb250b78db5bd2dda076b3531d1130a863e1e2564835cec72d600c94a914c5"
+    },
+    {
+      "class": "PedersenHashCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/PedersenHashCapsule.java",
+      "sha256": "b771e37201c6433d49e817be9a7bb279ee15365075cd5d3109b6d0e4062ba420"
+    },
+    {
+      "class": "ProposalCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/ProposalCapsule.java",
+      "sha256": "d3bde410ad9cafc56c18d8a7ca3d5baea88b0c016b7c86456a870e627668924b"
+    },
+    {
+      "class": "ProtoCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/ProtoCapsule.java",
+      "sha256": "87a063c0e95dd0e70f27f8b0170dc80c860a086287c14281b17cfe3ec028d3d7"
+    },
+    {
+      "class": "ReceiptCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/ReceiptCapsule.java",
+      "sha256": "2593b7695da47ccba07e5cda0e8c2bd77a1333b8ef8f9357e69212a6eebcae53"
+    },
+    {
+      "class": "StorageRowCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/StorageRowCapsule.java",
+      "sha256": "17d10d701334442b0bbafeb9783419838ac7384d136eaa860c172965eb0dc1b0"
+    },
+    {
+      "class": "TransactionCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/TransactionCapsule.java",
+      "sha256": "516296bd553357efb30c602516f005625ee116d6c7c4357b3279f10a14399123"
+    },
+    {
+      "class": "TransactionInfoCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/TransactionInfoCapsule.java",
+      "sha256": "41fbb2d3464998f573e9227c32b44986bd02f7387cbe75929215b9974bb571de"
+    },
+    {
+      "class": "TransactionResultCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/TransactionResultCapsule.java",
+      "sha256": "caebaa4e8e14c93a1e23120c894b6f99210ed972281d671a8b50d8f3609d48aa"
+    },
+    {
+      "class": "TransactionRetCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/TransactionRetCapsule.java",
+      "sha256": "9c8a733fcb5a13a3a5c646a57b218453b670e92df36106fdb46a8998524c37cb"
+    },
+    {
+      "class": "VotesCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/VotesCapsule.java",
+      "sha256": "dbbbf0a01a6eff1d9b711ff13f1aeac93acbfc55c58936209d8056a0ed5a387c"
+    },
+    {
+      "class": "WitnessCapsule",
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/WitnessCapsule.java",
+      "sha256": "ae152a1961149f24b5d61937cd800db5a9dac4aaa2ee12c1d6dcbabbb8f3f901"
+    }
+  ],
+  "counts": {
+    "capsules": 31,
+    "dynamic_defaults": 111,
+    "dynamic_keys": 136,
+    "stores": 45
+  },
+  "dynamic_defaults": [
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalSignNum",
+      "java_expression": "5",
+      "key_hex": "544f54414c5f5349474e5f4e554d",
+      "property_symbol": "TOTAL_SIGN_NUM",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalSignNum",
+      "value_hex": "00000005"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowMultiSign",
+      "java_expression": "CommonParameter.getInstance() .getAllowMultiSign()",
+      "key_hex": "414c4c4f575f4d554c54495f5349474e",
+      "property_symbol": "ALLOW_MULTI_SIGN",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowMultiSign",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getLatestBlockHeaderTimestamp",
+      "java_expression": "0",
+      "key_hex": "6c61746573745f626c6f636b5f6865616465725f74696d657374616d70",
+      "property_symbol": "LATEST_BLOCK_HEADER_TIMESTAMP",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveLatestBlockHeaderTimestamp",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getLatestBlockHeaderNumber",
+      "java_expression": "0",
+      "key_hex": "6c61746573745f626c6f636b5f6865616465725f6e756d626572",
+      "property_symbol": "LATEST_BLOCK_HEADER_NUMBER",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveLatestBlockHeaderNumber",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getLatestBlockHeaderHash",
+      "java_expression": "ByteString.copyFrom(ByteArray.fromHexString(\"00\"))",
+      "key_hex": "6c61746573745f626c6f636b5f6865616465725f68617368",
+      "property_symbol": "LATEST_BLOCK_HEADER_HASH",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveLatestBlockHeaderHash",
+      "value_hex": "00"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getStateFlag",
+      "java_expression": "0",
+      "key_hex": "73746174655f666c6167",
+      "property_symbol": "STATE_FLAG",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveStateFlag",
+      "value_hex": "00000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getLatestSolidifiedBlockNum",
+      "java_expression": "0",
+      "key_hex": "4c41544553545f534f4c494449464945445f424c4f434b5f4e554d",
+      "property_symbol": "LATEST_SOLIDIFIED_BLOCK_NUM",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveLatestSolidifiedBlockNum",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getLatestProposalNum",
+      "java_expression": "0",
+      "key_hex": "4c41544553545f50524f504f53414c5f4e554d",
+      "property_symbol": "LATEST_PROPOSAL_NUM",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveLatestProposalNum",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getLatestExchangeNum",
+      "java_expression": "0",
+      "key_hex": "4c41544553545f45584348414e47455f4e554d",
+      "property_symbol": "LATEST_EXCHANGE_NUM",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveLatestExchangeNum",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getBlockFilledSlotsIndex",
+      "java_expression": "0",
+      "key_hex": "424c4f434b5f46494c4c45445f534c4f54535f494e444558",
+      "property_symbol": "BLOCK_FILLED_SLOTS_INDEX",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveBlockFilledSlotsIndex",
+      "value_hex": "00000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTokenIdNum",
+      "java_expression": "1000000L",
+      "key_hex": "544f4b454e5f49445f4e554d",
+      "property_symbol": "TOKEN_ID_NUM",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTokenIdNum",
+      "value_hex": "00000000000f4240"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTokenUpdateDone",
+      "java_expression": "0",
+      "key_hex": "544f4b454e5f5550444154455f444f4e45",
+      "property_symbol": "TOKEN_UPDATE_DONE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTokenUpdateDone",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAbiMoveDone",
+      "java_expression": "0",
+      "key_hex": "4142495f4d4f56455f444f4e45",
+      "property_symbol": "ABI_MOVE_DONE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAbiMoveDone",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMaxFrozenTime",
+      "java_expression": "3",
+      "key_hex": "4d41585f46524f5a454e5f54494d45",
+      "property_symbol": "MAX_FROZEN_TIME",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMaxFrozenTime",
+      "value_hex": "00000003"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMinFrozenTime",
+      "java_expression": "3",
+      "key_hex": "4d494e5f46524f5a454e5f54494d45",
+      "property_symbol": "MIN_FROZEN_TIME",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMinFrozenTime",
+      "value_hex": "00000003"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMaxFrozenSupplyNumber",
+      "java_expression": "10",
+      "key_hex": "4d41585f46524f5a454e5f535550504c595f4e554d424552",
+      "property_symbol": "MAX_FROZEN_SUPPLY_NUMBER",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMaxFrozenSupplyNumber",
+      "value_hex": "0000000a"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMaxFrozenSupplyTime",
+      "java_expression": "3652",
+      "key_hex": "4d41585f46524f5a454e5f535550504c595f54494d45",
+      "property_symbol": "MAX_FROZEN_SUPPLY_TIME",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMaxFrozenSupplyTime",
+      "value_hex": "00000e44"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMinFrozenSupplyTime",
+      "java_expression": "1",
+      "key_hex": "4d494e5f46524f5a454e5f535550504c595f54494d45",
+      "property_symbol": "MIN_FROZEN_SUPPLY_TIME",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMinFrozenSupplyTime",
+      "value_hex": "00000001"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getWitnessAllowanceFrozenTime",
+      "java_expression": "1",
+      "key_hex": "5749544e4553535f414c4c4f57414e43455f46524f5a454e5f54494d45",
+      "property_symbol": "WITNESS_ALLOWANCE_FROZEN_TIME",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveWitnessAllowanceFrozenTime",
+      "value_hex": "00000001"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getWitnessPayPerBlock",
+      "java_expression": "32000000L",
+      "key_hex": "5749544e4553535f5041595f5045525f424c4f434b",
+      "property_symbol": "WITNESS_PAY_PER_BLOCK",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveWitnessPayPerBlock",
+      "value_hex": "0000000001e84800"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getWitnessStandbyAllowance",
+      "java_expression": "115_200_000_000L",
+      "key_hex": "5749544e4553535f5354414e4442595f414c4c4f57414e4345",
+      "property_symbol": "WITNESS_STANDBY_ALLOWANCE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveWitnessStandbyAllowance",
+      "value_hex": "0000001ad2748000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMaintenanceTimeInterval",
+      "java_expression": "CommonParameter.getInstance() .getMaintenanceTimeInterval()",
+      "key_hex": "4d41494e54454e414e43455f54494d455f494e54455256414c",
+      "property_symbol": "MAINTENANCE_TIME_INTERVAL",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMaintenanceTimeInterval",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAccountUpgradeCost",
+      "java_expression": "9_999_000_000L",
+      "key_hex": "4143434f554e545f555047524144455f434f5354",
+      "property_symbol": "ACCOUNT_UPGRADE_COST",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAccountUpgradeCost",
+      "value_hex": "0000000253fca1c0"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getPublicNetUsage",
+      "java_expression": "0L",
+      "key_hex": "5055424c49435f4e45545f5553414745",
+      "property_symbol": "PUBLIC_NET_USAGE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "savePublicNetUsage",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getOneDayNetLimit",
+      "java_expression": "57_600_000_000L",
+      "key_hex": "4f4e455f4441595f4e45545f4c494d4954",
+      "property_symbol": "ONE_DAY_NET_LIMIT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveOneDayNetLimit",
+      "value_hex": "0000000d693a4000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getPublicNetLimit",
+      "java_expression": "14_400_000_000L",
+      "key_hex": "5055424c49435f4e45545f4c494d4954",
+      "property_symbol": "PUBLIC_NET_LIMIT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "savePublicNetLimit",
+      "value_hex": "000000035a4e9000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getPublicNetTime",
+      "java_expression": "0L",
+      "key_hex": "5055424c49435f4e45545f54494d45",
+      "property_symbol": "PUBLIC_NET_TIME",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "savePublicNetTime",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getFreeNetLimit",
+      "java_expression": "5000L",
+      "key_hex": "465245455f4e45545f4c494d4954",
+      "property_symbol": "FREE_NET_LIMIT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveFreeNetLimit",
+      "value_hex": "0000000000001388"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalNetWeight",
+      "java_expression": "0L",
+      "key_hex": "544f54414c5f4e45545f574549474854",
+      "property_symbol": "TOTAL_NET_WEIGHT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalNetWeight",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalNetLimit",
+      "java_expression": "43_200_000_000L",
+      "key_hex": "544f54414c5f4e45545f4c494d4954",
+      "property_symbol": "TOTAL_NET_LIMIT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalNetLimit",
+      "value_hex": "0000000a0eebb000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalEnergyWeight",
+      "java_expression": "0L",
+      "key_hex": "544f54414c5f454e455247595f574549474854",
+      "property_symbol": "TOTAL_ENERGY_WEIGHT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalEnergyWeight",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalTronPowerWeight",
+      "java_expression": "0L",
+      "key_hex": "544f54414c5f54524f4e5f504f5745525f574549474854",
+      "property_symbol": "TOTAL_TRON_POWER_WEIGHT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalTronPowerWeight",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowAdaptiveEnergy",
+      "java_expression": "CommonParameter.getInstance() .getAllowAdaptiveEnergy()",
+      "key_hex": "414c4c4f575f41444150544956455f454e45524759",
+      "property_symbol": "ALLOW_ADAPTIVE_ENERGY",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowAdaptiveEnergy",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAdaptiveResourceLimitTargetRatio",
+      "java_expression": "14400",
+      "key_hex": "41444150544956455f5245534f555243455f4c494d49545f5441524745545f524154494f",
+      "property_symbol": "ADAPTIVE_RESOURCE_LIMIT_TARGET_RATIO",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAdaptiveResourceLimitTargetRatio",
+      "value_hex": "0000000000003840"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalEnergyLimit",
+      "java_expression": "50_000_000_000L",
+      "key_hex": "544f54414c5f454e455247595f4c494d4954",
+      "property_symbol": "TOTAL_ENERGY_LIMIT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalEnergyLimit",
+      "value_hex": "0000000ba43b7400"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getEnergyFee",
+      "java_expression": "DEFAULT_ENERGY_FEE",
+      "key_hex": "454e455247595f464545",
+      "property_symbol": "ENERGY_FEE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveEnergyFee",
+      "value_hex": "0000000000000064"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMaxCpuTimeOfOneTx",
+      "java_expression": "50L",
+      "key_hex": "4d41585f4350555f54494d455f4f465f4f4e455f5458",
+      "property_symbol": "MAX_CPU_TIME_OF_ONE_TX",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMaxCpuTimeOfOneTx",
+      "value_hex": "0000000000000032"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getCreateAccountFee",
+      "java_expression": "100_000L",
+      "key_hex": "4352454154455f4143434f554e545f464545",
+      "property_symbol": "CREATE_ACCOUNT_FEE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveCreateAccountFee",
+      "value_hex": "00000000000186a0"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getShieldedTransactionFee",
+      "java_expression": "100_000L",
+      "key_hex": "534849454c4445445f5452414e53414354494f4e5f464545",
+      "property_symbol": "SHIELDED_TRANSACTION_FEE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveShieldedTransactionFee",
+      "value_hex": "00000000000186a0"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getShieldedTransactionCreateAccountFee",
+      "java_expression": "1_000_000L",
+      "key_hex": "534849454c4445445f5452414e53414354494f4e5f4352454154455f4143434f554e545f464545",
+      "property_symbol": "SHIELDED_TRANSACTION_CREATE_ACCOUNT_FEE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveShieldedTransactionCreateAccountFee",
+      "value_hex": "00000000000f4240"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalShieldedPoolValue",
+      "java_expression": "0L",
+      "key_hex": "544f54414c5f534849454c4445445f504f4f4c5f56414c5545",
+      "property_symbol": "TOTAL_SHIELDED_POOL_VALUE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalShieldedPoolValue",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getCreateNewAccountFeeInSystemContract",
+      "java_expression": "0L",
+      "key_hex": "4352454154455f4e45575f4143434f554e545f4645455f494e5f53595354454d5f434f4e5452414354",
+      "property_symbol": "CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveCreateNewAccountFeeInSystemContract",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getCreateNewAccountBandwidthRate",
+      "java_expression": "1L",
+      "key_hex": "4352454154455f4e45575f4143434f554e545f42414e4457494454485f52415445",
+      "property_symbol": "CREATE_NEW_ACCOUNT_BANDWIDTH_RATE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveCreateNewAccountBandwidthRate",
+      "value_hex": "0000000000000001"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTransactionFee",
+      "java_expression": "DEFAULT_TRANSACTION_FEE",
+      "key_hex": "5452414e53414354494f4e5f464545",
+      "property_symbol": "TRANSACTION_FEE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTransactionFee",
+      "value_hex": "000000000000000a"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAssetIssueFee",
+      "java_expression": "1024000000L",
+      "key_hex": "41535345545f49535355455f464545",
+      "property_symbol": "ASSET_ISSUE_FEE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAssetIssueFee",
+      "value_hex": "000000003d090000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getUpdateAccountPermissionFee",
+      "java_expression": "100000000L",
+      "key_hex": "5550444154455f4143434f554e545f5045524d495353494f4e5f464545",
+      "property_symbol": "UPDATE_ACCOUNT_PERMISSION_FEE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveUpdateAccountPermissionFee",
+      "value_hex": "0000000005f5e100"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMultiSignFee",
+      "java_expression": "1000000L",
+      "key_hex": "4d554c54495f5349474e5f464545",
+      "property_symbol": "MULTI_SIGN_FEE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMultiSignFee",
+      "value_hex": "00000000000f4240"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getExchangeCreateFee",
+      "java_expression": "1024000000L",
+      "key_hex": "45584348414e47455f4352454154455f464545",
+      "property_symbol": "EXCHANGE_CREATE_FEE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveExchangeCreateFee",
+      "value_hex": "000000003d090000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getExchangeBalanceLimit",
+      "java_expression": "1_000_000_000_000_000L",
+      "key_hex": "45584348414e47455f42414c414e43455f4c494d4954",
+      "property_symbol": "EXCHANGE_BALANCE_LIMIT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveExchangeBalanceLimit",
+      "value_hex": "00038d7ea4c68000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowMarketTransaction",
+      "java_expression": "CommonParameter.getInstance().getAllowMarketTransaction()",
+      "key_hex": "414c4c4f575f4d41524b45545f5452414e53414354494f4e",
+      "property_symbol": "ALLOW_MARKET_TRANSACTION",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowMarketTransaction",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMarketSellFee",
+      "java_expression": "0L",
+      "key_hex": "4d41524b45545f53454c4c5f464545",
+      "property_symbol": "MARKET_SELL_FEE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMarketSellFee",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMarketCancelFee",
+      "java_expression": "0L",
+      "key_hex": "4d41524b45545f43414e43454c5f464545",
+      "property_symbol": "MARKET_CANCEL_FEE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMarketCancelFee",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMarketQuantityLimit",
+      "java_expression": "1_000_000_000_000_000L",
+      "key_hex": "4d41524b45545f5155414e544954595f4c494d4954",
+      "property_symbol": "MARKET_QUANTITY_LIMIT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMarketQuantityLimit",
+      "value_hex": "00038d7ea4c68000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowTransactionFeePool",
+      "java_expression": "CommonParameter.getInstance().getAllowTransactionFeePool()",
+      "key_hex": "414c4c4f575f5452414e53414354494f4e5f4645455f504f4f4c",
+      "property_symbol": "ALLOW_TRANSACTION_FEE_POOL",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowTransactionFeePool",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTransactionFeePool",
+      "java_expression": "0L",
+      "key_hex": "5452414e53414354494f4e5f4645455f504f4f4c",
+      "property_symbol": "TRANSACTION_FEE_POOL",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTransactionFeePool",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalTransactionCost",
+      "java_expression": "0L",
+      "key_hex": "544f54414c5f5452414e53414354494f4e5f434f5354",
+      "property_symbol": "TOTAL_TRANSACTION_COST",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalTransactionCost",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalCreateWitnessCost",
+      "java_expression": "0L",
+      "key_hex": "544f54414c5f4352454154455f5749544e4553535f464545",
+      "property_symbol": "TOTAL_CREATE_WITNESS_COST",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalCreateWitnessFee",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalCreateAccountCost",
+      "java_expression": "0L",
+      "key_hex": "544f54414c5f4352454154455f4143434f554e545f434f5354",
+      "property_symbol": "TOTAL_CREATE_ACCOUNT_COST",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalCreateAccountFee",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalStoragePool",
+      "java_expression": "100_000_000_000_000L",
+      "key_hex": "544f54414c5f53544f524147455f504f4f4c",
+      "property_symbol": "TOTAL_STORAGE_POOL",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalStoragePool",
+      "value_hex": "00005af3107a4000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalStorageTax",
+      "java_expression": "0",
+      "key_hex": "544f54414c5f53544f524147455f544158",
+      "property_symbol": "TOTAL_STORAGE_TAX",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalStorageTax",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalStorageReserved",
+      "java_expression": "128L * 1024 * 1024 * 1024",
+      "key_hex": "544f54414c5f53544f524147455f5245534552564544",
+      "property_symbol": "TOTAL_STORAGE_RESERVED",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalStorageReserved",
+      "value_hex": "0000002000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getStorageExchangeTaxRate",
+      "java_expression": "10",
+      "key_hex": "53544f524147455f45584348414e47455f5441585f52415445",
+      "property_symbol": "STORAGE_EXCHANGE_TAX_RATE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveStorageExchangeTaxRate",
+      "value_hex": "000000000000000a"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getRemoveThePowerOfTheGr",
+      "java_expression": "0",
+      "key_hex": "52454d4f56455f5448455f504f5745525f4f465f5448455f4752",
+      "property_symbol": "REMOVE_THE_POWER_OF_THE_GR",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveRemoveThePowerOfTheGr",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowDelegateResource",
+      "java_expression": "CommonParameter.getInstance() .getAllowDelegateResource()",
+      "key_hex": "414c4c4f575f44454c45474154455f5245534f55524345",
+      "property_symbol": "ALLOW_DELEGATE_RESOURCE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowDelegateResource",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowTvmTransferTrc10",
+      "java_expression": "CommonParameter.getInstance() .getAllowTvmTransferTrc10()",
+      "key_hex": "414c4c4f575f54564d5f5452414e534645525f5452433130",
+      "property_symbol": "ALLOW_TVM_TRANSFER_TRC10",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowTvmTransferTrc10",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowTvmConstantinople",
+      "java_expression": "CommonParameter.getInstance() .getAllowTvmConstantinople()",
+      "key_hex": "414c4c4f575f54564d5f434f4e5354414e54494e4f504c45",
+      "property_symbol": "ALLOW_TVM_CONSTANTINOPLE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowTvmConstantinople",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowTvmSolidity059",
+      "java_expression": "CommonParameter.getInstance() .getAllowTvmSolidity059()",
+      "key_hex": "414c4c4f575f54564d5f534f4c49444954595f303539",
+      "property_symbol": "ALLOW_TVM_SOLIDITY_059",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowTvmSolidity059",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getForbidTransferToContract",
+      "java_expression": "CommonParameter.getInstance() .getForbidTransferToContract()",
+      "key_hex": "464f524249445f5452414e534645525f544f5f434f4e5452414354",
+      "property_symbol": "FORBID_TRANSFER_TO_CONTRACT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveForbidTransferToContract",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAvailableContractType",
+      "java_expression": "bytes",
+      "key_hex": "20414c4c4f575f53414d455f544f4b454e5f4e414d45",
+      "property_symbol": "ALLOW_SAME_TOKEN_NAME",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAvailableContractType",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getActiveDefaultOperations",
+      "java_expression": "bytes",
+      "key_hex": "414c4c4f575f5550444154455f4143434f554e545f4e414d45",
+      "property_symbol": "ALLOW_UPDATE_ACCOUNT_NAME",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveActiveDefaultOperations",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowSameTokenName",
+      "java_expression": "CommonParameter.getInstance() .getAllowSameTokenName()",
+      "key_hex": "414c4c4f575f4352454154494f4e5f4f465f434f4e545241435453",
+      "property_symbol": "ALLOW_CREATION_OF_CONTRACTS",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowSameTokenName",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowUpdateAccountName",
+      "java_expression": "0",
+      "key_hex": "414c4c4f575f534849454c4445445f5452414e53414354494f4e",
+      "property_symbol": "ALLOW_SHIELDED_TRANSACTION",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowUpdateAccountName",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowCreationOfContracts",
+      "java_expression": "CommonParameter.getInstance() .getAllowCreationOfContracts()",
+      "key_hex": "414c4c4f575f534849454c4445445f54524332305f5452414e53414354494f4e",
+      "property_symbol": "ALLOW_SHIELDED_TRC20_TRANSACTION",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowCreationOfContracts",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowShieldedTransaction",
+      "java_expression": "0L",
+      "key_hex": "414c4c4f575f54564d5f495354414e42554c",
+      "property_symbol": "ALLOW_TVM_ISTANBUL",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowShieldedTransaction",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowShieldedTRC20Transaction",
+      "java_expression": "CommonParameter.getInstance().getAllowShieldedTRC20Transaction()",
+      "key_hex": "4e4558545f4d41494e54454e414e43455f54494d45",
+      "property_symbol": "NEXT_MAINTENANCE_TIME",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowShieldedTRC20Transaction",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowTvmIstanbul",
+      "java_expression": "CommonParameter.getInstance().getAllowTvmIstanbul()",
+      "key_hex": "544f54414c5f454e455247595f43555252454e545f4c494d4954",
+      "property_symbol": "TOTAL_ENERGY_CURRENT_LIMIT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowTvmIstanbul",
+      "value_hex": "0000000ba43b7400"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getBlockFilledSlots",
+      "java_expression": "blockFilledSlots",
+      "key_hex": "544f54414c5f454e455247595f5441524745545f4c494d4954",
+      "property_symbol": "TOTAL_ENERGY_TARGET_LIMIT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveBlockFilledSlots",
+      "value_hex": "000000000034fb5e"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getNextMaintenanceTime",
+      "java_expression": "Long.parseLong(CommonParameter.getInstance() .getGenesisBlock().getTimestamp())",
+      "key_hex": "544f54414c5f454e455247595f415645524147455f5553414745",
+      "property_symbol": "TOTAL_ENERGY_AVERAGE_USAGE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveNextMaintenanceTime",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalEnergyCurrentLimit",
+      "java_expression": "getTotalEnergyLimit()",
+      "key_hex": "41444150544956455f5245534f555243455f4c494d49545f4d554c5449504c494552",
+      "property_symbol": "ADAPTIVE_RESOURCE_LIMIT_MULTIPLIER",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalEnergyCurrentLimit",
+      "value_hex": "00000000000003e8"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalEnergyTargetLimit",
+      "java_expression": "getTotalEnergyLimit() / 14400",
+      "key_hex": "544f54414c5f454e455247595f415645524147455f54494d45",
+      "property_symbol": "TOTAL_ENERGY_AVERAGE_TIME",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalEnergyTargetLimit",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalEnergyAverageUsage",
+      "java_expression": "0",
+      "key_hex": "424c4f434b5f454e455247595f5553414745",
+      "property_symbol": "BLOCK_ENERGY_USAGE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalEnergyAverageUsage",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAdaptiveResourceLimitMultiplier",
+      "java_expression": "1000",
+      "key_hex": "414c4c4f575f4143434f554e545f53544154455f524f4f54",
+      "property_symbol": "ALLOW_ACCOUNT_STATE_ROOT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAdaptiveResourceLimitMultiplier",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getTotalEnergyAverageTime",
+      "java_expression": "0",
+      "key_hex": "414c4c4f575f50524f544f5f46494c5445525f4e554d",
+      "property_symbol": "ALLOW_PROTO_FILTER_NUM",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveTotalEnergyAverageTime",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getBlockEnergyUsage",
+      "java_expression": "0",
+      "key_hex": "4348414e47455f44454c45474154494f4e",
+      "property_symbol": "CHANGE_DELEGATION",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveBlockEnergyUsage",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowAccountStateRoot",
+      "java_expression": "CommonParameter.getInstance() .getAllowAccountStateRoot()",
+      "key_hex": "414c4c4f575f50424654",
+      "property_symbol": "ALLOW_PBFT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowAccountStateRoot",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowProtoFilterNum",
+      "java_expression": "CommonParameter.getInstance() .getAllowProtoFilterNum()",
+      "key_hex": "4d41585f4645455f4c494d4954",
+      "property_symbol": "MAX_FEE_LIMIT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowProtoFilterNum",
+      "value_hex": "000000003b9aca00"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getChangeDelegation",
+      "java_expression": "CommonParameter.getInstance() .getChangedDelegation()",
+      "key_hex": "4255524e5f5452585f414d4f554e54",
+      "property_symbol": "BURN_TRX_AMOUNT",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveChangeDelegation",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowPBFT",
+      "java_expression": "CommonParameter.getInstance().getAllowPBFT()",
+      "key_hex": "414c4c4f575f424c41434b484f4c455f4f5054494d495a4154494f4e",
+      "property_symbol": "ALLOW_BLACKHOLE_OPTIMIZATION",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowPBFT",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMaxFeeLimit",
+      "java_expression": "1_000_000_000L",
+      "key_hex": "414c4c4f575f4e45575f5245534f555243455f4d4f44454c",
+      "property_symbol": "ALLOW_NEW_RESOURCE_MODEL",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMaxFeeLimit",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getBurnTrxAmount",
+      "java_expression": "0L",
+      "key_hex": "414c4c4f575f54564d5f465245455a45",
+      "property_symbol": "ALLOW_TVM_FREEZE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveBurnTrx",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowBlackHoleOptimization",
+      "java_expression": "CommonParameter.getInstance().getAllowBlackHoleOptimization()",
+      "key_hex": "414c4c4f575f54564d5f564f5445",
+      "property_symbol": "ALLOW_TVM_VOTE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowBlackHoleOptimization",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowNewResourceModel",
+      "java_expression": "CommonParameter.getInstance().getAllowNewResourceModel()",
+      "key_hex": "414c4c4f575f54564d5f4c4f4e444f4e",
+      "property_symbol": "ALLOW_TVM_LONDON",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowNewResourceModel",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowTvmFreeze",
+      "java_expression": "CommonParameter.getInstance().getAllowTvmFreeze()",
+      "key_hex": "414c4c4f575f54564d5f434f4d50415449424c455f45564d",
+      "property_symbol": "ALLOW_TVM_COMPATIBLE_EVM",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowTvmFreeze",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowTvmVote",
+      "java_expression": "CommonParameter.getInstance().getAllowTvmVote()",
+      "key_hex": "414c4c4f575f41535345545f4f5054494d495a4154494f4e",
+      "property_symbol": "ALLOW_ASSET_OPTIMIZATION",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowTvmVote",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowTvmLondon",
+      "java_expression": "CommonParameter.getInstance().getAllowTvmLondon()",
+      "key_hex": "414c4c4f575f4143434f554e545f41535345545f4f5054494d495a4154494f4e",
+      "property_symbol": "ALLOW_ACCOUNT_ASSET_OPTIMIZATION",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowTvmLondon",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowTvmCompatibleEvm",
+      "java_expression": "CommonParameter.getInstance().getAllowTvmCompatibleEvm()",
+      "key_hex": "454e455247595f50524943455f484953544f52595f444f4e45",
+      "property_symbol": "ENERGY_PRICE_HISTORY_DONE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowTvmCompatibleEvm",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getEnergyPriceHistoryDone",
+      "java_expression": "0",
+      "key_hex": "454e455247595f50524943455f484953544f5259",
+      "property_symbol": "ENERGY_PRICE_HISTORY",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveEnergyPriceHistoryDone",
+      "value_hex": "303a313030"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getEnergyPriceHistory",
+      "java_expression": "DEFAULT_ENERGY_PRICE_HISTORY",
+      "key_hex": "42414e4457494454485f50524943455f484953544f52595f444f4e45",
+      "property_symbol": "BANDWIDTH_PRICE_HISTORY_DONE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveEnergyPriceHistory",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getBandwidthPriceHistoryDone",
+      "java_expression": "0",
+      "key_hex": "42414e4457494454485f50524943455f484953544f5259",
+      "property_symbol": "BANDWIDTH_PRICE_HISTORY",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveBandwidthPriceHistoryDone",
+      "value_hex": "303a3130"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getBandwidthPriceHistory",
+      "java_expression": "DEFAULT_BANDWIDTH_PRICE_HISTORY",
+      "key_hex": "5345545f424c41434b484f4c455f4143434f554e545f5045524d495353494f4e",
+      "property_symbol": "SET_BLACKHOLE_ACCOUNT_PERMISSION",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveBandwidthPriceHistory",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getSetBlackholeAccountPermission",
+      "java_expression": "0",
+      "key_hex": "414c4c4f575f4849474845525f4c494d49545f464f525f4d41585f4350555f54494d455f4f465f4f4e455f5458",
+      "property_symbol": "ALLOW_HIGHER_LIMIT_FOR_MAX_CPU_TIME_OF_ONE_TX",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveSetBlackholePermission",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowHigherLimitForMaxCpuTimeOfOneTx",
+      "java_expression": "CommonParameter.getInstance().getAllowHigherLimitForMaxCpuTimeOfOneTx()",
+      "key_hex": "4e45575f5245574152445f414c474f524954484d5f4546464543544956455f4359434c45",
+      "property_symbol": "NEW_REWARD_ALGORITHM_EFFECTIVE_CYCLE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowHigherLimitForMaxCpuTimeOfOneTx",
+      "value_hex": "7fffffffffffffff"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowNewReward",
+      "java_expression": "CommonParameter.getInstance().getAllowNewReward()",
+      "key_hex": "414c4c4f575f4e45575f524557415244",
+      "property_symbol": "ALLOW_NEW_REWARD",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowNewReward",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getMemoFee",
+      "java_expression": "memoFee",
+      "key_hex": "4d454d4f5f464545",
+      "property_symbol": "MEMO_FEE",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveMemoFee",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowDelegateOptimization",
+      "java_expression": "CommonParameter.getInstance().getAllowDelegateOptimization()",
+      "key_hex": "414c4c4f575f44454c45474154455f4f5054494d495a4154494f4e",
+      "property_symbol": "ALLOW_DELEGATE_OPTIMIZATION",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowDelegateOptimization",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getUnfreezeDelayDays",
+      "java_expression": "CommonParameter.getInstance().getUnfreezeDelayDays()",
+      "key_hex": "554e465245455a455f44454c41595f44415953",
+      "property_symbol": "UNFREEZE_DELAY_DAYS",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveUnfreezeDelayDays",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowOptimizedReturnValueOfChainId",
+      "java_expression": "CommonParameter.getInstance().getAllowOptimizedReturnValueOfChainId()",
+      "key_hex": "414c4c4f575f4f5054494d495a45445f52455455524e5f56414c55455f4f465f434841494e5f4944",
+      "property_symbol": "ALLOW_OPTIMIZED_RETURN_VALUE_OF_CHAIN_ID",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowOptimizedReturnValueOfChainId",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getAllowDynamicEnergy",
+      "java_expression": "CommonParameter.getInstance().getAllowDynamicEnergy()",
+      "key_hex": "414c4c4f575f44594e414d49435f454e45524759",
+      "property_symbol": "ALLOW_DYNAMIC_ENERGY",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveAllowDynamicEnergy",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getDynamicEnergyThreshold",
+      "java_expression": "CommonParameter.getInstance().getDynamicEnergyThreshold()",
+      "key_hex": "44594e414d49435f454e455247595f5448524553484f4c44",
+      "property_symbol": "DYNAMIC_ENERGY_THRESHOLD",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveDynamicEnergyThreshold",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getDynamicEnergyIncreaseFactor",
+      "java_expression": "CommonParameter.getInstance().getDynamicEnergyIncreaseFactor()",
+      "key_hex": "44594e414d49435f454e455247595f494e4352454153455f464143544f52",
+      "property_symbol": "DYNAMIC_ENERGY_INCREASE_FACTOR",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveDynamicEnergyIncreaseFactor",
+      "value_hex": "0000000000000000"
+    },
+    {
+      "adapter": "tron_state::dynamic::initialize_missing",
+      "getter": "getDynamicEnergyMaxFactor",
+      "java_expression": "CommonParameter.getInstance().getDynamicEnergyMaxFactor()",
+      "key_hex": "44594e414d49435f454e455247595f4d41585f464143544f52",
+      "property_symbol": "DYNAMIC_ENERGY_MAX_FACTOR",
+      "provenance": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java constructor",
+      "setter": "saveDynamicEnergyMaxFactor",
+      "value_hex": "0000000000000000"
+    }
+  ],
+  "dynamic_keys": [
+    {
+      "bytes_utf8": "latest_block_header_timestamp",
+      "symbol": "LATEST_BLOCK_HEADER_TIMESTAMP"
+    },
+    {
+      "bytes_utf8": "latest_block_header_number",
+      "symbol": "LATEST_BLOCK_HEADER_NUMBER"
+    },
+    {
+      "bytes_utf8": "latest_block_header_hash",
+      "symbol": "LATEST_BLOCK_HEADER_HASH"
+    },
+    {
+      "bytes_utf8": "state_flag",
+      "symbol": "STATE_FLAG"
+    },
+    {
+      "bytes_utf8": "LATEST_SOLIDIFIED_BLOCK_NUM",
+      "symbol": "LATEST_SOLIDIFIED_BLOCK_NUM"
+    },
+    {
+      "bytes_utf8": "LATEST_PROPOSAL_NUM",
+      "symbol": "LATEST_PROPOSAL_NUM"
+    },
+    {
+      "bytes_utf8": "LATEST_EXCHANGE_NUM",
+      "symbol": "LATEST_EXCHANGE_NUM"
+    },
+    {
+      "bytes_utf8": "BLOCK_FILLED_SLOTS",
+      "symbol": "BLOCK_FILLED_SLOTS"
+    },
+    {
+      "bytes_utf8": "BLOCK_FILLED_SLOTS_INDEX",
+      "symbol": "BLOCK_FILLED_SLOTS_INDEX"
+    },
+    {
+      "bytes_utf8": "NEXT_MAINTENANCE_TIME",
+      "symbol": "NEXT_MAINTENANCE_TIME"
+    },
+    {
+      "bytes_utf8": "MAX_FROZEN_TIME",
+      "symbol": "MAX_FROZEN_TIME"
+    },
+    {
+      "bytes_utf8": "MIN_FROZEN_TIME",
+      "symbol": "MIN_FROZEN_TIME"
+    },
+    {
+      "bytes_utf8": "MAX_FROZEN_SUPPLY_NUMBER",
+      "symbol": "MAX_FROZEN_SUPPLY_NUMBER"
+    },
+    {
+      "bytes_utf8": "MAX_FROZEN_SUPPLY_TIME",
+      "symbol": "MAX_FROZEN_SUPPLY_TIME"
+    },
+    {
+      "bytes_utf8": "MIN_FROZEN_SUPPLY_TIME",
+      "symbol": "MIN_FROZEN_SUPPLY_TIME"
+    },
+    {
+      "bytes_utf8": "WITNESS_ALLOWANCE_FROZEN_TIME",
+      "symbol": "WITNESS_ALLOWANCE_FROZEN_TIME"
+    },
+    {
+      "bytes_utf8": "MAINTENANCE_TIME_INTERVAL",
+      "symbol": "MAINTENANCE_TIME_INTERVAL"
+    },
+    {
+      "bytes_utf8": "ACCOUNT_UPGRADE_COST",
+      "symbol": "ACCOUNT_UPGRADE_COST"
+    },
+    {
+      "bytes_utf8": "WITNESS_PAY_PER_BLOCK",
+      "symbol": "WITNESS_PAY_PER_BLOCK"
+    },
+    {
+      "bytes_utf8": "WITNESS_127_PAY_PER_BLOCK",
+      "symbol": "WITNESS_127_PAY_PER_BLOCK"
+    },
+    {
+      "bytes_utf8": "WITNESS_STANDBY_ALLOWANCE",
+      "symbol": "WITNESS_STANDBY_ALLOWANCE"
+    },
+    {
+      "bytes_utf8": "ENERGY_FEE",
+      "symbol": "ENERGY_FEE"
+    },
+    {
+      "bytes_utf8": "MAX_CPU_TIME_OF_ONE_TX",
+      "symbol": "MAX_CPU_TIME_OF_ONE_TX"
+    },
+    {
+      "bytes_utf8": "CREATE_ACCOUNT_FEE",
+      "symbol": "CREATE_ACCOUNT_FEE"
+    },
+    {
+      "bytes_utf8": "CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT",
+      "symbol": "CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT"
+    },
+    {
+      "bytes_utf8": "CREATE_NEW_ACCOUNT_BANDWIDTH_RATE",
+      "symbol": "CREATE_NEW_ACCOUNT_BANDWIDTH_RATE"
+    },
+    {
+      "bytes_utf8": "TRANSACTION_FEE",
+      "symbol": "TRANSACTION_FEE"
+    },
+    {
+      "bytes_utf8": "ASSET_ISSUE_FEE",
+      "symbol": "ASSET_ISSUE_FEE"
+    },
+    {
+      "bytes_utf8": "UPDATE_ACCOUNT_PERMISSION_FEE",
+      "symbol": "UPDATE_ACCOUNT_PERMISSION_FEE"
+    },
+    {
+      "bytes_utf8": "MULTI_SIGN_FEE",
+      "symbol": "MULTI_SIGN_FEE"
+    },
+    {
+      "bytes_utf8": "SHIELDED_TRANSACTION_FEE",
+      "symbol": "SHIELDED_TRANSACTION_FEE"
+    },
+    {
+      "bytes_utf8": "SHIELDED_TRANSACTION_CREATE_ACCOUNT_FEE",
+      "symbol": "SHIELDED_TRANSACTION_CREATE_ACCOUNT_FEE"
+    },
+    {
+      "bytes_utf8": "TOTAL_SHIELDED_POOL_VALUE",
+      "symbol": "TOTAL_SHIELDED_POOL_VALUE"
+    },
+    {
+      "bytes_utf8": "EXCHANGE_CREATE_FEE",
+      "symbol": "EXCHANGE_CREATE_FEE"
+    },
+    {
+      "bytes_utf8": "EXCHANGE_BALANCE_LIMIT",
+      "symbol": "EXCHANGE_BALANCE_LIMIT"
+    },
+    {
+      "bytes_utf8": "TOTAL_TRANSACTION_COST",
+      "symbol": "TOTAL_TRANSACTION_COST"
+    },
+    {
+      "bytes_utf8": "TOTAL_CREATE_ACCOUNT_COST",
+      "symbol": "TOTAL_CREATE_ACCOUNT_COST"
+    },
+    {
+      "bytes_utf8": "TOTAL_CREATE_WITNESS_FEE",
+      "symbol": "TOTAL_CREATE_WITNESS_COST"
+    },
+    {
+      "bytes_utf8": "TOTAL_STORAGE_POOL",
+      "symbol": "TOTAL_STORAGE_POOL"
+    },
+    {
+      "bytes_utf8": "TOTAL_STORAGE_TAX",
+      "symbol": "TOTAL_STORAGE_TAX"
+    },
+    {
+      "bytes_utf8": "TOTAL_STORAGE_RESERVED",
+      "symbol": "TOTAL_STORAGE_RESERVED"
+    },
+    {
+      "bytes_utf8": "STORAGE_EXCHANGE_TAX_RATE",
+      "symbol": "STORAGE_EXCHANGE_TAX_RATE"
+    },
+    {
+      "bytes_utf8": "VERSION_NUMBER",
+      "symbol": "VERSION_NUMBER"
+    },
+    {
+      "bytes_utf8": "REMOVE_THE_POWER_OF_THE_GR",
+      "symbol": "REMOVE_THE_POWER_OF_THE_GR"
+    },
+    {
+      "bytes_utf8": "ALLOW_DELEGATE_RESOURCE",
+      "symbol": "ALLOW_DELEGATE_RESOURCE"
+    },
+    {
+      "bytes_utf8": "ALLOW_ADAPTIVE_ENERGY",
+      "symbol": "ALLOW_ADAPTIVE_ENERGY"
+    },
+    {
+      "bytes_utf8": "ALLOW_UPDATE_ACCOUNT_NAME",
+      "symbol": "ALLOW_UPDATE_ACCOUNT_NAME"
+    },
+    {
+      "bytes_utf8": " ALLOW_SAME_TOKEN_NAME",
+      "symbol": "ALLOW_SAME_TOKEN_NAME"
+    },
+    {
+      "bytes_utf8": "ALLOW_CREATION_OF_CONTRACTS",
+      "symbol": "ALLOW_CREATION_OF_CONTRACTS"
+    },
+    {
+      "bytes_utf8": "TOTAL_SIGN_NUM",
+      "symbol": "TOTAL_SIGN_NUM"
+    },
+    {
+      "bytes_utf8": "ALLOW_MULTI_SIGN",
+      "symbol": "ALLOW_MULTI_SIGN"
+    },
+    {
+      "bytes_utf8": "TOKEN_ID_NUM",
+      "symbol": "TOKEN_ID_NUM"
+    },
+    {
+      "bytes_utf8": "TOKEN_UPDATE_DONE",
+      "symbol": "TOKEN_UPDATE_DONE"
+    },
+    {
+      "bytes_utf8": "ABI_MOVE_DONE",
+      "symbol": "ABI_MOVE_DONE"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_TRANSFER_TRC10",
+      "symbol": "ALLOW_TVM_TRANSFER_TRC10"
+    },
+    {
+      "bytes_utf8": "ALLOW_SHIELDED_TRANSACTION",
+      "symbol": "ALLOW_SHIELDED_TRANSACTION"
+    },
+    {
+      "bytes_utf8": "ALLOW_SHIELDED_TRC20_TRANSACTION",
+      "symbol": "ALLOW_SHIELDED_TRC20_TRANSACTION"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_ISTANBUL",
+      "symbol": "ALLOW_TVM_ISTANBUL"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_CONSTANTINOPLE",
+      "symbol": "ALLOW_TVM_CONSTANTINOPLE"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_SOLIDITY_059",
+      "symbol": "ALLOW_TVM_SOLIDITY_059"
+    },
+    {
+      "bytes_utf8": "FORBID_TRANSFER_TO_CONTRACT",
+      "symbol": "FORBID_TRANSFER_TO_CONTRACT"
+    },
+    {
+      "bytes_utf8": "ALLOW_PROTO_FILTER_NUM",
+      "symbol": "ALLOW_PROTO_FILTER_NUM"
+    },
+    {
+      "bytes_utf8": "AVAILABLE_CONTRACT_TYPE",
+      "symbol": "AVAILABLE_CONTRACT_TYPE"
+    },
+    {
+      "bytes_utf8": "ACTIVE_DEFAULT_OPERATIONS",
+      "symbol": "ACTIVE_DEFAULT_OPERATIONS"
+    },
+    {
+      "bytes_utf8": "ALLOW_ACCOUNT_STATE_ROOT",
+      "symbol": "ALLOW_ACCOUNT_STATE_ROOT"
+    },
+    {
+      "bytes_utf8": "CURRENT_CYCLE_NUMBER",
+      "symbol": "CURRENT_CYCLE_NUMBER"
+    },
+    {
+      "bytes_utf8": "CHANGE_DELEGATION",
+      "symbol": "CHANGE_DELEGATION"
+    },
+    {
+      "bytes_utf8": "ALLOW_PBFT",
+      "symbol": "ALLOW_PBFT"
+    },
+    {
+      "bytes_utf8": "ALLOW_MARKET_TRANSACTION",
+      "symbol": "ALLOW_MARKET_TRANSACTION"
+    },
+    {
+      "bytes_utf8": "MARKET_SELL_FEE",
+      "symbol": "MARKET_SELL_FEE"
+    },
+    {
+      "bytes_utf8": "MARKET_CANCEL_FEE",
+      "symbol": "MARKET_CANCEL_FEE"
+    },
+    {
+      "bytes_utf8": "MARKET_QUANTITY_LIMIT",
+      "symbol": "MARKET_QUANTITY_LIMIT"
+    },
+    {
+      "bytes_utf8": "ALLOW_TRANSACTION_FEE_POOL",
+      "symbol": "ALLOW_TRANSACTION_FEE_POOL"
+    },
+    {
+      "bytes_utf8": "TRANSACTION_FEE_POOL",
+      "symbol": "TRANSACTION_FEE_POOL"
+    },
+    {
+      "bytes_utf8": "MAX_FEE_LIMIT",
+      "symbol": "MAX_FEE_LIMIT"
+    },
+    {
+      "bytes_utf8": "BURN_TRX_AMOUNT",
+      "symbol": "BURN_TRX_AMOUNT"
+    },
+    {
+      "bytes_utf8": "ALLOW_BLACKHOLE_OPTIMIZATION",
+      "symbol": "ALLOW_BLACKHOLE_OPTIMIZATION"
+    },
+    {
+      "bytes_utf8": "ALLOW_NEW_RESOURCE_MODEL",
+      "symbol": "ALLOW_NEW_RESOURCE_MODEL"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_FREEZE",
+      "symbol": "ALLOW_TVM_FREEZE"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_VOTE",
+      "symbol": "ALLOW_TVM_VOTE"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_LONDON",
+      "symbol": "ALLOW_TVM_LONDON"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_COMPATIBLE_EVM",
+      "symbol": "ALLOW_TVM_COMPATIBLE_EVM"
+    },
+    {
+      "bytes_utf8": "NEW_REWARD_ALGORITHM_EFFECTIVE_CYCLE",
+      "symbol": "NEW_REWARD_ALGORITHM_EFFECTIVE_CYCLE"
+    },
+    {
+      "bytes_utf8": "ALLOW_ACCOUNT_ASSET_OPTIMIZATION",
+      "symbol": "ALLOW_ACCOUNT_ASSET_OPTIMIZATION"
+    },
+    {
+      "bytes_utf8": "ALLOW_ASSET_OPTIMIZATION",
+      "symbol": "ALLOW_ASSET_OPTIMIZATION"
+    },
+    {
+      "bytes_utf8": "ENERGY_PRICE_HISTORY",
+      "symbol": "ENERGY_PRICE_HISTORY"
+    },
+    {
+      "bytes_utf8": "ENERGY_PRICE_HISTORY_DONE",
+      "symbol": "ENERGY_PRICE_HISTORY_DONE"
+    },
+    {
+      "bytes_utf8": "BANDWIDTH_PRICE_HISTORY",
+      "symbol": "BANDWIDTH_PRICE_HISTORY"
+    },
+    {
+      "bytes_utf8": "BANDWIDTH_PRICE_HISTORY_DONE",
+      "symbol": "BANDWIDTH_PRICE_HISTORY_DONE"
+    },
+    {
+      "bytes_utf8": "SET_BLACKHOLE_ACCOUNT_PERMISSION",
+      "symbol": "SET_BLACKHOLE_ACCOUNT_PERMISSION"
+    },
+    {
+      "bytes_utf8": "ALLOW_HIGHER_LIMIT_FOR_MAX_CPU_TIME_OF_ONE_TX",
+      "symbol": "ALLOW_HIGHER_LIMIT_FOR_MAX_CPU_TIME_OF_ONE_TX"
+    },
+    {
+      "bytes_utf8": "ALLOW_NEW_REWARD",
+      "symbol": "ALLOW_NEW_REWARD"
+    },
+    {
+      "bytes_utf8": "MEMO_FEE",
+      "symbol": "MEMO_FEE"
+    },
+    {
+      "bytes_utf8": "MEMO_FEE_HISTORY",
+      "symbol": "MEMO_FEE_HISTORY"
+    },
+    {
+      "bytes_utf8": "ALLOW_DELEGATE_OPTIMIZATION",
+      "symbol": "ALLOW_DELEGATE_OPTIMIZATION"
+    },
+    {
+      "bytes_utf8": "ALLOW_DYNAMIC_ENERGY",
+      "symbol": "ALLOW_DYNAMIC_ENERGY"
+    },
+    {
+      "bytes_utf8": "DYNAMIC_ENERGY_THRESHOLD",
+      "symbol": "DYNAMIC_ENERGY_THRESHOLD"
+    },
+    {
+      "bytes_utf8": "DYNAMIC_ENERGY_INCREASE_FACTOR",
+      "symbol": "DYNAMIC_ENERGY_INCREASE_FACTOR"
+    },
+    {
+      "bytes_utf8": "DYNAMIC_ENERGY_MAX_FACTOR",
+      "symbol": "DYNAMIC_ENERGY_MAX_FACTOR"
+    },
+    {
+      "bytes_utf8": "UNFREEZE_DELAY_DAYS",
+      "symbol": "UNFREEZE_DELAY_DAYS"
+    },
+    {
+      "bytes_utf8": "ALLOW_OPTIMIZED_RETURN_VALUE_OF_CHAIN_ID",
+      "symbol": "ALLOW_OPTIMIZED_RETURN_VALUE_OF_CHAIN_ID"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_SHANGHAI",
+      "symbol": "ALLOW_TVM_SHANGHAI"
+    },
+    {
+      "bytes_utf8": "ALLOW_CANCEL_ALL_UNFREEZE_V2",
+      "symbol": "ALLOW_CANCEL_ALL_UNFREEZE_V2"
+    },
+    {
+      "bytes_utf8": "MAX_DELEGATE_LOCK_PERIOD",
+      "symbol": "MAX_DELEGATE_LOCK_PERIOD"
+    },
+    {
+      "bytes_utf8": "ALLOW_OLD_REWARD_OPT",
+      "symbol": "ALLOW_OLD_REWARD_OPT"
+    },
+    {
+      "bytes_utf8": "ALLOW_ENERGY_ADJUSTMENT",
+      "symbol": "ALLOW_ENERGY_ADJUSTMENT"
+    },
+    {
+      "bytes_utf8": "MAX_CREATE_ACCOUNT_TX_SIZE",
+      "symbol": "MAX_CREATE_ACCOUNT_TX_SIZE"
+    },
+    {
+      "bytes_utf8": "ALLOW_STRICT_MATH",
+      "symbol": "ALLOW_STRICT_MATH"
+    },
+    {
+      "bytes_utf8": "CONSENSUS_LOGIC_OPTIMIZATION",
+      "symbol": "CONSENSUS_LOGIC_OPTIMIZATION"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_CANCUN",
+      "symbol": "ALLOW_TVM_CANCUN"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_BLOB",
+      "symbol": "ALLOW_TVM_BLOB"
+    },
+    {
+      "bytes_utf8": "PROPOSAL_EXPIRE_TIME",
+      "symbol": "PROPOSAL_EXPIRE_TIME"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_SELFDESTRUCT_RESTRICTION",
+      "symbol": "ALLOW_TVM_SELFDESTRUCT_RESTRICTION"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_OSAKA",
+      "symbol": "ALLOW_TVM_OSAKA"
+    },
+    {
+      "bytes_utf8": "ALLOW_TVM_PRAGUE",
+      "symbol": "ALLOW_TVM_PRAGUE"
+    },
+    {
+      "bytes_utf8": "BLOCK_HASH_HISTORY_INSTALLED",
+      "symbol": "BLOCK_HASH_HISTORY_INSTALLED"
+    },
+    {
+      "bytes_utf8": "ALLOW_HARDEN_RESOURCE_CALCULATION",
+      "symbol": "ALLOW_HARDEN_RESOURCE_CALCULATION"
+    },
+    {
+      "bytes_utf8": "ALLOW_HARDEN_EXCHANGE_CALCULATION",
+      "symbol": "ALLOW_HARDEN_EXCHANGE_CALCULATION"
+    },
+    {
+      "bytes_utf8": "TURKISH_KEY_MIGRATION_DONE",
+      "symbol": "TURKISH_KEY_MIGRATION_DONE"
+    },
+    {
+      "bytes_utf8": "ONE_DAY_NET_LIMIT",
+      "symbol": "ONE_DAY_NET_LIMIT"
+    },
+    {
+      "bytes_utf8": "PUBLIC_NET_USAGE",
+      "symbol": "PUBLIC_NET_USAGE"
+    },
+    {
+      "bytes_utf8": "PUBLIC_NET_LIMIT",
+      "symbol": "PUBLIC_NET_LIMIT"
+    },
+    {
+      "bytes_utf8": "PUBLIC_NET_TIME",
+      "symbol": "PUBLIC_NET_TIME"
+    },
+    {
+      "bytes_utf8": "FREE_NET_LIMIT",
+      "symbol": "FREE_NET_LIMIT"
+    },
+    {
+      "bytes_utf8": "TOTAL_NET_WEIGHT",
+      "symbol": "TOTAL_NET_WEIGHT"
+    },
+    {
+      "bytes_utf8": "TOTAL_NET_LIMIT",
+      "symbol": "TOTAL_NET_LIMIT"
+    },
+    {
+      "bytes_utf8": "TOTAL_ENERGY_TARGET_LIMIT",
+      "symbol": "TOTAL_ENERGY_TARGET_LIMIT"
+    },
+    {
+      "bytes_utf8": "TOTAL_ENERGY_CURRENT_LIMIT",
+      "symbol": "TOTAL_ENERGY_CURRENT_LIMIT"
+    },
+    {
+      "bytes_utf8": "TOTAL_ENERGY_AVERAGE_USAGE",
+      "symbol": "TOTAL_ENERGY_AVERAGE_USAGE"
+    },
+    {
+      "bytes_utf8": "TOTAL_ENERGY_AVERAGE_TIME",
+      "symbol": "TOTAL_ENERGY_AVERAGE_TIME"
+    },
+    {
+      "bytes_utf8": "TOTAL_ENERGY_WEIGHT",
+      "symbol": "TOTAL_ENERGY_WEIGHT"
+    },
+    {
+      "bytes_utf8": "TOTAL_TRON_POWER_WEIGHT",
+      "symbol": "TOTAL_TRON_POWER_WEIGHT"
+    },
+    {
+      "bytes_utf8": "TOTAL_ENERGY_LIMIT",
+      "symbol": "TOTAL_ENERGY_LIMIT"
+    },
+    {
+      "bytes_utf8": "BLOCK_ENERGY_USAGE",
+      "symbol": "BLOCK_ENERGY_USAGE"
+    },
+    {
+      "bytes_utf8": "ADAPTIVE_RESOURCE_LIMIT_MULTIPLIER",
+      "symbol": "ADAPTIVE_RESOURCE_LIMIT_MULTIPLIER"
+    },
+    {
+      "bytes_utf8": "ADAPTIVE_RESOURCE_LIMIT_TARGET_RATIO",
+      "symbol": "ADAPTIVE_RESOURCE_LIMIT_TARGET_RATIO"
+    }
+  ],
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "schema_version": 3,
+  "stores": [
+    {
+      "db_name": "account",
+      "java_sha256": "e20e395d9f380da362a8b3a04f4b7a8efbdb500c640a07bbe70609b7d7ca1ec4",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/AccountStore.java",
+      "key_codec": "address bytes",
+      "rust_kind": "Account",
+      "value_codec": "Account protobuf"
+    },
+    {
+      "db_name": "accountid-index",
+      "java_sha256": "122a8ad930c6c50d5b9a5eefcf8a5818b30bd08dcccb42b7fb9fc03c77415514",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/AccountIdIndexStore.java",
+      "key_codec": "Locale.ROOT lowercase account-id",
+      "rust_kind": "AccountIdIndex",
+      "value_codec": "address bytes"
+    },
+    {
+      "db_name": "account-index",
+      "java_sha256": "59a0de3b8503ad86ec476ec52b8cef38968914aa0e0a0212c1d99da81f375da0",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/AccountIndexStore.java",
+      "key_codec": "account-name bytes",
+      "rust_kind": "AccountIndex",
+      "value_codec": "address bytes"
+    },
+    {
+      "db_name": "account-asset",
+      "java_sha256": "deb33b4ff8b250114a7a4f04e588d27b4194605eebe326b06bdf36c8296b0583",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/AccountAssetStore.java",
+      "key_codec": "address || asset id/name",
+      "rust_kind": "AccountAsset",
+      "value_codec": "signed big-endian i64"
+    },
+    {
+      "db_name": "asset-issue",
+      "java_sha256": "c67b1850d3554a2ba2999e1aac52dec77d926ef4d013bd952e3298e780bef7f0",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/AssetIssueStore.java",
+      "key_codec": "asset-name bytes",
+      "rust_kind": "AssetIssue",
+      "value_codec": "AssetIssueContract protobuf"
+    },
+    {
+      "db_name": "asset-issue-v2",
+      "java_sha256": "f52a23dea364ea556a9270a9b6b4de6e932b12c1fabb4b3f831770395f34304c",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/AssetIssueV2Store.java",
+      "key_codec": "asset-id UTF-8 bytes",
+      "rust_kind": "AssetIssueV2",
+      "value_codec": "AssetIssueContract protobuf"
+    },
+    {
+      "db_name": "block",
+      "java_sha256": "69efe5d4e060d1b3dc6fd2e9015a9997fa1b69241ecf6b555fb497b2456c3171",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/db/BlockStore.java",
+      "key_codec": "32-byte block id",
+      "rust_kind": "Block",
+      "value_codec": "Block protobuf"
+    },
+    {
+      "db_name": "block-index",
+      "java_sha256": "ce00f807dd292ae8d12578a04ee7b6a4a72282a9c51a0604caf5a81a47f3746c",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/db/BlockIndexStore.java",
+      "key_codec": "signed big-endian i64 height",
+      "rust_kind": "BlockIndex",
+      "value_codec": "32-byte block id"
+    },
+    {
+      "db_name": "trans",
+      "java_sha256": "85a8c93cfbef91b8de88279347e4e2bf7bc80f9e3fa788dfac40665e9784ab28",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/db/TransactionStore.java",
+      "key_codec": "32-byte transaction id",
+      "rust_kind": "Transaction",
+      "value_codec": "8-byte height or Transaction protobuf"
+    },
+    {
+      "db_name": "trans-cache",
+      "java_sha256": null,
+      "java_source": null,
+      "key_codec": "32-byte transaction id",
+      "rust_kind": "TransactionCache",
+      "value_codec": "Transaction protobuf"
+    },
+    {
+      "db_name": "transactionRetStore",
+      "java_sha256": "cec8d257f77cefbaf5e4d2f8344caf04bb766ef99f177affe5edab172d685b29",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/TransactionRetStore.java",
+      "key_codec": "signed big-endian i64 height",
+      "rust_kind": "TransactionRet",
+      "value_codec": "TransactionRet protobuf"
+    },
+    {
+      "db_name": "transactionHistoryStore",
+      "java_sha256": "58b52f54fd68a2e12495c3ba7c600d35c6723949a07e8151f6a64c2774b434c7",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/TransactionHistoryStore.java",
+      "key_codec": "transaction id or height",
+      "rust_kind": "TransactionHistory",
+      "value_codec": "8-byte height or TransactionInfo protobuf"
+    },
+    {
+      "db_name": "recent-block",
+      "java_sha256": "8bfa9eb78b855d7b78aa4847978cb7a6ca47682dc76334e68e6b2e673d165245",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/db/RecentBlockStore.java",
+      "key_codec": "low two height bytes",
+      "rust_kind": "RecentBlock",
+      "value_codec": "block-id bytes 8..16"
+    },
+    {
+      "db_name": "recent-transaction",
+      "java_sha256": "218d7615425a16d28f7a1c4ccca0fe0b9a25c1ba08f1aec45ad3173b7c6fa559",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/db/RecentTransactionStore.java",
+      "key_codec": "transaction id",
+      "rust_kind": "RecentTransaction",
+      "value_codec": "empty/raw marker"
+    },
+    {
+      "db_name": "contract",
+      "java_sha256": "914608e009ca38a1fc45a9f6ebc13e76906dd00a95c9d6f8ab6b9e485e8da024",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/ContractStore.java",
+      "key_codec": "contract address",
+      "rust_kind": "Contract",
+      "value_codec": "SmartContract protobuf without ABI"
+    },
+    {
+      "db_name": "abi",
+      "java_sha256": "6da32204eec09c0c8e11d9373c09afbe81d9c743992c676007c92f5e7d8cdaf3",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/AbiStore.java",
+      "key_codec": "contract address",
+      "rust_kind": "Abi",
+      "value_codec": "SmartContract.ABI protobuf"
+    },
+    {
+      "db_name": "code",
+      "java_sha256": "d6c08ef68e959ae3d294b8488ae339a19c34f32ad8395f54c247a1829b145e18",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/CodeStore.java",
+      "key_codec": "contract address",
+      "rust_kind": "Code",
+      "value_codec": "raw bytecode"
+    },
+    {
+      "db_name": "contract-state",
+      "java_sha256": "0a2e2aa400296181e83288768b5521114702af45188645acc7b5732e55dc192a",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/ContractStateStore.java",
+      "key_codec": "contract address",
+      "rust_kind": "ContractState",
+      "value_codec": "ContractState protobuf"
+    },
+    {
+      "db_name": "storage-row",
+      "java_sha256": "e2d1a33f4832ab2fbbdd4733417c39189febc1f332499c299c20dda2eb8facca",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/StorageRowStore.java",
+      "key_codec": "16-byte address domain || 16-byte slot domain",
+      "rust_kind": "StorageRow",
+      "value_codec": "32-byte value; zero deletes"
+    },
+    {
+      "db_name": "witness",
+      "java_sha256": "8876de3262839bc727133bb468fde1c04d0e5f36ecf1d6791c6ada02657dd8f3",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/WitnessStore.java",
+      "key_codec": "witness address",
+      "rust_kind": "Witness",
+      "value_codec": "Witness protobuf"
+    },
+    {
+      "db_name": "witness_schedule",
+      "java_sha256": "bb9fdd2d515f6bc2717bdb512e602431d285075d6d8d10caa66a65e62eebcd89",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/WitnessScheduleStore.java",
+      "key_codec": "active/current schedule literal",
+      "rust_kind": "WitnessSchedule",
+      "value_codec": "concatenated 21-byte addresses"
+    },
+    {
+      "db_name": "votes",
+      "java_sha256": "98e8bb9228d32f4370dde698d7f8673c2dd00e0056e107346db8f1068c34697e",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/VotesStore.java",
+      "key_codec": "address",
+      "rust_kind": "Votes",
+      "value_codec": "Votes protobuf"
+    },
+    {
+      "db_name": "proposal",
+      "java_sha256": "0da00dd591eae98e80d6c3647c6c1f0bab3388709ff3b047193e5a0fb579c969",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/ProposalStore.java",
+      "key_codec": "signed big-endian i64 proposal id",
+      "rust_kind": "Proposal",
+      "value_codec": "Proposal protobuf"
+    },
+    {
+      "db_name": "exchange",
+      "java_sha256": "244ef0e23c78ad0beaee3aff90e5c56c12150f5624e189647c91639dbfb4b392",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/ExchangeStore.java",
+      "key_codec": "signed big-endian i64 exchange id",
+      "rust_kind": "Exchange",
+      "value_codec": "Exchange protobuf"
+    },
+    {
+      "db_name": "exchange-v2",
+      "java_sha256": "0c0fc46bb6a6a72d579a3bcbbd773ef0137d7ed4375607f21a98e703690fb371",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/ExchangeV2Store.java",
+      "key_codec": "signed big-endian i64 exchange id",
+      "rust_kind": "ExchangeV2",
+      "value_codec": "Exchange protobuf"
+    },
+    {
+      "db_name": "market_account",
+      "java_sha256": "98bfb358f7aaf03dd536519effe5e4ed01d07c6393e26cc4f02378ead6a8a1d7",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/MarketAccountStore.java",
+      "key_codec": "account address",
+      "rust_kind": "MarketAccount",
+      "value_codec": "MarketAccountOrder protobuf"
+    },
+    {
+      "db_name": "market_order",
+      "java_sha256": "b55cb7a2fdc8fb6eb66a0eaf11f3dfeffdd63b540b339f530e127a4aa02662e8",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/MarketOrderStore.java",
+      "key_codec": "Keccak(address || padded pair || count)",
+      "rust_kind": "MarketOrder",
+      "value_codec": "MarketOrder protobuf"
+    },
+    {
+      "db_name": "market_pair_to_price",
+      "java_sha256": "643c8234cac1a1affd29abcb8685bec485f2fc5671e41ad3ffaac30142b51a02",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/MarketPairToPriceStore.java",
+      "key_codec": "two 19-byte zero-padded token ids",
+      "rust_kind": "MarketPairToPrice",
+      "value_codec": "signed big-endian i64 BytesCapsule"
+    },
+    {
+      "db_name": "market_pair_price_to_order",
+      "java_sha256": "3f3f942c2ddcc732b0ebd6f037ad9ab2b9707891a091e4745cd0b8d9d65c98e0",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/MarketPairPriceToOrderStore.java",
+      "key_codec": "pair || normalized signed i64 quantities",
+      "rust_kind": "MarketPairPriceToOrder",
+      "value_codec": "MarketOrderIdList protobuf"
+    },
+    {
+      "db_name": "DelegatedResource",
+      "java_sha256": "27aeec90d807476981af423626b93f73d0e861c0acf693972a9d7754cec2f226",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/DelegatedResourceStore.java",
+      "key_codec": "legacy/V2 owner-receiver-lock key",
+      "rust_kind": "DelegatedResource",
+      "value_codec": "DelegatedResource protobuf"
+    },
+    {
+      "db_name": "DelegatedResourceAccountIndex",
+      "java_sha256": "317edf7ec80659fa4a2dbb615ab670d312a49aaa005b7384e77d64939127dea4",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/DelegatedResourceAccountIndexStore.java",
+      "key_codec": "legacy/V2 account prefix key",
+      "rust_kind": "DelegatedResourceAccountIndex",
+      "value_codec": "DelegatedResourceAccountIndex protobuf"
+    },
+    {
+      "db_name": "properties",
+      "java_sha256": "932602d1531af62af20b3b68806378fd554347e52f37de414c586fa4adf67f27",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java",
+      "key_codec": "exact literal property bytes",
+      "rust_kind": "DynamicProperties",
+      "value_codec": "BytesCapsule raw bytes"
+    },
+    {
+      "db_name": "IncrementalMerkleTree",
+      "java_sha256": "ce95310b20d1da66d98ae759858a75ab38b79d89f1b3c1835c418a6fa5d6a4b3",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/IncrementalMerkleTreeStore.java",
+      "key_codec": "Merkle tree key bytes",
+      "rust_kind": "IncrementalMerkleTree",
+      "value_codec": "IncrementalMerkleTree protobuf"
+    },
+    {
+      "db_name": "nullifier",
+      "java_sha256": "88aadbb64790aa778c4e86b39ec6af93327805e84cf87bd2155a0e2afe7a4baf",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/NullifierStore.java",
+      "key_codec": "nullifier bytes",
+      "rust_kind": "Nullifier",
+      "value_codec": "BytesCapsule raw bytes"
+    },
+    {
+      "db_name": "zkProof",
+      "java_sha256": "1db3dec36e78c353e3c15d13269b2b92907dd98dd4532e160c559e914bc1649a",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/ZKProofStore.java",
+      "key_codec": "proof hash bytes",
+      "rust_kind": "ZkProof",
+      "value_codec": "one-byte boolean"
+    },
+    {
+      "db_name": "tree-block-index",
+      "java_sha256": "a259aa8eaea96cf22cc9a0033e0f7e3476cfe7c24acf50072d5d4ba730352244",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/TreeBlockIndexStore.java",
+      "key_codec": "tree block index",
+      "rust_kind": "TreeBlockIndex",
+      "value_codec": "protobuf/raw"
+    },
+    {
+      "db_name": "section-bloom",
+      "java_sha256": "44778dd0b2d72b8fcb15fd237106e9ad05e3b61f947999913e72492357eb0e62",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/SectionBloomStore.java",
+      "key_codec": "hex(section*1_000_000+bit)",
+      "rust_kind": "SectionBloom",
+      "value_codec": "bloom bytes"
+    },
+    {
+      "db_name": "account-trace",
+      "java_sha256": "e55c93901e92dbf0415f80a31d3b614d0ef6e16fb050437bf4dd4b3f63d4e7f7",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/AccountTraceStore.java",
+      "key_codec": "address || xor height",
+      "rust_kind": "AccountTrace",
+      "value_codec": "AccountTrace protobuf"
+    },
+    {
+      "db_name": "balance-trace",
+      "java_sha256": "f2fb3aabe474ce577fe1b8bd559863fa1e339ef123f9b4b393eea2ec73595c2b",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/BalanceTraceStore.java",
+      "key_codec": "block number",
+      "rust_kind": "BalanceTrace",
+      "value_codec": "BlockBalanceTrace protobuf"
+    },
+    {
+      "db_name": "delegation",
+      "java_sha256": "7f21a5a854a13057710d4fabe40ab86bba8732af7e90efb49a8c56b25071b641",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/DelegationStore.java",
+      "key_codec": "delegation key",
+      "rust_kind": "Delegation",
+      "value_codec": "raw/protobuf"
+    },
+    {
+      "db_name": "pbft-sign-data",
+      "java_sha256": "81d831c5de5922db59dde594369e672fe43c138597fcd3b0cbd61b068a80a0f2",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/db/PbftSignDataStore.java",
+      "key_codec": "PBFT key",
+      "rust_kind": "Pbft",
+      "value_codec": "PBFTMessage protobuf"
+    },
+    {
+      "db_name": "reward-vi",
+      "java_sha256": "15d43caf4f41dd735c21635677eb6fe8e0655cbfd78a100fad86a4bed9199c14",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/RewardViStore.java",
+      "key_codec": "address",
+      "rust_kind": "RewardVi",
+      "value_codec": "reward bytes"
+    },
+    {
+      "db_name": "common",
+      "java_sha256": "971d4b7d59f2b7eb946ab799d01745622c2a9468c019ab0eb9b4654e7937b223",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/db/CommonStore.java",
+      "key_codec": "raw key",
+      "rust_kind": "Common",
+      "value_codec": "raw bytes"
+    },
+    {
+      "db_name": "checkpoint",
+      "java_sha256": null,
+      "java_source": null,
+      "key_codec": "checkpoint key",
+      "rust_kind": "Checkpoint",
+      "value_codec": "checkpoint bytes"
+    },
+    {
+      "db_name": "tmp",
+      "java_sha256": null,
+      "java_source": null,
+      "key_codec": "temporary key",
+      "rust_kind": "Temporary",
+      "value_codec": "raw bytes"
+    }
+  ]
+}

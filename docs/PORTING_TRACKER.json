@@ -840,89 +840,121 @@
     {
       "id": "C008",
       "title": "Capsules and logical store schemas",
-      "status": "todo",
-      "owner": null,
-      "updated": null,
+      "status": "done",
+      "owner": "state-port",
+      "updated": "2026-08-30",
       "resume": null,
       "items": [
         {
           "id": "C008.01",
           "description": "Account/permission/resource/asset capsule codecs and address keys.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed account, permission, resource, and asset capsule codecs with exact address-key behavior."
         },
         {
           "id": "C008.02",
           "description": "Block/transaction/result/info capsules and index values.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed block, transaction, result, and info capsule codecs and index values."
         },
         {
           "id": "C008.03",
           "description": "Exact account-name/id, asset legacy/V2, recent Tapos, and history keys.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed exact account-name/id, legacy and V2 asset, recent Tapos, and history key codecs."
         },
         {
           "id": "C008.04",
           "description": "Contract/ABI/code/state/storage-row split and key composition.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed contract, ABI, code, state, and storage-row separation with exact key composition."
         },
         {
           "id": "C008.05",
           "description": "Witness/schedule/votes/proposal/exchange schemas.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed witness, schedule, votes, proposal, and exchange logical schemas."
         },
         {
           "id": "C008.06",
           "description": "Market pair/price/order keys, padding, normalized quantities, linked records.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed market pair, price, and order keys, padding, normalized quantities, and linked-record mutations."
         },
         {
           "id": "C008.07",
           "description": "Legacy/V2 delegated resource and account-index prefixes.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed legacy and V2 delegated-resource and account-index prefix codecs."
         },
         {
           "id": "C008.08",
           "description": "Shielded, bloom, trace, common, PBFT, and all remaining stores.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed shielded, bloom, trace, common, PBFT, and remaining logical store schemas."
         },
         {
           "id": "C008.09",
           "description": "Dynamic properties keys/defaults, including leading-space ` ALLOW_SAME_TOKEN_NAME`.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed dynamic-property keys and defaults, preserving the leading-space ALLOW_SAME_TOKEN_NAME quirk."
         },
         {
           "id": "C008.10",
           "description": "Account-asset optimization representation and external 8-byte balances.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed optimized account-asset representation and external eight-byte balance writes."
         },
         {
           "id": "C008.11",
           "description": "Generate store/DB/key/value/dynamic-property inventories and the state coverage matrix for absent/present/delete, every session transition, nested commit/merge/revoke/pop/close, persistence crash points, reopen, and every relevant fork-flag boundary.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed the source-pinned inventories, logical fixtures, coverage matrix, and exact Java-test reconciliation for the C008 logical-state boundary."
         }
       ],
       "gate": {
         "id": "C008.V",
-        "description": "Every Java DB name/key/value fixture compares exactly at the logical layer.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: all 323 reconciled rows, 2 logical contract tests, 16 integration contract tests, and the locked tron-state all-targets workspace check completed successfully.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C008 inventory, fixtures, reconciliation and workspace gate",
+            "cwd": ".",
+            "argv": ["python3", "tools/state/c008_gate.py"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C008 logical store, capsule, key and value fixtures",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-state", "--test", "logical_contract", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C008 atomic, reopen, crash, market and account-asset integration",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-state", "--test", "integration_contract", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C008 state workspace check",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "check", "-p", "tron-state", "--all-targets", "--locked"],
+            "timeout_seconds": 300
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C008.R.01",
+            "summary": "Final review required confirmation of the complete C008 reconciliation, logical and integration contracts, and locked workspace result.",
+            "status": "closed",
+            "resolution": "Approved after confirming the final results: 323 reconciled rows pass, both logical contract tests pass, all 16 integration contract tests pass, and the locked tron-state all-targets workspace check passes. All findings are closed, review is approved, C008 is complete, and the next ready item is C009.01."
+          }
+        ]
       },
       "blocker": null
     },

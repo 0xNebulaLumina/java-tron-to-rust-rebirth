@@ -1,0 +1,1107 @@
+{
+  "schema_version": 1,
+  "java_source": "java-tron/chainbase/src/main/java/org/tron/core/store/DynamicPropertiesStore.java",
+  "keys": [
+    {
+      "symbol": "LATEST_BLOCK_HEADER_TIMESTAMP",
+      "bytes_utf8": "latest_block_header_timestamp"
+    },
+    {
+      "symbol": "LATEST_BLOCK_HEADER_NUMBER",
+      "bytes_utf8": "latest_block_header_number"
+    },
+    {
+      "symbol": "LATEST_BLOCK_HEADER_HASH",
+      "bytes_utf8": "latest_block_header_hash"
+    },
+    {
+      "symbol": "STATE_FLAG",
+      "bytes_utf8": "state_flag"
+    },
+    {
+      "symbol": "LATEST_SOLIDIFIED_BLOCK_NUM",
+      "bytes_utf8": "LATEST_SOLIDIFIED_BLOCK_NUM"
+    },
+    {
+      "symbol": "LATEST_PROPOSAL_NUM",
+      "bytes_utf8": "LATEST_PROPOSAL_NUM"
+    },
+    {
+      "symbol": "LATEST_EXCHANGE_NUM",
+      "bytes_utf8": "LATEST_EXCHANGE_NUM"
+    },
+    {
+      "symbol": "BLOCK_FILLED_SLOTS",
+      "bytes_utf8": "BLOCK_FILLED_SLOTS"
+    },
+    {
+      "symbol": "BLOCK_FILLED_SLOTS_INDEX",
+      "bytes_utf8": "BLOCK_FILLED_SLOTS_INDEX"
+    },
+    {
+      "symbol": "NEXT_MAINTENANCE_TIME",
+      "bytes_utf8": "NEXT_MAINTENANCE_TIME"
+    },
+    {
+      "symbol": "MAX_FROZEN_TIME",
+      "bytes_utf8": "MAX_FROZEN_TIME"
+    },
+    {
+      "symbol": "MIN_FROZEN_TIME",
+      "bytes_utf8": "MIN_FROZEN_TIME"
+    },
+    {
+      "symbol": "MAX_FROZEN_SUPPLY_NUMBER",
+      "bytes_utf8": "MAX_FROZEN_SUPPLY_NUMBER"
+    },
+    {
+      "symbol": "MAX_FROZEN_SUPPLY_TIME",
+      "bytes_utf8": "MAX_FROZEN_SUPPLY_TIME"
+    },
+    {
+      "symbol": "MIN_FROZEN_SUPPLY_TIME",
+      "bytes_utf8": "MIN_FROZEN_SUPPLY_TIME"
+    },
+    {
+      "symbol": "WITNESS_ALLOWANCE_FROZEN_TIME",
+      "bytes_utf8": "WITNESS_ALLOWANCE_FROZEN_TIME"
+    },
+    {
+      "symbol": "MAINTENANCE_TIME_INTERVAL",
+      "bytes_utf8": "MAINTENANCE_TIME_INTERVAL"
+    },
+    {
+      "symbol": "ACCOUNT_UPGRADE_COST",
+      "bytes_utf8": "ACCOUNT_UPGRADE_COST"
+    },
+    {
+      "symbol": "WITNESS_PAY_PER_BLOCK",
+      "bytes_utf8": "WITNESS_PAY_PER_BLOCK"
+    },
+    {
+      "symbol": "WITNESS_127_PAY_PER_BLOCK",
+      "bytes_utf8": "WITNESS_127_PAY_PER_BLOCK"
+    },
+    {
+      "symbol": "WITNESS_STANDBY_ALLOWANCE",
+      "bytes_utf8": "WITNESS_STANDBY_ALLOWANCE"
+    },
+    {
+      "symbol": "ENERGY_FEE",
+      "bytes_utf8": "ENERGY_FEE"
+    },
+    {
+      "symbol": "MAX_CPU_TIME_OF_ONE_TX",
+      "bytes_utf8": "MAX_CPU_TIME_OF_ONE_TX"
+    },
+    {
+      "symbol": "CREATE_ACCOUNT_FEE",
+      "bytes_utf8": "CREATE_ACCOUNT_FEE"
+    },
+    {
+      "symbol": "CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT",
+      "bytes_utf8": "CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT"
+    },
+    {
+      "symbol": "CREATE_NEW_ACCOUNT_BANDWIDTH_RATE",
+      "bytes_utf8": "CREATE_NEW_ACCOUNT_BANDWIDTH_RATE"
+    },
+    {
+      "symbol": "TRANSACTION_FEE",
+      "bytes_utf8": "TRANSACTION_FEE"
+    },
+    {
+      "symbol": "ASSET_ISSUE_FEE",
+      "bytes_utf8": "ASSET_ISSUE_FEE"
+    },
+    {
+      "symbol": "UPDATE_ACCOUNT_PERMISSION_FEE",
+      "bytes_utf8": "UPDATE_ACCOUNT_PERMISSION_FEE"
+    },
+    {
+      "symbol": "MULTI_SIGN_FEE",
+      "bytes_utf8": "MULTI_SIGN_FEE"
+    },
+    {
+      "symbol": "SHIELDED_TRANSACTION_FEE",
+      "bytes_utf8": "SHIELDED_TRANSACTION_FEE"
+    },
+    {
+      "symbol": "SHIELDED_TRANSACTION_CREATE_ACCOUNT_FEE",
+      "bytes_utf8": "SHIELDED_TRANSACTION_CREATE_ACCOUNT_FEE"
+    },
+    {
+      "symbol": "TOTAL_SHIELDED_POOL_VALUE",
+      "bytes_utf8": "TOTAL_SHIELDED_POOL_VALUE"
+    },
+    {
+      "symbol": "EXCHANGE_CREATE_FEE",
+      "bytes_utf8": "EXCHANGE_CREATE_FEE"
+    },
+    {
+      "symbol": "EXCHANGE_BALANCE_LIMIT",
+      "bytes_utf8": "EXCHANGE_BALANCE_LIMIT"
+    },
+    {
+      "symbol": "TOTAL_TRANSACTION_COST",
+      "bytes_utf8": "TOTAL_TRANSACTION_COST"
+    },
+    {
+      "symbol": "TOTAL_CREATE_ACCOUNT_COST",
+      "bytes_utf8": "TOTAL_CREATE_ACCOUNT_COST"
+    },
+    {
+      "symbol": "TOTAL_CREATE_WITNESS_COST",
+      "bytes_utf8": "TOTAL_CREATE_WITNESS_FEE"
+    },
+    {
+      "symbol": "TOTAL_STORAGE_POOL",
+      "bytes_utf8": "TOTAL_STORAGE_POOL"
+    },
+    {
+      "symbol": "TOTAL_STORAGE_TAX",
+      "bytes_utf8": "TOTAL_STORAGE_TAX"
+    },
+    {
+      "symbol": "TOTAL_STORAGE_RESERVED",
+      "bytes_utf8": "TOTAL_STORAGE_RESERVED"
+    },
+    {
+      "symbol": "STORAGE_EXCHANGE_TAX_RATE",
+      "bytes_utf8": "STORAGE_EXCHANGE_TAX_RATE"
+    },
+    {
+      "symbol": "VERSION_NUMBER",
+      "bytes_utf8": "VERSION_NUMBER"
+    },
+    {
+      "symbol": "REMOVE_THE_POWER_OF_THE_GR",
+      "bytes_utf8": "REMOVE_THE_POWER_OF_THE_GR"
+    },
+    {
+      "symbol": "ALLOW_DELEGATE_RESOURCE",
+      "bytes_utf8": "ALLOW_DELEGATE_RESOURCE"
+    },
+    {
+      "symbol": "ALLOW_ADAPTIVE_ENERGY",
+      "bytes_utf8": "ALLOW_ADAPTIVE_ENERGY"
+    },
+    {
+      "symbol": "ALLOW_UPDATE_ACCOUNT_NAME",
+      "bytes_utf8": "ALLOW_UPDATE_ACCOUNT_NAME"
+    },
+    {
+      "symbol": "ALLOW_SAME_TOKEN_NAME",
+      "bytes_utf8": " ALLOW_SAME_TOKEN_NAME"
+    },
+    {
+      "symbol": "ALLOW_CREATION_OF_CONTRACTS",
+      "bytes_utf8": "ALLOW_CREATION_OF_CONTRACTS"
+    },
+    {
+      "symbol": "TOTAL_SIGN_NUM",
+      "bytes_utf8": "TOTAL_SIGN_NUM"
+    },
+    {
+      "symbol": "ALLOW_MULTI_SIGN",
+      "bytes_utf8": "ALLOW_MULTI_SIGN"
+    },
+    {
+      "symbol": "TOKEN_ID_NUM",
+      "bytes_utf8": "TOKEN_ID_NUM"
+    },
+    {
+      "symbol": "TOKEN_UPDATE_DONE",
+      "bytes_utf8": "TOKEN_UPDATE_DONE"
+    },
+    {
+      "symbol": "ABI_MOVE_DONE",
+      "bytes_utf8": "ABI_MOVE_DONE"
+    },
+    {
+      "symbol": "ALLOW_TVM_TRANSFER_TRC10",
+      "bytes_utf8": "ALLOW_TVM_TRANSFER_TRC10"
+    },
+    {
+      "symbol": "ALLOW_SHIELDED_TRANSACTION",
+      "bytes_utf8": "ALLOW_SHIELDED_TRANSACTION"
+    },
+    {
+      "symbol": "ALLOW_SHIELDED_TRC20_TRANSACTION",
+      "bytes_utf8": "ALLOW_SHIELDED_TRC20_TRANSACTION"
+    },
+    {
+      "symbol": "ALLOW_TVM_ISTANBUL",
+      "bytes_utf8": "ALLOW_TVM_ISTANBUL"
+    },
+    {
+      "symbol": "ALLOW_TVM_CONSTANTINOPLE",
+      "bytes_utf8": "ALLOW_TVM_CONSTANTINOPLE"
+    },
+    {
+      "symbol": "ALLOW_TVM_SOLIDITY_059",
+      "bytes_utf8": "ALLOW_TVM_SOLIDITY_059"
+    },
+    {
+      "symbol": "FORBID_TRANSFER_TO_CONTRACT",
+      "bytes_utf8": "FORBID_TRANSFER_TO_CONTRACT"
+    },
+    {
+      "symbol": "ALLOW_PROTO_FILTER_NUM",
+      "bytes_utf8": "ALLOW_PROTO_FILTER_NUM"
+    },
+    {
+      "symbol": "AVAILABLE_CONTRACT_TYPE",
+      "bytes_utf8": "AVAILABLE_CONTRACT_TYPE"
+    },
+    {
+      "symbol": "ACTIVE_DEFAULT_OPERATIONS",
+      "bytes_utf8": "ACTIVE_DEFAULT_OPERATIONS"
+    },
+    {
+      "symbol": "ALLOW_ACCOUNT_STATE_ROOT",
+      "bytes_utf8": "ALLOW_ACCOUNT_STATE_ROOT"
+    },
+    {
+      "symbol": "CURRENT_CYCLE_NUMBER",
+      "bytes_utf8": "CURRENT_CYCLE_NUMBER"
+    },
+    {
+      "symbol": "CHANGE_DELEGATION",
+      "bytes_utf8": "CHANGE_DELEGATION"
+    },
+    {
+      "symbol": "ALLOW_PBFT",
+      "bytes_utf8": "ALLOW_PBFT"
+    },
+    {
+      "symbol": "ALLOW_MARKET_TRANSACTION",
+      "bytes_utf8": "ALLOW_MARKET_TRANSACTION"
+    },
+    {
+      "symbol": "MARKET_SELL_FEE",
+      "bytes_utf8": "MARKET_SELL_FEE"
+    },
+    {
+      "symbol": "MARKET_CANCEL_FEE",
+      "bytes_utf8": "MARKET_CANCEL_FEE"
+    },
+    {
+      "symbol": "MARKET_QUANTITY_LIMIT",
+      "bytes_utf8": "MARKET_QUANTITY_LIMIT"
+    },
+    {
+      "symbol": "ALLOW_TRANSACTION_FEE_POOL",
+      "bytes_utf8": "ALLOW_TRANSACTION_FEE_POOL"
+    },
+    {
+      "symbol": "TRANSACTION_FEE_POOL",
+      "bytes_utf8": "TRANSACTION_FEE_POOL"
+    },
+    {
+      "symbol": "MAX_FEE_LIMIT",
+      "bytes_utf8": "MAX_FEE_LIMIT"
+    },
+    {
+      "symbol": "BURN_TRX_AMOUNT",
+      "bytes_utf8": "BURN_TRX_AMOUNT"
+    },
+    {
+      "symbol": "ALLOW_BLACKHOLE_OPTIMIZATION",
+      "bytes_utf8": "ALLOW_BLACKHOLE_OPTIMIZATION"
+    },
+    {
+      "symbol": "ALLOW_NEW_RESOURCE_MODEL",
+      "bytes_utf8": "ALLOW_NEW_RESOURCE_MODEL"
+    },
+    {
+      "symbol": "ALLOW_TVM_FREEZE",
+      "bytes_utf8": "ALLOW_TVM_FREEZE"
+    },
+    {
+      "symbol": "ALLOW_TVM_VOTE",
+      "bytes_utf8": "ALLOW_TVM_VOTE"
+    },
+    {
+      "symbol": "ALLOW_TVM_LONDON",
+      "bytes_utf8": "ALLOW_TVM_LONDON"
+    },
+    {
+      "symbol": "ALLOW_TVM_COMPATIBLE_EVM",
+      "bytes_utf8": "ALLOW_TVM_COMPATIBLE_EVM"
+    },
+    {
+      "symbol": "NEW_REWARD_ALGORITHM_EFFECTIVE_CYCLE",
+      "bytes_utf8": "NEW_REWARD_ALGORITHM_EFFECTIVE_CYCLE"
+    },
+    {
+      "symbol": "ALLOW_ACCOUNT_ASSET_OPTIMIZATION",
+      "bytes_utf8": "ALLOW_ACCOUNT_ASSET_OPTIMIZATION"
+    },
+    {
+      "symbol": "ALLOW_ASSET_OPTIMIZATION",
+      "bytes_utf8": "ALLOW_ASSET_OPTIMIZATION"
+    },
+    {
+      "symbol": "ENERGY_PRICE_HISTORY",
+      "bytes_utf8": "ENERGY_PRICE_HISTORY"
+    },
+    {
+      "symbol": "ENERGY_PRICE_HISTORY_DONE",
+      "bytes_utf8": "ENERGY_PRICE_HISTORY_DONE"
+    },
+    {
+      "symbol": "BANDWIDTH_PRICE_HISTORY",
+      "bytes_utf8": "BANDWIDTH_PRICE_HISTORY"
+    },
+    {
+      "symbol": "BANDWIDTH_PRICE_HISTORY_DONE",
+      "bytes_utf8": "BANDWIDTH_PRICE_HISTORY_DONE"
+    },
+    {
+      "symbol": "SET_BLACKHOLE_ACCOUNT_PERMISSION",
+      "bytes_utf8": "SET_BLACKHOLE_ACCOUNT_PERMISSION"
+    },
+    {
+      "symbol": "ALLOW_HIGHER_LIMIT_FOR_MAX_CPU_TIME_OF_ONE_TX",
+      "bytes_utf8": "ALLOW_HIGHER_LIMIT_FOR_MAX_CPU_TIME_OF_ONE_TX"
+    },
+    {
+      "symbol": "ALLOW_NEW_REWARD",
+      "bytes_utf8": "ALLOW_NEW_REWARD"
+    },
+    {
+      "symbol": "MEMO_FEE",
+      "bytes_utf8": "MEMO_FEE"
+    },
+    {
+      "symbol": "MEMO_FEE_HISTORY",
+      "bytes_utf8": "MEMO_FEE_HISTORY"
+    },
+    {
+      "symbol": "ALLOW_DELEGATE_OPTIMIZATION",
+      "bytes_utf8": "ALLOW_DELEGATE_OPTIMIZATION"
+    },
+    {
+      "symbol": "ALLOW_DYNAMIC_ENERGY",
+      "bytes_utf8": "ALLOW_DYNAMIC_ENERGY"
+    },
+    {
+      "symbol": "DYNAMIC_ENERGY_THRESHOLD",
+      "bytes_utf8": "DYNAMIC_ENERGY_THRESHOLD"
+    },
+    {
+      "symbol": "DYNAMIC_ENERGY_INCREASE_FACTOR",
+      "bytes_utf8": "DYNAMIC_ENERGY_INCREASE_FACTOR"
+    },
+    {
+      "symbol": "DYNAMIC_ENERGY_MAX_FACTOR",
+      "bytes_utf8": "DYNAMIC_ENERGY_MAX_FACTOR"
+    },
+    {
+      "symbol": "UNFREEZE_DELAY_DAYS",
+      "bytes_utf8": "UNFREEZE_DELAY_DAYS"
+    },
+    {
+      "symbol": "ALLOW_OPTIMIZED_RETURN_VALUE_OF_CHAIN_ID",
+      "bytes_utf8": "ALLOW_OPTIMIZED_RETURN_VALUE_OF_CHAIN_ID"
+    },
+    {
+      "symbol": "ALLOW_TVM_SHANGHAI",
+      "bytes_utf8": "ALLOW_TVM_SHANGHAI"
+    },
+    {
+      "symbol": "ALLOW_CANCEL_ALL_UNFREEZE_V2",
+      "bytes_utf8": "ALLOW_CANCEL_ALL_UNFREEZE_V2"
+    },
+    {
+      "symbol": "MAX_DELEGATE_LOCK_PERIOD",
+      "bytes_utf8": "MAX_DELEGATE_LOCK_PERIOD"
+    },
+    {
+      "symbol": "ALLOW_OLD_REWARD_OPT",
+      "bytes_utf8": "ALLOW_OLD_REWARD_OPT"
+    },
+    {
+      "symbol": "ALLOW_ENERGY_ADJUSTMENT",
+      "bytes_utf8": "ALLOW_ENERGY_ADJUSTMENT"
+    },
+    {
+      "symbol": "MAX_CREATE_ACCOUNT_TX_SIZE",
+      "bytes_utf8": "MAX_CREATE_ACCOUNT_TX_SIZE"
+    },
+    {
+      "symbol": "ALLOW_STRICT_MATH",
+      "bytes_utf8": "ALLOW_STRICT_MATH"
+    },
+    {
+      "symbol": "CONSENSUS_LOGIC_OPTIMIZATION",
+      "bytes_utf8": "CONSENSUS_LOGIC_OPTIMIZATION"
+    },
+    {
+      "symbol": "ALLOW_TVM_CANCUN",
+      "bytes_utf8": "ALLOW_TVM_CANCUN"
+    },
+    {
+      "symbol": "ALLOW_TVM_BLOB",
+      "bytes_utf8": "ALLOW_TVM_BLOB"
+    },
+    {
+      "symbol": "PROPOSAL_EXPIRE_TIME",
+      "bytes_utf8": "PROPOSAL_EXPIRE_TIME"
+    },
+    {
+      "symbol": "ALLOW_TVM_SELFDESTRUCT_RESTRICTION",
+      "bytes_utf8": "ALLOW_TVM_SELFDESTRUCT_RESTRICTION"
+    },
+    {
+      "symbol": "ALLOW_TVM_OSAKA",
+      "bytes_utf8": "ALLOW_TVM_OSAKA"
+    },
+    {
+      "symbol": "ALLOW_TVM_PRAGUE",
+      "bytes_utf8": "ALLOW_TVM_PRAGUE"
+    },
+    {
+      "symbol": "BLOCK_HASH_HISTORY_INSTALLED",
+      "bytes_utf8": "BLOCK_HASH_HISTORY_INSTALLED"
+    },
+    {
+      "symbol": "ALLOW_HARDEN_RESOURCE_CALCULATION",
+      "bytes_utf8": "ALLOW_HARDEN_RESOURCE_CALCULATION"
+    },
+    {
+      "symbol": "ALLOW_HARDEN_EXCHANGE_CALCULATION",
+      "bytes_utf8": "ALLOW_HARDEN_EXCHANGE_CALCULATION"
+    },
+    {
+      "symbol": "TURKISH_KEY_MIGRATION_DONE",
+      "bytes_utf8": "TURKISH_KEY_MIGRATION_DONE"
+    },
+    {
+      "symbol": "ONE_DAY_NET_LIMIT",
+      "bytes_utf8": "ONE_DAY_NET_LIMIT"
+    },
+    {
+      "symbol": "PUBLIC_NET_USAGE",
+      "bytes_utf8": "PUBLIC_NET_USAGE"
+    },
+    {
+      "symbol": "PUBLIC_NET_LIMIT",
+      "bytes_utf8": "PUBLIC_NET_LIMIT"
+    },
+    {
+      "symbol": "PUBLIC_NET_TIME",
+      "bytes_utf8": "PUBLIC_NET_TIME"
+    },
+    {
+      "symbol": "FREE_NET_LIMIT",
+      "bytes_utf8": "FREE_NET_LIMIT"
+    },
+    {
+      "symbol": "TOTAL_NET_WEIGHT",
+      "bytes_utf8": "TOTAL_NET_WEIGHT"
+    },
+    {
+      "symbol": "TOTAL_NET_LIMIT",
+      "bytes_utf8": "TOTAL_NET_LIMIT"
+    },
+    {
+      "symbol": "TOTAL_ENERGY_TARGET_LIMIT",
+      "bytes_utf8": "TOTAL_ENERGY_TARGET_LIMIT"
+    },
+    {
+      "symbol": "TOTAL_ENERGY_CURRENT_LIMIT",
+      "bytes_utf8": "TOTAL_ENERGY_CURRENT_LIMIT"
+    },
+    {
+      "symbol": "TOTAL_ENERGY_AVERAGE_USAGE",
+      "bytes_utf8": "TOTAL_ENERGY_AVERAGE_USAGE"
+    },
+    {
+      "symbol": "TOTAL_ENERGY_AVERAGE_TIME",
+      "bytes_utf8": "TOTAL_ENERGY_AVERAGE_TIME"
+    },
+    {
+      "symbol": "TOTAL_ENERGY_WEIGHT",
+      "bytes_utf8": "TOTAL_ENERGY_WEIGHT"
+    },
+    {
+      "symbol": "TOTAL_TRON_POWER_WEIGHT",
+      "bytes_utf8": "TOTAL_TRON_POWER_WEIGHT"
+    },
+    {
+      "symbol": "TOTAL_ENERGY_LIMIT",
+      "bytes_utf8": "TOTAL_ENERGY_LIMIT"
+    },
+    {
+      "symbol": "BLOCK_ENERGY_USAGE",
+      "bytes_utf8": "BLOCK_ENERGY_USAGE"
+    },
+    {
+      "symbol": "ADAPTIVE_RESOURCE_LIMIT_MULTIPLIER",
+      "bytes_utf8": "ADAPTIVE_RESOURCE_LIMIT_MULTIPLIER"
+    },
+    {
+      "symbol": "ADAPTIVE_RESOURCE_LIMIT_TARGET_RATIO",
+      "bytes_utf8": "ADAPTIVE_RESOURCE_LIMIT_TARGET_RATIO"
+    }
+  ],
+  "constructor_defaults": [
+    {
+      "getter": "getTotalSignNum",
+      "setter": "saveTotalSignNum",
+      "java_expression": "5"
+    },
+    {
+      "getter": "getAllowMultiSign",
+      "setter": "saveAllowMultiSign",
+      "java_expression": "CommonParameter.getInstance() .getAllowMultiSign()"
+    },
+    {
+      "getter": "getLatestBlockHeaderTimestamp",
+      "setter": "saveLatestBlockHeaderTimestamp",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getLatestBlockHeaderNumber",
+      "setter": "saveLatestBlockHeaderNumber",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getLatestBlockHeaderHash",
+      "setter": "saveLatestBlockHeaderHash",
+      "java_expression": "ByteString.copyFrom(ByteArray.fromHexString(\"00\"))"
+    },
+    {
+      "getter": "getStateFlag",
+      "setter": "saveStateFlag",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getLatestSolidifiedBlockNum",
+      "setter": "saveLatestSolidifiedBlockNum",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getLatestProposalNum",
+      "setter": "saveLatestProposalNum",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getLatestExchangeNum",
+      "setter": "saveLatestExchangeNum",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getBlockFilledSlotsIndex",
+      "setter": "saveBlockFilledSlotsIndex",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getTokenIdNum",
+      "setter": "saveTokenIdNum",
+      "java_expression": "1000000L"
+    },
+    {
+      "getter": "getTokenUpdateDone",
+      "setter": "saveTokenUpdateDone",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getAbiMoveDone",
+      "setter": "saveAbiMoveDone",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getMaxFrozenTime",
+      "setter": "saveMaxFrozenTime",
+      "java_expression": "3"
+    },
+    {
+      "getter": "getMinFrozenTime",
+      "setter": "saveMinFrozenTime",
+      "java_expression": "3"
+    },
+    {
+      "getter": "getMaxFrozenSupplyNumber",
+      "setter": "saveMaxFrozenSupplyNumber",
+      "java_expression": "10"
+    },
+    {
+      "getter": "getMaxFrozenSupplyTime",
+      "setter": "saveMaxFrozenSupplyTime",
+      "java_expression": "3652"
+    },
+    {
+      "getter": "getMinFrozenSupplyTime",
+      "setter": "saveMinFrozenSupplyTime",
+      "java_expression": "1"
+    },
+    {
+      "getter": "getWitnessAllowanceFrozenTime",
+      "setter": "saveWitnessAllowanceFrozenTime",
+      "java_expression": "1"
+    },
+    {
+      "getter": "getWitnessPayPerBlock",
+      "setter": "saveWitnessPayPerBlock",
+      "java_expression": "32000000L"
+    },
+    {
+      "getter": "getWitnessStandbyAllowance",
+      "setter": "saveWitnessStandbyAllowance",
+      "java_expression": "115_200_000_000L"
+    },
+    {
+      "getter": "getMaintenanceTimeInterval",
+      "setter": "saveMaintenanceTimeInterval",
+      "java_expression": "CommonParameter.getInstance() .getMaintenanceTimeInterval()"
+    },
+    {
+      "getter": "getAccountUpgradeCost",
+      "setter": "saveAccountUpgradeCost",
+      "java_expression": "9_999_000_000L"
+    },
+    {
+      "getter": "getPublicNetUsage",
+      "setter": "savePublicNetUsage",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getOneDayNetLimit",
+      "setter": "saveOneDayNetLimit",
+      "java_expression": "57_600_000_000L"
+    },
+    {
+      "getter": "getPublicNetLimit",
+      "setter": "savePublicNetLimit",
+      "java_expression": "14_400_000_000L"
+    },
+    {
+      "getter": "getPublicNetTime",
+      "setter": "savePublicNetTime",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getFreeNetLimit",
+      "setter": "saveFreeNetLimit",
+      "java_expression": "5000L"
+    },
+    {
+      "getter": "getTotalNetWeight",
+      "setter": "saveTotalNetWeight",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getTotalNetLimit",
+      "setter": "saveTotalNetLimit",
+      "java_expression": "43_200_000_000L"
+    },
+    {
+      "getter": "getTotalEnergyWeight",
+      "setter": "saveTotalEnergyWeight",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getTotalTronPowerWeight",
+      "setter": "saveTotalTronPowerWeight",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getAllowAdaptiveEnergy",
+      "setter": "saveAllowAdaptiveEnergy",
+      "java_expression": "CommonParameter.getInstance() .getAllowAdaptiveEnergy()"
+    },
+    {
+      "getter": "getAdaptiveResourceLimitTargetRatio",
+      "setter": "saveAdaptiveResourceLimitTargetRatio",
+      "java_expression": "14400"
+    },
+    {
+      "getter": "getTotalEnergyLimit",
+      "setter": "saveTotalEnergyLimit",
+      "java_expression": "50_000_000_000L"
+    },
+    {
+      "getter": "getEnergyFee",
+      "setter": "saveEnergyFee",
+      "java_expression": "DEFAULT_ENERGY_FEE"
+    },
+    {
+      "getter": "getMaxCpuTimeOfOneTx",
+      "setter": "saveMaxCpuTimeOfOneTx",
+      "java_expression": "50L"
+    },
+    {
+      "getter": "getCreateAccountFee",
+      "setter": "saveCreateAccountFee",
+      "java_expression": "100_000L"
+    },
+    {
+      "getter": "getShieldedTransactionFee",
+      "setter": "saveShieldedTransactionFee",
+      "java_expression": "100_000L"
+    },
+    {
+      "getter": "getShieldedTransactionCreateAccountFee",
+      "setter": "saveShieldedTransactionCreateAccountFee",
+      "java_expression": "1_000_000L"
+    },
+    {
+      "getter": "getTotalShieldedPoolValue",
+      "setter": "saveTotalShieldedPoolValue",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getCreateNewAccountFeeInSystemContract",
+      "setter": "saveCreateNewAccountFeeInSystemContract",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getCreateNewAccountBandwidthRate",
+      "setter": "saveCreateNewAccountBandwidthRate",
+      "java_expression": "1L"
+    },
+    {
+      "getter": "getTransactionFee",
+      "setter": "saveTransactionFee",
+      "java_expression": "DEFAULT_TRANSACTION_FEE"
+    },
+    {
+      "getter": "getAssetIssueFee",
+      "setter": "saveAssetIssueFee",
+      "java_expression": "1024000000L"
+    },
+    {
+      "getter": "getUpdateAccountPermissionFee",
+      "setter": "saveUpdateAccountPermissionFee",
+      "java_expression": "100000000L"
+    },
+    {
+      "getter": "getMultiSignFee",
+      "setter": "saveMultiSignFee",
+      "java_expression": "1000000L"
+    },
+    {
+      "getter": "getExchangeCreateFee",
+      "setter": "saveExchangeCreateFee",
+      "java_expression": "1024000000L"
+    },
+    {
+      "getter": "getExchangeBalanceLimit",
+      "setter": "saveExchangeBalanceLimit",
+      "java_expression": "1_000_000_000_000_000L"
+    },
+    {
+      "getter": "getAllowMarketTransaction",
+      "setter": "saveAllowMarketTransaction",
+      "java_expression": "CommonParameter.getInstance().getAllowMarketTransaction()"
+    },
+    {
+      "getter": "getMarketSellFee",
+      "setter": "saveMarketSellFee",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getMarketCancelFee",
+      "setter": "saveMarketCancelFee",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getMarketQuantityLimit",
+      "setter": "saveMarketQuantityLimit",
+      "java_expression": "1_000_000_000_000_000L"
+    },
+    {
+      "getter": "getAllowTransactionFeePool",
+      "setter": "saveAllowTransactionFeePool",
+      "java_expression": "CommonParameter.getInstance().getAllowTransactionFeePool()"
+    },
+    {
+      "getter": "getTransactionFeePool",
+      "setter": "saveTransactionFeePool",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getTotalTransactionCost",
+      "setter": "saveTotalTransactionCost",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getTotalCreateWitnessCost",
+      "setter": "saveTotalCreateWitnessFee",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getTotalCreateAccountCost",
+      "setter": "saveTotalCreateAccountFee",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getTotalStoragePool",
+      "setter": "saveTotalStoragePool",
+      "java_expression": "100_000_000_000_000L"
+    },
+    {
+      "getter": "getTotalStorageTax",
+      "setter": "saveTotalStorageTax",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getTotalStorageReserved",
+      "setter": "saveTotalStorageReserved",
+      "java_expression": "128L * 1024 * 1024 * 1024"
+    },
+    {
+      "getter": "getStorageExchangeTaxRate",
+      "setter": "saveStorageExchangeTaxRate",
+      "java_expression": "10"
+    },
+    {
+      "getter": "getRemoveThePowerOfTheGr",
+      "setter": "saveRemoveThePowerOfTheGr",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getAllowDelegateResource",
+      "setter": "saveAllowDelegateResource",
+      "java_expression": "CommonParameter.getInstance() .getAllowDelegateResource()"
+    },
+    {
+      "getter": "getAllowTvmTransferTrc10",
+      "setter": "saveAllowTvmTransferTrc10",
+      "java_expression": "CommonParameter.getInstance() .getAllowTvmTransferTrc10()"
+    },
+    {
+      "getter": "getAllowTvmConstantinople",
+      "setter": "saveAllowTvmConstantinople",
+      "java_expression": "CommonParameter.getInstance() .getAllowTvmConstantinople()"
+    },
+    {
+      "getter": "getAllowTvmSolidity059",
+      "setter": "saveAllowTvmSolidity059",
+      "java_expression": "CommonParameter.getInstance() .getAllowTvmSolidity059()"
+    },
+    {
+      "getter": "getForbidTransferToContract",
+      "setter": "saveForbidTransferToContract",
+      "java_expression": "CommonParameter.getInstance() .getForbidTransferToContract()"
+    },
+    {
+      "getter": "getAvailableContractType",
+      "setter": "saveAvailableContractType",
+      "java_expression": "bytes"
+    },
+    {
+      "getter": "getActiveDefaultOperations",
+      "setter": "saveActiveDefaultOperations",
+      "java_expression": "bytes"
+    },
+    {
+      "getter": "getAllowSameTokenName",
+      "setter": "saveAllowSameTokenName",
+      "java_expression": "CommonParameter.getInstance() .getAllowSameTokenName()"
+    },
+    {
+      "getter": "getAllowUpdateAccountName",
+      "setter": "saveAllowUpdateAccountName",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getAllowCreationOfContracts",
+      "setter": "saveAllowCreationOfContracts",
+      "java_expression": "CommonParameter.getInstance() .getAllowCreationOfContracts()"
+    },
+    {
+      "getter": "getAllowShieldedTransaction",
+      "setter": "saveAllowShieldedTransaction",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getAllowShieldedTRC20Transaction",
+      "setter": "saveAllowShieldedTRC20Transaction",
+      "java_expression": "CommonParameter.getInstance().getAllowShieldedTRC20Transaction()"
+    },
+    {
+      "getter": "getAllowTvmIstanbul",
+      "setter": "saveAllowTvmIstanbul",
+      "java_expression": "CommonParameter.getInstance().getAllowTvmIstanbul()"
+    },
+    {
+      "getter": "getBlockFilledSlots",
+      "setter": "saveBlockFilledSlots",
+      "java_expression": "blockFilledSlots"
+    },
+    {
+      "getter": "getNextMaintenanceTime",
+      "setter": "saveNextMaintenanceTime",
+      "java_expression": "Long.parseLong(CommonParameter.getInstance() .getGenesisBlock().getTimestamp())"
+    },
+    {
+      "getter": "getTotalEnergyCurrentLimit",
+      "setter": "saveTotalEnergyCurrentLimit",
+      "java_expression": "getTotalEnergyLimit()"
+    },
+    {
+      "getter": "getTotalEnergyTargetLimit",
+      "setter": "saveTotalEnergyTargetLimit",
+      "java_expression": "getTotalEnergyLimit() / 14400"
+    },
+    {
+      "getter": "getTotalEnergyAverageUsage",
+      "setter": "saveTotalEnergyAverageUsage",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getAdaptiveResourceLimitMultiplier",
+      "setter": "saveAdaptiveResourceLimitMultiplier",
+      "java_expression": "1000"
+    },
+    {
+      "getter": "getTotalEnergyAverageTime",
+      "setter": "saveTotalEnergyAverageTime",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getBlockEnergyUsage",
+      "setter": "saveBlockEnergyUsage",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getAllowAccountStateRoot",
+      "setter": "saveAllowAccountStateRoot",
+      "java_expression": "CommonParameter.getInstance() .getAllowAccountStateRoot()"
+    },
+    {
+      "getter": "getAllowProtoFilterNum",
+      "setter": "saveAllowProtoFilterNum",
+      "java_expression": "CommonParameter.getInstance() .getAllowProtoFilterNum()"
+    },
+    {
+      "getter": "getChangeDelegation",
+      "setter": "saveChangeDelegation",
+      "java_expression": "CommonParameter.getInstance() .getChangedDelegation()"
+    },
+    {
+      "getter": "getAllowPBFT",
+      "setter": "saveAllowPBFT",
+      "java_expression": "CommonParameter.getInstance().getAllowPBFT()"
+    },
+    {
+      "getter": "getMaxFeeLimit",
+      "setter": "saveMaxFeeLimit",
+      "java_expression": "1_000_000_000L"
+    },
+    {
+      "getter": "getBurnTrxAmount",
+      "setter": "saveBurnTrx",
+      "java_expression": "0L"
+    },
+    {
+      "getter": "getAllowBlackHoleOptimization",
+      "setter": "saveAllowBlackHoleOptimization",
+      "java_expression": "CommonParameter.getInstance().getAllowBlackHoleOptimization()"
+    },
+    {
+      "getter": "getAllowNewResourceModel",
+      "setter": "saveAllowNewResourceModel",
+      "java_expression": "CommonParameter.getInstance().getAllowNewResourceModel()"
+    },
+    {
+      "getter": "getAllowTvmFreeze",
+      "setter": "saveAllowTvmFreeze",
+      "java_expression": "CommonParameter.getInstance().getAllowTvmFreeze()"
+    },
+    {
+      "getter": "getAllowTvmVote",
+      "setter": "saveAllowTvmVote",
+      "java_expression": "CommonParameter.getInstance().getAllowTvmVote()"
+    },
+    {
+      "getter": "getAllowTvmLondon",
+      "setter": "saveAllowTvmLondon",
+      "java_expression": "CommonParameter.getInstance().getAllowTvmLondon()"
+    },
+    {
+      "getter": "getAllowTvmCompatibleEvm",
+      "setter": "saveAllowTvmCompatibleEvm",
+      "java_expression": "CommonParameter.getInstance().getAllowTvmCompatibleEvm()"
+    },
+    {
+      "getter": "getEnergyPriceHistoryDone",
+      "setter": "saveEnergyPriceHistoryDone",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getEnergyPriceHistory",
+      "setter": "saveEnergyPriceHistory",
+      "java_expression": "DEFAULT_ENERGY_PRICE_HISTORY"
+    },
+    {
+      "getter": "getBandwidthPriceHistoryDone",
+      "setter": "saveBandwidthPriceHistoryDone",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getBandwidthPriceHistory",
+      "setter": "saveBandwidthPriceHistory",
+      "java_expression": "DEFAULT_BANDWIDTH_PRICE_HISTORY"
+    },
+    {
+      "getter": "getSetBlackholeAccountPermission",
+      "setter": "saveSetBlackholePermission",
+      "java_expression": "0"
+    },
+    {
+      "getter": "getAllowHigherLimitForMaxCpuTimeOfOneTx",
+      "setter": "saveAllowHigherLimitForMaxCpuTimeOfOneTx",
+      "java_expression": "CommonParameter.getInstance().getAllowHigherLimitForMaxCpuTimeOfOneTx()"
+    },
+    {
+      "getter": "getAllowNewReward",
+      "setter": "saveAllowNewReward",
+      "java_expression": "CommonParameter.getInstance().getAllowNewReward()"
+    },
+    {
+      "getter": "getMemoFee",
+      "setter": "saveMemoFee",
+      "java_expression": "memoFee"
+    },
+    {
+      "getter": "getAllowDelegateOptimization",
+      "setter": "saveAllowDelegateOptimization",
+      "java_expression": "CommonParameter.getInstance().getAllowDelegateOptimization()"
+    },
+    {
+      "getter": "getUnfreezeDelayDays",
+      "setter": "saveUnfreezeDelayDays",
+      "java_expression": "CommonParameter.getInstance().getUnfreezeDelayDays()"
+    },
+    {
+      "getter": "getAllowOptimizedReturnValueOfChainId",
+      "setter": "saveAllowOptimizedReturnValueOfChainId",
+      "java_expression": "CommonParameter.getInstance().getAllowOptimizedReturnValueOfChainId()"
+    },
+    {
+      "getter": "getAllowDynamicEnergy",
+      "setter": "saveAllowDynamicEnergy",
+      "java_expression": "CommonParameter.getInstance().getAllowDynamicEnergy()"
+    },
+    {
+      "getter": "getDynamicEnergyThreshold",
+      "setter": "saveDynamicEnergyThreshold",
+      "java_expression": "CommonParameter.getInstance().getDynamicEnergyThreshold()"
+    },
+    {
+      "getter": "getDynamicEnergyIncreaseFactor",
+      "setter": "saveDynamicEnergyIncreaseFactor",
+      "java_expression": "CommonParameter.getInstance().getDynamicEnergyIncreaseFactor()"
+    },
+    {
+      "getter": "getDynamicEnergyMaxFactor",
+      "setter": "saveDynamicEnergyMaxFactor",
+      "java_expression": "CommonParameter.getInstance().getDynamicEnergyMaxFactor()"
+    }
+  ]
+}

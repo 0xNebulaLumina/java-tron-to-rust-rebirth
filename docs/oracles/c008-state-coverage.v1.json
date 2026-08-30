@@ -1,0 +1,3872 @@
+{
+  "inventory_rows": [
+    {
+      "case_id": "store-Account",
+      "dispatch_variant": "StoreAccount",
+      "id": "store-Account",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-AccountIdIndex",
+      "dispatch_variant": "StoreAccountIdIndex",
+      "id": "store-AccountIdIndex",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-AccountIndex",
+      "dispatch_variant": "StoreAccountIndex",
+      "id": "store-AccountIndex",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-AccountAsset",
+      "dispatch_variant": "StoreAccountAsset",
+      "id": "store-AccountAsset",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-AssetIssue",
+      "dispatch_variant": "StoreAssetIssue",
+      "id": "store-AssetIssue",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-AssetIssueV2",
+      "dispatch_variant": "StoreAssetIssueV2",
+      "id": "store-AssetIssueV2",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Block",
+      "dispatch_variant": "StoreBlock",
+      "id": "store-Block",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-BlockIndex",
+      "dispatch_variant": "StoreBlockIndex",
+      "id": "store-BlockIndex",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Transaction",
+      "dispatch_variant": "StoreTransaction",
+      "id": "store-Transaction",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-TransactionCache",
+      "dispatch_variant": "StoreTransactionCache",
+      "id": "store-TransactionCache",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-TransactionRet",
+      "dispatch_variant": "StoreTransactionRet",
+      "id": "store-TransactionRet",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-TransactionHistory",
+      "dispatch_variant": "StoreTransactionHistory",
+      "id": "store-TransactionHistory",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-RecentBlock",
+      "dispatch_variant": "StoreRecentBlock",
+      "id": "store-RecentBlock",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-RecentTransaction",
+      "dispatch_variant": "StoreRecentTransaction",
+      "id": "store-RecentTransaction",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Contract",
+      "dispatch_variant": "StoreContract",
+      "id": "store-Contract",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Abi",
+      "dispatch_variant": "StoreAbi",
+      "id": "store-Abi",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Code",
+      "dispatch_variant": "StoreCode",
+      "id": "store-Code",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-ContractState",
+      "dispatch_variant": "StoreContractState",
+      "id": "store-ContractState",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-StorageRow",
+      "dispatch_variant": "StoreStorageRow",
+      "id": "store-StorageRow",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Witness",
+      "dispatch_variant": "StoreWitness",
+      "id": "store-Witness",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-WitnessSchedule",
+      "dispatch_variant": "StoreWitnessSchedule",
+      "id": "store-WitnessSchedule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Votes",
+      "dispatch_variant": "StoreVotes",
+      "id": "store-Votes",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Proposal",
+      "dispatch_variant": "StoreProposal",
+      "id": "store-Proposal",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Exchange",
+      "dispatch_variant": "StoreExchange",
+      "id": "store-Exchange",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-ExchangeV2",
+      "dispatch_variant": "StoreExchangeV2",
+      "id": "store-ExchangeV2",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-MarketAccount",
+      "dispatch_variant": "StoreMarketAccount",
+      "id": "store-MarketAccount",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-MarketOrder",
+      "dispatch_variant": "StoreMarketOrder",
+      "id": "store-MarketOrder",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-MarketPairToPrice",
+      "dispatch_variant": "StoreMarketPairToPrice",
+      "id": "store-MarketPairToPrice",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-MarketPairPriceToOrder",
+      "dispatch_variant": "StoreMarketPairPriceToOrder",
+      "id": "store-MarketPairPriceToOrder",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-DelegatedResource",
+      "dispatch_variant": "StoreDelegatedResource",
+      "id": "store-DelegatedResource",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-DelegatedResourceAccountIndex",
+      "dispatch_variant": "StoreDelegatedResourceAccountIndex",
+      "id": "store-DelegatedResourceAccountIndex",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-DynamicProperties",
+      "dispatch_variant": "StoreDynamicProperties",
+      "id": "store-DynamicProperties",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-IncrementalMerkleTree",
+      "dispatch_variant": "StoreIncrementalMerkleTree",
+      "id": "store-IncrementalMerkleTree",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Nullifier",
+      "dispatch_variant": "StoreNullifier",
+      "id": "store-Nullifier",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-ZkProof",
+      "dispatch_variant": "StoreZkProof",
+      "id": "store-ZkProof",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-TreeBlockIndex",
+      "dispatch_variant": "StoreTreeBlockIndex",
+      "id": "store-TreeBlockIndex",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-SectionBloom",
+      "dispatch_variant": "StoreSectionBloom",
+      "id": "store-SectionBloom",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-AccountTrace",
+      "dispatch_variant": "StoreAccountTrace",
+      "id": "store-AccountTrace",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-BalanceTrace",
+      "dispatch_variant": "StoreBalanceTrace",
+      "id": "store-BalanceTrace",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Delegation",
+      "dispatch_variant": "StoreDelegation",
+      "id": "store-Delegation",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Pbft",
+      "dispatch_variant": "StorePbft",
+      "id": "store-Pbft",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-RewardVi",
+      "dispatch_variant": "StoreRewardVi",
+      "id": "store-RewardVi",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Common",
+      "dispatch_variant": "StoreCommon",
+      "id": "store-Common",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Checkpoint",
+      "dispatch_variant": "StoreCheckpoint",
+      "id": "store-Checkpoint",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "store-Temporary",
+      "dispatch_variant": "StoreTemporary",
+      "id": "store-Temporary",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-AbiCapsule",
+      "dispatch_variant": "CapsuleAbiCapsule",
+      "id": "capsule-AbiCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-AccountCapsule",
+      "dispatch_variant": "CapsuleAccountCapsule",
+      "id": "capsule-AccountCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-AccountTraceCapsule",
+      "dispatch_variant": "CapsuleAccountTraceCapsule",
+      "id": "capsule-AccountTraceCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-AssetIssueCapsule",
+      "dispatch_variant": "CapsuleAssetIssueCapsule",
+      "id": "capsule-AssetIssueCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-BlockBalanceTraceCapsule",
+      "dispatch_variant": "CapsuleBlockBalanceTraceCapsule",
+      "id": "capsule-BlockBalanceTraceCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-BlockCapsule",
+      "dispatch_variant": "CapsuleBlockCapsule",
+      "id": "capsule-BlockCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-BytesCapsule",
+      "dispatch_variant": "CapsuleBytesCapsule",
+      "id": "capsule-BytesCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-CodeCapsule",
+      "dispatch_variant": "CapsuleCodeCapsule",
+      "id": "capsule-CodeCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-ContractCapsule",
+      "dispatch_variant": "CapsuleContractCapsule",
+      "id": "capsule-ContractCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-ContractStateCapsule",
+      "dispatch_variant": "CapsuleContractStateCapsule",
+      "id": "capsule-ContractStateCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-DelegatedResourceAccountIndexCapsule",
+      "dispatch_variant": "CapsuleDelegatedResourceAccountIndexCapsule",
+      "id": "capsule-DelegatedResourceAccountIndexCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-DelegatedResourceCapsule",
+      "dispatch_variant": "CapsuleDelegatedResourceCapsule",
+      "id": "capsule-DelegatedResourceCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-ExchangeCapsule",
+      "dispatch_variant": "CapsuleExchangeCapsule",
+      "id": "capsule-ExchangeCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-IncrementalMerkleTreeCapsule",
+      "dispatch_variant": "CapsuleIncrementalMerkleTreeCapsule",
+      "id": "capsule-IncrementalMerkleTreeCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-IncrementalMerkleVoucherCapsule",
+      "dispatch_variant": "CapsuleIncrementalMerkleVoucherCapsule",
+      "id": "capsule-IncrementalMerkleVoucherCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-MarketAccountOrderCapsule",
+      "dispatch_variant": "CapsuleMarketAccountOrderCapsule",
+      "id": "capsule-MarketAccountOrderCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-MarketOrderCapsule",
+      "dispatch_variant": "CapsuleMarketOrderCapsule",
+      "id": "capsule-MarketOrderCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-MarketOrderIdListCapsule",
+      "dispatch_variant": "CapsuleMarketOrderIdListCapsule",
+      "id": "capsule-MarketOrderIdListCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-MarketPriceCapsule",
+      "dispatch_variant": "CapsuleMarketPriceCapsule",
+      "id": "capsule-MarketPriceCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-PbftSignCapsule",
+      "dispatch_variant": "CapsulePbftSignCapsule",
+      "id": "capsule-PbftSignCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-PedersenHashCapsule",
+      "dispatch_variant": "CapsulePedersenHashCapsule",
+      "id": "capsule-PedersenHashCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-ProposalCapsule",
+      "dispatch_variant": "CapsuleProposalCapsule",
+      "id": "capsule-ProposalCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-ProtoCapsule",
+      "dispatch_variant": "CapsuleProtoCapsule",
+      "id": "capsule-ProtoCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-ReceiptCapsule",
+      "dispatch_variant": "CapsuleReceiptCapsule",
+      "id": "capsule-ReceiptCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-StorageRowCapsule",
+      "dispatch_variant": "CapsuleStorageRowCapsule",
+      "id": "capsule-StorageRowCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-TransactionCapsule",
+      "dispatch_variant": "CapsuleTransactionCapsule",
+      "id": "capsule-TransactionCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-TransactionInfoCapsule",
+      "dispatch_variant": "CapsuleTransactionInfoCapsule",
+      "id": "capsule-TransactionInfoCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-TransactionResultCapsule",
+      "dispatch_variant": "CapsuleTransactionResultCapsule",
+      "id": "capsule-TransactionResultCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-TransactionRetCapsule",
+      "dispatch_variant": "CapsuleTransactionRetCapsule",
+      "id": "capsule-TransactionRetCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-VotesCapsule",
+      "dispatch_variant": "CapsuleVotesCapsule",
+      "id": "capsule-VotesCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "capsule-WitnessCapsule",
+      "dispatch_variant": "CapsuleWitnessCapsule",
+      "id": "capsule-WitnessCapsule",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-LATEST_BLOCK_HEADER_TIMESTAMP",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-LATEST_BLOCK_HEADER_TIMESTAMP",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-LATEST_BLOCK_HEADER_NUMBER",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-LATEST_BLOCK_HEADER_NUMBER",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-LATEST_BLOCK_HEADER_HASH",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-LATEST_BLOCK_HEADER_HASH",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-STATE_FLAG",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-STATE_FLAG",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-LATEST_SOLIDIFIED_BLOCK_NUM",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-LATEST_SOLIDIFIED_BLOCK_NUM",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-LATEST_PROPOSAL_NUM",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-LATEST_PROPOSAL_NUM",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-LATEST_EXCHANGE_NUM",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-LATEST_EXCHANGE_NUM",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-BLOCK_FILLED_SLOTS",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-BLOCK_FILLED_SLOTS",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-BLOCK_FILLED_SLOTS_INDEX",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-BLOCK_FILLED_SLOTS_INDEX",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-NEXT_MAINTENANCE_TIME",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-NEXT_MAINTENANCE_TIME",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MAX_FROZEN_TIME",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MAX_FROZEN_TIME",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MIN_FROZEN_TIME",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MIN_FROZEN_TIME",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MAX_FROZEN_SUPPLY_NUMBER",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MAX_FROZEN_SUPPLY_NUMBER",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MAX_FROZEN_SUPPLY_TIME",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MAX_FROZEN_SUPPLY_TIME",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MIN_FROZEN_SUPPLY_TIME",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MIN_FROZEN_SUPPLY_TIME",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-WITNESS_ALLOWANCE_FROZEN_TIME",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-WITNESS_ALLOWANCE_FROZEN_TIME",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MAINTENANCE_TIME_INTERVAL",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MAINTENANCE_TIME_INTERVAL",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ACCOUNT_UPGRADE_COST",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ACCOUNT_UPGRADE_COST",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-WITNESS_PAY_PER_BLOCK",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-WITNESS_PAY_PER_BLOCK",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-WITNESS_127_PAY_PER_BLOCK",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-WITNESS_127_PAY_PER_BLOCK",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-WITNESS_STANDBY_ALLOWANCE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-WITNESS_STANDBY_ALLOWANCE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ENERGY_FEE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ENERGY_FEE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MAX_CPU_TIME_OF_ONE_TX",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MAX_CPU_TIME_OF_ONE_TX",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-CREATE_ACCOUNT_FEE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-CREATE_ACCOUNT_FEE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-CREATE_NEW_ACCOUNT_BANDWIDTH_RATE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-CREATE_NEW_ACCOUNT_BANDWIDTH_RATE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TRANSACTION_FEE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TRANSACTION_FEE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ASSET_ISSUE_FEE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ASSET_ISSUE_FEE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-UPDATE_ACCOUNT_PERMISSION_FEE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-UPDATE_ACCOUNT_PERMISSION_FEE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MULTI_SIGN_FEE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MULTI_SIGN_FEE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-SHIELDED_TRANSACTION_FEE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-SHIELDED_TRANSACTION_FEE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-SHIELDED_TRANSACTION_CREATE_ACCOUNT_FEE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-SHIELDED_TRANSACTION_CREATE_ACCOUNT_FEE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_SHIELDED_POOL_VALUE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_SHIELDED_POOL_VALUE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-EXCHANGE_CREATE_FEE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-EXCHANGE_CREATE_FEE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-EXCHANGE_BALANCE_LIMIT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-EXCHANGE_BALANCE_LIMIT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_TRANSACTION_COST",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_TRANSACTION_COST",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_CREATE_ACCOUNT_COST",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_CREATE_ACCOUNT_COST",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_CREATE_WITNESS_COST",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_CREATE_WITNESS_COST",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_STORAGE_POOL",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_STORAGE_POOL",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_STORAGE_TAX",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_STORAGE_TAX",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_STORAGE_RESERVED",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_STORAGE_RESERVED",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-STORAGE_EXCHANGE_TAX_RATE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-STORAGE_EXCHANGE_TAX_RATE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-VERSION_NUMBER",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-VERSION_NUMBER",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-REMOVE_THE_POWER_OF_THE_GR",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-REMOVE_THE_POWER_OF_THE_GR",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_DELEGATE_RESOURCE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_DELEGATE_RESOURCE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_ADAPTIVE_ENERGY",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_ADAPTIVE_ENERGY",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_UPDATE_ACCOUNT_NAME",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_UPDATE_ACCOUNT_NAME",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_SAME_TOKEN_NAME",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_SAME_TOKEN_NAME",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_CREATION_OF_CONTRACTS",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_CREATION_OF_CONTRACTS",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_SIGN_NUM",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_SIGN_NUM",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_MULTI_SIGN",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_MULTI_SIGN",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOKEN_ID_NUM",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOKEN_ID_NUM",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOKEN_UPDATE_DONE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOKEN_UPDATE_DONE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ABI_MOVE_DONE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ABI_MOVE_DONE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_TRANSFER_TRC10",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_TRANSFER_TRC10",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_SHIELDED_TRANSACTION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_SHIELDED_TRANSACTION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_SHIELDED_TRC20_TRANSACTION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_SHIELDED_TRC20_TRANSACTION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_ISTANBUL",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_ISTANBUL",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_CONSTANTINOPLE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_CONSTANTINOPLE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_SOLIDITY_059",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_SOLIDITY_059",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-FORBID_TRANSFER_TO_CONTRACT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-FORBID_TRANSFER_TO_CONTRACT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_PROTO_FILTER_NUM",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_PROTO_FILTER_NUM",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-AVAILABLE_CONTRACT_TYPE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-AVAILABLE_CONTRACT_TYPE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ACTIVE_DEFAULT_OPERATIONS",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ACTIVE_DEFAULT_OPERATIONS",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_ACCOUNT_STATE_ROOT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_ACCOUNT_STATE_ROOT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-CURRENT_CYCLE_NUMBER",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-CURRENT_CYCLE_NUMBER",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-CHANGE_DELEGATION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-CHANGE_DELEGATION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_PBFT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_PBFT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_MARKET_TRANSACTION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_MARKET_TRANSACTION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MARKET_SELL_FEE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MARKET_SELL_FEE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MARKET_CANCEL_FEE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MARKET_CANCEL_FEE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MARKET_QUANTITY_LIMIT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MARKET_QUANTITY_LIMIT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TRANSACTION_FEE_POOL",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TRANSACTION_FEE_POOL",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TRANSACTION_FEE_POOL",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TRANSACTION_FEE_POOL",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MAX_FEE_LIMIT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MAX_FEE_LIMIT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-BURN_TRX_AMOUNT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-BURN_TRX_AMOUNT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_BLACKHOLE_OPTIMIZATION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_BLACKHOLE_OPTIMIZATION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_NEW_RESOURCE_MODEL",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_NEW_RESOURCE_MODEL",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_FREEZE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_FREEZE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_VOTE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_VOTE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_LONDON",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_LONDON",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_COMPATIBLE_EVM",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_COMPATIBLE_EVM",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-NEW_REWARD_ALGORITHM_EFFECTIVE_CYCLE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-NEW_REWARD_ALGORITHM_EFFECTIVE_CYCLE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_ACCOUNT_ASSET_OPTIMIZATION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_ACCOUNT_ASSET_OPTIMIZATION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_ASSET_OPTIMIZATION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_ASSET_OPTIMIZATION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ENERGY_PRICE_HISTORY",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ENERGY_PRICE_HISTORY",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ENERGY_PRICE_HISTORY_DONE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ENERGY_PRICE_HISTORY_DONE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-BANDWIDTH_PRICE_HISTORY",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-BANDWIDTH_PRICE_HISTORY",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-BANDWIDTH_PRICE_HISTORY_DONE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-BANDWIDTH_PRICE_HISTORY_DONE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-SET_BLACKHOLE_ACCOUNT_PERMISSION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-SET_BLACKHOLE_ACCOUNT_PERMISSION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_HIGHER_LIMIT_FOR_MAX_CPU_TIME_OF_ONE_TX",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_HIGHER_LIMIT_FOR_MAX_CPU_TIME_OF_ONE_TX",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_NEW_REWARD",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_NEW_REWARD",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MEMO_FEE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MEMO_FEE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MEMO_FEE_HISTORY",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MEMO_FEE_HISTORY",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_DELEGATE_OPTIMIZATION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_DELEGATE_OPTIMIZATION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_DYNAMIC_ENERGY",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_DYNAMIC_ENERGY",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-DYNAMIC_ENERGY_THRESHOLD",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-DYNAMIC_ENERGY_THRESHOLD",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-DYNAMIC_ENERGY_INCREASE_FACTOR",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-DYNAMIC_ENERGY_INCREASE_FACTOR",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-DYNAMIC_ENERGY_MAX_FACTOR",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-DYNAMIC_ENERGY_MAX_FACTOR",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-UNFREEZE_DELAY_DAYS",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-UNFREEZE_DELAY_DAYS",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_OPTIMIZED_RETURN_VALUE_OF_CHAIN_ID",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_OPTIMIZED_RETURN_VALUE_OF_CHAIN_ID",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_SHANGHAI",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_SHANGHAI",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_CANCEL_ALL_UNFREEZE_V2",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_CANCEL_ALL_UNFREEZE_V2",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MAX_DELEGATE_LOCK_PERIOD",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MAX_DELEGATE_LOCK_PERIOD",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_OLD_REWARD_OPT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_OLD_REWARD_OPT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_ENERGY_ADJUSTMENT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_ENERGY_ADJUSTMENT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-MAX_CREATE_ACCOUNT_TX_SIZE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-MAX_CREATE_ACCOUNT_TX_SIZE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_STRICT_MATH",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_STRICT_MATH",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-CONSENSUS_LOGIC_OPTIMIZATION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-CONSENSUS_LOGIC_OPTIMIZATION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_CANCUN",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_CANCUN",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_BLOB",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_BLOB",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-PROPOSAL_EXPIRE_TIME",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-PROPOSAL_EXPIRE_TIME",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_SELFDESTRUCT_RESTRICTION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_SELFDESTRUCT_RESTRICTION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_OSAKA",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_OSAKA",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_TVM_PRAGUE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_TVM_PRAGUE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-BLOCK_HASH_HISTORY_INSTALLED",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-BLOCK_HASH_HISTORY_INSTALLED",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_HARDEN_RESOURCE_CALCULATION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_HARDEN_RESOURCE_CALCULATION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ALLOW_HARDEN_EXCHANGE_CALCULATION",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ALLOW_HARDEN_EXCHANGE_CALCULATION",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TURKISH_KEY_MIGRATION_DONE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TURKISH_KEY_MIGRATION_DONE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ONE_DAY_NET_LIMIT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ONE_DAY_NET_LIMIT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-PUBLIC_NET_USAGE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-PUBLIC_NET_USAGE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-PUBLIC_NET_LIMIT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-PUBLIC_NET_LIMIT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-PUBLIC_NET_TIME",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-PUBLIC_NET_TIME",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-FREE_NET_LIMIT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-FREE_NET_LIMIT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_NET_WEIGHT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_NET_WEIGHT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_NET_LIMIT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_NET_LIMIT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_ENERGY_TARGET_LIMIT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_ENERGY_TARGET_LIMIT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_ENERGY_CURRENT_LIMIT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_ENERGY_CURRENT_LIMIT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_ENERGY_AVERAGE_USAGE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_ENERGY_AVERAGE_USAGE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_ENERGY_AVERAGE_TIME",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_ENERGY_AVERAGE_TIME",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_ENERGY_WEIGHT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_ENERGY_WEIGHT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_TRON_POWER_WEIGHT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_TRON_POWER_WEIGHT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-TOTAL_ENERGY_LIMIT",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-TOTAL_ENERGY_LIMIT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-BLOCK_ENERGY_USAGE",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-BLOCK_ENERGY_USAGE",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ADAPTIVE_RESOURCE_LIMIT_MULTIPLIER",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ADAPTIVE_RESOURCE_LIMIT_MULTIPLIER",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-key-ADAPTIVE_RESOURCE_LIMIT_TARGET_RATIO",
+      "dispatch_variant": "DynamicKey",
+      "id": "dynamic-key-ADAPTIVE_RESOURCE_LIMIT_TARGET_RATIO",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-000-getTotalSignNum",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-000-getTotalSignNum",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-001-getAllowMultiSign",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-001-getAllowMultiSign",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-002-getLatestBlockHeaderTimestamp",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-002-getLatestBlockHeaderTimestamp",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-003-getLatestBlockHeaderNumber",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-003-getLatestBlockHeaderNumber",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-004-getLatestBlockHeaderHash",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-004-getLatestBlockHeaderHash",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-005-getStateFlag",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-005-getStateFlag",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-006-getLatestSolidifiedBlockNum",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-006-getLatestSolidifiedBlockNum",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-007-getLatestProposalNum",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-007-getLatestProposalNum",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-008-getLatestExchangeNum",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-008-getLatestExchangeNum",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-009-getBlockFilledSlotsIndex",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-009-getBlockFilledSlotsIndex",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-010-getTokenIdNum",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-010-getTokenIdNum",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-011-getTokenUpdateDone",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-011-getTokenUpdateDone",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-012-getAbiMoveDone",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-012-getAbiMoveDone",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-013-getMaxFrozenTime",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-013-getMaxFrozenTime",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-014-getMinFrozenTime",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-014-getMinFrozenTime",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-015-getMaxFrozenSupplyNumber",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-015-getMaxFrozenSupplyNumber",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-016-getMaxFrozenSupplyTime",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-016-getMaxFrozenSupplyTime",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-017-getMinFrozenSupplyTime",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-017-getMinFrozenSupplyTime",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-018-getWitnessAllowanceFrozenTime",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-018-getWitnessAllowanceFrozenTime",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-019-getWitnessPayPerBlock",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-019-getWitnessPayPerBlock",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-020-getWitnessStandbyAllowance",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-020-getWitnessStandbyAllowance",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-021-getMaintenanceTimeInterval",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-021-getMaintenanceTimeInterval",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-022-getAccountUpgradeCost",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-022-getAccountUpgradeCost",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-023-getPublicNetUsage",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-023-getPublicNetUsage",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-024-getOneDayNetLimit",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-024-getOneDayNetLimit",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-025-getPublicNetLimit",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-025-getPublicNetLimit",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-026-getPublicNetTime",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-026-getPublicNetTime",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-027-getFreeNetLimit",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-027-getFreeNetLimit",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-028-getTotalNetWeight",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-028-getTotalNetWeight",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-029-getTotalNetLimit",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-029-getTotalNetLimit",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-030-getTotalEnergyWeight",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-030-getTotalEnergyWeight",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-031-getTotalTronPowerWeight",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-031-getTotalTronPowerWeight",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-032-getAllowAdaptiveEnergy",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-032-getAllowAdaptiveEnergy",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-033-getAdaptiveResourceLimitTargetRatio",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-033-getAdaptiveResourceLimitTargetRatio",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-034-getTotalEnergyLimit",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-034-getTotalEnergyLimit",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-035-getEnergyFee",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-035-getEnergyFee",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-036-getMaxCpuTimeOfOneTx",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-036-getMaxCpuTimeOfOneTx",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-037-getCreateAccountFee",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-037-getCreateAccountFee",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-038-getShieldedTransactionFee",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-038-getShieldedTransactionFee",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-039-getShieldedTransactionCreateAccountFee",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-039-getShieldedTransactionCreateAccountFee",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-040-getTotalShieldedPoolValue",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-040-getTotalShieldedPoolValue",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-041-getCreateNewAccountFeeInSystemContract",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-041-getCreateNewAccountFeeInSystemContract",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-042-getCreateNewAccountBandwidthRate",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-042-getCreateNewAccountBandwidthRate",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-043-getTransactionFee",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-043-getTransactionFee",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-044-getAssetIssueFee",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-044-getAssetIssueFee",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-045-getUpdateAccountPermissionFee",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-045-getUpdateAccountPermissionFee",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-046-getMultiSignFee",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-046-getMultiSignFee",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-047-getExchangeCreateFee",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-047-getExchangeCreateFee",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-048-getExchangeBalanceLimit",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-048-getExchangeBalanceLimit",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-049-getAllowMarketTransaction",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-049-getAllowMarketTransaction",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-050-getMarketSellFee",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-050-getMarketSellFee",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-051-getMarketCancelFee",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-051-getMarketCancelFee",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-052-getMarketQuantityLimit",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-052-getMarketQuantityLimit",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-053-getAllowTransactionFeePool",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-053-getAllowTransactionFeePool",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-054-getTransactionFeePool",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-054-getTransactionFeePool",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-055-getTotalTransactionCost",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-055-getTotalTransactionCost",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-056-getTotalCreateWitnessCost",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-056-getTotalCreateWitnessCost",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-057-getTotalCreateAccountCost",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-057-getTotalCreateAccountCost",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-058-getTotalStoragePool",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-058-getTotalStoragePool",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-059-getTotalStorageTax",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-059-getTotalStorageTax",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-060-getTotalStorageReserved",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-060-getTotalStorageReserved",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-061-getStorageExchangeTaxRate",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-061-getStorageExchangeTaxRate",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-062-getRemoveThePowerOfTheGr",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-062-getRemoveThePowerOfTheGr",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-063-getAllowDelegateResource",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-063-getAllowDelegateResource",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-064-getAllowTvmTransferTrc10",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-064-getAllowTvmTransferTrc10",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-065-getAllowTvmConstantinople",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-065-getAllowTvmConstantinople",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-066-getAllowTvmSolidity059",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-066-getAllowTvmSolidity059",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-067-getForbidTransferToContract",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-067-getForbidTransferToContract",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-068-getAvailableContractType",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-068-getAvailableContractType",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-069-getActiveDefaultOperations",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-069-getActiveDefaultOperations",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-070-getAllowSameTokenName",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-070-getAllowSameTokenName",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-071-getAllowUpdateAccountName",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-071-getAllowUpdateAccountName",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-072-getAllowCreationOfContracts",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-072-getAllowCreationOfContracts",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-073-getAllowShieldedTransaction",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-073-getAllowShieldedTransaction",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-074-getAllowShieldedTRC20Transaction",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-074-getAllowShieldedTRC20Transaction",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-075-getAllowTvmIstanbul",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-075-getAllowTvmIstanbul",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-076-getBlockFilledSlots",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-076-getBlockFilledSlots",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-077-getNextMaintenanceTime",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-077-getNextMaintenanceTime",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-078-getTotalEnergyCurrentLimit",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-078-getTotalEnergyCurrentLimit",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-079-getTotalEnergyTargetLimit",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-079-getTotalEnergyTargetLimit",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-080-getTotalEnergyAverageUsage",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-080-getTotalEnergyAverageUsage",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-081-getAdaptiveResourceLimitMultiplier",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-081-getAdaptiveResourceLimitMultiplier",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-082-getTotalEnergyAverageTime",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-082-getTotalEnergyAverageTime",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-083-getBlockEnergyUsage",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-083-getBlockEnergyUsage",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-084-getAllowAccountStateRoot",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-084-getAllowAccountStateRoot",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-085-getAllowProtoFilterNum",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-085-getAllowProtoFilterNum",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-086-getChangeDelegation",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-086-getChangeDelegation",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-087-getAllowPBFT",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-087-getAllowPBFT",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-088-getMaxFeeLimit",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-088-getMaxFeeLimit",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-089-getBurnTrxAmount",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-089-getBurnTrxAmount",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-090-getAllowBlackHoleOptimization",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-090-getAllowBlackHoleOptimization",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-091-getAllowNewResourceModel",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-091-getAllowNewResourceModel",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-092-getAllowTvmFreeze",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-092-getAllowTvmFreeze",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-093-getAllowTvmVote",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-093-getAllowTvmVote",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-094-getAllowTvmLondon",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-094-getAllowTvmLondon",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-095-getAllowTvmCompatibleEvm",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-095-getAllowTvmCompatibleEvm",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-096-getEnergyPriceHistoryDone",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-096-getEnergyPriceHistoryDone",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-097-getEnergyPriceHistory",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-097-getEnergyPriceHistory",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-098-getBandwidthPriceHistoryDone",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-098-getBandwidthPriceHistoryDone",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-099-getBandwidthPriceHistory",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-099-getBandwidthPriceHistory",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-100-getSetBlackholeAccountPermission",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-100-getSetBlackholeAccountPermission",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-101-getAllowHigherLimitForMaxCpuTimeOfOneTx",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-101-getAllowHigherLimitForMaxCpuTimeOfOneTx",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-102-getAllowNewReward",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-102-getAllowNewReward",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-103-getMemoFee",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-103-getMemoFee",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-104-getAllowDelegateOptimization",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-104-getAllowDelegateOptimization",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-105-getUnfreezeDelayDays",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-105-getUnfreezeDelayDays",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-106-getAllowOptimizedReturnValueOfChainId",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-106-getAllowOptimizedReturnValueOfChainId",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-107-getAllowDynamicEnergy",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-107-getAllowDynamicEnergy",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-108-getDynamicEnergyThreshold",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-108-getDynamicEnergyThreshold",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-109-getDynamicEnergyIncreaseFactor",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-109-getDynamicEnergyIncreaseFactor",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    },
+    {
+      "case_id": "dynamic-default-110-getDynamicEnergyMaxFactor",
+      "dispatch_variant": "DynamicDefault",
+      "id": "dynamic-default-110-getDynamicEnergyMaxFactor",
+      "proof": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row"
+    }
+  ],
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "java_test_reconciliation": [
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "CapsuleAccountCapsule",
+      "disposition": "rust",
+      "fixture_row_id": "capsule-AccountCapsule",
+      "java_case": "getDataTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/AccountCapsuleTest.java",
+      "owner": "C008",
+      "rust_case_id": "capsule-AccountCapsule",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-16B932F3917D5872"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "addVotesTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/AccountCapsuleTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-ADA6C17DC10097D3"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "AssetAmountTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/AccountCapsuleTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-639DB1C17027D1E9"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "sameTokenNameCloseAssertAmountV2test",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/AccountCapsuleTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-A0C4B3496675851F"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "sameTokenNameOpenAssertAmountV2test",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/AccountCapsuleTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-D20B003F55345095"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "witnessPermissionTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/AccountCapsuleTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-8B6650B8003FD547"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testCalcMerkleRoot",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-AFF01BCAA4FC41E0"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testValidateMerkleRoot",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-104AB722B21C9660"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "CapsuleBlockCapsule",
+      "disposition": "rust",
+      "fixture_row_id": "capsule-BlockCapsule",
+      "java_case": "testGetData",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+      "owner": "C008",
+      "rust_case_id": "capsule-BlockCapsule",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-A9F6588ECEE7E8EB"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testValidate",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-3B41CE67853A626B"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testGetInsHash",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-5804EC200493A429"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testHasWitnessSignature",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-7BC490D3EF6C1DB8"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testGetTimeStamp",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-675E7CC9890B1C96"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testValidateSignatureReturnsFalseWhenSignerMismatch",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-B521A9DA12054900"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testValidateSignatureReturnsTrueWhenSignerMatches",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-AB14290DC67FF0EA"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testValidateSignatureThrowsForMalformedSignature",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-7E9FFABEBA772381"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testConcurrentToString",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-81FDD8881114FF44"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testCatchUpCycle",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/ContractStateCapsuleTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-4EC1950277F501A8"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testHardenedTransactionFirstTokenSell",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-2FB877DFE05E1444"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testHardenedTransactionSecondTokenSell",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-52CDFF9183D77269"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testHardenedTransactionNegativeBalanceThrows",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-E6F1B8CAC044DEB5"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testTransactionLegacyVsHardenedProcessorSelection",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-83D945CEA2C1FD5A"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testExchange",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-FE1CCF836BACF74D"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "CapsuleTransactionCapsule",
+      "disposition": "rust",
+      "fixture_row_id": "capsule-TransactionCapsule",
+      "java_case": "trxCapsuleClearTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/TransactionCapsuleTest.java",
+      "owner": "C008",
+      "rust_case_id": "capsule-TransactionCapsule",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-86C3D1EA2938E39A"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "CapsuleTransactionCapsule",
+      "disposition": "rust",
+      "fixture_row_id": "capsule-TransactionCapsule",
+      "java_case": "testRemoveRedundantRet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/TransactionCapsuleTest.java",
+      "owner": "C008",
+      "rust_case_id": "capsule-TransactionCapsule",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-B55352C1E54E258C"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "slowVerify",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/TransactionCapsuleTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-B545D9AB80BE034A"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "fastVerify",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/TransactionCapsuleTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-B9D68DE12EABBB20"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "CapsuleVotesCapsule",
+      "disposition": "rust",
+      "fixture_row_id": "capsule-VotesCapsule",
+      "java_case": "votesCapsuleTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/VotesCapsuleTest.java",
+      "owner": "C008",
+      "rust_case_id": "capsule-VotesCapsule",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-D5E3757A4162D571"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "tetGetFrozen",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/AssetUtilTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-878087AC456D2528"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testUpdateUsage",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/AssetUtilTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-B5C1D55152ACD76F"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testConstruct",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/DecodeResultTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-173736D400ABC550"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testToString",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/DecodeResultTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-C1549003963FBB70"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testExchange",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-F498FED4A9A535CC"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testExchange2",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-1BA32451CD493A9C"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testSellAndBuy",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-C94CE146E28DC6EC"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testSellAndBuy2",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-0AFA90E251A68CF2"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testInject",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-AEC64CCCE8BE13EB"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testWithdraw",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-0B3F63572FB8AF58"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testHardenedExchange",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-6FB8D581BC3E13D3"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testHardenedOverflowDetection",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-B53A567613555F77"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testHardenedSmallQuant",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-D207EDE1A82F434C"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testHardenedLargeQuant",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-D82D0E898F86514A"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testSafeProcessorDivByZeroThrows",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-7BD916901FB7BA89"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testSafeProcessorAddExactOverflowThrows",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-3069F8B28838449E"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testSafeProcessorNoOvershootForTypicalInputs",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-8EA5EFA10EACB495"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testStrictMath",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-91F77838FAA75597"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "test0HashNum",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/MerkleTreeTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-2AF624E225636692"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "test1HashNum",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/MerkleTreeTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-03C0C0AC41AA43DD"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "test2HashNum",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/MerkleTreeTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-59ED8B1E01FB9D72"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testAnyHashNum",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/MerkleTreeTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-3E5A072A7FCCD3AB"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testConcurrent",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/MerkleTreeTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-91D455FA6A3C197A"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testRecursivePrint",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/RLPListTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-02D27AC9872CE478"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testGetRLPData",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/RLPListTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-B9C7342C3AAF65CA"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testToBytes",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/RLPListTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-64720D68044A4792"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testEncode",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/RLPListTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-0D511DF1DD831371"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAbi",
+      "disposition": "rust",
+      "fixture_row_id": "store-Abi",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AbiStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Abi",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-D0983007FA418E41"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAbi",
+      "disposition": "rust",
+      "fixture_row_id": "store-Abi",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AbiStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Abi",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-93F8047A6B3CDAAA"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAbi",
+      "disposition": "rust",
+      "fixture_row_id": "store-Abi",
+      "java_case": "testGetTotalAbi",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AbiStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Abi",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-FF80DE098EA4B130"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountAssetStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "AccountAssetStoreTest:testPut",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::account_external_assets_persist_and_reopen",
+      "stable_id": "TCASE-AAA221947F51682B"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountAssetStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "AccountAssetStoreTest:testGet",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::account_external_assets_persist_and_reopen",
+      "stable_id": "TCASE-F05BA0131048F147"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testGetAccountAssets",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountAssetStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "AccountAssetStoreTest:testGetAccountAssets",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::account_external_assets_persist_and_reopen",
+      "stable_id": "TCASE-1A3EFF3778EF03E3"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testGetAllAssets",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountAssetStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "AccountAssetStoreTest:testGetAllAssets",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::account_external_assets_persist_and_reopen",
+      "stable_id": "TCASE-6AA53F99A4DAE534"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAccountIdIndex",
+      "disposition": "rust",
+      "fixture_row_id": "store-AccountIdIndex",
+      "java_case": "putAndGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountIdIndexStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AccountIdIndex",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-D9055B5D2DF66B45"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAccountIdIndex",
+      "disposition": "rust",
+      "fixture_row_id": "store-AccountIdIndex",
+      "java_case": "putAndHas",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountIdIndexStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AccountIdIndex",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-ABEC8D09E3DD1FB1"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAccountIdIndex",
+      "disposition": "rust",
+      "fixture_row_id": "store-AccountIdIndex",
+      "java_case": "testCaseInsensitive",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountIdIndexStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AccountIdIndex",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-CE7EB0715CFEC842"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAccountIdIndex",
+      "disposition": "rust",
+      "fixture_row_id": "store-AccountIdIndex",
+      "java_case": "testKeysMigration",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountIdIndexStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AccountIdIndex",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-8A7DE9484E457E45"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAccountIndex",
+      "disposition": "rust",
+      "fixture_row_id": "store-AccountIndex",
+      "java_case": "get",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountIndexStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AccountIndex",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-4F483759B97AC09B"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAccount",
+      "disposition": "rust",
+      "fixture_row_id": "store-Account",
+      "java_case": "setAccountTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Account",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-69381C1E9AFF4D0E"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAccount",
+      "disposition": "rust",
+      "fixture_row_id": "store-Account",
+      "java_case": "get",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Account",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-858EA6019BAD8C92"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAccount",
+      "disposition": "rust",
+      "fixture_row_id": "store-Account",
+      "java_case": "put",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Account",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-2BAB64FACBE41A90"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAccount",
+      "disposition": "rust",
+      "fixture_row_id": "store-Account",
+      "java_case": "assetTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Account",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-F44B78A9D005AD46"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAccountTrace",
+      "disposition": "rust",
+      "fixture_row_id": "store-AccountTrace",
+      "java_case": "testRecordBalanceWithBlock",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountTraceStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AccountTrace",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-D1805E2DF7B4C68C"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAccountTrace",
+      "disposition": "rust",
+      "fixture_row_id": "store-AccountTrace",
+      "java_case": "testGetPrevBalance",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountTraceStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AccountTrace",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-6A62C7F64FB9E90F"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAccountTrace",
+      "disposition": "rust",
+      "fixture_row_id": "store-AccountTrace",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AccountTraceStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AccountTrace",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-FD03F5E54AB126C3"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAssetIssue",
+      "disposition": "rust",
+      "fixture_row_id": "store-AssetIssue",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AssetIssueStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AssetIssue",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-993E1BCDD66E290F"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAssetIssue",
+      "disposition": "rust",
+      "fixture_row_id": "store-AssetIssue",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AssetIssueStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AssetIssue",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-963AD4CDAFA16E14"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAssetIssue",
+      "disposition": "rust",
+      "fixture_row_id": "store-AssetIssue",
+      "java_case": "testDelete",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AssetIssueStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AssetIssue",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-53ACF12B58269689"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAssetIssueV2",
+      "disposition": "rust",
+      "fixture_row_id": "store-AssetIssueV2",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AssetIssueV2StoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AssetIssueV2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-176E30DD89346185"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAssetIssueV2",
+      "disposition": "rust",
+      "fixture_row_id": "store-AssetIssueV2",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AssetIssueV2StoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AssetIssueV2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-57F8D9DF88B0052B"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreAssetIssueV2",
+      "disposition": "rust",
+      "fixture_row_id": "store-AssetIssueV2",
+      "java_case": "testDelete",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/AssetIssueV2StoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-AssetIssueV2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-7BBEA161D92DF505"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testSetCurrentTransactionId",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BalanceTraceStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-CF3AC78FCFFF0F9C"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testSetCurrentBlockId",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BalanceTraceStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-41808BB2E3EDA28E"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testResetCurrentTransactionTrace",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BalanceTraceStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-763E886DBBBC860E"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testInitCurrentBlockBalanceTrace",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BalanceTraceStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-999A2BE0789A7EFF"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testInitCurrentTransactionBalanceTrace",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BalanceTraceStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-C256E6912892ED7A"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testUpdateCurrentTransactionStatus",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BalanceTraceStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-DCD5386A230BFBD1"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testGetBlockBalanceTrace",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BalanceTraceStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-1324D9D70B7BAD28"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testGetTransactionBalanceTrace",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BalanceTraceStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-88FE24D92ACB6E1B"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testInit",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BlockFilledSlotsTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-636D9B19B29B16F3"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testApplyBlock",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BlockFilledSlotsTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-3253F9F9CB619429"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testCalculateFilledSlotsCount",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BlockFilledSlotsTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-B1613DCB8BD8293D"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreBlockIndex",
+      "disposition": "rust",
+      "fixture_row_id": "store-BlockIndex",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BlockIndexStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-BlockIndex",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-048D5F0EB259B780"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreBlockIndex",
+      "disposition": "rust",
+      "fixture_row_id": "store-BlockIndex",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BlockIndexStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-BlockIndex",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-2BED927FFF9438D7"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreBlockIndex",
+      "disposition": "rust",
+      "fixture_row_id": "store-BlockIndex",
+      "java_case": "testDelete",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BlockIndexStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-BlockIndex",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-3311434993300541"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreBlock",
+      "disposition": "rust",
+      "fixture_row_id": "store-Block",
+      "java_case": "testCreateBlockStore",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BlockStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Block",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-F2E703876FBB42E8"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreBlock",
+      "disposition": "rust",
+      "fixture_row_id": "store-Block",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BlockStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Block",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-6564169A55323BF2"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreBlock",
+      "disposition": "rust",
+      "fixture_row_id": "store-Block",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BlockStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Block",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-AF216564700D1A98"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreBlock",
+      "disposition": "rust",
+      "fixture_row_id": "store-Block",
+      "java_case": "testDelete",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/BlockStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Block",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-198095B3C65BC2AE"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreCode",
+      "disposition": "rust",
+      "fixture_row_id": "store-Code",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/CodeStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Code",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-37274DF558CA6201"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreCode",
+      "disposition": "rust",
+      "fixture_row_id": "store-Code",
+      "java_case": "testGetTotalCodes",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/CodeStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Code",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-EBC0B47624F24E5E"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreCode",
+      "disposition": "rust",
+      "fixture_row_id": "store-Code",
+      "java_case": "testFindCodeByHash",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/CodeStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Code",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-E1CA6BE08F3B7B90"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreContract",
+      "disposition": "rust",
+      "fixture_row_id": "store-Contract",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ContractStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Contract",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-E82F7B2D5EEE0A5D"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreContract",
+      "disposition": "rust",
+      "fixture_row_id": "store-Contract",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ContractStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Contract",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-F6662F68AD1A7362"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreContract",
+      "disposition": "rust",
+      "fixture_row_id": "store-Contract",
+      "java_case": "testDelete",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ContractStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Contract",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-F7B632DC723A35FF"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-C17A4736D1172F79"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testConvert",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-C964CE27D1CCA51D"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testDelegate",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-39418FB8A0C4B2E5"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testDelegateV2",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-0CC151C0D4E6B56C"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testUnDelegate",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-C84E15673ADFD602"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testUnDelegateV2",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-C76DB1243A08C275"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testGetIndex",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-34BE7E0660FD5E24"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testGetV2Index",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "owner": "C010",
+      "rationale": "Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer.",
+      "stable_id": "TCASE-DD9482ACE7A84DFC"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreDelegatedResource",
+      "disposition": "rust",
+      "fixture_row_id": "store-DelegatedResource",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-DelegatedResource",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-F8D8F8A2C9A58100"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreDelegatedResource",
+      "disposition": "rust",
+      "fixture_row_id": "store-DelegatedResource",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-DelegatedResource",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-862C46A11BF94FF0"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreDelegatedResource",
+      "disposition": "rust",
+      "fixture_row_id": "store-DelegatedResource",
+      "java_case": "testDelete",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-DelegatedResource",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-95C13E851C5F412A"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreDelegation",
+      "disposition": "rust",
+      "fixture_row_id": "store-Delegation",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegationStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Delegation",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-60DE1FB11FEC2D18"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreDelegation",
+      "disposition": "rust",
+      "fixture_row_id": "store-Delegation",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegationStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Delegation",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-69BDE2B5779E4A48"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreDelegation",
+      "disposition": "rust",
+      "fixture_row_id": "store-Delegation",
+      "java_case": "testDelete",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegationStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Delegation",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-F062062D00FFBE1A"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreExchange",
+      "disposition": "rust",
+      "fixture_row_id": "store-Exchange",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ExchangeStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Exchange",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-761744A03C16F23F"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreExchange",
+      "disposition": "rust",
+      "fixture_row_id": "store-Exchange",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ExchangeStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Exchange",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-137503F1BFD096F9"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreExchange",
+      "disposition": "rust",
+      "fixture_row_id": "store-Exchange",
+      "java_case": "testDelete",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ExchangeStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Exchange",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-39D6AEA68099AE7C"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreExchange",
+      "disposition": "rust",
+      "fixture_row_id": "store-Exchange",
+      "java_case": "testGetAllExchanges",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ExchangeStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Exchange",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-92894648AF8C12D6"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreExchangeV2",
+      "disposition": "rust",
+      "fixture_row_id": "store-ExchangeV2",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ExchangeV2StoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-ExchangeV2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-B93ABB08A1D419A6"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreExchangeV2",
+      "disposition": "rust",
+      "fixture_row_id": "store-ExchangeV2",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ExchangeV2StoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-ExchangeV2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-CFEA91880DB6AD86"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreExchangeV2",
+      "disposition": "rust",
+      "fixture_row_id": "store-ExchangeV2",
+      "java_case": "testDelete",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ExchangeV2StoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-ExchangeV2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-CB4C7FE6F16A9518"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreIncrementalMerkleTree",
+      "disposition": "rust",
+      "fixture_row_id": "store-IncrementalMerkleTree",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/IncrementalMerkleTreeStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-IncrementalMerkleTree",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-B555C2B9B977CA00"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreIncrementalMerkleTree",
+      "disposition": "rust",
+      "fixture_row_id": "store-IncrementalMerkleTree",
+      "java_case": "testContain",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/IncrementalMerkleTreeStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-IncrementalMerkleTree",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-37E2ABFBAE7CA973"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketAccountStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketAccountStoreTest:testGet",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_order_account_and_pair_stores_unlink_and_reopen",
+      "stable_id": "TCASE-01E87158C3D175C0"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketAccountStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketAccountStoreTest:testPut",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_order_account_and_pair_stores_unlink_and_reopen",
+      "stable_id": "TCASE-CBC93586A3949938"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketOrderStoreTest:testGet",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_order_account_and_pair_stores_unlink_and_reopen",
+      "stable_id": "TCASE-C22A9E17CB78F273"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testDelete",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketOrderStoreTest:testDelete",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_order_account_and_pair_stores_unlink_and_reopen",
+      "stable_id": "TCASE-3432A83A08F0553B"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testOrderWithSamePair",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairPriceToOrderStoreTest:testOrderWithSamePair",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-63CDCC724A87D4FD"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testOrderWithSamePairOrdinal",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairPriceToOrderStoreTest:testOrderWithSamePairOrdinal",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-3E2E7EDA596FB069"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testAddPrice",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairPriceToOrderStoreTest:testAddPrice",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-4BE2FA3AA1AA1FF6"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testAddPriceWithoutHeadKey",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairPriceToOrderStoreTest:testAddPriceWithoutHeadKey",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-8634DB762D5B7A05"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testAddPriceAndHeadKey",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairPriceToOrderStoreTest:testAddPriceAndHeadKey",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-9EE6EDB0664DB9BD"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testDecodePriceKey",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairPriceToOrderStoreTest:testDecodePriceKey",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-D3B2961D70EDA873"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testPriceWithSamePair",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairPriceToOrderStoreTest:testPriceWithSamePair",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-B4048595D33796AD"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testPriceSeqWithSamePair",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairPriceToOrderStoreTest:testPriceSeqWithSamePair",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-C057DA9AE79E440E"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testPriceSeqWithSamePairNoGCD",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairPriceToOrderStoreTest:testPriceSeqWithSamePairNoGCD",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-5755C438D203A5A2"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testFindGCD",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairPriceToOrderStoreTest:testFindGCD",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-32611CC18F4A55DB"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testGetKeysNextNotExitsWithRandom",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairPriceToOrderStoreTest:testGetKeysNextNotExitsWithRandom",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-FEDE114DF1AB54F9"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testTrim",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairPriceToOrderStoreTest:testTrim",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-38175B351156B212"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairToPriceStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairToPriceStoreTest:testGet",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-5B219D2D9CB46D58"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testGetPriceNum",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairToPriceStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairToPriceStoreTest:testGetPriceNum",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-CEA6E2021D6B8ACD"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testGetPriceNumByTokenId",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairToPriceStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairToPriceStoreTest:testGetPriceNumByTokenId",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-BBB4E9C58FDD2B73"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testSetPriceNum",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairToPriceStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairToPriceStoreTest:testSetPriceNum",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-23BED41964A66F55"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testSetPriceNumByToken",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairToPriceStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairToPriceStoreTest:testSetPriceNumByToken",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-78FBC30A60462529"
+    },
+    {
+      "dispatch_kind": "named_test",
+      "disposition": "rust",
+      "java_case": "testAddNewPriceKey",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairToPriceStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "MarketPairToPriceStoreTest:testAddNewPriceKey",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_codec_returns_errors_and_uses_java_boundary_arithmetic",
+      "stable_id": "TCASE-64F735C956C53949"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreNullifier",
+      "disposition": "rust",
+      "fixture_row_id": "store-Nullifier",
+      "java_case": "putAndGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/NullifierStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Nullifier",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-8D3410D002461796"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreNullifier",
+      "disposition": "rust",
+      "fixture_row_id": "store-Nullifier",
+      "java_case": "putAndHas",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/NullifierStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Nullifier",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-4704ECBF049B4C4D"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreProposal",
+      "disposition": "rust",
+      "fixture_row_id": "store-Proposal",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ProposalStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Proposal",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-7B5BD0D51AB59EC3"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreProposal",
+      "disposition": "rust",
+      "fixture_row_id": "store-Proposal",
+      "java_case": "testGetAllProposals",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ProposalStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Proposal",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-01591D6EE75B8E00"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreProposal",
+      "disposition": "rust",
+      "fixture_row_id": "store-Proposal",
+      "java_case": "testGetSpecifiedProposals",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ProposalStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Proposal",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-A8758448CD9554C0"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreRecentBlock",
+      "disposition": "rust",
+      "fixture_row_id": "store-RecentBlock",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/RecentBlockStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-RecentBlock",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-AD311197798C827E"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreRecentBlock",
+      "disposition": "rust",
+      "fixture_row_id": "store-RecentBlock",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/RecentBlockStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-RecentBlock",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-AE603E09A564D007"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreRecentBlock",
+      "disposition": "rust",
+      "fixture_row_id": "store-RecentBlock",
+      "java_case": "testDelete",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/RecentBlockStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-RecentBlock",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-4EEAEC7743B560F3"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreRecentTransaction",
+      "disposition": "rust",
+      "fixture_row_id": "store-RecentTransaction",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/RecentTransactionStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-RecentTransaction",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-29EFB068B8D9421E"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreRecentTransaction",
+      "disposition": "rust",
+      "fixture_row_id": "store-RecentTransaction",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/RecentTransactionStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-RecentTransaction",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-BFC2E8E49AF8EE3A"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "get",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TransactionHistoryTest.java",
+      "owner": "C029",
+      "rationale": "No C008 logical fixture case represents this higher-level Java behavior; C029 owns its explicit regression disposition.",
+      "stable_id": "TCASE-A436A4EF22B84823"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testDelete",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TransactionHistoryTest.java",
+      "owner": "C029",
+      "rationale": "No C008 logical fixture case represents this higher-level Java behavior; C029 owns its explicit regression disposition.",
+      "stable_id": "TCASE-B01D53672AC6AD9D"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTransactionRet",
+      "disposition": "rust",
+      "fixture_row_id": "store-TransactionRet",
+      "java_case": "get",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TransactionRetStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-TransactionRet",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-7A4E066F1EC3E494"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTransactionRet",
+      "disposition": "rust",
+      "fixture_row_id": "store-TransactionRet",
+      "java_case": "put",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TransactionRetStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-TransactionRet",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-D2D317EB36712C4B"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTransaction",
+      "disposition": "rust",
+      "fixture_row_id": "store-Transaction",
+      "java_case": "getTransactionTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TransactionStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Transaction",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-9E7A88E0A89A35B3"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTransaction",
+      "disposition": "rust",
+      "fixture_row_id": "store-Transaction",
+      "java_case": "createAccountTransactionStoreTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TransactionStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Transaction",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-298010CD32711275"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTransaction",
+      "disposition": "rust",
+      "fixture_row_id": "store-Transaction",
+      "java_case": "getUncheckedTransactionTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TransactionStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Transaction",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-694BC402F79BFA33"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTransaction",
+      "disposition": "rust",
+      "fixture_row_id": "store-Transaction",
+      "java_case": "createWitnessTransactionStoreTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TransactionStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Transaction",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-160A2A88B4782B75"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTransaction",
+      "disposition": "rust",
+      "fixture_row_id": "store-Transaction",
+      "java_case": "transferTransactionStorenTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TransactionStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Transaction",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-C3AA2555787E58A2"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTransaction",
+      "disposition": "rust",
+      "fixture_row_id": "store-Transaction",
+      "java_case": "voteWitnessTransactionTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TransactionStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Transaction",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-0223F39C43371CA0"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTransaction",
+      "disposition": "rust",
+      "fixture_row_id": "store-Transaction",
+      "java_case": "transactionValueNullTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TransactionStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Transaction",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-3E93CDC82D9895B8"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTransaction",
+      "disposition": "rust",
+      "fixture_row_id": "store-Transaction",
+      "java_case": "transactionKeyNullTest",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TransactionStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Transaction",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-276A0D7B55EA6C02"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTreeBlockIndex",
+      "disposition": "rust",
+      "fixture_row_id": "store-TreeBlockIndex",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TreeBlockIndexStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-TreeBlockIndex",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-CCBCD45A8E611135"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTreeBlockIndex",
+      "disposition": "rust",
+      "fixture_row_id": "store-TreeBlockIndex",
+      "java_case": "testGetByNum",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TreeBlockIndexStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-TreeBlockIndex",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-F74DD00ED0E0974E"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreTreeBlockIndex",
+      "disposition": "rust",
+      "fixture_row_id": "store-TreeBlockIndex",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/TreeBlockIndexStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-TreeBlockIndex",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-F5385496331ED7E7"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreVotes",
+      "disposition": "rust",
+      "fixture_row_id": "store-Votes",
+      "java_case": "putAndGetVotes",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/VotesStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Votes",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-217D43C9A7396A54"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreWitnessSchedule",
+      "disposition": "rust",
+      "fixture_row_id": "store-WitnessSchedule",
+      "java_case": "tetSaveActiveWitnesses",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/WitnessScheduleStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-WitnessSchedule",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-8EDE193682BA8CDD"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreWitnessSchedule",
+      "disposition": "rust",
+      "fixture_row_id": "store-WitnessSchedule",
+      "java_case": "testGetActiveWitnesses",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/WitnessScheduleStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-WitnessSchedule",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-7633AC7DA5F80788"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreWitnessSchedule",
+      "disposition": "rust",
+      "fixture_row_id": "store-WitnessSchedule",
+      "java_case": "testSaveCurrentShuffledWitnesses",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/WitnessScheduleStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-WitnessSchedule",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-05C6627A74D933A5"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreWitnessSchedule",
+      "disposition": "rust",
+      "fixture_row_id": "store-WitnessSchedule",
+      "java_case": "GetCurrentShuffledWitnesses",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/WitnessScheduleStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-WitnessSchedule",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-CE001E5A01D2F4D8"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreWitness",
+      "disposition": "rust",
+      "fixture_row_id": "store-Witness",
+      "java_case": "putAndGetWitness",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/WitnessStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Witness",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-09740D089807210A"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreWitness",
+      "disposition": "rust",
+      "fixture_row_id": "store-Witness",
+      "java_case": "testSortWitness",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/WitnessStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-Witness",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-B3FC5A500170D6F1"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreZkProof",
+      "disposition": "rust",
+      "fixture_row_id": "store-ZkProof",
+      "java_case": "testPut",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ZKProofStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-ZkProof",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-3E25B92FD7AB2BB0"
+    },
+    {
+      "dispatch_kind": "fixture_row",
+      "dispatch_variant": "StoreZkProof",
+      "disposition": "rust",
+      "fixture_row_id": "store-ZkProof",
+      "java_case": "testGet",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/ZKProofStoreTest.java",
+      "owner": "C008",
+      "rust_case_id": "store-ZkProof",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/logical_contract.rs::java_codec_artifact_dispatches_every_row",
+      "stable_id": "TCASE-42E996F60B26A664"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "test",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/api/AssetUpdateHelperTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-D9E67C1CF9AD3A17"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testAccountCreation",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/api/pojo/PojoTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-BD5C825EB55CD327"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testAssetIssueCreation",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/api/pojo/PojoTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-68247A16653A6E61"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testBlockCreation",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/api/pojo/PojoTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-A4ACA1C411852809"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testTransactionCreation",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/api/pojo/PojoTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-33E7BB6EA53C884A"
+    },
+    {
+      "disposition": "deferred",
+      "java_case": "testWitnessCreation",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/api/pojo/PojoTest.java",
+      "owner": "C029",
+      "rationale": "Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure.",
+      "stable_id": "TCASE-F403131C23D0EAA4"
+    }
+  ],
+  "schema_version": 3,
+  "state_cases": [
+    {
+      "id": "cross-store-atomic-batch",
+      "proof": "rust-tron/crates/tron-state/tests/integration_contract.rs::cross_store_batch_is_atomic_and_reopens"
+    },
+    {
+      "id": "all-c007-precommit-phases",
+      "proof": "rust-tron/crates/tron-state/tests/integration_contract.rs::c007_precommit_crash_matrix_keeps_cross_store_batch_atomic"
+    },
+    {
+      "id": "market-linked-atomicity",
+      "proof": "rust-tron/crates/tron-state/tests/integration_contract.rs::market_linked_updates_are_atomic_across_crashes"
+    },
+    {
+      "id": "account-asset-atomicity",
+      "proof": "rust-tron/crates/tron-state/tests/integration_contract.rs::account_external_assets_are_atomic_across_crashes"
+    }
+  ]
+}

@@ -33,7 +33,7 @@ Allowed edges are declared in each crate manifest. Adding an edge requires updat
 | `tron-crypto` | Hash engines, keys, signatures, addresses, keystore core | C004-C005 | G-CRYPTO, G-SEC, G-LICENSE |
 | `tron-shielded` | Sapling primitives, parameters, native/FFI adapter boundary | C006 | G-CRYPTO, G-SEC, G-LICENSE, G-ARCH |
 | `tron-storage` | Rust disk format, KV backend, migrations, snapshots; initial pure-Rust `rustlog-v1` WAL/snapshot format and backend-independent market ordering | C007 | G-FORMAT, G-STATE, G-ARCH |
-| `tron-state` | Capsules, logical schemas, revoking sessions, cursors, genesis, fork graph | C008-C011 | G-STATE, G-FORMAT |
+| `tron-state` | Canonical protobuf/raw capsules; account, asset, block, transaction, result, index, contract, ABI, code, state and storage-row logical codecs; collision-free named-store namespaces and the atomic cross-store batch seam; revoking sessions, cursors, genesis, fork graph | C008-C011 (C008.01-C008.04 codecs and storage seam implemented here) | G-STATE, G-FORMAT |
 | `tron-tvm` | TVM repository, interpreter, opcodes, precompiles | C014-C015 | G-TVM, G-CRYPTO |
 | `tron-execution` | Actuators, admission, trace, billing, pending state, block processing | C012-C013, C016, C019 | G-STATE, G-TVM, G-CONSENSUS |
 | `tron-consensus` | DPoS scheduling and PBFT sidecar | C017-C018 | G-CONSENSUS |
