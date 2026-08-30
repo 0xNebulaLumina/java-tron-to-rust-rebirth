@@ -689,59 +689,73 @@
     {
       "id": "C006",
       "title": "Sapling and shielded crypto",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-08-30",
       "resume": null,
       "items": [
         {
           "id": "C006.01",
           "description": "Map all JLibrustzcash/JLibsodium methods and parameter structs to reviewed Rust implementations/FFI.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed the final package boundary and reviewed all 39 JLibrustzcash/JLibsodium methods and parameter structures against their Rust implementations and FFI contracts."
         },
         {
           "id": "C006.02",
           "description": "Parameter packaging, integrity validation, initialization, temp-resource lifecycle, and `ZCASH_INIT` errors.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed caller/operator-supplied parameter handling with size and BLAKE2b-512 integrity validation, initialization and lifecycle behavior, typed ZCASH_INIT failures, and verified exclusion of parameter bytes from Rust packages and releases."
         },
         {
           "id": "C006.03",
           "description": "Spending/viewing keys, addresses, notes, nullifiers, commitments, encryption/decryption.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed the Sapling key, address, note, nullifier, commitment, encryption, and decryption compatibility boundary; all 5 note compatibility tests pass."
         },
         {
           "id": "C006.04",
           "description": "Incremental Merkle tree, path, voucher, endian reversal, depth and full-tree errors.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed incremental Merkle tree, path, voucher, endian, depth, and full-tree compatibility; all 4 Merkle fixture tests pass."
         },
         {
           "id": "C006.05",
           "description": "Proving/verification contexts, spend/output/final checks, free paths, concurrency.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed proving and verification context contracts, spend/output/final checks, free paths, failure behavior, and concurrency coverage; all 12 context tests pass."
         },
         {
           "id": "C006.06",
           "description": "External localhost ZK gRPC service compatibility boundary.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed the external localhost TronZksnark gRPC compatibility boundary; all 5 gRPC boundary tests pass."
         }
       ],
       "gate": {
         "id": "C006.V",
-        "description": "All tracked Sapling/Merkle/shielded fixtures and failure vectors pass; ignored coverage is consciously replaced, not omitted.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: the final package boundary covers all 39 methods; all 157 Java cases and 16 ignored cases have structured mappings; all 4 Merkle, 5 note, 12 context, and 5 gRPC tests pass; and the locked Rust workspace all-targets check passes.",
+        "status": "passed",
+        "commands": [
+          {"name":"C006 provenance and replacement gate","cwd":".","argv":["python3","tools/shielded/c006_gate.py"],"timeout_seconds":300},
+          {"name":"C006 parameters and Merkle fixtures","cwd":"rust-tron","argv":["cargo","test","-p","tron-shielded","--test","merkle_fixtures","--locked"],"timeout_seconds":300},
+          {"name":"C006 sodium, keys, notes and encryption","cwd":"rust-tron","argv":["cargo","test","-p","tron-shielded","--test","note_compat","--locked"],"timeout_seconds":300},
+          {"name":"C006 proofs, contexts, failures and concurrency","cwd":"rust-tron","argv":["cargo","test","-p","tron-shielded","--test","context_contract","--locked"],"timeout_seconds":600},
+          {"name":"C006 local TronZksnark gRPC boundary","cwd":"rust-tron","argv":["cargo","test","-p","tron-shielded","--test","zksnark_grpc_boundary","--locked"],"timeout_seconds":300},
+          {"name":"Rust workspace all-targets check","cwd":"rust-tron","argv":["cargo","check","--workspace","--all-targets","--locked"],"timeout_seconds":600}
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C006.R.01",
+            "summary": "Final review required confirmation of the secured package boundary, complete method and Java-case mapping, shielded compatibility suites, and the locked workspace validation result.",
+            "status": "closed",
+            "resolution": "Approved after confirming the final results: the package boundary covers all 39 methods, all 157 Java cases plus 16 ignored cases have explicit mappings, all 4 Merkle, 5 note, 12 context, and 5 gRPC tests pass, and the locked Rust workspace all-targets check passes. All findings are closed, review is approved, C006 is complete, and the next ready item is C007.01."
+          }
+        ]
       },
       "blocker": null
     },
@@ -2162,9 +2176,9 @@
       "items": [
         {
           "id": "C028.01",
-          "description": "Reproducible FullNode/Solidity/Toolkit binaries and parameter/config packaging.",
+          "description": "Reproducible FullNode/Solidity/Toolkit binaries and config packaging; Sapling parameters are never packaged and are operator-provisioned with exact size/BLAKE2b-512 preflight.",
           "status": "todo",
-          "note": null
+          "note": "C006 seam: reject any crate, package, binary, container, bundle, or release containing sapling-spend.params or sapling-output.params; package only expected hashes and provisioning policy, not parameter bytes."
         },
         {
           "id": "C028.02",
@@ -2210,9 +2224,9 @@
         },
         {
           "id": "C028.09",
-          "description": "Publish the release-artifact trust contract and signed release manifest binding the release identity/version to every binary, container image digest, configuration bundle, native library/resource and parameter package digest; attach SBOM and build-provenance attestations; define out-of-band trust-anchor provisioning, signer scope, threshold if used, rotation/revocation, algorithm/version agility and offline verification.",
+          "description": "Publish the release-artifact trust contract and signed release manifest binding the release identity/version to every binary, container image digest, configuration bundle and approved native library/resource digest; attach SBOM and build-provenance attestations; define out-of-band trust-anchor provisioning, signer scope, threshold if used, rotation/revocation, algorithm/version agility and offline verification. For C006 Sapling parameters, bind only the operator-provisioning policy and expected size/digest, never parameter bytes or a parameter-package claim absent explicit redistribution approval.",
           "status": "todo",
-          "note": null
+          "note": "C006 provenance seam requires package-inventory exclusion checks and records the java-tron and zksnark-java-sdk origins as content-pinned but signer-unverified/unsigned risk."
         },
         {
           "id": "C028.10",

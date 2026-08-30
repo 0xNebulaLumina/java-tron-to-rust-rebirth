@@ -1,0 +1,477 @@
+{
+  "schema_version": 1,
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "upstream_revisions": [
+    {
+      "repository": "https://github.com/tronprotocol/java-tron.git",
+      "commit": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+      "signature": {"present": true, "scheme": "OpenPGP RSA", "key_id": "B5690EEEBB952194", "verification": "unverified: signer public key is not provisioned in the project trust store"},
+      "risk": "content is pinned by commit and per-file hashes, but signer identity is not authenticated; treat as an unsigned origin for release provenance"
+    },
+    {
+      "repository": "https://github.com/tronprotocol/zksnark-java-sdk.git",
+      "commit": "834f0daa9d7dcfde19b48c30b863fc772395ae5e",
+      "relationship": "observed upstream repository HEAD; no authenticated evidence maps the Maven 1.0.0 binary to this commit",
+      "signature": {"present": true, "scheme": "OpenPGP RSA", "key_id": "4AEE18F83AFDEB23", "verification": "unverified: signer public key is not provisioned in the project trust store"},
+      "risk": "do not use this commit as source correspondence for the Maven artifact; the reference remains unsigned/unmapped provenance and is not redistributed or linked"
+    }
+  ],
+  "activated_boundary": {
+    "production": "pure-Rust Sapling key/address/note/nullifier/commitment operations; pre-ZIP212 note encryption, decryption, and recovery; incremental Merkle operations; spend and output proof generation; spend-authorization and binding signatures; contextual and one-shot spend/output/final proof verification; pure-Rust JLibsodium-compatible Blake2b and ChaCha20-Poly1305 operations; caller-selected localhost TronZksnark gRPC requests",
+    "parameter_requirement": "proof generation and parameter-backed verification require operator-provisioned spend/output parameter files authenticated by exact byte length and streaming BLAKE2b-512 before parsing",
+    "excluded": "no zksnark-java-sdk JAR/native library/libsodium linkage, no parameter discovery or download, and no parameter bytes, copied Java resources, repository tests, or fixtures in the tron-shielded Cargo package or any binary, container, bundle, or release artifact",
+    "cargo_package_boundary": "the explicit tron-shielded package include list contains only Cargo metadata, the authenticated LGPL-3.0 license file, and production src/**; cargo package --list is gated to require that exact license while rejecting tests, fixtures, copied Java resource names or content, and Sapling parameter names or content"
+  },
+  "package_license": {
+    "path": "rust-tron/crates/tron-shielded/LICENSE-LGPL-3.0",
+    "source_path": "java-tron/LICENSE",
+    "source_repository": "https://github.com/tronprotocol/java-tron.git",
+    "source_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+    "source_url": "https://github.com/tronprotocol/java-tron/blob/4a21592f95e37908b21bc3f611c6e7a1a67f09f3/LICENSE",
+    "license": "LGPL-3.0-only",
+    "copy_method": "verbatim",
+    "bytes": 7810,
+    "sha256": "98d91346fc3f8eb94f8d0c0716faad059fc228a5d64b8aef3173aaab3efd495f",
+    "distribution": "required in every tron-shielded Cargo package"
+  },
+  "production_dependencies": [
+    {"crate":"tron-crypto","version":"0.0.0","declared_features":[],"default_features":true,"resolved_features":[],"license":"LGPL-3.0-only","source":"workspace path ../tron-crypto"},
+    {"crate":"tron-primitives","version":"0.0.0","declared_features":[],"default_features":true,"resolved_features":[],"license":"LGPL-3.0-only","source":"workspace path ../tron-primitives"},
+    {"crate":"tron-protocol","version":"0.0.0","declared_features":[],"default_features":true,"resolved_features":[],"license":"LGPL-3.0-only","source":"workspace path ../tron-protocol"},
+    {"crate":"prost","version":"0.13.5","declared_features":[],"default_features":true,"resolved_features":["default","derive","std"],"license":"Apache-2.0","source":"crates.io"},
+    {"crate":"tokio","version":"1.53.1","declared_features":["sync","time"],"default_features":true,"resolved_features":["default","macros","net","rt","sync","time"],"license":"MIT","source":"crates.io"},
+    {"crate":"tonic","version":"0.12.3","declared_features":[],"default_features":true,"resolved_features":["channel","codegen","default","prost","router","server","transport"],"license":"MIT","source":"crates.io"},
+    {"crate":"bellman","version":"0.14.0","declared_features":[],"default_features":true,"resolved_features":["crossbeam-channel","default","groth16","lazy_static","log","multicore","num_cpus","pairing","rayon"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"blake2","version":"0.11.0","declared_features":["zeroize"],"default_features":true,"resolved_features":["alloc","default","zeroize"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"bls12_381","version":"0.8.0","declared_features":[],"default_features":true,"resolved_features":["alloc","bits","default","group","groups","pairing","pairings"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"chacha20poly1305","version":"0.11.0","declared_features":["alloc"],"default_features":false,"resolved_features":["alloc"],"license":"Apache-2.0 OR MIT","source":"crates.io"},
+    {"crate":"ff","version":"0.13.1","declared_features":[],"default_features":true,"resolved_features":["alloc","bits","bitvec","default","std"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"group","version":"0.13.0","declared_features":[],"default_features":true,"resolved_features":["alloc","default","memuse","wnaf-memuse"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"hex","version":"0.4.3","declared_features":[],"default_features":true,"resolved_features":["alloc","default","std"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"incrementalmerkletree","version":"0.8.2","declared_features":[],"default_features":true,"resolved_features":["legacy-api"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"jubjub","version":"0.10.0","declared_features":[],"default_features":true,"resolved_features":["alloc","bits","default"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"rand_core","version":"0.6.4","declared_features":["getrandom"],"default_features":true,"resolved_features":["alloc","getrandom","std"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"redjubjub","version":"0.8.0","declared_features":[],"default_features":true,"resolved_features":["default","serde","std"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"sapling-crypto","version":"0.7.0","declared_features":["temporary-zcashd"],"default_features":true,"resolved_features":["circuit","default","multicore","std","temporary-zcashd"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"sha2","version":"0.10.9","declared_features":[],"default_features":true,"resolved_features":["default","std"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"subtle","version":"2.6.1","declared_features":[],"default_features":true,"resolved_features":["default","i128","std"],"license":"BSD-3-Clause","source":"crates.io"},
+    {"crate":"zcash_note_encryption","version":"0.4.2","declared_features":[],"default_features":true,"resolved_features":["alloc","default","pre-zip-212"],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"zcash_spec","version":"0.2.1","declared_features":[],"default_features":true,"resolved_features":[],"license":"MIT OR Apache-2.0","source":"crates.io"},
+    {"crate":"zeroize","version":"1.8.1","declared_features":["derive"],"default_features":true,"resolved_features":["aarch64","alloc","default","derive","zeroize_derive"],"license":"Apache-2.0 OR MIT","source":"crates.io"},
+    {"crate":"zip32","version":"0.2.1","declared_features":[],"default_features":true,"resolved_features":["default","std"],"license":"MIT OR Apache-2.0","source":"crates.io"}
+  ],
+  "sources": [
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "sha256": "1928e200853b1bf5c20030105b8009664bb706633e83494f00514f85139b34db"
+    },
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibsodium.java",
+      "sha256": "adaf1b0e849335759a03767bd940e37e1b0991e77ce147a35279990e8c571e8e"
+    },
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/LibrustzcashParam.java",
+      "sha256": "7ecea980c31c4f9149fbb3ec5874f854bb11d50942fac5b80f016346b7f1b54a"
+    },
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibsodiumParam.java",
+      "sha256": "49b67e4e974c4dc1f01ee4387ddef9da8dd475a2cb1f4a605e2ea3555b3bd1f9"
+    },
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/IncrementalMerkleTreeContainer.java",
+      "sha256": "aad2ac12d618820ad22b9df8cb98efe05ee639e464cd4a400163bec93df27f71"
+    },
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/IncrementalMerkleVoucherContainer.java",
+      "sha256": "1603298e84d8433bb1cfd3bfff357a1336b523682399d06df44223580944bdce"
+    },
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/MerklePath.java",
+      "sha256": "fd6a3edb154d983fb2f5c2dd0ca595878d129b7c00c3d19cb3e842183609f6d6"
+    },
+    {
+      "path": "java-tron/framework/src/main/java/org/tron/core/zen/ZksnarkInitService.java",
+      "sha256": "de3fb496cbc1863db650c843c9bbaf04f4a671bebb5187e7669264dbb012a1d7"
+    },
+    {
+      "path": "java-tron/framework/src/main/java/org/tron/common/zksnark/ZksnarkClient.java",
+      "sha256": "4fbcd44e2c248cffe2c37cf835ad6fbc3df0467c855d700996b1b057d259bac7"
+    },
+    {
+      "path": "java-tron/protocol/src/main/protos/api/zksnark.proto",
+      "sha256": "f3be595eb40aff190b3c1d1b79e9ee07cb1fbbc668fca8b69cb566d0a75e819e"
+    },
+    {
+      "path": "java-tron/platform/build.gradle",
+      "sha256": "3c5476c540b228b6b67941f7721e7ba578bc082468bda778b8c045b66c903533"
+    },
+    {
+      "path": "java-tron/gradle/verification-metadata.xml",
+      "sha256": "65ebe544c1c8140b756b5ebc9f19032a08d1e72db34d52ae36a465e5e2ffb965"
+    }
+  ],
+  "native_reference": {
+    "coordinate": "io.github.tronprotocol:zksnark-java-sdk:1.0.0",
+    "jar_sha256": "d0bd272630dc6c622f968d4c7d8b1c5a7aec590ae9cde1e0e7ae7aea25adde2e",
+    "pom_sha256": "c169726766469a5f159f2953bbc6df67af740e9c623b17a0a2f5e80f060f0c44",
+    "artifact_license_claim": "Apache-2.0 in Maven POM/manifest",
+    "repository_license": "LGPL-3.0",
+    "provenance_risk": "artifact-to-source commit correspondence and signer identity are not authenticated; conflicting license signals remain unresolved",
+    "linkage": "semantic reference only; pure Rust replacement ships no SDK JAR, native binary, or bundled libsodium"
+  },
+  "parameter_distribution_policy": {
+    "classification": "caller-supplied production input and test-only pinned java-tron blob",
+    "provisioning": "operator must provision both exact files out of band and verify the recorded byte length and BLAKE2b-512 before parsing",
+    "exclusions": ["Rust crate source", "Cargo package", "published crate", "binary", "container image", "configuration bundle", "parameter package", "release artifact"],
+    "redistribution_rights": "not asserted; the pinned java-tron blobs are provenance and test references only, not permission to redistribute",
+    "c028_seam": "C028 packaging must reject inclusion and must preflight operator-provisioned paths plus exact size/digest before process activation"
+  },
+  "parameters": [
+    {
+      "path": "java-tron/framework/src/main/resources/params/sapling-spend.params",
+      "pinned_repository_path": "framework/src/main/resources/params/sapling-spend.params",
+      "git_blob": "f74593027a99a777bb6d14ad9fa80ac393a975c8",
+      "source_url": "https://github.com/tronprotocol/java-tron/blob/4a21592f95e37908b21bc3f611c6e7a1a67f09f3/framework/src/main/resources/params/sapling-spend.params",
+      "usage": "caller-supplied production input; checked-out pinned blob is test-only",
+      "distribution": "excluded from Rust crates, Cargo packages, and releases; operator-provisioned only",
+      "redistribution_rights": "not asserted",
+      "bytes": 48013340,
+      "sha256": "2d386a8578212a9b2de5c99b9eb72ca93fa106712fd1f3d290bf62dc1415f71d",
+      "blake2b512": "25fd9a0d1c1be0526c14662947ae95b758fe9f3d7fb7f55e9b4437830dcc6215a7ce3ea465914b157715b7a4d681389ea4aa84438190e185d5e4c93574d3a19a"
+    },
+    {
+      "path": "java-tron/framework/src/main/resources/params/sapling-output.params",
+      "pinned_repository_path": "framework/src/main/resources/params/sapling-output.params",
+      "git_blob": "85e8cb3d46aaf02599b0d1f9e67a3023a9fdfd8f",
+      "source_url": "https://github.com/tronprotocol/java-tron/blob/4a21592f95e37908b21bc3f611c6e7a1a67f09f3/framework/src/main/resources/params/sapling-output.params",
+      "usage": "caller-supplied production input; checked-out pinned blob is test-only",
+      "distribution": "excluded from Rust crates, Cargo packages, and releases; operator-provisioned only",
+      "redistribution_rights": "not asserted",
+      "bytes": 3647804,
+      "sha256": "6a631c287bc8ce9d1f02cb8f3a6d10b2867c54e9c1f5fa66225684602585fcae",
+      "blake2b512": "a1cb23b93256adce5bce2cb09cefbc96a1d16572675ceb691e9a3626ec15b5b546926ff1c536cfe3a9df07d796b32fdfc3e5d99d65567257bf286cd2858d71a6"
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "rust-tron/crates/tron-shielded/tests/fixtures/merkle_commitments_sapling.json",
+      "upstream_path": "framework/src/test/resources/json/merkle_commitments_sapling.json",
+      "git_blob": "b00c72094538e738519b8d0e9b4afbac284590ee",
+      "category": "copied",
+      "license": "LGPL-3.0-only",
+      "notices": "covered by pinned java-tron LICENSE; unmodified test resource",
+      "distribution": "repository test fixture only; excluded from production package/release artifacts",
+      "bytes": 1123,
+      "sha256": "9db658f21de35a240cb97ae545284d4e7bf421590e45d7dcc462ac8044037ba1"
+    },
+    {
+      "path": "rust-tron/crates/tron-shielded/tests/fixtures/merkle_path_sapling.json",
+      "upstream_path": "framework/src/test/resources/json/merkle_path_sapling.json",
+      "git_blob": "204abad17c88478c92d3b2bb8b5c6235311f0303",
+      "category": "copied",
+      "license": "LGPL-3.0-only",
+      "notices": "covered by pinned java-tron LICENSE; unmodified test resource",
+      "distribution": "repository test fixture only; excluded from production package/release artifacts",
+      "bytes": 34563,
+      "sha256": "99f9d5da5423aa22a201d13aa60d32c3515112e21ed30c39d17438b4bee0d70f"
+    },
+    {
+      "path": "rust-tron/crates/tron-shielded/tests/fixtures/merkle_roots_empty_sapling.json",
+      "upstream_path": "framework/src/test/resources/json/merkle_roots_empty_sapling.json",
+      "git_blob": "a532c27c522aa39971a6a6d5c7b7aa1aa3a48d4a",
+      "category": "copied",
+      "license": "LGPL-3.0-only",
+      "notices": "covered by pinned java-tron LICENSE; unmodified test resource",
+      "distribution": "repository test fixture only; excluded from production package/release artifacts",
+      "bytes": 4413,
+      "sha256": "5ebc53535e9cefb8cfcfed23ae318f39e10e22c6cbc159f981cceed96b1df7c3"
+    },
+    {
+      "path": "rust-tron/crates/tron-shielded/tests/fixtures/merkle_roots_sapling.json",
+      "upstream_path": "framework/src/test/resources/json/merkle_roots_sapling.json",
+      "git_blob": "8637f9dc4075a638627b4d5e53c2e6355e6144fe",
+      "category": "copied",
+      "license": "LGPL-3.0-only",
+      "notices": "covered by pinned java-tron LICENSE; unmodified test resource",
+      "distribution": "repository test fixture only; excluded from production package/release artifacts",
+      "bytes": 1123,
+      "sha256": "ea1d870841642d91630556dbf454beb88884419f3bdf225238d55e2b23721d97"
+    }
+  ],
+  "method_count": 39,
+  "methods": [
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashZip32XskMaster",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashInitZksnarkParams",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashZip32XskDerive",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashZip32XfvkAddress",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashCrhIvk",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashKaAgree",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashComputeCm",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashComputeNf",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashAskToAk",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashNskToNk",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingGenerateR",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingKaDerivepublic",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingProvingCtxInit",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashCheckDiversifier",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingSpendProof",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingOutputProof",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingSpendSig",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingBindingSig",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashToScalar",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingProvingCtxFree",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingVerificationCtxInit",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingCheckSpend",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingCheckOutput",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingFinalCheck",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingCheckSpendNew",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingCheckOutputNew",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingFinalCheckNew",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashSaplingVerificationCtxFree",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashIvkToPkd",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashMerkleHash",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibrustzcash",
+      "method": "librustzcashTreeUncommitted",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibrustzcash.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibsodium",
+      "method": "cryptoGenerichashBlake2bInitSaltPersonal",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibsodium.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibsodium",
+      "method": "cryptoGenerichashBlake2bUpdate",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibsodium.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibsodium",
+      "method": "cryptoGenerichashBlake2bFinal",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibsodium.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibsodium",
+      "method": "cryptoGenerichashBlack2bSaltPersonal",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibsodium.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibsodium",
+      "method": "cryptoAeadChacha20poly1305IetfDecrypt",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibsodium.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibsodium",
+      "method": "cryptoAeadChacha20Poly1305IetfEncrypt",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibsodium.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibsodium",
+      "method": "initState",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibsodium.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    },
+    {
+      "class": "JLibsodium",
+      "method": "freeState",
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/zksnark/JLibsodium.java",
+      "replacement": "tron-shielded",
+      "status": "implemented"
+    }
+  ]
+}

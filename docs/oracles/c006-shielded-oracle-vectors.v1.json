@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "vectors": [
+    {
+      "id": "C006.FIXTURE.MERKLE_COMMITMENTS_SAPLING",
+      "basis": "java_upstream_fixture",
+      "path": "rust-tron/crates/tron-shielded/tests/fixtures/merkle_commitments_sapling.json",
+      "sha256": "9db658f21de35a240cb97ae545284d4e7bf421590e45d7dcc462ac8044037ba1",
+      "records": 16
+    },
+    {
+      "id": "C006.FIXTURE.MERKLE_PATH_SAPLING",
+      "basis": "java_upstream_fixture",
+      "path": "rust-tron/crates/tron-shielded/tests/fixtures/merkle_path_sapling.json",
+      "sha256": "99f9d5da5423aa22a201d13aa60d32c3515112e21ed30c39d17438b4bee0d70f",
+      "records": 120
+    },
+    {
+      "id": "C006.FIXTURE.MERKLE_ROOTS_EMPTY_SAPLING",
+      "basis": "java_upstream_fixture",
+      "path": "rust-tron/crates/tron-shielded/tests/fixtures/merkle_roots_empty_sapling.json",
+      "sha256": "5ebc53535e9cefb8cfcfed23ae318f39e10e22c6cbc159f981cceed96b1df7c3",
+      "records": 63
+    },
+    {
+      "id": "C006.FIXTURE.MERKLE_ROOTS_SAPLING",
+      "basis": "java_upstream_fixture",
+      "path": "rust-tron/crates/tron-shielded/tests/fixtures/merkle_roots_sapling.json",
+      "sha256": "ea1d870841642d91630556dbf454beb88884419f3bdf225238d55e2b23721d97",
+      "records": 16
+    },
+    {
+      "id": "C006.PARAM.SAPLING-SPEND_PARAMS",
+      "basis": "native_tron_parameter",
+      "bytes": 48013340,
+      "blake2b512": "25fd9a0d1c1be0526c14662947ae95b758fe9f3d7fb7f55e9b4437830dcc6215a7ce3ea465914b157715b7a4d681389ea4aa84438190e185d5e4c93574d3a19a"
+    },
+    {
+      "id": "C006.PARAM.SAPLING-OUTPUT_PARAMS",
+      "basis": "native_tron_parameter",
+      "bytes": 3647804,
+      "blake2b512": "a1cb23b93256adce5bce2cb09cefbc96a1d16572675ceb691e9a3626ec15b5b546926ff1c536cfe3a9df07d796b32fdfc3e5d99d65567257bf286cd2858d71a6"
+    },
+    {
+      "id": "C006.JAVA.GRPC.REQUEST",
+      "basis": "java_source_deterministic",
+      "sighash": "ded9c2181fd7ea468a7a7b1475defe90bb0fc0ca8d0f2096b0617465cea6568c",
+      "value_balance": 10000,
+      "target": "127.0.0.1:60051",
+      "expected_unavailable": "StatusRuntimeException"
+    },
+    {
+      "id": "C006.NATIVE.SODIUM.CONSTANTS",
+      "basis": "java_native_api_deterministic",
+      "blake2b_personal_bytes": 16,
+      "chacha20poly1305_ietf_nonce_bytes": 12
+    },
+    {
+      "id": "C006.BEHAVIOR.PARAMETER_SNAPSHOT_TOCTOU",
+      "basis": "rust_behavioral_regression",
+      "test": "context_contract.rs::authenticated_parameter_snapshot_survives_in_place_mutation",
+      "contract": "each exact-bounded parameter file is read once into owned immutable bytes while BLAKE2b-512 and size are checked; parsing uses only that authenticated snapshot, survives later in-place mutation or truncation of the source, and rejects a same-size pre-snapshot mutation by digest"
+    },
+    {
+      "id": "C006.BEHAVIOR.REAL_PROOFS",
+      "basis": "rust_behavioral_regression",
+      "test": "context_contract.rs::actual_spend_output_proofs_verify_and_finalize",
+      "contract": "bundled TRON parameters generate, contextually verify, accumulate, and finalize two spends totaling 12 plus three outputs totaling 11 with native value balance 1; an inconsistent supplied balance is rejected without signing or output mutation, while FinalCheckNew accepts the balanced commitments and fixed Java field shapes remain enforced"
+    },
+    {
+      "id": "C006.JAVA.BINDING_SIG.EMPTY_CONTEXT_NONZERO_BALANCE",
+      "basis": "java_source_exact_regression",
+      "source": "java-tron/framework/src/test/java/org/tron/core/zksnark/LibrustzcashTest.java::testZcashParam",
+      "value_balance": 1,
+      "sighash": "000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f",
+      "test": "context_contract.rs::exact_java_empty_context_nonzero_binding_balance_fails_without_output_mutation",
+      "contract": "an empty proving context cannot produce a binding signature for Java's nonzero value balance; the compatibility call fails and preserves all 64 caller-owned output bytes"
+    },
+    {
+      "id": "C006.BEHAVIOR.CONTEXT_LIFETIME",
+      "basis": "rust_behavioral_regression",
+      "tests": [
+        "context_contract.rs::invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "context_contract.rs::context_wrong_kind_double_free_and_bounds_are_rejected",
+        "context_contract.rs::freeing_locked_context_does_not_block_other_contexts",
+        "context_contract.rs::same_handle_queued_before_free_obeys_retirement_barrier",
+        "context_contract.rs::retiring_context_keeps_its_capacity_reserved_until_quiesced",
+        "context_contract.rs::bounded_concurrent_contexts_replace_ignored_benchmark"
+      ],
+      "contract": "free atomically retires and removes a same-handle entry, rejects cloned-but-unadmitted and later operations without mutation, waits for admitted work to complete, preserves typed wrong-kind/double-free/bound failures, keeps retiring-active slots reserved until quiescence, and never blocks unrelated handles"
+    },
+    {
+      "id": "C006.BEHAVIOR.CONSTANT_INCREMENTAL_VERIFICATION",
+      "basis": "rust_behavioral_regression",
+      "test": "context_contract.rs::actual_spend_output_proofs_verify_and_finalize",
+      "contract": "each spend/output is independently preverified before live-context commit; five accepted real proofs produce exactly five preverification events, failed input preserves counters, and no prior proof is retained or replayed"
+    },
+    {
+      "id": "C006.BEHAVIOR.JLIBSODIUM",
+      "basis": "rust_behavioral_regression",
+      "test": "note_compat.rs::all_jlibsodium_state_one_shot_and_aead_operations_preserve_return_semantics",
+      "contract": "all eight state, one-shot, and ChaCha20-Poly1305 compatibility operations preserve success/failure, length, capacity, and no-mutation semantics"
+    },
+    {
+      "id": "C006.NATIVE.BLAKE2B.NULL_KEY_NULL_SALT",
+      "basis": "independent_python_hashlib_blake2b",
+      "oracle": "CPython _blake2 hashlib.blake2b with an unkeyed parameter block and omitted salt (all-zero 16-byte salt field)",
+      "test": "note_compat.rs::fixed_blake2b_null_key_null_salt_note_derivation_vectors",
+      "stateful_prf_expand_input_bytes": 33,
+      "stateful_prf_expand_personal": "Ztron_ExpandSeed",
+      "stateful_prf_expand_digest_bytes": 64,
+      "stateful_prf_expand_64": "9861efdc0ceb6ef279b3ac35529b04a62911c8977f1e0a3a6b69cd98a593dfa689a71e891034ea0d301d387a215ee9558188fb32a19f3ef617e0886452bfdf2a",
+      "stateful_default_diversifier_input_bytes": 34,
+      "stateful_default_diversifier_digest_bytes": 64,
+      "stateful_default_diversifier_final_bytes": 11,
+      "stateful_default_diversifier_11": "91f635a6a1f25d5ce8839b",
+      "one_shot_sapling_kdf_input_bytes": 64,
+      "one_shot_sapling_kdf_personal": "Ztron_SaplingKDF",
+      "one_shot_sapling_kdf_digest_bytes": 32,
+      "one_shot_sapling_kdf_32": "fbf6c8018b43ea06a666fb1bda2fabaeebd07eeea6bc13c001315404a0b247bc",
+      "one_shot_ock_input_bytes": 128,
+      "one_shot_ock_personal": "Ztron_Derive_ock",
+      "one_shot_ock_digest_bytes": 32,
+      "one_shot_ock_32": "5a3c64f54619d8a56a144ee54a5259a480c4050dcbd4bd32568dab585041e850",
+      "contract": "Java SpendingKey feeds 32 key bytes plus one PRF tag byte (33 total), and default diversifier derivation feeds the same key plus tag and diversifier index byte (34 total), into a 64-byte BLAKE2b state personalized Ztron_ExpandSeed; NoteEncryption one-shot KDF and outgoing-cipher-key derivation feed 64 and 128 bytes respectively into true 32-byte BLAKE2b parameterizations. A null key and null/empty salt select unkeyed BLAKE2b with the parameter block's 16-byte salt field zeroed."
+    },
+    {
+      "id": "C006.SECURITY.ATTACKER_CONTROLLED_ALLOCATIONS",
+      "basis": "rust_behavioral_regression",
+      "test": "note_compat.rs::attacker_controlled_sodium_lengths_fail_without_proportional_allocation_or_panic",
+      "contract": "numeric message, AAD, ciphertext, and output limits reject extreme usize and tiny-invalid lengths with typed or return-code failure, empty output, no panic, and no attacker-sized allocation"
+    }
+  ],
+  "vectors_sha256": "bf8f79cf4b0e250d67d7e44ea05709b6cc513b54548351fc453521bcdde72781",
+  "determinism_policy": "Only immutable source constants, parameter digests, checked-in upstream Merkle fixtures, and named behavioral contracts are recorded; randomized proof bytes are verified behaviorally rather than frozen."
+}

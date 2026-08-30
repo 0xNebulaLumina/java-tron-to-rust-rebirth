@@ -1,0 +1,3847 @@
+{
+  "schema_version": 1,
+  "source_ledger": "java-test-ownership.v1.json",
+  "active_count": 157,
+  "ignored_count": 16,
+  "rows": [
+    {
+      "id": "TCASE-63B772CA32FAA2D3",
+      "source": {
+        "line": 25,
+        "path": "java-tron/framework/src/test/java/org/tron/common/zksnark/ZksnarkClientTest.java"
+      },
+      "case": "testCheckZksnarkProof",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.02",
+        "rust_test_file": "owner-gate:C022.02",
+        "rust_test_symbol": "zksnark_client_test__test_check_zksnark_proof",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.02",
+          "zksnark_client_test__test_check_zksnark_proof"
+        ],
+        "covered_contract": "TronZksnark client service invocation belongs to the C022.02 service boundary; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-3C1400FC9980F234",
+      "source": {
+        "line": 45,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedTransaction1",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_transaction1",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shield_wallet_test__test_create_shielded_transaction1"
+        ],
+        "covered_contract": "testCreateShieldedTransaction1 is a wallet/transaction construction contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-1305EF9B9DD006A4",
+      "source": {
+        "line": 77,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedTransaction2",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_transaction2",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shield_wallet_test__test_create_shielded_transaction2"
+        ],
+        "covered_contract": "testCreateShieldedTransaction2 is a wallet/transaction construction contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-18E8979509153411",
+      "source": {
+        "line": 184,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedTransactionWithoutSpendAuthSig",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_transaction_without_spend_auth_sig",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shield_wallet_test__test_create_shielded_transaction_without_spend_auth_sig"
+        ],
+        "covered_contract": "testCreateShieldedTransactionWithoutSpendAuthSig is a wallet/transaction construction contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-568EE8B8619F66C4",
+      "source": {
+        "line": 293,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testGetNewShieldedAddress",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shield_wallet_test__test_get_new_shielded_address",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shield_wallet_test__test_get_new_shielded_address"
+        ],
+        "covered_contract": "testGetNewShieldedAddress is a wallet/transaction construction contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-8AE5726DB753E139",
+      "source": {
+        "line": 303,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParameters",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shield_wallet_test__test_create_shielded_contract_parameters"
+        ],
+        "covered_contract": "testCreateShieldedContractParameters is a wallet/transaction construction contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-A55ED2CFD5DE8C28",
+      "source": {
+        "line": 345,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParameters2",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters2",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shield_wallet_test__test_create_shielded_contract_parameters2"
+        ],
+        "covered_contract": "testCreateShieldedContractParameters2 is a wallet/transaction construction contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-22B85A3CBA4E0C3C",
+      "source": {
+        "line": 416,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParametersWithoutAsk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters_without_ask",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shield_wallet_test__test_create_shielded_contract_parameters_without_ask"
+        ],
+        "covered_contract": "testCreateShieldedContractParametersWithoutAsk is a wallet/transaction construction contract owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-41F747780BA8DA73",
+      "source": {
+        "line": 498,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParameters_invalidParams",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters_invalid_params",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shield_wallet_test__test_create_shielded_contract_parameters_invalid_params"
+        ],
+        "covered_contract": "testCreateShieldedContractParameters_invalidParams is a wallet/transaction construction contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-BE6854F67DDE0D07",
+      "source": {
+        "line": 511,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParameters_TRANSFER_missingKeys",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters_transfer_missing_keys",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shield_wallet_test__test_create_shielded_contract_parameters_transfer_missing_keys"
+        ],
+        "covered_contract": "testCreateShieldedContractParameters_TRANSFER_missingKeys is a wallet/transaction construction contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-C3108EBA1535931F",
+      "source": {
+        "line": 526,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParameters_BURN_missingKeys",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters_burn_missing_keys",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shield_wallet_test__test_create_shielded_contract_parameters_burn_missing_keys"
+        ],
+        "covered_contract": "testCreateShieldedContractParameters_BURN_missingKeys is a wallet/transaction construction contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-5C2F57B6982B850B",
+      "source": {
+        "line": 541,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParameters_BURN_missingTransparentTo",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters_burn_missing_transparent_to",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shield_wallet_test__test_create_shielded_contract_parameters_burn_missing_transparent_to"
+        ],
+        "covered_contract": "testCreateShieldedContractParameters_BURN_missingTransparentTo is a wallet/transaction construction contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-E61E091F8DDFA2F5",
+      "source": {
+        "line": 559,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParameters_TRANSFER_arithmeticOverflow",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters_transfer_arithmetic_overflow",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shield_wallet_test__test_create_shielded_contract_parameters_transfer_arithmetic_overflow"
+        ],
+        "covered_contract": "testCreateShieldedContractParameters_TRANSFER_arithmeticOverflow is a wallet/transaction construction contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-851EB2943F47AA71",
+      "source": {
+        "line": 578,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParametersWithoutAsk_invalidParams",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters_without_ask_invalid_params",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shield_wallet_test__test_create_shielded_contract_parameters_without_ask_invalid_params"
+        ],
+        "covered_contract": "testCreateShieldedContractParametersWithoutAsk_invalidParams is a wallet/transaction construction contract owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-237FC24A16DDB8D3",
+      "source": {
+        "line": 592,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParametersWithoutAsk_TRANSFER_missingKeys",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters_without_ask_transfer_missing_keys",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shield_wallet_test__test_create_shielded_contract_parameters_without_ask_transfer_missing_keys"
+        ],
+        "covered_contract": "testCreateShieldedContractParametersWithoutAsk_TRANSFER_missingKeys is a wallet/transaction construction contract owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-5CE7DA0BDE370B2F",
+      "source": {
+        "line": 608,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParametersWithoutAsk_BURN_missingKeys",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters_without_ask_burn_missing_keys",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shield_wallet_test__test_create_shielded_contract_parameters_without_ask_burn_missing_keys"
+        ],
+        "covered_contract": "testCreateShieldedContractParametersWithoutAsk_BURN_missingKeys is a wallet/transaction construction contract owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-F7D3514613839973",
+      "source": {
+        "line": 624,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParametersWithoutAsk_BURN_missingTransparentTo",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters_without_ask_burn_missing_transparent_to",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shield_wallet_test__test_create_shielded_contract_parameters_without_ask_burn_missing_transparent_to"
+        ],
+        "covered_contract": "testCreateShieldedContractParametersWithoutAsk_BURN_missingTransparentTo is a wallet/transaction construction contract owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-67DD6924452799F9",
+      "source": {
+        "line": 643,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParametersWithoutAsk_MINT_emptyOvk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters_without_ask_mint_empty_ovk",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shield_wallet_test__test_create_shielded_contract_parameters_without_ask_mint_empty_ovk"
+        ],
+        "covered_contract": "testCreateShieldedContractParametersWithoutAsk_MINT_emptyOvk is a wallet/transaction construction contract owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-1C476AE66B274EB8",
+      "source": {
+        "line": 661,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldWalletTest.java"
+      },
+      "case": "testCreateShieldedContractParametersWithoutAsk_TRANSFER_arithmeticOverflow",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shield_wallet_test__test_create_shielded_contract_parameters_without_ask_transfer_arithmetic_overflow",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shield_wallet_test__test_create_shielded_contract_parameters_without_ask_transfer_arithmetic_overflow"
+        ],
+        "covered_contract": "testCreateShieldedContractParametersWithoutAsk_TRANSFER_arithmeticOverflow is a wallet/transaction construction contract owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-64CAA2A630ADAC60",
+      "source": {
+        "line": 2249,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "testScanShieldedTRC20NotesByIvk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shielded_trc20_builder_test__test_scan_shielded_trc20_notes_by_ivk",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shielded_trc20_builder_test__test_scan_shielded_trc20_notes_by_ivk"
+        ],
+        "covered_contract": "testScanShieldedTRC20NotesByIvk is a shielded TRC20 wallet query contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-2BC114D35CACE4BE",
+      "source": {
+        "line": 2265,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "testscanShieldedTRC20NotesByOvk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shielded_trc20_builder_test__testscan_shielded_trc20_notes_by_ovk",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shielded_trc20_builder_test__testscan_shielded_trc20_notes_by_ovk"
+        ],
+        "covered_contract": "testscanShieldedTRC20NotesByOvk is a shielded TRC20 wallet query contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-6F2A752A3BC25059",
+      "source": {
+        "line": 2280,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "isShieldedTRC20ContractNoteSpent",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shielded_trc20_builder_test__is_shielded_trc20_contract_note_spent",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shielded_trc20_builder_test__is_shielded_trc20_contract_note_spent"
+        ],
+        "covered_contract": "isShieldedTRC20ContractNoteSpent is a shielded TRC20 wallet query contract owned by C022.01B; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-08B941DCE87EA9AA",
+      "source": {
+        "line": 58,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testBurnCipherSize",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_burn_cipher_size",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_burn_cipher_size"
+        ],
+        "covered_contract": "BurnCipherTest.testBurnCipherSize is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-442410CC0944FBD1",
+      "source": {
+        "line": 68,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testEncryptProduces96ByteRecord",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_encrypt_produces96_byte_record",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_encrypt_produces96_byte_record"
+        ],
+        "covered_contract": "BurnCipherTest.testEncryptProduces96ByteRecord is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-94C6A726D47A91BE",
+      "source": {
+        "line": 77,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testRecordReservedBytesCarryV2Marker",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_record_reserved_bytes_carry_v2_marker",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_record_reserved_bytes_carry_v2_marker"
+        ],
+        "covered_contract": "BurnCipherTest.testRecordReservedBytesCarryV2Marker is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-696054806D3C9489",
+      "source": {
+        "line": 84,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testNonceEmbeddedInRecord",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_nonce_embedded_in_record",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_nonce_embedded_in_record"
+        ],
+        "covered_contract": "BurnCipherTest.testNonceEmbeddedInRecord is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-B4E0C043C78872AB",
+      "source": {
+        "line": 99,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testNonceDeterminism",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_nonce_determinism",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_nonce_determinism"
+        ],
+        "covered_contract": "BurnCipherTest.testNonceDeterminism is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-62B78EC9BA610A20",
+      "source": {
+        "line": 107,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDifferentNfProducesDifferentRecord",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_different_nf_produces_different_record",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_different_nf_produces_different_record"
+        ],
+        "covered_contract": "BurnCipherTest.testDifferentNfProducesDifferentRecord is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-26138F52B56C3F3D",
+      "source": {
+        "line": 118,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDifferentAmountProducesDifferentNonce",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_different_amount_produces_different_nonce",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_different_amount_produces_different_nonce"
+        ],
+        "covered_contract": "BurnCipherTest.testDifferentAmountProducesDifferentNonce is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-B31EFC84E62174D6",
+      "source": {
+        "line": 127,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDifferentAddrProducesDifferentNonce",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_different_addr_produces_different_nonce",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_different_addr_produces_different_nonce"
+        ],
+        "covered_contract": "BurnCipherTest.testDifferentAddrProducesDifferentNonce is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-BF6397BC18739B1B",
+      "source": {
+        "line": 139,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testEncryptRejectsNullNf",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_encrypt_rejects_null_nf",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_encrypt_rejects_null_nf"
+        ],
+        "covered_contract": "BurnCipherTest.testEncryptRejectsNullNf is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-13D63BF9BCF4058E",
+      "source": {
+        "line": 144,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testEncryptRejectsShortOvk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_encrypt_rejects_short_ovk",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_encrypt_rejects_short_ovk"
+        ],
+        "covered_contract": "BurnCipherTest.testEncryptRejectsShortOvk is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-5A961E220A6E4AC6",
+      "source": {
+        "line": 149,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testEncryptRejectsBadAddrLength",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_encrypt_rejects_bad_addr_length",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_encrypt_rejects_bad_addr_length"
+        ],
+        "covered_contract": "BurnCipherTest.testEncryptRejectsBadAddrLength is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-878FAC18B4C02B64",
+      "source": {
+        "line": 156,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testEncryptDecryptRoundTrip",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_encrypt_decrypt_round_trip",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_encrypt_decrypt_round_trip"
+        ],
+        "covered_contract": "BurnCipherTest.testEncryptDecryptRoundTrip is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-6328EBA800CF7848",
+      "source": {
+        "line": 178,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDecryptWithWrongNfFails",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_decrypt_with_wrong_nf_fails",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_decrypt_with_wrong_nf_fails"
+        ],
+        "covered_contract": "BurnCipherTest.testDecryptWithWrongNfFails is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-EDE2A05F70A8E954",
+      "source": {
+        "line": 192,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDecryptWithWrongAmountFails",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_decrypt_with_wrong_amount_fails",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_decrypt_with_wrong_amount_fails"
+        ],
+        "covered_contract": "BurnCipherTest.testDecryptWithWrongAmountFails is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-422CCA6C48065FC3",
+      "source": {
+        "line": 205,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDecryptWithWrongAddrFails",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_decrypt_with_wrong_addr_fails",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_decrypt_with_wrong_addr_fails"
+        ],
+        "covered_contract": "BurnCipherTest.testDecryptWithWrongAddrFails is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-0D4F63E7BA494A31",
+      "source": {
+        "line": 219,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDecryptWithNullNfFailsForV2",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_decrypt_with_null_nf_fails_for_v2",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_decrypt_with_null_nf_fails_for_v2"
+        ],
+        "covered_contract": "BurnCipherTest.testDecryptWithNullNfFailsForV2 is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-919FAC304A1C7021",
+      "source": {
+        "line": 231,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDecryptWithWrongNfLengthFailsForV2",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_decrypt_with_wrong_nf_length_fails_for_v2",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_decrypt_with_wrong_nf_length_fails_for_v2"
+        ],
+        "covered_contract": "BurnCipherTest.testDecryptWithWrongNfLengthFailsForV2 is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-C6DE2D8761DCC23F",
+      "source": {
+        "line": 248,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDecryptWithTamperedNonceFails",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_decrypt_with_tampered_nonce_fails",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_decrypt_with_tampered_nonce_fails"
+        ],
+        "covered_contract": "BurnCipherTest.testDecryptWithTamperedNonceFails is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-EC3A5B3FBE33A7EF",
+      "source": {
+        "line": 261,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDecryptWithUnknownReservedMarkerFails",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_decrypt_with_unknown_reserved_marker_fails",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_decrypt_with_unknown_reserved_marker_fails"
+        ],
+        "covered_contract": "BurnCipherTest.testDecryptWithUnknownReservedMarkerFails is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-1CCA77D674864E08",
+      "source": {
+        "line": 275,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDecryptRejectsNullOvk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_decrypt_rejects_null_ovk",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_decrypt_rejects_null_ovk"
+        ],
+        "covered_contract": "BurnCipherTest.testDecryptRejectsNullOvk is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-8C633E26026216F4",
+      "source": {
+        "line": 281,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDecryptRejectsBadCipherLength",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_decrypt_rejects_bad_cipher_length",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_decrypt_rejects_bad_cipher_length"
+        ],
+        "covered_contract": "BurnCipherTest.testDecryptRejectsBadCipherLength is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-7C9319DC24A8142B",
+      "source": {
+        "line": 288,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDecryptRejectsNullNonce",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_decrypt_rejects_null_nonce",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_decrypt_rejects_null_nonce"
+        ],
+        "covered_contract": "BurnCipherTest.testDecryptRejectsNullNonce is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-427B5B44902E8D77",
+      "source": {
+        "line": 295,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zen/note/BurnCipherTest.java"
+      },
+      "case": "testDecryptRejectsNullReserved",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "burn_cipher_test__test_decrypt_rejects_null_reserved",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "burn_cipher_test__test_decrypt_rejects_null_reserved"
+        ],
+        "covered_contract": "BurnCipherTest.testDecryptRejectsNullReserved is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-30D987D05D1A430B",
+      "source": {
+        "line": 119,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/LibrustzcashTest.java"
+      },
+      "case": "testLibsodium",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.01",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "all_jlibsodium_state_one_shot_and_aead_operations_preserve_return_semantics",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "all_jlibsodium_state_one_shot_and_aead_operations_preserve_return_semantics",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "JLibsodium state, one-shot hash, scalar multiplication, and AEAD return-code semantics match the compatibility wrapper."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-6CE785CF14155348",
+      "source": {
+        "line": 129,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/LibrustzcashTest.java"
+      },
+      "case": "testZcashParam",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.02",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "authenticated_parameter_snapshot_survives_in_place_mutation",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "authenticated_parameter_snapshot_survives_in_place_mutation",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Sapling parameter bytes are authenticated once into an exact-sized immutable snapshot; post-authentication in-place mutation cannot affect parsing and pre-snapshot digest mutation is rejected."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-B1EA93DFF5D6BBC7",
+      "source": {
+        "line": 305,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/LibrustzcashTest.java"
+      },
+      "case": "calBenchmarkSpend",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "actual_spend_output_proofs_verify_and_finalize",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "actual_spend_output_proofs_verify_and_finalize",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Real spend and output proofs verify and finalize through authenticated proving and verification contexts."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-2AFC2FB811C1E4DC",
+      "source": {
+        "line": 371,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/LibrustzcashTest.java"
+      },
+      "case": "calBenchmarkCreateSaplingSpend",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "actual_spend_output_proofs_verify_and_finalize",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "actual_spend_output_proofs_verify_and_finalize",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Real spend and output proofs verify and finalize through authenticated proving and verification contexts."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-1627E341996A6B33",
+      "source": {
+        "line": 447,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/LibrustzcashTest.java"
+      },
+      "case": "calBenchmarkCreateSaplingOutPut",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "actual_spend_output_proofs_verify_and_finalize",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "actual_spend_output_proofs_verify_and_finalize",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Real spend and output proofs verify and finalize through authenticated proving and verification contexts."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-D9271E9E58134AFD",
+      "source": {
+        "line": 474,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/LibrustzcashTest.java"
+      },
+      "case": "checkVerifyOutErr",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed proof inputs fail without mutating proof outputs or verification context state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-7711474377D81854",
+      "source": {
+        "line": 499,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/LibrustzcashTest.java"
+      },
+      "case": "testGenerateNote",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.03",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Sapling note generation feeds a pre-ZIP212 encrypt/decrypt round trip preserving value, randomness, diversifier, and memo."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-CE7032EDF8A2A86B",
+      "source": {
+        "line": 547,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/LibrustzcashTest.java"
+      },
+      "case": "testGenerateNoteWithDefault",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.03",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Sapling note generation feeds a pre-ZIP212 encrypt/decrypt round trip preserving value, randomness, diversifier, and memo."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-BE2072BA581F75E5",
+      "source": {
+        "line": 589,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/LibrustzcashTest.java"
+      },
+      "case": "testGenerateNoteWithConstant",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.03",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Sapling note generation feeds a pre-ZIP212 encrypt/decrypt round trip preserving value, randomness, diversifier, and memo."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-E4155AE4FB8A6723",
+      "source": {
+        "line": 621,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/LibrustzcashTest.java"
+      },
+      "case": "testPedersenHash",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.01",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Sapling commitment and note primitives produce values accepted by the pre-ZIP212 note encryption round trip."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-5C3DE97A867B49C5",
+      "source": {
+        "line": 346,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/MerkleContainerTest.java"
+      },
+      "case": "getMerkleTreeWitnessInfoTest",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.04",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/merkle_fixtures.rs",
+        "rust_test_symbol": "java_voucher_decode_preserves_path_and_appends",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "merkle_fixtures",
+          "java_voucher_decode_preserves_path_and_appends",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Java voucher decoding preserves element, position, encoded path, append behavior, and root."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-E19C55B234A44DE9",
+      "source": {
+        "line": 395,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/MerkleContainerTest.java"
+      },
+      "case": "append",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.04",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/merkle_fixtures.rs",
+        "rust_test_symbol": "java_voucher_decode_preserves_path_and_appends",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "merkle_fixtures",
+          "java_voucher_decode_preserves_path_and_appends",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Java voucher decoding preserves element, position, encoded path, append behavior, and root."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-A67FA4B3E5211062",
+      "source": {
+        "line": 74,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/MerkleTreeTest.java"
+      },
+      "case": "testComplexTreePath",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.04",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/merkle_fixtures.rs",
+        "rust_test_symbol": "java_merkle_roots_and_paths_match",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "merkle_fixtures",
+          "java_merkle_roots_and_paths_match",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Incremental Sapling tree roots and all encoded witness paths match the authenticated Java fixture sequence."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-9A6057714E181CC8",
+      "source": {
+        "line": 97,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/NoteEncDecryTest.java"
+      },
+      "case": "testDecryptWithOvk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "note_enc_decry_test__test_decrypt_with_ovk",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "note_enc_decry_test__test_decrypt_with_ovk"
+        ],
+        "covered_contract": "NoteEncDecryTest.testDecryptWithOvk is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-19798474F985DA02",
+      "source": {
+        "line": 131,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/NoteEncDecryTest.java"
+      },
+      "case": "testDecryptEncWithEpk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "note_enc_decry_test__test_decrypt_enc_with_epk",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "note_enc_decry_test__test_decrypt_enc_with_epk"
+        ],
+        "covered_contract": "NoteEncDecryTest.testDecryptEncWithEpk is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-A1EB398E97102A03",
+      "source": {
+        "line": 207,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/NoteEncDecryTest.java"
+      },
+      "case": "testBurnMessageOvkLegacyZeroNonce",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "note_enc_decry_test__test_burn_message_ovk_legacy_zero_nonce",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "note_enc_decry_test__test_burn_message_ovk_legacy_zero_nonce"
+        ],
+        "covered_contract": "NoteEncDecryTest.testBurnMessageOvkLegacyZeroNonce is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-DD9E443BF0CCEEEB",
+      "source": {
+        "line": 244,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/NoteEncDecryTest.java"
+      },
+      "case": "testGetTriggerInputBurnV2Accepted",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "note_enc_decry_test__test_get_trigger_input_burn_v2_accepted",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "note_enc_decry_test__test_get_trigger_input_burn_v2_accepted"
+        ],
+        "covered_contract": "NoteEncDecryTest.testGetTriggerInputBurnV2Accepted is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-4643E29A4A5D9481",
+      "source": {
+        "line": 258,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/NoteEncDecryTest.java"
+      },
+      "case": "testGetTriggerInputBurnLegacy96ByteRecordRejected",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "note_enc_decry_test__test_get_trigger_input_burn_legacy96_byte_record_rejected",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "note_enc_decry_test__test_get_trigger_input_burn_legacy96_byte_record_rejected"
+        ],
+        "covered_contract": "NoteEncDecryTest.testGetTriggerInputBurnLegacy96ByteRecordRejected is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-1798753D599D261B",
+      "source": {
+        "line": 273,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/NoteEncDecryTest.java"
+      },
+      "case": "testGetTriggerInputBurnUnknownReservedRejected",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "note_enc_decry_test__test_get_trigger_input_burn_unknown_reserved_rejected",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "note_enc_decry_test__test_get_trigger_input_burn_unknown_reserved_rejected"
+        ],
+        "covered_contract": "NoteEncDecryTest.testGetTriggerInputBurnUnknownReservedRejected is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-AD00089439BDC7D3",
+      "source": {
+        "line": 291,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/NoteEncDecryTest.java"
+      },
+      "case": "testGetTriggerInputBurnNonceMismatchRejected",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "note_enc_decry_test__test_get_trigger_input_burn_nonce_mismatch_rejected",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "note_enc_decry_test__test_get_trigger_input_burn_nonce_mismatch_rejected"
+        ],
+        "covered_contract": "NoteEncDecryTest.testGetTriggerInputBurnNonceMismatchRejected is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-7C2F38B25DC77753",
+      "source": {
+        "line": 309,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/NoteEncDecryTest.java"
+      },
+      "case": "testGetTriggerInputBurn80ByteCipherRejected",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "note_enc_decry_test__test_get_trigger_input_burn80_byte_cipher_rejected",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "note_enc_decry_test__test_get_trigger_input_burn80_byte_cipher_rejected"
+        ],
+        "covered_contract": "NoteEncDecryTest.testGetTriggerInputBurn80ByteCipherRejected is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-1CF715D80C3D2FAE",
+      "source": {
+        "line": 339,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/NoteEncDecryTest.java"
+      },
+      "case": "testGetNoteTxFromLogListByOvkBurnTooShort",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "note_enc_decry_test__test_get_note_tx_from_log_list_by_ovk_burn_too_short",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "note_enc_decry_test__test_get_note_tx_from_log_list_by_ovk_burn_too_short"
+        ],
+        "covered_contract": "NoteEncDecryTest.testGetNoteTxFromLogListByOvkBurnTooShort is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-A31E497660DEA889",
+      "source": {
+        "line": 357,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/NoteEncDecryTest.java"
+      },
+      "case": "testGetNoteTxFromLogListByOvkBurnRoundTrip",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "note_enc_decry_test__test_get_note_tx_from_log_list_by_ovk_burn_round_trip",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "note_enc_decry_test__test_get_note_tx_from_log_list_by_ovk_burn_round_trip"
+        ],
+        "covered_contract": "NoteEncDecryTest.testGetNoteTxFromLogListByOvkBurnRoundTrip is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-D0A4BD6256F35482",
+      "source": {
+        "line": 395,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/NoteEncDecryTest.java"
+      },
+      "case": "testGetNoteTxFromLogListByOvkBurnMissingNfRejected",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "note_enc_decry_test__test_get_note_tx_from_log_list_by_ovk_burn_missing_nf_rejected",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "note_enc_decry_test__test_get_note_tx_from_log_list_by_ovk_burn_missing_nf_rejected"
+        ],
+        "covered_contract": "NoteEncDecryTest.testGetNoteTxFromLogListByOvkBurnMissingNfRejected is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-802D353DA29BE905",
+      "source": {
+        "line": 433,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/NoteEncDecryTest.java"
+      },
+      "case": "testGetNoteTxFromLogListByOvkTwoBurnsCursorPairing",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "note_enc_decry_test__test_get_note_tx_from_log_list_by_ovk_two_burns_cursor_pairing",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "note_enc_decry_test__test_get_note_tx_from_log_list_by_ovk_two_burns_cursor_pairing"
+        ],
+        "covered_contract": "NoteEncDecryTest.testGetNoteTxFromLogListByOvkTwoBurnsCursorPairing is a Java compatibility edge contract assigned to C029.02 reconciliation; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-3F6B145F2107E2A8",
+      "source": {
+        "line": 40,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SaplingNoteTest.java"
+      },
+      "case": "testVectors",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.03",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Sapling note randomness, commitment, encryption, recipient decryption, and sender recovery preserve the same note fields."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-C548043BDDCFEBA0",
+      "source": {
+        "line": 77,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SaplingNoteTest.java"
+      },
+      "case": "testRandom",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.03",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Sapling note randomness, commitment, encryption, recipient decryption, and sender recovery preserve the same note fields."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-F9A21ED79E360A49",
+      "source": {
+        "line": 170,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "testPathMock",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.04",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/merkle_fixtures.rs",
+        "rust_test_symbol": "java_path_markers_endian_and_round_trip",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "merkle_fixtures",
+          "java_path_markers_endian_and_round_trip",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Java Merkle path bytes preserve marker validation, little-endian position, and encode/decode round trip."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-F7B745C7612E327D",
+      "source": {
+        "line": 230,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "testStringRevert",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.04",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/merkle_fixtures.rs",
+        "rust_test_symbol": "java_path_markers_endian_and_round_trip",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "merkle_fixtures",
+          "java_path_markers_endian_and_round_trip",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Java Merkle path bytes preserve marker validation, little-endian position, and encode/decode round trip."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-46EC95FB15DAF332",
+      "source": {
+        "line": 240,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "testGenerateSpendProof",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "actual_spend_output_proofs_verify_and_finalize",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "actual_spend_output_proofs_verify_and_finalize",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Authenticated spend/output proofs verify and the binding/final checks complete in their declared contexts."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-F3855FF81AA72E33",
+      "source": {
+        "line": 274,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "generateOutputProof",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "actual_spend_output_proofs_verify_and_finalize",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "actual_spend_output_proofs_verify_and_finalize",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Authenticated spend/output proofs verify and the binding/final checks complete in their declared contexts."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-7192E82E8DB0CD68",
+      "source": {
+        "line": 292,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "verifyOutputProof",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "actual_spend_output_proofs_verify_and_finalize",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "actual_spend_output_proofs_verify_and_finalize",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Authenticated spend/output proofs verify and the binding/final checks complete in their declared contexts."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-A3B92FC2013313BA",
+      "source": {
+        "line": 322,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "testDecryptReceiveWithIvk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.03",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "External Sapling keys derive an address and preserve commitment, recipient-decryption, and sender-recovery note fields."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-01EE3206BE230107",
+      "source": {
+        "line": 386,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "testDecryptReceiveWithOvk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.03",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "External Sapling keys derive an address and preserve commitment, recipient-decryption, and sender-recovery note fields."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-05CF27AEA45CD2C5",
+      "source": {
+        "line": 458,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "pushShieldedTransactionAndDecryptWithIvk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "send_coin_shield_test__push_shielded_transaction_and_decrypt_with_ivk",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "send_coin_shield_test__push_shielded_transaction_and_decrypt_with_ivk"
+        ],
+        "covered_contract": "pushShieldedTransactionAndDecryptWithIvk is a high-level shielded transaction regression owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-915B445E09FF7C71",
+      "source": {
+        "line": 539,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "testDefaultAddress",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.03",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "External Sapling keys derive an address and preserve commitment, recipient-decryption, and sender-recovery note fields."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-D333C027EE226871",
+      "source": {
+        "line": 546,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "pushShieldedTransactionAndDecryptWithOvk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "send_coin_shield_test__push_shielded_transaction_and_decrypt_with_ovk",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "send_coin_shield_test__push_shielded_transaction_and_decrypt_with_ovk"
+        ],
+        "covered_contract": "pushShieldedTransactionAndDecryptWithOvk is a high-level shielded transaction regression owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-24FF732742558699",
+      "source": {
+        "line": 673,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "testVerifySpendProof",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "actual_spend_output_proofs_verify_and_finalize",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "actual_spend_output_proofs_verify_and_finalize",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Authenticated spend/output proofs verify and the binding/final checks complete in their declared contexts."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-C7BCA4490090C557",
+      "source": {
+        "line": 708,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "saplingBindingSig",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "actual_spend_output_proofs_verify_and_finalize",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "actual_spend_output_proofs_verify_and_finalize",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Authenticated spend/output proofs verify and the binding/final checks complete in their declared contexts."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-CAFF2DDB84AEC778",
+      "source": {
+        "line": 741,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "pushShieldedTransaction",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "send_coin_shield_test__push_shielded_transaction",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "send_coin_shield_test__push_shielded_transaction"
+        ],
+        "covered_contract": "pushShieldedTransaction is a high-level shielded transaction regression owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-C8AD8D90F96E61C0",
+      "source": {
+        "line": 779,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "finalCheck",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "actual_spend_output_proofs_verify_and_finalize",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "actual_spend_output_proofs_verify_and_finalize",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Authenticated spend/output proofs verify and the binding/final checks complete in their declared contexts."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-1B7DEE6135B36653",
+      "source": {
+        "line": 843,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "testEmptyRoot",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.04",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/merkle_fixtures.rs",
+        "rust_test_symbol": "all_java_empty_roots_match",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "merkle_fixtures",
+          "all_java_empty_roots_match",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Every Sapling empty root by depth matches the authenticated Java fixture."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-0A47804BC0847848",
+      "source": {
+        "line": 851,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "testEmptyRoots",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.04",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/merkle_fixtures.rs",
+        "rust_test_symbol": "all_java_empty_roots_match",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "merkle_fixtures",
+          "all_java_empty_roots_match",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Every Sapling empty root by depth matches the authenticated Java fixture."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-28086A450F4226D2",
+      "source": {
+        "line": 871,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "testComputeCm",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.03",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "External Sapling keys derive an address and preserve commitment, recipient-decryption, and sender-recovery note fields."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-EFB70A0AB4B04944",
+      "source": {
+        "line": 886,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "getSpendingKey",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.03",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "External Sapling keys derive an address and preserve commitment, recipient-decryption, and sender-recovery note fields."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-D45E394E8CC0256A",
+      "source": {
+        "line": 954,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "testTwoCMWithDiffSkInOneTx",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.03",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/note_compat.rs",
+        "rust_test_symbol": "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "note_compat",
+          "pre_zip212_note_round_trips_through_external_keys_and_preserves_memo",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "External Sapling keys derive an address and preserve commitment, recipient-decryption, and sender-recovery note fields."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-99AFF4AAF6868354",
+      "source": {
+        "line": 1014,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "testValueBalance",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "send_coin_shield_test__test_value_balance",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "send_coin_shield_test__test_value_balance"
+        ],
+        "covered_contract": "testValueBalance is a high-level shielded transaction regression owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-753025D5DE5C59C0",
+      "source": {
+        "line": 1234,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "TestCreateMultipleTxAtTheSameTime",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "send_coin_shield_test__test_create_multiple_tx_at_the_same_time",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "send_coin_shield_test__test_create_multiple_tx_at_the_same_time"
+        ],
+        "covered_contract": "TestCreateMultipleTxAtTheSameTime is a high-level shielded transaction regression owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-0F5BFC40D241C95E",
+      "source": {
+        "line": 1351,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "TestCtxGeneratesTooMuchProof",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "actual_spend_output_proofs_verify_and_finalize",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "actual_spend_output_proofs_verify_and_finalize",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Authenticated spend/output proofs verify and the binding/final checks complete in their declared contexts."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-A2A43085A2655C93",
+      "source": {
+        "line": 1425,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "TestGeneratesProofWithDiffCtx",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Invalid spend/output proof material or context association is rejected without mutating outputs or verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-012EAB5C51D99496",
+      "source": {
+        "line": 1483,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "TestGeneratesProofWithWrongAlpha",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Invalid spend/output proof material or context association is rejected without mutating outputs or verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-5207D8933EA4A03C",
+      "source": {
+        "line": 1519,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "TestGeneratesProofWithWrongRcm",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Invalid spend/output proof material or context association is rejected without mutating outputs or verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-4F95E62EF390F45A",
+      "source": {
+        "line": 1540,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "TestWrongAsk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Invalid spend/output proof material or context association is rejected without mutating outputs or verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-6B3C36E727439FCD",
+      "source": {
+        "line": 1649,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "TestDefaultBuilder",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "send_coin_shield_test__test_default_builder",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "send_coin_shield_test__test_default_builder"
+        ],
+        "covered_contract": "TestDefaultBuilder is a high-level shielded transaction regression owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-AEF98B5894E227A9",
+      "source": {
+        "line": 1659,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "TestWrongSpendRk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Invalid spend/output proof material or context association is rejected without mutating outputs or verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-1376FAC1E40BEB45",
+      "source": {
+        "line": 1696,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "TestWrongSpendProof",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Invalid spend/output proof material or context association is rejected without mutating outputs or verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-2438A15142176515",
+      "source": {
+        "line": 1740,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "TestWrongNf",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Invalid spend/output proof material or context association is rejected without mutating outputs or verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-144D7B9786BC0D5E",
+      "source": {
+        "line": 1778,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "TestWrongAnchor",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Invalid spend/output proof material or context association is rejected without mutating outputs or verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-810ACEF03D3ACF77",
+      "source": {
+        "line": 256,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testIsMining",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_is_mining",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_is_mining"
+        ],
+        "covered_contract": "testIsMining is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-09E68E4E76E3A7AF",
+      "source": {
+        "line": 264,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testSetShieldedTransactionFee",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shielded_receive_test__test_set_shielded_transaction_fee",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shielded_receive_test__test_set_shielded_transaction_fee"
+        ],
+        "covered_contract": "testSetShieldedTransactionFee is a high-level shielded receive/transaction contract owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-629E306D9811F87E",
+      "source": {
+        "line": 277,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testCreateBeforeAllowZksnark",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shielded_receive_test__test_create_before_allow_zksnark",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shielded_receive_test__test_create_before_allow_zksnark"
+        ],
+        "covered_contract": "testCreateBeforeAllowZksnark is a high-level shielded receive/transaction contract owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-D164BE70DA4658E1",
+      "source": {
+        "line": 315,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testBroadcastBeforeAllowZksnark",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shielded_receive_test__test_broadcast_before_allow_zksnark",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shielded_receive_test__test_broadcast_before_allow_zksnark"
+        ],
+        "covered_contract": "testBroadcastBeforeAllowZksnark is a high-level shielded receive/transaction contract owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-CAE38F9882573D7C",
+      "source": {
+        "line": 487,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "calBenchmarkVerifySpend",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "actual_spend_output_proofs_verify_and_finalize",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "actual_spend_output_proofs_verify_and_finalize",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Real Sapling spend and output proofs are verified in an authenticated verification context and finalized."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-23D5CE4D6029EAFB",
+      "source": {
+        "line": 518,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "calBenchmarkVerifyOutput",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "actual_spend_output_proofs_verify_and_finalize",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "actual_spend_output_proofs_verify_and_finalize",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Real Sapling spend and output proofs are verified in an authenticated verification context and finalized."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-CA626F5E3E05C563",
+      "source": {
+        "line": 612,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testReceiveDescriptionWithEmptyCv",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-CD7EB53586C7ABA2",
+      "source": {
+        "line": 657,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testReceiveDescriptionWithEmptyCm",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-2D1B359970ECACAA",
+      "source": {
+        "line": 698,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testReceiveDescriptionWithEmptyEpk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-490FD2AADF2C9B21",
+      "source": {
+        "line": 741,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testReceiveDescriptionWithEmptyZkproof",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-3BA6B023851E5AF5",
+      "source": {
+        "line": 783,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testReceiveDescriptionWithEmptyCenc",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-916E83D94710D6CD",
+      "source": {
+        "line": 825,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testReceiveDescriptionWithEmptyCout",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-749C27476DE0531B",
+      "source": {
+        "line": 1082,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testReceiveDescriptionWithWrongCv",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-4374C418647E676C",
+      "source": {
+        "line": 1111,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testReceiveDescriptionWithWrongZkproof",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-4EEA353F57CA87E5",
+      "source": {
+        "line": 1140,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testReceiveDescriptionWithWrongD",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-254C2034FD2B3FE2",
+      "source": {
+        "line": 1170,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testReceiveDescriptionWithWrongPkd",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-43D59C6D84BE403E",
+      "source": {
+        "line": 1200,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testReceiveDescriptionWithWrongValue",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-84CE2065B4E1E1A3",
+      "source": {
+        "line": 1229,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testReceiveDescriptionWithWrongRcm",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-DB8436D7960EE493",
+      "source": {
+        "line": 1258,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testNotMatchAskAndNsk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-8B5B08F775829083",
+      "source": {
+        "line": 1308,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testRandomOvk",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-8E174F5D0381013F",
+      "source": {
+        "line": 1351,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testSameInputCm",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-3114893922FAA7AE",
+      "source": {
+        "line": 1399,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testSameOutputCm",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "invalid_proof_inputs_do_not_mutate_outputs_or_verification_state",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Malformed or inconsistent shielded description proof inputs are rejected without mutating verification state."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-662E01F4D9811F30",
+      "source": {
+        "line": 1450,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testShieldInputInsufficient",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shielded_receive_test__test_shield_input_insufficient",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shielded_receive_test__test_shield_input_insufficient"
+        ],
+        "covered_contract": "testShieldInputInsufficient is a high-level shielded receive/transaction contract owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-DF57801BA0D70A97",
+      "source": {
+        "line": 1495,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testTransparentInputInsufficient",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shielded_receive_test__test_transparent_input_insufficient",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shielded_receive_test__test_transparent_input_insufficient"
+        ],
+        "covered_contract": "testTransparentInputInsufficient is a high-level shielded receive/transaction contract owned by C016.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-CF9ADA1F796E8C7E",
+      "source": {
+        "line": 1535,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testDiversifierT",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_diversifier_t",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_diversifier_t"
+        ],
+        "covered_contract": "testDiversifierT is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-3DD2E5CAB8881B90",
+      "source": {
+        "line": 1741,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testSignWithoutFromAddress",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_sign_without_from_address",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_sign_without_from_address"
+        ],
+        "covered_contract": "testSignWithoutFromAddress is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-FD10FFBB8ED97330",
+      "source": {
+        "line": 1780,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testSignWithoutFromAmout",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_sign_without_from_amout",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_sign_without_from_amout"
+        ],
+        "covered_contract": "testSignWithoutFromAmout is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-8CF35939A7DCABE9",
+      "source": {
+        "line": 1819,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testSignWithoutSpendDescription",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_sign_without_spend_description",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_sign_without_spend_description"
+        ],
+        "covered_contract": "testSignWithoutSpendDescription is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-E9B289E95DEA59E8",
+      "source": {
+        "line": 1865,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testSignWithoutReceiveDescription",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_sign_without_receive_description",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_sign_without_receive_description"
+        ],
+        "covered_contract": "testSignWithoutReceiveDescription is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-1232D72AC9D1BC7A",
+      "source": {
+        "line": 1911,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testSignWithoutToAddress",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_sign_without_to_address",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_sign_without_to_address"
+        ],
+        "covered_contract": "testSignWithoutToAddress is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-AB609CB681951330",
+      "source": {
+        "line": 1950,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testSignWithoutToAmount",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_sign_without_to_amount",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_sign_without_to_amount"
+        ],
+        "covered_contract": "testSignWithoutToAmount is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-7506A3C88CC3115C",
+      "source": {
+        "line": 1989,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testSpendSignatureWithWrongColumn",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_spend_signature_with_wrong_column",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_spend_signature_with_wrong_column"
+        ],
+        "covered_contract": "testSpendSignatureWithWrongColumn is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-797F0289DCCB9CD9",
+      "source": {
+        "line": 2107,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testIsolateSignature",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_isolate_signature",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_isolate_signature"
+        ],
+        "covered_contract": "testIsolateSignature is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-9B7D6EFEE5DA6EC8",
+      "source": {
+        "line": 2236,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testMemoTooLong",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_memo_too_long",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_memo_too_long"
+        ],
+        "covered_contract": "testMemoTooLong is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-B924B29F71612DBF",
+      "source": {
+        "line": 2318,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testMemoNotEnough",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_memo_not_enough",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_memo_not_enough"
+        ],
+        "covered_contract": "testMemoNotEnough is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-CD6F5D8411D0C747",
+      "source": {
+        "line": 2403,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "pushSameSkAndScanAndSpend",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__push_same_sk_and_scan_and_spend",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__push_same_sk_and_scan_and_spend"
+        ],
+        "covered_contract": "pushSameSkAndScanAndSpend is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-8E65EF67F769A6DB",
+      "source": {
+        "line": 2565,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "decodePaymentAddressIgnoreCase",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__decode_payment_address_ignore_case",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__decode_payment_address_ignore_case"
+        ],
+        "covered_contract": "decodePaymentAddressIgnoreCase is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-AC7122A14D05F149",
+      "source": {
+        "line": 2581,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/ShieldedReceiveTest.java"
+      },
+      "case": "testCreateReceiveNoteRandom",
+      "ignored": false,
+      "replacement": {
+        "owner_chunk": "C029.02",
+        "rust_test_file": "owner-gate:C029.02",
+        "rust_test_symbol": "shielded_receive_test__test_create_receive_note_random",
+        "dispatch": [
+          "pending-owner-gate",
+          "C029.02",
+          "shielded_receive_test__test_create_receive_note_random"
+        ],
+        "covered_contract": "testCreateReceiveNoteRandom is a high-level shielded receive/transaction contract owned by C029.02; C006 receives no coverage credit."
+      },
+      "disposition": "replaced"
+    },
+    {
+      "id": "TRES-A457026C8A86B558",
+      "source": {
+        "line": 1,
+        "path": "java-tron/framework/src/test/resources/config-shield.conf"
+      },
+      "case": "java-tron/framework/src/test/resources/config-shield.conf",
+      "ignored": false,
+      "replacement": "covered by C006 Rust fixture family and gate dispatch",
+      "disposition": "replaced"
+    },
+    {
+      "id": "TRES-B6949DD42995B5E6",
+      "source": {
+        "line": 1,
+        "path": "java-tron/framework/src/test/resources/json/merkle_commitments_sapling.json"
+      },
+      "case": "java-tron/framework/src/test/resources/json/merkle_commitments_sapling.json",
+      "ignored": false,
+      "replacement": "covered by C006 Rust fixture family and gate dispatch",
+      "disposition": "replaced"
+    },
+    {
+      "id": "TRES-438AEF6EB4D4BB6B",
+      "source": {
+        "line": 1,
+        "path": "java-tron/framework/src/test/resources/json/merkle_path_sapling.json"
+      },
+      "case": "java-tron/framework/src/test/resources/json/merkle_path_sapling.json",
+      "ignored": false,
+      "replacement": "covered by C006 Rust fixture family and gate dispatch",
+      "disposition": "replaced"
+    },
+    {
+      "id": "TRES-F2CBA54382F85E60",
+      "source": {
+        "line": 1,
+        "path": "java-tron/framework/src/test/resources/json/merkle_roots_empty_sapling.json"
+      },
+      "case": "java-tron/framework/src/test/resources/json/merkle_roots_empty_sapling.json",
+      "ignored": false,
+      "replacement": "covered by C006 Rust fixture family and gate dispatch",
+      "disposition": "replaced"
+    },
+    {
+      "id": "TRES-80ADD3C401B09B34",
+      "source": {
+        "line": 1,
+        "path": "java-tron/framework/src/test/resources/json/merkle_roots_sapling.json"
+      },
+      "case": "java-tron/framework/src/test/resources/json/merkle_roots_sapling.json",
+      "ignored": false,
+      "replacement": "covered by C006 Rust fixture family and gate dispatch",
+      "disposition": "replaced"
+    },
+    {
+      "id": "TCASE-889D7442A5E67205",
+      "source": {
+        "line": 94,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersForMint",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_for_mint",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_for_mint"
+        ],
+        "covered_contract": "createShieldedContractParametersForMint shielded TRC20 wallet construction belongs to the C022.01B RPC family; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C022.01B"
+    },
+    {
+      "id": "TCASE-10568956BF91ABE8",
+      "source": {
+        "line": 132,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersForTransfer1to1",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_for_transfer1to1",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_for_transfer1to1"
+        ],
+        "covered_contract": "createShieldedContractParametersForTransfer1to1 shielded TRC20 wallet construction belongs to the C022.01B RPC family; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C022.01B"
+    },
+    {
+      "id": "TCASE-A8BE194E0FB578BA",
+      "source": {
+        "line": 263,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersForTransfer1to2",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_for_transfer1to2",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_for_transfer1to2"
+        ],
+        "covered_contract": "createShieldedContractParametersForTransfer1to2 shielded TRC20 wallet construction belongs to the C022.01B RPC family; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C022.01B"
+    },
+    {
+      "id": "TCASE-15CD36E205368BC8",
+      "source": {
+        "line": 413,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersForTransfer2to1",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_for_transfer2to1",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_for_transfer2to1"
+        ],
+        "covered_contract": "createShieldedContractParametersForTransfer2to1 shielded TRC20 wallet construction belongs to the C022.01B RPC family; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C022.01B"
+    },
+    {
+      "id": "TCASE-9BE6316FFD6AB9D6",
+      "source": {
+        "line": 601,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersForTransfer2to2",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_for_transfer2to2",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_for_transfer2to2"
+        ],
+        "covered_contract": "createShieldedContractParametersForTransfer2to2 shielded TRC20 wallet construction belongs to the C022.01B RPC family; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C022.01B"
+    },
+    {
+      "id": "TCASE-66BE1BBA2F14E8BC",
+      "source": {
+        "line": 805,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersForBurn1",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_for_burn1",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_for_burn1"
+        ],
+        "covered_contract": "createShieldedContractParametersForBurn1 shielded TRC20 wallet construction belongs to the C022.01B RPC family; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C022.01B"
+    },
+    {
+      "id": "TCASE-6D338449B2CB828E",
+      "source": {
+        "line": 901,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersForBurn1to1",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C022.01B",
+        "rust_test_file": "owner-gate:C022.01B",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_for_burn1to1",
+        "dispatch": [
+          "pending-owner-gate",
+          "C022.01B",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_for_burn1to1"
+        ],
+        "covered_contract": "createShieldedContractParametersForBurn1to1 shielded TRC20 wallet construction belongs to the C022.01B RPC family; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C022.01B"
+    },
+    {
+      "id": "TCASE-EDE446D96E4D3EB0",
+      "source": {
+        "line": 1023,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersWithoutAskForTransfer1to1",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_without_ask_for_transfer1to1",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_without_ask_for_transfer1to1"
+        ],
+        "covered_contract": "createShieldedContractParametersWithoutAskForTransfer1to1 ownerless shielded transaction validation belongs to the C016.02 transaction pipeline; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C016.02"
+    },
+    {
+      "id": "TCASE-902358A34EAE2F8B",
+      "source": {
+        "line": 1196,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersWithoutAskForTransfer1to2",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_without_ask_for_transfer1to2",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_without_ask_for_transfer1to2"
+        ],
+        "covered_contract": "createShieldedContractParametersWithoutAskForTransfer1to2 ownerless shielded transaction validation belongs to the C016.02 transaction pipeline; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C016.02"
+    },
+    {
+      "id": "TCASE-1A31CC645E562D94",
+      "source": {
+        "line": 1385,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersWithoutAskForTransfer2to1",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_without_ask_for_transfer2to1",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_without_ask_for_transfer2to1"
+        ],
+        "covered_contract": "createShieldedContractParametersWithoutAskForTransfer2to1 ownerless shielded transaction validation belongs to the C016.02 transaction pipeline; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C016.02"
+    },
+    {
+      "id": "TCASE-D12058429A9BE985",
+      "source": {
+        "line": 1628,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersWithoutAskForTransfer2to2",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_without_ask_for_transfer2to2",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_without_ask_for_transfer2to2"
+        ],
+        "covered_contract": "createShieldedContractParametersWithoutAskForTransfer2to2 ownerless shielded transaction validation belongs to the C016.02 transaction pipeline; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C016.02"
+    },
+    {
+      "id": "TCASE-2A2BEB2CD7CBEF0B",
+      "source": {
+        "line": 1889,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersWithoutAskForBurn1to1",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_without_ask_for_burn1to1",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_without_ask_for_burn1to1"
+        ],
+        "covered_contract": "createShieldedContractParametersWithoutAskForBurn1to1 ownerless shielded transaction validation belongs to the C016.02 transaction pipeline; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C016.02"
+    },
+    {
+      "id": "TCASE-61700D2EF224E1DE",
+      "source": {
+        "line": 2025,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "createShieldedContractParametersWithoutAskForBurn1to2",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C016.02",
+        "rust_test_file": "owner-gate:C016.02",
+        "rust_test_symbol": "shielded_trc20_builder_test__create_shielded_contract_parameters_without_ask_for_burn1to2",
+        "dispatch": [
+          "pending-owner-gate",
+          "C016.02",
+          "shielded_trc20_builder_test__create_shielded_contract_parameters_without_ask_for_burn1to2"
+        ],
+        "covered_contract": "createShieldedContractParametersWithoutAskForBurn1to2 ownerless shielded transaction validation belongs to the C016.02 transaction pipeline; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C016.02"
+    },
+    {
+      "id": "TCASE-9788B62F45C7FB8C",
+      "source": {
+        "line": 2183,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ShieldedTRC20BuilderTest.java"
+      },
+      "case": "getTriggerInputForForMint",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C015.04",
+        "rust_test_file": "owner-gate:C015.04",
+        "rust_test_symbol": "shielded_trc20_builder_test__get_trigger_input_for_for_mint",
+        "dispatch": [
+          "pending-owner-gate",
+          "C015.04",
+          "shielded_trc20_builder_test__get_trigger_input_for_for_mint"
+        ],
+        "covered_contract": "Mint trigger-input construction and shielded execution failure mapping belong to the C015.04 TVM boundary; C006 receives no coverage credit."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C015.04"
+    },
+    {
+      "id": "TCASE-026A26FA4C3838E3",
+      "source": {
+        "line": 273,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/LibrustzcashTest.java"
+      },
+      "case": "calBenchmarkSpendConcurrent",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C006.05",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/context_contract.rs",
+        "rust_test_symbol": "bounded_concurrent_contexts_replace_ignored_benchmark",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "context_contract",
+          "bounded_concurrent_contexts_replace_ignored_benchmark",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "Bounded simultaneous proving contexts complete independently and are released after the ignored Java spend benchmark scenario."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C006.05"
+    },
+    {
+      "id": "TCASE-86CAEABC00F410F7",
+      "source": {
+        "line": 639,
+        "path": "java-tron/framework/src/test/java/org/tron/core/zksnark/SendCoinShieldTest.java"
+      },
+      "case": "checkZksnark",
+      "ignored": true,
+      "replacement": {
+        "owner_chunk": "C006.06",
+        "rust_test_file": "rust-tron/crates/tron-shielded/tests/zksnark_grpc_boundary.rs",
+        "rust_test_symbol": "check_zksnark_proof_preserves_the_local_grpc_boundary",
+        "dispatch": [
+          "cargo",
+          "test",
+          "-p",
+          "tron-shielded",
+          "--test",
+          "zksnark_grpc_boundary",
+          "check_zksnark_proof_preserves_the_local_grpc_boundary",
+          "--",
+          "--exact"
+        ],
+        "covered_contract": "A transaction-bearing ZksnarkRequest crosses the local tonic boundary and preserves the service response code."
+      },
+      "disposition": "replaced",
+      "owner_chunk": "C006.06"
+    },
+    {
+      "id": "C006-RUST-01",
+      "source": {
+        "path": "rust-tron/crates/tron-shielded/tests",
+        "case": "params_integrity_and_init"
+      },
+      "ignored": false,
+      "replacement": "params_integrity_and_init",
+      "disposition": "rust_behavioral_replacement"
+    },
+    {
+      "id": "C006-RUST-02",
+      "source": {
+        "path": "rust-tron/crates/tron-shielded/tests",
+        "case": "merkle_commitments"
+      },
+      "ignored": false,
+      "replacement": "merkle_commitments",
+      "disposition": "rust_behavioral_replacement"
+    },
+    {
+      "id": "C006-RUST-03",
+      "source": {
+        "path": "rust-tron/crates/tron-shielded/tests",
+        "case": "merkle_roots"
+      },
+      "ignored": false,
+      "replacement": "merkle_roots",
+      "disposition": "rust_behavioral_replacement"
+    },
+    {
+      "id": "C006-RUST-04",
+      "source": {
+        "path": "rust-tron/crates/tron-shielded/tests",
+        "case": "merkle_paths"
+      },
+      "ignored": false,
+      "replacement": "merkle_paths",
+      "disposition": "rust_behavioral_replacement"
+    },
+    {
+      "id": "C006-RUST-05",
+      "source": {
+        "path": "rust-tron/crates/tron-shielded/tests",
+        "case": "sodium_compat"
+      },
+      "ignored": false,
+      "replacement": "sodium_compat",
+      "disposition": "rust_behavioral_replacement"
+    },
+    {
+      "id": "C006-RUST-06",
+      "source": {
+        "path": "rust-tron/crates/tron-shielded/tests",
+        "case": "keys_and_addresses"
+      },
+      "ignored": false,
+      "replacement": "keys_and_addresses",
+      "disposition": "rust_behavioral_replacement"
+    },
+    {
+      "id": "C006-RUST-07",
+      "source": {
+        "path": "rust-tron/crates/tron-shielded/tests",
+        "case": "notes_and_encryption"
+      },
+      "ignored": false,
+      "replacement": "notes_and_encryption",
+      "disposition": "rust_behavioral_replacement"
+    },
+    {
+      "id": "C006-RUST-08",
+      "source": {
+        "path": "rust-tron/crates/tron-shielded/tests",
+        "case": "proof_generation"
+      },
+      "ignored": false,
+      "replacement": "proof_generation",
+      "disposition": "rust_behavioral_replacement"
+    },
+    {
+      "id": "C006-RUST-09",
+      "source": {
+        "path": "rust-tron/crates/tron-shielded/tests",
+        "case": "verification_contexts"
+      },
+      "ignored": false,
+      "replacement": "verification_contexts",
+      "disposition": "rust_behavioral_replacement"
+    },
+    {
+      "id": "C006-RUST-10",
+      "source": {
+        "path": "rust-tron/crates/tron-shielded/tests",
+        "case": "failure_vectors"
+      },
+      "ignored": false,
+      "replacement": "failure_vectors",
+      "disposition": "rust_behavioral_replacement"
+    },
+    {
+      "id": "C006-RUST-11",
+      "source": {
+        "path": "rust-tron/crates/tron-shielded/tests",
+        "case": "concurrency_and_grpc_boundary"
+      },
+      "ignored": false,
+      "replacement": "concurrency_and_grpc_boundary",
+      "disposition": "rust_behavioral_replacement"
+    }
+  ],
+  "ignored_policy": "ignored Java benchmarks/integration cases are consciously represented by deterministic Rust proof, concurrency, failure, and boundary families; none are silently omitted"
+}

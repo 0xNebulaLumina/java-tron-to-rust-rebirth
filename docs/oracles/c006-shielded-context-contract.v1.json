@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "owner": "C006",
+  "gate": "C006.V",
+  "scope": "tron-shielded proof, verification-context, and pre-ZIP212 note compatibility",
+  "parameterSet": {
+    "spendBytes": 48013340,
+    "outputBytes": 3647804,
+    "spendBlake2b512": "25fd9a0d1c1be0526c14662947ae95b758fe9f3d7fb7f55e9b4437830dcc6215a7ce3ea465914b157715b7a4d681389ea4aa84438190e185d5e4c93574d3a19a",
+    "outputBlake2b512": "a1cb23b93256adce5bce2cb09cefbc96a1d16572675ceb691e9a3626ec15b5b546926ff1c536cfe3a9df07d796b32fdfc3e5d99d65567257bf286cd2858d71a6",
+    "authentication": "read each exact expected byte range once into an exactly sized owned snapshot while streaming BLAKE2b-512 and size validation; verify the digest before parsing from an in-memory cursor, never seek or reread the writable source"
+  },
+  "rawBoundary": {
+    "validation": "fixed-width, non-negative, path-marker, and declared-length violations are typed errors before cryptography",
+    "verificationFailure": "well-shaped but cryptographically invalid spend/output/final inputs return false",
+    "outputMutation": "spend proof, output proof, and signatures copy into caller buffers only after complete success"
+  },
+  "contexts": {
+    "ownership": "opaque u64 handles own Rust proving or verification contexts",
+    "defaultMaximum": 64,
+    "locking": "the table lock covers lookup, atomic slot reservation, removal, and atomic retirement only; each live context has its own mutex",
+    "capacity": "reserved_slots counts addressable contexts plus retired contexts with active operations; init atomically reserves only below the maximum, and free releases exactly one slot only after active reaches zero",
+    "retirement": "free validates kind, removes the handle and marks its admission state retired atomically under the table lock, then waits for all admitted operations; cloned but unadmitted calls fail InvalidHandle, admitted calls complete before free returns, and unknown, wrong-kind, and double-free handles are typed errors",
+    "verificationCommit": "failed checks do not alter accumulated commitments; accepted items commit only after disposable preverification succeeds",
+    "concurrency": "different handles can execute concurrently; admitted calls on one handle serialize, retirement does not hold the table lock while waiting, and retiring-active contexts continue consuming capacity until quiesced"
+  },
+  "notePlaintext": {
+    "zip212": "Off",
+    "leadByte": 1,
+    "memoBytes": 512,
+    "encCiphertextBytes": 580,
+    "outCiphertextBytes": 80,
+    "recovery": [
+      "external incoming viewing key",
+      "outgoing viewing key"
+    ],
+    "addressPath": "ZIP32 external scope and default diversifier/address"
+  },
+  "excluded": [
+    "external proving gRPC service",
+    "post-ZIP212 note plaintext",
+    "TRC20 contract execution and energy accounting"
+  ]
+}
