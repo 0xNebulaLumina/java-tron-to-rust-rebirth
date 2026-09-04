@@ -108,3 +108,28 @@ flush count are policy-bounded. HEAD, SOLIDITY, and PBFT are distinct immutable 
 checkpoint identity; PBFT offsets reject negative values, missing cursors fall back toward HEAD, and
 cursor block numbers clamp to their validated parent root. Shutdown attempts both overlay disposition
 and durable flush and returns all observed failures rather than hiding a later close error.
+
+## C010 resources, asset migration, and account-root boundary
+
+Resource arithmetic is consensus input. Usage decay rejects time reversal and non-positive
+windows, uses widened signed intermediates for scaling and weighted windows, and converts back to
+`i64` only with an overflow check. Negative consumption and fees fail closed. Global bandwidth,
+energy, and TRON-power limits return zero for non-positive weights instead of dividing by zero;
+adaptive energy remains bounded by the configured base and multiplier. Fee charging debits before
+crediting exactly one explicit sink (transaction pool, burn counter, or black-hole balance), so a
+caller cannot silently drop or duplicate value.
+
+The asset name-to-ID proposal is an explicit trust boundary: reads never fall back across the
+active gate, V2 issue rows are always written, legacy rows are written only while names are unique,
+and account optimization externalizes balances in the same atomic batch that clears the inline map
+and marks the account optimized. Missing or non-UTF-8 migration identifiers are typed failures.
+
+Account-state roots are computed from Keccak address keys and reduced account values using canonical
+RLP/MPT compact paths. Child nodes shorter than 32 bytes are inline and all others are referenced by
+Keccak hash. TRON address bytes, reduced values, leaf count, aggregate value bytes, encoded node
+bytes, and nibble depth are hard bounded with typed failures. Construction walks sorted borrowed
+leaves in linear prefix groups, does not clone values or groups, and retains only hashed nodes rather
+than transient subtree encodings. Duplicate keys replace the existing logical leaf atomically,
+including byte accounting; sorted key ownership makes the root independent of insertion order, and
+a forced/supplied block root never substitutes for validation: validation compares it with the
+recomputed logical root and fails closed on mismatch.

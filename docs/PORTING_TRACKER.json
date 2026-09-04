@@ -1046,59 +1046,71 @@
     {
       "id": "C010",
       "title": "Genesis, dynamic state, resources, and account trie",
-      "status": "todo",
-      "owner": null,
-      "updated": null,
+      "status": "done",
+      "owner": "state-port",
+      "updated": "2026-09-04",
       "resume": null,
       "items": [
         {
           "id": "C010.01",
           "description": "Genesis accounts/witnesses/assets/block and network identity validation.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed genesis accounts, witnesses, assets, block creation, persisted store rows, and network identity validation."
         },
         {
           "id": "C010.02",
           "description": "Dynamic counters/fees/flags/fork stats/maintenance defaults and migration initialization.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed dynamic counters, fees, governance and fork flags, maintenance defaults, and missing-only migration initialization."
         },
         {
           "id": "C010.03",
           "description": "Bandwidth/energy/TRON power windows, scaling, weights, and fee pool/burn behavior.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed bandwidth, energy, and TRON power windows, scaling, weights, adaptive energy, and fee disposition."
         },
         {
           "id": "C010.04",
           "description": "Legacy/V2 asset and account-asset optimization transitions/dual writes.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed legacy/V2 asset transitions, dual writes, and optimized account-asset externalization."
         },
         {
           "id": "C010.05",
           "description": "Account-state trie RLP key, reduced value, Keccak MPT, child inlining, forced root hash, duplicate-leaf fix.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed deterministic TRON account-state MPT behavior, including RLP encoding, child inlining, forced root hashing, and duplicate-leaf handling."
         },
         {
           "id": "C010.06",
           "description": "Rust schema migrations preserve logical state and recomputed roots.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Completed manifest-versioned generation migrations with recomputed roots, rollback, resume, crash recovery, and restart idempotence."
         }
       ],
       "gate": {
         "id": "C010.V",
-        "description": "Genesis bytes, roots, counters, resources, optimization, and rejection differentials pass.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: all 71 generated fixtures, 87 ownership rows, 18 C010 contract tests, tron-state module contracts, and the locked tron-state all-targets workspace check completed successfully.",
+        "status": "passed",
+        "commands": [
+          {"name": "C010 pinned Java inventory, generated fixtures, ownership and dispatch gate", "cwd": ".", "argv": ["python3", "tools/state/c010_gate.py"], "timeout_seconds": 300},
+          {"name": "C010 genesis, defaults, forks, resources, assets, trie and schema migrations", "cwd": "rust-tron", "argv": ["cargo", "test", "-p", "tron-state", "--test", "c010_contract", "--locked"], "timeout_seconds": 300},
+          {"name": "C010 tron-state module contracts", "cwd": "rust-tron", "argv": ["cargo", "test", "-p", "tron-state", "--lib", "--locked"], "timeout_seconds": 300},
+          {"name": "C010 exact workspace target check", "cwd": "rust-tron", "argv": ["cargo", "check", "-p", "tron-state", "--all-targets", "--locked"], "timeout_seconds": 300}
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C010.R.01",
+            "summary": "Final review required confirmation of the complete C010 fixture and ownership reconciliation, contract tests, module contracts, and locked workspace result.",
+            "status": "closed",
+            "resolution": "Approved after confirming the final results: all 71 generated fixtures, 87 ownership rows, all 18 C010 contract tests, tron-state module contracts, and the locked tron-state all-targets workspace check pass. All findings are closed, review is approved, C010 is complete, and the next ready item is C011.01."
+          }
+        ]
       },
       "blocker": null
     },

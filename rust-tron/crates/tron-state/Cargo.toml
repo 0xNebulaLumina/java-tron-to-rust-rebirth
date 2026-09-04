@@ -8,6 +8,7 @@ publish.workspace = true
 
 [dependencies]
 prost.workspace = true
+tron-config = { path = "../tron-config" }
 tron-crypto = { path = "../tron-crypto" }
 tron-primitives = { path = "../tron-primitives" }
 tron-protocol = { path = "../tron-protocol" }

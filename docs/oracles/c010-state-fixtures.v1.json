@@ -1,0 +1,646 @@
+{
+  "chunk": "C010",
+  "generator": "tools/state/C010Oracle.java via tools/state/c010_gate.py --write",
+  "rows": [
+    {
+      "case": "accounts-witnesses-assets-block",
+      "command_index": 1,
+      "expected": "tx0=0a695a67080112630a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412320a17307830303030303030303030303030303030303030303012154111111111111111111111111111111111111111111807,tx1=0a695a67080112630a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412320a17307830303030303030303030303030303030303030303012154122222222222222222222222222222222222222221809,merkle=30c1aa6c0f4dc42203920b48be1834205b5116b05f78902452bc1c94910785ab,block_id=0000000000000000c8e402d0d7005f60074a8503f2b3c9c5e4400e37faec79eb,block=0a6b0a695a67080112630a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412320a173078303030303030303030303030303030303030303030121541111111111111111111111111111111111111111118070a6b0a695a67080112630a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412320a17307830303030303030303030303030303030303030303012154122222222222222222222222222222222222222221809129e010a9b01122030c1aa6c0f4dc42203920b48be1834205b5116b05f78902452bc1c94910785ab1a01004a7441206e65772073797374656d206d75737420616c6c6f77206578697374696e672073797374656d7320746f206265206c696e6b656420746f67657468657220776974686f757420726571756972696e6720616e792063656e7472616c20636f6e74726f6c206f7220636f6f7264696e6174696f6e",
+      "group": "genesis",
+      "id": "genesis:accounts-witnesses-assets-block",
+      "input": "timestamp=0,parent=00,balances=7+9,owner=0x000000000000000000000",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_genesis_fixture_dispatch"
+    },
+    {
+      "case": "persisted-store-rows",
+      "command_index": 1,
+      "expected": "recent-block:0000=c8e402d0d7005f60,witness_schedule:active_witnesses=411111111111111111111111111111111111111111412222222222222222222222222222222222222222",
+      "group": "genesis",
+      "id": "genesis:persisted-store-rows",
+      "input": "height=0,witnesses=4111*20+4122*20",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_genesis_fixture_dispatch"
+    },
+    {
+      "case": "network-genesis-mismatch",
+      "command_index": 1,
+      "expected": "incompatible-chain",
+      "group": "genesis",
+      "id": "genesis:network-genesis-mismatch",
+      "input": "stored=alpha,configured=beta",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_genesis_fixture_dispatch"
+    },
+    {
+      "case": "transaction-id-raw-data",
+      "command_index": 1,
+      "expected": "separate-hash-boundaries",
+      "group": "genesis",
+      "id": "genesis:transaction-id-raw-data",
+      "input": "transaction_id=sha256(raw_data),merkle_leaf=sha256(transaction)",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_genesis_fixture_dispatch"
+    },
+    {
+      "case": "advanced-state-restart",
+      "command_index": 1,
+      "expected": "existing-chain",
+      "group": "genesis",
+      "id": "genesis:advanced-state-restart",
+      "input": "immutable-genesis=match,live-derived-stores=advanced",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_genesis_fixture_dispatch"
+    },
+    {
+      "case": "substituted-genesis-rejected",
+      "command_index": 1,
+      "expected": "corrupt-state",
+      "group": "genesis",
+      "id": "genesis:substituted-genesis-rejected",
+      "input": "genesis-block-or-chain-id=substituted",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_genesis_fixture_dispatch"
+    },
+    {
+      "case": "substituted-marker-rejected",
+      "command_index": 1,
+      "expected": "incompatible-chain",
+      "group": "genesis",
+      "id": "genesis:substituted-marker-rejected",
+      "input": "genesis-commitment-marker=substituted",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_genesis_fixture_dispatch"
+    },
+    {
+      "case": "fresh-chain-defaults",
+      "command_index": 1,
+      "expected": "4,8",
+      "group": "dynamic-defaults",
+      "id": "dynamic-defaults:fresh-chain-defaults",
+      "input": "TOTAL_SIGN_NUM:int,MEMO_FEE:long",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_dynamic_defaults_fixture_dispatch"
+    },
+    {
+      "case": "missing-only-migration",
+      "command_index": 1,
+      "expected": "7",
+      "group": "dynamic-defaults",
+      "id": "dynamic-defaults:missing-only-migration",
+      "input": "existing=7,default=9",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_dynamic_defaults_fixture_dispatch"
+    },
+    {
+      "case": "leading-space-property",
+      "command_index": 1,
+      "expected": "long,key_utf8= ALLOW_SAME_TOKEN_NAME",
+      "group": "dynamic-defaults",
+      "id": "dynamic-defaults:leading-space-property",
+      "input": "key= ALLOW_SAME_TOKEN_NAME,default=CommonParameter.getInstance().getAllowSameTokenName()",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_dynamic_defaults_fixture_dispatch"
+    },
+    {
+      "case": "atomic-precommit-retry",
+      "command_index": 1,
+      "expected": "fault:slots=63,index=127;reopen:slots=63,index=127;retry:slots=64,index=0",
+      "group": "dynamic-slots",
+      "id": "dynamic-slots:atomic-precommit-retry",
+      "input": "slots=63/128,index=127,filled=true;fault=append|flush|sync;reopen,retry",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::dynamic_block_slots_are_atomic_across_c007_precommit_faults_and_retry"
+    },
+    {
+      "case": "filled-percentage",
+      "command_index": 1,
+      "expected": "50",
+      "group": "dynamic-slots",
+      "id": "dynamic-slots:filled-percentage",
+      "input": "filled=64,total=128",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::dynamic_block_slots_are_atomic_across_c007_precommit_faults_and_retry"
+    },
+    {
+      "case": "before-at-after",
+      "command_index": 1,
+      "expected": "99:false,100:true,101:true;hardForkMin:timestamp-overflow;maintenanceMax:timestamp-overflow,no-write;maintenanceMin:-9223372036854775807;intervalNonPositive:invalid-interval,no-write",
+      "group": "fork-boundaries",
+      "id": "fork-boundaries:before-at-after",
+      "input": "hardFork=100,interval=10;hardForkMin=-9223372036854775808;maintenanceCurrentMinMax,interval=1;interval=0,-1",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_fork_fixture_dispatch"
+    },
+    {
+      "case": "version-number-int-encoding",
+      "command_index": 1,
+      "expected": "encoding=int32;activated=00000006;reopen=6,length=4;malformed=invalid-length,no-write",
+      "group": "fork-boundaries",
+      "id": "fork-boundaries:version-number-int-encoding",
+      "input": "prepopulated=00000000;activate=6;reopen;malformed=0000000000000006",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::fork_version_number_uses_java_int_encoding"
+    },
+    {
+      "case": "current-membership",
+      "command_index": 1,
+      "expected": "identity-mapped,java-resize,atomic-publish",
+      "group": "fork-quorum",
+      "id": "fork-quorum:current-membership",
+      "input": "active=identities-each-decision;growth,shrink,stale-short,stale-long,malformed,no-premature",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::fork_quorum_tracks_current_witness_identities"
+    },
+    {
+      "case": "legacy-window",
+      "command_index": 1,
+      "expected": "75",
+      "group": "resources",
+      "id": "resources:legacy-window",
+      "input": "usage=100,latest=10,window=20,now=15",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "precision-window",
+      "command_index": 1,
+      "expected": "999",
+      "group": "resources",
+      "id": "resources:precision-window",
+      "input": "usage=1000,latest=10,storedWindow=2000000,standardWindow=2000,now=11",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "precision-window-midpoint",
+      "command_index": 1,
+      "expected": "500",
+      "group": "resources",
+      "id": "resources:precision-window-midpoint",
+      "input": "usage=1000,latest=10,storedWindow=2000000,standardWindow=2000,now=1010",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "precision-window-stored-1",
+      "command_index": 1,
+      "expected": "999",
+      "group": "resources",
+      "id": "resources:precision-window-stored-1",
+      "input": "usage=1000,latest=10,storedWindow=1,standardWindow=2000,now=11",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "precision-window-stored-999",
+      "command_index": 1,
+      "expected": "999",
+      "group": "resources",
+      "id": "resources:precision-window-stored-999",
+      "input": "usage=1000,latest=10,storedWindow=999,standardWindow=2000,now=11",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "precision-window-stored-1000",
+      "command_index": 1,
+      "expected": "0",
+      "group": "resources",
+      "id": "resources:precision-window-stored-1000",
+      "input": "usage=1000,latest=10,storedWindow=1000,standardWindow=2000,now=11",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "adaptive-energy",
+      "command_index": 1,
+      "expected": "1980",
+      "group": "resources",
+      "id": "resources:adaptive-energy",
+      "input": "base=1000,current=2000,average=11,target=10,rate=99/100",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "adaptive-energy-base-floor",
+      "command_index": 1,
+      "expected": "1000",
+      "group": "resources",
+      "id": "resources:adaptive-energy-base-floor",
+      "input": "base=1000,current=1000,average=11,target=10,rate=99/100",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "fee-sinks",
+      "command_index": 1,
+      "expected": "pool=7,burn=7,blackhole=7,balance=93",
+      "group": "resources",
+      "id": "resources:fee-sinks",
+      "input": "balance=100,fee=7",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "weight-max-overflow",
+      "command_index": 1,
+      "expected": "arithmetic-overflow,no-write",
+      "group": "resources",
+      "id": "resources:weight-max-overflow",
+      "input": "current=9223372036854775807,delta=1",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "weight-min-overflow",
+      "command_index": 1,
+      "expected": "arithmetic-overflow,no-write",
+      "group": "resources",
+      "id": "resources:weight-min-overflow",
+      "input": "current=-9223372036854775808,delta=-1",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "weight-clamp-interaction",
+      "command_index": 1,
+      "expected": "0",
+      "group": "resources",
+      "id": "resources:weight-clamp-interaction",
+      "input": "current=-5,delta=3,newReward=true",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "adaptive-ratio-zero",
+      "command_index": 1,
+      "expected": "invalid-ratio,total=100,current=80,target=20",
+      "group": "resources",
+      "id": "resources:adaptive-ratio-zero",
+      "input": "total=100,current=80,target=20,ratio=0",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "adaptive-ratio-negative",
+      "command_index": 1,
+      "expected": "invalid-ratio,total=100,current=80,target=20",
+      "group": "resources",
+      "id": "resources:adaptive-ratio-negative",
+      "input": "total=100,current=80,target=20,ratio=-4",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "adaptive-no-partial-write",
+      "command_index": 1,
+      "expected": "total=100,current=80,target=20",
+      "group": "resources",
+      "id": "resources:adaptive-no-partial-write",
+      "input": "storedTotal=100,storedCurrent=80,storedTarget=20,newTotal=200,ratio=0",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_resource_fixture_dispatch"
+    },
+    {
+      "case": "legacy-dual-write",
+      "command_index": 1,
+      "expected": "legacy+v2",
+      "group": "asset-transitions",
+      "id": "asset-transitions:legacy-dual-write",
+      "input": "name=USDT,id=1000001,sameName=false",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_asset_fixture_dispatch"
+    },
+    {
+      "case": "v2-only",
+      "command_index": 1,
+      "expected": "v2",
+      "group": "asset-transitions",
+      "id": "asset-transitions:v2-only",
+      "input": "name=USDT,id=1000001,sameName=true",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_asset_fixture_dispatch"
+    },
+    {
+      "case": "externalized-balances",
+      "command_index": 1,
+      "expected": "account-asset:1000001=7",
+      "group": "asset-transitions",
+      "id": "asset-transitions:externalized-balances",
+      "input": "USDT=7,id=1000001,optimize=true",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_asset_fixture_dispatch"
+    },
+    {
+      "case": "empty-root",
+      "command_index": 1,
+      "expected": "56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "group": "trie-rlp",
+      "id": "trie-rlp:empty-root",
+      "input": "rlp=80",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_rlp_fixture_dispatch"
+    },
+    {
+      "case": "inline-child",
+      "command_index": 1,
+      "expected": "child-length<32",
+      "group": "trie-rlp",
+      "id": "trie-rlp:inline-child",
+      "input": "key=01,value=01",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_rlp_fixture_dispatch"
+    },
+    {
+      "case": "hashed-child",
+      "command_index": 1,
+      "expected": "child-length>=32",
+      "group": "trie-rlp",
+      "id": "trie-rlp:hashed-child",
+      "input": "key=01,value=64-bytes",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_rlp_fixture_dispatch"
+    },
+    {
+      "case": "insertion-order",
+      "command_index": 1,
+      "expected": "same-root-reversed",
+      "group": "trie-rlp",
+      "id": "trie-rlp:insertion-order",
+      "input": "a=1,b=2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_rlp_fixture_dispatch"
+    },
+    {
+      "case": "shared-prefix",
+      "command_index": 1,
+      "expected": "same-root-reversed",
+      "group": "trie-rlp",
+      "id": "trie-rlp:shared-prefix",
+      "input": "keys=11*32,11*31+12,22*32",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::adversarial_shared_prefix_and_duplicate_roots_are_stable"
+    },
+    {
+      "case": "single-tron-account-root",
+      "command_index": 1,
+      "expected": "6bb3e919f2027ff7ce0d7581a5ee6814161a798dfec064471e91fb5beb165c89",
+      "group": "trie-rlp",
+      "id": "trie-rlp:single-tron-account-root",
+      "input": "address=411111111111111111111111111111111111111111,key_rlp=95411111111111111111111111111111111111111111,value=1a1541111111111111111111111111111111111111111120075803",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_rlp_fixture_dispatch"
+    },
+    {
+      "case": "single-tron-account-node",
+      "command_index": 1,
+      "expected": "f49720954111111111111111111111111111111111111111119b1a1541111111111111111111111111111111111111111120075803",
+      "group": "trie-rlp",
+      "id": "trie-rlp:single-tron-account-node",
+      "input": "address=411111111111111111111111111111111111111111,key_rlp=95411111111111111111111111111111111111111111,value=1a1541111111111111111111111111111111111111111120075803",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_rlp_fixture_dispatch"
+    },
+    {
+      "case": "shared-prefix-root",
+      "command_index": 1,
+      "expected": "51932f64129c93edaadc133fa24deafe9916ec914dd69d968f5fdddd150fa502",
+      "group": "trie-rlp",
+      "id": "trie-rlp:shared-prefix-root",
+      "input": "addresses=411111111111111111111111111111111111111111+411111111111111111111111111111111111111112+412222222222222222222222222222222222222222,paths=raw-rlp-nibbles",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_rlp_fixture_dispatch"
+    },
+    {
+      "case": "shared-prefix-node",
+      "command_index": 1,
+      "expected": "e583009541a05877f63628347e5ed54ab882f1d561b85680a9eec39095601aef441a21dac407",
+      "group": "trie-rlp",
+      "id": "trie-rlp:shared-prefix-node",
+      "input": "addresses=411111111111111111111111111111111111111111+411111111111111111111111111111111111111112+412222222222222222222222222222222222222222,paths=raw-rlp-nibbles",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_rlp_fixture_dispatch"
+    },
+    {
+      "case": "address-exact-max",
+      "command_index": 1,
+      "expected": "accepted",
+      "group": "trie-limits",
+      "id": "trie-limits:address-exact-max",
+      "input": "address-bytes=21",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_limit_fixture_dispatch"
+    },
+    {
+      "case": "address-over-limit",
+      "command_index": 1,
+      "expected": "address-too-long",
+      "group": "trie-limits",
+      "id": "trie-limits:address-over-limit",
+      "input": "address-bytes=22",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_limit_fixture_dispatch"
+    },
+    {
+      "case": "value-exact-max",
+      "command_index": 1,
+      "expected": "accepted",
+      "group": "trie-limits",
+      "id": "trie-limits:value-exact-max",
+      "input": "value-bytes=4,max=4",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_limit_fixture_dispatch"
+    },
+    {
+      "case": "value-over-limit",
+      "command_index": 1,
+      "expected": "value-too-large",
+      "group": "trie-limits",
+      "id": "trie-limits:value-over-limit",
+      "input": "value-bytes=5,max=4",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_limit_fixture_dispatch"
+    },
+    {
+      "case": "leaf-exact-max",
+      "command_index": 1,
+      "expected": "accepted",
+      "group": "trie-limits",
+      "id": "trie-limits:leaf-exact-max",
+      "input": "leaves=2,max=2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_limit_fixture_dispatch"
+    },
+    {
+      "case": "leaf-over-limit",
+      "command_index": 1,
+      "expected": "leaf-limit-exceeded",
+      "group": "trie-limits",
+      "id": "trie-limits:leaf-over-limit",
+      "input": "leaves=3,max=2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_limit_fixture_dispatch"
+    },
+    {
+      "case": "total-bytes-exact-max",
+      "command_index": 1,
+      "expected": "accepted",
+      "group": "trie-limits",
+      "id": "trie-limits:total-bytes-exact-max",
+      "input": "value-bytes=2+3,max=5",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_limit_fixture_dispatch"
+    },
+    {
+      "case": "total-bytes-over-limit",
+      "command_index": 1,
+      "expected": "total-bytes-limit-exceeded",
+      "group": "trie-limits",
+      "id": "trie-limits:total-bytes-over-limit",
+      "input": "value-bytes=2+3+1,max=5",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_limit_fixture_dispatch"
+    },
+    {
+      "case": "node-bytes-exact-max",
+      "command_index": 1,
+      "expected": "accepted",
+      "group": "trie-limits",
+      "id": "trie-limits:node-bytes-exact-max",
+      "input": "encoded-node-bytes=36,max=36",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_limit_fixture_dispatch"
+    },
+    {
+      "case": "node-bytes-over-limit",
+      "command_index": 1,
+      "expected": "node-bytes-limit-exceeded",
+      "group": "trie-limits",
+      "id": "trie-limits:node-bytes-over-limit",
+      "input": "encoded-node-bytes=36,max=35",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_limit_fixture_dispatch"
+    },
+    {
+      "case": "depth-exact-max",
+      "command_index": 1,
+      "expected": "accepted",
+      "group": "trie-limits",
+      "id": "trie-limits:depth-exact-max",
+      "input": "nibble-depth=64,max=64",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_limit_fixture_dispatch"
+    },
+    {
+      "case": "depth-over-limit",
+      "command_index": 1,
+      "expected": "depth-limit-exceeded",
+      "group": "trie-limits",
+      "id": "trie-limits:depth-over-limit",
+      "input": "nibble-depth=64,max=63",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_trie_limit_fixture_dispatch"
+    },
+    {
+      "case": "report-vs-validation",
+      "command_index": 1,
+      "expected": "report-supplied,validation-mismatch",
+      "group": "forced-root",
+      "id": "forced-root:report-vs-validation",
+      "input": "supplied=00*32,logical=nonzero",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_forced_root_fixture_dispatch"
+    },
+    {
+      "case": "last-value-replaces",
+      "command_index": 1,
+      "expected": "b",
+      "group": "duplicate-leaf",
+      "id": "duplicate-leaf:last-value-replaces",
+      "input": "key=01,first=a,last=b",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_duplicate_leaf_fixture_dispatch"
+    },
+    {
+      "case": "bounded-replacement",
+      "command_index": 1,
+      "expected": "same-root-as-single-last-value",
+      "group": "duplicate-leaf",
+      "id": "duplicate-leaf:bounded-replacement",
+      "input": "key=11*31+12,first=2,last=9",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::adversarial_shared_prefix_and_duplicate_roots_are_stable"
+    },
+    {
+      "case": "manifest-version",
+      "command_index": 1,
+      "expected": "2",
+      "group": "schema-migrations",
+      "id": "schema-migrations:manifest-version",
+      "input": "source=1,target=2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::schema_manifest_version_and_recomputed_root_are_published_atomically"
+    },
+    {
+      "case": "recomputed-root",
+      "command_index": 1,
+      "expected": "a35e8d7d02801622f29eef0566d2ddef1870820b50029b46b58ff39151396c7f",
+      "group": "schema-migrations",
+      "id": "schema-migrations:recomputed-root",
+      "input": "rows=account+dynamic",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::schema_manifest_version_and_recomputed_root_are_published_atomically"
+    },
+    {
+      "case": "pre-switch-rollback",
+      "command_index": 1,
+      "expected": "source-visible",
+      "group": "schema-migrations",
+      "id": "schema-migrations:pre-switch-rollback",
+      "input": "fault=data-synced",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::pre_switch_crashes_rollback_without_exposing_staged_schema"
+    },
+    {
+      "case": "post-switch-resume",
+      "command_index": 1,
+      "expected": "target-visible",
+      "group": "schema-migrations",
+      "id": "schema-migrations:post-switch-resume",
+      "input": "fault=manifest-switched",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::durable_switch_crashes_resume_and_restart_idempotently"
+    },
+    {
+      "case": "restart-idempotence",
+      "command_index": 1,
+      "expected": "no-op",
+      "group": "schema-migrations",
+      "id": "schema-migrations:restart-idempotence",
+      "input": "resume=2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::durable_switch_crashes_resume_and_restart_idempotently"
+    },
+    {
+      "case": "preflight-crash",
+      "command_index": 1,
+      "expected": "source-visible",
+      "group": "schema-migrations",
+      "id": "schema-migrations:preflight-crash",
+      "input": "fault=preflight",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_schema_migration_crash_phase_dispatch"
+    },
+    {
+      "case": "staging-created-crash",
+      "command_index": 1,
+      "expected": "source-visible",
+      "group": "schema-migrations",
+      "id": "schema-migrations:staging-created-crash",
+      "input": "fault=staging-created",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_schema_migration_crash_phase_dispatch"
+    },
+    {
+      "case": "data-written-crash",
+      "command_index": 1,
+      "expected": "source-visible",
+      "group": "schema-migrations",
+      "id": "schema-migrations:data-written-crash",
+      "input": "fault=data-written",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_schema_migration_crash_phase_dispatch"
+    },
+    {
+      "case": "data-synced-crash",
+      "command_index": 1,
+      "expected": "source-visible",
+      "group": "schema-migrations",
+      "id": "schema-migrations:data-synced-crash",
+      "input": "fault=data-synced",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_schema_migration_crash_phase_dispatch"
+    },
+    {
+      "case": "journal-synced-crash",
+      "command_index": 1,
+      "expected": "target-visible-after-resume",
+      "group": "schema-migrations",
+      "id": "schema-migrations:journal-synced-crash",
+      "input": "fault=journal-synced",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_schema_migration_crash_phase_dispatch"
+    },
+    {
+      "case": "backup-synced-crash",
+      "command_index": 1,
+      "expected": "target-visible-after-resume",
+      "group": "schema-migrations",
+      "id": "schema-migrations:backup-synced-crash",
+      "input": "fault=backup-synced",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_schema_migration_crash_phase_dispatch"
+    },
+    {
+      "case": "generation-published-crash",
+      "command_index": 1,
+      "expected": "target-visible-after-resume",
+      "group": "schema-migrations",
+      "id": "schema-migrations:generation-published-crash",
+      "input": "fault=generation-published",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_schema_migration_crash_phase_dispatch"
+    },
+    {
+      "case": "manifest-switched-crash",
+      "command_index": 1,
+      "expected": "target-visible-after-resume",
+      "group": "schema-migrations",
+      "id": "schema-migrations:manifest-switched-crash",
+      "input": "fault=manifest-switched",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_schema_migration_crash_phase_dispatch"
+    },
+    {
+      "case": "directory-synced-crash",
+      "command_index": 1,
+      "expected": "target-visible-after-resume",
+      "group": "schema-migrations",
+      "id": "schema-migrations:directory-synced-crash",
+      "input": "fault=directory-synced",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/c010_contract.rs::generated_schema_migration_crash_phase_dispatch"
+    }
+  ],
+  "schema_version": 1
+}

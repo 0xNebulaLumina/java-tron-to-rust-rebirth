@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "chunk": "C010",
+  "items": ["C010.03", "C010.04", "C010.05", "C010.06"],
+  "rust": {
+    "crate": "tron-state",
+    "modules": [
+      "src/resource.rs",
+      "src/asset_migration.rs",
+      "src/account_asset.rs",
+      "src/account_trie.rs",
+      "tests/c010_contract.rs"
+    ]
+  },
+  "java_sources": [
+    "java-tron/chainbase/src/main/java/org/tron/core/db/ResourceProcessor.java",
+    "java-tron/chainbase/src/main/java/org/tron/core/db/BandwidthProcessor.java",
+    "java-tron/chainbase/src/main/java/org/tron/core/db/EnergyProcessor.java",
+    "java-tron/chainbase/src/main/java/org/tron/core/capsule/AccountCapsule.java",
+    "java-tron/chainbase/src/main/java/org/tron/common/utils/Commons.java",
+    "java-tron/chainbase/src/main/java/org/tron/core/db/accountstate/AccountStateEntity.java",
+    "java-tron/framework/src/main/java/org/tron/core/trie/TrieKey.java",
+    "java-tron/framework/src/main/java/org/tron/core/trie/TrieImpl.java"
+  ],
+  "consensus_contracts": {
+    "resources": [
+      "legacy slot windows and optimized stored windows scaled by WINDOW_SIZE_PRECISION=1000",
+      "ceil-scaled average usage, Java half-up decay, and integer getUsage conversion",
+      "precision-window one-slot and midpoint boundary vectors",
+      "bandwidth, energy, and TRON-power global weights",
+      "adaptive energy target/current bounds",
+      "fee pool, burn, and black-hole disposition"
+    ],
+    "assets": [
+      "legacy name lookup before allow-same-token-name",
+      "V2 ID lookup after allow-same-token-name",
+      "legacy plus V2 dual write before the gate",
+      "V2-only write after the gate",
+      "atomic external account-asset optimization"
+    ],
+    "account_trie": [
+      "Keccak-256 address key expanded to nibbles",
+      "address/balance/allowance reduced protobuf value",
+      "Ethereum RLP branch/extension/leaf encoding",
+      "children shorter than 32 bytes inline; otherwise Keccak reference",
+      "forced root reporting separated from supplied-root validation",
+      "duplicate key replaces its leaf value",
+      "logical root independent of insertion order",
+      "TRON addresses and reduced values have explicit byte bounds",
+      "leaf count, aggregate value bytes, encoded node bytes, and nibble depth fail with typed limit errors",
+      "sorted borrowed leaves use linear prefix grouping without cloning values or retaining transient encoded subtrees"
+    ]
+    ,
+    "logical_schema_migrations": [
+      "manifest and logical schema versions are explicit",
+      "next-generation state is staged before the atomic manifest switch",
+      "logical and account roots are recomputed from migrated rows",
+      "pre-switch crashes roll back without exposing staged state",
+      "post-switch crashes resume cleanup idempotently after restart"
+    ]
+  }
+}
