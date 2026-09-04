@@ -1,0 +1,101 @@
+{
+  "case_count": 11,
+  "case_table": "rust-tron/crates/tron-state/tests/khaos_contract.rs::C011_CASE_TABLE",
+  "cases": [
+    {
+      "command_index": 1,
+      "expected": "pass=true then false; raw length",
+      "id": "activation:old-version",
+      "input": "stats=[1,1,1] then [1,2,1]",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_pass_matches_old_new_energy_and_raw_stats_contract"
+    },
+    {
+      "command_index": 1,
+      "expected": "before=false,at=true",
+      "id": "activation:energy-height",
+      "input": "version=5 at height 4727890",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_pass_matches_old_new_energy_and_raw_stats_contract"
+    },
+    {
+      "command_index": 1,
+      "expected": "activation boundary uses Java maintenance rounding",
+      "id": "activation:maintenance-rounding",
+      "input": "hardForkTime=100,interval=10",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_pass_matches_old_new_energy_and_raw_stats_contract"
+    },
+    {
+      "command_index": 1,
+      "expected": "required=ceil(rate*rawLength/100)",
+      "id": "activation:new-version-quorum",
+      "input": "rate=80,raw lengths 5 and 3",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_pass_matches_old_new_energy_and_raw_stats_contract"
+    },
+    {
+      "command_index": 1,
+      "expected": "old all-one stats pass without time or quorum",
+      "id": "activation:old-v6-no-time",
+      "input": "version=6 with hardForkTime=Long.MAX_VALUE",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_pass_matches_old_new_energy_and_raw_stats_contract"
+    },
+    {
+      "command_index": 1,
+      "expected": "retain passing raw length; failing becomes active-length zeros",
+      "id": "activation:reset",
+      "input": "passing and failing raw arrays",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_reset_preserves_passing_raw_length_and_resizes_failing_stats"
+    },
+    {
+      "command_index": 1,
+      "expected": "candidate is published on the following update because pass precedes current vote",
+      "id": "activation:upgrade",
+      "input": "candidate vote reaches quorum only after recording",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_update_uses_first_active_index_and_java_upgrade_order"
+    },
+    {
+      "command_index": 1,
+      "expected": "new path requires rounded time and quorum",
+      "id": "activation:new-v17-path",
+      "input": "version=17 at hardForkTime=100,rate=80",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_pass_matches_old_new_energy_and_raw_stats_contract"
+    },
+    {
+      "command_index": 1,
+      "expected": "later non-passing slot is cleared before candidate pass/vote handling",
+      "id": "activation:downgrade",
+      "input": "future version is before its activation boundary",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_update_uses_first_active_index_and_java_upgrade_order"
+    },
+    {
+      "command_index": 1,
+      "expected": "Java indexOf selects and updates only the first matching index",
+      "id": "activation:duplicate-witness",
+      "input": "active roster contains duplicate address",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_update_uses_first_active_index_and_java_upgrade_order"
+    },
+    {
+      "command_index": 1,
+      "expected": "pass uses stored candidate; local resize supplies upgrade slot size; older arrays remain length 5",
+      "id": "activation:resize-order",
+      "input": "active=5,candidate passing stored length=1,older arrays length=5",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_update_resizes_candidate_locally_before_passing_upgrade"
+    }
+  ],
+  "chunk": "C011",
+  "fixture_source": {
+    "path": "docs/oracles/c011-fixtures.v1.json",
+    "rows_sha256": "a2bb9c0cb77a27c224dd42226a050d034475391c9abff9547222e397b5b03078"
+  },
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "schema": "c011-fork-contract.v1",
+  "schema_version": 1,
+  "sources": [
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/common/utils/ForkController.java",
+      "sha256": "ad697b2a5516acd8b4dc7d66f697defb636d17e386d03b456321f9742afa077e"
+    },
+    {
+      "path": "java-tron/framework/src/test/java/org/tron/core/ForkControllerTest.java",
+      "sha256": "42f2104024ff002775fd85f2365e7dbf2924d98e32054cb1008e2c7e776f08bf"
+    }
+  ]
+}

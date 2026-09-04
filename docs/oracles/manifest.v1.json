@@ -1,63 +1,39 @@
 {
-  "schema_version": 1,
-  "java_source": {
-    "path": "java-tron",
-    "gitlink": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
-    "origin": "https://github.com/tronprotocol/java-tron.git"
-  },
-  "java_source_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
-  "protocol_sources": {
-    "java_tron_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
-    "canonical_root": "../../rust-tron/crates/tron-protocol/proto",
-    "canonical_schema_count": 17,
-    "google_any": {
-      "source": "https://github.com/protocolbuffers/protobuf/blob/v3.25.8/src/google/protobuf/any.proto",
-      "revision": "v3.25.8",
-      "sha256": "bcf5de6ce463b1a38ff76b77955aa7e580b4ec12af34a927b1d45c9efb0faf66",
-      "license": "BSD-3-Clause",
-      "license_file": "../../rust-tron/crates/tron-protocol/proto/google/LICENSE"
-    },
-    "descriptor": {
-      "artifact": "../../rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
-      "metadata": "../../rust-tron/crates/tron-protocol/descriptors/protocol.v1.json",
-      "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
-    }
-  },
-  "protocol_surface": "protocol-surface.v1.json",
-  "dr004_extension_fixtures": "dr004-extension-fixtures.v1.json",
-  "protocol_conformance": "protocol-conformance.v1.json",
-  "protocol_fixtures": "protocol-fixtures.v1.json",
+  "c005_keystore_filesystem_fixtures": "c005-keystore-filesystem-fixtures.v1.json",
+  "c005_keystore_fixture_manifest": "c005-keystore-fixture-manifest.v1.json",
+  "c005_keystore_source_manifest": "c005-keystore-source-manifest.v1.json",
+  "c006_shielded_oracle_vectors": "c006-shielded-oracle-vectors.v1.json",
   "c006_shielded_provenance": "c006-shielded-provenance.v1.json",
   "c006_shielded_replacement_ledger": "c006-shielded-replacement-ledger.v1.json",
-  "c006_shielded_oracle_vectors": "c006-shielded-oracle-vectors.v1.json",
-  "c005_keystore_filesystem_fixtures": "c005-keystore-filesystem-fixtures.v1.json",
-  "c005_keystore_source_manifest": "c005-keystore-source-manifest.v1.json",
-  "c007_storage_source_inventory": "c007-storage-source-inventory.v1.json",
   "c007_rustlog_format_vectors": "c007-rustlog-format-vectors.v1.json",
-  "c007_storage_reconciliation": "c007-storage-reconciliation.v1.json",
   "c007_storage_matrix": "c007-storage-matrix.v1.json",
+  "c007_storage_reconciliation": "c007-storage-reconciliation.v1.json",
+  "c007_storage_source_inventory": "c007-storage-source-inventory.v1.json",
   "c008_dynamic_properties": "c008-dynamic-properties.v1.json",
-  "c008_state_inventory": "c008-state-inventory.v1.json",
-  "c008_state_fixtures": "c008-state-fixtures.v1.json",
   "c008_state_coverage": "c008-state-coverage.v1.json",
-  "c009_revoking_source_inventory": "c009-revoking-source-inventory.v1.json",
-  "c009_revoking_fixtures": "c009-revoking-fixtures.v1.json",
+  "c008_state_fixtures": "c008-state-fixtures.v1.json",
+  "c008_state_inventory": "c008-state-inventory.v1.json",
   "c009_java_test_reconciliation": "c009-java-test-reconciliation.v1.json",
+  "c009_revoking_fixtures": "c009-revoking-fixtures.v1.json",
+  "c009_revoking_source_inventory": "c009-revoking-source-inventory.v1.json",
   "c009_state_lifecycle": "c009-state-lifecycle.v1.json",
+  "c010_ownership_reconciliation": "c010-ownership-reconciliation.v1.json",
   "c010_resources_assets_trie": "c010-resources-assets-trie.v1.json",
   "c010_source_inventory": "c010-source-inventory.v1.json",
   "c010_state_fixtures": "c010-state-fixtures.v1.json",
-  "c010_ownership_reconciliation": "c010-ownership-reconciliation.v1.json",
-  "c005_keystore_fixture_manifest": "c005-keystore-fixture-manifest.v1.json",
-  "runner_protocol": 1,
+  "c011_fixtures": "c011-fixtures.v1.json",
+  "c011_fork_contract": {
+    "path": "c011-fork-contract.v1.json",
+    "sha256": "717ed60d875f5904c6d73492ec5edb199adf0a36cf1b39bd1ae9d5d065cb4981"
+  },
+  "c011_java_test_reconciliation": "c011-java-test-reconciliation.v1.json",
+  "c011_khaos_contract": {
+    "path": "c011-khaos-contract.v1.json",
+    "sha256": "377c357999d8b9d924700c6ce2a760b66d757444359945ea3a3444629774c6a3"
+  },
+  "c011_source_inventory": "c011-source-inventory.v1.json",
+  "dr004_extension_fixtures": "dr004-extension-fixtures.v1.json",
   "fixture_schema": "schemas/fixture-v1.schema.json",
-  "result_schema": "schemas/result-v1.schema.json",
-  "mismatch_schema": "schemas/mismatch-report-v1.schema.json",
-  "normalization_policy": "normalization-policy-v1.json",
-  "ledgers": [
-    "production-ownership.v1.json",
-    "java-test-ownership.v1.json"
-  ],
   "fixtures": [
     "fixtures/v1/mismatch-error.json",
     "fixtures/v1/mismatch-forbidden-normalization.json",
@@ -71,5 +47,40 @@
   "implementations": [
     "../../tools/reference-runner/java-runner",
     "../../tools/reference-runner/rust-runner"
-  ]
+  ],
+  "java_source": {
+    "gitlink": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+    "origin": "https://github.com/tronprotocol/java-tron.git",
+    "path": "java-tron"
+  },
+  "java_source_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "ledgers": [
+    "production-ownership.v1.json",
+    "java-test-ownership.v1.json"
+  ],
+  "mismatch_schema": "schemas/mismatch-report-v1.schema.json",
+  "normalization_policy": "normalization-policy-v1.json",
+  "protocol_conformance": "protocol-conformance.v1.json",
+  "protocol_fixtures": "protocol-fixtures.v1.json",
+  "protocol_sources": {
+    "canonical_root": "../../rust-tron/crates/tron-protocol/proto",
+    "canonical_schema_count": 17,
+    "descriptor": {
+      "artifact": "../../rust-tron/crates/tron-protocol/descriptors/protocol.v1.pb",
+      "metadata": "../../rust-tron/crates/tron-protocol/descriptors/protocol.v1.json",
+      "sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912"
+    },
+    "google_any": {
+      "license": "BSD-3-Clause",
+      "license_file": "../../rust-tron/crates/tron-protocol/proto/google/LICENSE",
+      "revision": "v3.25.8",
+      "sha256": "bcf5de6ce463b1a38ff76b77955aa7e580b4ec12af34a927b1d45c9efb0faf66",
+      "source": "https://github.com/protocolbuffers/protobuf/blob/v3.25.8/src/google/protobuf/any.proto"
+    },
+    "java_tron_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3"
+  },
+  "protocol_surface": "protocol-surface.v1.json",
+  "result_schema": "schemas/result-v1.schema.json",
+  "runner_protocol": 1,
+  "schema_version": 1
 }

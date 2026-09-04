@@ -27179,14 +27179,14 @@
       }
     },
     {
-      "acceptance_gate": "C019.V",
+      "acceptance_gate": "C011.V",
       "annotations": [
         "@Test"
       ],
       "assumption_gated": false,
       "case": "testPass",
-      "disposition": "provisional",
-      "domain": "block_pipeline",
+      "disposition": "port_or_review",
+      "domain": "storage",
       "expansion": {
         "identity": "testPass",
         "kind": "single",
@@ -27199,23 +27199,23 @@
       "inherited": false,
       "kind": "java_test_case",
       "nested": false,
-      "owning_item": "C019.07",
+      "owning_item": "C011.03",
       "parameter_sources": [],
-      "rust_case_ids": [],
+      "rust_case_ids": ["activation:old-version", "activation:energy-height", "activation:maintenance-rounding", "activation:new-version-quorum"],
       "source": {
         "line": 27,
         "path": "java-tron/framework/src/test/java/org/tron/core/ForkControllerTest.java"
       }
     },
     {
-      "acceptance_gate": "C019.V",
+      "acceptance_gate": "C011.V",
       "annotations": [
         "@Test"
       ],
       "assumption_gated": false,
       "case": "testReset",
-      "disposition": "provisional",
-      "domain": "block_pipeline",
+      "disposition": "port_or_review",
+      "domain": "storage",
       "expansion": {
         "identity": "testReset",
         "kind": "single",
@@ -27228,23 +27228,23 @@
       "inherited": false,
       "kind": "java_test_case",
       "nested": false,
-      "owning_item": "C019.07",
+      "owning_item": "C011.03",
       "parameter_sources": [],
-      "rust_case_ids": [],
+      "rust_case_ids": ["activation:reset"],
       "source": {
         "line": 81,
         "path": "java-tron/framework/src/test/java/org/tron/core/ForkControllerTest.java"
       }
     },
     {
-      "acceptance_gate": "C019.V",
+      "acceptance_gate": "C011.V",
       "annotations": [
         "@Test"
       ],
       "assumption_gated": false,
       "case": "testUpdate",
-      "disposition": "provisional",
-      "domain": "block_pipeline",
+      "disposition": "port_or_review",
+      "domain": "storage",
       "expansion": {
         "identity": "testUpdate",
         "kind": "single",
@@ -27257,9 +27257,9 @@
       "inherited": false,
       "kind": "java_test_case",
       "nested": false,
-      "owning_item": "C019.07",
+      "owning_item": "C011.03",
       "parameter_sources": [],
-      "rust_case_ids": [],
+      "rust_case_ids": ["activation:upgrade", "activation:downgrade", "activation:duplicate-witness", "activation:resize-order"],
       "source": {
         "line": 133,
         "path": "java-tron/framework/src/test/java/org/tron/core/ForkControllerTest.java"
@@ -59510,7 +59510,7 @@
       }
     },
     {
-      "acceptance_gate": "C009.V",
+      "acceptance_gate": "C011.V",
       "annotations": [
         "@Test"
       ],
@@ -59530,17 +59530,17 @@
       "inherited": false,
       "kind": "java_test_case",
       "nested": false,
-      "owning_item": "C009.02",
+      "owning_item": "C011.01",
       "parameter_sources": [],
       "reconciled_from": "C008.V-provisional",
-      "rust_case_ids": [],
+      "rust_case_ids": ["khaos:linked"],
       "source": {
         "line": 39,
         "path": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java"
       }
     },
     {
-      "acceptance_gate": "C009.V",
+      "acceptance_gate": "C011.V",
       "annotations": [
         "@Test"
       ],
@@ -59560,17 +59560,17 @@
       "inherited": false,
       "kind": "java_test_case",
       "nested": false,
-      "owning_item": "C009.02",
+      "owning_item": "C011.01",
       "parameter_sources": [],
       "reconciled_from": "C008.V-provisional",
-      "rust_case_ids": [],
+      "rust_case_ids": ["khaos:orphan", "khaos:remove"],
       "source": {
         "line": 50,
         "path": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java"
       }
     },
     {
-      "acceptance_gate": "C009.V",
+      "acceptance_gate": "C011.V",
       "annotations": [
         "@Test"
       ],
@@ -59590,17 +59590,17 @@
       "inherited": false,
       "kind": "java_test_case",
       "nested": false,
-      "owning_item": "C009.02",
+      "owning_item": "C011.01",
       "parameter_sources": [],
       "reconciled_from": "C008.V-provisional",
-      "rust_case_ids": [],
+      "rust_case_ids": ["khaos:weak-parent"],
       "source": {
         "line": 76,
         "path": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java"
       }
     },
     {
-      "acceptance_gate": "C009.V",
+      "acceptance_gate": "C011.V",
       "annotations": [
         "@Test"
       ],
@@ -59620,17 +59620,17 @@
       "inherited": false,
       "kind": "java_test_case",
       "nested": false,
-      "owning_item": "C009.02",
+      "owning_item": "C011.02",
       "parameter_sources": [],
       "reconciled_from": "C008.V-provisional",
-      "rust_case_ids": [],
+      "rust_case_ids": ["khaos:modern-branch"],
       "source": {
         "line": 104,
         "path": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java"
       }
     },
     {
-      "acceptance_gate": "C009.V",
+      "acceptance_gate": "C011.V",
       "annotations": [
         "@Test(expected = UnsupportedOperationException.class)"
       ],
@@ -59650,10 +59650,10 @@
       "inherited": false,
       "kind": "java_test_case",
       "nested": false,
-      "owning_item": "C009.02",
+      "owning_item": "C011.01",
       "parameter_sources": [],
       "reconciled_from": "C008.V-provisional",
-      "rust_case_ids": [],
+      "rust_case_ids": ["khaos:unsupported-is-not-empty"],
       "source": {
         "line": 163,
         "path": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java"

@@ -11,6 +11,7 @@ pub mod delegation;
 pub mod dynamic;
 pub mod dynamic_properties;
 pub mod fork;
+pub mod khaos;
 pub mod genesis;
 pub mod market;
 pub mod store;
@@ -26,6 +27,7 @@ pub use capsule::{BytesCapsule, CapsuleDecodeError, CodeCapsule, ProtoCapsule, S
 pub use store::{StateStore, StateWriteBatch, StoreEntry, StoreKind, StoreName, StoreNameError, TypedStore, physical_key};
 pub use dynamic_properties::{DynamicError, DynamicProperties, DynamicValue, PropertyEncoding};
 pub use fork::{ForkClock, ForkController, ForkError, ForkMath, ForkSchedule, ForkVersion, JavaForkMath};
+pub use khaos::{DEFAULT_KHAOS_CAPACITY, KhaosBlock, KhaosBlockData, KhaosDatabase, KhaosError, KhaosLimits, KhaosNode, KhaosStore, RetainedSize, StoreMutation, StoreMutationKind};
 pub use genesis::{build_genesis, initialize_genesis, initialize_genesis_config, GenesisAssetConfig, GenesisBlock, GenesisConfig, GenesisConfigError, GenesisError, GenesisInit, GenesisWitnessConfig};
 pub use session::{DurableStore, OverlayStore, OverlayValue, ReadView, Session, SessionError, SessionManager, ShutdownErrors, ViewStore};
 pub use checkpoint::{CheckpointCrashInjector, CheckpointCrashPhase, CheckpointError, CheckpointLimits, CheckpointStack, NoCheckpointCrash};

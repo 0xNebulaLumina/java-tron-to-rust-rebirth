@@ -1117,41 +1117,73 @@
     {
       "id": "C011",
       "title": "Fork graph and activation",
-      "status": "todo",
-      "owner": null,
-      "updated": null,
+      "status": "done",
+      "owner": "c011-khaos-gates",
+      "updated": "2026-09-04",
       "resume": null,
       "items": [
         {
           "id": "C011.01",
           "description": "Linked mini-store, unlinked store, weak parent links, size/eviction, lookup/removal.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented Java-shaped linked/unlinked mini-stores, weak parents, strict head selection, duplicate replacement lists, lookup/removal, and strict-window eviction."
         },
         {
           "id": "C011.02",
           "description": "Main/fork branch path and common-ancestor calculation.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented modern and deprecated branch discovery with exact argument orientation, tip-to-common-exclusive paths, and missing-tip/ancestor behavior."
         },
         {
           "id": "C011.03",
           "description": "Fork version witness statistics, downgrade/upgrade, special heights, maintenance-rounded activation.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented raw fork-stat quorum, old/new version transitions, ENERGY_LIMIT height, maintenance rounding, reset, downgrade/upgrade ordering, and first duplicate-witness index behavior."
         }
       ],
       "gate": {
         "id": "C011.V",
-        "description": "Linked/orphan/replacement/eviction/branch/activation fixtures match Java.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: all 30 generated fixtures, 8 reconciled Java tests, 20 C011 contract tests, and the locked tron-state all-targets workspace check completed successfully.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C011 pinned Java inventory, fixtures, ownership and dispatch gate",
+            "cwd": ".",
+            "argv": ["python3", "tools/state/c011_gate.py"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C011 fork graph and activation contracts",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-state", "--test", "khaos_contract", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C011 tron-state module contracts",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-state", "--lib", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C011 exact workspace target check",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "check", "-p", "tron-state", "--all-targets", "--locked"],
+            "timeout_seconds": 300
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C011.R.01",
+            "summary": "Final review required confirmation of the complete C011 fixture and Java-test reconciliation, contract tests, and locked workspace result.",
+            "status": "closed",
+            "resolution": "Approved after confirming the final results: all 30 generated fixtures, 8 reconciled Java tests, all 20 C011 contract tests, and the locked tron-state all-targets workspace check pass. All findings are closed, review is approved, C011 is complete, and the next ready item is C012.01."
+          }
+        ]
       },
       "blocker": null
     },

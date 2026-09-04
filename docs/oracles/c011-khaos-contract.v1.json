@@ -1,0 +1,157 @@
+{
+  "case_count": 19,
+  "case_table": "rust-tron/crates/tron-state/tests/khaos_contract.rs::C011_CASE_TABLE",
+  "cases": [
+    {
+      "command_index": 1,
+      "expected": "linked=true,unlinked=false",
+      "id": "khaos:linked",
+      "input": "linked parent resolves; child enters linked store",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::linked_orphan_number_and_strict_head_contract"
+    },
+    {
+      "command_index": 1,
+      "expected": "insert-unlinked-before-UnLinkedBlock",
+      "id": "khaos:orphan",
+      "input": "missing nonzero parent after head exists",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::linked_orphan_number_and_strict_head_contract"
+    },
+    {
+      "command_index": 1,
+      "expected": "hash-index=replacement,height-list=append",
+      "id": "khaos:replacement",
+      "input": "same id inserted twice",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::insertion_list_replacement_removal_callbacks_are_java_shaped"
+    },
+    {
+      "command_index": 1,
+      "expected": "all matching ids removed from indexed value height only",
+      "id": "khaos:duplicate",
+      "input": "duplicate id removal",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::insertion_list_replacement_removal_callbacks_are_java_shaped"
+    },
+    {
+      "command_index": 1,
+      "expected": "evict the complete height-0 bucket while preserving height-1 siblings",
+      "id": "khaos:eviction",
+      "input": "head=3,maxCapacity=2",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::height_window_eviction_uses_whole_buckets_with_capacity_two"
+    },
+    {
+      "command_index": 1,
+      "expected": "retain existing head; strictly greater wins",
+      "id": "khaos:head",
+      "input": "equal-height candidate",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::linked_orphan_number_and_strict_head_contract"
+    },
+    {
+      "command_index": 1,
+      "expected": "reselect first insertion at maximum retained height; mutation precedes null-head error",
+      "id": "khaos:remove",
+      "input": "remove linked root/head candidates",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::removal_reselects_first_inserted_at_highest_height_and_weak_parent_disappears"
+    },
+    {
+      "command_index": 1,
+      "expected": "head=weak-parent; stores unchanged",
+      "id": "khaos:pop",
+      "input": "pop linked child",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::pop_moves_head_without_removing_data"
+    },
+    {
+      "command_index": 1,
+      "expected": "child parent upgrade fails",
+      "id": "khaos:weak-parent",
+      "input": "remove parent ownership and head reference",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::removal_reselects_first_inserted_at_highest_height_and_weak_parent_disappears"
+    },
+    {
+      "command_index": 1,
+      "expected": "argument-oriented tip-to-common-exclusive paths",
+      "id": "khaos:modern-branch",
+      "input": "two retained tips",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::modern_branch_is_argument_oriented_tip_to_common_exclusive"
+    },
+    {
+      "command_index": 1,
+      "expected": "two empty paths; missing traversed parent still errors",
+      "id": "khaos:deprecated-branch",
+      "input": "initial tip absent",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::modern_and_deprecated_missing_behavior_differs"
+    },
+    {
+      "command_index": 1,
+      "expected": "bounded independently by insertion count and accounted bytes",
+      "id": "khaos:resource-limits",
+      "input": "duplicate, orphan, byte, and future-height pressure",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::resource_limits_bound_duplicate_and_orphan_growth"
+    },
+    {
+      "command_index": 1,
+      "expected": "reject ResourceLimit before graph, head, or accounting mutation; exact resolved parent Rc remains indexed",
+      "id": "khaos:parent-retention",
+      "input": "linked child fits alone but parent plus child exceeds resource limit",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::linked_admission_retains_exact_parent_or_rejects_atomically"
+    },
+    {
+      "command_index": 1,
+      "expected": "skip only the exact parent Rc; evict the sibling entry and admit the child at the strict bound",
+      "id": "khaos:pinned-parent-sibling",
+      "input": "same-height pinned parent and older sibling under entry pressure",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::resource_pressure_skips_only_pinned_parent_and_preserves_same_height_sibling"
+    },
+    {
+      "command_index": 1,
+      "expected": "evict the oldest insertion rather than the lowest-height bucket",
+      "id": "khaos:interleaved-resource-order",
+      "input": "resource victims inserted at heights 5,1,4 before height 6",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::resource_pressure_follows_insertion_order_across_interleaved_heights"
+    },
+    {
+      "command_index": 1,
+      "expected": "typed malformed-chain or cycle error within retained-step bound",
+      "id": "khaos:cycle-defense",
+      "input": "replaced IDs form malformed or cyclic parent chains",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::branch_rejects_repeated_parent_ids_and_nondecreasing_heights"
+    },
+    {
+      "command_index": 1,
+      "expected": "reject before linked/head or orphan-store mutation",
+      "id": "khaos:deep-payload-limits",
+      "input": "oversized linked and orphan payloads exceed byte budgets",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::deep_payload_limits_reject_without_linked_or_orphan_mutation"
+    },
+    {
+      "command_index": 1,
+      "expected": "typed malformed-chain or cycle error within retained-step bound",
+      "id": "khaos:deprecated-cycle-defense",
+      "input": "deprecated branch traverses malformed and cyclic parent chains",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::branch_rejects_repeated_parent_ids_and_nondecreasing_heights"
+    },
+    {
+      "command_index": 1,
+      "expected": "typed UnsupportedOperation",
+      "id": "khaos:unsupported-is-not-empty",
+      "input": "inherited isNotEmpty call",
+      "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::unsupported_inherited_is_not_empty_contract"
+    }
+  ],
+  "chunk": "C011",
+  "fixture_source": {
+    "path": "docs/oracles/c011-fixtures.v1.json",
+    "rows_sha256": "ca25a90324d90676cf093138b33dff0d87923c6237c41b6406be04985f667b05"
+  },
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "schema": "c011-khaos-contract.v1",
+  "schema_version": 1,
+  "sources": [
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/db/KhaosDatabase.java",
+      "sha256": "605baf69f4fb2468ce70e2ab477e46b01402af45829280df1c5b97df71af0064"
+    },
+    {
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
+      "sha256": "b06bc30368d90d98835664f7b92b42afd0b3804ce19f35ff7f4813d2915b014a"
+    }
+  ]
+}
