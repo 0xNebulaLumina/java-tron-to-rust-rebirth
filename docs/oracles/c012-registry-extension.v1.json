@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "schema": "c012-registry-extension.v1",
+  "chunk": "C012.06",
+  "decision": "DR-004",
+  "classification": "newly_authored_rust_contract",
+  "compatibility_claim": {
+    "pinned_java_observation": false,
+    "java_interchangeable": false,
+    "basis": "expectations are derived from the authenticated C001 descriptor, the C012 provider metadata, and the declared state-access contract"
+  },
+  "descriptor": {
+    "path": "rust-tron/crates/tron-protocol/tests/fixtures/extensions/example_actuator.pb",
+    "size_bytes": 309,
+    "sha256": "1e340f78469d9adcd0a242311304919beba2fa6a2bc0ba5c02cd7ea18f557595",
+    "bytes_hex": "0ab2020a166578616d706c655f6163747561746f722e70726f746f12196f72672e74726f6e2e6578616d706c652e6163747561746f7222500a0f4578616d706c65436f6e747261637412230a0d6f776e65725f6164647265737318012001280c520c6f776e65724164647265737312180a077061796c6f616418022001280c52077061796c6f616422380a11416c7465726e617465436f6e747261637412230a0d6f776e65725f6164647265737318012001280c520c6f776e65724164647265737322330a0c4c617465436f6e747261637412230a0d6f776e65725f6164647265737318012001280c520c6f776e65724164647265737342340a196f72672e74726f6e2e6578616d706c652e6163747561746f7242174578616d706c654163747561746f7250726f746f636f6c620670726f746f33"
+  },
+  "provider": {
+    "extension_id": "org.tron.example.actuator",
+    "priority": 5,
+    "message_full_name": "org.tron.example.actuator.ExampleContract",
+    "type_url": "type.googleapis.com/org.tron.example.actuator.ExampleContract",
+    "contract_type": 1000,
+    "max_payload_bytes": 128,
+    "provider_identity": "reviewed.example.native",
+    "code_sha256": "5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a",
+    "state_access": [{"store":"Account","read":true,"write":true}],
+    "owner_field": {"number": 1, "wire_type": 2, "name": "owner_address"},
+    "payload_field": {"number": 2, "wire_type": 2, "name": "payload"}
+  },
+  "security_model": {
+    "provider_kind": "trusted_statically_linked_reviewed_native_code",
+    "sandboxed": false,
+    "untrusted_plugins_supported": false,
+    "composition_root_allowlist": ["provider_identity", "code_sha256"],
+    "metadata_snapshot_count": 1,
+    "panic_handling": "unwind panics become node errors where possible; process exit, abort, and ambient native effects remain trust-boundary effects",
+    "sensitive_internal_stores_denied": ["Common", "Checkpoint", "Temporary"],
+    "capability_enforcement": ["get", "decode", "dynamic", "account_asset_read", "account_asset_write", "put", "delete"]
+  },
+  "execution_contract": {
+    "pre_state": {"Account/414141414141414141414141414141414141414141": null, "Witness/77": null},
+    "successful_write_sequence": [
+      {"store": "Account", "key_hex": "414141414141414141414141414141414141414141", "value_hex": "6669727374"},
+      {"store": "Account", "key_hex": "414141414141414141414141414141414141414141", "value_hex": "6166746572"}
+    ],
+    "success_result": {"code": "SUCESS", "fee": 99, "asset_issue_id_hex": "6c65616b"},
+    "failure_result": {"code": "FAILED", "fee": 0, "asset_issue_id_hex": "", "ordered_store_deltas": []},
+    "revoke_rule": "validation, execution, and declaration errors leave the parent byte-for-byte unchanged and clear provisional result fields"
+  },
+  "resource_bounds": {
+    "provider_batch_max": 64,
+    "payload_global_max_bytes": 1048576,
+    "provider_payload_declared_max_bytes": 128,
+    "declared_access_entry_max_before_dedupe": 64,
+    "contract_type_interval": [1000, 1999]
+  },
+  "variants": [
+    {"id":"DR004.C012.EXT.01","case":"owner_and_dispatch","input":{"contract_type":1000,"type_url":"type.googleapis.com/org.tron.example.actuator.ExampleContract","payload_hex":"0a1541414141414141414141414141414141414141414112026f6b"},"expected":{"owner_hex":"414141414141414141414141414141414141414141","actuator_constructed":true,"error":null}},
+    {"id":"DR004.C012.EXT.02","case":"declared_write_success","input":{"payload_hex":"0a1541414141414141414141414141414141414141414112026f6b"},"pre_state":{"Account/414141414141414141414141414141414141414141":null},"expected":{"result":{"code":"SUCESS","fee":99,"asset_issue_id_hex":"6c65616b"},"ordered_store_deltas":[{"store":"Account","key_hex":"414141414141414141414141414141414141414141","before":null,"after_hex":"6166746572"}],"revoke":{"required":false}}},
+    {"id":"DR004.C012.EXT.03","case":"validation_error_revoke","input":{"payload_hex":"0a15414141414141414141414141414141414141414141121076616c69646174696f6e2d6572726f72"},"pre_state":{"Account/414141414141414141414141414141414141414141":null},"expected":{"error":{"kind":"Provider","message":"extension validation failure"},"result":{"code":"FAILED","fee":0,"asset_issue_id_hex":""},"ordered_store_deltas":[],"revoke":{"required":true,"parent_unchanged":true}}},
+    {"id":"DR004.C012.EXT.04","case":"execution_error_revoke","input":{"payload_hex":"0a1541414141414141414141414141414141414141414112056572726f72"},"pre_state":{"Account/414141414141414141414141414141414141414141":null},"expected":{"error":{"kind":"Provider","message":"extension failure"},"result":{"code":"FAILED","fee":0,"asset_issue_id_hex":""},"ordered_store_deltas":[],"revoke":{"required":true,"parent_unchanged":true}}},
+    {"id":"DR004.C012.EXT.05","case":"undeclared_store_revoke","input":{"payload_hex":"0a15414141414141414141414141414141414141414141120a756e6465636c61726564"},"pre_state":{"Account/414141414141414141414141414141414141414141":null,"Witness/77":null},"expected":{"errors":[{"operation":"read","kind":"Provider","message_contains":"read undeclared"},{"operation":"write","kind":"Provider","message_contains":"wrote undeclared"}],"result":{"code":"FAILED","fee":0,"asset_issue_id_hex":""},"ordered_store_deltas":[],"revoke":{"required":true,"parent_unchanged":true}}},
+    {"id":"DR004.C012.EXT.06","case":"provider_metadata_mismatch","mutation":{"message_full_name":"org.tron.example.actuator.MismatchedContract"},"expected":{"construction_error":{"kind":"ProviderMetadataMismatch","extension_id":"org.tron.example.actuator"},"registry_published":false,"state_mutated":false}},
+    {"id":"DR004.C012.EXT.07","case":"provider_missing","mutation":{"providers":[]},"expected":{"construction_error":{"kind":"ProviderMissing","extension_id":"org.tron.example.actuator"},"registry_published":false,"state_mutated":false}},
+    {"id":"DR004.C012.EXT.08","case":"provider_contract_type_collision","mutation":{"second_provider":{"extension_id":"org.tron.example.second","contract_type":1000}},"expected":{"construction_error":{"kind":"ProviderCollision"},"registry_published":false,"state_mutated":false}},
+    {"id":"DR004.C012.EXT.09","case":"runtime_type_url_mismatch","input":{"contract_type":1000,"type_url":"type.googleapis.com/org.tron.example.actuator.AlternateContract","payload_hex":"0a1541414141414141414141414141414141414141414112026f6b"},"expected":{"error":{"kind":"TypeUrlMismatch","expected":"type.googleapis.com/org.tron.example.actuator.ExampleContract","actual":"type.googleapis.com/org.tron.example.actuator.AlternateContract"},"owner_invoked":false,"factory_invoked":false,"state_mutated":false}},
+    {"id":"DR004.C012.EXT.10","case":"payload_at_declared_bound","input":{"payload_size_bytes":128},"expected":{"payload_limit_error":null,"owner_or_factory_may_decode":true}},
+    {"id":"DR004.C012.EXT.11","case":"payload_over_declared_bound","input":{"payload_size_bytes":129},"expected":{"error":{"kind":"PayloadLimitExceeded","extension_id":"org.tron.example.actuator","limit":128,"actual":129},"owner_invoked":false,"factory_invoked":false,"state_mutated":false}},
+    {"id":"DR004.C012.EXT.12","case":"declared_store_resource_bound","mutation":{"raw_declared_access_entry_count":65,"unique_store_count":1,"duplicate_entries_preserved_until_limit_check":true},"expected":{"construction_error":{"kind":"ProviderStateAccessLimitExceeded","extension_id":"org.tron.example.actuator","limit":64,"actual":65},"registry_published":false,"state_mutated":false}}
+  ],
+  "test_ownership": {
+    "independent_rust_execution_test": "rust-tron/crates/tron-execution/tests/c012_extension_registry.rs",
+    "required_test_ids": ["DR004.C012.EXT.01","DR004.C012.EXT.02","DR004.C012.EXT.03","DR004.C012.EXT.04","DR004.C012.EXT.05","DR004.C012.EXT.06","DR004.C012.EXT.07","DR004.C012.EXT.08","DR004.C012.EXT.09","DR004.C012.EXT.10","DR004.C012.EXT.11","DR004.C012.EXT.12"],
+    "prohibited_evidence": ["Java oracle hash","Java validate/execute claim","constant-only comparison","shared built-in fixture namespace"]
+  },
+  "reviewer_disposition": {
+    "required": true,
+    "state": "pending_rerun",
+    "allowed_terminal_states": ["approved","changes_requested"],
+    "must_confirm": ["newly_authored_rust_contract provenance","all 12 variants independently execute in Rust","built-in namespace remains separate","no pinned-Java claim"]
+  }
+}

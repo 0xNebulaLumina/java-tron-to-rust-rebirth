@@ -1,0 +1,24 @@
+{
+  "chunk": "C012",
+  "fixture_inventory": {
+    "path": "c012-execution-fixtures.v1.json",
+    "scenarios": 226,
+    "sha256": "cb98c3140b73de567b669782f8f798b42d30ac5c70a8860e6a9cab635ca2e321",
+    "variants": 226
+  },
+  "ownership_reconciliation": {
+    "mapped": 222,
+    "path": "c012-java-test-reconciliation.v1.json",
+    "sha256": "c4997daabdfd32858c60fe7fd1796f38f154731c3bb8b72034a8f509d7b9e025",
+    "stable_ids": 222,
+    "typed_exclusions": 0
+  },
+  "reviewer_disposition": "pending_rerun",
+  "schema": "c012-execution-contract.v4",
+  "schema_version": 4,
+  "scope": "214 real built-in family/direct Java scenarios plus 12 DR-004 Rust registry/Session variants",
+  "source_inventory": {
+    "path": "c012-source-inventory.v1.json",
+    "sha256": "7325fd363e545f4b6c131c81af13637af6f6b84f58413cf3cc5051bda31acf40"
+  }
+}

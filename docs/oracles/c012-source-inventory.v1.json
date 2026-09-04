@@ -1,0 +1,64 @@
+{
+  "canonical_sources": [
+    {
+      "path": "docs/oracles/c012-account-real.v1.json",
+      "sha256": "8c0fbfce77ccbd1e24f086d6fb0896295720a0be4104bda54f0ad85b355cd855"
+    },
+    {
+      "path": "docs/oracles/c012-transfer-real.v1.json",
+      "sha256": "14021ae790999227a1e60d67d46e210da0d49098f9afef0711a02f6bcfb42b0f"
+    },
+    {
+      "path": "docs/oracles/c012-asset-real.v1.json",
+      "sha256": "904099c61d3df9d81fda8044084dfe1348d3b2291fe36157dda72b2bf3095e85"
+    },
+    {
+      "path": "docs/oracles/c012-witness-real.v1.json",
+      "sha256": "a12ac38a14cbfe9b6be7e09cec779e2a0607bbcd724704c9f9ae36adc4e9b7b1"
+    },
+    {
+      "path": "docs/oracles/c012-registry-real.v1.json",
+      "sha256": "1942309f5579f1add0f76d43b8422721d69969102f3021739dc8e370fa82b717"
+    },
+    {
+      "path": "tools/execution/account/run.py",
+      "sha256": "41adf7da27bdcb3cc4e5f65d87f45ac15ec49b70a0d2cc45d4dbf2f1c2520ef4"
+    },
+    {
+      "path": "tools/execution/transfer/run.py",
+      "sha256": "d68e7db0249affc337da708c7f393451df9aecf6cca55e8b441fc55faac177d7"
+    },
+    {
+      "path": "tools/execution/asset/run.py",
+      "sha256": "39e69591da4e622e843a1260e1212035a3b0ed5989bd0fae740dc1cc417f13d3"
+    },
+    {
+      "path": "tools/execution/witness/run.sh",
+      "sha256": "4a70c9deb105de5278053009c58c8eee4bd3b5a64ea78143ecd665f4742f5784"
+    },
+    {
+      "path": "tools/execution/registry/run.py",
+      "sha256": "260fb42db80e6e9efaab67be2eb44660f45141d7231e48f4932464cec7adde35"
+    },
+    {
+      "path": "docs/oracles/c012-java-owned-real.v1.json",
+      "sha256": "ee4ce540b4009b716c974d717d6140be938ac4040997b04369ccfc6a3775da20"
+    },
+    {
+      "path": "tools/execution/c012_java_oracle.py",
+      "sha256": "49a8eb7df028ea9fb3b1133607595a6a452af872716622fef1f302d06844d618"
+    },
+    {
+      "path": "tools/execution/C012Oracle.java",
+      "sha256": "44fef3677c79328bcba4fb0d45ea447fa05b8e017093a4260e073b07251c7f1f"
+    },
+    {
+      "path": "tools/execution/overlay/org/tron/core/actuator/AbstractActuator.java",
+      "sha256": "5d585158f5215690319fcbfd78082f5a3ed9455cfa5edac73083c0b95f197959"
+    }
+  ],
+  "chunk": "C012",
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "provenance": "Each family runner creates deterministic fresh Java databases and overwrites its authenticated real artifact.",
+  "schema_version": 3
+}

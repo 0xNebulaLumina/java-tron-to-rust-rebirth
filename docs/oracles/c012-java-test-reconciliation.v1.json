@@ -1,0 +1,3340 @@
+{
+  "chunk": "C012",
+  "excluded_count": 0,
+  "mapped_count": 222,
+  "mapping": "complete_explicit_family_or_direct_java_scenario",
+  "row_count": 222,
+  "rows": [
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "ownerPermissionNoKey",
+      "java_line": 474,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-009335135A99110B"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "firstCreateAccount",
+      "java_line": 69,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "create-success"
+      ],
+      "stable_id": "TCASE-03140E5B0D47B220"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "OldNotUpdateSuccessTransfer2",
+      "java_line": 381,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-044AA74460F28048"
+      ],
+      "stable_id": "TCASE-044AA74460F28048"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UnfreezeAsset",
+      "java_case": "invalidOwnerAddress",
+      "java_line": 254,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UnfreezeAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-059FFF2A0FBDB802"
+      ],
+      "stable_id": "TCASE-059FFF2A0FBDB802"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseParticipateAssetToThird",
+      "java_line": 979,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-077EE24F52165ADB"
+      ],
+      "stable_id": "TCASE-077EE24F52165ADB"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UpdateAsset",
+      "java_case": "oldNotUpdataSuccessUpdateAsset",
+      "java_line": 191,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-07DF6DF23AF8401B"
+      ],
+      "stable_id": "TCASE-07DF6DF23AF8401B"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UpdateAsset",
+      "java_case": "noExistAccount",
+      "java_line": 299,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-091FB774A245C809"
+      ],
+      "stable_id": "TCASE-091FB774A245C809"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseSuccessTransfer2",
+      "java_line": 343,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-0A41D31B94429FE0"
+      ],
+      "stable_id": "TCASE-0A41D31B94429FE0"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidContractType",
+      "java_line": 334,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "update-success"
+      ],
+      "stable_id": "TCASE-0B4FD364F5FF2858"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "vote1WitnssOneMoreTiems",
+      "java_line": 403,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-0C3973926C580E23"
+      ],
+      "stable_id": "TCASE-0C3973926C580E23"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "oldNotUpdateAssetIssueSuccess",
+      "java_line": 153,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-0C3D1244E1694EAD"
+      ],
+      "stable_id": "TCASE-0C3D1244E1694EAD"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidContract",
+      "java_line": 275,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-0CC06CC0465F14A2"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidAccount",
+      "java_line": 191,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "create-invalid-target"
+      ],
+      "stable_id": "TCASE-0D63B6C8DFD9A9F9"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "assetIssueTRXNameTest",
+      "java_line": 1528,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-0DD68B57FA635D92"
+      ],
+      "stable_id": "TCASE-0DD68B57FA635D92"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "balanceAfterCreate",
+      "java_line": 122,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "create-success"
+      ],
+      "stable_id": "TCASE-0FC1E09B69C4F1CF"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessCreate",
+      "java_case": "noAccount",
+      "java_line": 255,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessCreateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-114223AE3B4005C1"
+      ],
+      "stable_id": "TCASE-114223AE3B4005C1"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "SameTokenNameCloseInvalidAddr",
+      "java_line": 1668,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-12E7DF246C33F0C1"
+      ],
+      "stable_id": "TCASE-12E7DF246C33F0C1"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessUpdate",
+      "java_case": "InvalidUrlTest",
+      "java_line": 142,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-144207F246D3996D"
+      ],
+      "stable_id": "TCASE-144207F246D3996D"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "sumWeightLessThanThreshold",
+      "java_line": 775,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-14A45D1244CAE098"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidAddress",
+      "java_line": 115,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "update-invalid-address"
+      ],
+      "stable_id": "TCASE-14B51BDF82F12297"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UnfreezeAsset",
+      "java_case": "notIssueAsset",
+      "java_line": 295,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UnfreezeAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-15364F376EBE1DA9"
+      ],
+      "stable_id": "TCASE-15364F376EBE1DA9"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameOpenSuccessTransfer2",
+      "java_line": 419,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-160B1D53EE37C267"
+      ],
+      "stable_id": "TCASE-160B1D53EE37C267"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenAssetIssueTimeRight",
+      "java_line": 437,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-163270EB83047F30"
+      ],
+      "stable_id": "TCASE-163270EB83047F30"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "voteWitnessWithoutEnoughOldTronPowerAfterNewResourceModel",
+      "java_line": 559,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-1759AB28D83FFBD1"
+      ],
+      "stable_id": "TCASE-1759AB28D83FFBD1"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UpdateAsset",
+      "java_case": "successUpdateAssetAfterSameTokenNameActive",
+      "java_line": 235,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-178C4CB50AE879DC"
+      ],
+      "stable_id": "TCASE-178C4CB50AE879DC"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "OldNotUpdateSuccessAssetIssue",
+      "java_line": 324,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-186105F9263518D3"
+      ],
+      "stable_id": "TCASE-186105F9263518D3"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UpdateAsset",
+      "java_case": "invalidAssetUrl",
+      "java_line": 354,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-198FAB86C5CEA151"
+      ],
+      "stable_id": "TCASE-198FAB86C5CEA151"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseAssetIssueTimeLeft",
+      "java_line": 472,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-19FF45DB1ABC3206"
+      ],
+      "stable_id": "TCASE-19FF45DB1ABC3206"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "SameTokenNameCloseInvalidOwnerAddress",
+      "java_line": 1612,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-1AD2FA4367C59EA2"
+      ],
+      "stable_id": "TCASE-1AD2FA4367C59EA2"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessCreate",
+      "java_case": "firstCreateWitness",
+      "java_line": 102,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessCreateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-1C63F818089EAC1C"
+      ],
+      "stable_id": "TCASE-1C63F818089EAC1C"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UnfreezeAsset",
+      "java_case": "SameTokenNameCloseUnfreezeAsset",
+      "java_line": 111,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UnfreezeAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-1C7DB45EE6A8BE65"
+      ],
+      "stable_id": "TCASE-1C7DB45EE6A8BE65"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenNotEnoughAssetTest",
+      "java_line": 1266,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-1E9CD5C5FC39F085"
+      ],
+      "stable_id": "TCASE-1E9CD5C5FC39F085"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "commonErrorCheck",
+      "java_line": 369,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "setid-success"
+      ],
+      "stable_id": "TCASE-1F5CF36E9404DE69"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "transferToContractAddress",
+      "java_line": 1374,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-207544771BCABC89"
+      ],
+      "stable_id": "TCASE-207544771BCABC89"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "frozenTest",
+      "java_line": 1093,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-236EA16E26727FB7"
+      ],
+      "stable_id": "TCASE-236EA16E26727FB7"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "voteWitnessWithoutEnoughOldAndNewTronPowerAfterNewResourceModel",
+      "java_line": 643,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-2562BB36C2724142"
+      ],
+      "stable_id": "TCASE-2562BB36C2724142"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameOpenNoneExistAssetTest",
+      "java_line": 735,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-264A3CCCE83311EA"
+      ],
+      "stable_id": "TCASE-264A3CCCE83311EA"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UpdateAsset",
+      "java_case": "invalidAddress",
+      "java_line": 273,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-2769E33856F07DFD"
+      ],
+      "stable_id": "TCASE-2769E33856F07DFD"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "nullDbManager",
+      "java_line": 265,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-2858E7863BFE6ED8"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "nullAccount",
+      "java_line": 308,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-missing"
+      ],
+      "stable_id": "TCASE-28DF92A5EB4B4394"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseZeroAmountTest",
+      "java_line": 579,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-2A054A3B1FC032F1"
+      ],
+      "stable_id": "TCASE-2A054A3B1FC032F1"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "family": "transfer",
+      "java_case": "moreTransfer",
+      "java_line": 159,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "more"
+      ],
+      "stable_id": "TCASE-2A839836777D192B"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "frozenListSizeTest",
+      "java_line": 1558,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-2BC60E52A2D556C8"
+      ],
+      "stable_id": "TCASE-2BC60E52A2D556C8"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidWitnessPermissionType",
+      "java_line": 452,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-2D395BA3F2072715"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "noContract",
+      "java_line": 256,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-2F46BF5C175089A0"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessUpdate",
+      "java_case": "rightUpdateWitness",
+      "java_line": 97,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-31680E30EB7E67FC"
+      ],
+      "stable_id": "TCASE-31680E30EB7E67FC"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameOpenInvalidToAddress",
+      "java_line": 1073,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-33C8318AA4AFA930"
+      ],
+      "stable_id": "TCASE-33C8318AA4AFA930"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameOpenOwnerNoAssetTest",
+      "java_line": 484,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-35DFEE0070981335"
+      ],
+      "stable_id": "TCASE-35DFEE0070981335"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "witnessPermissionToManyKey",
+      "java_line": 589,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-362670EE5524D8C9"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenExchangeAmountTest",
+      "java_line": 1620,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-375CE93B25C11119"
+      ],
+      "stable_id": "TCASE-375CE93B25C11119"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "noContract",
+      "java_line": 324,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "update-success"
+      ],
+      "stable_id": "TCASE-3915FD2FFCDA4273"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseNotEnoughAssetTest",
+      "java_line": 515,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-3C4C29FA76D19A87"
+      ],
+      "stable_id": "TCASE-3C4C29FA76D19A87"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "urlTest",
+      "java_line": 742,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-3CA8263ACE6B60E3"
+      ],
+      "stable_id": "TCASE-3CA8263ACE6B60E3"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "SameTokenNameOpenAssetIssueSuccess",
+      "java_line": 197,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-3EC1BE5308A20EA1"
+      ],
+      "stable_id": "TCASE-3EC1BE5308A20EA1"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UpdateAsset",
+      "java_case": "invalidAssetDescription",
+      "java_line": 384,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-3EE87364D9A4070F"
+      ],
+      "stable_id": "TCASE-3EE87364D9A4070F"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "witnessPermissionToManyKey1",
+      "java_line": 615,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-3F773E07B3F57140"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "checkAvailableContractType",
+      "java_line": 980,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-444D8C9E66CE5C22"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "onwerPermissionOperationNeedless",
+      "java_line": 798,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-44A516572FD514D7"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseNotEnoughTrxTest",
+      "java_line": 1144,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-4595D0C811D11FEB"
+      ],
+      "stable_id": "TCASE-4595D0C811D11FEB"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "zeroTrxNumTest",
+      "java_line": 375,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-48381746EE32F3B7"
+      ],
+      "stable_id": "TCASE-48381746EE32F3B7"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UpdateAsset",
+      "java_case": "invalidNewLimit",
+      "java_line": 419,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-48E3DCEF3F99FDF5"
+      ],
+      "stable_id": "TCASE-48E3DCEF3F99FDF5"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "family": "transfer",
+      "java_case": "perfectTransfer",
+      "java_line": 133,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "perfect"
+      ],
+      "stable_id": "TCASE-4998ACC99FFAA609"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameOpenNegativeAmountTest",
+      "java_line": 672,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-4A02FA3253084338"
+      ],
+      "stable_id": "TCASE-4A02FA3253084338"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "activePermissionInvalidOperationBit",
+      "java_line": 868,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-4B98723182F12B81"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseOwnerNoAssetTest",
+      "java_line": 455,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-4BD47E773E239B45"
+      ],
+      "stable_id": "TCASE-4BD47E773E239B45"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseNoExitToTest",
+      "java_line": 820,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-4CD5E2CE933C4D09"
+      ],
+      "stable_id": "TCASE-4CD5E2CE933C4D09"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenParticipateAssetSelf",
+      "java_line": 938,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-4D2525FE4181D088"
+      ],
+      "stable_id": "TCASE-4D2525FE4181D088"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "activePermissionInvalidOperationSize",
+      "java_line": 844,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-operations"
+      ],
+      "stable_id": "TCASE-504C169B7E4D9E67"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "negativeTrxNumTest",
+      "java_line": 330,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-525F2DE51015CCCA"
+      ],
+      "stable_id": "TCASE-525F2DE51015CCCA"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "rightSetAccountId",
+      "java_line": 78,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "setid-success"
+      ],
+      "stable_id": "TCASE-5296848EC097A27C"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "equivalent registry discriminator mutation before the same real TransferActuator path",
+      "family": "registry",
+      "java_case": "sameTokenNameOpenAddOverflowTest",
+      "java_line": 1426,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "registry-composed-providers::builtin-id-collision"
+      ],
+      "stable_id": "TCASE-5571BF8189F9B9B7"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "successful real built-in dispatch establishes the canonical URL identity",
+      "family": "registry",
+      "java_case": "sameTokenNameOpenNotEnoughTrxTest",
+      "java_line": 1184,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "registry-composed-providers::builtin-url-collision"
+      ],
+      "stable_id": "TCASE-562752F93FF3174B"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "successful real built-in routing; extension composition is independently owned by DR-004",
+      "family": "registry",
+      "java_case": "sameTokenNameOpenParticipateAssetToThird",
+      "java_line": 1014,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "registry-composed-providers::c012-real-and-later-sentinel-routing"
+      ],
+      "stable_id": "TCASE-56774B06C7EDD91C"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "successful real built-in routing; sentinel registration is not a Java production behavior",
+      "family": "registry",
+      "java_case": "SameTokenNameOpenOwnerNoThisAsset",
+      "java_line": 1165,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "registry-composed-providers::sentinel-production-registration-rejected"
+      ],
+      "stable_id": "TCASE-56C03EEA34A64386"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "exact Transfer type and URL with the assigned insufficient-balance validation boundary",
+      "family": "registry",
+      "java_case": "insufficientFee",
+      "java_line": 409,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "registry-exact-identities::each-in-scope-contract-type"
+      ],
+      "stable_id": "TCASE-57A0E49CA779D734"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "absent owner exercises owner extraction followed by concrete validation failure",
+      "family": "registry",
+      "java_case": "noOwnerAccount",
+      "java_line": 435,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "registry-mismatch-malformed-unknown::enum-gap"
+      ],
+      "stable_id": "TCASE-5B51E4838875DA31"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "wrong concrete Any URL is the directly observable Java contract/type rejection boundary",
+      "family": "registry",
+      "java_case": "ownerMissed",
+      "java_line": 319,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "registry-mismatch-malformed-unknown::malformed-payload"
+      ],
+      "stable_id": "TCASE-5D1C840070F54FAB"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "empty owner field exercises the assigned owner contract invariant",
+      "family": "registry",
+      "java_case": "balanceNotSufficient",
+      "java_line": 461,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "registry-mismatch-malformed-unknown::missing-owner"
+      ],
+      "stable_id": "TCASE-5E15A6A247E10E30"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "assigned method directly supplies an invalid owner",
+      "family": "registry",
+      "java_case": "iniviateOwnerAddress",
+      "java_line": 187,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "registry-mismatch-malformed-unknown::unknown-type"
+      ],
+      "stable_id": "TCASE-5ECE89EE9480F885"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "assigned method directly supplies owner as recipient",
+      "family": "registry",
+      "java_case": "iniviateTrx",
+      "java_line": 242,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "registry-mismatch-malformed-unknown::wrong-url"
+      ],
+      "stable_id": "TCASE-60950B6D506E1515"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "deterministic successful result wire baseline; assigned asset naming behavior is family-owned elsewhere",
+      "family": "registry",
+      "java_case": "SameTokenNameCloseAssetNameTest",
+      "java_line": 1279,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "registry-result-wire::failure"
+      ],
+      "stable_id": "TCASE-60F3F0D0EC11A989"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "deterministic zero-fee result wire baseline; voting fee semantics are family-owned elsewhere",
+      "family": "registry",
+      "java_case": "voteWitnessWithOldTronPowerAfterNewResourceModel",
+      "java_line": 578,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "registry-result-wire::repeated-fee"
+      ],
+      "stable_id": "TCASE-6191ACFED7C38024"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "direct concrete TransactionResultCapsule success wire observation",
+      "family": "registry",
+      "java_case": "invalidTransactionResultCapsule",
+      "java_line": 287,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "registry-result-wire::success"
+      ],
+      "stable_id": "TCASE-62F9A8D04D0BABD0"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "activePermissionToManyKey",
+      "java_line": 542,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-63C2467167A24E00"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "sameTokenNameCloseNoOwnerAccount",
+      "java_line": 1232,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-63D2B4E992BC6571"
+      ],
+      "stable_id": "TCASE-63D2B4E992BC6571"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseNoExitOwnerTest",
+      "java_line": 748,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-64ADEA116CC64034"
+      ],
+      "stable_id": "TCASE-64ADEA116CC64034"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "family": "transfer",
+      "java_case": "zeroAmountTest",
+      "java_line": 332,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "zero"
+      ],
+      "stable_id": "TCASE-653E96055E9037D5"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "commonErrorCheck",
+      "java_line": 1736,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-66E97D3A0224CE60"
+      ],
+      "stable_id": "TCASE-66E97D3A0224CE60"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessCreate",
+      "java_case": "InvalidUrlTest",
+      "java_line": 173,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessCreateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-67189D92322C23C8"
+      ],
+      "stable_id": "TCASE-67189D92322C23C8"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UnfreezeAsset",
+      "java_case": "SameTokenNameActiveUnfreezeAsset",
+      "java_line": 159,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UnfreezeAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-682F24842F4A01FD"
+      ],
+      "stable_id": "TCASE-682F24842F4A01FD"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "issueStartTimeTooBig",
+      "java_line": 1875,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-69EF91E92D94014C"
+      ],
+      "stable_id": "TCASE-69EF91E92D94014C"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UnfreezeAsset",
+      "java_case": "invalidOwnerAccount",
+      "java_line": 274,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UnfreezeAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-6B710D7AF0705BC5"
+      ],
+      "stable_id": "TCASE-6B710D7AF0705BC5"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "inSufficientFeeAccount",
+      "java_line": 173,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "create-insufficient"
+      ],
+      "stable_id": "TCASE-6BACC0EC66F3826A"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "activePermissionNoOperation",
+      "java_line": 824,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-6EEC6764425F36C9"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UpdateAsset",
+      "java_case": "noAsset",
+      "java_line": 325,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-6FAA911FDF0D5174"
+      ],
+      "stable_id": "TCASE-6FAA911FDF0D5174"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseSuccessTransfer",
+      "java_line": 268,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-70205293DB29F5C4"
+      ],
+      "stable_id": "TCASE-70205293DB29F5C4"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidName",
+      "java_line": 242,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "update-empty"
+      ],
+      "stable_id": "TCASE-71AEDD259F31CF47"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessCreate",
+      "java_case": "secondCreateAccount",
+      "java_line": 130,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessCreateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-71AF0A989B79D610"
+      ],
+      "stable_id": "TCASE-71AF0A989B79D610"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidOwnerPermissionType",
+      "java_line": 410,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-owner-type"
+      ],
+      "stable_id": "TCASE-745A280061A48C48"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "updateSameNameSuccess",
+      "java_line": 188,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "update-success"
+      ],
+      "stable_id": "TCASE-74DEB3B742C1151F"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "witnessPermissionOperationNeedless",
+      "java_line": 893,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-7636E50E54D68705"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessCreate",
+      "java_case": "InvalidAddress",
+      "java_line": 152,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessCreateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-764C8F17A2FA73AE"
+      ],
+      "stable_id": "TCASE-764C8F17A2FA73AE"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UpdateAsset",
+      "java_case": "testGetOwnerAddress",
+      "java_line": 493,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-7953F48D24347A87"
+      ],
+      "stable_id": "TCASE-7953F48D24347A87"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "family": "transfer",
+      "java_case": "transferToSmartContractAddress",
+      "java_line": 472,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "contract-compatible-v1"
+      ],
+      "stable_id": "TCASE-7B9012BA2E5C522D"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "family": "transfer",
+      "java_case": "noExitToAccount",
+      "java_line": 298,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "new-account"
+      ],
+      "stable_id": "TCASE-7C9C7C2430F5BD58"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "witnessPermissionNoKey",
+      "java_line": 566,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-7F25F450F5D4B153"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenRightAssetIssue",
+      "java_line": 365,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-7F30B7FD502AD1A8"
+      ],
+      "stable_id": "TCASE-7F30B7FD502AD1A8"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UnfreezeAsset",
+      "java_case": "SameTokenNameActiveInitAndAcitveUnfreezeAsset",
+      "java_line": 207,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UnfreezeAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-7F99FBAAF0470D8F"
+      ],
+      "stable_id": "TCASE-7F99FBAAF0470D8F"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseParticipateAssetSelf",
+      "java_line": 900,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-809AECD87366700C"
+      ],
+      "stable_id": "TCASE-809AECD87366700C"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessUpdate",
+      "java_case": "InvalidAddress",
+      "java_line": 121,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-8106D8D3B67972AA"
+      ],
+      "stable_id": "TCASE-8106D8D3B67972AA"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidPermissionParent",
+      "java_line": 683,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-8369AB1504C02877"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseMultiplyOverflowTest",
+      "java_line": 1471,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-83E61E771F183A82"
+      ],
+      "stable_id": "TCASE-83E61E771F183A82"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "updateSameNameFail",
+      "java_line": 205,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "update-existing-name"
+      ],
+      "stable_id": "TCASE-876C2D82D4E44A94"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenNoExitOwnerTest",
+      "java_line": 783,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-88163D00ABC9EB16"
+      ],
+      "stable_id": "TCASE-88163D00ABC9EB16"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenExchangeDevisibleTest",
+      "java_line": 573,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-89FD5FAA262AEB12"
+      ],
+      "stable_id": "TCASE-89FD5FAA262AEB12"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "rightUpdateAccount",
+      "java_line": 110,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "update-success"
+      ],
+      "stable_id": "TCASE-8AE2EA5B129B30D6"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AccountCapsule",
+      "java_case": "witnessPermissionTest",
+      "java_line": 295,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/AccountCapsuleTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-8B6650B8003FD547"
+      ],
+      "stable_id": "TCASE-8B6650B8003FD547"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "noExistAccount",
+      "java_line": 118,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "setid-missing"
+      ],
+      "stable_id": "TCASE-8BAE8F0232441AE8"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "family": "transfer",
+      "java_case": "rightTransfer",
+      "java_line": 109,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "right"
+      ],
+      "stable_id": "TCASE-8C05165ED3D073B6"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "issueTimeTest",
+      "java_line": 1342,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-8DAA89F6CEE29D22"
+      ],
+      "stable_id": "TCASE-8DAA89F6CEE29D22"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseTransferToYourself",
+      "java_line": 916,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-8DD41B41C7E1C879"
+      ],
+      "stable_id": "TCASE-8DD41B41C7E1C879"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseOwnerNoThisAsset",
+      "java_line": 1105,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-8E949FD9AC80494C"
+      ],
+      "stable_id": "TCASE-8E949FD9AC80494C"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "SameTokenNameCloseAssetIssueSuccess",
+      "java_line": 105,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-8F5A6B4EE376C70F"
+      ],
+      "stable_id": "TCASE-8F5A6B4EE376C70F"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "twiceUpdateAccountSuccess",
+      "java_line": 169,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "update-success"
+      ],
+      "stable_id": "TCASE-91B9CF2958961913"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "permissionNameTooLong",
+      "java_line": 661,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-91E94B1E70C88484"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "checkActiveDefaultOperationsCorrespondingToCode",
+      "java_line": 952,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-940212A62FC6B395"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameOpenSuccessTransfer",
+      "java_line": 306,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-943A20889BFF6D28"
+      ],
+      "stable_id": "TCASE-943A20889BFF6D28"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "witnessNeedless",
+      "java_line": 371,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-944256CA30A23120"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidName",
+      "java_line": 223,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "setid-invalid-id"
+      ],
+      "stable_id": "TCASE-94AB5A3D2423F593"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "twiceUpdateAccount",
+      "java_line": 136,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "setid-already-set"
+      ],
+      "stable_id": "TCASE-94EEA816AB997324"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessUpdate",
+      "java_case": "notExistAccount",
+      "java_line": 242,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-96DA2C4827F0F315"
+      ],
+      "stable_id": "TCASE-96DA2C4827F0F315"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseInvalidToAddress",
+      "java_line": 1043,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-97925CC42F302B63"
+      ],
+      "stable_id": "TCASE-97925CC42F302B63"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UnfreezeAsset",
+      "java_case": "notTimeToUnfreeze",
+      "java_line": 348,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UnfreezeAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-9C35C7BFBDF03057"
+      ],
+      "stable_id": "TCASE-9C35C7BFBDF03057"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidOwnerAddress",
+      "java_line": 297,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-invalid-address"
+      ],
+      "stable_id": "TCASE-9D0EFCB1C6F616B1"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "SameTokenNameCloseInvalidparam",
+      "java_line": 1765,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-9D3BF180C0CF6E24"
+      ],
+      "stable_id": "TCASE-9D3BF180C0CF6E24"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "commonErrorCheck",
+      "java_line": 539,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-9F67A3E0DDF90924"
+      ],
+      "stable_id": "TCASE-9F67A3E0DDF90924"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "frozenSupplyMoreThanTotalSupplyTest",
+      "java_line": 1585,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-A1C9A50AAD9B9D2A"
+      ],
+      "stable_id": "TCASE-A1C9A50AAD9B9D2A"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidThreshold",
+      "java_line": 640,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-threshold"
+      ],
+      "stable_id": "TCASE-A3164088FC85BD93"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "SameTokenNameCloseInvalidAccount",
+      "java_line": 1827,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-A357881095A486E2"
+      ],
+      "stable_id": "TCASE-A357881095A486E2"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseRightAssetIssue",
+      "java_line": 282,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-A37ABA3B0965760C"
+      ],
+      "stable_id": "TCASE-A37ABA3B0965760C"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenZeroAmountTest",
+      "java_line": 710,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-A469021595E4D02E"
+      ],
+      "stable_id": "TCASE-A469021595E4D02E"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseNotEnoughAssetTest",
+      "java_line": 1225,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-A5328949BCE58D31"
+      ],
+      "stable_id": "TCASE-A5328949BCE58D31"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseInvalidToAddressTest",
+      "java_line": 1708,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-A5F90B11D2F068FD"
+      ],
+      "stable_id": "TCASE-A5F90B11D2F068FD"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameOpenAddOverflowTest",
+      "java_line": 881,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-A661BA664AF979ED"
+      ],
+      "stable_id": "TCASE-A661BA664AF979ED"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "negativeNumTest",
+      "java_line": 419,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-A68993BF3897EEAA"
+      ],
+      "stable_id": "TCASE-A68993BF3897EEAA"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "weighValueInvalid",
+      "java_line": 753,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-A77E3A406816256C"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "activeToMany",
+      "java_line": 350,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-A81F8EE14E3DC5AE"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenNegativeAmountTest",
+      "java_line": 640,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-A8A761D06C5F7D32"
+      ],
+      "stable_id": "TCASE-A8A761D06C5F7D32"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "successUpdatePermissionKey",
+      "java_line": 177,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-A958BCFD62C36E92"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "noExitAccount",
+      "java_line": 127,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "update-missing"
+      ],
+      "stable_id": "TCASE-AC46A128AFDFC699"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "invalideVoteAddress",
+      "java_line": 263,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-AE6568C2CD72C88E"
+      ],
+      "stable_id": "TCASE-AE6568C2CD72C88E"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "activeMissed",
+      "java_line": 336,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-active-missing"
+      ],
+      "stable_id": "TCASE-AEF849D3FA968768"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "family": "transfer",
+      "java_case": "commonErrorCheck",
+      "java_line": 452,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "null-manager"
+      ],
+      "stable_id": "TCASE-B16B2F51FEC6F809"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseZeroAmountTest",
+      "java_line": 677,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-B34B9ED0D3EB8731"
+      ],
+      "stable_id": "TCASE-B34B9ED0D3EB8731"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "assetIssueNameTest",
+      "java_line": 1478,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-B4CBDB65438581CF"
+      ],
+      "stable_id": "TCASE-B4CBDB65438581CF"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "negativeTotalSupplyTest",
+      "java_line": 241,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-B65384BDB956CAB5"
+      ],
+      "stable_id": "TCASE-B65384BDB956CAB5"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "commonErrorCheck",
+      "java_line": 1923,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-B8B0007B0305F5C2"
+      ],
+      "stable_id": "TCASE-B8B0007B0305F5C2"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseNoExitToAccount",
+      "java_line": 769,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-B99885448E0D9C9D"
+      ],
+      "stable_id": "TCASE-B99885448E0D9C9D"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameOpenTransferToYourself",
+      "java_line": 948,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-BA30AD035A519878"
+      ],
+      "stable_id": "TCASE-BA30AD035A519878"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UpdateAsset",
+      "java_case": "commonErrorCheck",
+      "java_line": 471,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-BBCBA517D5F3EBDE"
+      ],
+      "stable_id": "TCASE-BBCBA517D5F3EBDE"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "SameTokenNameCloseInvalidPrecision",
+      "java_line": 1637,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-BD87BB84BEB72C0B"
+      ],
+      "stable_id": "TCASE-BD87BB84BEB72C0B"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "family": "transfer",
+      "java_case": "iniviateToAddress",
+      "java_line": 215,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "invalid-to"
+      ],
+      "stable_id": "TCASE-BE03DA635235DC86"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "commonErrorCheck",
+      "java_line": 202,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "create-success"
+      ],
+      "stable_id": "TCASE-BE8A2F26D5FA769A"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "activePermissionNoKey",
+      "java_line": 521,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-BF6A5678EFAC9C2E"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "noWitness",
+      "java_line": 228,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-BFBC4B9EA96D29A6"
+      ],
+      "stable_id": "TCASE-BFBC4B9EA96D29A6"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "checkActiveDefaultOperations",
+      "java_line": 1001,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-C0E06125A816380E"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "assetNameTest",
+      "java_line": 509,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-C166CAD01A618ED8"
+      ],
+      "stable_id": "TCASE-C166CAD01A618ED8"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "family": "transfer",
+      "java_case": "addOverflowTest",
+      "java_line": 382,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "recipient-overflow"
+      ],
+      "stable_id": "TCASE-C1899BAE3C160FEC"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "descriptionTest",
+      "java_line": 936,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-C1AE339BD5E644B4"
+      ],
+      "stable_id": "TCASE-C1AE339BD5E644B4"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseAddOverflowTest",
+      "java_line": 1384,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-C22D34880D88928A"
+      ],
+      "stable_id": "TCASE-C22D34880D88928A"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "voteCountTest",
+      "java_line": 298,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-C2DC20F04D52AF82"
+      ],
+      "stable_id": "TCASE-C2DC20F04D52AF82"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UnfreezeAsset",
+      "java_case": "commonErrorCheck",
+      "java_line": 383,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UnfreezeAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-C374DBFE675509FF"
+      ],
+      "stable_id": "TCASE-C374DBFE675509FF"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "family": "transfer",
+      "java_case": "noExitOwnerAccount",
+      "java_line": 269,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "missing-owner"
+      ],
+      "stable_id": "TCASE-C38005B9B836BD07"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "ownerPermissionToManyKey",
+      "java_line": 495,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-C45D8F69E5135055"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "addressNotDistinctInPermission",
+      "java_line": 705,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-C53204273B0B1250"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseNegativeAmountTest",
+      "java_line": 607,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-C817A51969105B97"
+      ],
+      "stable_id": "TCASE-C817A51969105B97"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "noExitsAccount",
+      "java_line": 154,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "create-missing-owner"
+      ],
+      "stable_id": "TCASE-CAA204EA34E4C483"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenNoExitToTest",
+      "java_line": 859,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-CC803C7274C2B194"
+      ],
+      "stable_id": "TCASE-CC803C7274C2B194"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "noAccount",
+      "java_line": 199,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-CD03932A6A50DB2A"
+      ],
+      "stable_id": "TCASE-CD03932A6A50DB2A"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenAssetIssueTimeLeft",
+      "java_line": 505,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-CE433CF0982FE2E5"
+      ],
+      "stable_id": "TCASE-CE433CF0982FE2E5"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "voteWitnessTwice",
+      "java_line": 499,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-D0A60F7B4CCAC62A"
+      ],
+      "stable_id": "TCASE-D0A60F7B4CCAC62A"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessUpdate",
+      "java_case": "commonErrorCheck",
+      "java_line": 261,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-D1CFD16190ABC1DA"
+      ],
+      "stable_id": "TCASE-D1CFD16190ABC1DA"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "voteWitness",
+      "java_line": 136,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-D3EFFF06E674C529"
+      ],
+      "stable_id": "TCASE-D3EFFF06E674C529"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "voteWitnessWithOldAndNewTronPowerAfterNewResourceModel",
+      "java_line": 609,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-D5F8BCD4C82E9436"
+      ],
+      "stable_id": "TCASE-D5F8BCD4C82E9436"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "assetNameTest",
+      "java_line": 1055,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-D83F17C28B4E0F04"
+      ],
+      "stable_id": "TCASE-D83F17C28B4E0F04"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseNegativeAmountTest",
+      "java_line": 641,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-D92CD82623A1F8D9"
+      ],
+      "stable_id": "TCASE-D92CD82623A1F8D9"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidKeyAddress",
+      "java_line": 728,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-D98FBBCCB473EA90"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessCreate",
+      "java_case": "commonErrorCheck",
+      "java_line": 306,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessCreateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-DA059C406B6F9DB8"
+      ],
+      "stable_id": "TCASE-DA059C406B6F9DB8"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "commonErrorCheck",
+      "java_line": 1350,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-DBB02029263C9125"
+      ],
+      "stable_id": "TCASE-DBB02029263C9125"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "witnessMissed",
+      "java_line": 391,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-DD8B8895C450B18A"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "nameAlreadyUsed",
+      "java_line": 174,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "setid-duplicate"
+      ],
+      "stable_id": "TCASE-DE82A62A12BABFA9"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "secondCreateAccount",
+      "java_line": 96,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "create-existing"
+      ],
+      "stable_id": "TCASE-DF1CA828D4EC97E1"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "zeroTotalSupplyTest",
+      "java_line": 286,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-DFEB807E5727347E"
+      ],
+      "stable_id": "TCASE-DFEB807E5727347E"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "InvalidAddress",
+      "java_line": 173,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-DFEE79101A774EAA"
+      ],
+      "stable_id": "TCASE-DFEE79101A774EAA"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "twiceUpdateAccountFail",
+      "java_line": 142,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "update-existing-name"
+      ],
+      "stable_id": "TCASE-E06E62BCAE2FB42D"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseNoneExistAssetTest",
+      "java_line": 704,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-E07A30CDA548296A"
+      ],
+      "stable_id": "TCASE-E07A30CDA548296A"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessCreate",
+      "java_case": "balanceNotSufficient",
+      "java_line": 278,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessCreateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-E18285E3DA6CD709"
+      ],
+      "stable_id": "TCASE-E18285E3DA6CD709"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseInvalidOwnerAddress",
+      "java_line": 981,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-E234043CF78096D7"
+      ],
+      "stable_id": "TCASE-E234043CF78096D7"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseAssetIssueTimeRight",
+      "java_line": 405,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-E2B24712755DA2FE"
+      ],
+      "stable_id": "TCASE-E2B24712755DA2FE"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidAddress",
+      "java_line": 100,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "setid-invalid-address"
+      ],
+      "stable_id": "TCASE-E2CADBF3A803F263"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameOpenInvalidOwnerAddress",
+      "java_line": 1011,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-E371183A110BC775"
+      ],
+      "stable_id": "TCASE-E371183A110BC775"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "family": "transfer",
+      "java_case": "negativeAmountTest",
+      "java_line": 357,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.02",
+      "scenario_ids": [
+        "negative"
+      ],
+      "stable_id": "TCASE-E562ACC4B3F38800"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UnfreezeAsset",
+      "java_case": "noFrozenSupply",
+      "java_line": 328,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UnfreezeAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-E61B5C47318920D1"
+      ],
+      "stable_id": "TCASE-E61B5C47318920D1"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameOpenZeroAmountTest",
+      "java_line": 609,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-E710F2348F020743"
+      ],
+      "stable_id": "TCASE-E710F2348F020743"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "zeroNumTest",
+      "java_line": 464,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-E82C9C5CF9D8F3D0"
+      ],
+      "stable_id": "TCASE-E82C9C5CF9D8F3D0"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "AssetIssue",
+      "java_case": "IssueSameTokenNameAssert",
+      "java_line": 1701,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-E8CE211BC4DE6D1D"
+      ],
+      "stable_id": "TCASE-E8CE211BC4DE6D1D"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseInvalidOwerAddressTest",
+      "java_line": 1677,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-EA01FF66ED340D0A"
+      ],
+      "stable_id": "TCASE-EA01FF66ED340D0A"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseNoneExistAssetTest",
+      "java_line": 1312,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-EB47C6C4A62F739C"
+      ],
+      "stable_id": "TCASE-EB47C6C4A62F739C"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "invalidActivePermissionType",
+      "java_line": 432,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-EC14CF6D529EC171"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "WitnessUpdate",
+      "java_case": "notExistWitness",
+      "java_line": 221,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/WitnessUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-ECC115A467CD50B8"
+      ],
+      "stable_id": "TCASE-ECC115A467CD50B8"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UpdateAsset",
+      "java_case": "invalidNewPublicLimit",
+      "java_line": 445,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-EDF54DF13EDFDA38"
+      ],
+      "stable_id": "TCASE-EDF54DF13EDFDA38"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "VoteWitness",
+      "java_case": "voteCountsTest",
+      "java_line": 352,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/VoteWitnessActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.04",
+      "scenario_ids": [
+        "TCASE-EF78EA45874E6E03"
+      ],
+      "stable_id": "TCASE-EF78EA45874E6E03"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "nullTransationResult",
+      "java_line": 348,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "update-success"
+      ],
+      "stable_id": "TCASE-F1CC557EC98D3980"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameOpenNotEnoughAssetTest",
+      "java_line": 546,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-F2840A7D0254F8C9"
+      ],
+      "stable_id": "TCASE-F2840A7D0254F8C9"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameOpenNoExitToAccount",
+      "java_line": 807,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-F42F76281DDC761F"
+      ],
+      "stable_id": "TCASE-F42F76281DDC761F"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "TransferAsset",
+      "java_case": "SameTokenNameCloseAddOverflowTest",
+      "java_line": 846,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/TransferAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-F4408A8D0B51581A"
+      ],
+      "stable_id": "TCASE-F4408A8D0B51581A"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "UpdateAsset",
+      "java_case": "successUpdateAssetBeforeSameTokenNameActive",
+      "java_line": 146,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAssetActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-F4FD5F874B852248"
+      ],
+      "stable_id": "TCASE-F4FD5F874B852248"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseExchangeAmountTest",
+      "java_line": 1569,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-FAA7F9523C390549"
+      ],
+      "stable_id": "TCASE-FAA7F9523C390549"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameCloseExchangeDevisibleTest",
+      "java_line": 540,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-FB8BC0E80626B924"
+      ],
+      "stable_id": "TCASE-FB8BC0E80626B924"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenMultiplyOverflowTest",
+      "java_line": 1519,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-FC0FC98C834CD10D"
+      ],
+      "stable_id": "TCASE-FC0FC98C834CD10D"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "family": "account",
+      "java_case": "checkAvailableContractTypeCorrespondingToCode",
+      "java_line": 920,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.01",
+      "scenario_ids": [
+        "permission-success"
+      ],
+      "stable_id": "TCASE-FD612261A8B2A71F"
+    },
+    {
+      "acceptance_gate": "C012.V",
+      "disposition": "family_scenario",
+      "equivalence_basis": "Isolated execution of this exact pinned Java test method; the stable ID is the direct scenario ID.",
+      "family": "ParticipateAssetIssue",
+      "java_case": "sameTokenNameOpenNoneExistAssetTest",
+      "java_line": 1347,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/ParticipateAssetIssueActuatorTest.java",
+      "owner": "C012",
+      "owning_item": "C012.03",
+      "scenario_ids": [
+        "TCASE-FF48497612FB07DB"
+      ],
+      "stable_id": "TCASE-FF48497612FB07DB"
+    }
+  ],
+  "schema_version": 3
+}

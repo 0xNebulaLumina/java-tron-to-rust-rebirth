@@ -1,0 +1,582 @@
+{
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "jdk_home": "/usr/lib/jvm/java-8-openjdk-amd64",
+  "rows": [
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        },
+        {
+          "after_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06",
+          "before_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06",
+          "key_hex": "41abd4b9367799eaa3197fecb144eb71de1e049abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "rightTransfer",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "right",
+      "stable_id": "TCASE-8C05165ED3D073B6"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412330a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc18fface204",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        },
+        {
+          "after_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a0bae804",
+          "before_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06",
+          "key_hex": "41abd4b9367799eaa3197fecb144eb71de1e049abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a0bae804"
+      },
+      "contract_hex": "080112640a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412330a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc18fface204",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "perfectTransfer",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "perfect",
+      "stable_id": "TCASE-4998ACC99FFAA609"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412330a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1880ade204",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112640a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412330a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1880ade204",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "moreTransfer",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Validate TransferContract error, balance is not sufficient.",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "more",
+      "stable_id": "TCASE-2A839836777D192B"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e7472616374121d0a02aaaa121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "0801124e0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e7472616374121d0a02aaaa121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "iniviateOwnerAddress",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Invalid ownerAddress!",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "invalid-owner",
+      "stable_id": "TCASE-5ECE89EE9480F885"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e7472616374121c0a1541548794500882809695a8a687866e76d4271a1abc1201bb1864",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "0801124d0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e7472616374121c0a1541548794500882809695a8a687866e76d4271a1abc1201bb1864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "iniviateToAddress",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Invalid toAddress!",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "invalid-to",
+      "stable_id": "TCASE-BE03DA635235DC86"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541548794500882809695a8a687866e76d4271a1abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541548794500882809695a8a687866e76d4271a1abc1864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "iniviateTrx",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Cannot transfer TRX to yourself.",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "self",
+      "stable_id": "TCASE-60950B6D506E1515"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a3456121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a3456121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "noExitOwnerAccount",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Validate TransferContract error, no OwnerAccount.",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "missing-owner",
+      "stable_id": "TCASE-C38005B9B836BD07"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412320a1541548794500882809695a8a687866e76d4271a1abc121541548794500882809695a8a687866e76d4271a342218c0843d",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209f9b9f04",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        },
+        {
+          "after_hex": "1a1541548794500882809695a8a687866e76d4271a342220c0843d4880d095ffbc31",
+          "before_hex": null,
+          "key_hex": "41548794500882809695a8a687866e76d4271a3422",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "missing_hex": "1a1541548794500882809695a8a687866e76d4271a342220c0843d4880d095ffbc31",
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209f9b9f04",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112630a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412320a1541548794500882809695a8a687866e76d4271a1abc121541548794500882809695a8a687866e76d4271a342218c0843d",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "noExitToAccount",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 100000
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "new-account",
+      "stable_id": "TCASE-7C9C7C2430F5BD58"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e7472616374122e0a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "0801125f0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e7472616374122e0a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "zeroAmountTest",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Amount must be greater than 0.",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "zero",
+      "stable_id": "TCASE-653E96055E9037D5"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412390a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc189cffffffffffffffff01",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "0801126a0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412390a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc189cffffffffffffffff01",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "negativeAmountTest",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Amount must be greater than 0.",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "negative",
+      "stable_id": "TCASE-E562ACC4B3F38800"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1801",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20ffffffffffffffff7f"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1801",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "addOverflowTest",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "long overflow",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20ffffffffffffffff7f"
+      },
+      "scenario_id": "recipient-overflow",
+      "stable_id": "TCASE-C1899BAE3C160FEC"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541548794500882809695a8a687866e76d4271a34221864",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20f0b1ffffffffffffff01",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541548794500882809695a8a687866e76d4271a34221864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "insufficientFee",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Validate TransferContract error, balance is not sufficient.",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20f0b1ffffffffffffff01",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "insufficient-fee",
+      "stable_id": "TCASE-57A0E49CA779D734"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "commonErrorCheck",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "No contract!",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "no-contract",
+      "stable_id": "TCASE-B16B2F51FEC6F809"
+    },
+    {
+      "any_hex": "0a2f747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e41737365744973737565436f6e7472616374",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112310a2f747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e41737365744973737565436f6e7472616374",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "commonErrorCheck",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "contract type error, expected type [TransferContract], real type [class com.google.protobuf.Any]",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "wrong-type",
+      "stable_id": "TCASE-B16B2F51FEC6F809"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "commonErrorCheck",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "TransactionResultCapsule is null",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "null-result",
+      "stable_id": "TCASE-B16B2F51FEC6F809"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "commonErrorCheck",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "No account store or dynamic store!",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a02746f1a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "null-manager",
+      "stable_id": "TCASE-B16B2F51FEC6F809"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        },
+        {
+          "after_hex": "0a08636f6e747261637410021a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06",
+          "before_hex": "0a08636f6e747261637410021a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06",
+          "key_hex": "41abd4b9367799eaa3197fecb144eb71de1e049abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "to_hex": "0a08636f6e747261637410021a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "transferToSmartContractAddress",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a08636f6e747261637410021a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "contract-allowed",
+      "stable_id": "TCASE-7B9012BA2E5C522D"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a08636f6e747261637410021a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "transferToSmartContractAddress",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Cannot transfer TRX to a smartContract.",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a08636f6e747261637410021a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "contract-forbid",
+      "stable_id": "TCASE-7B9012BA2E5C522D"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a08636f6e747261637410021a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "transferToSmartContractAddress",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Account type is Contract, but it is not exist in contract store.",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a08636f6e747261637410021a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "contract-compatible-missing",
+      "stable_id": "TCASE-7B9012BA2E5C522D"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a08636f6e747261637410021a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "direct reconstruction of the assigned method state and one production TransferActuator validation/execution; branch variants isolate flag behavior",
+      "java_test_method": "transferToSmartContractAddress",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Cannot transfer TRX to a smartContract which version is one. Instead please use TriggerSmartContract ",
+        "fee": 0
+      },
+      "rollback_root": {
+        "missing_hex": null,
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "to_hex": "0a08636f6e747261637410021a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "contract-compatible-v1",
+      "stable_id": "TCASE-7B9012BA2E5C522D"
+    }
+  ],
+  "scenario_count": 20,
+  "schema": "c012-transfer-real.v1",
+  "stable_id_count": 14,
+  "variant_count": 20
+}

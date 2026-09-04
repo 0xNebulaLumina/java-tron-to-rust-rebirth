@@ -1,0 +1,1054 @@
+{
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "jdk_home": "/usr/lib/jvm/java-8-openjdk-amd64",
+  "rows": [
+    {
+      "any_hex": "0a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74437265617465436f6e7472616374122e0a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20e0b4d12f",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        },
+        {
+          "after_hex": "1a1541abd4b9367799eaa3197fecb144eb71de1e049abc4880d095ffbc31fa01241a056f776e657220013a190a1541abd4b9367799eaa3197fecb144eb71de1e049abc10018a024b080210021a06616374697665200132207fff1fc0033e00000000000000000000000000000000000000000000000000003a190a1541abd4b9367799eaa3197fecb144eb71de1e049abc1001",
+          "before_hex": null,
+          "key_hex": "41abd4b9367799eaa3197fecb144eb71de1e049abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20e0b4d12f",
+        "target_hex": "1a1541abd4b9367799eaa3197fecb144eb71de1e049abc4880d095ffbc31fa01241a056f776e657220013a190a1541abd4b9367799eaa3197fecb144eb71de1e049abc10018a024b080210021a06616374697665200132207fff1fc0033e00000000000000000000000000000000000000000000000000003a190a1541abd4b9367799eaa3197fecb144eb71de1e049abc1001"
+      },
+      "contract_hex": "12640a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74437265617465436f6e7472616374122e0a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc",
+      "contract_type": 0,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 100000
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "create-success"
+    },
+    {
+      "any_hex": "0a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74437265617465436f6e7472616374122e0a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": "0a067461726765741a1541abd4b9367799eaa3197fecb144eb71de1e049abc2001"
+      },
+      "contract_hex": "12640a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74437265617465436f6e7472616374122e0a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc",
+      "contract_type": 0,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Account has existed",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": "0a067461726765741a1541abd4b9367799eaa3197fecb144eb71de1e049abc2001"
+      },
+      "scenario_id": "create-existing"
+    },
+    {
+      "any_hex": "0a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74437265617465436f6e7472616374122e0a15418cfc572cc20ca18b636bdd93b4fb15ea84cc2b4e121541abd4b9367799eaa3197fecb144eb71de1e049abc",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "12640a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74437265617465436f6e7472616374122e0a15418cfc572cc20ca18b636bdd93b4fb15ea84cc2b4e121541abd4b9367799eaa3197fecb144eb71de1e049abc",
+      "contract_type": 0,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Account[418cfc572cc20ca18b636bdd93b4fb15ea84cc2b4e] not exists",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "create-missing-owner"
+    },
+    {
+      "any_hex": "0a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74437265617465436f6e7472616374121c0a1541548794500882809695a8a687866e76d4271a1abc1203010203",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "12520a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74437265617465436f6e7472616374121c0a1541548794500882809695a8a687866e76d4271a1abc1203010203",
+      "contract_type": 0,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Invalid account address",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "create-invalid-target"
+    },
+    {
+      "any_hex": "0a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74437265617465436f6e7472616374122e0a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2001",
+        "target_hex": null
+      },
+      "contract_hex": "12640a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74437265617465436f6e7472616374122e0a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc",
+      "contract_type": 0,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Validate CreateAccountActuator error, insufficient fee.",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2001",
+        "target_hex": null
+      },
+      "scenario_id": "create-insufficient"
+    },
+    {
+      "any_hex": "0a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74557064617465436f6e7472616374121e0a05616c696365121541548794500882809695a8a687866e76d4271a1abc",
+      "changed": [
+        {
+          "after_hex": "0a05616c6963651a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+          "before_hex": "1a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "owner_hex": "0a05616c6963651a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "080a12540a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74557064617465436f6e7472616374121e0a05616c696365121541548794500882809695a8a687866e76d4271a1abc",
+      "contract_type": 10,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "1a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "update-success"
+    },
+    {
+      "any_hex": "0a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74557064617465436f6e7472616374120b0a05616c69636512020102",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "1a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "080a12410a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74557064617465436f6e7472616374120b0a05616c69636512020102",
+      "contract_type": 10,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Invalid ownerAddress",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "1a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "update-invalid-address"
+    },
+    {
+      "any_hex": "0a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74557064617465436f6e7472616374121e0a05616c6963651215418cfc572cc20ca18b636bdd93b4fb15ea84cc2b4e",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "1a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "080a12540a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74557064617465436f6e7472616374121e0a05616c6963651215418cfc572cc20ca18b636bdd93b4fb15ea84cc2b4e",
+      "contract_type": 10,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Account does not exist",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "1a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "update-missing"
+    },
+    {
+      "any_hex": "0a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74557064617465436f6e74726163741217121541548794500882809695a8a687866e76d4271a1abc",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "1a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "080a124d0a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74557064617465436f6e74726163741217121541548794500882809695a8a687866e76d4271a1abc",
+      "contract_type": 10,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "1a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "update-empty"
+    },
+    {
+      "any_hex": "0a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74557064617465436f6e7472616374121e0a05616c696365121541548794500882809695a8a687866e76d4271a1abc",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "1a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "080a12540a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74557064617465436f6e7472616374121e0a05616c696365121541548794500882809695a8a687866e76d4271a1abc",
+      "contract_type": 10,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "This name is existed",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "1a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "update-existing-name"
+    },
+    {
+      "any_hex": "0a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5365744163636f756e744964436f6e747261637412230a0a4163636f756e742d3031121541548794500882809695a8a687866e76d4271a1abc",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72fba010a4163636f756e742d3031",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72fba010a4163636f756e742d3031",
+        "target_hex": null
+      },
+      "contract_hex": "081312580a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5365744163636f756e744964436f6e747261637412230a0a4163636f756e742d3031121541548794500882809695a8a687866e76d4271a1abc",
+      "contract_type": 19,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "setid-success"
+    },
+    {
+      "any_hex": "0a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5365744163636f756e744964436f6e7472616374120f0a0a4163636f756e742d3031120101",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "081312440a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5365744163636f756e744964436f6e7472616374120f0a0a4163636f756e742d3031120101",
+      "contract_type": 19,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Invalid ownerAddress",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "setid-invalid-address"
+    },
+    {
+      "any_hex": "0a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5365744163636f756e744964436f6e747261637412230a0a4163636f756e742d30311215418cfc572cc20ca18b636bdd93b4fb15ea84cc2b4e",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "081312580a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5365744163636f756e744964436f6e747261637412230a0a4163636f756e742d30311215418cfc572cc20ca18b636bdd93b4fb15ea84cc2b4e",
+      "contract_type": 19,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Account has not existed",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "setid-missing"
+    },
+    {
+      "any_hex": "0a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5365744163636f756e744964436f6e7472616374121e0a0573686f7274121541548794500882809695a8a687866e76d4271a1abc",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "081312530a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5365744163636f756e744964436f6e7472616374121e0a0573686f7274121541548794500882809695a8a687866e76d4271a1abc",
+      "contract_type": 19,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Invalid accountId",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "setid-invalid-id"
+    },
+    {
+      "any_hex": "0a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5365744163636f756e744964436f6e747261637412230a0a4163636f756e742d3031121541548794500882809695a8a687866e76d4271a1abc",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72fba01094f6c642d69642d3031",
+        "target_hex": null
+      },
+      "contract_hex": "081312580a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5365744163636f756e744964436f6e747261637412230a0a4163636f756e742d3031121541548794500882809695a8a687866e76d4271a1abc",
+      "contract_type": 19,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "This account id already set",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72fba01094f6c642d69642d3031",
+        "target_hex": null
+      },
+      "scenario_id": "setid-already-set"
+    },
+    {
+      "any_hex": "0a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5365744163636f756e744964436f6e747261637412220a094455504c4943415445121541548794500882809695a8a687866e76d4271a1abc",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "081312570a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5365744163636f756e744964436f6e747261637412220a094455504c4943415445121541548794500882809695a8a687866e76d4271a1abc",
+      "contract_type": 19,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "This id has existed",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "setid-duplicate"
+    },
+    {
+      "any_hex": "0a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e7472616374128a010a1541548794500882809695a8a687866e76d4271a1abc12241a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc1001224b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abcfa01241a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc10018a024b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abcfa01241a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc10018a024b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+        "target_hex": null
+      },
+      "contract_hex": "082e12cb010a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e7472616374128a010a1541548794500882809695a8a687866e76d4271a1abc12241a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc1001224b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "contract_type": 46,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 100000000
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "permission-success"
+    },
+    {
+      "any_hex": "0a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e747261637412760a010112241a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc1001224b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "082e12b6010a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e747261637412760a010112241a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc1001224b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "contract_type": 46,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "invalidate ownerAddress",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "permission-invalid-address"
+    },
+    {
+      "any_hex": "0a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e7472616374128a010a15418cfc572cc20ca18b636bdd93b4fb15ea84cc2b4e12241a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc1001224b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "082e12cb010a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e7472616374128a010a15418cfc572cc20ca18b636bdd93b4fb15ea84cc2b4e12241a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc1001224b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "contract_type": 46,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "ownerAddress account does not exist",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "permission-missing"
+    },
+    {
+      "any_hex": "0a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e747261637412640a1541548794500882809695a8a687866e76d4271a1abc224b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "082e12a4010a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e747261637412640a1541548794500882809695a8a687866e76d4271a1abc224b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "contract_type": 46,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "owner permission is missed",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "permission-owner-missing"
+    },
+    {
+      "any_hex": "0a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e7472616374123d0a1541548794500882809695a8a687866e76d4271a1abc12241a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "082e127d0a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e7472616374123d0a1541548794500882809695a8a687866e76d4271a1abc12241a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "contract_type": 46,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "active permission is missed",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "permission-active-missing"
+    },
+    {
+      "any_hex": "0a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e7472616374128c010a1541548794500882809695a8a687866e76d4271a1abc122608021a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc1001224b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "082e12cd010a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e7472616374128c010a1541548794500882809695a8a687866e76d4271a1abc122608021a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc1001224b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "contract_type": 46,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "owner permission type is error",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "permission-owner-type"
+    },
+    {
+      "any_hex": "0a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e74726163741288010a1541548794500882809695a8a687866e76d4271a1abc12221a056f776e65723a190a1541548794500882809695a8a687866e76d4271a1abc1001224b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "082e12c9010a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e74726163741288010a1541548794500882809695a8a687866e76d4271a1abc12221a056f776e65723a190a1541548794500882809695a8a687866e76d4271a1abc1001224b080210021a066163746976652001322000000000000000000000000000000000000000000000000000000000000000003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "contract_type": 46,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "permission's threshold should be greater than 0",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "permission-threshold"
+    },
+    {
+      "any_hex": "0a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e7472616374126b0a1541548794500882809695a8a687866e76d4271a1abc12241a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc1001222c080210021a0661637469766520013201003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "contract_hex": "082e12ab010a3c747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e745065726d697373696f6e557064617465436f6e7472616374126b0a1541548794500882809695a8a687866e76d4271a1abc12241a056f776e657220013a190a1541548794500882809695a8a687866e76d4271a1abc1001222c080210021a0661637469766520013201003a190a1541548794500882809695a8a687866e76d4271a1abc1001",
+      "contract_type": 46,
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "operations size must 32",
+        "fee": 0
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc2080c2d72f",
+        "target_hex": null
+      },
+      "scenario_id": "permission-operations"
+    }
+  ],
+  "scenario_count": 24,
+  "schema": "c012-account-real.v1",
+  "source_equivalences": [
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 177,
+      "java_method": "successUpdatePermissionKey",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-A958BCFD62C36E92"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 256,
+      "java_method": "noContract",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-2F46BF5C175089A0"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 265,
+      "java_method": "nullDbManager",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-2858E7863BFE6ED8"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 275,
+      "java_method": "invalidContract",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-0CC06CC0465F14A2"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 287,
+      "java_method": "invalidTransactionResultCapsule",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-62F9A8D04D0BABD0"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 297,
+      "java_method": "invalidOwnerAddress",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-invalid-address",
+      "stable_id": "TCASE-9D0EFCB1C6F616B1"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 308,
+      "java_method": "nullAccount",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-missing",
+      "stable_id": "TCASE-28DF92A5EB4B4394"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 319,
+      "java_method": "ownerMissed",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-owner-missing",
+      "stable_id": "TCASE-5D1C840070F54FAB"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 336,
+      "java_method": "activeMissed",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-active-missing",
+      "stable_id": "TCASE-AEF849D3FA968768"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 350,
+      "java_method": "activeToMany",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-A81F8EE14E3DC5AE"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 371,
+      "java_method": "witnessNeedless",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-944256CA30A23120"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 391,
+      "java_method": "witnessMissed",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-DD8B8895C450B18A"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 410,
+      "java_method": "invalidOwnerPermissionType",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-owner-type",
+      "stable_id": "TCASE-745A280061A48C48"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 432,
+      "java_method": "invalidActivePermissionType",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-EC14CF6D529EC171"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 452,
+      "java_method": "invalidWitnessPermissionType",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-2D395BA3F2072715"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 474,
+      "java_method": "ownerPermissionNoKey",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-009335135A99110B"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 495,
+      "java_method": "ownerPermissionToManyKey",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-C45D8F69E5135055"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 521,
+      "java_method": "activePermissionNoKey",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-BF6A5678EFAC9C2E"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 542,
+      "java_method": "activePermissionToManyKey",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-63C2467167A24E00"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 566,
+      "java_method": "witnessPermissionNoKey",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-7F25F450F5D4B153"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 589,
+      "java_method": "witnessPermissionToManyKey",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-362670EE5524D8C9"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 615,
+      "java_method": "witnessPermissionToManyKey1",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-3F773E07B3F57140"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 640,
+      "java_method": "invalidThreshold",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-threshold",
+      "stable_id": "TCASE-A3164088FC85BD93"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 661,
+      "java_method": "permissionNameTooLong",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-91E94B1E70C88484"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 683,
+      "java_method": "invalidPermissionParent",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-8369AB1504C02877"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 705,
+      "java_method": "addressNotDistinctInPermission",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-C53204273B0B1250"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 728,
+      "java_method": "invalidKeyAddress",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-D98FBBCCB473EA90"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 753,
+      "java_method": "weighValueInvalid",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-A77E3A406816256C"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 775,
+      "java_method": "sumWeightLessThanThreshold",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-14A45D1244CAE098"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 798,
+      "java_method": "onwerPermissionOperationNeedless",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-44A516572FD514D7"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 824,
+      "java_method": "activePermissionNoOperation",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-6EEC6764425F36C9"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 844,
+      "java_method": "activePermissionInvalidOperationSize",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-operations",
+      "stable_id": "TCASE-504C169B7E4D9E67"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 868,
+      "java_method": "activePermissionInvalidOperationBit",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-4B98723182F12B81"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 893,
+      "java_method": "witnessPermissionOperationNeedless",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-7636E50E54D68705"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 920,
+      "java_method": "checkAvailableContractTypeCorrespondingToCode",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-FD612261A8B2A71F"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 952,
+      "java_method": "checkActiveDefaultOperationsCorrespondingToCode",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-940212A62FC6B395"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 980,
+      "java_method": "checkAvailableContractType",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-444D8C9E66CE5C22"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 1001,
+      "java_method": "checkActiveDefaultOperations",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/AccountPermissionUpdateActuatorTest.java",
+      "scenario_id": "permission-success",
+      "stable_id": "TCASE-C0E06125A816380E"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 69,
+      "java_method": "firstCreateAccount",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "scenario_id": "create-success",
+      "stable_id": "TCASE-03140E5B0D47B220"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 96,
+      "java_method": "secondCreateAccount",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "scenario_id": "create-existing",
+      "stable_id": "TCASE-DF1CA828D4EC97E1"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 122,
+      "java_method": "balanceAfterCreate",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "scenario_id": "create-success",
+      "stable_id": "TCASE-0FC1E09B69C4F1CF"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 154,
+      "java_method": "noExitsAccount",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "scenario_id": "create-missing-owner",
+      "stable_id": "TCASE-CAA204EA34E4C483"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 173,
+      "java_method": "inSufficientFeeAccount",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "scenario_id": "create-insufficient",
+      "stable_id": "TCASE-6BACC0EC66F3826A"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 191,
+      "java_method": "invalidAccount",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "scenario_id": "create-invalid-target",
+      "stable_id": "TCASE-0D63B6C8DFD9A9F9"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 202,
+      "java_method": "commonErrorCheck",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/CreateAccountActuatorTest.java",
+      "scenario_id": "create-success",
+      "stable_id": "TCASE-BE8A2F26D5FA769A"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 78,
+      "java_method": "rightSetAccountId",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "scenario_id": "setid-success",
+      "stable_id": "TCASE-5296848EC097A27C"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 100,
+      "java_method": "invalidAddress",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "scenario_id": "setid-invalid-address",
+      "stable_id": "TCASE-E2CADBF3A803F263"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 118,
+      "java_method": "noExistAccount",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "scenario_id": "setid-missing",
+      "stable_id": "TCASE-8BAE8F0232441AE8"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 136,
+      "java_method": "twiceUpdateAccount",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "scenario_id": "setid-already-set",
+      "stable_id": "TCASE-94EEA816AB997324"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 174,
+      "java_method": "nameAlreadyUsed",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "scenario_id": "setid-duplicate",
+      "stable_id": "TCASE-DE82A62A12BABFA9"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 223,
+      "java_method": "invalidName",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "scenario_id": "setid-invalid-id",
+      "stable_id": "TCASE-94AB5A3D2423F593"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 369,
+      "java_method": "commonErrorCheck",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/SetAccountIdActuatorTest.java",
+      "scenario_id": "setid-success",
+      "stable_id": "TCASE-1F5CF36E9404DE69"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 110,
+      "java_method": "rightUpdateAccount",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "scenario_id": "update-success",
+      "stable_id": "TCASE-8AE2EA5B129B30D6"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 115,
+      "java_method": "invalidAddress",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "scenario_id": "update-invalid-address",
+      "stable_id": "TCASE-14B51BDF82F12297"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 127,
+      "java_method": "noExitAccount",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "scenario_id": "update-missing",
+      "stable_id": "TCASE-AC46A128AFDFC699"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 142,
+      "java_method": "twiceUpdateAccountFail",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "scenario_id": "update-existing-name",
+      "stable_id": "TCASE-E06E62BCAE2FB42D"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 169,
+      "java_method": "twiceUpdateAccountSuccess",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "scenario_id": "update-success",
+      "stable_id": "TCASE-91B9CF2958961913"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 188,
+      "java_method": "updateSameNameSuccess",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "scenario_id": "update-success",
+      "stable_id": "TCASE-74DEB3B742C1151F"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 205,
+      "java_method": "updateSameNameFail",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "scenario_id": "update-existing-name",
+      "stable_id": "TCASE-876C2D82D4E44A94"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 242,
+      "java_method": "invalidName",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "scenario_id": "update-empty",
+      "stable_id": "TCASE-71AEDD259F31CF47"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 324,
+      "java_method": "noContract",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "scenario_id": "update-success",
+      "stable_id": "TCASE-3915FD2FFCDA4273"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 334,
+      "java_method": "invalidContractType",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "scenario_id": "update-success",
+      "stable_id": "TCASE-0B4FD364F5FF2858"
+    },
+    {
+      "equivalence": "same concrete contract family and Java validation/execution predicate; helper/meta-tests map to the directly executed representative whose bytes and state make that predicate observable",
+      "java_line": 348,
+      "java_method": "nullTransationResult",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/actuator/UpdateAccountActuatorTest.java",
+      "scenario_id": "update-success",
+      "stable_id": "TCASE-F1CC557EC98D3980"
+    }
+  ],
+  "stable_id_count": 63,
+  "variant_count": 63
+}

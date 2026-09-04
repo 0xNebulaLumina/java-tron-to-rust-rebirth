@@ -1,0 +1,23 @@
+{
+  "chunk": "C012.03-C012.04",
+  "schema_version": 1,
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "implementation": {
+    "crate": "rust-tron/crates/tron-execution",
+    "modules": ["src/asset.rs", "src/witness.rs", "src/context.rs"],
+    "tests": ["tests/c012_asset_contract.rs", "tests/c012_witness_contract.rs"]
+  },
+  "asset_contracts": {
+    "AssetIssueContract": ["TOKEN_ID_NUM increments atomically", "legacy name row is conditional", "V2 id row is canonical", "precision zeroed only in pre-same-name V2 row", "frozen supply expiry uses 86400000 milliseconds per day", "fee burns or credits blackhole", "inline and optimized account assets supported"],
+    "UpdateAssetContract": ["legacy and V2 rows update before same-name activation", "V2-only after activation"],
+    "TransferAssetContract": ["legacy name and V2 id balances stay synchronized", "optimized external balances supported", "recipient auto-created with default permissions", "creation fee charged atomically"],
+    "ParticipateAssetIssueContract": ["active sale interval is start inclusive/end exclusive", "integer exchange uses checked multiply and floor division", "TRX and asset legs commit together"],
+    "UnfreezeAssetContract": ["all matured entries are released", "future entries retain order", "released amount follows the active name/id gate"]
+  },
+  "witness_contracts": {
+    "WitnessCreateContract": ["witness row and account flag commit together", "default witness permission under ALLOW_MULTI_SIGN", "upgrade fee sink", "TOTAL_CREATE_WITNESS_COST increment"],
+    "WitnessUpdateContract": ["URL validation and replacement"],
+    "VoteWitnessContract": ["reward callback precedes account reload", "old power initialization under new resource model", "legacy and dedicated TRON power", "input vote order and duplicate candidates preserved", "Votes old/new transition"]
+  },
+  "atomicity": "Every actuator validates against the parent session, executes in a child session, merges only on success, and revokes the complete child mutation set on error."
+}

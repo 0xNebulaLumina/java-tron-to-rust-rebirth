@@ -1,0 +1,479 @@
+{
+  "harness_sha256": "d19f81055563a466da3b4bbbeeac95b04deedfacb51cefbf556bec2fab3352a0",
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "jdk_home": "/usr/lib/jvm/java-8-openjdk-amd64",
+  "rows": [
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        },
+        {
+          "after_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06",
+          "before_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06",
+          "key_hex": "41abd4b9367799eaa3197fecb144eb71de1e049abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "equivalent registry discriminator mutation before the same real TransferActuator path",
+      "java_method": "ParticipateAssetIssueActuatorTest#sameTokenNameOpenAddOverflowTest",
+      "owner_hex": "41548794500882809695a8a687866e76d4271a1abc",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-composed-providers::builtin-id-collision",
+      "stable_id": "TCASE-5571BF8189F9B9B7"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        },
+        {
+          "after_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06",
+          "before_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06",
+          "key_hex": "41abd4b9367799eaa3197fecb144eb71de1e049abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "successful real built-in dispatch establishes the canonical URL identity",
+      "java_method": "ParticipateAssetIssueActuatorTest#sameTokenNameOpenNotEnoughTrxTest",
+      "owner_hex": "41548794500882809695a8a687866e76d4271a1abc",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-composed-providers::builtin-url-collision",
+      "stable_id": "TCASE-562752F93FF3174B"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        },
+        {
+          "after_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06",
+          "before_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06",
+          "key_hex": "41abd4b9367799eaa3197fecb144eb71de1e049abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "successful real built-in routing; extension composition is independently owned by DR-004",
+      "java_method": "ParticipateAssetIssueActuatorTest#sameTokenNameOpenParticipateAssetToThird",
+      "owner_hex": "41548794500882809695a8a687866e76d4271a1abc",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-composed-providers::c012-real-and-later-sentinel-routing",
+      "stable_id": "TCASE-56774B06C7EDD91C"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        },
+        {
+          "after_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06",
+          "before_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06",
+          "key_hex": "41abd4b9367799eaa3197fecb144eb71de1e049abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "successful real built-in routing; sentinel registration is not a Java production behavior",
+      "java_method": "TransferAssetActuatorTest#SameTokenNameOpenOwnerNoThisAsset",
+      "owner_hex": "41548794500882809695a8a687866e76d4271a1abc",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-composed-providers::sentinel-production-registration-rejected",
+      "stable_id": "TCASE-56C03EEA34A64386"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412330a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1880ade204",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112640a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412330a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1880ade204",
+      "contract_type": 1,
+      "equivalence": "exact Transfer type and URL with the assigned insufficient-balance validation boundary",
+      "java_method": "TransferActuatorTest#insufficientFee",
+      "owner_hex": "41548794500882809695a8a687866e76d4271a1abc",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Validate TransferContract error, balance is not sufficient.",
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-exact-identities::each-in-scope-contract-type",
+      "stable_id": "TCASE-57A0E49CA779D734"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a3456121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a3456121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "absent owner exercises owner extraction followed by concrete validation failure",
+      "java_method": "VoteWitnessActuatorTest#noOwnerAccount",
+      "owner_hex": "41548794500882809695a8a687866e76d4271a3456",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Validate TransferContract error, no OwnerAccount.",
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-mismatch-malformed-unknown::enum-gap",
+      "stable_id": "TCASE-5B51E4838875DA31"
+    },
+    {
+      "any_hex": "0a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74557064617465436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112660a32747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e4163636f756e74557064617465436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "wrong concrete Any URL is the directly observable Java contract/type rejection boundary",
+      "java_method": "AccountPermissionUpdateActuatorTest#ownerMissed",
+      "owner_hex": "41548794500882809695a8a687866e76d4271a1abc",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "contract type error, expected type [TransferContract], real type [class com.google.protobuf.Any]",
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-mismatch-malformed-unknown::malformed-payload",
+      "stable_id": "TCASE-5D1C840070F54FAB"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e74726163741219121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "0801124a0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e74726163741219121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "empty owner field exercises the assigned owner contract invariant",
+      "java_method": "VoteWitnessActuatorTest#balanceNotSufficient",
+      "owner_hex": "",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Invalid ownerAddress!",
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-mismatch-malformed-unknown::missing-owner",
+      "stable_id": "TCASE-5E15A6A247E10E30"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e7472616374121f0a0401020304121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112500a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e7472616374121f0a0401020304121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "assigned method directly supplies an invalid owner",
+      "java_method": "TransferActuatorTest#iniviateOwnerAddress",
+      "owner_hex": "01020304",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Invalid ownerAddress!",
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-mismatch-malformed-unknown::unknown-type",
+      "stable_id": "TCASE-5ECE89EE9480F885"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541548794500882809695a8a687866e76d4271a1abc1864",
+      "changed": [],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541548794500882809695a8a687866e76d4271a1abc1864",
+      "contract_type": 1,
+      "equivalence": "assigned method directly supplies owner as recipient",
+      "java_method": "TransferActuatorTest#iniviateTrx",
+      "owner_hex": "41548794500882809695a8a687866e76d4271a1abc",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": "Cannot transfer TRX to yourself.",
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-mismatch-malformed-unknown::wrong-url",
+      "stable_id": "TCASE-60950B6D506E1515"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        },
+        {
+          "after_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06",
+          "before_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06",
+          "key_hex": "41abd4b9367799eaa3197fecb144eb71de1e049abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "deterministic successful result wire baseline; assigned asset naming behavior is family-owned elsewhere",
+      "java_method": "TransferAssetActuatorTest#SameTokenNameCloseAssetNameTest",
+      "owner_hex": "41548794500882809695a8a687866e76d4271a1abc",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-result-wire::failure",
+      "stable_id": "TCASE-60F3F0D0EC11A989"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        },
+        {
+          "after_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06",
+          "before_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06",
+          "key_hex": "41abd4b9367799eaa3197fecb144eb71de1e049abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "deterministic zero-fee result wire baseline; voting fee semantics are family-owned elsewhere",
+      "java_method": "VoteWitnessActuatorTest#voteWitnessWithOldTronPowerAfterNewResourceModel",
+      "owner_hex": "41548794500882809695a8a687866e76d4271a1abc",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-result-wire::repeated-fee",
+      "stable_id": "TCASE-6191ACFED7C38024"
+    },
+    {
+      "any_hex": "0a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "changed": [
+        {
+          "after_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+          "before_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+          "key_hex": "41548794500882809695a8a687866e76d4271a1abc",
+          "store": "Account"
+        },
+        {
+          "after_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06",
+          "before_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06",
+          "key_hex": "41abd4b9367799eaa3197fecb144eb71de1e049abc",
+          "store": "Account"
+        }
+      ],
+      "committed_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "contract_hex": "080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a1541548794500882809695a8a687866e76d4271a1abc121541abd4b9367799eaa3197fecb144eb71de1e049abc1864",
+      "contract_type": 1,
+      "equivalence": "direct concrete TransactionResultCapsule success wire observation",
+      "java_method": "AccountPermissionUpdateActuatorTest#invalidTransactionResultCapsule",
+      "owner_hex": "41548794500882809695a8a687866e76d4271a1abc",
+      "result": {
+        "asset_id_hex": "",
+        "code": "SUCESS",
+        "error": null,
+        "fee": 0
+      },
+      "revoked_reopen": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc209bace204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20858e06"
+      },
+      "rollback_root": {
+        "owner_hex": "0a056f776e65721a1541548794500882809695a8a687866e76d4271a1abc20fface204",
+        "recipient_hex": "0a09726563697069656e741a1541abd4b9367799eaa3197fecb144eb71de1e049abc20a18d06"
+      },
+      "scenario_id": "registry-result-wire::success",
+      "stable_id": "TCASE-62F9A8D04D0BABD0"
+    }
+  ],
+  "scenario_count": 13,
+  "schema": "c012-registry-real.v1",
+  "schema_version": 1,
+  "variant_count": 13
+}

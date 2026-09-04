@@ -1,0 +1,337 @@
+{
+  "chunk": "C012",
+  "fixture_namespaces": {
+    "built_in_java_differential": {
+      "classification": "pinned_java_direct_actuator_observation",
+      "deterministic_rerun": {
+        "commands": [
+          "tools/execution/account/run.py",
+          "tools/execution/transfer/run.py",
+          "tools/execution/asset/run.py",
+          "tools/execution/witness/run.sh",
+          "tools/execution/registry/run.py",
+          "tools/execution/c012_java_oracle.py"
+        ],
+        "fresh_database_per_scenario": true
+      },
+      "families": [
+        {
+          "family": "account",
+          "path": "docs/oracles/c012-account-real.v1.json",
+          "runner": "tools/execution/account/run.py",
+          "runner_sha256": "41adf7da27bdcb3cc4e5f65d87f45ac15ec49b70a0d2cc45d4dbf2f1c2520ef4",
+          "scenario_count": 24,
+          "sha256": "8c0fbfce77ccbd1e24f086d6fb0896295720a0be4104bda54f0ad85b355cd855",
+          "stable_id_count": 63
+        },
+        {
+          "family": "transfer",
+          "path": "docs/oracles/c012-transfer-real.v1.json",
+          "runner": "tools/execution/transfer/run.py",
+          "runner_sha256": "d68e7db0249affc337da708c7f393451df9aecf6cca55e8b441fc55faac177d7",
+          "scenario_count": 20,
+          "sha256": "14021ae790999227a1e60d67d46e210da0d49098f9afef0711a02f6bcfb42b0f",
+          "stable_id_count": 14
+        },
+        {
+          "family": "asset",
+          "path": "docs/oracles/c012-asset-real.v1.json",
+          "runner": "tools/execution/asset/run.py",
+          "runner_sha256": "39e69591da4e622e843a1260e1212035a3b0ed5989bd0fae740dc1cc417f13d3",
+          "scenario_count": 5,
+          "sha256": "904099c61d3df9d81fda8044084dfe1348d3b2291fe36157dda72b2bf3095e85",
+          "stable_id_count": 5
+        },
+        {
+          "family": "witness",
+          "path": "docs/oracles/c012-witness-real.v1.json",
+          "runner": "tools/execution/witness/run.sh",
+          "runner_sha256": "4a70c9deb105de5278053009c58c8eee4bd3b5a64ea78143ecd665f4742f5784",
+          "scenario_count": 15,
+          "sha256": "a12ac38a14cbfe9b6be7e09cec779e2a0607bbcd724704c9f9ae36adc4e9b7b1",
+          "stable_id_count": 30
+        },
+        {
+          "family": "registry",
+          "path": "docs/oracles/c012-registry-real.v1.json",
+          "runner": "tools/execution/registry/run.py",
+          "runner_sha256": "260fb42db80e6e9efaab67be2eb44660f45141d7231e48f4932464cec7adde35",
+          "scenario_count": 13,
+          "sha256": "1942309f5579f1add0f76d43b8422721d69969102f3021739dc8e370fa82b717",
+          "stable_id_count": 13
+        },
+        {
+          "family": "owned_java",
+          "path": "docs/oracles/c012-java-owned-real.v1.json",
+          "runner": "tools/execution/c012_java_oracle.py",
+          "runner_sha256": "49a8eb7df028ea9fb3b1133607595a6a452af872716622fef1f302d06844d618",
+          "scenario_count": 137,
+          "sha256": "ee4ce540b4009b716c974d717d6140be938ac4040997b04369ccfc6a3775da20",
+          "stable_id_count": 137
+        }
+      ],
+      "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+      "required_observables": [
+        "concrete Contract and Any bytes",
+        "actual commit/reopen rows",
+        "actual revoke/reopen rows or byte-identical rollback root",
+        "result code/error/fee"
+      ],
+      "scenario_count": 214,
+      "variant_count": 214
+    },
+    "dr004_rust_extension": {
+      "classification": "newly_authored_rust_contract",
+      "pinned_java_observation": false,
+      "rows": [
+        {
+          "case": "owner_and_dispatch",
+          "expected": {
+            "actuator_constructed": true,
+            "error": null,
+            "owner_hex": "414141414141414141414141414141414141414141"
+          },
+          "id": "DR004.C012.EXT.01",
+          "input": {
+            "contract_type": 1000,
+            "payload_hex": "0a1541414141414141414141414141414141414141414112026f6b",
+            "type_url": "type.googleapis.com/org.tron.example.actuator.ExampleContract"
+          }
+        },
+        {
+          "case": "declared_write_success",
+          "expected": {
+            "ordered_store_deltas": [
+              {
+                "after_hex": "6166746572",
+                "before": null,
+                "key_hex": "414141414141414141414141414141414141414141",
+                "store": "Account"
+              }
+            ],
+            "result": {
+              "asset_issue_id_hex": "6c65616b",
+              "code": "SUCESS",
+              "fee": 99
+            },
+            "revoke": {
+              "required": false
+            }
+          },
+          "id": "DR004.C012.EXT.02",
+          "input": {
+            "payload_hex": "0a1541414141414141414141414141414141414141414112026f6b"
+          },
+          "pre_state": {
+            "Account/414141414141414141414141414141414141414141": null
+          }
+        },
+        {
+          "case": "validation_error_revoke",
+          "expected": {
+            "error": {
+              "kind": "Provider",
+              "message": "extension validation failure"
+            },
+            "ordered_store_deltas": [],
+            "result": {
+              "asset_issue_id_hex": "",
+              "code": "FAILED",
+              "fee": 0
+            },
+            "revoke": {
+              "parent_unchanged": true,
+              "required": true
+            }
+          },
+          "id": "DR004.C012.EXT.03",
+          "input": {
+            "payload_hex": "0a15414141414141414141414141414141414141414141121076616c69646174696f6e2d6572726f72"
+          },
+          "pre_state": {
+            "Account/414141414141414141414141414141414141414141": null
+          }
+        },
+        {
+          "case": "execution_error_revoke",
+          "expected": {
+            "error": {
+              "kind": "Provider",
+              "message": "extension failure"
+            },
+            "ordered_store_deltas": [],
+            "result": {
+              "asset_issue_id_hex": "",
+              "code": "FAILED",
+              "fee": 0
+            },
+            "revoke": {
+              "parent_unchanged": true,
+              "required": true
+            }
+          },
+          "id": "DR004.C012.EXT.04",
+          "input": {
+            "payload_hex": "0a1541414141414141414141414141414141414141414112056572726f72"
+          },
+          "pre_state": {
+            "Account/414141414141414141414141414141414141414141": null
+          }
+        },
+        {
+          "case": "undeclared_store_revoke",
+          "expected": {
+            "errors": [
+              {
+                "kind": "Provider",
+                "message_contains": "read undeclared",
+                "operation": "read"
+              },
+              {
+                "kind": "Provider",
+                "message_contains": "wrote undeclared",
+                "operation": "write"
+              }
+            ],
+            "ordered_store_deltas": [],
+            "result": {
+              "asset_issue_id_hex": "",
+              "code": "FAILED",
+              "fee": 0
+            },
+            "revoke": {
+              "parent_unchanged": true,
+              "required": true
+            }
+          },
+          "id": "DR004.C012.EXT.05",
+          "input": {
+            "payload_hex": "0a15414141414141414141414141414141414141414141120a756e6465636c61726564"
+          },
+          "pre_state": {
+            "Account/414141414141414141414141414141414141414141": null,
+            "Witness/77": null
+          }
+        },
+        {
+          "case": "provider_metadata_mismatch",
+          "expected": {
+            "construction_error": {
+              "extension_id": "org.tron.example.actuator",
+              "kind": "ProviderMetadataMismatch"
+            },
+            "registry_published": false,
+            "state_mutated": false
+          },
+          "id": "DR004.C012.EXT.06",
+          "mutation": {
+            "message_full_name": "org.tron.example.actuator.MismatchedContract"
+          }
+        },
+        {
+          "case": "provider_missing",
+          "expected": {
+            "construction_error": {
+              "extension_id": "org.tron.example.actuator",
+              "kind": "ProviderMissing"
+            },
+            "registry_published": false,
+            "state_mutated": false
+          },
+          "id": "DR004.C012.EXT.07",
+          "mutation": {
+            "providers": []
+          }
+        },
+        {
+          "case": "provider_contract_type_collision",
+          "expected": {
+            "construction_error": {
+              "kind": "ProviderCollision"
+            },
+            "registry_published": false,
+            "state_mutated": false
+          },
+          "id": "DR004.C012.EXT.08",
+          "mutation": {
+            "second_provider": {
+              "contract_type": 1000,
+              "extension_id": "org.tron.example.second"
+            }
+          }
+        },
+        {
+          "case": "runtime_type_url_mismatch",
+          "expected": {
+            "error": {
+              "actual": "type.googleapis.com/org.tron.example.actuator.AlternateContract",
+              "expected": "type.googleapis.com/org.tron.example.actuator.ExampleContract",
+              "kind": "TypeUrlMismatch"
+            },
+            "factory_invoked": false,
+            "owner_invoked": false,
+            "state_mutated": false
+          },
+          "id": "DR004.C012.EXT.09",
+          "input": {
+            "contract_type": 1000,
+            "payload_hex": "0a1541414141414141414141414141414141414141414112026f6b",
+            "type_url": "type.googleapis.com/org.tron.example.actuator.AlternateContract"
+          }
+        },
+        {
+          "case": "payload_at_declared_bound",
+          "expected": {
+            "owner_or_factory_may_decode": true,
+            "payload_limit_error": null
+          },
+          "id": "DR004.C012.EXT.10",
+          "input": {
+            "payload_size_bytes": 128
+          }
+        },
+        {
+          "case": "payload_over_declared_bound",
+          "expected": {
+            "error": {
+              "actual": 129,
+              "extension_id": "org.tron.example.actuator",
+              "kind": "PayloadLimitExceeded",
+              "limit": 128
+            },
+            "factory_invoked": false,
+            "owner_invoked": false,
+            "state_mutated": false
+          },
+          "id": "DR004.C012.EXT.11",
+          "input": {
+            "payload_size_bytes": 129
+          }
+        },
+        {
+          "case": "declared_store_resource_bound",
+          "expected": {
+            "construction_error": {
+              "actual": 65,
+              "extension_id": "org.tron.example.actuator",
+              "kind": "ProviderStateAccessLimitExceeded",
+              "limit": 64
+            },
+            "registry_published": false,
+            "state_mutated": false
+          },
+          "id": "DR004.C012.EXT.12",
+          "mutation": {
+            "duplicate_entries_preserved_until_limit_check": true,
+            "raw_declared_access_entry_count": 65,
+            "unique_store_count": 1
+          }
+        }
+      ],
+      "variant_count": 12
+    }
+  },
+  "scenario_count": 226,
+  "schema": "c012-execution-fixtures.v4",
+  "variant_count": 226
+}

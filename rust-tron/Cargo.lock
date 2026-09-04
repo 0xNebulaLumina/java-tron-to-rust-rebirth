@@ -2445,11 +2445,13 @@ dependencies = [
 name = "tron-execution"
 version = "0.0.0"
 dependencies = [
+ "prost",
  "tron-config",
  "tron-crypto",
  "tron-primitives",
  "tron-protocol",
  "tron-state",
+ "tron-storage",
  "tron-tvm",
 ]
 

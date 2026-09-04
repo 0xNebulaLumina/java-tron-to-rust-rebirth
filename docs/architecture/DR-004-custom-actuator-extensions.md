@@ -61,6 +61,68 @@ runtime inputs, and runtime collision handling. Per-file provenance and restrict
 distribution status are recorded in `docs/oracles/dr004-extension-fixtures.v1.json`; C001 does not
 pre-implement or approve behavior owned by C012, C016, or C022.
 
+## C012 execution registry
+
+C012 composes the immutable C001 descriptor registry with an equally immutable batch of custom
+actuator providers. Providers are trusted, statically linked, reviewed native node code; this
+surface is never a sandbox and never accepts an untrusted or dynamically discovered plugin. The
+composition root must bind each provider to an allowlisted provider identity and reviewed binary
+or source SHA-256 digest. A provider absent from that exact identity-and-digest allowlist rejects
+the whole construction.
+
+Provider metadata is invoked exactly once, caught for unwind panics, validated, and retained as an
+immutable snapshot. Provider order is normalized by `(priority, extension_id)`, and every provider
+must exactly match one descriptor registration in extension ID, priority, protobuf full name, and
+numeric contract type. Missing, extra, duplicate, colliding, or mismatched providers reject the
+whole construction. Provider payload declarations are nonzero and bounded at 1 MiB. Raw state
+access declarations are bounded at 64 entries before duplicate declarations are deduplicated, so
+duplicates cannot evade the resource bound. Each entry separately declares read and write access;
+writes do not imply reads. `Common`, `Checkpoint`, and `Temporary` are sensitive node-internal
+stores and cannot be granted to an extension.
+
+Canonical built-ins decode directly into their generated prost message type without descriptor
+reflection. Owner extraction uses `owner_address`, except shielded transfer's canonical
+`transparent_from_address`. `CustomContract` and `GetContract` have no corresponding generated
+contract payload and fail explicitly. A canonical contract whose C012 actuator has not yet been
+implemented decodes and exposes its owner but returns `UnsupportedBuiltInActuator` on dispatch.
+
+Custom providers receive protobuf payload bytes through typed, provider-owned decoding functions;
+the execution registry performs no reflection and grants no physical-store handle. Every generic
+get/decode, dynamic-property read, account-asset read, account-asset write, put, and delete checks
+the immutable read/write capability snapshot. These checks apply during validation and execution.
+Providers construct the normal `Actuator` trait object, so execution validates and mutates a child
+revoking session, merges state and publishes deltas only on success, and revokes the child while
+recording a failed result on error. Registry calls catch Rust unwind panics and convert them into
+node errors where unwinding permits. Process abort/exit and ambient native effects cannot be caught
+or revoked and therefore remain part of the trusted-native-code boundary. The exact surface,
+limits, errors, and test ownership are recorded by `docs/oracles/c012-registry-extension.v1.json`.
+
+### C012 compatibility-oracle boundary
+
+The C012 extension oracle is a `newly_authored_rust_contract`, not a pinned-Java observation.
+Its twelve variants derive expected behavior only from the authenticated descriptor bytes, the
+provider metadata that must exactly match that descriptor registration, and the provider's declared
+state-access contract. The oracle freezes concrete protobuf payload bytes, provider limits, initial
+store contents, result fields, ordered byte deltas, error identities, construction atomicity, and
+child-session revoke outcomes. It covers owner/dispatch, a declared write, validation and execution
+failure, an undeclared write, missing/mismatched/colliding providers, runtime type-URL mismatch, the
+inclusive payload bound and its first rejected byte, and the declared-store resource bound.
+
+`docs/oracles/c012-execution-fixtures.v1.json` keeps this extension evidence in the
+`dr004_rust_extension` namespace. The `built_in_java_differential` namespace remains separate: Java
+revision, method mapping, and Java execution hashes apply only there and cannot authenticate or
+approve an extension expectation. C012 acceptance requires an independent Rust test to execute all
+twelve extension IDs through the actual registry and, where execution is applicable, a real
+revoking `Session`; constant-only comparisons are not evidence. A reviewer must record either
+`approved` or `changes_requested` after confirming provenance, all twelve executions, namespace
+separation, and the absence of a Java-compatibility claim.
+
 ## Rejection and compatibility rules
 
-Runtime loading accepts only authenticated, version-compatible extension packages selected by explicit configuration. Extension code has no ambient global state, bypass around permission or resource accounting, direct physical storage access, or undeclared API. State writes use the same revoking session as built-ins. Changes to descriptors, type allocation, owner rules, dispatch, state schema, API exposure, platform support, or dependencies require the affected integration scenario and owning gate to run again.
+There is no runtime plugin loader. Only trusted, statically linked native providers selected at the
+composition root by an exact allowlisted identity and reviewed code digest can be registered.
+Extension code remains inside the node process and is not sandboxed: process exit/abort and ambient
+native effects are outside session revoke. State access is restricted to declared read/write
+capabilities and excludes sensitive internal stores. Changes to provider code or digest,
+descriptors, type allocation, owner rules, dispatch, state schema, API exposure, platform support,
+or dependencies require the affected integration scenario and owning gate to run again.

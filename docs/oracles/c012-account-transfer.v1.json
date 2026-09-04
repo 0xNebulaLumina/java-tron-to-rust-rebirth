@@ -1,0 +1,52 @@
+{
+  "chunk": "C012.01-C012.02",
+  "schema_version": 1,
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "implementation": {
+    "crate": "rust-tron/crates/tron-execution",
+    "atomicity": "validate against the parent session without writes; execute in one child session; merge once on success; revoke on error or drop",
+    "result_codes": { "success": "SUCESS", "success_number": 0, "failure": "FAILED", "failure_number": 1 },
+    "state_delta_order": "store kind then raw key"
+  },
+  "contracts": [
+    {
+      "name": "AccountCreateContract",
+      "type_url": "type.googleapis.com/protocol.AccountCreateContract",
+      "fee": "CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT",
+      "writes": ["Account[target]", "Account[owner]", "DynamicProperties[BURN_TRX_AMOUNT] or Account[Blackhole]"],
+      "rules": ["typed Any", "valid existing owner", "sufficient fee", "valid absent target", "latest-header create time", "default owner and active permissions iff ALLOW_MULTI_SIGN=1"]
+    },
+    {
+      "name": "AccountUpdateContract",
+      "type_url": "type.googleapis.com/protocol.AccountUpdateContract",
+      "fee": 0,
+      "writes": ["Account[owner]", "AccountIndex[account_name], including the empty key"],
+      "rules": ["account name byte length <=200", "valid existing owner", "ALLOW_UPDATE_ACCOUNT_NAME controls repeated and duplicate names", "old index rows are retained"]
+    },
+    {
+      "name": "SetAccountIdContract",
+      "type_url": "type.googleapis.com/protocol.SetAccountIdContract",
+      "fee": 0,
+      "writes": ["Account[owner]", "AccountIdIndex[Locale.ROOT lowercase account_id]"],
+      "rules": ["printable ASCII 0x21-0x7e", "8-32 bytes", "one-time assignment", "case-insensitive uniqueness"]
+    },
+    {
+      "name": "AccountPermissionUpdateContract",
+      "type_url": "type.googleapis.com/protocol.AccountPermissionUpdateContract",
+      "fee": "UPDATE_ACCOUNT_PERMISSION_FEE",
+      "writes": ["Account[owner]", "DynamicProperties[BURN_TRX_AMOUNT] or Account[Blackhole]"],
+      "rules": ["ALLOW_MULTI_SIGN=1", "owner required", "witness required exactly for witness accounts", "1-8 active permissions", "role types exact", "1..TOTAL_SIGN_NUM distinct valid keys", "positive threshold and weights", "witness has exactly one key", "parent_id=0", "permission name <=32 Java UTF-16 code units", "active operations exactly 32 bytes and a subset of AVAILABLE_CONTRACT_TYPE", "non-active operations empty", "execution assigns IDs 0, 1, and 2+ in list order"]
+    },
+    {
+      "name": "TransferContract",
+      "type_url": "type.googleapis.com/protocol.TransferContract",
+      "fee": "TRANSFER_FEE(0) plus CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT for an absent recipient",
+      "writes": ["Account[owner]", "Account[recipient]", "DynamicProperties[BURN_TRX_AMOUNT] or Account[Blackhole]"],
+      "rules": ["valid distinct addresses", "positive amount", "checked amount+fee and recipient balance", "existing owner with sufficient balance", "absent recipient becomes Normal at latest-header time with optional defaults", "FORBID_TRANSFER_TO_CONTRACT rejects contract accounts", "ALLOW_TVM_COMPATIBLE_EVM rejects version-one contract destinations and requires their Contract row"]
+    }
+  ],
+  "wire": {
+    "input_any": "the original Any, including raw value bytes and unknown fields, remains available through raw_any",
+    "stored_protobuf": "account and contract rows use canonical prost encoding after mutation"
+  }
+}

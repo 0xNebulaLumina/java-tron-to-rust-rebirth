@@ -1190,53 +1190,102 @@
     {
       "id": "C012",
       "title": "Account, asset, witness, and permission actuators",
-      "status": "todo",
-      "owner": null,
-      "updated": null,
-      "resume": null,
+      "status": "active",
+      "owner": "c012-actuator-gates",
+      "updated": "2026-09-04",
+      "resume": "Run the canonical C012 metadata gate, six explicit tron-execution suites, and locked all-targets crate check; reviewer disposition for DR-004 remains pending independent review.",
       "items": [
         {
           "id": "C012.01",
           "description": "AccountCreate, AccountUpdate, SetAccountId, AccountPermissionUpdate.",
           "status": "todo",
-          "note": null
+          "note": "Canonical account real artifact contains 24 deterministic scenarios with concrete contract bytes and commit/revoke observations; executable Rust replay is configured in C012.V."
         },
         {
           "id": "C012.02",
           "description": "Transfer and account auto-creation/system fee behavior.",
           "status": "todo",
-          "note": null
+          "note": "Canonical transfer real artifact contains 20 deterministic scenarios with concrete contract bytes and commit/revoke observations; executable Rust replay is configured in C012.V."
         },
         {
           "id": "C012.03",
           "description": "AssetIssue, UpdateAsset, TransferAsset, ParticipateAssetIssue, UnfreezeAsset.",
           "status": "todo",
-          "note": null
+          "note": "Canonical asset real artifact contains 5 deterministic scenarios with concrete contract bytes and commit/revoke observations; executable Rust replay is configured in C012.V."
         },
         {
           "id": "C012.04",
           "description": "WitnessCreate, WitnessUpdate, VoteWitness and permission defaults.",
           "status": "todo",
-          "note": null
+          "note": "Canonical witness real artifact contains 15 deterministic scenarios with concrete contract bytes and commit/revoke observations; executable Rust replay is configured in C012.V."
         },
         {
           "id": "C012.05",
           "description": "ContractType-to-protobuf/actuator registration and owner extraction.",
           "status": "todo",
-          "note": null
+          "note": "Canonical built-in registry real artifact contains 13 deterministic scenarios with actual commit and revoke rows; executable Rust replay is configured in C012.V."
         },
         {
           "id": "C012.06",
           "description": "Implement DR-004 custom-actuator registry/discovery and owner extraction against the approved extension descriptor/dependency inventory; preserve built-in and extension collision/error behavior.",
           "status": "todo",
-          "note": null
+          "note": "All 12 named DR-004 registry and Session variants have independent Rust execution coverage; reviewer disposition remains pending independent review."
         }
       ],
       "gate": {
         "id": "C012.V",
         "description": "Every contract success/failure/boundary produces Java-identical deltas/results and full revoke.",
-        "status": "unconfigured",
-        "commands": [],
+        "status": "not_run",
+        "commands": [
+          {
+            "name": "C012 pinned Java oracle, source, ownership and fixture gate",
+            "cwd": ".",
+            "argv": ["python3", "tools/execution/c012_gate.py"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C012 account executable dispatch suite",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c012_account_contract", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C012 transfer executable dispatch suite",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c012_transfer_contract", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C012 asset executable dispatch suite",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c012_asset_contract", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C012 witness executable dispatch suite",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c012_witness_contract", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C012 registry executable dispatch suite",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c012_registry", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C012 extension executable dispatch suite",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c012_extension_registry", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C012 exact tron-execution workspace target check",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "check", "-p", "tron-execution", "--all-targets", "--locked"],
+            "timeout_seconds": 300
+          }
+        ],
         "last_failure": null
       },
       "review": {
