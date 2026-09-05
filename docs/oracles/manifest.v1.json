@@ -90,7 +90,7 @@
   },
   "c016_admission_vectors": {
     "path": "c016-admission-vectors.v1.json",
-    "sha256": "4a75ffe50170690f5572648534cc5d771d342307171cc0e59ea381a50a430c5e"
+    "sha256": "60e54d49b57971cb38762484775fdb49be7ce6afe09aef863321ed982f59b0a4"
   },
   "c016_trace_runtime": {
     "path": "c016-trace-runtime.v1.json",
@@ -98,11 +98,27 @@
   },
   "c016_pipeline_pending": {
     "path": "c016-pipeline-pending.v1.json",
-    "sha256": "faeab9a5fc2d23ccfd58839f9eb2030be7046d98f871fe2bef065488da6e05ff"
+    "sha256": "39fd793175aab00c39ac45271540c1050f5b66eb22a816dae56db8714d4909e4"
   },
   "c016_ownership_reconciliation": {
     "path": "c016-ownership-reconciliation.v1.json",
-    "sha256": "b6b5dd22bf4ebe92da145c921aee189fbf1bcd10c55bcace6216d8a7d555b33b"
+    "sha256": "30a8efb842835e28f443566819cada611e7cceaf5b80b7f50ab8be0a78058343"
+  },
+  "c017_ownership_reconciliation": {
+    "path": "c017-ownership-reconciliation.v1.json",
+    "sha256": "557df6cd0f0bd5953e3fe83fac4903533b1a1a73275f0b4e876ed8f48f1d9def"
+  },
+  "c017_scenarios": {
+    "path": "c017-scenarios.v1.json",
+    "sha256": "ec9d1389beffef117ab0337ef6f15696f37d456ba529aa866a32a73407d7ceae"
+  },
+  "c017_schedule_vectors": {
+    "path": "c017-schedule-vectors.v1.json",
+    "sha256": "42cc379192e7e98726a3956f07def787c083ccf4f131b789d18a4fa4dbb28fc4"
+  },
+  "c017_source_inventory": {
+    "path": "c017-source-inventory.v1.json",
+    "sha256": "eea6268ef7a1900ba1faedba336b059858653ac82278915c9365d5c9118c553b"
   },
   "dr004_extension_fixtures": "dr004-extension-fixtures.v1.json",
   "fixture_schema": "schemas/fixture-v1.schema.json",
@@ -154,5 +170,33 @@
   "protocol_surface": "protocol-surface.v1.json",
   "result_schema": "schemas/result-v1.schema.json",
   "runner_protocol": 1,
-  "schema_version": 1
+  "schema_version": 1,
+  "c017_cases_schedule": {
+    "path": "c017-cases-schedule.v1.json",
+    "sha256": "96bcf948231e64cc4f97ebb05cee530fd49f41e9b2a972fcf9b77eac11665e32"
+  },
+  "c017_cases_production": {
+    "path": "c017-cases-production.v1.json",
+    "sha256": "2ec0d5eaf5002082380163708ff887376dd60f2436e8d583f0dfdcd8cabe3f4a"
+  },
+  "c017_cases_maintenance": {
+    "path": "c017-cases-maintenance.v1.json",
+    "sha256": "fb00c8c74af03b6025f124e7f98e6465d8a0311de4b91b660295923d172a1964"
+  },
+  "c017_cases_rewards": {
+    "path": "c017-cases-rewards.v1.json",
+    "sha256": "74d79f47786340ac63496658fae19b131607018176b46e7cf931d69615365f22"
+  },
+  "c017_cases_proposals": {
+    "path": "c017-cases-proposals.v1.json",
+    "sha256": "816ad09cc9c6c4038a782a4d0a5a8f4833a6e92d822a6f997270252744738a72"
+  },
+  "c017_cases_solidity_fork": {
+    "path": "c017-cases-solidity-fork.v1.json",
+    "sha256": "8c87622b282aac6a94c5c5b37eb9284b6f94ef77dfd5ea46fa78d5b9a1af2c01"
+  },
+  "c017_cases_lifecycle": {
+    "path": "c017-cases-lifecycle.v1.json",
+    "sha256": "64c405f8ffb8abb6117b7269f86c5fd4b133a68e4071023fdef0bbbe26d3109b"
+  }
 }

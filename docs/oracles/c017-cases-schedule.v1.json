@@ -1,0 +1,22 @@
+{
+  "schema": "c017-cases-schedule.v1",
+  "source": "docs/oracles/c017-ownership-reconciliation.v1.json",
+  "cases": [
+    {"case_id":"C017-P-AB9DE62A023A40D8","operation":"get-witnesses","parameters":{"count":30},"expected":"active-count=27"},
+    {"case_id":"C017-P-831E3B363C61F033","operation":"add-witness","parameters":{"initial_count":26,"added":26,"slot":26},"expected":"selected=26"},
+    {"case_id":"C017-P-84DF7AD533173913","operation":"head-slot","parameters":{"genesis":1600000000000,"head_time":1600000021000},"expected":"head-slot=7"},
+    {"case_id":"C017-P-F85464EBEE501B7F","operation":"next-block-slot-time","parameters":{"genesis":1600000000000,"head_time":1600000010234,"skip_slots":2},"expected":"next-time=1600000018000"},
+    {"case_id":"C017-P-B5DCA574E178D254","operation":"save-active-witnesses","parameters":{"count":29},"expected":"saved-count=27"},
+    {"case_id":"C017-P-1F9C1297E4682A34","operation":"get-active-witnesses","parameters":{"count":27,"slot":28},"expected":"selected=1"},
+    {"case_id":"C017-P-6097E871859589CD","operation":"sort-witness","parameters":{"votes":[5,12,8]},"expected":"vote-order=12:8:5"},
+    {"case_id":"C017-P-076E68231E15BD10","operation":"dpos-slot-source","parameters":{"genesis":1600000000000,"time":1600000009000},"expected":"absolute-slot=3"},
+    {"case_id":"C017-P-4AB37B283578C2A6","operation":"dpos-slot-package","parameters":{"genesis":1600000000000,"time":1600000002999},"expected":"absolute-slot=0"},
+    {"case_id":"C017-P-E677432B485C2DBA","operation":"dpos-slot-constructor","parameters":{"genesis":1600000000000,"now":1600000012345},"expected":"slot-zero-time=1600000012345"},
+    {"case_id":"C017-P-3C35B9C818381115","operation":"absolute-slot","parameters":{"genesis":1600000000000,"time":1600000015000},"expected":"absolute-slot=5"},
+    {"case_id":"C017-P-AD6EA6D69C660319","operation":"relative-slot","parameters":{"genesis":1600000000000,"time":1600000006000},"expected":"slot=2"},
+    {"case_id":"C017-P-1F4C692B8A536D40","operation":"slot-time","parameters":{"genesis":1600000000000,"head_time":1600000010234,"skip_slots":2,"slot":1},"expected":"time=1600000018000"},
+    {"case_id":"C017-P-0C110162A371B74B","operation":"scheduled-witness","parameters":{"count":27,"head_time":1600000000000,"slot":28},"expected":"selected=1"},
+    {"case_id":"C017-T-9C237704A6491D7C","operation":"java-test-slot","parameters":{"genesis":10000,"head_time":19000,"time":22000},"expected":"slot=1"},
+    {"case_id":"C017-T-DFF7B5D7FDD06605","operation":"java-test-witness-schedule","parameters":{"count":3,"head_time":1600000000000,"slots":[0,1,2],"shuffle_time":1600000003000},"expected":"selected=0:1:2;shuffle=9:1:0:5:6:4:2:3:8:7"}
+  ]
+}

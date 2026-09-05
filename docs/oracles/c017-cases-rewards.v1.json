@@ -1,0 +1,24 @@
+{
+  "schema": "c017-cases-rewards.v1",
+  "source": "docs/oracles/c017-ownership-reconciliation.v1.json",
+  "cases": [
+    {"case_id":"C017-P-0779F109EAECC6F0","operation":"mortgage-package","parameters":{"gross":10,"brokerage_percent":20},"expected":"gross=10,voter=8,brokerage=2"},
+    {"case_id":"C017-P-492CC6F97EFAF303","operation":"mortgage-source","parameters":{"gross":15,"brokerage_percent":20},"expected":"gross=15,voter=12,brokerage=3"},
+    {"case_id":"C017-P-331745E4E01FCFED","operation":"mortgage-constructor","parameters":{"gross":25,"brokerage_percent":20},"expected":"gross=25,voter=20,brokerage=5"},
+    {"case_id":"C017-P-07695C1B63358FFE","operation":"standby","parameters":{"total":100,"votes":[1,2]},"expected":"payments=33:66"},
+    {"case_id":"C017-P-E55D50E58966E317","operation":"block","parameters":{"gross":50,"brokerage_percent":20},"expected":"allowance=10,reward=40"},
+    {"case_id":"C017-P-59369D01BE2713C8","operation":"transaction-fee","parameters":{"gross":30,"brokerage_percent":20},"expected":"allowance=6,reward=24"},
+    {"case_id":"C017-P-37EA3500936804FE","operation":"withdraw","parameters":{"current_cycle":2,"votes":10},"expected":"withdrawn=20,begin=2,end=3,allowance=25"},
+    {"case_id":"C017-P-5BEF07444F537224","operation":"query","parameters":{"current_cycle":2,"votes":10},"expected":"query=25"},
+    {"case_id":"C017-P-604F98175C127B5E","operation":"adjust","parameters":{"initial_allowance":40,"delta":-15},"expected":"allowance=25"},
+    {"case_id":"C017-P-50C3B72D607C6F69","operation":"reward-vi-package","parameters":{"begin_vi":7,"end_vi_scaled":33,"votes":2},"expected":"reward=65"},
+    {"case_id":"C017-P-B276FF382F029728","operation":"reward-vi-source","parameters":{"previous":7,"reward":99,"vote_count":3},"expected":"vi=33000000000000000007"},
+    {"case_id":"C017-P-E592EC83261757D4","operation":"reward-vi-constructor","parameters":{"previous":11,"reward":0,"vote_count":3},"expected":"vi=11"},
+    {"case_id":"C017-P-89159280DEAA79A5","operation":"reward-vi-init","parameters":{"previous":0,"reward":100,"vote_count":4},"expected":"vi=25000000000000000000"},
+    {"case_id":"C017-P-4F3BB21AA968AD23","operation":"incentive-source","parameters":{"total":90,"votes":[1,2]},"expected":"distribution=30:60"},
+    {"case_id":"C017-P-EDAE80DBFFED05F8","operation":"incentive-package","parameters":{"total":7,"votes":[0,0]},"expected":"distribution=empty"},
+    {"case_id":"C017-P-C1C10AE73015A5F9","operation":"incentive-constructor","parameters":{"pool":101,"period":10},"expected":"fee=10,pool=91"},
+    {"case_id":"C017-P-71571190B082ED81","operation":"incentive-reward","parameters":{"gross":80,"brokerage_percent":25},"expected":"allowance=20,reward=60"},
+    {"case_id":"C017-T-0676CF68216D8BEA","operation":"delegation-query-case","parameters":{"effective_cycle":1,"votes":3},"expected":"query=14"}
+  ]
+}

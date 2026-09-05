@@ -1,0 +1,210 @@
+{
+  "schema": "c017-source-inventory.v1",
+  "scope": [
+    "C017.01",
+    "C017.02",
+    "C017.03",
+    "C017.04",
+    "C017.05",
+    "C017.06"
+  ],
+  "java_sources": [
+    {
+      "path": "java-tron/consensus/src/main/java/org/tron/consensus/dpos/DposSlot.java",
+      "contract": "3-second absolute/relative slots, maintenance skip, scheduled witness",
+      "sha256": "58a6a2fbaa720cf033e50f225335bfadb5706d6da634100c97c15383f0dc05ae"
+    },
+    {
+      "path": "java-tron/consensus/src/main/java/org/tron/consensus/dpos/DposTask.java",
+      "contract": "50ms slot lookahead, miner eligibility, production timestamp and timeout",
+      "sha256": "56a8fc4e5628a97ae1336e5ff48654d26268c10d6ac0b088fa852bfcf88bcb87"
+    },
+    {
+      "path": "java-tron/consensus/src/main/java/org/tron/consensus/dpos/StateManager.java",
+      "contract": "clock, backup, participation and duplicate-witness guards",
+      "sha256": "ff2d596a4abfa6076d59fe6f8bfb5d34fb0d6d32101356ada139c298ee88169a"
+    },
+    {
+      "path": "java-tron/consensus/src/main/java/org/tron/consensus/dpos/MaintenanceManager.java",
+      "contract": "maintenance boundary, GR removal, vote deltas, schedules and cycles",
+      "sha256": "fbdf00f8aedca0e783a45e9a14a9bdd2ca090256ee8eb3e2e6e256a602de22a0"
+    },
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/store/WitnessStore.java",
+      "contract": "vote-descending and Java hash/hex tie breaks",
+      "sha256": "8876de3262839bc727133bb468fde1c04d0e5f36ecf1d6791c6ada02657dd8f3"
+    },
+    {
+      "path": "java-tron/common/src/main/java/org/tron/common/utils/RandomGenerator.java",
+      "contract": "signed-long xorshift shuffle and invalid-index skip",
+      "sha256": "044bb0398cd1c95c4a91cc018c04a5ae5c2119900a001e782bea510022a68bdf"
+    },
+    {
+      "path": "java-tron/framework/src/test/java/org/tron/core/db/BlockFilledSlotsTest.java",
+      "contract": "128-slot ring and participation count",
+      "sha256": "e38d065ebf330278f88ef448e37dcb0d595af00934decc3febff23c51ed60844"
+    },
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/service/MortgageService.java",
+      "contract": "standby, block and fee rewards, brokerage, allowance, legacy/effective-cycle reward split",
+      "sha256": "b82a69a648f314fb4cd9d7763eb8b301d07a9ba6ebfc6b7f823ad769b9d2f956"
+    },
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/service/RewardViCalService.java",
+      "contract": "BigInteger vote-index reward calculation",
+      "sha256": "768e6c10a8cb9fcf73b726261e549f741e7d41586de25f852455db6254e1b1cd"
+    },
+    {
+      "path": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java",
+      "contract": "descending expiry scan, one-shot processing and dynamic application",
+      "sha256": "860a89116d4a7df364bd8bc0143db1a0aaf40ef4f00703f44ddfb1d453f386ac"
+    },
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/capsule/ProposalCapsule.java",
+      "contract": "active-witness-only floor(size*7/10) approvals",
+      "sha256": "d3bde410ad9cafc56c18d8a7ca3d5baea88b0c016b7c86456a870e627668924b"
+    },
+    {
+      "path": "java-tron/consensus/src/main/java/org/tron/consensus/dpos/DposService.java",
+      "contract": "sorted latestBlockNum floor(size*0.3) monotonic solidity",
+      "sha256": "13152633195fb6e9583723423160bb4212eb71c915d155b468c253f80ed1cccd"
+    },
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/common/utils/ForkController.java",
+      "contract": "canonical fork pass evaluator, witness stats, activation and maintenance reset",
+      "sha256": "ad697b2a5516acd8b4dc7d66f697defb636d17e386d03b456321f9742afa077e"
+    }
+  ],
+  "rust_proofs": [
+    {
+      "path": "rust-tron/crates/tron-consensus/src/lib.rs",
+      "sha256": "3c4f5a9effa55a49d1cc8855b2590b0130a8780a963288df6860c9446d7f803e"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/src/maintenance.rs",
+      "sha256": "ed68396aa7515b3e873549f3006ad642b3d3b189845d6dd25e897c1a9b9bc533"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/src/production.rs",
+      "sha256": "b907d78f294019188d99e61a0261de82b82859f63c6ea3b872d6a72875b4931e"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/src/proposal.rs",
+      "sha256": "a3a6337718b134b980be07ef48ec72975849a4515f5122259a09b3ab4eaecfcf"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/src/rewards.rs",
+      "sha256": "2f0d37cab4f44b97d5cc45bda0ce216395af2fc517ee5fb65d223bbc5b46c36d"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/src/schedule.rs",
+      "sha256": "9ab64a252e7d771acb7103dff42cacb7c591a8a123309766e2cfe7308b70bc3e"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/src/solidity.rs",
+      "sha256": "0d2e8c5cec1514d3ce0cfb95e741b3107cfba115c272c7b7c4c4f21f2d027572"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/src/state.rs",
+      "sha256": "fce1dda1ba03d9e4f8733681b35aa11dc09c24246ba429a7091263e22630644d"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_cases_lifecycle.rs",
+      "sha256": "241c2007ccec21a82522ed632c39858f3ebe0af4e708016845cf9f70b993ed4b"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_cases_maintenance.rs",
+      "sha256": "103aa81ab69fe79d918360f5bfd6b250c8b1e889e32ce5a66cc48954df23ad8d"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_cases_production.rs",
+      "sha256": "4216b6c7b39b618b5e883af79c2c8602ecafd61850318714fef2fd427b2edc09"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_cases_proposals.rs",
+      "sha256": "dd7f31b99aea664685bf6f752835edaeaafb7231941e1b915621ac88887b27ff"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_cases_rewards.rs",
+      "sha256": "aeac6b7c2188f528b62314bb6f2f20f14bf41bde6ba0195e551dee1f4fd379ea"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_cases_schedule.rs",
+      "sha256": "a0f037eefd6e498e2afee920a24a64e7c83476c1bee9016a812fa84741585593"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_cases_solidity_fork.rs",
+      "sha256": "a0f6c0fa82097595a9a58d1a7379dad79c26fec16e723c899c206c1c8caa96c7"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_maintenance.rs",
+      "sha256": "e3c3354aa7872b94846bcb622ae2b77c2057bbb8d8eca973ce418b3a19ed1cd8"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_production.rs",
+      "sha256": "278a12aea7047b5560e7603d8c3c17277e127f418bca540d4e03826ba4dca444"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_proposals.rs",
+      "sha256": "a45fc1c93ae1097e5cd6add414bdc8baa582a2db2a0a5c5ade5d10cdb495a841"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_rewards.rs",
+      "sha256": "893a0bc8104459b48bf74ff0cdca15b553c5571d1c8cf45359b23054c7633240"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_scenarios.rs",
+      "sha256": "e599b845b0076d4c0a3613ba9a9cd17a4cdcfaa284d3d76b08aaff89b951b5e7"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_schedule.rs",
+      "sha256": "9583846b3605e53f2cb4af678702c1c40b911e22be6ef93f5d847948f881c073"
+    },
+    {
+      "path": "rust-tron/crates/tron-consensus/tests/c017_solidity.rs",
+      "sha256": "5928f5aeabd4ad2ca16dab7f9281f58b8245fe239e5c4c9badc3c5ea390c54a0"
+    }
+  ],
+  "manifests": [
+    {
+      "path": "docs/oracles/c017-cases-lifecycle.v1.json",
+      "sha256": "64c405f8ffb8abb6117b7269f86c5fd4b133a68e4071023fdef0bbbe26d3109b"
+    },
+    {
+      "path": "docs/oracles/c017-cases-maintenance.v1.json",
+      "sha256": "fb00c8c74af03b6025f124e7f98e6465d8a0311de4b91b660295923d172a1964"
+    },
+    {
+      "path": "docs/oracles/c017-cases-production.v1.json",
+      "sha256": "2ec0d5eaf5002082380163708ff887376dd60f2436e8d583f0dfdcd8cabe3f4a"
+    },
+    {
+      "path": "docs/oracles/c017-cases-proposals.v1.json",
+      "sha256": "816ad09cc9c6c4038a782a4d0a5a8f4833a6e92d822a6f997270252744738a72"
+    },
+    {
+      "path": "docs/oracles/c017-cases-rewards.v1.json",
+      "sha256": "74d79f47786340ac63496658fae19b131607018176b46e7cf931d69615365f22"
+    },
+    {
+      "path": "docs/oracles/c017-cases-schedule.v1.json",
+      "sha256": "96bcf948231e64cc4f97ebb05cee530fd49f41e9b2a972fcf9b77eac11665e32"
+    },
+    {
+      "path": "docs/oracles/c017-cases-solidity-fork.v1.json",
+      "sha256": "8c87622b282aac6a94c5c5b37eb9284b6f94ef77dfd5ea46fa78d5b9a1af2c01"
+    },
+    {
+      "path": "docs/oracles/c017-ownership-reconciliation.v1.json",
+      "sha256": "557df6cd0f0bd5953e3fe83fac4903533b1a1a73275f0b4e876ed8f48f1d9def"
+    },
+    {
+      "path": "docs/oracles/c017-scenarios.v1.json",
+      "sha256": "ec9d1389beffef117ab0337ef6f15696f37d456ba529aa866a32a73407d7ceae"
+    },
+    {
+      "path": "docs/oracles/c017-schedule-vectors.v1.json",
+      "sha256": "42cc379192e7e98726a3956f07def787c083ccf4f131b789d18a4fa4dbb28fc4"
+    }
+  ]
+}

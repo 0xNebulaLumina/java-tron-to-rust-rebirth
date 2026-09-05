@@ -1,0 +1,195 @@
+{
+  "schema": "c017-cases-production.v1",
+  "family": "production",
+  "excluded": [
+    "C017-P-56630E3B7F8B4A10",
+    "C017-P-78975155D0C47C3C"
+  ],
+  "cases": [
+    {
+      "case_id": "C017-P-B3D4BCA2D751555A",
+      "symbol": "org.tron.consensus.dpos",
+      "scenario": "guard-state-ok"
+    },
+    {
+      "case_id": "C017-P-FCB7CE9491639BDA",
+      "symbol": "DposService.java",
+      "scenario": "guard-construction"
+    },
+    {
+      "case_id": "C017-P-5672B70DA0D01237",
+      "symbol": "DposService",
+      "scenario": "initial-state"
+    },
+    {
+      "case_id": "C017-P-721870618B909F87",
+      "symbol": "start",
+      "scenario": "master-lifecycle-start"
+    },
+    {
+      "case_id": "C017-P-C3F05B802E120DCB",
+      "symbol": "stop",
+      "scenario": "backup-lifecycle-stop"
+    },
+    {
+      "case_id": "C017-P-48236F719840CEFE",
+      "symbol": "receiveBlock",
+      "scenario": "foreign-block-accepted-and-duplicate-armed"
+    },
+    {
+      "case_id": "C017-P-DCDEC26EE8CEC0F7",
+      "symbol": "validBlock",
+      "scenario": "malformed-block-ignored"
+    },
+    {
+      "case_id": "C017-P-91F08C2175AEB13E",
+      "symbol": "updateWitness",
+      "scenario": "production-counter-updated"
+    },
+    {
+      "case_id": "C017-P-416925EC9C917633",
+      "symbol": "org.tron.consensus.dpos",
+      "scenario": "task-plan-not-yet"
+    },
+    {
+      "case_id": "C017-P-7CCA8BBD466FF091",
+      "symbol": "DposTask.java",
+      "scenario": "task-state-not-synced"
+    },
+    {
+      "case_id": "C017-P-556BE819E2C80722",
+      "symbol": "DposTask",
+      "scenario": "task-construction"
+    },
+    {
+      "case_id": "C017-P-44BFD604CF64BF7A",
+      "symbol": "init",
+      "scenario": "filled-slot-init"
+    },
+    {
+      "case_id": "C017-P-5C6B8274622688F4",
+      "symbol": "stop",
+      "scenario": "filled-slot-stop"
+    },
+    {
+      "case_id": "C017-P-175A92CED477A0B4",
+      "symbol": "StatisticManager.java",
+      "scenario": "empty-accounting"
+    },
+    {
+      "case_id": "C017-P-7CD5E21AA34A8112",
+      "symbol": "org.tron.consensus.dpos",
+      "scenario": "miss-accounting"
+    },
+    {
+      "case_id": "C017-P-0256C9B78773B456",
+      "symbol": "StatisticManager",
+      "scenario": "produced-accounting"
+    },
+    {
+      "case_id": "C017-P-72938CE47652DB24",
+      "symbol": "WitnessProductBlockService.java",
+      "scenario": "duplicate-service-construction"
+    },
+    {
+      "case_id": "C017-P-9B53A2EC93FC2BB1",
+      "symbol": "org.tron.core.services",
+      "scenario": "nonlocal-witness-ignored"
+    },
+    {
+      "case_id": "C017-P-B5C765D1861F348E",
+      "symbol": "WitnessProductBlockService",
+      "scenario": "local-witness-duplicate"
+    },
+    {
+      "case_id": "C017-P-FCE32B498EEA0A4C",
+      "symbol": "validWitnessProductTwoBlock",
+      "scenario": "equivocation-detected"
+    },
+    {
+      "case_id": "C017-P-592A6F1CFF46C2AA",
+      "symbol": "queryCheatWitnessInfo",
+      "scenario": "duplicate-window-query"
+    },
+    {
+      "case_id": "C017-P-21EC6E1B57ED7155",
+      "symbol": "CheatWitnessInfo",
+      "scenario": "duplicate-window-expiry"
+    },
+    {
+      "case_id": "C017-P-AB778767F55DC423",
+      "symbol": "increment",
+      "scenario": "miss-counter-increment"
+    },
+    {
+      "case_id": "C017-P-126E837063858C76",
+      "symbol": "getTimes",
+      "scenario": "miss-counter-read"
+    },
+    {
+      "case_id": "C017-P-16E638F0D8511335",
+      "symbol": "setTimes",
+      "scenario": "miss-counter-saturates"
+    },
+    {
+      "case_id": "C017-P-2B13C04DE12862AB",
+      "symbol": "getLatestBlockNum",
+      "scenario": "latest-slot-read"
+    },
+    {
+      "case_id": "C017-P-DAE6B57C925A5D1E",
+      "symbol": "setLatestBlockNum",
+      "scenario": "latest-slot-write"
+    },
+    {
+      "case_id": "C017-P-58FA052C29528BDE",
+      "symbol": "getBlockCapsuleSet",
+      "scenario": "first-block-retained"
+    },
+    {
+      "case_id": "C017-P-AFDD839921807A9E",
+      "symbol": "setBlockCapsuleSet",
+      "scenario": "self-block-retained"
+    },
+    {
+      "case_id": "C017-P-D0D824EFFC05D385",
+      "symbol": "clear",
+      "scenario": "duplicate-window-clears-by-time"
+    },
+    {
+      "case_id": "C017-P-58F36D34E7CEE532",
+      "symbol": "add",
+      "scenario": "second-conflicting-block"
+    },
+    {
+      "case_id": "C017-P-EECE50CBF2F89567",
+      "symbol": "getTime",
+      "scenario": "clock-error-read"
+    },
+    {
+      "case_id": "C017-P-B2BEBB04C0B6F6C7",
+      "symbol": "setTime",
+      "scenario": "clock-advance"
+    },
+    {
+      "case_id": "C017-P-10DEE7466409388B",
+      "symbol": "toString",
+      "scenario": "state-debug-render"
+    },
+    {
+      "case_id": "C017-T-F59278B7E7D650CA",
+      "symbol": "testValidBlockTime",
+      "scenario": "valid-block-time"
+    },
+    {
+      "case_id": "C017-T-758F16006302091A",
+      "symbol": "testValidSlot",
+      "scenario": "valid-slot"
+    },
+    {
+      "case_id": "C017-T-1F36D8B1DEA83A2F",
+      "symbol": "tet",
+      "scenario": "task-tick"
+    }
+  ]
+}

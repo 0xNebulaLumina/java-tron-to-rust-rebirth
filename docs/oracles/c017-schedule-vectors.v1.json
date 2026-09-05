@@ -1,0 +1,24 @@
+{
+  "schema": "c017-schedule-vectors.v1",
+  "block_interval_ms": 3000,
+  "single_repeat": 1,
+  "maximum_active_witnesses": 27,
+  "filled_slots": {"length": 128, "encoding": {"filled": "1", "missed": "0"}},
+  "shuffle": {
+    "time": 1600000003000,
+    "input": [0,1,2,3,4,5,6,7,8,9],
+    "output": [9,1,0,5,6,4,2,3,8,7],
+    "arithmetic": "Java signed long wrapping, arithmetic right shift, signed remainder"
+  },
+  "maintenance": {
+    "current": 10000,
+    "interval": 9000,
+    "block_time": 28001,
+    "next": 37000,
+    "vote_rule": "old votes subtract, new votes add, every consumed Votes row deletes"
+  },
+  "rewards": {"standby_votes": [1,2], "total": 100, "distribution": [33,66], "default_brokerage_percent": 20, "vi_decimal": "1000000000000000000", "effective_cycle_rule": "legacy before effective cycle; RewardVi from effective cycle onward"},
+  "proposals": {"active_witnesses": 27, "approval_floor": 18, "scan": "latest id descending; gaps/canceled/unexpired skipped; stop at processed", "application": "one shot with dependency checks and dynamic history"},
+  "solidity": {"active_witnesses": 27, "sorted_index": 8, "formula": "floor(size*0.3)", "monotonic": true},
+  "fork": {"upgrade_byte": 1, "downgrade_byte": 0, "threshold": "ceil(rate*active/100)", "maintenance": "reset non-passing version stats to current active size"}
+}

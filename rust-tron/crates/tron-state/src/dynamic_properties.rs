@@ -94,14 +94,14 @@ impl DynamicProperties {
         let mut slots=self.get_raw("BLOCK_FILLED_SLOTS")?;
         if slots.len()!=128{return Err(DynamicError::InvalidSlots(slots.len()))}
         let index=self.get_int("BLOCK_FILLED_SLOTS_INDEX")?.rem_euclid(128) as usize;
-        slots[index]=u8::from(filled);
+        slots[index]=if filled { b'1' } else { b'0' };
         let next_index=((index+1)%128) as i32;
         let mut batch=self.store.batch();
         batch.put(self.store.name(),Self::key("BLOCK_FILLED_SLOTS")?,&slots)
             .put(self.store.name(),Self::key("BLOCK_FILLED_SLOTS_INDEX")?,&next_index.to_be_bytes());
         batch.commit_with_faults(faults).map_err(|e|DynamicError::Storage(e.to_string()))
     }
-    pub fn calculate_filled_slots_count(&self)->Result<i32,DynamicError>{let slots=self.get_raw("BLOCK_FILLED_SLOTS")?;if slots.len()!=128{return Err(DynamicError::InvalidSlots(slots.len()))}Ok((100_i64*slots.iter().map(|&v|i64::from(v)).sum::<i64>()/128) as i32)}
+    pub fn calculate_filled_slots_count(&self)->Result<i32,DynamicError>{let slots=self.get_raw("BLOCK_FILLED_SLOTS")?;if slots.len()!=128{return Err(DynamicError::InvalidSlots(slots.len()))}if slots.iter().any(|slot| !matches!(slot,b'0'|b'1')){return Err(DynamicError::InvalidSlots(slots.len()))}Ok((100*slots.iter().filter(|&&slot|slot==b'1').count()/128) as i32)}
     pub fn update_next_maintenance_time(&self,block_time:i64)->Result<i64,DynamicError>{
         let current=self.get_long("NEXT_MAINTENANCE_TIME")?;
         let interval=self.get_long("MAINTENANCE_TIME_INTERVAL")?;

@@ -167,10 +167,11 @@ fn validate_config(config: &GenesisConfig) -> Result<(), GenesisConfigError> {
     for asset in &config.assets {
         if asset.account_name.iter().all(u8::is_ascii_whitespace) { return Err(GenesisConfigError::BlankAccountName); }
         if asset.address.is_empty() { return Err(GenesisConfigError::InvalidAddress); }
-        if asset.balance < 0 { return Err(GenesisConfigError::InvalidBalance); }
+        let blackhole_sentinel = asset.account_name == b"Blackhole" && asset.balance == i64::MIN;
+        if asset.balance < 0 && !blackhole_sentinel { return Err(GenesisConfigError::InvalidBalance); }
         if !addresses.insert(asset.address.as_slice()) { return Err(GenesisConfigError::DuplicateAddress); }
         if !names.insert(asset.account_name.as_slice()) { return Err(GenesisConfigError::DuplicateAccountName); }
-        supply = supply.checked_add(asset.balance).ok_or(GenesisConfigError::InvalidSupply)?;
+        if !blackhole_sentinel { supply = supply.checked_add(asset.balance).ok_or(GenesisConfigError::InvalidSupply)?; }
     }
     let mut witness_addresses = std::collections::BTreeSet::new();
     for witness in &config.witnesses {

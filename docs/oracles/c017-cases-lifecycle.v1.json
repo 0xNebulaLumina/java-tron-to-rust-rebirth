@@ -1,0 +1,445 @@
+{
+  "schema": "c017-cases-lifecycle.v1",
+  "family": "lifecycle",
+  "source": "c017-ownership-reconciliation.v1.json",
+  "case_count": 23,
+  "cases": [
+    {
+      "case_id": "C017-P-051A0FBD09C07D5C",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/build.gradle:1::java-tron/consensus/build.gradle",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-051A0FBD09C07D5C",
+      "parameters": {
+        "java_source": "java-tron/consensus/build.gradle",
+        "java_line": 1,
+        "java_symbol": "java-tron/consensus/build.gradle",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "e2e1c80703a4d9d9151af4d2c9d84a5f155bd7c38c8bf9c2ca3fb8ce909730df",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-051A0FBD09C07D5C contract exercised by c017_scenarios; evidence java-tron/consensus/build.gradle:1::java-tron/consensus/build.gradle."
+    },
+    {
+      "case_id": "C017-P-29CF11DCB05503BE",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:1::java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-29CF11DCB05503BE",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java",
+        "java_line": 1,
+        "java_symbol": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "ccd1201a18465366a85009e40abc40f0b8da078044cb8a97f2caf8d4e08372d0",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-29CF11DCB05503BE contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:1::java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java."
+    },
+    {
+      "case_id": "C017-P-6C9C17D77944A255",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:1::org.tron.consensus",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-6C9C17D77944A255",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java",
+        "java_line": 1,
+        "java_symbol": "org.tron.consensus",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "3deee2fffe48b0604fe6e99e746c68d921fcad91dfdb2832e7a5b37127ef94ef",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-6C9C17D77944A255 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:1::org.tron.consensus."
+    },
+    {
+      "case_id": "C017-P-8EE58E687EBBCBD3",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:13::Consensus",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-8EE58E687EBBCBD3",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java",
+        "java_line": 13,
+        "java_symbol": "Consensus",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "4170efbd5ac58863eae3e712ecf33d2e2bb0ece89e1040c2bd63d9eec0e7fa9a",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-8EE58E687EBBCBD3 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:13::Consensus."
+    },
+    {
+      "case_id": "C017-P-9A96036CF1D81FC8",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:20::start",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-9A96036CF1D81FC8",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java",
+        "java_line": 20,
+        "java_symbol": "start",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "1d2551815a0feaf21381d5fe54cefaed2305a43d7fcbcdfe6f3aa24103b7fbb8",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-9A96036CF1D81FC8 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:20::start."
+    },
+    {
+      "case_id": "C017-P-5BAAED124890C0E6",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:25::stop",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-5BAAED124890C0E6",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java",
+        "java_line": 25,
+        "java_symbol": "stop",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "fc9e363a86d932186b25c2d701c3c3b740630c6161ac3f6073dec3ea4803d196",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-5BAAED124890C0E6 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:25::stop."
+    },
+    {
+      "case_id": "C017-P-172E6F21F01A5D3F",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:30::receiveBlock",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-172E6F21F01A5D3F",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java",
+        "java_line": 30,
+        "java_symbol": "receiveBlock",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "89f16c1f37b2e02e73535cf2c56fd44cf59178e2626a99a556a84a3cecb78df3",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-172E6F21F01A5D3F contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:30::receiveBlock."
+    },
+    {
+      "case_id": "C017-P-A827AD32979EB588",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:34::validBlock",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-A827AD32979EB588",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java",
+        "java_line": 34,
+        "java_symbol": "validBlock",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "2fab7fe8521cf69757e7b2689557eec29384f26d91f08637141b29752bb5d487",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-A827AD32979EB588 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:34::validBlock."
+    },
+    {
+      "case_id": "C017-P-E08CFAB598DF3815",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:38::applyBlock",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-E08CFAB598DF3815",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java",
+        "java_line": 38,
+        "java_symbol": "applyBlock",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "66370c2d69d445d2a89dd42474cc18ad05c1c81e70ee2bf727effc20e74f92e6",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-E08CFAB598DF3815 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/Consensus.java:38::applyBlock."
+    },
+    {
+      "case_id": "C017-P-5894634D8BDD75D8",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/base/ConsensusInterface.java:1::java-tron/consensus/src/main/java/org/tron/consensus/base/ConsensusInterface.java",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-5894634D8BDD75D8",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/base/ConsensusInterface.java",
+        "java_line": 1,
+        "java_symbol": "java-tron/consensus/src/main/java/org/tron/consensus/base/ConsensusInterface.java",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "7d98268c37da1e02c7ab9dbf664dabee2f99e7b1a6e75a5d370853f5cba07f48",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-5894634D8BDD75D8 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/base/ConsensusInterface.java:1::java-tron/consensus/src/main/java/org/tron/consensus/base/ConsensusInterface.java."
+    },
+    {
+      "case_id": "C017-P-C2A033938C5B37EF",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/base/ConsensusInterface.java:1::org.tron.consensus.base",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-C2A033938C5B37EF",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/base/ConsensusInterface.java",
+        "java_line": 1,
+        "java_symbol": "org.tron.consensus.base",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "8edb44488b8508adfb5e79ae76681bdcdb8e7fbdcbf5857499c5fb66b9deba8d",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-C2A033938C5B37EF contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/base/ConsensusInterface.java:1::org.tron.consensus.base."
+    },
+    {
+      "case_id": "C017-P-3D7CC298E87F8FF3",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/base/ConsensusInterface.java:5::ConsensusInterface",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-3D7CC298E87F8FF3",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/base/ConsensusInterface.java",
+        "java_line": 5,
+        "java_symbol": "ConsensusInterface",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "64475f5a1b17486ae67948e42b21f706933805b5e8c1c1632629365f0039c30d",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-3D7CC298E87F8FF3 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/base/ConsensusInterface.java:5::ConsensusInterface."
+    },
+    {
+      "case_id": "C017-P-2EEC9512D5510BC9",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java:1::java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-2EEC9512D5510BC9",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java",
+        "java_line": 1,
+        "java_symbol": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "0f14be493761f81b8e3de1f84c318b07cbc276d29816946e5ab3b858119fbf60",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-2EEC9512D5510BC9 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java:1::java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java."
+    },
+    {
+      "case_id": "C017-P-9DCB47053A043014",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java:1::org.tron.consensus.base",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-9DCB47053A043014",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java",
+        "java_line": 1,
+        "java_symbol": "org.tron.consensus.base",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "a8ebf68b550eb8cff2b8191fb3e8228a89b23068ed39de02ef4afff2b69a762b",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-9DCB47053A043014 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java:1::org.tron.consensus.base."
+    },
+    {
+      "case_id": "C017-P-EC054554F8F5A9EA",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java:9::Param",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-EC054554F8F5A9EA",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java",
+        "java_line": 9,
+        "java_symbol": "Param",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "3c19cbec99529ee8285fb9f024b2e43c978d86e4140a9fb1a42629d088f1a126",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-EC054554F8F5A9EA contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java:9::Param."
+    },
+    {
+      "case_id": "C017-P-117DE9DD0E6FB9AE",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java:45::getInstance",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-117DE9DD0E6FB9AE",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java",
+        "java_line": 45,
+        "java_symbol": "getInstance",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "1f3eec68fa76b2381a43fae0963a61832364bc8160d33bd6f816785e875b9f85",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-117DE9DD0E6FB9AE contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java:45::getInstance."
+    },
+    {
+      "case_id": "C017-P-A5DB5CC1EEC9385F",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java:56::Miner",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-A5DB5CC1EEC9385F",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java",
+        "java_line": 56,
+        "java_symbol": "Miner",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "92bc0d44cb1df4d39c117b47802d7bd12c78e7e20cf986cde8cb4161ffb099c8",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-A5DB5CC1EEC9385F contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java:56::Miner."
+    },
+    {
+      "case_id": "C017-P-22F74B24215A6423",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java:77::getMiner",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-22F74B24215A6423",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java",
+        "java_line": 77,
+        "java_symbol": "getMiner",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "c3c99ebcf0bfae390e5acb744f8144fb54529e6a9459bc11c142e6da8d69fd6d",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-22F74B24215A6423 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/base/Param.java:77::getMiner."
+    },
+    {
+      "case_id": "C017-P-03C181F2139FF38E",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/base/State.java:1::org.tron.consensus.base",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-03C181F2139FF38E",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/base/State.java",
+        "java_line": 1,
+        "java_symbol": "org.tron.consensus.base",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "6422ed8701401f0e00ed28d84073efa488e229dfceb07ab56bbb3b267675d925",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-03C181F2139FF38E contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/base/State.java:1::org.tron.consensus.base."
+    },
+    {
+      "case_id": "C017-P-FC89CDBCAB48D535",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/base/State.java:1::java-tron/consensus/src/main/java/org/tron/consensus/base/State.java",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-FC89CDBCAB48D535",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/base/State.java",
+        "java_line": 1,
+        "java_symbol": "java-tron/consensus/src/main/java/org/tron/consensus/base/State.java",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "de545f7934989b986030cd9207c61aff6a97a2521359374a0f07a277fd000901",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-FC89CDBCAB48D535 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/base/State.java:1::java-tron/consensus/src/main/java/org/tron/consensus/base/State.java."
+    },
+    {
+      "case_id": "C017-P-45B26F9C866D2C76",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/base/State.java:3::State",
+      "disposition": "covered",
+      "case_kind": "java-symbol:PROD-45B26F9C866D2C76",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/base/State.java",
+        "java_line": 3,
+        "java_symbol": "State",
+        "owning_item": "C017.01",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "schedule-unique=27",
+      "expected_digest": "2922e0cb680f47238cde2213b447b3e06976cc8687c904ff9683441e3edd16e6",
+      "owning_item": "C017.01",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-P-45B26F9C866D2C76 contract exercised by c017_scenarios; evidence java-tron/consensus/src/main/java/org/tron/consensus/base/State.java:3::State."
+    },
+    {
+      "case_id": "C017-T-7077D3846473A454",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/framework/src/test/java/org/tron/core/services/WitnessProductBlockServiceTest.java:17::",
+      "disposition": "covered",
+      "case_kind": "java-symbol:TCASE-7077D3846473A454",
+      "parameters": {
+        "java_source": "java-tron/framework/src/test/java/org/tron/core/services/WitnessProductBlockServiceTest.java",
+        "java_line": 17,
+        "java_symbol": "GetSetCheatWitnessInfoTest",
+        "owning_item": "C017.07",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "pinned-java-case=passed",
+      "expected_digest": "49de973da616da56c5801249fb099071f381c7a3b787eb4f325f8f358a0e7733",
+      "owning_item": "C017.07",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-T-7077D3846473A454 contract exercised by c017_schedule; evidence java-tron/framework/src/test/java/org/tron/core/services/WitnessProductBlockServiceTest.java:17::."
+    },
+    {
+      "case_id": "C017-T-917167763E22A21E",
+      "suite": "c017_cases_lifecycle",
+      "evidence": "java-tron/framework/src/test/java/org/tron/core/services/WitnessProductBlockServiceTest.java:60::",
+      "disposition": "covered",
+      "case_kind": "java-symbol:TCASE-917167763E22A21E",
+      "parameters": {
+        "java_source": "java-tron/framework/src/test/java/org/tron/core/services/WitnessProductBlockServiceTest.java",
+        "java_line": 60,
+        "java_symbol": "validWitnessProductTwoBlockTest",
+        "owning_item": "C017.07",
+        "acceptance_gate": "C017.V"
+      },
+      "expected_result": "pinned-java-case=passed",
+      "expected_digest": "6c0dce7856f8980d3ec144a5841dcb5ab1644295882719229bc0787ff34a3aa5",
+      "owning_item": "C017.07",
+      "acceptance_gate": "C017.V",
+      "rationale": "Row-specific C017-T-917167763E22A21E contract exercised by c017_schedule; evidence java-tron/framework/src/test/java/org/tron/core/services/WitnessProductBlockServiceTest.java:60::."
+    }
+  ]
+}

@@ -2461,12 +2461,17 @@ dependencies = [
 name = "tron-consensus"
 version = "0.0.0"
 dependencies = [
+ "num-bigint",
+ "prost",
+ "serde",
+ "serde_json",
  "tron-config",
  "tron-crypto",
  "tron-execution",
  "tron-primitives",
  "tron-protocol",
  "tron-state",
+ "tron-storage",
 ]
 
 [[package]]

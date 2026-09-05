@@ -1,0 +1,321 @@
+{
+  "schema": "c017-cases-proposals-v1",
+  "source": "c017-ownership-reconciliation.v1.json",
+  "cases": [
+    {
+      "case_id": "C017-P-749E1A8690D84356",
+      "case_kind": "java-symbol:PROD-749E1A8690D84356",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java:1::org.tron.core.consensus",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java",
+        "java_line": 1,
+        "java_symbol": "org.tron.core.consensus",
+        "owning_item": "C017.05",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "threshold_at",
+      "proposal_id": 101,
+      "expected_result": "threshold_at"
+    },
+    {
+      "case_id": "C017-P-8981DBFD4016CFA3",
+      "case_kind": "java-symbol:PROD-8981DBFD4016CFA3",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java:1::java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java",
+        "java_line": 1,
+        "java_symbol": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java",
+        "owning_item": "C017.05",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "threshold_below",
+      "proposal_id": 102,
+      "expected_result": "threshold_below"
+    },
+    {
+      "case_id": "C017-P-31C3C20AB7D8655D",
+      "case_kind": "java-symbol:PROD-31C3C20AB7D8655D",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java:13::ProposalController",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java",
+        "java_line": 13,
+        "java_symbol": "ProposalController",
+        "owning_item": "C017.05",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "expired_apply",
+      "proposal_id": 103,
+      "expected_result": "expired_apply"
+    },
+    {
+      "case_id": "C017-P-E5999C27CF3B93C9",
+      "case_kind": "java-symbol:PROD-E5999C27CF3B93C9",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java:19::createInstance",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java",
+        "java_line": 19,
+        "java_symbol": "createInstance",
+        "owning_item": "C017.05",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "expired_disapprove",
+      "proposal_id": 104,
+      "expected_result": "expired_disapprove"
+    },
+    {
+      "case_id": "C017-P-2F9184A98E3191E2",
+      "case_kind": "java-symbol:PROD-2F9184A98E3191E2",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java:26::processProposals",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java",
+        "java_line": 26,
+        "java_symbol": "processProposals",
+        "owning_item": "C017.05",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "future_skip",
+      "proposal_id": 105,
+      "expected_result": "future_skip"
+    },
+    {
+      "case_id": "C017-P-AD6A71BF066B1CF6",
+      "case_kind": "java-symbol:PROD-AD6A71BF066B1CF6",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java:74::processProposal",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java",
+        "java_line": 74,
+        "java_symbol": "processProposal",
+        "owning_item": "C017.05",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "canceled_skip",
+      "proposal_id": 106,
+      "expected_result": "canceled_skip"
+    },
+    {
+      "case_id": "C017-P-B844E270C6ACD2A7",
+      "case_kind": "java-symbol:PROD-B844E270C6ACD2A7",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java:97::setDynamicParameters",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalController.java",
+        "java_line": 97,
+        "java_symbol": "setDynamicParameters",
+        "owning_item": "C017.05",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "processed_break",
+      "proposal_id": 107,
+      "expected_result": "processed_break"
+    },
+    {
+      "case_id": "C017-P-2905B4660F3B19B3",
+      "case_kind": "java-symbol:PROD-2905B4660F3B19B3",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalService.java:1::org.tron.core.consensus",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalService.java",
+        "java_line": 1,
+        "java_symbol": "org.tron.core.consensus",
+        "owning_item": "C017.05",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "deleted_gap",
+      "proposal_id": 108,
+      "expected_result": "deleted_gap"
+    },
+    {
+      "case_id": "C017-P-4B26A28BAE9F965A",
+      "case_kind": "java-symbol:PROD-4B26A28BAE9F965A",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalService.java:1::java-tron/framework/src/main/java/org/tron/core/consensus/ProposalService.java",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalService.java",
+        "java_line": 1,
+        "java_symbol": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalService.java",
+        "owning_item": "C017.05",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "dependency_apply",
+      "proposal_id": 109,
+      "expected_result": "dependency_apply"
+    },
+    {
+      "case_id": "C017-P-89389712C6C86999",
+      "case_kind": "java-symbol:PROD-89389712C6C86999",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalService.java:16::ProposalType",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalService.java",
+        "java_line": 16,
+        "java_symbol": "ProposalType",
+        "owning_item": "C017.05",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "dependency_skip",
+      "proposal_id": 110,
+      "expected_result": "dependency_skip"
+    },
+    {
+      "case_id": "C017-P-BCC285AEAD528EDA",
+      "case_kind": "java-symbol:PROD-BCC285AEAD528EDA",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalService.java:20::ProposalService",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalService.java",
+        "java_line": 20,
+        "java_symbol": "ProposalService",
+        "owning_item": "C017.05",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "oneshot_skip",
+      "proposal_id": 111,
+      "expected_result": "oneshot_skip"
+    },
+    {
+      "case_id": "C017-P-CB5949C30676543E",
+      "case_kind": "java-symbol:PROD-CB5949C30676543E",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalService.java:22::process",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/ProposalService.java",
+        "java_line": 22,
+        "java_symbol": "process",
+        "owning_item": "C017.05",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "unknown_parameter",
+      "proposal_id": 112,
+      "expected_result": "unknown_parameter"
+    },
+    {
+      "case_id": "C017-T-D8452549066F4016",
+      "case_kind": "java-symbol:TCASE-D8452549066F4016",
+      "evidence": "java-tron/framework/src/test/java/org/tron/core/services/ProposalServiceTest.java:47::",
+      "parameters": {
+        "java_source": "java-tron/framework/src/test/java/org/tron/core/services/ProposalServiceTest.java",
+        "java_line": 47,
+        "java_symbol": "test",
+        "owning_item": "C017.07",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "invalid_protobuf",
+      "proposal_id": 113,
+      "expected_result": "invalid_protobuf"
+    },
+    {
+      "case_id": "C017-T-AC1C6B78AF77FF63",
+      "case_kind": "java-symbol:TCASE-AC1C6B78AF77FF63",
+      "evidence": "java-tron/framework/src/test/java/org/tron/core/services/ProposalServiceTest.java:76::",
+      "parameters": {
+        "java_source": "java-tron/framework/src/test/java/org/tron/core/services/ProposalServiceTest.java",
+        "java_line": 76,
+        "java_symbol": "testUpdateEnergyFee",
+        "owning_item": "C017.07",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "missing_maintenance",
+      "proposal_id": 114,
+      "expected_result": "missing_maintenance"
+    },
+    {
+      "case_id": "C017-T-5B47F4B48C756788",
+      "case_kind": "java-symbol:TCASE-5B47F4B48C756788",
+      "evidence": "java-tron/framework/src/test/java/org/tron/core/services/ProposalServiceTest.java:94::",
+      "parameters": {
+        "java_source": "java-tron/framework/src/test/java/org/tron/core/services/ProposalServiceTest.java",
+        "java_line": 94,
+        "java_symbol": "testUpdateTransactionFee",
+        "owning_item": "C017.07",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "invalid_schedule",
+      "proposal_id": 115,
+      "expected_result": "invalid_schedule"
+    },
+    {
+      "case_id": "C017-T-D7BA4A98A870757F",
+      "case_kind": "java-symbol:TCASE-D7BA4A98A870757F",
+      "evidence": "java-tron/framework/src/test/java/org/tron/core/services/ProposalServiceTest.java:114::",
+      "parameters": {
+        "java_source": "java-tron/framework/src/test/java/org/tron/core/services/ProposalServiceTest.java",
+        "java_line": 114,
+        "java_symbol": "testUpdateConsensusLogicOptimization",
+        "owning_item": "C017.07",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "multiple_history",
+      "proposal_id": 116,
+      "expected_result": "multiple_history"
+    },
+    {
+      "case_id": "C017-T-E4F6DD01435D0BD5",
+      "case_kind": "java-symbol:TCASE-E4F6DD01435D0BD5",
+      "evidence": "java-tron/framework/src/test/java/org/tron/core/services/ProposalServiceTest.java:138::",
+      "parameters": {
+        "java_source": "java-tron/framework/src/test/java/org/tron/core/services/ProposalServiceTest.java",
+        "java_line": 138,
+        "java_symbol": "testProposalExpireTime",
+        "owning_item": "C017.07",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "inactive_approval",
+      "proposal_id": 117,
+      "expected_result": "inactive_approval"
+    },
+    {
+      "case_id": "C017-T-FBE933D938E646CD",
+      "case_kind": "java-symbol:TCASE-FBE933D938E646CD",
+      "evidence": "java-tron/framework/src/test/java/org/tron/core/witness/ProposalControllerTest.java:47::",
+      "parameters": {
+        "java_source": "java-tron/framework/src/test/java/org/tron/core/witness/ProposalControllerTest.java",
+        "java_line": 47,
+        "java_symbol": "testSetDynamicParameters",
+        "owning_item": "C017.07",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "stored_dependency",
+      "proposal_id": 118,
+      "expected_result": "stored_dependency"
+    },
+    {
+      "case_id": "C017-T-8B1D7BEE7C90ECFA",
+      "case_kind": "java-symbol:TCASE-8B1D7BEE7C90ECFA",
+      "evidence": "java-tron/framework/src/test/java/org/tron/core/witness/ProposalControllerTest.java:70::",
+      "parameters": {
+        "java_source": "java-tron/framework/src/test/java/org/tron/core/witness/ProposalControllerTest.java",
+        "java_line": 70,
+        "java_symbol": "testProcessProposal",
+        "owning_item": "C017.07",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "state_persisted",
+      "proposal_id": 119,
+      "expected_result": "state_persisted"
+    },
+    {
+      "case_id": "C017-T-E145ACF825B6C190",
+      "case_kind": "java-symbol:TCASE-E145ACF825B6C190",
+      "evidence": "java-tron/framework/src/test/java/org/tron/core/witness/ProposalControllerTest.java:116::",
+      "parameters": {
+        "java_source": "java-tron/framework/src/test/java/org/tron/core/witness/ProposalControllerTest.java",
+        "java_line": 116,
+        "java_symbol": "testProcessProposals",
+        "owning_item": "C017.07",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "descending_scan",
+      "proposal_id": 120,
+      "expected_result": "descending_scan"
+    },
+    {
+      "case_id": "C017-T-82B1D3036D5B9BB3",
+      "case_kind": "java-symbol:TCASE-82B1D3036D5B9BB3",
+      "evidence": "java-tron/framework/src/test/java/org/tron/core/witness/ProposalControllerTest.java:161::",
+      "parameters": {
+        "java_source": "java-tron/framework/src/test/java/org/tron/core/witness/ProposalControllerTest.java",
+        "java_line": 161,
+        "java_symbol": "testHasMostApprovals",
+        "owning_item": "C017.07",
+        "acceptance_gate": "C017.V"
+      },
+      "scenario": "history_writes",
+      "proposal_id": 121,
+      "expected_result": "history_writes"
+    }
+  ]
+}

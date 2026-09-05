@@ -1,0 +1,17 @@
+{
+  "schema": "c017-cases-solidity-fork.v1",
+  "family": "solidity-fork-consensus-service",
+  "retained_cases": [
+    {"case_id":"C017-P-B08564CDFC77C8B4","stable_id":"PROD-B08564CDFC77C8B4","java_source":"java-tron/consensus/src/main/java/org/tron/consensus/ConsensusDelegate.java","java_line":67,"java_symbol":"getLatestBlockHeaderTimestamp","expected_result":"head_timestamp=12000;solidity_timestamp=9000"},
+    {"case_id":"C017-P-79CA953FC8080FEB","stable_id":"PROD-79CA953FC8080FEB","java_source":"java-tron/consensus/src/main/java/org/tron/consensus/ConsensusDelegate.java","java_line":71,"java_symbol":"getLatestBlockHeaderNumber","expected_result":"head_number=44;solidity_number=40"},
+    {"case_id":"C017-P-B4CB60E681F95590","stable_id":"PROD-B4CB60E681F95590","java_source":"java-tron/consensus/src/main/java/org/tron/consensus/ConsensusDelegate.java","java_line":75,"java_symbol":"lastHeadBlockIsMaintenance","expected_result":"state_flag=1;is_maintenance=true"},
+    {"case_id":"C017-P-0838EB81B529F8D4","stable_id":"PROD-0838EB81B529F8D4","java_source":"java-tron/consensus/src/main/java/org/tron/consensus/ConsensusDelegate.java","java_line":79,"java_symbol":"getMaintenanceSkipSlots","expected_result":"maintenance_skip_slots=2"},
+    {"case_id":"C017-P-B9B1A29827EC142B","stable_id":"PROD-B9B1A29827EC142B","java_source":"java-tron/consensus/src/main/java/org/tron/consensus/ConsensusDelegate.java","java_line":115,"java_symbol":"updateNextMaintenanceTime","expected_result":"next_maintenance_time:10000->19000"},
+    {"case_id":"C017-P-621AAC2E627C7F21","stable_id":"PROD-621AAC2E627C7F21","java_source":"java-tron/consensus/src/main/java/org/tron/consensus/ConsensusDelegate.java","java_line":119,"java_symbol":"getNextMaintenanceTime","expected_result":"next_maintenance_time=19000"},
+    {"case_id":"C017-P-CBE5FFAE67570F58","stable_id":"PROD-CBE5FFAE67570F58","java_source":"java-tron/consensus/src/main/java/org/tron/consensus/ConsensusDelegate.java","java_line":123,"java_symbol":"getLatestSolidifiedBlockNum","expected_result":"latest_solidified=7"},
+    {"case_id":"C017-P-46BF7018AB0D3600","stable_id":"PROD-46BF7018AB0D3600","java_source":"java-tron/consensus/src/main/java/org/tron/consensus/ConsensusDelegate.java","java_line":127,"java_symbol":"saveLatestSolidifiedBlockNum","expected_result":"latest_blocks=[4,9,20];position=0;previous=7;candidate=4;applied=7"}
+  ],
+  "excluded_owner_prefixes": ["C018", "C019"],
+  "excluded_behavior": ["PBFT auxiliary protocol", "block manager/fork replay"],
+  "exclusions_executed": false
+}

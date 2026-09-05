@@ -181,6 +181,11 @@ fn generated_genesis_fixture_dispatch() {
     };
     let digest = tron_crypto::Sha256Provider;
     let genesis = build_genesis(&config, &digest).unwrap();
+    let mut sentinel_config = config.clone();
+    sentinel_config.assets[0].balance = i64::MIN;
+    let sentinel = build_genesis(&sentinel_config, &digest).unwrap();
+    let sentinel_transfer = tron_protocol::protocol::TransferContract::decode(sentinel.block.transactions[0].raw_data.as_ref().unwrap().contract[0].parameter.as_ref().unwrap().value.as_slice()).unwrap();
+    assert_eq!(sentinel_transfer.amount, i64::MIN, "canonical Blackhole Long.MIN_VALUE sentinel");
     let hex = |bytes: &[u8]| bytes.iter().map(|byte| format!("{byte:02x}")).collect::<String>();
     let fixture = include_str!("../../../../docs/oracles/c010-state-fixtures.v1.json");
     assert!(fixture.contains("genesis:accounts-witnesses-assets-block"));
@@ -274,8 +279,8 @@ fn dynamic_block_slots_are_atomic_across_c007_precommit_faults_and_retry() {
         let manager = StorageManager::with_options(requirements(1), options).unwrap();
         let state = StateStore::new(manager.open_store(&path).unwrap());
         let properties = DynamicProperties::new(state.store(StoreKind::DynamicProperties));
-        let mut old_slots = vec![0; 128];
-        old_slots[..63].fill(1);
+        let mut old_slots = vec![b'0'; 128];
+        old_slots[..63].fill(b'1');
         properties.save_raw("BLOCK_FILLED_SLOTS", &old_slots).unwrap();
         properties.save_int("BLOCK_FILLED_SLOTS_INDEX", 127).unwrap();
 
@@ -292,7 +297,7 @@ fn dynamic_block_slots_are_atomic_across_c007_precommit_faults_and_retry() {
 
         properties.apply_block(true).unwrap();
         let slots = properties.get_raw("BLOCK_FILLED_SLOTS").unwrap();
-        assert_eq!(slots.iter().map(|&slot| u32::from(slot)).sum::<u32>(), 64, "dynamic-slots:atomic-precommit-retry retry {phase:?}");
+        assert_eq!(slots.iter().filter(|&&slot| slot == b'1').count(), 64, "dynamic-slots:atomic-precommit-retry retry {phase:?}");
         assert_eq!(properties.get_int("BLOCK_FILLED_SLOTS_INDEX").unwrap(), 0, "dynamic-slots:atomic-precommit-retry retry index {phase:?}");
         assert_eq!(properties.calculate_filled_slots_count().unwrap(), 50, "dynamic-slots:filled-percentage {phase:?}");
         drop(properties);

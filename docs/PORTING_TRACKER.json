@@ -2202,26 +2202,124 @@
       "updated": "2026-09-05",
       "resume": null,
       "items": [
-        {"id":"C016.01","description":"One-contract, size, expiration, Tapos, duplicate/cache, and unknown-field rules.","status":"done","note":"Exact wire-preserving admission, Tapos, expiration, size, duplicate and sanitization rules are implemented and oracle-bound."},
-        {"id":"C016.02","description":"Permission/operations/signature-count/weight/fee and ownerless shielded validation.","status":"done","note":"Strict permission, operations, signer weight/count, ingress and ownerless shielded boundaries are implemented."},
-        {"id":"C016.03","description":"Bandwidth, multisig, memo, energy origin/caller split, fee pool/burn/blackhole.","status":"done","note":"Bandwidth, metadata fee and receipt energy billing paths are implemented with pinned Java vectors."},
-        {"id":"C016.04","description":"Runtime dispatch, constant policy, OUT_OF_TIME retry, witness result comparison.","status":"done","note":"Runtime dispatch and exact single OUT_OF_TIME mismatch retry/witness comparison are implemented."},
-        {"id":"C016.05","description":"ProgramResult, receipt, TransactionInfo/Ret, logs/internal/orders and packing fee.","status":"done","note":"Transaction result/info, fees, logs, internals, order and deletion finalization mappings are implemented."},
-        {"id":"C016.06","description":"Pending held session, capacity, requeue/revoke, smart-contract queue, ID cache.","status":"done","note":"Held C009 pending session, typed broadcast limits, bounded smart drain, Java-exact pending-before-popped fork replay with original timestamps, cache clear and shutdown reset are covered."},
-        {"id":"C016.07","description":"Dispatch custom actuators through the normal admission, permission, execution, receipt, revoke/requeue and failure pipeline; produce the DR-004 differential state/result fixture.","status":"done","note":"TransactionPipeline composes custom registry dispatch through the same ordered admission/trace/runtime/receipt/persist session with complete failure revoke evidence."}
+        {
+          "id": "C016.01",
+          "description": "One-contract, size, expiration, Tapos, duplicate/cache, and unknown-field rules.",
+          "status": "done",
+          "note": "Exact wire-preserving admission, Tapos, expiration, size, duplicate and sanitization rules are implemented and oracle-bound."
+        },
+        {
+          "id": "C016.02",
+          "description": "Permission/operations/signature-count/weight/fee and ownerless shielded validation.",
+          "status": "done",
+          "note": "Strict permission, operations, signer weight/count, ingress and ownerless shielded boundaries are implemented."
+        },
+        {
+          "id": "C016.03",
+          "description": "Bandwidth, multisig, memo, energy origin/caller split, fee pool/burn/blackhole.",
+          "status": "done",
+          "note": "Bandwidth, metadata fee and receipt energy billing paths are implemented with pinned Java vectors."
+        },
+        {
+          "id": "C016.04",
+          "description": "Runtime dispatch, constant policy, OUT_OF_TIME retry, witness result comparison.",
+          "status": "done",
+          "note": "Runtime dispatch and exact single OUT_OF_TIME mismatch retry/witness comparison are implemented."
+        },
+        {
+          "id": "C016.05",
+          "description": "ProgramResult, receipt, TransactionInfo/Ret, logs/internal/orders and packing fee.",
+          "status": "done",
+          "note": "Transaction result/info, fees, logs, internals, order and deletion finalization mappings are implemented."
+        },
+        {
+          "id": "C016.06",
+          "description": "Pending held session, capacity, requeue/revoke, smart-contract queue, ID cache.",
+          "status": "done",
+          "note": "Held C009 pending session, typed broadcast limits, bounded smart drain, Java-exact pending-before-popped fork replay with original timestamps, cache clear and shutdown reset are covered."
+        },
+        {
+          "id": "C016.07",
+          "description": "Dispatch custom actuators through the normal admission, permission, execution, receipt, revoke/requeue and failure pipeline; produce the DR-004 differential state/result fixture.",
+          "status": "done",
+          "note": "TransactionPipeline composes custom registry dispatch through the same ordered admission/trace/runtime/receipt/persist session with complete failure revoke evidence."
+        }
       ],
       "gate": {
         "id": "C016.V",
         "description": "Passed: scoped metadata and 66 production-ownership methods, actual pinned Java Manager/TransactionTrace/PendingManager execution with the v7+ origin-gating and energy-plan additions, admission 6, trace/runtime 16, production pipeline 19, pending/requeue 4, and the locked all-targets check; final correctness and security reviews are clean.",
         "status": "passed",
         "commands": [
-          {"name":"C016 metadata and ownership","cwd":".","argv":["python3","tools/execution/c016_gate.py","metadata"],"timeout_seconds":600},
-          {"name":"C016 Java oracle","cwd":".","argv":["python3","tools/execution/c016_gate.py","oracle"],"timeout_seconds":600},
-          {"name":"C016 admission","cwd":".","argv":["python3","tools/execution/c016_gate.py","admission"],"timeout_seconds":600},
-          {"name":"C016 trace/runtime","cwd":".","argv":["python3","tools/execution/c016_gate.py","trace"],"timeout_seconds":600},
-          {"name":"C016 pipeline","cwd":".","argv":["python3","tools/execution/c016_gate.py","pipeline"],"timeout_seconds":600},
-          {"name":"C016 pending","cwd":".","argv":["python3","tools/execution/c016_gate.py","pending"],"timeout_seconds":600},
-          {"name":"C016 all targets","cwd":".","argv":["python3","tools/execution/c016_gate.py","all-targets"],"timeout_seconds":600}
+          {
+            "name": "C016 metadata and ownership",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/execution/c016_gate.py",
+              "metadata"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C016 Java oracle",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/execution/c016_gate.py",
+              "oracle"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C016 admission",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/execution/c016_gate.py",
+              "admission"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C016 trace/runtime",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/execution/c016_gate.py",
+              "trace"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C016 pipeline",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/execution/c016_gate.py",
+              "pipeline"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C016 pending",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/execution/c016_gate.py",
+              "pending"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C016 all targets",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/execution/c016_gate.py",
+              "all-targets"
+            ],
+            "timeout_seconds": 600
+          }
         ],
         "last_failure": null
       },
@@ -2242,64 +2340,75 @@
     {
       "id": "C017",
       "title": "DPoS consensus",
-      "status": "todo",
-      "owner": null,
-      "updated": null,
+      "status": "done",
+      "owner": "consensus",
+      "updated": "2026-09-05",
       "resume": null,
       "items": [
         {
           "id": "C017.01",
           "description": "3-second slot arithmetic, timestamp optimization, eligibility, witness selection/shuffle/sort quirks.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented exact 3-second DposSlot timing, maintenance skip, single-repeat selection, Java signed-long shuffle, witness sort quirks, and truncate-27 scheduling."
         },
         {
           "id": "C017.02",
           "description": "Production, missed slots, participation, duplicate/equivocation/timing guards.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented production timing and timeout planning, master/backup and participation guards, duplicate/equivocation handling, missed/produced accounting, and the 128 ASCII slot ring."
         },
         {
           "id": "C017.03",
           "description": "Maintenance boundaries, vote deltas, active/current schedules, cycle transitions.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented session-atomic maintenance boundaries, GR power removal, old-minus/new-plus vote consumption, active/current schedule rotation, cycle/delegation snapshots, state flag, and next-time rounding."
         },
         {
           "id": "C017.04",
           "description": "Witness/standby/fee-pool rewards and legacy allowance.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented child-session-atomic block/transaction/standby reward accounting, exact Java floating truncation and brokerage allowance split, legacy-to-RewardVi effective-cycle calculation, BigInteger VI math, and fee-pool vote distributions."
         },
         {
           "id": "C017.05",
           "description": "Proposal 70% application, one-shot/dependency rules, dynamic writes.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented child-session-atomic descending expiry scans, active-witness floor-70% approval, processed-stop/gap/canceled handling, one-shot and dependency-gated dynamic writes, and application history."
         },
         {
           "id": "C017.06",
           "description": "70% solidity position and fork activation updates.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented child-session-atomic sorted latestBlockNum floor(size*0.3) monotonic solidity updates plus canonical-evaluator fork stats, activation, downgrade/upgrade propagation, and maintenance reset."
         },
         {
           "id": "C017.07",
-          "description": "Publish deterministic consensus scenario manifests with seeds, complete genesis/config, slots, maintenance/fork schedules, witness changes, threshold\u22121/at/+1, misses/equivocation, rewards/proposals and per-step Java schedules/state/roots/cursors/events.",
-          "status": "todo",
-          "note": null
+          "description": "Publish and execute deterministic consensus scenarios with pinned-Java protobuf genesis rows, complete dynamic config, ordered state observations, schedules, rewards, proposals, solidity and fork behavior, canonical logical roots and rollback roots; reconcile every owned case by stable executable ID.",
+          "status": "done",
+          "note": "Canonical family manifests are the sole expected-result source for all 155 retained IDs; reconciliation is regenerated from and gate-checked against their exact ID-to-result union, while 81 exact C018/C019 exclusions remain separate. The real-service scenario compares complete StoreKind::ALL rows, canonical roots, events, and cursors at every Java capture point, then verifies committed head and rollback to the complete initial state."
         }
       ],
       "gate": {
         "id": "C017.V",
-        "description": "Fixed-clock 27-witness simulations match Java across maintenance and fork boundaries.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed and cleanly reviewed: the pinned-Java full service-root/rollback integration proof plus seven focused Rust family case tables cover 216 production rows and 20 Java-test rows (17 directly owned plus three BlockFilledSlots cases). Exact ownership is 155 retained C017 cases and 81 explicit C018/C019 exclusions. The retained family counts are schedule 16, production 37, maintenance 32, rewards 18, proposals 21, solidity/fork 8, and lifecycle 23. Every ordered Java capture point compares complete StoreKind::ALL rows, canonical roots, events, and cursors; the roots are initial/rollback 0b0ff9cc0584e123140ab41b38ca8408f4635c7db4b29d7aea8972caab0b5f79, statistic.applyBlock 518591d1857d2631d01b13c0a9e76da999f770667401a3bdc969b1336c3646d0, reward/query/withdraw 0b0513ef0f42ef7b6d85c03032b69c79adcd8ea9e62eef34238b70aa0ed1231e, maintenance/proposal 52cc457c2aedee2f83904c27cd81833a458dd15497b20ca2c09f7eb30e292ce7, dpos.applyBlock 2320b9d82ea28f07aced870e4db527cf04b5fde1914700a9fc95483e43f35653, and fork.update/head 978e5f61eac0f8592e07dfe22578bb2ebf4f5c19d7b1a2b3974f271935359d45. Central manifest/source-ledger hashes, exact ID-to-result equality, mismatch-negative selftest, committed head, and exact rollback rows all pass; final correctness and security/economic reviews are clean.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C017 full canonical gate",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/consensus/c017_gate.py",
+              "all"
+            ],
+            "timeout_seconds": 2400
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
+        "state": "approved",
+        "round": 1,
         "findings": []
       },
       "blocker": null
