@@ -2,7 +2,7 @@
   "chunk": "C012",
   "fixture_namespaces": {
     "built_in_java_differential": {
-      "classification": "pinned_java_direct_actuator_observation",
+      "classification": "pinned_java_instrumented_actuator_observation",
       "deterministic_rerun": {
         "commands": [
           "tools/execution/account/run.py",
@@ -64,21 +64,26 @@
           "family": "owned_java",
           "path": "docs/oracles/c012-java-owned-real.v1.json",
           "runner": "tools/execution/c012_java_oracle.py",
-          "runner_sha256": "49a8eb7df028ea9fb3b1133607595a6a452af872716622fef1f302d06844d618",
+          "runner_sha256": "060afd794ac3caffe215cc8c772791654ace76a1248e0f4e2499191a710f652d",
           "scenario_count": 137,
-          "sha256": "ee4ce540b4009b716c974d717d6140be938ac4040997b04369ccfc6a3775da20",
+          "sha256": "af2f13df9850cfb9cad401963ee9a9d24b597f115b1c54724c0c03fa508e159b",
           "stable_id_count": 137
         }
       ],
+      "family_scenario_count": 77,
+      "instrumented_invocation_count": 239,
+      "instrumented_unique_observation_count": 233,
       "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
       "required_observables": [
         "concrete Contract and Any bytes",
-        "actual commit/reopen rows",
-        "actual revoke/reopen rows or byte-identical rollback root",
-        "result code/error/fee"
+        "captured before rows",
+        "actual Rust commit/reopen rows",
+        "byte-identical Rust rollback root",
+        "result code/error/fee/asset ID",
+        "ordered mutations and final deltas"
       ],
-      "scenario_count": 214,
-      "variant_count": 214
+      "scenario_count": 310,
+      "variant_count": 316
     },
     "dr004_rust_extension": {
       "classification": "newly_authored_rust_contract",
@@ -326,12 +331,59 @@
             "raw_declared_access_entry_count": 65,
             "unique_store_count": 1
           }
+        },
+        {
+          "case": "validation_undeclared_read_rejected_without_exposure",
+          "declared_access": [
+            {
+              "read": true,
+              "store": "Account",
+              "write": true
+            }
+          ],
+          "expected": {
+            "error": {
+              "kind": "Provider",
+              "message": "extension read undeclared store Witness"
+            },
+            "state_mutated": false,
+            "store_value_exposed": false
+          },
+          "id": "DR004.C012.EXT.13",
+          "input": {
+            "payload_hex": "0a15414141414141414141414141414141414141414141120d76616c69646174652d72656164"
+          },
+          "pre_state": {
+            "Witness/77": "736563726574"
+          }
+        },
+        {
+          "case": "validation_declared_read_success",
+          "declared_access": [
+            {
+              "read": true,
+              "store": "Witness",
+              "write": false
+            }
+          ],
+          "expected": {
+            "error": null,
+            "state_mutated": false,
+            "store_value_observed_hex": "736563726574"
+          },
+          "id": "DR004.C012.EXT.14",
+          "input": {
+            "payload_hex": "0a15414141414141414141414141414141414141414141120d76616c69646174652d72656164"
+          },
+          "pre_state": {
+            "Witness/77": "736563726574"
+          }
         }
       ],
-      "variant_count": 12
+      "variant_count": 14
     }
   },
-  "scenario_count": 226,
-  "schema": "c012-execution-fixtures.v4",
-  "variant_count": 226
+  "scenario_count": 324,
+  "schema": "c012-execution-fixtures.v5",
+  "variant_count": 330
 }

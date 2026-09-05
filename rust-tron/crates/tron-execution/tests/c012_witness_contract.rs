@@ -1,3 +1,6 @@
+#[path = "support/c012_replay.rs"]
+mod c012_replay;
+
 use std::{fs, path::PathBuf, time::{SystemTime, UNIX_EPOCH}};
 use prost::Message;
 use tron_execution::{Actuator, ActuatorRegistry, ActuatorResult, ExecutionConfig, RegistryError, VoteWitnessActuator};
@@ -71,4 +74,12 @@ fn reward_callback_precedes_vote_account_reload_and_duplicate_order_is_preserved
  use std::sync::{Arc,atomic::{AtomicBool,Ordering}};use tron_execution::{ActuatorError,ExecutionContext,RewardCallback};
  struct Callback(Arc<AtomicBool>);impl RewardCallback for Callback{fn withdraw_reward(&self,context:&mut ExecutionContext<'_>,address:&[u8])->Result<(),ActuatorError>{self.0.store(true,Ordering::SeqCst);let mut account:Account=context.decode(StoreKind::Account,address,"missing")?;account.balance+=9;context.put_message(StoreKind::Account,address,&account)}}
  let(path,manager,mut outer)=session("callback");setup(&outer,"vote-duplicate-order");let contract=VoteWitnessContract{owner_address:OWNER.to_vec(),votes:vec![tron_protocol::protocol::vote_witness_contract::Vote{vote_address:CANDIDATE.to_vec(),vote_count:1};3],support:false};let any=Any{type_url:"type.googleapis.com/protocol.VoteWitnessContract".into(),value:contract.encode_to_vec()};let called=Arc::new(AtomicBool::new(false));let mut result=ActuatorResult::default();VoteWitnessActuator::new(any).unwrap().execute(&outer,Some(&mut result),ExecutionConfig{blackhole_address:vec![0x41;21],reward_callback:Some(Arc::new(Callback(called.clone())))}).unwrap();assert!(called.load(Ordering::SeqCst));let stored=Account::decode(outer.store(StoreKind::Account).get(OWNER).unwrap().as_slice()).unwrap();assert_eq!(stored.balance,10);assert_eq!(stored.votes.len(),3);outer.revoke().unwrap();drop(manager);fs::remove_dir_all(path).unwrap();
+}
+
+#[test]
+fn instrumented_java_witness_invocations_replay_exactly() {
+    let replay = c012_replay::replay("Witness");
+    assert_eq!(replay.null_boundaries, 6);
+    assert_eq!(replay.replayed_unique + replay.explicit_exclusions, 233);
+    assert_eq!(replay.explicit_exclusions, 0);
 }

@@ -1,3 +1,6 @@
+#[path = "support/c012_replay.rs"]
+mod c012_replay;
+
 use std::{fs, path::PathBuf, time::{SystemTime, UNIX_EPOCH}};
 use prost::Message;
 use tron_execution::{Actuator, ActuatorRegistry, ActuatorResult, AssetIssueActuator, ExecutionConfig, ParticipateAssetIssueActuator, TransferAssetActuator, UnfreezeAssetActuator, UpdateAssetActuator};
@@ -108,4 +111,12 @@ fn asset_actuators_reject_cross_typed_any() {
     let encoded = AssetIssueContract::default().encode_to_vec();
     let error = TransferAssetActuator::new(Any { type_url: "type.googleapis.com/protocol.AssetIssueContract".into(), value: encoded }).err().unwrap();
     assert!(error.message.contains("contract type error"));
+}
+
+#[test]
+fn instrumented_java_asset_invocations_replay_exactly() {
+    let replay = c012_replay::replay("Asset");
+    assert_eq!(replay.null_boundaries, 10);
+    assert_eq!(replay.replayed_unique + replay.explicit_exclusions, 233);
+    assert_eq!(replay.explicit_exclusions, 0);
 }

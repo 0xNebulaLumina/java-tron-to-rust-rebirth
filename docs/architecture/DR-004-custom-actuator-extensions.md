@@ -100,22 +100,27 @@ limits, errors, and test ownership are recorded by `docs/oracles/c012-registry-e
 ### C012 compatibility-oracle boundary
 
 The C012 extension oracle is a `newly_authored_rust_contract`, not a pinned-Java observation.
-Its twelve variants derive expected behavior only from the authenticated descriptor bytes, the
+Its fourteen variants derive expected behavior only from the authenticated descriptor bytes, the
 provider metadata that must exactly match that descriptor registration, and the provider's declared
 state-access contract. The oracle freezes concrete protobuf payload bytes, provider limits, initial
 store contents, result fields, ordered byte deltas, error identities, construction atomicity, and
 child-session revoke outcomes. It covers owner/dispatch, a declared write, validation and execution
-failure, an undeclared write, missing/mismatched/colliding providers, runtime type-URL mismatch, the
-inclusive payload bound and its first rejected byte, and the declared-store resource bound.
+failure, an undeclared read/write, missing/mismatched/colliding providers, runtime type-URL mismatch,
+the inclusive payload bound and its first rejected byte, the declared-store resource bound, and
+validation reads both outside and inside the declared capability set. Validation receives the same
+immutable declared-access capability snapshot as execution: an undeclared read is rejected before
+store bytes are exposed, while a declared read succeeds. Built-in validation remains unrestricted
+through its separate `None` capability and never enters the extension capability path.
 
 `docs/oracles/c012-execution-fixtures.v1.json` keeps this extension evidence in the
 `dr004_rust_extension` namespace. The `built_in_java_differential` namespace remains separate: Java
 revision, method mapping, and Java execution hashes apply only there and cannot authenticate or
-approve an extension expectation. C012 acceptance requires an independent Rust test to execute all
-twelve extension IDs through the actual registry and, where execution is applicable, a real
-revoking `Session`; constant-only comparisons are not evidence. A reviewer must record either
-`approved` or `changes_requested` after confirming provenance, all twelve executions, namespace
-separation, and the absence of a Java-compatibility claim.
+approve an extension expectation. C012 acceptance requires the independent Rust execution test to
+execute all fourteen extension IDs through the actual registry and, where execution is applicable,
+a real revoking `Session`; constant-only comparisons are not evidence. The required independent
+review is approved after confirming newly authored provenance, all fourteen executions, immutable
+validation capabilities, non-exposure on undeclared reads, successful declared reads, unrestricted
+built-in validation, namespace separation, and the absence of a Java-compatibility claim.
 
 ## Rejection and compatibility rules
 

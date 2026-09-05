@@ -92,8 +92,12 @@ impl ExtensionActuatorProvider for AtomicProvider {
 struct AtomicActuator(ExampleContract);
 impl Actuator for AtomicActuator {
     fn owner_address(&self) -> Result<&[u8], ActuatorError> { Ok(&self.0.owner_address) }
-    fn validate(&self, _: &ValidationContext<'_>) -> Result<(), ActuatorError> {
+    fn validate(&self, context: &ValidationContext<'_>) -> Result<(), ActuatorError> {
         if self.0.payload == b"validation-error" { return Err(ActuatorError::validation("extension validation failure")); }
+        if self.0.payload == b"validate-read" {
+            let value = context.get(StoreKind::Witness, b"w")?;
+            if value.as_deref() != Some(b"secret") { return Err(ActuatorError::validation("extension validation read mismatch")); }
+        }
         Ok(())
     }
     fn execute_in(&self, context: &mut ExecutionContext<'_>, result: &mut ActuatorResult) -> Result<(), ActuatorError> {
@@ -190,6 +194,27 @@ fn dr004_c012_ext_04_execution_error_revoke() { assert_revoke(b"error"); }
 fn dr004_c012_ext_05_undeclared_store_revoke() {
     assert_revoke(b"read-undeclared");
     assert_revoke(b"undeclared");
+}
+
+#[test]
+fn dr004_c012_ext_13_validation_undeclared_read_rejected_without_exposure() {
+    let (path, manager, mut outer) = session("validation-undeclared-read");
+    outer.store(StoreKind::Witness).put(b"w", b"secret").unwrap();
+    let error = atomic_registry(vec![write_access(StoreKind::Account)])
+        .validate_optional(Some(&outer), Some(&atomic_contract(b"validate-read")), "missing session", ExecutionConfig::default())
+        .unwrap_err();
+    assert_eq!(error, RegistryError::Provider("extension read undeclared store Witness".into()));
+    outer.revoke().unwrap(); drop(manager); fs::remove_dir_all(path).unwrap();
+}
+
+#[test]
+fn dr004_c012_ext_14_validation_declared_read_succeeds() {
+    let (path, manager, mut outer) = session("validation-declared-read");
+    outer.store(StoreKind::Witness).put(b"w", b"secret").unwrap();
+    atomic_registry(vec![StoreAccess { store: StoreKind::Witness, read: true, write: false }])
+        .validate_optional(Some(&outer), Some(&atomic_contract(b"validate-read")), "missing session", ExecutionConfig::default())
+        .unwrap();
+    outer.revoke().unwrap(); drop(manager); fs::remove_dir_all(path).unwrap();
 }
 
 #[test]

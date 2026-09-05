@@ -42,23 +42,35 @@
     },
     {
       "path": "docs/oracles/c012-java-owned-real.v1.json",
-      "sha256": "ee4ce540b4009b716c974d717d6140be938ac4040997b04369ccfc6a3775da20"
+      "sha256": "af2f13df9850cfb9cad401963ee9a9d24b597f115b1c54724c0c03fa508e159b"
     },
     {
       "path": "tools/execution/c012_java_oracle.py",
-      "sha256": "49a8eb7df028ea9fb3b1133607595a6a452af872716622fef1f302d06844d618"
+      "sha256": "060afd794ac3caffe215cc8c772791654ace76a1248e0f4e2499191a710f652d"
     },
     {
       "path": "tools/execution/C012Oracle.java",
-      "sha256": "44fef3677c79328bcba4fb0d45ea447fa05b8e017093a4260e073b07251c7f1f"
+      "sha256": "618d70d859ddb9af8aad1f83e5195677e0be35509db20de87669da62d5795e5f"
     },
     {
-      "path": "tools/execution/overlay/org/tron/core/actuator/AbstractActuator.java",
-      "sha256": "5d585158f5215690319fcbfd78082f5a3ed9455cfa5edac73083c0b95f197959"
+      "path": "tools/execution/C012ReopenProbe.java",
+      "sha256": "a3e9c4097a6a3b561e6b5a000882f492e8a5a592b321dd3f7c683ccff365e0cc"
+    },
+    {
+      "path": "tools/execution/instrumentation/org/tron/tools/c012/C012Agent.java",
+      "sha256": "595fda6be6e4e9ce8fd66c3bde028a37d5b05686c661f315208525ae31aeb7a0"
+    },
+    {
+      "path": "tools/execution/instrumentation/org/tron/tools/c012/C012Transformer.java",
+      "sha256": "eb52b8145cc098ad41ff0aa6c76ccdb7ee70a9ce16df97e2e111e11117ace92a"
+    },
+    {
+      "path": "tools/execution/instrumentation/org/tron/tools/c012/C012Capture.java",
+      "sha256": "f15d7fc573a60741493a1e48f634086c7f731a79ec705e0a7f8d7e0861087f41"
     }
   ],
   "chunk": "C012",
   "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
-  "provenance": "Each family runner creates deterministic fresh Java databases and overwrites its authenticated real artifact.",
-  "schema_version": 3
+  "provenance": "Family runners plus the authenticated launch-time Java instrumentation capture every selected C012-owned actuator invocation.",
+  "schema_version": 4
 }

@@ -2,23 +2,30 @@
   "chunk": "C012",
   "fixture_inventory": {
     "path": "c012-execution-fixtures.v1.json",
-    "scenarios": 226,
-    "sha256": "cb98c3140b73de567b669782f8f798b42d30ac5c70a8860e6a9cab635ca2e321",
-    "variants": 226
+    "scenarios": 324,
+    "sha256": "b036e91b91d90fe15de0b6150778e4f5a2f0ec8d2516b0bccd7f55682d95415f",
+    "variants": 330
+  },
+  "instrumented_replay": {
+    "deduplication": "identical full observation digest only",
+    "excluded_invocations": 0,
+    "executed_observations": 233,
+    "selected_invocations": 239,
+    "unique_observations": 233
   },
   "ownership_reconciliation": {
     "mapped": 222,
     "path": "c012-java-test-reconciliation.v1.json",
-    "sha256": "c4997daabdfd32858c60fe7fd1796f38f154731c3bb8b72034a8f509d7b9e025",
+    "sha256": "03219b74ee9a474b2afd04d4d0954ab28a0bb1963016f487f4fdb4719d46948b",
     "stable_ids": 222,
     "typed_exclusions": 0
   },
-  "reviewer_disposition": "pending_rerun",
-  "schema": "c012-execution-contract.v4",
-  "schema_version": 4,
-  "scope": "214 real built-in family/direct Java scenarios plus 12 DR-004 Rust registry/Session variants",
+  "reviewer_disposition": "approved",
+  "schema": "c012-execution-contract.v5",
+  "schema_version": 5,
+  "scope": "77 real family rows plus 239 exact instrumented C012-owned actuator invocations (233 unique full observation digests), and 14 DR-004 Rust registry/Session variants",
   "source_inventory": {
     "path": "c012-source-inventory.v1.json",
-    "sha256": "7325fd363e545f4b6c131c81af13637af6f6b84f58413cf3cc5051bda31acf40"
+    "sha256": "d9bb3b69a46ed9292a31475c8c3b771bfcdfc74019959e35b63745f70fee1153"
   }
 }

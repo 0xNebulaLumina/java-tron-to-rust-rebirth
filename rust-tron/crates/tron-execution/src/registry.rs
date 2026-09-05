@@ -9,8 +9,8 @@ use tron_protocol::{
 use tron_state::{Session, StoreKind};
 use crate::{
     AccountCreateActuator, AccountPermissionUpdateActuator, AccountUpdateActuator, Actuator,
-    ActuatorError, ActuatorResult, AssetIssueActuator, DeclaredStoreAccess,
-    ExecutionConfig, ExecutionContext, ParticipateAssetIssueActuator, SetAccountIdActuator,
+    ActuatorError, ActuatorResult, AssetIssueActuator, DeclaredStoreAccess, ExecutionConfig,
+    ExecutionContext, NO_CONTRACT, ParticipateAssetIssueActuator, SetAccountIdActuator,
     TransferActuator, TransferAssetActuator, UnfreezeAssetActuator, UpdateAssetActuator,
     ValidationContext, VoteWitnessActuator, WitnessCreateActuator, WitnessUpdateActuator,
 };
@@ -285,6 +285,27 @@ impl ActuatorRegistry {
         let provider = &self.providers[index];
         let inner = catch_provider_panic(&provider.metadata.extension_id, || provider.provider.create_actuator(&any.value))?.map_err(provider_error)?;
         Ok(Box::new(DeclaredStateActuator { inner, allowed: provider.access.clone(), extension_id: provider.metadata.extension_id.clone() }))
+    }
+    pub fn actuator_optional(
+        &self,
+        session: Option<&Session>,
+        contract: Option<&Contract>,
+        missing_session_error: &str,
+    ) -> Result<Box<dyn Actuator>, RegistryError> {
+        session.ok_or_else(|| RegistryError::Provider(missing_session_error.to_owned()))?;
+        self.actuator(contract.ok_or_else(|| RegistryError::Provider(NO_CONTRACT.to_owned()))?)
+    }
+
+    pub fn validate_optional(
+        &self,
+        session: Option<&Session>,
+        contract: Option<&Contract>,
+        missing_session_error: &str,
+        config: ExecutionConfig,
+    ) -> Result<(), RegistryError> {
+        let actuator = self.actuator_optional(session, contract, missing_session_error)?;
+        let allowed = actuator.declared_access().cloned();
+        actuator.validate(&ValidationContext::new(session.expect("checked by actuator_optional"), config, allowed)).map_err(provider_error)
     }
 
     pub fn execute(&self, contract: &Contract, session: &Session, result: Option<&mut ActuatorResult>, config: ExecutionConfig) -> Result<(), RegistryError> {

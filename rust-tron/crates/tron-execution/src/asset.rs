@@ -12,12 +12,29 @@ const UNFREEZE_ASSET: &str = "protocol.UnfreezeAssetContract";
 const FROZEN_PERIOD: i64 = 86_400_000;
 
 fn account(context: &ExecutionContext<'_>, address: &[u8], missing: &'static str) -> Result<Account, ActuatorError> { context.decode(StoreKind::Account, address, missing) }
-fn put_account(context: &mut ExecutionContext<'_>, value: &Account) -> Result<(), ActuatorError> { context.put_message(StoreKind::Account, &value.address, value) }
+fn put_account(context: &mut ExecutionContext<'_>, value: &Account) -> Result<(), ActuatorError> {
+    let mut encoded = java_field_order(value.encode_to_vec());
+    for (tag, values) in [(&[0x32][..], &value.asset), (&[0xc2, 0x03][..], &value.asset_v2)] {
+        for (name, amount) in values { if *amount == 0 { add_explicit_zero_map_value(&mut encoded, tag, name.as_bytes()); } }
+    }
+    context.put(StoreKind::Account, &value.address, &encoded)
+}
+fn add_explicit_zero_map_value(encoded: &mut Vec<u8>, tag: &[u8], key: &[u8]) {
+    let mut entry = Vec::with_capacity(tag.len() + key.len() + 4); entry.extend_from_slice(tag); entry.push((key.len() + 2) as u8); entry.push(0x0a); entry.push(key.len() as u8); entry.extend_from_slice(key);
+    if let Some(offset) = encoded.windows(entry.len()).position(|window| window == entry) { let end = offset + entry.len(); encoded[offset + tag.len()] += 2; encoded.splice(end..end, [0x10, 0x00]); }
+}
+fn java_field_order(encoded: Vec<u8>) -> Vec<u8> {
+    let mut fields = Vec::new(); let mut offset = 0usize; let mut ordinal = 0usize;
+    while offset < encoded.len() { let start = offset; let tag = read_varint(&encoded, &mut offset); match tag & 7 { 0 => { read_varint(&encoded, &mut offset); }, 1 => offset += 8, 2 => { let len = read_varint(&encoded, &mut offset) as usize; offset += len; }, 5 => offset += 4, wire => panic!("unsupported account wire type {wire}") } fields.push((tag >> 3, ordinal, encoded[start..offset].to_vec())); ordinal += 1; }
+    fields.sort_by(|left,right| left.0.cmp(&right.0).then_with(|| if left.0 == 6 { right.2.cmp(&left.2) } else { left.1.cmp(&right.1) })); fields.into_iter().flat_map(|field| field.2).collect()
+}
+fn read_varint(bytes: &[u8], offset: &mut usize) -> u64 { let mut value=0u64; let mut shift=0; loop { let byte=bytes[*offset]; *offset+=1; value|=u64::from(byte&0x7f)<<shift; if byte&0x80==0{return value;} shift+=7; } }
+fn hex_bytes(value: &[u8]) -> String { value.iter().map(|byte| format!("{byte:02x}")).collect() }
 fn readable(value: &[u8], max: usize) -> bool { !value.is_empty() && value.len() <= max && value.iter().all(|byte| (0x21..=0x7e).contains(byte)) }
 fn valid_url(value: &[u8]) -> bool { !value.is_empty() && value.len() <= 256 }
 fn valid_description(value: &[u8]) -> bool { value.len() <= 200 }
 fn same_name(context: &ExecutionContext<'_>) -> Result<bool, ActuatorError> { Ok(context.dynamic_long("ALLOW_SAME_TOKEN_NAME")? != 0) }
-fn optimized(context: &ExecutionContext<'_>) -> Result<bool, ActuatorError> { Ok(context.dynamic_long("ALLOW_ACCOUNT_ASSET_OPTIMIZATION")? == 1) }
+fn optimized(context: &ExecutionContext<'_>) -> Result<bool, ActuatorError> { Ok(context.get(StoreKind::DynamicProperties, tron_state::dynamic::key("ALLOW_ACCOUNT_ASSET_OPTIMIZATION").unwrap())?.is_some_and(|bytes| bytes.as_slice() == 1_i64.to_be_bytes())) }
 fn issue(context: &ExecutionContext<'_>, key: &[u8]) -> Result<AssetIssueContract, ActuatorError> {
     context.decode(if same_name(context)? { StoreKind::AssetIssueV2 } else { StoreKind::AssetIssue }, key, "No asset!")
 }
@@ -30,11 +47,11 @@ fn set_asset_balance(context: &mut ExecutionContext<'_>, account: &mut Account, 
     } else {
         let name = core::str::from_utf8(key).map_err(|_| ActuatorError::execution("asset key is not UTF-8"))?.to_owned();
         let id = issue.id.clone();
-        if value == 0 { account.asset.remove(&name); } else { account.asset.insert(name, value); }
+        account.asset.insert(name, value);
         if account.asset_optimized {
             context.set_account_asset_balance(account, id.as_bytes(), value)
         } else {
-            if value == 0 { account.asset_v2.remove(&id); } else { account.asset_v2.insert(id, value); }
+            account.asset_v2.insert(id, value);
             Ok(())
         }
     }
@@ -66,9 +83,11 @@ impl Actuator for AssetIssueActuator {
     if c.num <= 0 { return Err(ActuatorError::validation("Num must greater than 0!")); }
     if c.public_free_asset_net_usage != 0 { return Err(ActuatorError::validation("PublicFreeAssetNetUsage must be 0!")); }
     if c.frozen_supply.len() > usize::try_from(context.dynamic_int("MAX_FROZEN_SUPPLY_NUMBER")?).unwrap_or(0) { return Err(ActuatorError::validation("Frozen supply list length is too long")); }
+    if c.free_asset_net_limit < 0 { return Err(ActuatorError::validation("Invalid FreeAssetNetLimit")); }
+    if c.public_free_asset_net_limit < 0 { return Err(ActuatorError::validation("Invalid PublicFreeAssetNetLimit")); }
     let day = context.dynamic_long("ONE_DAY_NET_LIMIT")?;
-    if c.free_asset_net_limit < 0 || c.free_asset_net_limit >= day { return Err(ActuatorError::validation("Invalid FreeAssetNetLimit")); }
-    if c.public_free_asset_net_limit < 0 || c.public_free_asset_net_limit >= day { return Err(ActuatorError::validation("Invalid PublicFreeAssetNetLimit")); }
+    if c.free_asset_net_limit >= day { return Err(ActuatorError::validation("Invalid FreeAssetNetLimit")); }
+    if c.public_free_asset_net_limit >= day { return Err(ActuatorError::validation("Invalid PublicFreeAssetNetLimit")); }
     let min = i64::from(context.dynamic_int("MIN_FROZEN_SUPPLY_TIME")?);
     let max = i64::from(context.dynamic_int("MAX_FROZEN_SUPPLY_TIME")?);
     let mut remain = c.total_supply;
@@ -130,7 +149,7 @@ impl Actuator for UpdateAssetActuator {
         let mut v2: AssetIssueContract = context.decode(StoreKind::AssetIssueV2, &owner.asset_issued_id, "Asset is not existed in AssetIssueV2Store")?;
         v2.free_asset_net_limit = self.contract.new_limit; v2.public_free_asset_net_limit = self.contract.new_public_limit; v2.url.clone_from(&self.contract.url); v2.description.clone_from(&self.contract.description);
         context.put_message(StoreKind::AssetIssueV2, &owner.asset_issued_id, &v2)?;
-        if !same_name(context)? { let mut legacy = v2.clone(); context.put_message(StoreKind::AssetIssue, &owner.asset_issued_name, &legacy)?; legacy.id.clear(); }
+        if !same_name(context)? { context.put_message(StoreKind::AssetIssue, &owner.asset_issued_name, &v2)?; }
         result.code = Code::Sucess; Ok(())
     }
 }
@@ -176,7 +195,7 @@ impl ParticipateAssetIssueActuator { pub fn new(any: Any) -> Result<Self, Actuat
 impl Actuator for ParticipateAssetIssueActuator {
     fn owner_address(&self) -> Result<&[u8], ActuatorError> { Ok(&self.contract.owner_address) }
     fn validate(&self, context: &ValidationContext<'_>) -> Result<(), ActuatorError> { let c=&self.contract; if !valid_address(&c.owner_address) { return Err(ActuatorError::validation("Invalid ownerAddress")); } if !valid_address(&c.to_address) { return Err(ActuatorError::validation("Invalid toAddress")); } if c.amount<=0{return Err(ActuatorError::validation("Amount must greater than 0!"));} if c.owner_address==c.to_address{return Err(ActuatorError::validation("Cannot participate asset Issue yourself !"));}
-    let owner=account(context,&c.owner_address,"Account does not exist!")?; if owner.balance<c.amount{return Err(ActuatorError::validation("No enough balance !"));} let issue=issue(context,&c.asset_name)?; if issue.owner_address!=c.to_address{return Err(ActuatorError::validation("The asset is not issued by toAddress"));} let now=context.dynamic_long("LATEST_BLOCK_HEADER_TIMESTAMP")?; if now>=issue.end_time||now<issue.start_time{return Err(ActuatorError::validation("No longer valid period!"));}
+    let owner=account(context,&c.owner_address,"Account does not exist!")?; if owner.balance<c.amount{return Err(ActuatorError::validation("No enough balance !"));} let issue_store=if same_name(context)?{StoreKind::AssetIssueV2}else{StoreKind::AssetIssue};let issue_bytes=context.get(issue_store,&c.asset_name)?.ok_or_else(||ActuatorError::validation(format!("No asset named {}",if c.asset_name.is_empty(){"null".to_owned()}else{String::from_utf8_lossy(&c.asset_name).into_owned()})))?;let issue=AssetIssueContract::decode(issue_bytes.as_slice()).map_err(|error|ActuatorError::execution(error.to_string()))?; if issue.owner_address!=c.to_address{return Err(ActuatorError::validation(format!("The asset is not issued by {}", hex_bytes(&c.to_address))));} let now=context.dynamic_long("LATEST_BLOCK_HEADER_TIMESTAMP")?; if now>=issue.end_time||now<issue.start_time{return Err(ActuatorError::validation("No longer valid period!"));}
     let exchange=c.amount.checked_mul(i64::from(issue.num)).ok_or_else(||ActuatorError::arithmetic("long overflow"))?.div_euclid(i64::from(issue.trx_num)); if exchange<=0{return Err(ActuatorError::validation("Can not process the exchange!"));} let issuer=account(context,&c.to_address,"To account does not exist!")?; if asset_balance(context,&issuer,&c.asset_name,&issue)?<exchange{return Err(ActuatorError::validation("Asset balance is not enough !"));} Ok(()) }
     fn execute_in(&self, context:&mut ExecutionContext<'_>, result:&mut ActuatorResult)->Result<(),ActuatorError>{let c=&self.contract;let issue=issue(context,&c.asset_name)?;let exchange=c.amount.checked_mul(i64::from(issue.num)).ok_or_else(||ActuatorError::arithmetic("long overflow"))?.div_euclid(i64::from(issue.trx_num));let mut owner=account(context,&c.owner_address,"Account does not exist!")?;let mut issuer=account(context,&c.to_address,"To account does not exist!")?;owner.balance=checked_sub(owner.balance,c.amount)?;issuer.balance=checked_add(issuer.balance,c.amount)?;add_asset(context,&mut owner,&c.asset_name,&issue,exchange)?;let next=checked_sub(asset_balance(context,&issuer,&c.asset_name,&issue)?,exchange)?;set_asset_balance(context,&mut issuer,&c.asset_name,&issue,next)?;put_account(context,&owner)?;put_account(context,&issuer)?;result.code=Code::Sucess;Ok(())}
 }
@@ -185,6 +204,6 @@ pub struct UnfreezeAssetActuator { any: Any, contract: UnfreezeAssetContract }
 impl UnfreezeAssetActuator { pub fn new(any: Any)->Result<Self,ActuatorError>{let contract=decode_typed_any(&any,UNFREEZE_ASSET)?;Ok(Self{any,contract})} pub fn raw_any(&self)->&Any{&self.any} }
 impl Actuator for UnfreezeAssetActuator {
  fn owner_address(&self)->Result<&[u8],ActuatorError>{Ok(&self.contract.owner_address)}
- fn validate(&self, context: &ValidationContext<'_>) -> Result<(), ActuatorError> { if !valid_address(&self.contract.owner_address){return Err(ActuatorError::validation("Invalid address"));}let owner=account(context,&self.contract.owner_address,"Account does not exist")?;if owner.frozen_supply.is_empty(){return Err(ActuatorError::validation("no frozen supply balance"));}if (same_name(context)?&&owner.asset_issued_id.is_empty())||(!same_name(context)?&&owner.asset_issued_name.is_empty()){return Err(ActuatorError::validation("this account has not issued any asset"));}let now=context.dynamic_long("LATEST_BLOCK_HEADER_TIMESTAMP")?;if !owner.frozen_supply.iter().any(|f|f.expire_time<=now){return Err(ActuatorError::validation("It's not time to unfreeze asset supply"));}Ok(()) }
- fn execute_in(&self,context:&mut ExecutionContext<'_>,result:&mut ActuatorResult)->Result<(),ActuatorError>{let mut owner=account(context,&self.contract.owner_address,"Account does not exist")?;let now=context.dynamic_long("LATEST_BLOCK_HEADER_TIMESTAMP")?;let mut amount=0_i64;let mut retained=Vec::with_capacity(owner.frozen_supply.len());for frozen in owner.frozen_supply.drain(..){if frozen.expire_time<=now{amount=checked_add(amount,frozen.frozen_balance)?;}else{retained.push(frozen);}}owner.frozen_supply=retained;let key=if same_name(context)?{owner.asset_issued_id.clone()}else{owner.asset_issued_name.clone()};let issue=issue(context,&key)?;add_asset(context,&mut owner,&key,&issue,amount)?;put_account(context,&owner)?;result.code=Code::Sucess;Ok(())}
+ fn validate(&self, context: &ValidationContext<'_>) -> Result<(), ActuatorError> { if !valid_address(&self.contract.owner_address){return Err(ActuatorError::validation("Invalid address"));}let missing=format!("Account[{}] does not exist",hex_bytes(&self.contract.owner_address));let owner:Account=context.decode(StoreKind::Account,&self.contract.owner_address,"Account does not exist").map_err(|error|if error.message=="Account does not exist"{ActuatorError::validation(missing)}else{error})?;if owner.frozen_supply.is_empty(){return Err(ActuatorError::validation("no frozen supply balance"));}if (same_name(context)?&&owner.asset_issued_id.is_empty())||(!same_name(context)?&&owner.asset_issued_name.is_empty()){return Err(ActuatorError::validation("this account has not issued any asset"));}let now=context.dynamic_long("LATEST_BLOCK_HEADER_TIMESTAMP")?;if !owner.frozen_supply.iter().any(|f|f.expire_time<=now){return Err(ActuatorError::validation("It's not time to unfreeze asset supply"));}Ok(()) }
+ fn execute_in(&self,context:&mut ExecutionContext<'_>,result:&mut ActuatorResult)->Result<(),ActuatorError>{let mut owner=account(context,&self.contract.owner_address,"Account does not exist")?;let now=context.dynamic_long("LATEST_BLOCK_HEADER_TIMESTAMP")?;let mut amount=0_i64;let mut retained=Vec::with_capacity(owner.frozen_supply.len());for frozen in owner.frozen_supply.drain(..){if frozen.expire_time<=now{amount=checked_add(amount,frozen.frozen_balance)?;}else{retained.push(frozen);}}owner.frozen_supply=retained;if same_name(context)?{let key=owner.asset_issued_id.clone();let next=checked_add(context.account_asset_balance(&owner,&key)?,amount)?;context.set_account_asset_balance(&mut owner,&key,next)?;}else{let name=core::str::from_utf8(&owner.asset_issued_name).map_err(|_|ActuatorError::execution("asset key is not UTF-8"))?.to_owned();let next=checked_add(*owner.asset.get(&name).unwrap_or(&0),amount)?;owner.asset.insert(name,next);let id=core::str::from_utf8(&owner.asset_issued_id).map_err(|_|ActuatorError::execution("asset id is not UTF-8"))?.to_owned();owner.asset_v2.insert(id,next);}put_account(context,&owner)?;result.code=Code::Sucess;Ok(())}
 }

@@ -17,6 +17,9 @@ impl ActuatorError {
 impl fmt::Display for ActuatorError { fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result { f.write_str(&self.message) } }
 impl std::error::Error for ActuatorError {}
 impl From<SessionError> for ActuatorError { fn from(value: SessionError) -> Self { Self { kind: ActuatorErrorKind::Store, message: value.to_string() } } }
+pub const NO_ACCOUNT_OR_DYNAMIC_STORE: &str = "No account store or dynamic store!";
+pub const NO_ACCOUNT_OR_WITNESS_STORE: &str = "No account store or witness store!";
+pub const NO_CONTRACT: &str = "No contract!";
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct StateDelta { pub store: StoreKind, pub key: Vec<u8>, pub before: StoreEntry, pub after: StoreEntry }
@@ -40,7 +43,8 @@ pub trait Actuator {
     fn execute(&self, outer: &Session, result: Option<&mut ActuatorResult>, config: ExecutionConfig) -> Result<(), ActuatorError> {
         let result = result.ok_or_else(|| ActuatorError::execution("TransactionResultCapsule is null"))?;
         let mut child = outer.child()?;
-        let mut temporary = ActuatorResult::default();
+        let mut temporary = result.clone();
+        temporary.deltas.clear();
         let execution: Result<(), ActuatorError> = (|| {
             let access = self.declared_access().cloned();
             let validation = ValidationContext::new(&child, config.clone(), access.clone());
@@ -58,7 +62,7 @@ pub trait Actuator {
             }
             Err(error) => {
                 let _ = child.revoke();
-                *result = ActuatorResult { code: Code::Failed, message: error.message.as_bytes().to_vec(), ..ActuatorResult::default() };
+                *result = ActuatorResult { code: Code::Failed, ..ActuatorResult::default() };
                 Err(error)
             }
         }
@@ -85,7 +89,7 @@ pub struct ValidationContext<'a> {
     inner: ExecutionContext<'a>,
 }
 impl<'a> ValidationContext<'a> {
-    fn new(session: &'a Session, config: ExecutionConfig, allowed: Option<DeclaredStoreAccess>) -> Self { Self { inner: ExecutionContext::new(session, config, allowed) } }
+    pub fn new(session: &'a Session, config: ExecutionConfig, allowed: Option<DeclaredStoreAccess>) -> Self { Self { inner: ExecutionContext::new(session, config, allowed) } }
 }
 impl<'a> core::ops::Deref for ValidationContext<'a> {
     type Target = ExecutionContext<'a>;
@@ -126,9 +130,10 @@ impl<'a> ExecutionContext<'a> {
     }
     pub fn delete(&mut self, kind: StoreKind, key: &[u8]) -> Result<(), ActuatorError> {
         self.ensure_writable(kind)?;
-        if !self.touched.contains_key(&(kind, key.to_vec())) {
+        let touched_key = (kind, key.to_vec());
+        if !self.touched.contains_key(&touched_key) {
             let before = self.store(kind).entry(key);
-            self.touched.insert((kind, key.to_vec()), before);
+            self.touched.insert(touched_key, before);
         }
         self.store(kind).delete(key)?;
         Ok(())
@@ -140,9 +145,10 @@ impl<'a> ExecutionContext<'a> {
     }
     pub fn put(&mut self, kind: StoreKind, key: &[u8], value: &[u8]) -> Result<(), ActuatorError> {
         self.ensure_writable(kind)?;
-        if !self.touched.contains_key(&(kind, key.to_vec())) {
+        let touched_key = (kind, key.to_vec());
+        if !self.touched.contains_key(&touched_key) {
             let before = self.store(kind).entry(key);
-            self.touched.insert((kind, key.to_vec()), before);
+            self.touched.insert(touched_key, before);
         }
         self.store(kind).put(key, value)?;
         Ok(())
@@ -183,7 +189,7 @@ impl<'a> ExecutionContext<'a> {
             account.asset_v2.remove(&name);
             if value == 0 { self.delete(StoreKind::AccountAsset, &key) } else { self.put(StoreKind::AccountAsset, &key, &value.to_be_bytes()) }
         } else {
-            if value == 0 { account.asset_v2.remove(&name); } else { account.asset_v2.insert(name, value); }
+            account.asset_v2.insert(name, value);
             Ok(())
         }
     }
@@ -196,7 +202,7 @@ impl<'a> ExecutionContext<'a> {
 
 pub fn decode_typed_any<M: Message + Default>(any: &tron_protocol::google::protobuf::Any, full_name: &str) -> Result<M, ActuatorError> {
     let expected = format!("type.googleapis.com/{full_name}");
-    if any.type_url != expected { return Err(ActuatorError::validation(format!("contract type error, expected type [{full_name}], real type[{}]", any.type_url))); }
+    if any.type_url != expected { let short = full_name.rsplit('.').next().unwrap_or(full_name); let separators = match short { "AssetIssueContract" | "ParticipateAssetIssueContract" => (",", ","), "UpdateAssetContract" | "WitnessCreateContract" | "WitnessUpdateContract" => (", ", ","), _ => (", ", ", ") }; return Err(ActuatorError::validation(format!("contract type error{}expected type [{short}]{}real type[class com.google.protobuf.Any]", separators.0, separators.1))); }
     M::decode(any.value.as_slice()).map_err(|error| ActuatorError::validation(error.to_string()))
 }
 

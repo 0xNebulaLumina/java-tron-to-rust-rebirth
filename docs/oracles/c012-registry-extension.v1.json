@@ -67,17 +67,31 @@
     {"id":"DR004.C012.EXT.09","case":"runtime_type_url_mismatch","input":{"contract_type":1000,"type_url":"type.googleapis.com/org.tron.example.actuator.AlternateContract","payload_hex":"0a1541414141414141414141414141414141414141414112026f6b"},"expected":{"error":{"kind":"TypeUrlMismatch","expected":"type.googleapis.com/org.tron.example.actuator.ExampleContract","actual":"type.googleapis.com/org.tron.example.actuator.AlternateContract"},"owner_invoked":false,"factory_invoked":false,"state_mutated":false}},
     {"id":"DR004.C012.EXT.10","case":"payload_at_declared_bound","input":{"payload_size_bytes":128},"expected":{"payload_limit_error":null,"owner_or_factory_may_decode":true}},
     {"id":"DR004.C012.EXT.11","case":"payload_over_declared_bound","input":{"payload_size_bytes":129},"expected":{"error":{"kind":"PayloadLimitExceeded","extension_id":"org.tron.example.actuator","limit":128,"actual":129},"owner_invoked":false,"factory_invoked":false,"state_mutated":false}},
-    {"id":"DR004.C012.EXT.12","case":"declared_store_resource_bound","mutation":{"raw_declared_access_entry_count":65,"unique_store_count":1,"duplicate_entries_preserved_until_limit_check":true},"expected":{"construction_error":{"kind":"ProviderStateAccessLimitExceeded","extension_id":"org.tron.example.actuator","limit":64,"actual":65},"registry_published":false,"state_mutated":false}}
+    {"id":"DR004.C012.EXT.12","case":"declared_store_resource_bound","mutation":{"raw_declared_access_entry_count":65,"unique_store_count":1,"duplicate_entries_preserved_until_limit_check":true},"expected":{"construction_error":{"kind":"ProviderStateAccessLimitExceeded","extension_id":"org.tron.example.actuator","limit":64,"actual":65},"registry_published":false,"state_mutated":false}},
+    {"id":"DR004.C012.EXT.13","case":"validation_undeclared_read_rejected_without_exposure","input":{"payload_hex":"0a15414141414141414141414141414141414141414141120d76616c69646174652d72656164"},"pre_state":{"Witness/77":"736563726574"},"declared_access":[{"store":"Account","read":true,"write":true}],"expected":{"error":{"kind":"Provider","message":"extension read undeclared store Witness"},"store_value_exposed":false,"state_mutated":false}},
+    {"id":"DR004.C012.EXT.14","case":"validation_declared_read_success","input":{"payload_hex":"0a15414141414141414141414141414141414141414141120d76616c69646174652d72656164"},"pre_state":{"Witness/77":"736563726574"},"declared_access":[{"store":"Witness","read":true,"write":false}],"expected":{"error":null,"store_value_observed_hex":"736563726574","state_mutated":false}}
   ],
   "test_ownership": {
     "independent_rust_execution_test": "rust-tron/crates/tron-execution/tests/c012_extension_registry.rs",
-    "required_test_ids": ["DR004.C012.EXT.01","DR004.C012.EXT.02","DR004.C012.EXT.03","DR004.C012.EXT.04","DR004.C012.EXT.05","DR004.C012.EXT.06","DR004.C012.EXT.07","DR004.C012.EXT.08","DR004.C012.EXT.09","DR004.C012.EXT.10","DR004.C012.EXT.11","DR004.C012.EXT.12"],
+    "required_test_ids": ["DR004.C012.EXT.01","DR004.C012.EXT.02","DR004.C012.EXT.03","DR004.C012.EXT.04","DR004.C012.EXT.05","DR004.C012.EXT.06","DR004.C012.EXT.07","DR004.C012.EXT.08","DR004.C012.EXT.09","DR004.C012.EXT.10","DR004.C012.EXT.11","DR004.C012.EXT.12","DR004.C012.EXT.13","DR004.C012.EXT.14"],
     "prohibited_evidence": ["Java oracle hash","Java validate/execute claim","constant-only comparison","shared built-in fixture namespace"]
   },
   "reviewer_disposition": {
     "required": true,
-    "state": "pending_rerun",
+    "state": "approved",
     "allowed_terminal_states": ["approved","changes_requested"],
-    "must_confirm": ["newly_authored_rust_contract provenance","all 12 variants independently execute in Rust","built-in namespace remains separate","no pinned-Java claim"]
+    "must_confirm": ["newly_authored_rust_contract provenance","all 14 variants independently execute in Rust","validation receives the immutable declared-access capability snapshot","undeclared validation reads are rejected without exposing store bytes","declared validation reads succeed","built-in validation retains unrestricted None capability","built-in namespace remains separate","no pinned-Java claim"],
+    "evidence": {
+      "review_basis": "clean_independent_review",
+      "independent_rust_execution_test": "rust-tron/crates/tron-execution/tests/c012_extension_registry.rs",
+      "executed_variant_count": 14,
+      "executed_variant_ids": ["DR004.C012.EXT.01","DR004.C012.EXT.02","DR004.C012.EXT.03","DR004.C012.EXT.04","DR004.C012.EXT.05","DR004.C012.EXT.06","DR004.C012.EXT.07","DR004.C012.EXT.08","DR004.C012.EXT.09","DR004.C012.EXT.10","DR004.C012.EXT.11","DR004.C012.EXT.12","DR004.C012.EXT.13","DR004.C012.EXT.14"],
+      "capability_checks": {
+        "validation receives the immutable declared-access capability snapshot": true,
+        "undeclared validation reads are rejected without exposing store bytes": true,
+        "declared validation reads succeed": true,
+        "built-in validation retains unrestricted None capability": true
+      }
+    }
   }
 }
