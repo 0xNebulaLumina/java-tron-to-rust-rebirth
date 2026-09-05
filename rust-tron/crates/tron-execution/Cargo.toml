@@ -13,10 +13,10 @@ tron-crypto = { path = "../tron-crypto" }
 tron-primitives = { path = "../tron-primitives" }
 tron-protocol = { path = "../tron-protocol" }
 tron-state = { path = "../tron-state" }
+tron-storage = { path = "../tron-storage" }
 tron-tvm = { path = "../tron-tvm" }
 
 [dev-dependencies]
-tron-storage = { path = "../tron-storage" }
 serde_json = "=1.0.143"
 [lints]
 workspace = true

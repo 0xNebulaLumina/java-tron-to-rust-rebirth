@@ -9,6 +9,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "tools/reference-runner"))
+from java_reference_guard import install_java_reference_guard
+SESSION = install_java_reference_guard(ROOT)
 COVERAGE = ROOT / "docs/oracles/common-primitives-coverage.v1.json"
 VECTORS = ROOT / "docs/oracles/c002-java-boundary-vectors.v1.json"
 FIXTURES = ROOT / "docs/oracles/c002-primitives-fixtures.v1.json"
@@ -153,7 +156,7 @@ def main() -> None:
                 continue
             path_value = source["path"]
             pinned_sources.add(path_value)
-            path = ROOT / path_value
+            path = SESSION.tree / Path(path_value).relative_to("java-tron")
             if not path.is_file():
                 errors.append(f"missing Java source: {path_value}")
             elif digest(path) != source["sha256"]:

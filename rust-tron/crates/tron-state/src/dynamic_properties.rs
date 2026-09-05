@@ -117,7 +117,7 @@ impl DynamicProperties {
     }
 
     pub fn proposal_expire_time(&self,minimum:i64,maximum:i64)->Result<Option<i64>,DynamicError>{let value=self.get_long("PROPOSAL_EXPIRE_TIME")?;Ok((value>minimum&&value<maximum).then_some(value))}
-    pub fn supports_max_delegate_lock_period(&self,base_period:i64)->Result<bool,DynamicError>{Ok(self.get_long("MAX_DELEGATE_LOCK_PERIOD")?>base_period&&self.is_unfreeze_delay_enabled()?)}
+    pub fn supports_max_delegate_lock_period(&self,_base_period:i64)->Result<bool,DynamicError>{Ok(self.store.contains_key(Self::key("MAX_DELEGATE_LOCK_PERIOD")?)&&self.is_unfreeze_delay_enabled()?)}
     pub fn fork_stats(&self,version:i32)->Option<Vec<u8>>{self.store.get(format!("FORK_VERSION_{version}").as_bytes())}
     pub fn save_fork_stats(&self,version:i32,stats:&[u8])->Result<(),DynamicError>{self.store.put(format!("FORK_VERSION_{version}").as_bytes(),stats).map_err(|e|DynamicError::Storage(e.to_string()))}
     pub fn forked(&self,version:i32)->bool{self.store.get(format!("FORK_CONTROLLER{version}").as_bytes()).as_deref()==Some(b"true")}

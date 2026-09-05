@@ -1,8 +1,35 @@
 use core::fmt;
 use std::collections::BTreeMap;
 use std::sync::{Arc, Mutex, MutexGuard};
+use tron_storage::market_total_cmp;
 
 use crate::{CheckpointIdentity, CursorError, CursorPoint, StateStore, StoreEntry, StoreKind, StoreName, StoreNameError};
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+struct MarketLogicalKey(Vec<u8>);
+
+impl Ord for MarketLogicalKey {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering { market_total_cmp(&self.0, &other.0) }
+}
+
+impl PartialOrd for MarketLogicalKey {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> { Some(self.cmp(other)) }
+}
+
+fn collect_market_values<V: Clone>(values: &BTreeMap<Vec<u8>, V>) -> BTreeMap<MarketLogicalKey, V> {
+    values
+        .iter()
+        .filter(|(key, _)| key.len() >= 54)
+        .map(|(key, value)| (MarketLogicalKey(key.clone()), value.clone()))
+        .collect()
+}
+
+fn market_pair_start(pair: &[u8]) -> MarketLogicalKey {
+    let mut start = pair.to_vec();
+    start.extend_from_slice(&[0; 16]);
+    MarketLogicalKey(start)
+}
+
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum OverlayValue {
@@ -13,6 +40,7 @@ pub enum OverlayValue {
 #[derive(Clone, Debug, Default)]
 struct OverlayLayer {
     values: BTreeMap<StoreName, BTreeMap<Vec<u8>, OverlayValue>>,
+    market_values: BTreeMap<StoreName, BTreeMap<MarketLogicalKey, OverlayValue>>,
     committed: bool,
     abandoned: bool,
     disable_on_exit: bool,
@@ -254,7 +282,14 @@ impl SessionManager {
         if checkpoint.layers.iter().any(|layer| !layer.committed) { return Err(E::from(SessionError::InvalidSession)); }
         let count = checkpoint.layers.len();
         state.next_id = checkpoint.layers.iter().map(|layer| layer.id).max().unwrap_or(0).wrapping_add(1).max(1);
-        state.layers = checkpoint.layers.into_iter().map(|layer| OverlayLayer { id: layer.id, committed: true, values: layer.values, abandoned: false, disable_on_exit: false }).collect();
+        state.layers = checkpoint.layers.into_iter().map(|layer| {
+            let market_values = layer
+                .values
+                .iter()
+                .map(|(name, values)| (name.clone(), collect_market_values(values)))
+                .collect();
+            OverlayLayer { id: layer.id, committed: true, values: layer.values, market_values, abandoned: false, disable_on_exit: false }
+        }).collect();
         state.checkpoints = materialize_history(&state.root, &state.layers, checkpoint.history);
         Ok(count)
     }
@@ -396,10 +431,11 @@ pub(crate) struct CommittedCheckpoint {
 }
 
 
-/// Immutable read capability backed entirely by an eagerly materialized namespace image.
+/// Immutable read capability with a Java-ordered market index captured alongside the namespace image.
 #[derive(Clone)]
 pub struct ReadView {
     image: Arc<BTreeMap<StoreName, BTreeMap<Vec<u8>, Vec<u8>>>>,
+    market_image: Arc<BTreeMap<StoreName, BTreeMap<MarketLogicalKey, Vec<u8>>>>,
 }
 
 impl ReadView {
@@ -427,11 +463,15 @@ impl ReadView {
                 }
             }
         }
-        Self { image: Arc::new(image) }
+        Self::from_image(image)
     }
 
     fn from_image(image: BTreeMap<StoreName, BTreeMap<Vec<u8>, Vec<u8>>>) -> Self {
-        Self { image: Arc::new(image) }
+        let market_image = image
+            .iter()
+            .map(|(name, rows)| (name.clone(), collect_market_values(rows)))
+            .collect();
+        Self { image: Arc::new(image), market_image: Arc::new(market_image) }
     }
 
     fn image(&self) -> &BTreeMap<StoreName, BTreeMap<Vec<u8>, Vec<u8>>> { &self.image }
@@ -441,12 +481,13 @@ impl ReadView {
 
     pub fn namespace(&self, name: impl Into<String>) -> Result<ViewStore, StoreNameError> { Ok(self.store_by_name(StoreName::new(name)?)) }
 
-    fn store_by_name(&self, name: StoreName) -> ViewStore { ViewStore { image: Arc::clone(&self.image), name } }
+    fn store_by_name(&self, name: StoreName) -> ViewStore { ViewStore { image: Arc::clone(&self.image), market_image: Arc::clone(&self.market_image), name } }
 }
 
 #[derive(Clone)]
 pub struct ViewStore {
     image: Arc<BTreeMap<StoreName, BTreeMap<Vec<u8>, Vec<u8>>>>,
+    market_image: Arc<BTreeMap<StoreName, BTreeMap<MarketLogicalKey, Vec<u8>>>>,
     name: StoreName,
 }
 
@@ -458,6 +499,20 @@ impl ViewStore {
     pub fn prefix(&self, prefix: &[u8]) -> Vec<(Vec<u8>, Vec<u8>)> {
         let Some(rows) = self.image.get(&self.name) else { return Vec::new(); };
         rows.range(prefix.to_vec()..).take_while(|(key, _)| key.starts_with(prefix)).map(|(key, value)| (key.clone(), value.clone())).collect()
+    }
+    pub fn market_ordered(&self, pair: &[u8], excluded: &[u8], limit: usize) -> tron_storage::Result<tron_storage::MarketQueryResult> {
+        if pair.len() != tron_primitives::MARKET_PAIR_LENGTH { return Err(tron_storage::StorageError::MarketKey { actual: pair.len() }); }
+        if limit == 0 { return Ok(tron_storage::MarketQueryResult { rows: Vec::new(), visited: 0 }); }
+        let Some(rows) = self.market_image.get(&self.name) else { return Ok(tron_storage::MarketQueryResult { rows: Vec::new(), visited: 0 }); };
+        let mut visited = 0;
+        let rows = rows.range(market_pair_start(pair)..)
+            .take_while(|(key, _)| key.0.starts_with(pair))
+            .inspect(|_| visited += 1)
+            .filter(|(key, _)| key.0.as_slice() != excluded)
+            .take(limit)
+            .map(|(key, value)| (key.0.clone(), value.clone()))
+            .collect();
+        Ok(tron_storage::MarketQueryResult { rows, visited })
     }
 }
 
@@ -551,7 +606,10 @@ impl OverlayStore {
     fn mutate(&self, key: &[u8], value: OverlayValue) -> Result<(), SessionError> {
         let mut state = self.manager.lock();
         let index = self.valid_index(&state).ok_or(SessionError::InvalidSession)?;
-        state.layers[index].values.entry(self.name.clone()).or_default().insert(key.to_vec(), value);
+        state.layers[index].values.entry(self.name.clone()).or_default().insert(key.to_vec(), value.clone());
+        if key.len() >= 54 {
+            state.layers[index].market_values.entry(self.name.clone()).or_default().insert(MarketLogicalKey(key.to_vec()), value);
+        }
         Ok(())
     }
 
@@ -597,6 +655,45 @@ impl OverlayStore {
 
     #[must_use]
     pub fn prefix_query(&self, prefix: &[u8]) -> Vec<(Vec<u8>, Vec<u8>)> { self.prefix(prefix) }
+    pub fn market_ordered(&self, pair: &[u8], excluded: &[u8], limit: usize) -> tron_storage::Result<tron_storage::MarketQueryResult> {
+        if limit == 0 { return Ok(tron_storage::MarketQueryResult { rows: Vec::new(), visited: 0 }); }
+        if pair.len() != tron_primitives::MARKET_PAIR_LENGTH { return Err(tron_storage::StorageError::MarketKey { actual: pair.len() }); }
+        let state = self.manager.lock();
+        let Some(index) = self.valid_index(&state) else { return Ok(tron_storage::MarketQueryResult { rows: Vec::new(), visited: 0 }); };
+        let lower = market_pair_start(pair);
+        let mut overlays = state.layers[..=index]
+            .iter()
+            .map(|layer| layer.market_values.get(&self.name).map(|values| values.range(lower.clone()..).peekable()))
+            .collect::<Vec<_>>();
+        let root_store = state.root.store_by_name(self.name.clone());
+        let first_root = root_store.market_ordered_after(pair, None, excluded, 1)?;
+        let mut visited = first_root.visited;
+        let mut root = first_root.rows.into_iter().next();
+        let mut output = Vec::with_capacity(limit);
+        while output.len() < limit {
+            let mut next_key = root.as_ref().map(|(key, _)| MarketLogicalKey(key.clone()));
+            for cursor in overlays.iter_mut().flatten() {
+                if let Some((key, _)) = cursor.peek() {
+                    if key.0.starts_with(pair) && next_key.as_ref().is_none_or(|next| *key < next) { next_key = Some((*key).clone()); }
+                }
+            }
+            let Some(next_key) = next_key else { break; };
+            visited += 1;
+            let mut selected = root.as_ref().filter(|(key, _)| key.as_slice() == next_key.0).map(|(_, value)| OverlayValue::Put(value.clone()));
+            if root.as_ref().is_some_and(|(key, _)| key.as_slice() == next_key.0) {
+                let next_root = root_store.market_ordered_after(pair, Some(&next_key.0), excluded, 1)?;
+                visited += next_root.visited;
+                root = next_root.rows.into_iter().next();
+            }
+            for cursor in overlays.iter_mut().flatten() {
+                if cursor.peek().is_some_and(|(key, _)| key.0 == next_key.0) { selected = cursor.next().map(|(_, value)| value.clone()); }
+            }
+            if next_key.0.as_slice() != excluded {
+                if let Some(OverlayValue::Put(value)) = selected { output.push((next_key.0, value)); }
+            }
+        }
+        Ok(tron_storage::MarketQueryResult { rows: output, visited })
+    }
 }
 
 pub struct Session {
@@ -693,6 +790,9 @@ impl Session {
                     disable_on_exit |= layer.disable_on_exit;
                     for (store, entries) in layer.values {
                         predecessor.values.entry(store).or_default().extend(entries);
+                    }
+                    for (store, entries) in layer.market_values {
+                        predecessor.market_values.entry(store).or_default().extend(entries);
                     }
                 }
             }

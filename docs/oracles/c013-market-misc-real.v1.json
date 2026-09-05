@@ -1,0 +1,63 @@
+{
+  "rows": [
+    {
+      "buy_quantity": 2000,
+      "fee": 0,
+      "scenario": "market-sell",
+      "sell_quantity": 1000
+    },
+    {
+      "fee": 0,
+      "remaining_sell": 750,
+      "returned": 750,
+      "scenario": "market-cancel"
+    },
+    {
+      "after": 30,
+      "before": 20,
+      "scenario": "brokerage-update"
+    },
+    {
+      "after": 2000000,
+      "before": 1000000,
+      "scenario": "energy-limit-update"
+    },
+    {
+      "after": 25,
+      "before": 10,
+      "scenario": "setting-update"
+    },
+    {
+      "after_present": false,
+      "before_present": true,
+      "scenario": "clear-abi"
+    }
+  ],
+  "schema": "c013-market-misc-real.v1",
+  "storage_contract_compatibility": {
+    "decision": "unsupported_transaction_contract_types",
+    "java_evidence": {
+      "actuator_registry": "actuator/src/main/java/org/tron/core/actuator",
+      "behavior": "Messages and wallet RPC declarations remain, but the pinned ContractType enum has no storage variants and the production actuator package has no storage actuators to register.",
+      "message_schema": "protocol/src/main/protos/core/contract/storage_contract.proto",
+      "transaction_registry": "protocol/src/main/protos/core/Tron.proto"
+    },
+    "rust_rejection": [
+      {
+        "legacy_numeric_type": 21,
+        "message": "protocol.BuyStorageContract",
+        "registry_error": "InvalidContractType(21)"
+      },
+      {
+        "legacy_numeric_type": 22,
+        "message": "protocol.BuyStorageBytesContract",
+        "registry_error": "InvalidContractType(22)"
+      },
+      {
+        "legacy_numeric_type": 23,
+        "message": "protocol.SellStorageContract",
+        "registry_error": "InvalidContractType(23)"
+      }
+    ]
+  }
+}

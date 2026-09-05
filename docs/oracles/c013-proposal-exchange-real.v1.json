@@ -1,0 +1,40 @@
+{
+  "rows": [
+    {
+      "expiration": 1700262000000,
+      "now": 1700000000000,
+      "scenario": "proposal-expiration",
+      "valid": true
+    },
+    {
+      "other_balance": 1500,
+      "other_quant": 250,
+      "scenario": "inject-ratio",
+      "token_balance": 3000,
+      "token_quant": 500
+    },
+    {
+      "buy": 2000000,
+      "quant": 50000,
+      "received": 95235,
+      "scenario": "trade-legacy",
+      "sell": 1000000
+    },
+    {
+      "intentional_gaps": [
+        27,
+        36
+      ],
+      "maximum": 98,
+      "scenario": "proposal-id-surface"
+    },
+    {
+      "buy": 2000000,
+      "quant": 50000,
+      "received": 95235,
+      "scenario": "trade-hardened",
+      "sell": 1000000
+    }
+  ],
+  "schema": "c013-proposal-exchange-real.v1"
+}

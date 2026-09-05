@@ -1,0 +1,103 @@
+{
+  "canonical_sources": [
+    {
+      "path": "tools/execution/c013_gate.py",
+      "sha256": "df0f139a9c719b348cd8237cc174c638d0bc6c6b266bcd06bb2a1cd8c07f223a"
+    },
+    {
+      "path": "tools/execution/c013_java_oracle.py",
+      "sha256": "0852671d2b275793398dee848b214e1321429831a934117091ae792e3b80a8e2"
+    },
+    {
+      "path": "tools/execution/C013Oracle.java",
+      "sha256": "18a7fce8cc8ec2e533f55a8e5a3b10d10bc829ce91bab8f611a631395070ceb5"
+    },
+    {
+      "path": "tools/execution/c013/resource/run.py",
+      "sha256": "8ee44e0d3e8b7e7eb4b9ffcbf3cad874d7222305f5c0f7e1069f00739fdab5c7"
+    },
+    {
+      "path": "tools/execution/c013/proposal_exchange/run.py",
+      "sha256": "986cf9a0577ea967c11b1e7c64932bb7b111b4b92ae0215703be1cbafefad56c"
+    },
+    {
+      "path": "tools/execution/c013/market_misc/run.py",
+      "sha256": "2306e91917236e101f92494cd12febe3531cf4b7548fa875ace8e73b87c84bbc"
+    },
+    {
+      "path": "docs/oracles/c013-resource-real.v1.json",
+      "sha256": "8697c4bfb62b60b608de6878f890b14f9c5d412c8ad3784360d165a318e922a9"
+    },
+    {
+      "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+      "sha256": "b49a0ec06eb53c4a383a1c9c26b63392bd6c4731a82d5ccfafb7eb71ae5ed7c7"
+    },
+    {
+      "path": "docs/oracles/c013-market-misc-real.v1.json",
+      "sha256": "65b15cc3a21cab90b48118382ebd15a538bc5e9bd83cf28408e657d3b2a9991b"
+    },
+    {
+      "path": "java-tron/protocol/src/main/protos/core/Tron.proto",
+      "sha256": "6982f5177850db3c5048005f8f222827d925052fbb8c93b0d041b20ed774aed3"
+    },
+    {
+      "path": "java-tron/protocol/src/main/protos/core/contract/storage_contract.proto",
+      "sha256": "5e27e9094e314115d1d0001ccadef3c357ac012b5b399eda9f619cd9e4e5b9ff"
+    },
+    {
+      "path": "java-tron/protocol/src/main/protos/api/api.proto",
+      "sha256": "5dec5d12ee2e88fda559523e074e454ebda562415b908557ffcb422523224b81"
+    },
+    {
+      "path": "java-tron/actuator/src/main/java/org/tron/core/utils/TransactionRegister.java",
+      "sha256": "f368cf2451b9207f442f8f3137a1b1a44a1ce859518a91c2f9de7fb802042e8e"
+    },
+    {
+      "path": "java-tron/chainbase/src/main/java/org/tron/core/actuator/TransactionFactory.java",
+      "sha256": "c2697ad0579c80eef1327b8eb894ff74d4fc354267c32399ee064a1ccceba7a9"
+    },
+    {
+      "path": "rust-tron/crates/tron-execution/src/registry.rs",
+      "sha256": "0607a6fda1fc2e5b9904ebe9c286293590961ebd581ee19f3830c3abb1c9aa88"
+    },
+    {
+      "path": "rust-tron/crates/tron-execution/src/exchange.rs",
+      "sha256": "c6da6b6306f1c83bf554252c3837319dc9f6aac54ab28973ef70b25b4cc6f9cf"
+    },
+    {
+      "path": "rust-tron/crates/tron-execution/src/market.rs",
+      "sha256": "71b0171c6e423d15e4f7dcec1882def27b3a99ef2799489568b30a1ade40de0f"
+    },
+    {
+      "path": "rust-tron/crates/tron-execution/src/misc.rs",
+      "sha256": "0b2afe28821f60f65a2cd8ea1f0bbeb943a2e8206c49f2ffedaa298222b2d1e7"
+    },
+    {
+      "path": "rust-tron/crates/tron-execution/src/proposal.rs",
+      "sha256": "d0a92bb545a76e394d72406d49fdfcfb5f063e5e2badfe7f4344a5c14778b5c1"
+    },
+    {
+      "path": "rust-tron/crates/tron-execution/src/resource_actuators.rs",
+      "sha256": "8959c8003c5d375f6f02ad6098186c1792b54ff37f420fa15753162a6965f995"
+    },
+    {
+      "path": "rust-tron/crates/tron-execution/tests/support/c013_replay.rs",
+      "sha256": "dc9fac18b9c401babc52a915e7ba4f6b42be1095cd2cb98ecc78e3c05d1e24b4"
+    },
+    {
+      "path": "rust-tron/crates/tron-execution/tests/c013_resource_contract.rs",
+      "sha256": "4e42981344005b020fde14770e87e241a569a9a9992cfe6dd901f5129a0dc0bc"
+    },
+    {
+      "path": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs",
+      "sha256": "d1d374a0e695468ac6f7830efe8608313fc257934552fee162a40df81fec86b4"
+    },
+    {
+      "path": "rust-tron/crates/tron-execution/tests/c013_market_misc.rs",
+      "sha256": "78293ad9261a61152a6b4611edf867d44884bede85d63eb2af78264a99776457"
+    }
+  ],
+  "chunk": "C013",
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "schema": "c013-source-inventory.v1"
+}

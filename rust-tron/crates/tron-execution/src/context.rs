@@ -24,15 +24,40 @@ pub const NO_CONTRACT: &str = "No contract!";
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct StateDelta { pub store: StoreKind, pub key: Vec<u8>, pub before: StoreEntry, pub after: StoreEntry }
 
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct ActuatorResult {
     pub fee: i64,
     pub code: Code,
     pub message: Vec<u8>,
     pub asset_issue_id: Vec<u8>,
+    pub withdraw_amount: i64,
+    pub unfreeze_amount: i64,
+    pub exchange_id: i64,
+    pub exchange_inject_another_amount: i64,
+    pub exchange_withdraw_another_amount: i64,
+    pub exchange_received_amount: i64,
+    pub order_id: Vec<u8>,
+    pub order_details: Vec<tron_protocol::protocol::MarketOrderDetail>,
+    pub withdraw_expire_amount: i64,
+    pub cancel_unfreeze_v2_amount: BTreeMap<String, i64>,
     pub deltas: Vec<StateDelta>,
 }
-impl Default for ActuatorResult { fn default() -> Self { Self { fee: 0, code: Code::Sucess, message: Vec::new(), asset_issue_id: Vec::new(), deltas: Vec::new() } } }
+impl Default for ActuatorResult { fn default() -> Self { Self { fee: 0, code: Code::Sucess, message: Vec::new(), asset_issue_id: Vec::new(), withdraw_amount: 0, unfreeze_amount: 0, exchange_id: 0, exchange_inject_another_amount: 0, exchange_withdraw_another_amount: 0, exchange_received_amount: 0, order_id: Vec::new(), order_details: Vec::new(), withdraw_expire_amount: 0, cancel_unfreeze_v2_amount: BTreeMap::new(), deltas: Vec::new() } } }
+
+#[doc(hidden)]
+pub struct ProvisionalActuatorExecution {
+    child: Session,
+    pub result: ActuatorResult,
+    pub error: Option<ActuatorError>,
+    pub deltas: Vec<StateDelta>,
+}
+
+impl ProvisionalActuatorExecution {
+    pub fn session(&self) -> &Session { &self.child }
+    pub fn merge(mut self) -> Result<(), ActuatorError> { self.child.merge().map_err(Into::into) }
+    pub fn revoke(mut self) -> Result<(), ActuatorError> { self.child.revoke().map_err(Into::into) }
+}
+
 
 pub trait Actuator {
     fn owner_address(&self) -> Result<&[u8], ActuatorError>;
@@ -67,6 +92,34 @@ pub trait Actuator {
             }
         }
     }
+    #[doc(hidden)]
+    fn execute_body_provisionally(&self, outer: &Session, result: ActuatorResult, config: ExecutionConfig) -> Result<ProvisionalActuatorExecution, ActuatorError> {
+        let child = outer.child()?;
+        let mut result = result;
+        result.deltas.clear();
+        let mut context = ExecutionContext::new(&child, config, self.declared_access().cloned());
+        let error = self.execute_in(&mut context, &mut result).err();
+        if error.is_some() { result.code = Code::Failed; }
+        let deltas = context.deltas()?;
+        result.deltas = deltas.clone();
+        drop(context);
+        Ok(ProvisionalActuatorExecution { child, result, error, deltas })
+    }
+
+    fn execute_without_validation(&self, outer: &Session, result: Option<&mut ActuatorResult>, config: ExecutionConfig) -> Result<(), ActuatorError> {
+        let result = result.ok_or_else(|| ActuatorError::execution("TransactionResultCapsule is null"))?;
+        let provisional = self.execute_body_provisionally(outer, result.clone(), config)?;
+        if let Some(error) = provisional.error.clone() {
+            provisional.revoke()?;
+            *result = ActuatorResult { code: Code::Failed, ..ActuatorResult::default() };
+            Err(error)
+        } else {
+            let completed = provisional.result.clone();
+            provisional.merge()?;
+            *result = completed;
+            Ok(())
+        }
+    }
 }
 
 pub trait RewardCallback: Send + Sync {
@@ -74,9 +127,9 @@ pub trait RewardCallback: Send + Sync {
 }
 
 #[derive(Clone)]
-pub struct ExecutionConfig { pub blackhole_address: Vec<u8>, pub reward_callback: Option<Arc<dyn RewardCallback>> }
+pub struct ExecutionConfig { pub blackhole_address: Vec<u8>, pub reward_callback: Option<Arc<dyn RewardCallback>>, pub guard_representatives: BTreeSet<Vec<u8>> }
 impl Default for ExecutionConfig {
-    fn default() -> Self { Self { blackhole_address: vec![0x41; 21], reward_callback: None } }
+    fn default() -> Self { Self { blackhole_address: vec![0x41; 21], reward_callback: None, guard_representatives: BTreeSet::new() } }
 }
 
 #[derive(Clone, Debug, Default, Eq, PartialEq)]
@@ -120,9 +173,16 @@ impl<'a> ExecutionContext<'a> {
         Ok(())
     }
     pub fn blackhole_address(&self) -> &[u8] { &self.config.blackhole_address }
+    pub fn is_guard_representative(&self, address: &[u8]) -> bool { self.config.guard_representatives.contains(address) }
     pub fn get(&self, kind: StoreKind, key: &[u8]) -> Result<Option<Vec<u8>>, ActuatorError> {
         self.ensure_readable(kind)?;
         Ok(self.store(kind).get(key))
+    }
+    pub(crate) fn market_ordered(&self, kind: StoreKind, pair: &[u8], excluded: &[u8], limit: usize) -> Result<Vec<Vec<u8>>, ActuatorError> {
+        self.ensure_readable(kind)?;
+        self.store(kind).market_ordered(pair, excluded, limit)
+            .map(|query| query.rows.into_iter().map(|(key, _)| key).collect())
+            .map_err(|error| ActuatorError::execution(error.to_string()))
     }
     pub fn decode<M: Message + Default>(&self, kind: StoreKind, key: &[u8], missing: &'static str) -> Result<M, ActuatorError> {
         let bytes = self.get(kind, key)?.ok_or_else(|| ActuatorError::validation(missing))?;
@@ -202,7 +262,7 @@ impl<'a> ExecutionContext<'a> {
 
 pub fn decode_typed_any<M: Message + Default>(any: &tron_protocol::google::protobuf::Any, full_name: &str) -> Result<M, ActuatorError> {
     let expected = format!("type.googleapis.com/{full_name}");
-    if any.type_url != expected { let short = full_name.rsplit('.').next().unwrap_or(full_name); let separators = match short { "AssetIssueContract" | "ParticipateAssetIssueContract" => (",", ","), "UpdateAssetContract" | "WitnessCreateContract" | "WitnessUpdateContract" => (", ", ","), _ => (", ", ", ") }; return Err(ActuatorError::validation(format!("contract type error{}expected type [{short}]{}real type[class com.google.protobuf.Any]", separators.0, separators.1))); }
+    if any.type_url != expected { let short = full_name.rsplit('.').next().unwrap_or(full_name); let (display, separators) = match short { "CancelAllUnfreezeV2Contract" | "UnDelegateResourceContract" | "UnfreezeBalanceContract" | "UpdateBrokerageContract" | "UpdateSettingContract" | "WithdrawBalanceContract" | "WithdrawExpireUnfreezeContract" => (short, (", ", ", ")), "UnfreezeBalanceV2Contract" => ("UnfreezeBalanceContract", (", ", ", ")), "UpdateEnergyLimitContract" => (short, (", ", ",")), "ClearABIContract" | "DelegateResourceContract" | "ExchangeCreateContract" | "ExchangeInjectContract" | "ExchangeWithdrawContract" | "ExchangeTransactionContract" | "FreezeBalanceContract" | "FreezeBalanceV2Contract" | "ProposalCreateContract" | "ProposalApproveContract" | "ProposalDeleteContract" | "MarketSellAssetContract" | "MarketCancelOrderContract" => (short, (",", ",")), "AssetIssueContract" | "ParticipateAssetIssueContract" => (short, (",", ",")), "UpdateAssetContract" | "WitnessCreateContract" | "WitnessUpdateContract" => (short, (", ",",")), _ => (short, (", ", ", ")) }; return Err(ActuatorError::validation(format!("contract type error{}expected type [{display}]{}real type[class com.google.protobuf.Any]", separators.0, separators.1))); }
     M::decode(any.value.as_slice()).map_err(|error| ActuatorError::validation(error.to_string()))
 }
 

@@ -151,6 +151,15 @@ impl TypedStore {
             .map(|(key, value)| (key[namespace_length..].to_vec(), value))
             .collect()
     }
+    pub fn market_ordered(&self, pair: &[u8], excluded: &[u8], limit: usize) -> tron_storage::Result<tron_storage::MarketQueryResult> {
+        let namespace = physical_key(&self.name, &[]);
+        self.state.lock().market_ordered_namespace(&namespace, pair, excluded, limit)
+    }
+    pub(crate) fn market_ordered_after(&self, pair: &[u8], after: Option<&[u8]>, excluded: &[u8], limit: usize) -> tron_storage::Result<tron_storage::MarketQueryResult> {
+        let namespace = physical_key(&self.name, &[]);
+        self.state.lock().market_ordered_namespace_from(&namespace, pair, after, excluded, limit)
+    }
+
     pub fn delete_present(&self, key: &[u8]) -> tron_storage::Result<bool> {
         if !self.contains_key(key) { return Ok(false); }
         self.delete(key)?; Ok(true)

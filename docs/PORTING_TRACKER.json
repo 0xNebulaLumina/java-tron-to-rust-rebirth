@@ -1305,65 +1305,109 @@
     {
       "id": "C013",
       "title": "Resource, governance, exchange, and market actuators",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-09-05",
       "resume": null,
       "items": [
         {
           "id": "C013.01",
           "description": "Legacy Freeze/Unfreeze/Withdraw and resource weight/account/vote effects.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Clean guarded 370-method recapture supersedes the prior contaminated batch; strict replay preserves legacy resource weight/account/vote effects."
         },
         {
           "id": "C013.02",
           "description": "FreezeV2/UnfreezeV2/WithdrawExpire/CancelAll with 32-entry and delay rules.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Clean UnfreezeBalanceV2Actuator bytecode (SHA-256 4138f07207c163c5dc357077efe3bc3e37094f42420df44ddde7a78c5ac33149) confirms upstream vote semantics; strict replay passes."
         },
         {
           "id": "C013.03",
           "description": "Delegate/Undelegate locked/unlocked records and usage migration.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Clean guarded recapture supersedes the prior contaminated batch; delegation and undelegation replay passes exact result/error/delta/commit/reopen/revoke checks."
         },
         {
           "id": "C013.04",
           "description": "Proposal create/approve/delete and complete parameter validation IDs/gaps/dependencies.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Clean guarded recapture supersedes the prior contaminated batch; proposal validation and mutation replay passes."
         },
         {
           "id": "C013.05",
           "description": "Exchange create/inject/withdraw/trade and legacy/V2 dual stores.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Clean guarded recapture supersedes the prior contaminated batch; exchange legacy/V2 and arithmetic replay passes."
         },
         {
           "id": "C013.06",
           "description": "Market sell/match/cancel, Keccak IDs, normalized prices, max 20 matches, linked lists.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Clean guarded recapture supersedes the prior contaminated batch; bounded max-20 market iterator, linked-list, normalized-price, rollback, and replay checks pass."
         },
         {
           "id": "C013.07",
-          "description": "Brokerage/storage/update-setting/energy-limit/clear-ABI and miscellaneous contract types.",
-          "status": "todo",
-          "note": null
+          "description": "Brokerage/update-setting/energy-limit/clear-ABI and miscellaneous contract types; explicit rejection of legacy storage transaction type IDs absent from pinned Java.",
+          "status": "done",
+          "note": "Clean guarded recapture covers brokerage, setting, energy-limit, and clear-ABI replay. Pinned Java retains BuyStorage/BuyStorageBytes/SellStorage messages and wallet RPCs but defines no corresponding ContractType enum values or production actuators, so Rust rejects legacy numeric types 21/22/23 as InvalidContractType with executable registry evidence."
         }
       ],
       "gate": {
         "id": "C013.V",
-        "description": "Contract/fork-flag matrix and arithmetic/error/state oracles pass.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: clean guarded 370-method Java recapture produced 926 invocations and 868 unique Rust replay observations, with 13 zero-invocation proofs and zero exclusions; the three focused C013 suites pass with exact ordered result/error/delta/commit/reopen/revoke checks, bounded market iteration, and exact storage-type rejection matching the pinned Java registry scope.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C013 pinned Java oracle, ownership, fork matrix and fixture gate",
+            "cwd": ".",
+            "argv": ["python3", "tools/execution/c013_gate.py"],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C013 resource actuator suite",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c013_resource_contract", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C013 proposal and exchange actuator suite",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c013_proposal_exchange", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C013 market and miscellaneous actuator suite",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c013_market_misc", "--locked"],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C013 tron-execution all-targets check",
+            "cwd": "rust-tron",
+            "argv": ["cargo", "check", "-p", "tron-execution", "--all-targets", "--locked"],
+            "timeout_seconds": 300
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 3,
+        "findings": [
+          {
+            "id": "C013-R3-001",
+            "summary": "Broad replay error normalization could accept Rust errors that did not exactly match the captured Java error bytes.",
+            "status": "closed",
+            "resolution": "Removed broad normalization and now compare exact captured Java error bytes on every path, retaining one narrowly keyed, byte-exact reviewed decision for the unobservable MAX_CREATE_ACCOUNT_TX_SIZE mock-only distinction. The focused suites and clean guarded gate pass with 13 affected error observations reconciled."
+          },
+          {
+            "id": "C013-R3-002",
+            "summary": "Legacy storage protobuf messages and wallet RPCs needed an explicit executable-contract scope decision because pinned Java has no matching ContractType values or production actuators.",
+            "status": "closed",
+            "resolution": "Recorded and proved that pinned Java retains the three storage messages and RPC declarations but no executable storage transaction types; Rust therefore rejects legacy numeric types 21, 22, and 23 as InvalidContractType without treating them as supported actuators."
+          }
+        ]
       },
       "blocker": null
     },

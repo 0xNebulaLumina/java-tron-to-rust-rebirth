@@ -23,7 +23,7 @@ fn result(value: Option<&Value>) -> ActuatorResult {
         code: if value["ret_number"].as_i64().unwrap() == 0 { Code::Sucess } else { Code::Failed },
         message: Vec::new(),
         asset_issue_id: bytes(value, "asset_issue_id_hex").unwrap(),
-        deltas: Vec::new(),
+        ..ActuatorResult::default()
     }
 }
 fn path(id: &str, ordinal: u64, mode: &str) -> PathBuf { std::env::temp_dir().join(format!("c012-capture-{id}-{ordinal}-{mode}-{}-{}", std::process::id(), SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_nanos())) }

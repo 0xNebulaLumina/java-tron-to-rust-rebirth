@@ -31,6 +31,28 @@ const FRAME_HEADER_LEN: usize = 8;
 const SNAPSHOT_HEADER_LEN: usize = 20;
 
 pub type KeyValue = (Vec<u8>, Vec<u8>);
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct MarketQueryResult {
+    pub rows: Vec<KeyValue>,
+    pub visited: usize,
+}
+
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+struct MarketIndexKey {
+    namespace: Vec<u8>,
+    logical: Vec<u8>,
+}
+
+impl Ord for MarketIndexKey {
+    fn cmp(&self, other: &Self) -> Ordering {
+        self.namespace.cmp(&other.namespace).then_with(|| market_total_cmp(&self.logical, &other.logical))
+    }
+}
+
+impl PartialOrd for MarketIndexKey {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> { Some(self.cmp(other)) }
+}
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct RustLogOptions {
@@ -383,6 +405,7 @@ pub struct RustLog {
     directory: SecureDir,
     options: RustLogOptions,
     entries: BTreeMap<Vec<u8>, Vec<u8>>,
+    market_entries: BTreeMap<MarketIndexKey, Vec<u8>>,
     wal: File,
     lock: Option<KernelLock>,
     requirements: OpenRequirements,
@@ -398,10 +421,12 @@ impl RustLog {
         let mut wal = directory.open_file(WAL_NAME.as_ref(), true, true)?;
         recover_wal(&mut wal, &mut entries, &options)?;
         wal.seek(SeekFrom::End(0))?;
+        let market_entries = build_market_index(&entries);
         Ok(Self {
             directory,
             options,
             entries,
+            market_entries,
             wal,
             lock: Some(lock),
             requirements,
@@ -466,6 +491,7 @@ impl RustLog {
             return Err(error);
         }
 
+        apply_market_batch(&mut self.market_entries, batch.operations());
         apply_batch(&mut self.entries, batch.operations());
         let wal_length = match faults
             .before(WritePhase::Metadata)
@@ -703,15 +729,66 @@ impl RustLog {
         market_order(self.entries.iter().map(clone_entry), pair, limit)
     }
 
-    pub fn market_seek(&self, target: &[u8], limit: usize) -> Result<Vec<KeyValue>> {
-        if limit == 0 {
-            return Ok(Vec::new());
+    pub fn market_ordered_namespace(&self, namespace: &[u8], pair: &[u8], excluded: &[u8], limit: usize) -> Result<MarketQueryResult> {
+        self.market_ordered_namespace_from(namespace, pair, None, excluded, limit)
+    }
+
+    pub fn market_ordered_namespace_from(&self, namespace: &[u8], pair: &[u8], after: Option<&[u8]>, excluded: &[u8], limit: usize) -> Result<MarketQueryResult> {
+        if limit == 0 { return Ok(MarketQueryResult { rows: Vec::new(), visited: 0 }); }
+        if pair.len() != MARKET_PAIR_LENGTH { return Err(StorageError::MarketKey { actual: pair.len() }); }
+        let lower = if let Some(after) = after {
+            validate_market_key(after)?;
+            Bound::Excluded(MarketIndexKey { namespace: namespace.to_vec(), logical: after.to_vec() })
+        } else {
+            let mut start = pair.to_vec();
+            start.extend_from_slice(&[0; 16]);
+            Bound::Included(MarketIndexKey { namespace: namespace.to_vec(), logical: start })
+        };
+        let mut rows = Vec::with_capacity(limit);
+        let mut visited = 0;
+        for (key, physical) in self.market_entries.range((lower, Bound::Unbounded)) {
+            if key.namespace != namespace || !key.logical.starts_with(pair) { break; }
+            visited += 1;
+            if key.logical.as_slice() == excluded { continue; }
+            if let Some(value) = self.entries.get(physical) { rows.push((key.logical.clone(), value.clone())); }
+            if rows.len() == limit { break; }
         }
+        Ok(MarketQueryResult { rows, visited })
+    }
+
+    pub fn market_seek(&self, target: &[u8], limit: usize) -> Result<Vec<KeyValue>> {
+        if limit == 0 { return Ok(Vec::new()); }
         validate_market_key(target)?;
         let pair = &target[..MARKET_PAIR_LENGTH];
         let ordered = self.market_ordered(Some(pair), usize::MAX)?;
         let index = ordered.partition_point(|(key, _)| market_total_cmp(key, target) == Ordering::Less);
         Ok(ordered.into_iter().skip(index).take(limit).collect())
+    }
+}
+
+fn split_market_physical_key(key: &[u8]) -> Option<MarketIndexKey> {
+    if key.first().copied()? != 1 || key.len() < 5 { return None; }
+    let name_len = u32::from_be_bytes(key[1..5].try_into().ok()?) as usize;
+    let logical_offset = 5usize.checked_add(name_len)?;
+    if key.len() < logical_offset + 54 { return None; }
+    let logical = key[logical_offset..].to_vec();
+    validate_market_key(&logical).ok()?;
+    Some(MarketIndexKey { namespace: key[..logical_offset].to_vec(), logical })
+}
+
+fn build_market_index(entries: &BTreeMap<Vec<u8>, Vec<u8>>) -> BTreeMap<MarketIndexKey, Vec<u8>> {
+    entries.keys().filter_map(|physical| split_market_physical_key(physical).map(|key| (key, physical.clone()))).collect()
+}
+
+fn apply_market_batch(index: &mut BTreeMap<MarketIndexKey, Vec<u8>>, operations: &[BatchOperation]) {
+    for operation in operations {
+        let physical = match operation { BatchOperation::Put { key, .. } | BatchOperation::Delete { key } => key };
+        if let Some(key) = split_market_physical_key(physical) {
+            match operation {
+                BatchOperation::Put { .. } => { index.insert(key, physical.clone()); }
+                BatchOperation::Delete { .. } => { index.remove(&key); }
+            }
+        }
     }
 }
 fn checkpoint_matches(

@@ -1,0 +1,32 @@
+{
+  "canonical_commands": [
+    "cargo test -p tron-execution --test c013_resource_contract",
+    "cargo test -p tron-execution --test c013_proposal_exchange",
+    "cargo test -p tron-execution --test c013_market_misc",
+    "python3 tools/execution/c013_gate.py"
+  ],
+  "canonical_workspace": "rust-tron",
+  "chunk": "C013",
+  "fixture_inventory": {
+    "path": "docs/oracles/c013-execution-fixtures.v1.json",
+    "sha256": "5abdf59dddb2210f7fa61d2f4e3a131714b4bb2cde41594431c66f9521150077"
+  },
+  "fork_matrix": {
+    "path": "docs/oracles/c013-fork-matrix.v1.json",
+    "rows": 10,
+    "sha256": "c9b134603e00916b55a53415cf56a3158160134f57395b10529898e185cb55eb"
+  },
+  "ownership_reconciliation": {
+    "excluded": 0,
+    "mapped": 370,
+    "path": "docs/oracles/c013-java-test-reconciliation.v1.json",
+    "sha256": "651d93babb2c57bac4fa4c3ce57f9f447b7c12199c459122e2e415eca2d5b6c5",
+    "stable_ids": 370
+  },
+  "schema": "c013-execution-contract.v1",
+  "scope": "all pinned Java executable legacy/V2 resources, delegation, proposal, exchange, market, brokerage and smart-contract-setting actuator families; BuyStorage, BuyStorageBytes and SellStorage messages have no pinned ContractType or production actuator and legacy numeric types 21/22/23 are rejected",
+  "source_inventory": {
+    "path": "docs/oracles/c013-source-inventory.v1.json",
+    "sha256": "7be8ae16f2681caf6cf60745b8b140381fbea53fcdd386ef35a9d1edc4cce498"
+  }
+}

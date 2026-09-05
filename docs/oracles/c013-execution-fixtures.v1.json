@@ -1,0 +1,58 @@
+{
+  "chunk": "C013",
+  "direct_family_fixtures": [
+    {
+      "family": "resource",
+      "path": "docs/oracles/c013-resource-real.v1.json",
+      "row_count": 6,
+      "runner": "tools/execution/c013/resource/run.py",
+      "sha256": "8697c4bfb62b60b608de6878f890b14f9c5d412c8ad3784360d165a318e922a9"
+    },
+    {
+      "family": "proposal_exchange",
+      "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+      "row_count": 5,
+      "runner": "tools/execution/c013/proposal_exchange/run.py",
+      "sha256": "b49a0ec06eb53c4a383a1c9c26b63392bd6c4731a82d5ccfafb7eb71ae5ed7c7"
+    },
+    {
+      "family": "market_misc",
+      "path": "docs/oracles/c013-market-misc-real.v1.json",
+      "row_count": 6,
+      "runner": "tools/execution/c013/market_misc/run.py",
+      "sha256": "65b15cc3a21cab90b48118382ebd15a538bc5e9bd83cf28408e657d3b2a9991b"
+    }
+  ],
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "pinned_java": {
+    "all_methods_executed": true,
+    "invocation_count": 926,
+    "method_count": 370,
+    "path": "docs/oracles/c013-java-owned-real.v1.json",
+    "process_isolation": "one fresh JVM per selected method",
+    "required_observables": [
+      "JUnit result and exact failure",
+      "concrete Contract and Any bytes",
+      "result before and after",
+      "ordered store reads and mutations",
+      "per-key before/after deltas",
+      "test and transformer audit"
+    ],
+    "sha256": "daa8c042b34b9a6f323080361ca30640a38cd06167fd59f85d29595032dfe2cf"
+  },
+  "rust_replay": {
+    "captured_invocations": 926,
+    "catchall": 0,
+    "explicit_exclusions": 0,
+    "runner": "rust-tron/crates/tron-execution/tests/support/c013_replay.rs",
+    "unexecuted": 0,
+    "unique_invocations": 868,
+    "verification": [
+      "validate/execute result",
+      "ordered deltas",
+      "commit/reopen",
+      "child-session revoke"
+    ]
+  },
+  "schema": "c013-execution-fixtures.v1"
+}

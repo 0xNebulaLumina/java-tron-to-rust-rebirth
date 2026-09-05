@@ -10,9 +10,16 @@ use tron_state::{Session, StoreKind};
 use crate::{
     AccountCreateActuator, AccountPermissionUpdateActuator, AccountUpdateActuator, Actuator,
     ActuatorError, ActuatorResult, AssetIssueActuator, DeclaredStoreAccess, ExecutionConfig,
-    ExecutionContext, NO_CONTRACT, ParticipateAssetIssueActuator, SetAccountIdActuator,
+    ExecutionContext, ProvisionalActuatorExecution, NO_CONTRACT, ParticipateAssetIssueActuator, SetAccountIdActuator,
     TransferActuator, TransferAssetActuator, UnfreezeAssetActuator, UpdateAssetActuator,
     ValidationContext, VoteWitnessActuator, WitnessCreateActuator, WitnessUpdateActuator,
+    FreezeBalanceActuator, UnfreezeBalanceActuator, WithdrawBalanceActuator,
+    FreezeBalanceV2Actuator, UnfreezeBalanceV2Actuator, WithdrawExpireUnfreezeActuator,
+    CancelAllUnfreezeV2Actuator, DelegateResourceActuator, UnDelegateResourceActuator,
+    ProposalCreateActuator, ProposalApproveActuator, ProposalDeleteActuator,
+    ExchangeCreateActuator, ExchangeInjectActuator, ExchangeWithdrawActuator, ExchangeTransactionActuator,
+    MarketSellAssetActuator, MarketCancelOrderActuator, UpdateSettingActuator,
+    UpdateEnergyLimitActuator, ClearAbiActuator, UpdateBrokerageActuator,
 };
 
 const TYPE_URL_PREFIX: &str = "type.googleapis.com/";
@@ -274,6 +281,28 @@ impl ActuatorRegistry {
                 ContractType::UpdateAssetContract => Box::new(UpdateAssetActuator::new(any).map_err(provider_error)?),
                 ContractType::SetAccountIdContract => Box::new(SetAccountIdActuator::new(any).map_err(provider_error)?),
                 ContractType::AccountPermissionUpdateContract => Box::new(AccountPermissionUpdateActuator::new(any).map_err(provider_error)?),
+                ContractType::FreezeBalanceContract => Box::new(FreezeBalanceActuator::new(any).map_err(provider_error)?),
+                ContractType::UnfreezeBalanceContract => Box::new(UnfreezeBalanceActuator::new(any).map_err(provider_error)?),
+                ContractType::WithdrawBalanceContract => Box::new(WithdrawBalanceActuator::new(any).map_err(provider_error)?),
+                ContractType::FreezeBalanceV2Contract => Box::new(FreezeBalanceV2Actuator::new(any).map_err(provider_error)?),
+                ContractType::UnfreezeBalanceV2Contract => Box::new(UnfreezeBalanceV2Actuator::new(any).map_err(provider_error)?),
+                ContractType::WithdrawExpireUnfreezeContract => Box::new(WithdrawExpireUnfreezeActuator::new(any).map_err(provider_error)?),
+                ContractType::CancelAllUnfreezeV2Contract => Box::new(CancelAllUnfreezeV2Actuator::new(any).map_err(provider_error)?),
+                ContractType::DelegateResourceContract => Box::new(DelegateResourceActuator::new(any).map_err(provider_error)?),
+                ContractType::UnDelegateResourceContract => Box::new(UnDelegateResourceActuator::new(any).map_err(provider_error)?),
+                ContractType::ProposalCreateContract => Box::new(ProposalCreateActuator::new(any).map_err(provider_error)?),
+                ContractType::ProposalApproveContract => Box::new(ProposalApproveActuator::new(any).map_err(provider_error)?),
+                ContractType::ProposalDeleteContract => Box::new(ProposalDeleteActuator::new(any).map_err(provider_error)?),
+                ContractType::ExchangeCreateContract => Box::new(ExchangeCreateActuator::new(any).map_err(provider_error)?),
+                ContractType::ExchangeInjectContract => Box::new(ExchangeInjectActuator::new(any).map_err(provider_error)?),
+                ContractType::ExchangeWithdrawContract => Box::new(ExchangeWithdrawActuator::new(any).map_err(provider_error)?),
+                ContractType::ExchangeTransactionContract => Box::new(ExchangeTransactionActuator::new(any).map_err(provider_error)?),
+                ContractType::MarketSellAssetContract => Box::new(MarketSellAssetActuator::new(any).map_err(provider_error)?),
+                ContractType::MarketCancelOrderContract => Box::new(MarketCancelOrderActuator::new(any).map_err(provider_error)?),
+                ContractType::UpdateSettingContract => Box::new(UpdateSettingActuator::new(any).map_err(provider_error)?),
+                ContractType::UpdateEnergyLimitContract => Box::new(UpdateEnergyLimitActuator::new(any).map_err(provider_error)?),
+                ContractType::ClearAbiContract => Box::new(ClearAbiActuator::new(any).map_err(provider_error)?),
+                ContractType::UpdateBrokerageContract => Box::new(UpdateBrokerageActuator::new(any).map_err(provider_error)?),
                 _ => return Err(RegistryError::UnsupportedBuiltInActuator(kind)),
             };
             return Ok(actuator);
@@ -306,6 +335,11 @@ impl ActuatorRegistry {
         let actuator = self.actuator_optional(session, contract, missing_session_error)?;
         let allowed = actuator.declared_access().cloned();
         actuator.validate(&ValidationContext::new(session.expect("checked by actuator_optional"), config, allowed)).map_err(provider_error)
+    }
+
+    #[doc(hidden)]
+    pub fn execute_body_provisionally(&self, contract: &Contract, session: &Session, result: ActuatorResult, config: ExecutionConfig) -> Result<ProvisionalActuatorExecution, RegistryError> {
+        self.actuator(contract)?.execute_body_provisionally(session, result, config).map_err(provider_error)
     }
 
     pub fn execute(&self, contract: &Contract, session: &Session, result: Option<&mut ActuatorResult>, config: ExecutionConfig) -> Result<(), RegistryError> {

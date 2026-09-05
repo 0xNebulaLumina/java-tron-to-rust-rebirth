@@ -13,10 +13,12 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-JAVA = ROOT / "java-tron"
 OUT = ROOT / "docs/oracles"
 TRACKER = ROOT / "docs/PORTING_TRACKER.json"
 REV = "4a21592f95e37908b21bc3f611c6e7a1a67f09f3"
+from java_reference_guard import atomic_write_json, install_java_reference_guard
+SESSION = install_java_reference_guard(ROOT)
+JAVA = SESSION.tree
 EXCLUDED = {".git", ".gradle", "__pycache__", "build", "out", "target", "node_modules"}
 
 # Reviewed mappings for framework paths.  These are deliberately finite package
@@ -150,10 +152,8 @@ def validate_domains():
 
 def files(test=False):
     tracked = subprocess.run(
-        ["git", "ls-files", "-z"],
-        cwd=JAVA,
-        check=True,
-        capture_output=True,
+        ["git", "-C", str(ROOT / "java-tron"), "ls-tree", "-r", "--name-only", "-z", REV],
+        check=True, capture_output=True,
     ).stdout.split(b"\0")
     for encoded in sorted(path for path in tracked if path):
         relative_to_java = Path(encoded.decode("utf-8"))
@@ -162,7 +162,7 @@ def files(test=False):
         path = JAVA / relative_to_java
         if not path.is_file():
             continue
-        rel = path.relative_to(ROOT).as_posix()
+        rel = (Path("java-tron") / relative_to_java).as_posix()
         low = rel.lower()
         is_test = "/src/test/" in low or "/src/integrationtest/" in low or bool(re.search(r"(?:test|tests)\.java$", low))
         if is_test == test:
@@ -374,6 +374,7 @@ def documents():
         raise AssertionError(f"required Java tests missing from ownership ledger: {missing}")
     inventory_hash = hashlib.sha256(json.dumps(FRAMEWORK_DOMAINS + DOMAINS, separators=(",", ":")).encode()).hexdigest()
     common = {"schema_version": 1, "java_source_revision": REV,
+              "java_reference_identity": SESSION.identity,
               "regeneration": {"command": ["python3", "tools/reference-runner/generate-ledgers.py"],
                                "domain_inventory_sha256": inventory_hash,
                                "tracker_input": "docs/PORTING_TRACKER.json",
@@ -399,8 +400,10 @@ def main():
             print("stale generated ledger(s): " + ", ".join(stale), file=sys.stderr)
             return 1
     else:
+        SESSION.guard(phase="before ledger persistence")
         for path, content in outputs:
-            path.write_text(content, encoding="utf-8")
+            atomic_write_json(path, json.loads(content))
+        SESSION.guard(phase="after ledger persistence")
     print(json.dumps({"production_rows": len(prod["rows"]), "test_rows": len(test["rows"]), "domain_inventory_sha256": inventory_hash, "checked": args.check}, sort_keys=True))
     return 0
 

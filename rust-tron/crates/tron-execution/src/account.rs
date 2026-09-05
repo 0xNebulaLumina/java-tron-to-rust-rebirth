@@ -21,6 +21,7 @@ fn lowercase_hex(value: &[u8]) -> String { const DIGITS: &[u8; 16] = b"012345678
 fn account(context: &ExecutionContext<'_>, address: &[u8], missing: &'static str) -> Result<Account, ActuatorError> { context.decode(StoreKind::Account, address, missing) }
 fn store_account(context: &mut ExecutionContext<'_>, value: &Account) -> Result<(), ActuatorError> { context.put_message(StoreKind::Account, &value.address, value) }
 pub(crate) fn charge_fee(context: &mut ExecutionContext<'_>, payer: &mut Account, fee: i64) -> Result<(), ActuatorError> {
+    if fee == 0 { return Ok(()); }
     payer.balance = checked_sub(payer.balance, fee)?;
     if context.dynamic_long("ALLOW_BLACKHOLE_OPTIMIZATION")? == 1 {
         let burned = checked_add(context.dynamic_long("BURN_TRX_AMOUNT")?, fee)?;

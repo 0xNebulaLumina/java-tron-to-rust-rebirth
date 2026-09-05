@@ -173,10 +173,7 @@ pub fn market_price_keys(state: &StateStore, sell: &[u8], buy: &[u8], count: usi
     let head = pair_price_head_key(sell, buy)?;
     let store = state.store(StoreKind::MarketPairPriceToOrder);
     if !store.contains_key(&head) { return Ok(Vec::new()); }
-    let mut keys = store.prefix(&pair).into_iter().map(|(key, _)| key).filter(|key| key != &head).collect::<Vec<_>>();
-    keys.sort_by(|left, right| tron_storage::market_total_cmp(left, right));
-    keys.truncate(count);
-    Ok(keys)
+    Ok(store.market_ordered(&pair, &head, count)?.rows.into_iter().map(|(key, _)| key).collect())
 }
 pub fn market_prices(state: &StateStore, sell: &[u8], buy: &[u8], count: usize) -> Result<MarketPriceList, MarketStoreError> {
     let prices = market_price_keys(state, sell, buy, count)?.into_iter().map(|key| {

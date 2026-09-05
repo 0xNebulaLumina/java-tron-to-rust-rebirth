@@ -1,0 +1,48 @@
+{
+  "chunk": "C013",
+  "coverage": "disabled/enabled fork branches, legacy/hardened arithmetic, success/error and rollback",
+  "row_count": 10,
+  "rows": [
+    {
+      "dimension": "UNFREEZE_DELAY_DAYS",
+      "id": "C013.FORK.01"
+    },
+    {
+      "dimension": "ALLOW_CANCEL_ALL_UNFREEZE_V2",
+      "id": "C013.FORK.02"
+    },
+    {
+      "dimension": "ALLOW_DELEGATE_RESOURCE",
+      "id": "C013.FORK.03"
+    },
+    {
+      "dimension": "ALLOW_NEW_RESOURCE_MODEL",
+      "id": "C013.FORK.04"
+    },
+    {
+      "dimension": "ALLOW_SAME_TOKEN_NAME",
+      "id": "C013.FORK.05"
+    },
+    {
+      "dimension": "ALLOW_HARDEN_EXCHANGE_CALCULATION",
+      "id": "C013.FORK.06"
+    },
+    {
+      "dimension": "ALLOW_MARKET_TRANSACTION",
+      "id": "C013.FORK.07"
+    },
+    {
+      "dimension": "ALLOW_TVM_CONSTANTINOPLE",
+      "id": "C013.FORK.08"
+    },
+    {
+      "dimension": "ALLOW_BLACKHOLE_OPTIMIZATION",
+      "id": "C013.FORK.09"
+    },
+    {
+      "dimension": "proposal parameter dependency matrix",
+      "id": "C013.FORK.10"
+    }
+  ],
+  "schema": "c013-fork-matrix.v1"
+}

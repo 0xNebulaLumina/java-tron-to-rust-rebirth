@@ -176,7 +176,7 @@ fn dr004_c012_ext_02_declared_write_success() {
 
 fn assert_revoke(mode: &[u8]) {
     let (path, manager, mut outer) = session("revoke");
-    let mut result = ActuatorResult { fee: 7, code: Code::Sucess, message: b"old".to_vec(), asset_issue_id: b"old".to_vec(), deltas: Vec::new() };
+    let mut result = ActuatorResult { fee: 7, code: Code::Sucess, message: b"old".to_vec(), asset_issue_id: b"old".to_vec(), ..ActuatorResult::default() };
     assert!(atomic_registry(vec![write_access(StoreKind::Account)]).execute(&atomic_contract(mode), &outer, Some(&mut result), ExecutionConfig::default()).is_err());
     assert_eq!(outer.store(StoreKind::Account).get(&vec![0x41; 21]), None);
     assert_eq!((result.code, result.fee), (Code::Failed, 0));
