@@ -387,19 +387,38 @@
           {
             "name": "C002 source coverage and vector manifest",
             "cwd": ".",
-            "argv": ["python3", "tools/primitives/c002_gate.py"],
+            "argv": [
+              "python3",
+              "tools/primitives/c002_gate.py"
+            ],
             "timeout_seconds": 60
           },
           {
             "name": "C002 Rust boundary vectors",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "--locked", "-p", "tron-primitives", "--test", "c002_boundaries", "--test", "c002_java_vectors"],
+            "argv": [
+              "cargo",
+              "test",
+              "--locked",
+              "-p",
+              "tron-primitives",
+              "--test",
+              "c002_boundaries",
+              "--test",
+              "c002_java_vectors"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "Rust workspace all-targets check",
             "cwd": "rust-tron",
-            "argv": ["cargo", "check", "--workspace", "--all-targets", "--locked"],
+            "argv": [
+              "cargo",
+              "check",
+              "--workspace",
+              "--all-targets",
+              "--locked"
+            ],
             "timeout_seconds": 300
           }
         ],
@@ -447,7 +466,7 @@
         },
         {
           "id": "C003.04",
-          "description": "Implement precedence: CLI parse → config → CLI override → event → platform → witness post-processing.",
+          "description": "Implement precedence: CLI parse \u2192 config \u2192 CLI override \u2192 event \u2192 platform \u2192 witness post-processing.",
           "status": "done",
           "note": "The fixed config, assigned CLI, event, platform, and witness precedence pipeline is implemented."
         },
@@ -484,25 +503,50 @@
           {
             "name": "C003 source inventory and differential fixture gate",
             "cwd": ".",
-            "argv": ["python3", "tools/config/c003_gate.py"],
+            "argv": [
+              "python3",
+              "tools/config/c003_gate.py"
+            ],
             "timeout_seconds": 60
           },
           {
             "name": "C003 configuration differentials",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "--locked", "-p", "tron-config", "--test", "c003_config_differentials"],
+            "argv": [
+              "cargo",
+              "test",
+              "--locked",
+              "-p",
+              "tron-config",
+              "--test",
+              "c003_config_differentials"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C003 lifecycle differentials",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "--locked", "-p", "tron-node", "--test", "c003_lifecycle_differentials"],
+            "argv": [
+              "cargo",
+              "test",
+              "--locked",
+              "-p",
+              "tron-node",
+              "--test",
+              "c003_lifecycle_differentials"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "Rust workspace all-targets check",
             "cwd": "rust-tron",
-            "argv": ["cargo", "check", "--workspace", "--all-targets", "--locked"],
+            "argv": [
+              "cargo",
+              "check",
+              "--workspace",
+              "--all-targets",
+              "--locked"
+            ],
             "timeout_seconds": 300
           }
         ],
@@ -575,19 +619,36 @@
           {
             "name": "C004 provenance and vector gate",
             "cwd": ".",
-            "argv": ["python3", "tools/crypto/c004_gate.py"],
+            "argv": [
+              "python3",
+              "tools/crypto/c004_gate.py"
+            ],
             "timeout_seconds": 60
           },
           {
             "name": "C004 crypto vectors",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-crypto", "--test", "c004_vectors", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-crypto",
+              "--test",
+              "c004_vectors",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "Rust workspace all-targets check",
             "cwd": "rust-tron",
-            "argv": ["cargo", "check", "--workspace", "--all-targets", "--locked"],
+            "argv": [
+              "cargo",
+              "check",
+              "--workspace",
+              "--all-targets",
+              "--locked"
+            ],
             "timeout_seconds": 300
           }
         ],
@@ -648,25 +709,45 @@
           {
             "name": "C005 Java oracle",
             "cwd": ".",
-            "argv": ["python3", "tools/keystore/c005_oracle.py"],
+            "argv": [
+              "python3",
+              "tools/keystore/c005_oracle.py"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C005 provenance and vector gate",
             "cwd": ".",
-            "argv": ["python3", "tools/keystore/c005_gate.py"],
+            "argv": [
+              "python3",
+              "tools/keystore/c005_gate.py"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C005 exhaustive keystore dispatch tests",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-crypto", "--test", "c005_vectors", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-crypto",
+              "--test",
+              "c005_vectors",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "Rust workspace all-targets check",
             "cwd": "rust-tron",
-            "argv": ["cargo", "check", "--workspace", "--all-targets", "--locked"],
+            "argv": [
+              "cargo",
+              "check",
+              "--workspace",
+              "--all-targets",
+              "--locked"
+            ],
             "timeout_seconds": 300
           }
         ],
@@ -736,12 +817,83 @@
         "description": "Passed: the final package boundary covers all 39 methods; all 157 Java cases and 16 ignored cases have structured mappings; all 4 Merkle, 5 note, 12 context, and 5 gRPC tests pass; and the locked Rust workspace all-targets check passes.",
         "status": "passed",
         "commands": [
-          {"name":"C006 provenance and replacement gate","cwd":".","argv":["python3","tools/shielded/c006_gate.py"],"timeout_seconds":300},
-          {"name":"C006 parameters and Merkle fixtures","cwd":"rust-tron","argv":["cargo","test","-p","tron-shielded","--test","merkle_fixtures","--locked"],"timeout_seconds":300},
-          {"name":"C006 sodium, keys, notes and encryption","cwd":"rust-tron","argv":["cargo","test","-p","tron-shielded","--test","note_compat","--locked"],"timeout_seconds":300},
-          {"name":"C006 proofs, contexts, failures and concurrency","cwd":"rust-tron","argv":["cargo","test","-p","tron-shielded","--test","context_contract","--locked"],"timeout_seconds":600},
-          {"name":"C006 local TronZksnark gRPC boundary","cwd":"rust-tron","argv":["cargo","test","-p","tron-shielded","--test","zksnark_grpc_boundary","--locked"],"timeout_seconds":300},
-          {"name":"Rust workspace all-targets check","cwd":"rust-tron","argv":["cargo","check","--workspace","--all-targets","--locked"],"timeout_seconds":600}
+          {
+            "name": "C006 provenance and replacement gate",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/shielded/c006_gate.py"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C006 parameters and Merkle fixtures",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-shielded",
+              "--test",
+              "merkle_fixtures",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C006 sodium, keys, notes and encryption",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-shielded",
+              "--test",
+              "note_compat",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C006 proofs, contexts, failures and concurrency",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-shielded",
+              "--test",
+              "context_contract",
+              "--locked"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C006 local TronZksnark gRPC boundary",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-shielded",
+              "--test",
+              "zksnark_grpc_boundary",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "Rust workspace all-targets check",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "check",
+              "--workspace",
+              "--all-targets",
+              "--locked"
+            ],
+            "timeout_seconds": 600
+          }
         ],
         "last_failure": null
       },
@@ -815,11 +967,72 @@
         "description": "Passed: the reconciled inventory has 0 Java-test rows and 15 named Rust proofs; all 43 storage contract tests pass across backend/order (9), format/migration/snapshot (15), and failure/crash/error (19); all 23 qualification scenarios pass for the sole enabled native pure-Rust Linux x86_64 rustlog-v1 row with no FFI or native resources; Linux aarch64 remains explicitly disabled/future; and the locked tron-storage all-targets workspace check passes.",
         "status": "passed",
         "commands": [
-          {"name":"C007 inventory, vectors and matrix gate","cwd":".","argv":["python3","tools/storage/c007_gate.py"],"timeout_seconds":300},
-          {"name":"C007 backend, ordering, batch and reopen","cwd":"rust-tron","argv":["cargo","test","-p","tron-storage","--test","backend_contract","--test","market_order","--locked"],"timeout_seconds":300},
-          {"name":"C007 manifest, reject, migration, rollback, resume, snapshot and resync","cwd":"rust-tron","argv":["cargo","test","-p","tron-storage","--test","format_contract","--locked"],"timeout_seconds":300},
-          {"name":"C007 crash, corrupt, lock, permission and disk-full categories","cwd":"rust-tron","argv":["cargo","test","-p","tron-storage","--test","failure_contract","--locked"],"timeout_seconds":300},
-          {"name":"C007 pure-Rust storage all-targets check","cwd":"rust-tron","argv":["cargo","check","-p","tron-storage","--all-targets","--locked"],"timeout_seconds":300}
+          {
+            "name": "C007 inventory, vectors and matrix gate",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/storage/c007_gate.py"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C007 backend, ordering, batch and reopen",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-storage",
+              "--test",
+              "backend_contract",
+              "--test",
+              "market_order",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C007 manifest, reject, migration, rollback, resume, snapshot and resync",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-storage",
+              "--test",
+              "format_contract",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C007 crash, corrupt, lock, permission and disk-full categories",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-storage",
+              "--test",
+              "failure_contract",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C007 pure-Rust storage all-targets check",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "check",
+              "-p",
+              "tron-storage",
+              "--all-targets",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          }
         ],
         "last_failure": null
       },
@@ -920,25 +1133,51 @@
           {
             "name": "C008 inventory, fixtures, reconciliation and workspace gate",
             "cwd": ".",
-            "argv": ["python3", "tools/state/c008_gate.py"],
+            "argv": [
+              "python3",
+              "tools/state/c008_gate.py"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C008 logical store, capsule, key and value fixtures",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-state", "--test", "logical_contract", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-state",
+              "--test",
+              "logical_contract",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C008 atomic, reopen, crash, market and account-asset integration",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-state", "--test", "integration_contract", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-state",
+              "--test",
+              "integration_contract",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C008 state workspace check",
             "cwd": "rust-tron",
-            "argv": ["cargo", "check", "-p", "tron-state", "--all-targets", "--locked"],
+            "argv": [
+              "cargo",
+              "check",
+              "-p",
+              "tron-state",
+              "--all-targets",
+              "--locked"
+            ],
             "timeout_seconds": 300
           }
         ],
@@ -1011,19 +1250,37 @@
           {
             "name": "C009 pinned Java and production reconciliation gate",
             "cwd": ".",
-            "argv": ["python3", "tools/state/c009_gate.py"],
+            "argv": [
+              "python3",
+              "tools/state/c009_gate.py"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C009 complete revoking contract",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-state", "--test", "revoking_contract", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-state",
+              "--test",
+              "revoking_contract",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C009 state workspace check",
             "cwd": "rust-tron",
-            "argv": ["cargo", "check", "-p", "tron-state", "--all-targets", "--locked"],
+            "argv": [
+              "cargo",
+              "check",
+              "-p",
+              "tron-state",
+              "--all-targets",
+              "--locked"
+            ],
             "timeout_seconds": 300
           }
         ],
@@ -1093,10 +1350,55 @@
         "description": "Passed: all 71 generated fixtures, 87 ownership rows, 18 C010 contract tests, tron-state module contracts, and the locked tron-state all-targets workspace check completed successfully.",
         "status": "passed",
         "commands": [
-          {"name": "C010 pinned Java inventory, generated fixtures, ownership and dispatch gate", "cwd": ".", "argv": ["python3", "tools/state/c010_gate.py"], "timeout_seconds": 300},
-          {"name": "C010 genesis, defaults, forks, resources, assets, trie and schema migrations", "cwd": "rust-tron", "argv": ["cargo", "test", "-p", "tron-state", "--test", "c010_contract", "--locked"], "timeout_seconds": 300},
-          {"name": "C010 tron-state module contracts", "cwd": "rust-tron", "argv": ["cargo", "test", "-p", "tron-state", "--lib", "--locked"], "timeout_seconds": 300},
-          {"name": "C010 exact workspace target check", "cwd": "rust-tron", "argv": ["cargo", "check", "-p", "tron-state", "--all-targets", "--locked"], "timeout_seconds": 300}
+          {
+            "name": "C010 pinned Java inventory, generated fixtures, ownership and dispatch gate",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/state/c010_gate.py"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C010 genesis, defaults, forks, resources, assets, trie and schema migrations",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-state",
+              "--test",
+              "c010_contract",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C010 tron-state module contracts",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-state",
+              "--lib",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C010 exact workspace target check",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "check",
+              "-p",
+              "tron-state",
+              "--all-targets",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          }
         ],
         "last_failure": null
       },
@@ -1149,25 +1451,50 @@
           {
             "name": "C011 pinned Java inventory, fixtures, ownership and dispatch gate",
             "cwd": ".",
-            "argv": ["python3", "tools/state/c011_gate.py"],
+            "argv": [
+              "python3",
+              "tools/state/c011_gate.py"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C011 fork graph and activation contracts",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-state", "--test", "khaos_contract", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-state",
+              "--test",
+              "khaos_contract",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C011 tron-state module contracts",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-state", "--lib", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-state",
+              "--lib",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C011 exact workspace target check",
             "cwd": "rust-tron",
-            "argv": ["cargo", "check", "-p", "tron-state", "--all-targets", "--locked"],
+            "argv": [
+              "cargo",
+              "check",
+              "-p",
+              "tron-state",
+              "--all-targets",
+              "--locked"
+            ],
             "timeout_seconds": 300
           }
         ],
@@ -1240,49 +1567,107 @@
           {
             "name": "C012 pinned Java oracle, source, ownership and fixture gate",
             "cwd": ".",
-            "argv": ["python3", "tools/execution/c012_gate.py"],
+            "argv": [
+              "python3",
+              "tools/execution/c012_gate.py"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C012 account executable dispatch suite",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c012_account_contract", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-execution",
+              "--test",
+              "c012_account_contract",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C012 transfer executable dispatch suite",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c012_transfer_contract", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-execution",
+              "--test",
+              "c012_transfer_contract",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C012 asset executable dispatch suite",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c012_asset_contract", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-execution",
+              "--test",
+              "c012_asset_contract",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C012 witness executable dispatch suite",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c012_witness_contract", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-execution",
+              "--test",
+              "c012_witness_contract",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C012 registry executable dispatch suite",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c012_registry", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-execution",
+              "--test",
+              "c012_registry",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C012 extension executable dispatch suite",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c012_extension_registry", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-execution",
+              "--test",
+              "c012_extension_registry",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C012 exact tron-execution workspace target check",
             "cwd": "rust-tron",
-            "argv": ["cargo", "check", "-p", "tron-execution", "--all-targets", "--locked"],
+            "argv": [
+              "cargo",
+              "check",
+              "-p",
+              "tron-execution",
+              "--all-targets",
+              "--locked"
+            ],
             "timeout_seconds": 300
           }
         ],
@@ -1361,31 +1746,65 @@
           {
             "name": "C013 pinned Java oracle, ownership, fork matrix and fixture gate",
             "cwd": ".",
-            "argv": ["python3", "tools/execution/c013_gate.py"],
+            "argv": [
+              "python3",
+              "tools/execution/c013_gate.py"
+            ],
             "timeout_seconds": 3600
           },
           {
             "name": "C013 resource actuator suite",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c013_resource_contract", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-execution",
+              "--test",
+              "c013_resource_contract",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C013 proposal and exchange actuator suite",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c013_proposal_exchange", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-execution",
+              "--test",
+              "c013_proposal_exchange",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C013 market and miscellaneous actuator suite",
             "cwd": "rust-tron",
-            "argv": ["cargo", "test", "-p", "tron-execution", "--test", "c013_market_misc", "--locked"],
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-execution",
+              "--test",
+              "c013_market_misc",
+              "--locked"
+            ],
             "timeout_seconds": 300
           },
           {
             "name": "C013 tron-execution all-targets check",
             "cwd": "rust-tron",
-            "argv": ["cargo", "check", "-p", "tron-execution", "--all-targets", "--locked"],
+            "argv": [
+              "cargo",
+              "check",
+              "-p",
+              "tron-execution",
+              "--all-targets",
+              "--locked"
+            ],
             "timeout_seconds": 300
           }
         ],
@@ -1479,14 +1898,112 @@
         "description": "Passed: the guarded pinned-Java oracle, exact 165-opcode manifest, 1475 reconciled ownership rows, 26 fork intervals, 28 executable asserted families, explicit C014/C015/C016 VM ownership reconciliation, repository/runtime, A/B/C and selfdestruct suites with exact counts 4/20/5/4/8/3, and the locked all-targets check completed in the canonical eight-command order; final correctness and security reviews are clean.",
         "status": "passed",
         "commands": [
-          {"name":"C014 pinned Java oracle and exact manifest gate","cwd":".","argv":["python3","tools/tvm/c014_gate.py"],"timeout_seconds":3600},
-          {"name":"C014 repository and interpreter foundation suite","cwd":"rust-tron","argv":["cargo","test","-p","tron-tvm","--test","foundation_contract","--locked"],"timeout_seconds":300},
-          {"name":"C014 runtime energy result and recursive execution suite","cwd":"rust-tron","argv":["cargo","test","-p","tron-tvm","--test","c014_runtime","--locked"],"timeout_seconds":300},
-          {"name":"C014 opcode family A suite","cwd":"rust-tron","argv":["cargo","test","-p","tron-tvm","--test","opcodes_a_contract","--locked"],"timeout_seconds":300},
-          {"name":"C014 opcode family B suite","cwd":"rust-tron","argv":["cargo","test","-p","tron-tvm","--test","opcodes_b_contract","--locked"],"timeout_seconds":300},
-          {"name":"C014 opcode family C and system effects suite","cwd":"rust-tron","argv":["cargo","test","-p","tron-tvm","--test","opcodes_c_contract","--locked"],"timeout_seconds":300},
-          {"name":"C014 selfdestruct eligibility and resource transfer suite","cwd":"rust-tron","argv":["cargo","test","-p","tron-tvm","--test","selfdestruct_contract","--locked"],"timeout_seconds":300},
-          {"name":"C014 tron-tvm locked all-targets check","cwd":"rust-tron","argv":["cargo","check","-p","tron-tvm","--all-targets","--locked"],"timeout_seconds":300}
+          {
+            "name": "C014 pinned Java oracle and exact manifest gate",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/tvm/c014_gate.py"
+            ],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C014 repository and interpreter foundation suite",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-tvm",
+              "--test",
+              "foundation_contract",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C014 runtime energy result and recursive execution suite",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-tvm",
+              "--test",
+              "c014_runtime",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C014 opcode family A suite",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-tvm",
+              "--test",
+              "opcodes_a_contract",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C014 opcode family B suite",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-tvm",
+              "--test",
+              "opcodes_b_contract",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C014 opcode family C and system effects suite",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-tvm",
+              "--test",
+              "opcodes_c_contract",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C014 selfdestruct eligibility and resource transfer suite",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-tvm",
+              "--test",
+              "selfdestruct_contract",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C014 tron-tvm locked all-targets check",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "check",
+              "-p",
+              "tron-tvm",
+              "--all-targets",
+              "--locked"
+            ],
+            "timeout_seconds": 300
+          }
         ],
         "last_failure": null
       },
@@ -1519,65 +2036,161 @@
     {
       "id": "C015",
       "title": "TVM precompiles and shielded execution",
-      "status": "todo",
-      "owner": null,
-      "updated": null,
+      "status": "done",
+      "owner": "porting",
+      "updated": "2026-09-05",
       "resume": null,
       "items": [
         {
           "id": "C015.01",
           "description": "ECRecover/hash/identity/modexp/BN128/Blake2f and all standard precompiles.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented all 10 standard precompiles with exact activation, input, energy, result, malformed and fork-boundary coverage."
         },
         {
           "id": "C015.02",
           "description": "P256 verify with exact input/output and 6900 energy.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Replayed all 782 pinned P256 records with exact 160-byte ABI, boolean output and 6900 energy."
         },
         {
           "id": "C015.03",
           "description": "TRON-specific staking/voting/resource/batch/native precompiles and flags.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented and verified all 19 TRON native precompile rows with activation, energy, query/mutation, malformed and rollback behavior."
         },
         {
           "id": "C015.04",
           "description": "Shielded transfer/TRC20 verification, stores, proofs, energy, failure mapping.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Implemented four shielded precompiles with exact ABI/energy/failure mapping and parameter-backed actual Sapling proof execution."
         },
         {
           "id": "C015.05",
           "description": "Independently recreate or license-compatible replace the UNLICENSED Freeze fixture.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Five direct TVM programs are newly authored Apache-2.0 clean-room fixtures covering freeze, unfreeze/expiry, CREATE2 collision, and bandwidth/energy accounting; original UNLICENSED source and derived artifacts remain prohibited."
         },
         {
           "id": "C015.06",
           "description": "Extend the TVM manifest to every standard/TRON/shielded precompile and native contract with activation, input domains, energy, effects and result mapping; require one differential vector per row and boundary class.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Exact 39-row manifest records all standard/P256/TRON/shielded/Freeze addresses or program identities, flags, input domains, energy, state effects, results, boundary-vector requirement, and reconciled C014/C016 ownership."
         },
         {
           "id": "C015.07",
           "description": "Before fixture work, approve legal guidance and a clean-room procedure for the UNLICENSED Freeze behavior: permissible observations, observer/implementer separation if required, retained results, authorship and replacement license.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Technical provenance controls and independent technical/legal provenance review are complete and approved; the five Apache-2.0 direct TVM programs remain independently authored and the original UNLICENSED artifact remains prohibited."
         }
       ],
       "gate": {
         "id": "C015.V",
-        "description": "782 P256 vectors and complete malformed/boundary/success/failure precompile matrix pass.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: exact 39-row standard/P256/TRON/shielded/Freeze manifest, 782 P256 records, standard/BN128/Blake2f/ModExp boundaries, 19 TRON native contracts, shielded parameter-backed actual proof execution, five clean-room programs, ownership reconciliation, focused suites, and locked all-targets check.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C015 exact precompile manifest and oracle gate",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/tvm/c015_gate.py"
+            ],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C015 standard and P256 precompile suite",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-tvm",
+              "--test",
+              "c015_standard",
+              "--locked"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C015 TRON native precompile suite",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-tvm",
+              "--test",
+              "c015_tron",
+              "--locked"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C015 shielded actual-proof suite",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-tvm",
+              "--test",
+              "c015_shielded",
+              "--locked"
+            ],
+            "timeout_seconds": 1800
+          },
+          {
+            "name": "C015 clean-room Freeze fixture integrity",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/tvm/c015_freeze/generate.py",
+              "--check"
+            ],
+            "timeout_seconds": 60
+          },
+          {
+            "name": "C015 clean-room Freeze runtime suite",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-tvm",
+              "--test",
+              "c015_freeze",
+              "--locked"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C015 tron-tvm locked all-targets check",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "check",
+              "-p",
+              "tron-tvm",
+              "--all-targets",
+              "--locked"
+            ],
+            "timeout_seconds": 600
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C015-R1-001",
+            "summary": "Independent technical/legal provenance reviewer must confirm the newly authored Apache-2.0 Freeze clean-room record and continued prohibition on the original UNLICENSED artifact.",
+            "status": "closed",
+            "resolution": "Independent correctness, security, and technical/legal provenance reviews are clean. The reviewer confirmed the five direct-TVM programs are independently authored from permitted public stack and numeric behavior inputs, Apache-2.0-declared, hash-bound, and not copied, translated, compiled, disassembled, decompiled, or mechanically derived from the original UNLICENSED artifact, which remains prohibited."
+          }
+        ]
       },
       "blocker": null
     },
@@ -1692,7 +2305,7 @@
         },
         {
           "id": "C017.07",
-          "description": "Publish deterministic consensus scenario manifests with seeds, complete genesis/config, slots, maintenance/fork schedules, witness changes, threshold−1/at/+1, misses/equivocation, rewards/proposals and per-step Java schedules/state/roots/cursors/events.",
+          "description": "Publish deterministic consensus scenario manifests with seeds, complete genesis/config, slots, maintenance/fork schedules, witness changes, threshold\u22121/at/+1, misses/equivocation, rewards/proposals and per-step Java schedules/state/roots/cursors/events.",
           "status": "todo",
           "note": null
         }
@@ -1751,7 +2364,7 @@
         },
         {
           "id": "C018.06",
-          "description": "Extend consensus manifests with PBFT quorum−1/at/+1, expiry, dedup, invalid signatures, backup election and timeout scenarios.",
+          "description": "Extend consensus manifests with PBFT quorum\u22121/at/+1, expiry, dedup, invalid signatures, backup election and timeout scenarios.",
           "status": "todo",
           "note": null
         }
@@ -1900,7 +2513,7 @@
       ],
       "gate": {
         "id": "C020.V",
-        "description": "Captured and live Java↔Rust bidirectional TCP, compression, malformed, UDP, DNS and ban tests pass; UDP ambiguity is results-resolved.",
+        "description": "Captured and live Java\u2194Rust bidirectional TCP, compression, malformed, UDP, DNS and ban tests pass; UDP ambiguity is results-resolved.",
         "status": "unconfigured",
         "commands": [],
         "last_failure": null
@@ -1977,7 +2590,7 @@
       ],
       "gate": {
         "id": "C021.V",
-        "description": "Two-way Java↔Rust genesis-to-head sync, tx/block propagation, reorg, ordinary/fast-forward, timeout/disconnect gates pass.",
+        "description": "Two-way Java\u2194Rust genesis-to-head sync, tx/block propagation, reorg, ordinary/fast-forward, timeout/disconnect gates pass.",
         "status": "unconfigured",
         "commands": [],
         "last_failure": null
@@ -2326,7 +2939,7 @@
       ],
       "gate": {
         "id": "C026.V",
-        "description": "Cross-language full→Solidity replication and API-state parity pass; standalone exposure manifest has zero difference and every required/forbidden/cursor row has passing results.",
+        "description": "Cross-language full\u2192Solidity replication and API-state parity pass; standalone exposure manifest has zero difference and every required/forbidden/cursor row has passing results.",
         "status": "unconfigured",
         "commands": [],
         "last_failure": null

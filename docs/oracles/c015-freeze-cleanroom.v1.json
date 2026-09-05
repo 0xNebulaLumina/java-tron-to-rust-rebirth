@@ -1,0 +1,100 @@
+{
+  "authorship": "0xNebulaLumina java-tron-to-rust-rebirth project contributors",
+  "classification": "clean_room",
+  "expected_resource_contracts": {
+    "at_expiry_final_owner_balance": 10000000,
+    "delegated_energy_after_self_freeze": {
+      "expiry_ms": 1700259200000,
+      "owner_balance": 5000000,
+      "owner_delegated": 3000000,
+      "receiver_acquired": 3000000,
+      "total_energy_weight": 3
+    },
+    "invalid_overspend_result": 0,
+    "pre_expiry_unfreeze_result": 0,
+    "self_bandwidth": {
+      "balance": 8000000,
+      "expiry_ms": 1700259200000,
+      "frozen": 2000000,
+      "total_net_weight": 2
+    },
+    "v2_queues": []
+  },
+  "initial_state": {
+    "minimum_frozen_days": 3,
+    "owner_balance": 10000000,
+    "timestamp_ms": 1700000000000,
+    "total_energy_weight": 0,
+    "total_net_weight": 0
+  },
+  "legal_review": {
+    "decision": "independent technical/legal provenance review approved the technically separated, newly authored Apache-2.0 clean-room replacement; the original UNLICENSED artifact remains prohibited",
+    "record": "C015.07 technical/legal provenance review",
+    "reviewed_controls": [
+      "input allowlist",
+      "explicit source/bytecode denylist",
+      "authorship",
+      "replacement license",
+      "content hashes",
+      "test-only distribution"
+    ],
+    "status": "approved"
+  },
+  "programs": [
+    {
+      "id": "freeze-self-bandwidth",
+      "observable_contract": "FREEZE(receiver=self, amount=2_000_000, resource=bandwidth) returns one",
+      "program_hex": "732121212121212121212121212121212121212121621e84806000d500",
+      "sha256": "a529630ee6b25c7d2ca6bd0564ce268ad53b6b3f3b37469b0ca40fe58813cea4"
+    },
+    {
+      "id": "freeze-expiry-seconds",
+      "observable_contract": "FREEZEEXPIRETIME(self, bandwidth) returns the millisecond expiry divided by 1000",
+      "program_hex": "7321212121212121212121212121212121212121216000d700",
+      "sha256": "6f6569476880c4b7cfc5159e7aa12c6091d2f2acab851861644ab0a7739e4253"
+    },
+    {
+      "id": "unfreeze-self-bandwidth",
+      "observable_contract": "UNFREEZE(self, bandwidth) returns zero before expiry and one at expiry",
+      "program_hex": "7321212121212121212121212121212121212121216000d600",
+      "sha256": "fbbc38ae18ec947d3a079a58a44b1f3b8ad981e16980ed274613fdaf7c61c8a2"
+    },
+    {
+      "id": "freeze-delegated-energy",
+      "observable_contract": "FREEZE(receiver, 3_000_000, energy) updates owner, receiver, delegation row, and total energy weight atomically",
+      "program_hex": "732222222222222222222222222222222222222222622dc6c06001d500",
+      "sha256": "a358c586b7bf4b8429b3fd758543a615eb0bdfc6054e9ecd5fab2a7420083342"
+    },
+    {
+      "id": "create2-empty-init",
+      "observable_contract": "CREATE2(value=0, offset=0, size=0, salt=9) creates an empty-runtime contract at the public CREATE2-derived address",
+      "program_hex": "6009600060006000f500",
+      "sha256": "7fa4b631acf606b8081d2a5a4c0ec63ac947c5a2c87289efbfd44d29448ef877"
+    }
+  ],
+  "reference_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "replacement_license": "Apache-2.0",
+  "schema": "c015-freeze-cleanroom.v1",
+  "scope": [
+    "legacy FREEZE",
+    "legacy UNFREEZE",
+    "FREEZEEXPIRETIME",
+    "CREATE2",
+    "bandwidth and energy resource accounting"
+  ],
+  "separation": {
+    "forbidden_inputs": [
+      "UNLICENSED FreezeTest.sol source text",
+      "compiled FreezeTest.sol creation or runtime bytecode",
+      "decompilation, disassembly, or mechanical translation of that fixture"
+    ],
+    "permitted_inputs": [
+      "public EVM CREATE2 semantics and address formula",
+      "public TVM opcode registry stack arities and activation names",
+      "behavioral assertions and numeric outcomes in pinned java-tron tests"
+    ],
+    "procedure": "The implementer specified observable state transitions first, then hand-authored short direct-opcode programs with a structure independent of Solidity compiler output. No observer retained or supplied expressive fixture content.",
+    "retained_results": "Only program bytes, their hashes, public numeric expectations, and behavior-only provenance are retained."
+  },
+  "version": 1
+}

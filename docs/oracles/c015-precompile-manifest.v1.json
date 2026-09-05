@@ -1,0 +1,539 @@
+{
+  "clean_room_review": "approved",
+  "family_counts": {
+    "freeze_clean_room": 5,
+    "p256": 1,
+    "shielded": 4,
+    "standard": 10,
+    "tron_native": 19
+  },
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "row_count": 39,
+  "rows": [
+    {
+      "activation": "always",
+      "address": "0x00000001",
+      "boundary_vector_required": true,
+      "energy": "3000",
+      "family": "standard",
+      "input_domain": "exactly 128 bytes after right-zero padding",
+      "name": "ecrecover",
+      "result_mapping": "success with 32-byte address or empty output",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "always",
+      "address": "0x00000002",
+      "boundary_vector_required": true,
+      "energy": "60 + 12*ceil(bytes/32)",
+      "family": "standard",
+      "input_domain": "arbitrary bytes",
+      "name": "sha256",
+      "result_mapping": "success with 32-byte SHA-256",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "always",
+      "address": "0x00000003",
+      "boundary_vector_required": true,
+      "energy": "600 + 120*ceil(bytes/32)",
+      "family": "standard",
+      "input_domain": "arbitrary bytes",
+      "name": "tron_ripemd",
+      "result_mapping": "success with SHA256(SHA256(input)[0:20])",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "always",
+      "address": "0x00000004",
+      "boundary_vector_required": true,
+      "energy": "15 + 3*ceil(bytes/32)",
+      "family": "standard",
+      "input_domain": "arbitrary bytes",
+      "name": "identity",
+      "result_mapping": "success with input unchanged",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "always",
+      "address": "0x00000005",
+      "boundary_vector_required": true,
+      "energy": "EIP-198 before Osaka; EIP-2565-compatible from Osaka, minimum 500; degenerate expLen >1024 is success before VERSION_4_8_1_1 and OutOfTime until Osaka",
+      "family": "standard",
+      "input_domain": "three 32-byte signed-int-safe lengths followed by right-zero-padded base/exponent/modulus; Osaka rejects any length >1024",
+      "name": "modexp",
+      "result_mapping": "success with modulus-width result; exact fork timeout or Osaka oversize failure",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "always",
+      "address": "0x00000006",
+      "boundary_vector_required": true,
+      "energy": "500 before Istanbul; 150 from Istanbul",
+      "family": "standard",
+      "input_domain": "128-byte G1 pair input, right-zero padded",
+      "name": "bn128_add",
+      "result_mapping": "success 64 bytes; invalid field/curve fails",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "always",
+      "address": "0x00000007",
+      "boundary_vector_required": true,
+      "energy": "40000 before Istanbul; 6000 from Istanbul",
+      "family": "standard",
+      "input_domain": "96-byte G1/scalar input, right-zero padded",
+      "name": "bn128_mul",
+      "result_mapping": "success 64 bytes; invalid field/curve fails",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "always",
+      "address": "0x00000008",
+      "boundary_vector_required": true,
+      "energy": "100000+80000*k before Istanbul; 45000+34000*k from Istanbul",
+      "family": "standard",
+      "input_domain": "zero or more exact 192-byte pairing tuples",
+      "name": "bn128_pairing",
+      "result_mapping": "success 32-byte boolean; nonmultiple/invalid tuple fails",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "compatible_evm",
+      "address": "0x00020003",
+      "boundary_vector_required": true,
+      "energy": "600 + 120*ceil(bytes/32)",
+      "family": "standard",
+      "input_domain": "arbitrary bytes",
+      "name": "eth_ripemd",
+      "result_mapping": "success with left-padded RIPEMD-160",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "compatible_evm",
+      "address": "0x00020009",
+      "boundary_vector_required": true,
+      "energy": "big-endian rounds word; malformed input costs 0",
+      "family": "standard",
+      "input_domain": "exactly 213 bytes; final flag 0 or 1",
+      "name": "blake2f",
+      "result_mapping": "success 64 bytes; malformed input fails",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "osaka",
+      "address": "0x00000100",
+      "boundary_vector_required": true,
+      "energy": "6900",
+      "family": "p256",
+      "input_domain": "exactly 160 bytes: hash,r,s,x,y",
+      "name": "p256_verify",
+      "result_mapping": "success with 32-byte boolean; malformed/invalid is zero",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "ALLOW_TVM_SOLIDITY_059",
+      "address": "0x00000009",
+      "boundary_vector_required": true,
+      "energy": "1500*((words-5)/6)",
+      "family": "tron_native",
+      "input_domain": "ABI batch signatures",
+      "name": "BatchValidateSign",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "ALLOW_TVM_SOLIDITY_059",
+      "address": "0x0000000a",
+      "boundary_vector_required": true,
+      "energy": "1500*((words-5)/5)",
+      "family": "tron_native",
+      "input_domain": "ABI address/permission/data/signatures",
+      "name": "ValidateMultiSign",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "ALLOW_TVM_VOTE",
+      "address": "0x01000005",
+      "boundary_vector_required": true,
+      "energy": "500",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "RewardBalance",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "ALLOW_TVM_VOTE",
+      "address": "0x01000006",
+      "boundary_vector_required": true,
+      "energy": "20",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "IsSrCandidate",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "ALLOW_TVM_VOTE",
+      "address": "0x01000007",
+      "boundary_vector_required": true,
+      "energy": "500",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "VoteCount",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "repository mutation with child commit/revoke"
+    },
+    {
+      "activation": "ALLOW_TVM_VOTE",
+      "address": "0x01000008",
+      "boundary_vector_required": true,
+      "energy": "20",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "UsedVoteCount",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "repository mutation with child commit/revoke"
+    },
+    {
+      "activation": "ALLOW_TVM_VOTE",
+      "address": "0x01000009",
+      "boundary_vector_required": true,
+      "energy": "20",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "ReceivedVoteCount",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "repository mutation with child commit/revoke"
+    },
+    {
+      "activation": "ALLOW_TVM_VOTE",
+      "address": "0x0100000a",
+      "boundary_vector_required": true,
+      "energy": "20",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "TotalVoteCount",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "repository mutation with child commit/revoke"
+    },
+    {
+      "activation": "ALLOW_TVM_FREEZE_V2",
+      "address": "0x0100000b",
+      "boundary_vector_required": true,
+      "energy": "50",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "GetChainParameter",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "ALLOW_TVM_FREEZE_V2",
+      "address": "0x0100000c",
+      "boundary_vector_required": true,
+      "energy": "50",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "AvailableUnfreezeV2Size",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "repository mutation with child commit/revoke"
+    },
+    {
+      "activation": "ALLOW_TVM_FREEZE_V2",
+      "address": "0x0100000d",
+      "boundary_vector_required": true,
+      "energy": "50",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "UnfreezableBalanceV2",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "ALLOW_TVM_FREEZE_V2",
+      "address": "0x0100000e",
+      "boundary_vector_required": true,
+      "energy": "50",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "ExpireUnfreezeBalanceV2",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "repository mutation with child commit/revoke"
+    },
+    {
+      "activation": "ALLOW_TVM_FREEZE_V2",
+      "address": "0x0100000f",
+      "boundary_vector_required": true,
+      "energy": "50",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "DelegatableResource",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "ALLOW_TVM_FREEZE_V2",
+      "address": "0x01000010",
+      "boundary_vector_required": true,
+      "energy": "50",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "ResourceV2",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "ALLOW_TVM_FREEZE_V2",
+      "address": "0x01000011",
+      "boundary_vector_required": true,
+      "energy": "50",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "CheckUnDelegateResource",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "repository mutation with child commit/revoke"
+    },
+    {
+      "activation": "ALLOW_TVM_FREEZE_V2",
+      "address": "0x01000012",
+      "boundary_vector_required": true,
+      "energy": "50",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "ResourceUsage",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "ALLOW_TVM_FREEZE_V2",
+      "address": "0x01000013",
+      "boundary_vector_required": true,
+      "energy": "50",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "TotalResource",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "ALLOW_TVM_FREEZE_V2",
+      "address": "0x01000014",
+      "boundary_vector_required": true,
+      "energy": "50",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "TotalDelegatedResource",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "repository mutation with child commit/revoke"
+    },
+    {
+      "activation": "ALLOW_TVM_FREEZE_V2",
+      "address": "0x01000015",
+      "boundary_vector_required": true,
+      "energy": "50",
+      "family": "tron_native",
+      "input_domain": "exact native-contract ABI words and TRON address/resource domains",
+      "name": "TotalAcquiredResource",
+      "result_mapping": "32-byte ABI result on success; false/empty plus full-energy failure on validation error",
+      "state_effect": "read_only"
+    },
+    {
+      "activation": "allow_shielded_tvm",
+      "address": "0x01000001",
+      "boundary_vector_required": true,
+      "energy": "150000",
+      "family": "shielded",
+      "input_domain": "exact 1504-byte mint proof plus exact 33-node encoding of a 32-level frontier; checked leaf_count + 1 <= 2^32",
+      "name": "verify_mint",
+      "result_mapping": "verifies actual Sapling output and binding proofs; returns commitment/root/count",
+      "state_effect": "read_only; caller applies returned shielded-store deltas transactionally"
+    },
+    {
+      "activation": "allow_shielded_tvm",
+      "address": "0x01000002",
+      "boundary_vector_required": true,
+      "energy": "200000",
+      "family": "shielded",
+      "input_domain": "header plus bounded exact spend/output proof arrays; exact 33-node frontier with checked leaf_count + output_count <= 2^32",
+      "name": "verify_transfer",
+      "result_mapping": "verifies actual Sapling spend/output/binding proofs; returns nullifiers/commitments/root/count",
+      "state_effect": "read_only; caller applies returned shielded-store deltas transactionally"
+    },
+    {
+      "activation": "allow_shielded_tvm",
+      "address": "0x01000003",
+      "boundary_vector_required": true,
+      "energy": "150000",
+      "family": "shielded",
+      "input_domain": "exact 512-byte spend/burn ABI with bounded canonical words",
+      "name": "verify_burn",
+      "result_mapping": "verifies actual Sapling spend and binding proofs; returns boolean",
+      "state_effect": "read_only; caller applies returned shielded-store deltas transactionally"
+    },
+    {
+      "activation": "allow_shielded_tvm",
+      "address": "0x01000004",
+      "boundary_vector_required": true,
+      "energy": "500",
+      "family": "shielded",
+      "input_domain": "exact 96 bytes: level,left,right; level < 32",
+      "name": "merkle_hash",
+      "result_mapping": "computes Sapling Merkle hash; invalid input fails",
+      "state_effect": "read_only; caller applies returned shielded-store deltas transactionally"
+    },
+    {
+      "activation": "freeze/create2 fork selected by program",
+      "address": null,
+      "boundary_vector_required": true,
+      "energy": {
+        "at_expiry_final_owner_balance": 10000000,
+        "delegated_energy_after_self_freeze": {
+          "expiry_ms": 1700259200000,
+          "owner_balance": 5000000,
+          "owner_delegated": 3000000,
+          "receiver_acquired": 3000000,
+          "total_energy_weight": 3
+        },
+        "invalid_overspend_result": 0,
+        "pre_expiry_unfreeze_result": 0,
+        "self_bandwidth": {
+          "balance": 8000000,
+          "expiry_ms": 1700259200000,
+          "frozen": 2000000,
+          "total_net_weight": 2
+        },
+        "v2_queues": []
+      },
+      "family": "freeze_clean_room",
+      "input_domain": "newly authored direct TVM bytecode; exact bytes authenticated by sha256",
+      "name": "freeze-self-bandwidth",
+      "program_sha256": "a529630ee6b25c7d2ca6bd0564ce268ad53b6b3f3b37469b0ca40fe58813cea4",
+      "result_mapping": "runtime result, energy and exact state delta asserted",
+      "state_effect": "repository/resource mutation with rollback on failure"
+    },
+    {
+      "activation": "freeze/create2 fork selected by program",
+      "address": null,
+      "boundary_vector_required": true,
+      "energy": {
+        "at_expiry_final_owner_balance": 10000000,
+        "delegated_energy_after_self_freeze": {
+          "expiry_ms": 1700259200000,
+          "owner_balance": 5000000,
+          "owner_delegated": 3000000,
+          "receiver_acquired": 3000000,
+          "total_energy_weight": 3
+        },
+        "invalid_overspend_result": 0,
+        "pre_expiry_unfreeze_result": 0,
+        "self_bandwidth": {
+          "balance": 8000000,
+          "expiry_ms": 1700259200000,
+          "frozen": 2000000,
+          "total_net_weight": 2
+        },
+        "v2_queues": []
+      },
+      "family": "freeze_clean_room",
+      "input_domain": "newly authored direct TVM bytecode; exact bytes authenticated by sha256",
+      "name": "freeze-expiry-seconds",
+      "program_sha256": "6f6569476880c4b7cfc5159e7aa12c6091d2f2acab851861644ab0a7739e4253",
+      "result_mapping": "runtime result, energy and exact state delta asserted",
+      "state_effect": "repository/resource mutation with rollback on failure"
+    },
+    {
+      "activation": "freeze/create2 fork selected by program",
+      "address": null,
+      "boundary_vector_required": true,
+      "energy": {
+        "at_expiry_final_owner_balance": 10000000,
+        "delegated_energy_after_self_freeze": {
+          "expiry_ms": 1700259200000,
+          "owner_balance": 5000000,
+          "owner_delegated": 3000000,
+          "receiver_acquired": 3000000,
+          "total_energy_weight": 3
+        },
+        "invalid_overspend_result": 0,
+        "pre_expiry_unfreeze_result": 0,
+        "self_bandwidth": {
+          "balance": 8000000,
+          "expiry_ms": 1700259200000,
+          "frozen": 2000000,
+          "total_net_weight": 2
+        },
+        "v2_queues": []
+      },
+      "family": "freeze_clean_room",
+      "input_domain": "newly authored direct TVM bytecode; exact bytes authenticated by sha256",
+      "name": "unfreeze-self-bandwidth",
+      "program_sha256": "fbbc38ae18ec947d3a079a58a44b1f3b8ad981e16980ed274613fdaf7c61c8a2",
+      "result_mapping": "runtime result, energy and exact state delta asserted",
+      "state_effect": "repository/resource mutation with rollback on failure"
+    },
+    {
+      "activation": "freeze/create2 fork selected by program",
+      "address": null,
+      "boundary_vector_required": true,
+      "energy": {
+        "at_expiry_final_owner_balance": 10000000,
+        "delegated_energy_after_self_freeze": {
+          "expiry_ms": 1700259200000,
+          "owner_balance": 5000000,
+          "owner_delegated": 3000000,
+          "receiver_acquired": 3000000,
+          "total_energy_weight": 3
+        },
+        "invalid_overspend_result": 0,
+        "pre_expiry_unfreeze_result": 0,
+        "self_bandwidth": {
+          "balance": 8000000,
+          "expiry_ms": 1700259200000,
+          "frozen": 2000000,
+          "total_net_weight": 2
+        },
+        "v2_queues": []
+      },
+      "family": "freeze_clean_room",
+      "input_domain": "newly authored direct TVM bytecode; exact bytes authenticated by sha256",
+      "name": "freeze-delegated-energy",
+      "program_sha256": "a358c586b7bf4b8429b3fd758543a615eb0bdfc6054e9ecd5fab2a7420083342",
+      "result_mapping": "runtime result, energy and exact state delta asserted",
+      "state_effect": "repository/resource mutation with rollback on failure"
+    },
+    {
+      "activation": "freeze/create2 fork selected by program",
+      "address": null,
+      "boundary_vector_required": true,
+      "energy": {
+        "at_expiry_final_owner_balance": 10000000,
+        "delegated_energy_after_self_freeze": {
+          "expiry_ms": 1700259200000,
+          "owner_balance": 5000000,
+          "owner_delegated": 3000000,
+          "receiver_acquired": 3000000,
+          "total_energy_weight": 3
+        },
+        "invalid_overspend_result": 0,
+        "pre_expiry_unfreeze_result": 0,
+        "self_bandwidth": {
+          "balance": 8000000,
+          "expiry_ms": 1700259200000,
+          "frozen": 2000000,
+          "total_net_weight": 2
+        },
+        "v2_queues": []
+      },
+      "family": "freeze_clean_room",
+      "input_domain": "newly authored direct TVM bytecode; exact bytes authenticated by sha256",
+      "name": "create2-empty-init",
+      "program_sha256": "7fa4b631acf606b8081d2a5a4c0ec63ac947c5a2c87289efbfd44d29448ef877",
+      "result_mapping": "runtime result, energy and exact state delta asserted",
+      "state_effect": "repository/resource mutation with rollback on failure"
+    }
+  ],
+  "schema": "c015-precompile-manifest.v1"
+}

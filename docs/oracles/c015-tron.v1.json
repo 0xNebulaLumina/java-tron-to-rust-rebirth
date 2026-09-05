@@ -1,0 +1,31 @@
+{
+  "source": "java-tron actuator PrecompiledContracts.java pinned repository source",
+  "contracts": [
+    {"address":"00000009","name":"BatchValidateSign","activation":"ALLOW_TVM_SOLIDITY_059","energy":"1500*((words-5)/6)"},
+    {"address":"0000000a","name":"ValidateMultiSign","activation":"ALLOW_TVM_SOLIDITY_059","energy":"1500*((words-5)/5)"},
+    {"address":"01000005","name":"RewardBalance","activation":"ALLOW_TVM_VOTE","energy":"500"},
+    {"address":"01000006","name":"IsSrCandidate","activation":"ALLOW_TVM_VOTE","energy":"20"},
+    {"address":"01000007","name":"VoteCount","activation":"ALLOW_TVM_VOTE","energy":"500"},
+    {"address":"01000008","name":"UsedVoteCount","activation":"ALLOW_TVM_VOTE","energy":"20"},
+    {"address":"01000009","name":"ReceivedVoteCount","activation":"ALLOW_TVM_VOTE","energy":"20"},
+    {"address":"0100000a","name":"TotalVoteCount","activation":"ALLOW_TVM_VOTE","energy":"20"},
+    {"address":"0100000b","name":"GetChainParameter","activation":"ALLOW_TVM_FREEZE_V2","energy":"50"},
+    {"address":"0100000c","name":"AvailableUnfreezeV2Size","activation":"ALLOW_TVM_FREEZE_V2","energy":"50"},
+    {"address":"0100000d","name":"UnfreezableBalanceV2","activation":"ALLOW_TVM_FREEZE_V2","energy":"50"},
+    {"address":"0100000e","name":"ExpireUnfreezeBalanceV2","activation":"ALLOW_TVM_FREEZE_V2","energy":"50"},
+    {"address":"0100000f","name":"DelegatableResource","activation":"ALLOW_TVM_FREEZE_V2","energy":"50"},
+    {"address":"01000010","name":"ResourceV2","activation":"ALLOW_TVM_FREEZE_V2","energy":"50"},
+    {"address":"01000011","name":"CheckUnDelegateResource","activation":"ALLOW_TVM_FREEZE_V2","energy":"50"},
+    {"address":"01000012","name":"ResourceUsage","activation":"ALLOW_TVM_FREEZE_V2","energy":"50"},
+    {"address":"01000013","name":"TotalResource","activation":"ALLOW_TVM_FREEZE_V2","energy":"50"},
+    {"address":"01000014","name":"TotalDelegatedResource","activation":"ALLOW_TVM_FREEZE_V2","energy":"50"},
+    {"address":"01000015","name":"TotalAcquiredResource","activation":"ALLOW_TVM_FREEZE_V2","energy":"50"}
+  ],
+  "scenarios": [
+    {"id":"vote-malformed","address":"01000007","input":"","success":true,"output_words":[0]},
+    {"id":"freeze-malformed","address":"01000011","input":"00","success":true,"output_words":[0,0,0]},
+    {"id":"batch-osaka-malformed-revert","address":"00000009","input":"","osaka":true,"success":false,"output_words":[]},
+    {"id":"chain-invalid-code","address":"0100000b","input_word":99,"success":true,"output_words":[0]},
+    {"id":"expire-negative","address":"0100000e","time_word":-1,"success":true,"output_words":[0]}
+  ]
+}

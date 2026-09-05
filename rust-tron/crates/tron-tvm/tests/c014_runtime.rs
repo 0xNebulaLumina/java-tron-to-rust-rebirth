@@ -114,7 +114,7 @@ fn full_registry_has_exact_shape_and_activation_coverage() {
         higher_cpu_memory: true, freeze_v2: true, optimized_chain_id: true, dynamic_energy: true,
         shanghai: true, energy_adjustment: true, strict_math: true, cancun: true,
         disable_java_math: true, blob: true, selfdestruct_restriction: true, osaka: true,
-        harden_resource: true, shielded_reserved: true, energy_limit_hardfork: true,
+        harden_resource: true, shielded_trc20: true, energy_limit_hardfork: true,
         ..TvmRules::default()
     };
     registry.validate_activation(&all).unwrap();

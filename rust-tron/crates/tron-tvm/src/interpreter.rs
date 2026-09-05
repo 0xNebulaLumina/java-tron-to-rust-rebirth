@@ -2,8 +2,10 @@ use crate::{
     opcodes_c::{child_frame, create2_address_no_ff, create_address, validate_deployed_code, CallKind},
     CallRequest, ContractResult, CreateKind, CreateRequest, EnergyMeter, ExecutionLimiter, ExecutionOutcome,
     ExitStatus, FrameContext, InternalTransactionRecord, Memory, OperationContext, OperationControl, OperationEffects,
-    OperationRegistry, Program, Repository, ResolvedOperation, Stack1024, TvmRules, VmFault, Word,
+    OperationRegistry, PrecompileRegistry, Program, Repository, ResolvedOperation, Stack1024, TvmRules, VmFault, Word,
 };
+use std::sync::Arc;
+use tron_shielded::TronParameters;
 use tron_primitives::TronAddress21;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -11,9 +13,10 @@ pub enum TraceEvent { Fetched { pc: usize, opcode: u8 }, StackChecked { opcode: 
 pub trait ExecutionTrace { fn record(&mut self, event: TraceEvent); }
 #[derive(Default)] pub struct NoTrace; impl ExecutionTrace for NoTrace { fn record(&mut self, _: TraceEvent) {} }
 
-pub struct Interpreter<'a> { resolved: [Option<ResolvedOperation>; 256], rules: &'a TvmRules }
+pub struct Interpreter<'a> { resolved: [Option<ResolvedOperation>; 256], rules: &'a TvmRules, precompiles: PrecompileRegistry }
 impl<'a> Interpreter<'a> {
-    pub fn new(registry:&OperationRegistry,rules:&'a TvmRules)->Self{Self{resolved:registry.resolve(rules),rules}}
+    pub fn new(registry:&OperationRegistry,rules:&'a TvmRules)->Self{Self{resolved:registry.resolve(rules),rules,precompiles:PrecompileRegistry::new()}}
+    #[must_use] pub fn with_shielded_parameters(mut self, parameters:Arc<TronParameters>)->Self{self.precompiles=PrecompileRegistry::with_shielded_parameters(parameters);self}
 
     #[allow(clippy::too_many_arguments)]
     pub fn run(&self,frame:&FrameContext,program:&mut Program,stack:&mut Stack1024,memory:&mut Memory,repository:&mut Repository<'_>,meter:&mut EnergyMeter,limiter:&mut dyn ExecutionLimiter,trace:&mut dyn ExecutionTrace)->ExecutionOutcome{
@@ -76,9 +79,15 @@ impl<'a> Interpreter<'a> {
         };
         if transfer.is_err(){let _=repository.revoke_child(id);record.reject();effects.internal_transactions.push(record);effects.return_data.clear();let _=stack.push(Word::ZERO);return;}
         let frame=FrameContext{code_address:spec.code_address,context_address:spec.context_address,origin:parent.origin,caller:spec.caller,input:request.data,call_value:spec.call_value,token_value:spec.token_value,token_id:spec.token_id,root_txid:parent.root_txid,contract_version:parent.contract_version,depth:spec.depth,is_static:spec.is_static};
-        let code=repository.code(&spec.code_address).unwrap_or_default();
-        let mut child_program=Program::new(code);let mut child_stack=Stack1024::default();let mut child_memory=Memory::default();let mut child_meter=EnergyMeter::new(request.energy_limit.max(0)).expect("nonnegative");
-        let mut outcome=self.execute_frame(&frame,&mut child_program,&mut child_stack,&mut child_memory,repository,&mut child_meter,limiter,trace,nonce,record.hash);
+        let mut child_meter=EnergyMeter::new(request.energy_limit.max(0)).expect("nonnegative");
+        let mut outcome=if let Some(precompiled)=self.precompiles.dispatch_with_caller(&spec.code_address,&frame.input,self.rules,repository,&mut child_meter,Some(frame.caller)){
+            let mut value=if precompiled.success{ExecutionOutcome::success()}else{ExecutionOutcome::fault(precompiled.fault.unwrap_or(VmFault::PrecompiledContract))};
+            value.return_data=precompiled.output;value.energy_used=child_meter.used();value
+        }else{
+            let code=repository.code(&spec.code_address).unwrap_or_default();
+            let mut child_program=Program::new(code);let mut child_stack=Stack1024::default();let mut child_memory=Memory::default();
+            self.execute_frame(&frame,&mut child_program,&mut child_stack,&mut child_memory,repository,&mut child_meter,limiter,trace,nonce,record.hash)
+        };
         let unused=request.reserved_energy.saturating_sub(outcome.energy_used.min(request.reserved_energy));let _=meter.refund(unused);
         effects.return_data=outcome.return_data.clone();
         let copy=request.output_size.min(outcome.return_data.len());let _=memory.write(request.output_offset,&outcome.return_data[..copy]);
