@@ -1,0 +1,650 @@
+{
+  "fork_intervals": [
+    {
+      "disabled": false,
+      "enabled": true,
+      "modifier": "always"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "multi_sign"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "transfer_trc10"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "constantinople"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "solidity_059"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "istanbul"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "freeze"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "vote"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "london"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "compatible_evm"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "create2_depth_timeout"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "higher_cpu_memory"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "freeze_v2"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "optimized_chain_id"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "dynamic_energy"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "shanghai"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "energy_adjustment"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "strict_math"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "cancun"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "disable_java_math"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "blob"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "selfdestruct_restriction"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "osaka"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "harden_resource"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "shielded_reserved"
+    },
+    {
+      "disabled": true,
+      "enabled": true,
+      "modifier": "energy_limit_hardfork"
+    }
+  ],
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "schema": "c014-execution-oracle.v1",
+  "scope": "executable end-to-end family, fork interval, recursive execution, state/effect rollback, return-data, call-energy refund and precheck failure, internal-transaction lineage, selfdestruct eligibility/resource transfer/fork rollback, legacy freeze and RuntimeImpl result assertions",
+  "vectors": [
+    {
+      "assertions": [
+        "signed arithmetic and modulo match Java word semantics",
+        "shift and stack operand order match Java"
+      ],
+      "family": "arithmetic_environment",
+      "id": "C014-E2E-001",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "arithmetic_signed_modulo_shift_and_stack_order_match_java",
+      "rust_target": "opcodes_a_contract"
+    },
+    {
+      "assertions": [
+        "memory expansion and copy energy are exact",
+        "zero storage deletes and static writes fault without state delta"
+      ],
+      "family": "memory_storage_control_logs",
+      "id": "C014-E2E-002",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "memory_copy_energy_storage_zero_delete_and_static_guards_replay",
+      "rust_target": "opcodes_b_contract"
+    },
+    {
+      "assertions": [
+        "successful child state commits once",
+        "return data is copied with Java bounds and energy"
+      ],
+      "family": "recursive_call_return_data",
+      "id": "C014-E2E-003",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "recursive_call_commits_success_and_copies_return_data",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "CREATE and CREATE2 execute init code",
+        "successful runtime code and derived address commit atomically"
+      ],
+      "family": "recursive_create_create2",
+      "id": "C014-E2E-004",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "recursive_create_and_create2_execute_init_code_and_install_runtime",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "child journal installs AccountType.Contract and SmartContract metadata before init execution",
+        "ISCONTRACT inside init and immediately after CREATE both observe the destination contract",
+        "successful runtime code and its Keccak code hash persist together"
+      ],
+      "family": "create_state_visible_to_init",
+      "id": "C014-E2E-005",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "create_installs_contract_state_before_init_and_iscontract_observes_it_immediately",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "successful empty runtime code remains present in Code storage",
+        "a second CREATE2 to the same address rejects against the persisted Account and Contract metadata"
+      ],
+      "family": "create_empty_runtime_collision",
+      "id": "C014-E2E-006",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "empty_runtime_persists_and_second_create2_to_same_address_collides",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "before Constantinople any existing Account collides",
+        "from Constantinople an EOA without SmartContract metadata is converted transactionally while an Account plus Contract row collides",
+        "a code-only orphan does not collide and is replaced exactly as Java"
+      ],
+      "family": "create_collision_fork_matrix",
+      "id": "C014-E2E-007",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "create_collision_follows_java_account_contract_fork_matrix",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "failed init rejects the CREATE result",
+        "Account, SmartContract metadata and Code writes all roll back"
+      ],
+      "family": "create_failed_init_rollback",
+      "id": "C014-E2E-008",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "failed_create_init_rolls_back_account_contract_and_code",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "insufficient CREATE endowment emits no internal transaction and does not advance the root create nonce",
+        "a following zero-value CREATE uses nonce zero without synthesizing the absent sender Account",
+        "the fresh destination is AccountType.Contract with account_name CreatedByContract before execution"
+      ],
+      "family": "create_endowment_nonce_sender_metadata",
+      "id": "C014-E2E-009",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "create_prechecks_endowment_and_preserves_nonce_and_absent_sender",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "CREATE2 derives from caller before Istanbul and context address from Istanbul",
+        "0xEF-prefixed deployed code succeeds before London and rejects atomically from London"
+      ],
+      "family": "create2_istanbul_london_forks",
+      "id": "C014-E2E-010",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "create2_source_and_ef_deployment_follow_istanbul_and_london",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "a colliding CREATE2 emits one rejected internal transaction",
+        "collision consumes the full forwarded child allowance without refund while preserving destination state"
+      ],
+      "family": "create_collision_child_allowance",
+      "id": "C014-E2E-011",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "create_collision_consumes_full_child_allowance",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "CREATE at depth 64 always pushes zero without consuming nonce or mutating state",
+        "legacy CREATE2 at depth 64 proceeds before VERSION_4_8_1_1, faults OUT_OF_TIME from VERSION_4_8_1_1, and compatible-EVM or Osaka instead pushes zero",
+        "successful legacy CREATE2 emits nonce zero and installs empty runtime while every rejected branch emits no internal transaction"
+      ],
+      "family": "create_depth_fork_matrix",
+      "id": "C014-E2E-012",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "create_and_create2_depth_64_follow_java_fork_gates",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "CREATE clears stale prior revert data before RETURNDATASIZE and RETURNDATACOPY",
+        "CREATE2 preserves bytes aa bb before Osaka and clears them from Osaka",
+        "RETURNDATASIZE and RETURNDATACOPY observe the exact fork-selected buffer"
+      ],
+      "family": "create_return_data_fork_matrix",
+      "id": "C014-E2E-013",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "create_return_data_clearing_matches_pre_and_post_osaka_returndata_ops",
+      "rust_target": "opcodes_c_contract"
+    },
+    {
+      "assertions": [
+        "CALL, CALLCODE, DELEGATECALL, STATICCALL, CALLTOKEN, CREATE, and CREATE2 reject maximum-word, over-3MiB, and over-i64 memory destinations before action",
+        "checked range and memory-energy arithmetic returns OUT_OF_MEMORY without allocation, panic, or wrap"
+      ],
+      "family": "call_create_memory_bounds",
+      "id": "C014-E2E-014",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "call_and_create_families_reject_huge_memory_ranges_before_action",
+      "rust_target": "opcodes_c_contract"
+    },
+    {
+      "assertions": [
+        "freeze-v2, withdraw, cancel, vote and delegation deltas match Java",
+        "failed system effects roll back"
+      ],
+      "family": "system_resource_vote_delegation",
+      "id": "C014-E2E-015",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "system_state_adapter_replays_java_freeze_v2_withdraw_cancel_and_rollback_deltas",
+      "rust_target": "opcodes_c_contract"
+    },
+    {
+      "assertions": [
+        "child revert revokes child storage",
+        "ancestor revert revokes committed descendant storage"
+      ],
+      "family": "top_level_child_rollback",
+      "id": "C014-E2E-016",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "top_level_and_child_revert_revoke_sstore_deltas",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "invalid jumps and oversized logs fault exactly",
+        "return and revert preserve their distinct result and data semantics"
+      ],
+      "family": "internal_transactions_logs",
+      "id": "C014-E2E-017",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "jump_validation_log_limits_and_return_revert_replay",
+      "rust_target": "opcodes_b_contract"
+    },
+    {
+      "assertions": [
+        "dynamic penalty is charged after base energy",
+        "call forwarding and CPU exhaustion match Java"
+      ],
+      "family": "dynamic_penalties_cpu_faults",
+      "id": "C014-E2E-018",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "result_numbers_dynamic_penalty_and_call_forwarding_are_exact",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "success, revert and every fault map to exact contractResult names and numbers"
+      ],
+      "family": "runtime_result_mapping",
+      "id": "C014-E2E-019",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "result_numbers_dynamic_penalty_and_call_forwarding_are_exact",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "successful empty child CALL consumes exactly 61 energy and refunds its reserve once",
+        "exactly one non-rejected Java-hashed call transaction has the root transaction id as parent, root sender context, child receiver, and depth/index/nonce zero"
+      ],
+      "family": "call_energy_internal_transactions",
+      "id": "C014-E2E-020",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "call_reserve_is_refunded_once_and_emits_java_internal_transaction",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "SELFDESTRUCT transfers 77 balance, deletes the executing account, and emits a suicide transaction",
+        "an ancestor illegal operation restores both balances and marks every internal transaction rejected"
+      ],
+      "family": "selfdestruct_transactional_rollback",
+      "id": "C014-E2E-021",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "selfdestruct_transfers_deletes_and_parent_fault_rolls_everything_back",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "self bandwidth freeze of 2000000 at timestamp 1700000000000 and minimum 3 days leaves balance 8000000, expiry 1700259200000, total net weight 2, and empty v2 queues",
+        "delegated energy freeze of 3000000 leaves owner balance 5000000, owner delegated and receiver acquired balances 3000000, expiry 1700259200000, and total energy weight 3",
+        "unfreeze before expiry is a no-op; at expiry self and delegated balances restore owner to 10000000, clear legacy fields, clear receiver acquired balance, and zero both weights; insufficient 20000000 freeze rolls back"
+      ],
+      "family": "legacy_freeze_unfreeze_v1",
+      "id": "C014-E2E-022",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "pinned_java_legacy_freeze_unfreeze_vectors_preserve_v1_state_and_v2_queues",
+      "rust_target": "opcodes_c_contract"
+    },
+    {
+      "assertions": [
+        "legacy self energy freeze and unfreeze use AccountResource.frozen_balance_for_energy",
+        "legacy energy operations never populate frozen_v2 or unfrozen_v2 queues"
+      ],
+      "family": "legacy_energy_account_resource",
+      "id": "C014-E2E-023",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "legacy_energy_self_path_uses_account_resource_not_freeze_v2",
+      "rust_target": "opcodes_c_contract"
+    },
+    {
+      "assertions": [
+        "depth-64 CALL, insufficient TRX CALL, and insufficient TRC10 CALLTOKEN push zero, clear return data, refund the entire reserved child allowance, emit no internal transaction, and preserve balances",
+        "a following CREATE derives its address and internal transaction at root nonce zero because failed call prechecks do not advance lineage"
+      ],
+      "family": "call_preexecution_refund_lineage",
+      "id": "C014-E2E-024",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "call_preexecution_failures_refund_reserve_and_do_not_mutate_lineage",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "legacy delegated resources, restricted unexpired legacy freeze, delegated v2 resources, and future pending v2 unfreeze each make SELFDESTRUCT revert",
+        "every eligibility rejection preserves the owner, emits no delta, and emits no internal transaction"
+      ],
+      "family": "selfdestruct_eligibility_failures",
+      "id": "C014-E2E-025",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "eligibility_failure_reverts_without_deltas_or_internal_transaction",
+      "rust_target": "selfdestruct_contract"
+    },
+    {
+      "assertions": [
+        "legacy self-beneficiary destruction transfers exactly 77 TRX, token 1000001 balance 5, bandwidth freeze 2000000, and energy freeze 3000000 to the configured blackhole",
+        "total net and energy weights fall from 2 and 3 to zero, the owner is deleted, and the suicide transaction is accepted"
+      ],
+      "family": "selfdestruct_legacy_blackhole_transfer",
+      "id": "C014-E2E-026",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "legacy_self_beneficiary_moves_trx_tokens_and_frozen_resources_to_configured_blackhole",
+      "rust_target": "selfdestruct_contract"
+    },
+    {
+      "assertions": [
+        "VERSION_NUMBER never short-circuits requested fork evaluation, and version 35 without passing stats is false",
+        "VERSION_4_8_1_1 uses timestamp 1596780000000, rate 70, and the raw persisted stats length as the quorum denominator",
+        "19 of 27 upgrade bytes pass while 18 of 27 fail, every stats value other than 1 counts false, and malformed active-witness schedule bytes do not affect rule loading"
+      ],
+      "family": "canonical_fork_state_loader",
+      "id": "C014-E2E-027",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "production_rules_load_uses_persisted_version_35_fork_state",
+      "rust_target": "c014_runtime"
+    },
+    {
+      "assertions": [
+        "restricted existing-contract self-beneficiary execution preserves the account, TRX and tokens without deletion while emitting an accepted suicide transaction",
+        "the same address marked new transfers TRX, tokens and frozen v2 to the configured blackhole, withdraws expired pending v2, and deletes the account",
+        "the suicide transaction value is 86 and its accepted child withdraw transaction has value 9; both parent hashes equal the enclosing frame root transaction hash"
+      ],
+      "family": "selfdestruct_restricted_new_contract_lineage",
+      "id": "C014-E2E-028",
+      "observations": [
+        "result",
+        "energy",
+        "state_delta",
+        "return_data",
+        "internal_transactions",
+        "logs"
+      ],
+      "rust_case": "restricted_existing_self_is_noop_while_new_contract_deletes_with_expired_v2_lineage",
+      "rust_target": "selfdestruct_contract"
+    }
+  ]
+}

@@ -26,7 +26,7 @@ pub mod value;
 pub use capsule::{BytesCapsule, CapsuleDecodeError, CodeCapsule, ProtoCapsule, StorageRow};
 pub use store::{StateStore, StateWriteBatch, StoreEntry, StoreKind, StoreName, StoreNameError, TypedStore, physical_key};
 pub use dynamic_properties::{DynamicError, DynamicProperties, DynamicValue, PropertyEncoding};
-pub use fork::{ForkClock, ForkController, ForkError, ForkMath, ForkSchedule, ForkVersion, JavaForkMath};
+pub use fork::{evaluate_fork_pass, ForkClock, ForkController, ForkError, ForkMath, ForkPassInput, ForkSchedule, ForkVersion, JavaForkMath};
 pub use khaos::{DEFAULT_KHAOS_CAPACITY, KhaosBlock, KhaosBlockData, KhaosDatabase, KhaosError, KhaosLimits, KhaosNode, KhaosStore, RetainedSize, StoreMutation, StoreMutationKind};
 pub use genesis::{build_genesis, initialize_genesis, initialize_genesis_config, GenesisAssetConfig, GenesisBlock, GenesisConfig, GenesisConfigError, GenesisError, GenesisInit, GenesisWitnessConfig};
 pub use session::{DurableStore, OverlayStore, OverlayValue, ReadView, Session, SessionError, SessionManager, ShutdownErrors, ViewStore};

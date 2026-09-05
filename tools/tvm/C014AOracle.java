@@ -1,0 +1,11 @@
+import java.util.*;
+/** Standalone extraction of java-tron's pinned OperationRegistry C014.03A rows. */
+public final class C014AOracle {
+  static final String[] N={"ADD","MUL","SUB","DIV","SDIV","MOD","SMOD","ADDMOD","MULMOD","EXP","SIGNEXTEND","LT","GT","SLT","SGT","EQ","ISZERO","AND","OR","XOR","NOT","BYTE","SHL","SHR","SAR","CLZ","SHA3","ADDRESS","BALANCE","ORIGIN","CALLER","CALLVALUE","CALLDATALOAD","CALLDATASIZE","CALLDATACOPY","CODESIZE","CODECOPY","GASPRICE","EXTCODESIZE","EXTCODECOPY","RETURNDATASIZE","RETURNDATACOPY","EXTCODEHASH","BLOCKHASH","COINBASE","TIMESTAMP","NUMBER","DIFFICULTY","GASLIMIT","CHAINID","SELFBALANCE","BASEFEE","BLOBHASH","BLOBBASEFEE"};
+  static final int[] O={1,2,3,4,5,6,7,8,9,10,11,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,32,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74};
+  static final int[] R={2,2,2,2,2,2,2,3,3,2,2,2,2,2,2,2,1,2,2,2,1,2,2,2,2,1,2,0,1,0,0,0,1,0,3,0,3,0,1,4,0,3,1,1,0,0,0,0,0,0,0,0,1,0};
+  static final int[] W={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1};
+  static String activation(int o){if(o>=27&&o<=29||o==63)return "constantinople";if(o==30)return "osaka";if(o==70||o==71)return "istanbul";if(o==72)return "london";if(o==73||o==74)return "blob";return "always";}
+  static int energy(int o){if(o==2||o==4||o==5||o==6||o==7||o==11||o==30||o==71)return 5;if(o==8||o==9)return 8;if(o==49||o==59||o==60||o==64)return 20;if(o==63)return 400;if(o==48||o==50||o==51||o==52||o==54||o==56||o==58||o==61||o==62||o==65||o==66||o==67||o==68||o==69||o==70||o==72||o==74)return 2;if(o==10||o==32||o==55||o==57||o==73)return -1;return 3;}
+  public static void main(String[] a){StringBuilder s=new StringBuilder("{\"schema\":\"c014-opcodes-a.v1\",\"source\":\"pinned-java-tron OperationRegistry/OperationActions/EnergyCost\",\"row_count\":54,\"rows\":[");for(int i=0;i<N.length;i++){if(i>0)s.append(',');s.append("{\"opcode\":").append(O[i]).append(",\"name\":\"").append(N[i]).append("\",\"required\":").append(R[i]).append(",\"resulting\":").append(W[i]).append(",\"activation\":\"").append(activation(O[i])).append("\",\"base_energy\":").append(energy(O[i])).append('}');}System.out.println(s.append("]}").toString());}
+}

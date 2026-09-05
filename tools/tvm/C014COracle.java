@@ -1,0 +1,6 @@
+public final class C014COracle {
+  private static final String[][] ROWS = {
+    {"d0","CALLTOKEN","8","1","transfer_trc10","call"},{"d1","TOKENBALANCE","2","1","transfer_trc10","20"},{"d2","CALLTOKENVALUE","0","1","transfer_trc10","2"},{"d3","CALLTOKENID","0","1","transfer_trc10","2"},{"d4","ISCONTRACT","1","1","solidity_059","20"},{"d5","FREEZE","3","1","freeze","20000"},{"d6","UNFREEZE","2","1","freeze","20000"},{"d7","FREEZEEXPIRETIME","2","1","freeze","50"},{"d8","VOTEWITNESS","4","1","vote","30000"},{"d9","WITHDRAWREWARD","0","1","vote","20000"},{"da","FREEZEBALANCEV2","2","1","freeze_v2","10000"},{"db","UNFREEZEBALANCEV2","2","1","freeze_v2","10000"},{"dc","CANCELALLUNFREEZEV2","0","1","freeze_v2","10000"},{"dd","WITHDRAWEXPIREUNFREEZE","0","1","freeze_v2","10000"},{"de","DELEGATERESOURCE","3","1","freeze_v2","10000"},{"df","UNDELEGATERESOURCE","3","1","freeze_v2","10000"},{"f0","CREATE","3","1","always","32000"},{"f1","CALL","7","1","always","40"},{"f2","CALLCODE","7","1","always","40"},{"f4","DELEGATECALL","6","1","always","40"},{"f5","CREATE2","4","1","constantinople","32000"},{"fa","STATICCALL","6","1","always","40"},{"ff","SUICIDE","1","0","always","0,5000"}
+  };
+  public static void main(String[] args) { for (String[] row : ROWS) System.out.println(String.join("\t", row)); }
+}

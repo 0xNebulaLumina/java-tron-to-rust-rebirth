@@ -59,6 +59,40 @@ impl ForkMath for JavaForkMath {
     }
 }
 
+#[derive(Clone, Copy, Debug)]
+pub struct ForkPassInput<'a> {
+    pub target: ForkVersion,
+    pub old_cutoff: i32,
+    pub latest_block_number: i64,
+    pub energy_limit_height: i64,
+    pub latest_block_timestamp: i64,
+    pub maintenance_interval: i64,
+    pub stats: Option<&'a [u8]>,
+}
+
+/// Evaluates persisted fork state without reading or mutating a store.
+///
+/// Java's pass path evaluates the raw stats array, while the update path owns normalization.
+pub fn evaluate_fork_pass<M: ForkMath>(input: ForkPassInput<'_>, math: &M) -> Result<bool, ForkError> {
+    if input.target.version == ENERGY_LIMIT_VERSION {
+        return Ok(input.latest_block_number >= input.energy_limit_height);
+    }
+    let Some(stats) = input.stats else { return Ok(false) };
+    if stats.is_empty() {
+        return Ok(false);
+    }
+    if input.target.version <= input.old_cutoff {
+        return Ok(stats.iter().all(|&value| value == 1));
+    }
+    if input.latest_block_timestamp
+        < math.activation_time(input.target.hard_fork_time, input.maintenance_interval)?
+    {
+        return Ok(false);
+    }
+    let upgrades = stats.iter().filter(|&&value| value == 1).count();
+    Ok(upgrades >= math.required_witnesses(stats.len(), input.target.hard_fork_rate))
+}
+
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum ForkError {
     Dynamic(DynamicError),
@@ -105,11 +139,11 @@ impl<'a, S: ForkSchedule, C: ForkClock, M: ForkMath> ForkController<'a, S, C, M>
         Self { properties, schedule, clock, math, energy_limit_height }
     }
 
-    pub fn init(&self, active: &[Vec<u8>]) -> Result<i32, ForkError> {
+    pub fn init(&self) -> Result<i32, ForkError> {
         let mut latest = self.latest_version()?;
         if latest == 0 {
             for item in self.schedule.versions() {
-                if self.pass(item.version, active)? && latest < item.version {
+                if self.pass(item.version)? && latest < item.version {
                     latest = item.version;
                 }
             }
@@ -118,31 +152,24 @@ impl<'a, S: ForkSchedule, C: ForkClock, M: ForkMath> ForkController<'a, S, C, M>
         Ok(latest)
     }
 
-    pub fn pass(&self, version: i32, _active: &[Vec<u8>]) -> Result<bool, ForkError> {
-        if version == ENERGY_LIMIT_VERSION {
-            return Ok(self.clock.latest_block_number() >= self.energy_limit_height);
-        }
-        if version <= self.schedule.old_cutoff() {
-            return Ok(self.check_all(self.properties.fork_stats(version)));
-        }
-
-        let Some(item) = self.schedule.versions().iter().find(|item| item.version == version) else {
+    pub fn pass(&self, version: i32) -> Result<bool, ForkError> {
+        let Some(target) = self.schedule.versions().iter().find(|item| item.version == version).copied()
+        else {
             return Ok(false);
         };
-        let interval = self.properties.get_long("MAINTENANCE_TIME_INTERVAL")?;
-        if self.clock.latest_block_timestamp()
-            < self.math.activation_time(item.hard_fork_time, interval)?
-        {
-            return Ok(false);
-        }
-        let Some(stats) = self.properties.fork_stats(version) else {
-            return Ok(false);
-        };
-        if stats.is_empty() {
-            return Ok(false);
-        }
-        let upgrades = stats.iter().filter(|&&value| value == 1).count();
-        Ok(upgrades >= self.math.required_witnesses(stats.len(), item.hard_fork_rate))
+        let stats = self.properties.fork_stats(version);
+        evaluate_fork_pass(
+            ForkPassInput {
+                target,
+                old_cutoff: self.schedule.old_cutoff(),
+                latest_block_number: self.clock.latest_block_number(),
+                energy_limit_height: self.energy_limit_height,
+                latest_block_timestamp: self.clock.latest_block_timestamp(),
+                maintenance_interval: self.properties.get_long("MAINTENANCE_TIME_INTERVAL")?,
+                stats: stats.as_deref(),
+            },
+            self.math,
+        )
     }
 
     pub fn update(
@@ -204,7 +231,7 @@ impl<'a, S: ForkSchedule, C: ForkClock, M: ForkMath> ForkController<'a, S, C, M>
         let mut writes = BTreeMap::new();
         for item in self.schedule.versions() {
             if self.properties.fork_stats(item.version).is_some()
-                && !self.pass(item.version, active)?
+                && !self.pass(item.version)?
             {
                 writes.insert(item.version, vec![0; active.len()]);
             }
@@ -212,9 +239,6 @@ impl<'a, S: ForkSchedule, C: ForkClock, M: ForkMath> ForkController<'a, S, C, M>
         self.commit(&writes, None)
     }
 
-    fn check_all(&self, stats: Option<Vec<u8>>) -> bool {
-        stats.is_some_and(|stats| !stats.is_empty() && stats.iter().all(|&value| value == 1))
-    }
 
     fn stats_with_writes(
         &self,
@@ -229,28 +253,23 @@ impl<'a, S: ForkSchedule, C: ForkClock, M: ForkMath> ForkController<'a, S, C, M>
         version: i32,
         writes: &BTreeMap<i32, Vec<u8>>,
     ) -> Result<bool, ForkError> {
-        if version == ENERGY_LIMIT_VERSION {
-            return Ok(self.clock.latest_block_number() >= self.energy_limit_height);
-        }
-        let stats = self.stats_with_writes(version, writes);
-        if version <= self.schedule.old_cutoff() {
-            return Ok(self.check_all(stats));
-        }
-        let Some(item) = self.schedule.versions().iter().find(|item| item.version == version) else {
+        let Some(target) = self.schedule.versions().iter().find(|item| item.version == version).copied()
+        else {
             return Ok(false);
         };
-        let interval = self.properties.get_long("MAINTENANCE_TIME_INTERVAL")?;
-        if self.clock.latest_block_timestamp()
-            < self.math.activation_time(item.hard_fork_time, interval)?
-        {
-            return Ok(false);
-        }
-        let Some(stats) = stats else { return Ok(false) };
-        if stats.is_empty() {
-            return Ok(false);
-        }
-        let upgrades = stats.iter().filter(|&&value| value == 1).count();
-        Ok(upgrades >= self.math.required_witnesses(stats.len(), item.hard_fork_rate))
+        let stats = self.stats_with_writes(version, writes);
+        evaluate_fork_pass(
+            ForkPassInput {
+                target,
+                old_cutoff: self.schedule.old_cutoff(),
+                latest_block_number: self.clock.latest_block_number(),
+                energy_limit_height: self.energy_limit_height,
+                latest_block_timestamp: self.clock.latest_block_timestamp(),
+                maintenance_interval: self.properties.get_long("MAINTENANCE_TIME_INTERVAL")?,
+                stats: stats.as_deref(),
+            },
+            self.math,
+        )
     }
 
     fn commit(

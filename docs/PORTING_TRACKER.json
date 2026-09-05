@@ -1414,77 +1414,105 @@
     {
       "id": "C014",
       "title": "TVM interpreter and repository",
-      "status": "todo",
-      "owner": null,
-      "updated": null,
+      "status": "done",
+      "owner": "porting",
+      "updated": "2026-09-05",
       "resume": null,
       "items": [
         {
           "id": "C014.01",
           "description": "Repository overlays, child commit/revoke, account/code/ABI/storage access.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Repository overlays, copied/shared child commit and revoke, account/code/ABI/storage/transient access, durable session roundtrip and root rollback pass the foundation/runtime gate."
         },
         {
           "id": "C014.02",
           "description": "Stack, memory, data words, program counter, jumps, return/revert, logs, internal txs.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Stack, memory, words, program control, return/revert, logs, Java-hashed internal-transaction lineage/rejection, and exact child effect handling pass deterministic integration coverage."
         },
         {
           "id": "C014.03A",
           "description": "From the versioned TVM manifest, implement arithmetic/bitwise/comparison/environment opcode families and their fork/flag states; local differential gate for every owned row.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "All 54 arithmetic, bitwise, comparison and environment registry rows are owned, activated and replayed against the pinned-Java oracle."
         },
         {
           "id": "C014.03B",
           "description": "Implement memory/storage/control-flow/log opcode families and activation states; local differential gate for every owned row.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "All 88 memory, storage, control-flow, stack, copy and log registry rows pass metadata, activation and boundary vectors."
         },
         {
           "id": "C014.03C",
           "description": "Implement call/create/system/TRON opcode families and activation states; local differential gate for every owned row.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "All 23 call, create, system and TRON registry rows pass exact shape, activation, context and repository-effect coverage, including legacy v1 freeze/unfreeze state that never enters v2 queues."
         },
         {
           "id": "C014.04",
           "description": "CALL/CREATE/CREATE2/delegate/static behavior, depth, value, selfdestruct.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "CALL-family child context, depth, return-data, single reserve refund, pre-execution failure refund/no-lineage mutation, Java internal-transaction fields, CREATE/CREATE2 value/code, and SELFDESTRUCT eligibility, fork restriction, blackhole resource transfer, lineage and transactional ancestor rollback rules are integrated."
         },
         {
           "id": "C014.05",
           "description": "Energy/gas schedules, penalties, CPU/time limits, strict math.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Base/dynamic energy, memory and call forwarding formulas, strict arithmetic, penalty accounting, exact successful and precheck-failure call-reserve refunds, exhaustion and deterministic CPU deadline faults pass."
         },
         {
           "id": "C014.06",
           "description": "Exact exception to `contractResult` mapping, including misspellings/legacy values.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Runtime faults map to exact protobuf contractResult names and numbers, preserving legacy JVM_STACK_OVER_FLOW spelling and unmapped numeric gaps."
         },
         {
           "id": "C014.07",
           "description": "Generate the TVM conformance manifest listing each opcode, fork interval, input boundaries, energy formula, state effect and exception/result mapping; all registry rows must be owned by C014.03A-C.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Versioned conformance and execution manifests contain exactly 165 unique opcodes, 1475 reconciled ownership rows, 26 fork intervals, and 28 executable asserted families with shape, activation/modifier, boundaries, energy, state effect, result mapping and concrete C014.03A-C ownership; metadata-only execution rows are rejected."
         }
       ],
       "gate": {
         "id": "C014.V",
-        "description": "Runtime/repository behavior and every opcode-manifest row, fork/address/storage boundary pass deterministically; inventory difference is empty.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: the guarded pinned-Java oracle, exact 165-opcode manifest, 1475 reconciled ownership rows, 26 fork intervals, 28 executable asserted families, explicit C014/C015/C016 VM ownership reconciliation, repository/runtime, A/B/C and selfdestruct suites with exact counts 4/20/5/4/8/3, and the locked all-targets check completed in the canonical eight-command order; final correctness and security reviews are clean.",
+        "status": "passed",
+        "commands": [
+          {"name":"C014 pinned Java oracle and exact manifest gate","cwd":".","argv":["python3","tools/tvm/c014_gate.py"],"timeout_seconds":3600},
+          {"name":"C014 repository and interpreter foundation suite","cwd":"rust-tron","argv":["cargo","test","-p","tron-tvm","--test","foundation_contract","--locked"],"timeout_seconds":300},
+          {"name":"C014 runtime energy result and recursive execution suite","cwd":"rust-tron","argv":["cargo","test","-p","tron-tvm","--test","c014_runtime","--locked"],"timeout_seconds":300},
+          {"name":"C014 opcode family A suite","cwd":"rust-tron","argv":["cargo","test","-p","tron-tvm","--test","opcodes_a_contract","--locked"],"timeout_seconds":300},
+          {"name":"C014 opcode family B suite","cwd":"rust-tron","argv":["cargo","test","-p","tron-tvm","--test","opcodes_b_contract","--locked"],"timeout_seconds":300},
+          {"name":"C014 opcode family C and system effects suite","cwd":"rust-tron","argv":["cargo","test","-p","tron-tvm","--test","opcodes_c_contract","--locked"],"timeout_seconds":300},
+          {"name":"C014 selfdestruct eligibility and resource transfer suite","cwd":"rust-tron","argv":["cargo","test","-p","tron-tvm","--test","selfdestruct_contract","--locked"],"timeout_seconds":300},
+          {"name":"C014 tron-tvm locked all-targets check","cwd":"rust-tron","argv":["cargo","check","-p","tron-tvm","--all-targets","--locked"],"timeout_seconds":300}
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 2,
+        "findings": [
+          {
+            "id": "C014-R2-001",
+            "summary": "Fork evaluation could shortcut requested versions or derive passNew quorum from decoded active-witness schedule data instead of canonical persisted fork state.",
+            "status": "closed",
+            "resolution": "Removed the current-version shortcut and active-witness schedule coupling. Every requested fork now uses canonical special-height or exact-width time/raw-stat state, non-1 bytes do not count as upgrades, checked interval/timestamp math is enforced, and v35 quorum uses the raw persisted statistics length."
+          },
+          {
+            "id": "C014-R2-002",
+            "summary": "Attacker-controlled copy, CALL, and CREATE-family ranges could reach unchecked memory allocation or energy arithmetic.",
+            "status": "closed",
+            "resolution": "All copy and CALL/CREATE-family destination, input, and output ranges now use checked conversion/addition, reject nonzero ranges beyond 3 MiB before allocation, zero-fill and copy directly within bounded memory, and use checked memory-energy and stipend arithmetic; maximum, limit-plus-one, and oversized-word vectors cover every affected family."
+          },
+          {
+            "id": "C014-R2-003",
+            "summary": "Final correctness and security reviews needed to confirm that the fork, memory, recursive execution, mutation, and rollback fixes left no blocking finding.",
+            "status": "closed",
+            "resolution": "Independent final correctness and security reviews traced the fork controller and repository adapter, machine memory and energy, opcode A/B/C paths, recursive interpreter, results and rollback behavior. Both reviews are clean with zero surviving blocker findings."
+          }
+        ]
       },
       "blocker": null
     },

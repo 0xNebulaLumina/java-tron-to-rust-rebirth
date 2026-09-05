@@ -6,7 +6,7 @@ use std::time::{SystemTime, UNIX_EPOCH};
 
 use tron_primitives::{BlockId, Hash32};
 use tron_state::{
-    DynamicProperties, ForkClock, ForkController, ForkMath, ForkSchedule, ForkVersion,
+    DynamicProperties, ForkClock, ForkController, ForkSchedule, ForkVersion,
     JavaForkMath, KhaosBlockData, KhaosDatabase, KhaosError, KhaosLimits, KhaosNode, RetainedSize,
     StateStore, StoreKind, StoreMutationKind,
 };
@@ -465,29 +465,28 @@ fn test_pass_matches_old_new_energy_and_raw_stats_contract() {
     let math = JavaForkMath;
     let before = ForkTestClock { number: 4_727_889, timestamp: 99 };
     let controller = ForkController::new(properties.clone(), &schedule, &before, &math, 4_727_890);
-    let active = vec![b"a".to_vec(), b"b".to_vec(), b"c".to_vec(), b"d".to_vec(), b"e".to_vec()];
 
-    assert!(!controller.pass(5, &active).unwrap());
+    assert!(!controller.pass(5).unwrap());
     properties.save_fork_stats(4, &[1, 1, 1]).unwrap();
-    assert!(controller.pass(4, &active).unwrap());
+    assert!(controller.pass(4).unwrap());
     properties.save_fork_stats(4, &[1, 2, 1]).unwrap();
-    assert!(!controller.pass(4, &active).unwrap());
+    assert!(!controller.pass(4).unwrap());
     properties.save_fork_stats(6, &[1, 1, 1, 1, 0]).unwrap();
-    assert!(!controller.pass(6, &active).unwrap());
+    assert!(!controller.pass(6).unwrap());
     properties.save_fork_stats(6, &[1, 1, 1]).unwrap();
-    assert!(controller.pass(6, &active).unwrap());
+    assert!(controller.pass(6).unwrap());
     properties.save_fork_stats(17, &[1, 1, 1, 1, 0]).unwrap();
-    assert!(!controller.pass(17, &active).unwrap());
+    assert!(!controller.pass(17).unwrap());
 
     drop(controller);
     let at = ForkTestClock { number: 4_727_890, timestamp: 100 };
     let controller = ForkController::new(properties.clone(), &schedule, &at, &math, 4_727_890);
-    assert!(controller.pass(5, &active).unwrap());
-    assert!(controller.pass(6, &active).unwrap());
-    assert!(controller.pass(17, &active).unwrap());
+    assert!(controller.pass(5).unwrap());
+    assert!(controller.pass(6).unwrap());
+    assert!(controller.pass(17).unwrap());
     properties.save_fork_stats(17, &[1, 1, 1]).unwrap();
-    assert!(controller.pass(17, &active).unwrap());
-    assert!(!controller.pass(99, &active).unwrap());
+    assert!(controller.pass(17).unwrap());
+    assert!(!controller.pass(99).unwrap());
 
     drop(controller);
     drop(properties);
@@ -535,7 +534,7 @@ fn test_update_uses_first_active_index_and_java_upgrade_order() {
     properties.save_fork_stats(18, &[1, 1, 1, 1, 0]).unwrap();
 
     controller.update(&active, b"a", 17).unwrap();
-    assert!(!controller.pass(18, &active).unwrap());
+    assert!(!controller.pass(18).unwrap());
     assert_eq!(properties.fork_stats(18).unwrap(), vec![0, 1, 1, 1, 0]);
     assert_eq!(properties.fork_stats(17).unwrap(), vec![1, 1, 1, 0, 0]);
     assert_eq!(properties.get_int("VERSION_NUMBER").unwrap(), 0);

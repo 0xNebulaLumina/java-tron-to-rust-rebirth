@@ -343,7 +343,7 @@ fn fork_version_number_uses_java_int_encoding() {
     let clock = QuorumClock;
     let math = JavaForkMath;
     let controller = ForkController::new(properties.clone(), &schedule, &clock, &math, i64::MAX);
-    assert_eq!(controller.init(&[b"a".to_vec()]).unwrap(), 6, "fork-boundaries:version-number-int-encoding activation");
+    assert_eq!(controller.init().unwrap(), 6, "fork-boundaries:version-number-int-encoding activation");
     assert_eq!(properties.get_raw("VERSION_NUMBER").unwrap(), 6_i32.to_be_bytes(), "fork-boundaries:version-number-int-encoding persisted bytes");
 
     drop(controller);
@@ -356,7 +356,7 @@ fn fork_version_number_uses_java_int_encoding() {
 
     properties.store().put(DynamicProperties::key("VERSION_NUMBER").unwrap(), &6_i64.to_be_bytes()).unwrap();
     let controller = ForkController::new(properties.clone(), &schedule, &clock, &math, i64::MAX);
-    assert!(matches!(controller.init(&[b"a".to_vec()]), Err(ForkError::Dynamic(DynamicError::InvalidLength { ref name, expected: 4, actual: 8 })) if name == "VERSION_NUMBER"), "fork-boundaries:version-number-int-encoding malformed length");
+    assert!(matches!(controller.init(), Err(ForkError::Dynamic(DynamicError::InvalidLength { ref name, expected: 4, actual: 8 })) if name == "VERSION_NUMBER"), "fork-boundaries:version-number-int-encoding malformed length");
     assert_eq!(properties.get_raw("VERSION_NUMBER").unwrap(), 6_i64.to_be_bytes(), "fork-boundaries:version-number-int-encoding malformed no fallback");
     drop(controller);
     drop(properties);
@@ -382,27 +382,28 @@ fn fork_quorum_tracks_current_witness_identities() {
     let abc = vec![b"a".to_vec(), b"b".to_vec(), b"c".to_vec()];
     controller.update(&abc, b"a", 6).unwrap();
     controller.update(&abc, b"b", 6).unwrap();
-    assert!(!controller.pass(6, &abc).unwrap(), "fork-quorum:no-premature-activation-before-threshold");
+    assert!(!controller.pass(6).unwrap(), "fork-quorum:no-premature-activation-before-threshold");
     controller.update(&abc, b"c", 6).unwrap();
-    assert!(controller.pass(6, &abc).unwrap(), "fork-quorum:threshold-reached");
+    assert!(controller.pass(6).unwrap(), "fork-quorum:threshold-reached");
     assert_eq!(properties.get_int("VERSION_NUMBER").unwrap(), 0, "fork-quorum:no-premature-activation");
 
     let abcd = vec![b"a".to_vec(), b"b".to_vec(), b"c".to_vec(), b"d".to_vec()];
-    assert!(controller.pass(6, &abcd).unwrap(), "fork-quorum:growth-preserves-current-identities");
+    assert!(controller.pass(6).unwrap(), "fork-quorum:growth-preserves-raw-stats");
     controller.update(&abcd, b"d", 6).unwrap();
     assert_eq!(properties.get_int("VERSION_NUMBER").unwrap(), 6, "fork-quorum:publish-after-normalized-pass");
 
-    let ac = vec![b"a".to_vec(), b"c".to_vec()];
-    assert!(controller.pass(6, &ac).unwrap(), "fork-quorum:shrink-preserves-current-identities");
+    assert!(controller.pass(6).unwrap(), "fork-quorum:shrink-preserves-raw-stats");
     properties.save_int("VERSION_NUMBER", 0).unwrap();
     properties.store().delete(b"FORK_WITNESSES_6").unwrap();
     properties.save_fork_stats(6, &[1]).unwrap();
-    assert!(!controller.pass(6, &abc).unwrap(), "fork-quorum:stale-short-resized");
+    assert!(controller.pass(6).unwrap(), "fork-quorum:raw-short-stats-use-own-threshold");
     properties.save_fork_stats(6, &[1, 1, 1, 1]).unwrap();
-    assert!(!controller.pass(6, &abc).unwrap(), "fork-quorum:stale-long-resized");
+    assert!(controller.pass(6).unwrap(), "fork-quorum:raw-long-stats-use-own-threshold");
+    properties.save_int("VERSION_NUMBER", 0).unwrap();
     properties.save_fork_stats(6, &[1, 2, 0]).unwrap();
-    assert!(matches!(controller.pass(6, &abc), Err(ForkError::InvalidForkStatsValue { .. })), "fork-quorum:malformed-value-rejected");
-    assert!(matches!(controller.pass(6, &[b"a".to_vec(), b"a".to_vec()]), Err(ForkError::InvalidWitnessMembership)), "fork-quorum:malformed-membership-rejected");
+    assert!(!controller.pass(6).unwrap(), "fork-quorum:non-upgrade-values-count-false");
+    properties.save_fork_stats(6, &[1, 1, 0]).unwrap();
+    assert!(!controller.pass(6).unwrap(), "fork-quorum:pass-never-reads-active-roster");
     drop(state);
     fs::remove_dir_all(path).unwrap();
 }

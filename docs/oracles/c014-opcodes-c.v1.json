@@ -1,0 +1,31 @@
+{
+  "contract": "C014.03C+C014.04",
+  "foundation": "java-tron/actuator/src/main/java/org/tron/core/vm/OperationRegistry.java",
+  "version": 1,
+  "rows": [
+    {"opcode":"d0","name":"CALLTOKEN","required":8,"resulting":1,"activation":"transfer_trc10","energy":"call"},
+    {"opcode":"d1","name":"TOKENBALANCE","required":2,"resulting":1,"activation":"transfer_trc10","energy":20},
+    {"opcode":"d2","name":"CALLTOKENVALUE","required":0,"resulting":1,"activation":"transfer_trc10","energy":2},
+    {"opcode":"d3","name":"CALLTOKENID","required":0,"resulting":1,"activation":"transfer_trc10","energy":2},
+    {"opcode":"d4","name":"ISCONTRACT","required":1,"resulting":1,"activation":"solidity_059","energy":20},
+    {"opcode":"d5","name":"FREEZE","required":3,"resulting":1,"activation":"freeze","energy":20000},
+    {"opcode":"d6","name":"UNFREEZE","required":2,"resulting":1,"activation":"freeze","energy":20000},
+    {"opcode":"d7","name":"FREEZEEXPIRETIME","required":2,"resulting":1,"activation":"freeze","energy":50},
+    {"opcode":"d8","name":"VOTEWITNESS","required":4,"resulting":1,"activation":"vote","energy":30000},
+    {"opcode":"d9","name":"WITHDRAWREWARD","required":0,"resulting":1,"activation":"vote","energy":20000},
+    {"opcode":"da","name":"FREEZEBALANCEV2","required":2,"resulting":1,"activation":"freeze_v2","energy":10000},
+    {"opcode":"db","name":"UNFREEZEBALANCEV2","required":2,"resulting":1,"activation":"freeze_v2","energy":10000},
+    {"opcode":"dc","name":"CANCELALLUNFREEZEV2","required":0,"resulting":1,"activation":"freeze_v2","energy":10000},
+    {"opcode":"dd","name":"WITHDRAWEXPIREUNFREEZE","required":0,"resulting":1,"activation":"freeze_v2","energy":10000},
+    {"opcode":"de","name":"DELEGATERESOURCE","required":3,"resulting":1,"activation":"freeze_v2","energy":10000},
+    {"opcode":"df","name":"UNDELEGATERESOURCE","required":3,"resulting":1,"activation":"freeze_v2","energy":10000},
+    {"opcode":"f0","name":"CREATE","required":3,"resulting":1,"activation":"always","energy":32000},
+    {"opcode":"f1","name":"CALL","required":7,"resulting":1,"activation":"always","energy":40},
+    {"opcode":"f2","name":"CALLCODE","required":7,"resulting":1,"activation":"always","energy":40},
+    {"opcode":"f4","name":"DELEGATECALL","required":6,"resulting":1,"activation":"always","energy":40},
+    {"opcode":"f5","name":"CREATE2","required":4,"resulting":1,"activation":"constantinople","energy":32000},
+    {"opcode":"fa","name":"STATICCALL","required":6,"resulting":1,"activation":"always","energy":40},
+    {"opcode":"ff","name":"SUICIDE","required":1,"resulting":0,"activation":"always","energy":[0,5000]}
+  ],
+  "behavior": {"max_child_depth":64,"call_stipend":2300,"value_transfer_energy":9000,"new_account_energy":25000,"create_code_byte_energy":200,"create2_prefix_ff":false,"reject_code_prefix":"ef","failed_child":"revoke_and_reject_internal_transaction","return_buffer":"replace_on_every_child_completion"}
+}
