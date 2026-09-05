@@ -1,0 +1,46 @@
+{
+  "schema": "c016-admission-v1",
+  "reference": {
+    "revision": "pinned java-tron gitlink",
+    "sources": [
+      "chainbase/src/main/java/org/tron/core/capsule/TransactionCapsule.java",
+      "framework/src/main/java/org/tron/core/db/Manager.java",
+      "chainbase/src/main/java/org/tron/core/db2/common/TxCacheDB.java",
+      "common/src/main/java/org/tron/core/Constant.java"
+    ]
+  },
+  "constants": {
+    "transaction_max_byte_size": 512000,
+    "maximum_time_until_expiration_ms": 86400000,
+    "max_result_size_in_tx": 64,
+    "tapos_rotation_blocks": 65536
+  },
+  "result_count_policy": {
+    "network": {
+      "consensus_optimization_false": "strip_redundant_results",
+      "consensus_optimization_true": "strip_redundant_results"
+    },
+    "block": {
+      "consensus_optimization_false": "preserve_and_admit",
+      "consensus_optimization_true": "reject_bad_block_and_preserve_bytes"
+    },
+    "bad_block_message": "The result count {result_count} of this transaction {transaction_id} is greater than its contract count {contract_count}"
+  },
+  "vectors": [
+    {
+      "id": "C016.J.ADMISSION.RAW_WIRE.001",
+      "transaction_hex": "0a170a02abcd220808090a0b0c0d0e0f40e8075a0208017064",
+      "raw_data_hex": "0a02abcd220808090a0b0c0d0e0f40e8075a0208017064",
+      "sha256_txid": "09d1163cb656b3a7bea8153ab318708476701184d34f77880f3dcce7231a29c2",
+      "sha256_full_hash": "75fa0d72a66a06c46dc20b1a035d434dc311bb47c161e4bad5b0c8cee78ebdf3"
+    },
+    {
+      "id": "C016.J.ADMISSION.TAPOS.001",
+      "height": 72623859790382856,
+      "height_hex": "0102030405060708",
+      "ref_block_bytes_hex": "0708",
+      "block_id_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+      "ref_block_hash_hex": "08090a0b0c0d0e0f"
+    }
+  ]
+}

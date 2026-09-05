@@ -1,0 +1,21 @@
+{
+  "schema": "c016-trace-runtime.v1",
+  "java_sources": [
+    {"path":"chainbase/src/main/java/org/tron/core/db/BandwidthProcessor.java","sha256":"d83a07a08a4a5a2e4359e62813fae8f8a9027222c1e34bcd38e1db62f38c1ec3"},
+    {"path":"chainbase/src/main/java/org/tron/core/db/TransactionTrace.java","sha256":"92fdd12c38e758df23a26455f7cced529b1af503d4e5cc31b3ef616e0e9c3a61"},
+    {"path":"chainbase/src/main/java/org/tron/core/capsule/ReceiptCapsule.java","sha256":"2593b7695da47ccba07e5cda0e8c2bd77a1333b8ef8f9357e69212a6eebcae53"},
+    {"path":"chainbase/src/main/java/org/tron/core/capsule/utils/TransactionUtil.java","sha256":"e8cfcdf7049dcab6ddd6feb1ce5488d5215513984015df7a1c9d87d663be0393"},
+    {"path":"framework/src/main/java/org/tron/common/runtime/RuntimeImpl.java","sha256":"75c6595f2de0a12ee2156da2f821e73caad8b3e192273a95b56e68019fa5d3d5"}
+  ],
+  "vectors": [
+    {"id":"bandwidth-frozen","bytes":40,"frozen_balance":1000000,"total_net_limit":1000,"total_net_weight":1,"source":"Frozen","net_usage":40,"net_fee":0},
+    {"id":"bandwidth-free","bytes":40,"free_net_limit":100,"public_net_limit":100,"source":"Free","net_usage":40,"net_fee":0},
+    {"id":"bandwidth-fee","bytes":40,"transaction_fee":2,"source":"Fee","net_usage":0,"net_fee":80},
+    {"id":"metadata-fees","signature_count":2,"memo":true,"multi_sign_fee":7,"memo_fee":11},
+    {"id":"energy-split","total":100,"origin_percent":40,"origin_limit":25,"caller_frozen":30,"energy_price":10,"origin_usage":25,"caller_usage":30,"energy_fee":450},
+    {"id":"out-of-time-fee-destination","fee_pool":true,"blackhole_optimization":true,"result":"OUT_OF_TIME","destination":"burn"},
+    {"id":"out-of-time-retry","expected":"SUCCESS","first":"OUT_OF_TIME","retry":true,"second":"SUCCESS"},
+    {"id":"transaction-info","actuator_fee":3,"net_fee":10,"energy_fee":20,"multi_sign_fee":30,"memo_fee":40,"fee":103,"packing_fee":30,"contract_result":"SUCCESS"}
+  ],
+  "rust_test": "tron-execution/tests/c016_trace.rs"
+}

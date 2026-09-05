@@ -91,13 +91,23 @@ impl ResourceWindow {
         let standard_window=self.standard_window;
         if standard_window <= 0 { return Err(ResourceError::NonPositiveWindow); }
         let remaining=self.recover(now)?;
-        let remaining_precise=i64_exact((i128::from(self.precise_window()?)-i128::from(now-self.latest_slot)*i128::from(WINDOW_SIZE_PRECISION)).max(0))?;
         let usage=i64_exact(i128::from(remaining)+i128::from(amount))?;
-        let precise_window=if usage==0 { i128::from(standard_window)*i128::from(WINDOW_SIZE_PRECISION) } else {
-            ceil_div(i128::from(remaining)*i128::from(remaining_precise)+i128::from(amount)*i128::from(standard_window)*i128::from(WINDOW_SIZE_PRECISION),i128::from(usage))
-                .min(i128::from(standard_window)*i128::from(WINDOW_SIZE_PRECISION))
-        };
-        Ok(Self { usage, latest_slot:now, window:i64_exact(precise_window)?, precise:true, standard_window })
+        if self.precise {
+            let remaining_window=i64_exact((i128::from(self.precise_window()?)-i128::from(now-self.latest_slot)*i128::from(WINDOW_SIZE_PRECISION)).max(0))?;
+            let window=if usage==0 { i128::from(standard_window)*i128::from(WINDOW_SIZE_PRECISION) } else {
+                ceil_div(i128::from(remaining)*i128::from(remaining_window)+i128::from(amount)*i128::from(standard_window)*i128::from(WINDOW_SIZE_PRECISION),i128::from(usage))
+                    .min(i128::from(standard_window)*i128::from(WINDOW_SIZE_PRECISION))
+            };
+            Ok(Self { usage, latest_slot:now, window:i64_exact(window)?, precise:true, standard_window })
+        } else {
+            let old_window=self.window_slots()?;
+            let remaining_window=(old_window-(now-self.latest_slot)).max(0);
+            let window=if usage==0 { i128::from(standard_window) } else {
+                ceil_div(i128::from(remaining)*i128::from(remaining_window)+i128::from(amount)*i128::from(standard_window),i128::from(usage))
+                    .min(i128::from(standard_window))
+            };
+            Ok(Self { usage, latest_slot:now, window:i64_exact(window)?, precise:false, standard_window })
+        }
     }
 }
 

@@ -2197,65 +2197,45 @@
     {
       "id": "C016",
       "title": "Transaction pipeline and pending pool",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-09-05",
       "resume": null,
       "items": [
-        {
-          "id": "C016.01",
-          "description": "One-contract, size, expiration, Tapos, duplicate/cache, and unknown-field rules.",
-          "status": "todo",
-          "note": null
-        },
-        {
-          "id": "C016.02",
-          "description": "Permission/operations/signature-count/weight/fee and ownerless shielded validation.",
-          "status": "todo",
-          "note": null
-        },
-        {
-          "id": "C016.03",
-          "description": "Bandwidth, multisig, memo, energy origin/caller split, fee pool/burn/blackhole.",
-          "status": "todo",
-          "note": null
-        },
-        {
-          "id": "C016.04",
-          "description": "Runtime dispatch, constant policy, OUT_OF_TIME retry, witness result comparison.",
-          "status": "todo",
-          "note": null
-        },
-        {
-          "id": "C016.05",
-          "description": "ProgramResult, receipt, TransactionInfo/Ret, logs/internal/orders and packing fee.",
-          "status": "todo",
-          "note": null
-        },
-        {
-          "id": "C016.06",
-          "description": "Pending held session, capacity, requeue/revoke, smart-contract queue, ID cache.",
-          "status": "todo",
-          "note": null
-        },
-        {
-          "id": "C016.07",
-          "description": "Dispatch custom actuators through the normal admission, permission, execution, receipt, revoke/requeue and failure pipeline; produce the DR-004 differential state/result fixture.",
-          "status": "todo",
-          "note": null
-        }
+        {"id":"C016.01","description":"One-contract, size, expiration, Tapos, duplicate/cache, and unknown-field rules.","status":"done","note":"Exact wire-preserving admission, Tapos, expiration, size, duplicate and sanitization rules are implemented and oracle-bound."},
+        {"id":"C016.02","description":"Permission/operations/signature-count/weight/fee and ownerless shielded validation.","status":"done","note":"Strict permission, operations, signer weight/count, ingress and ownerless shielded boundaries are implemented."},
+        {"id":"C016.03","description":"Bandwidth, multisig, memo, energy origin/caller split, fee pool/burn/blackhole.","status":"done","note":"Bandwidth, metadata fee and receipt energy billing paths are implemented with pinned Java vectors."},
+        {"id":"C016.04","description":"Runtime dispatch, constant policy, OUT_OF_TIME retry, witness result comparison.","status":"done","note":"Runtime dispatch and exact single OUT_OF_TIME mismatch retry/witness comparison are implemented."},
+        {"id":"C016.05","description":"ProgramResult, receipt, TransactionInfo/Ret, logs/internal/orders and packing fee.","status":"done","note":"Transaction result/info, fees, logs, internals, order and deletion finalization mappings are implemented."},
+        {"id":"C016.06","description":"Pending held session, capacity, requeue/revoke, smart-contract queue, ID cache.","status":"done","note":"Held C009 pending session, typed broadcast limits, bounded smart drain, Java-exact pending-before-popped fork replay with original timestamps, cache clear and shutdown reset are covered."},
+        {"id":"C016.07","description":"Dispatch custom actuators through the normal admission, permission, execution, receipt, revoke/requeue and failure pipeline; produce the DR-004 differential state/result fixture.","status":"done","note":"TransactionPipeline composes custom registry dispatch through the same ordered admission/trace/runtime/receipt/persist session with complete failure revoke evidence."}
       ],
       "gate": {
         "id": "C016.V",
-        "description": "End-to-end Java differential state/result and leak-free revoke/requeue gates pass.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed: scoped metadata and 66 production-ownership methods, actual pinned Java Manager/TransactionTrace/PendingManager execution with the v7+ origin-gating and energy-plan additions, admission 6, trace/runtime 16, production pipeline 19, pending/requeue 4, and the locked all-targets check; final correctness and security reviews are clean.",
+        "status": "passed",
+        "commands": [
+          {"name":"C016 metadata and ownership","cwd":".","argv":["python3","tools/execution/c016_gate.py","metadata"],"timeout_seconds":600},
+          {"name":"C016 Java oracle","cwd":".","argv":["python3","tools/execution/c016_gate.py","oracle"],"timeout_seconds":600},
+          {"name":"C016 admission","cwd":".","argv":["python3","tools/execution/c016_gate.py","admission"],"timeout_seconds":600},
+          {"name":"C016 trace/runtime","cwd":".","argv":["python3","tools/execution/c016_gate.py","trace"],"timeout_seconds":600},
+          {"name":"C016 pipeline","cwd":".","argv":["python3","tools/execution/c016_gate.py","pipeline"],"timeout_seconds":600},
+          {"name":"C016 pending","cwd":".","argv":["python3","tools/execution/c016_gate.py","pending"],"timeout_seconds":600},
+          {"name":"C016 all targets","cwd":".","argv":["python3","tools/execution/c016_gate.py","all-targets"],"timeout_seconds":600}
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C016-R1-001",
+            "summary": "Non-VM actuator execution must not inherit VM-only fee-limit, energy-dynamic-property, planning, or settlement requirements.",
+            "status": "closed",
+            "resolution": "RuntimeKind now classifies execution before VM policy and planning: Create/Trigger require and settle the canonical energy plan, while NonVm receives no plan and bypasses VM-only energy policy and settlement without bypassing bandwidth, metadata, or actuator fees. The admission 6, trace 16, pipeline 19, pending 4, Java oracle, ownership, and all-targets gates passed; independent final correctness and security/economic reviews are clean."
+          }
+        ]
       },
       "blocker": null
     },
