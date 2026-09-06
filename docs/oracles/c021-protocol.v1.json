@@ -1,0 +1,20 @@
+{
+  "schema": "c021-protocol.v1",
+  "items": ["C021.01", "C021.02", "C021.03"],
+  "java_revision": "160000 gitlink pinned by repository reference guard",
+  "sources": [
+    "chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java",
+    "chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+    "framework/src/main/java/org/tron/core/net/message/TronMessageFactory.java",
+    "framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+    "framework/src/main/java/org/tron/core/net/service/handshake/HandshakeService.java",
+    "framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+    "framework/src/main/java/org/tron/core/net/peer/PeerManager.java",
+    "framework/src/main/java/org/tron/core/net/service/statistics/MessageCount.java"
+  ],
+  "accepted_type_bytes": [1, 2, 3, 6, 7, 8, 9, 20, 32, 33, 34, 35, 52],
+  "reserved_rejected": [0, 4, 5, 16, 17, 18, 19, 48, 49, 50, 51, 255],
+  "application_keepalive": {"ping_hex": "22c0", "pong_hex": "23c0", "external_control_owner": "C020"},
+  "hello_hex": "0a510a093132372e302e302e3110c893011a400707070707070707070707070707070707070707070707070707070707070707070707070707070707070707070707070707070707070707070707070707070710011880d095ffbc3122220a2001010101010101010101010101010101010101010101010101010101010101012a240a200202020202020202020202020202020202020202020202020202020202020202105a32240a20030303030303030303030303030303030303030303030303030303030303030310645a05342e372e34",
+  "bounds": {"hello_hash_bytes": 32, "hello_aux_bytes": 200, "inventory_cache": 20000, "sync_id_cache": 4000, "statistics_slots": 60, "bad_peer_ban_ms": 3600000, "disconnected_cleanup_ms": 60000}
+}

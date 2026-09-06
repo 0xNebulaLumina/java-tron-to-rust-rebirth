@@ -1,0 +1,150 @@
+{
+  "captures": [
+    {
+      "hex": "200a510a093132372e302e302e3110c893011a400606060606060606060606060606060606060606060606060606060606060606060606060606060606060606060606060606060606060606060606060606060610e756180922220a2000000000000000000000000000000000000000000000000000000000000000002a240a200000000000000000000000000000000000000000000000000000000000000000100132240a2000000000000000000000000000000000000000000000000000000000000000001004",
+      "id": "hello",
+      "sha256": "f2c7bb9e9897cfb8a6f1861b7c76fe86f05812451083af63e2197adbaf4cc711",
+      "size": 201
+    },
+    {
+      "hex": "22c0",
+      "id": "ping",
+      "sha256": "7818ad9764887ab9abcf450a473e42bb99888ce7d8b793dee2b7fe3d8d21957d",
+      "size": 2
+    },
+    {
+      "hex": "080a220a2000000000000000000000000000000000000000000000000000000000000000000a240a2004000000000000000000000000000000000000000000000000000000000000001004",
+      "id": "sync",
+      "sha256": "1d08c88adddd976f89396358e6cc9c9140efc9fd4ece26d380faa41b4593e848",
+      "size": 75
+    },
+    {
+      "hex": "090a240a2000000000000000000000000000000000000000000000000000000000000000001004",
+      "id": "chain_inventory",
+      "sha256": "d9ff1f247751cff0facd4b5b549253d11f6b3024523a2959116552af7511cd3c",
+      "size": 39
+    },
+    {
+      "hex": "0612200000000000000000000000000000000000000000000000000000000000000000",
+      "id": "inventory",
+      "sha256": "6c5444fc18ac1b8f65d80107deb7ff87e317f31268a50fcc6111e15e941f4690",
+      "size": 35
+    },
+    {
+      "hex": "0712200000000000000000000000000000000000000000000000000000000000000000",
+      "id": "fetch",
+      "sha256": "df3e20b3b2ecb9e0775a7bddb1d98d03badc228befd18742c0e860c0ccd7a7f6",
+      "size": 35
+    },
+    {
+      "hex": "010a6b40635a65080112610a2d747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e5472616e73666572436f6e747261637412300a15410000000000000000000000000000000000000000121541000000000000000000000000000000000000000018017009124103ea9a5da3d81fbfeeb35d9f5e7475a36285c84dfc042470e41d81585da9e0dc7ee6197cca527c85e7e2ccfaa5da3090d8d715adad64ad68ca3a8c344db602e001",
+      "id": "transaction",
+      "sha256": "e22f27adc37e66eb80d05aac2b6971703604e14876d3d639d3c2631e9526429d",
+      "size": 177
+    },
+    {
+      "hex": "0212060a0408093804",
+      "id": "block",
+      "sha256": "142db600a0769850480ca386b03d408e3160b8775aa4b5e44459315710af5492",
+      "size": 9
+    },
+    {
+      "hex": "340a0f0804180420012a07626c6f636b2d3412410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "id": "pbft",
+      "sha256": "25438290a8c928f16cda48de42f9ef603f9eb95817df20cc22445ac9e8e5ca82",
+      "size": 85
+    },
+    {
+      "hex": "140a07626c6f636b2d3412410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "id": "pbft_commit",
+      "sha256": "4dc297563014071c102895909af23d4aadac9debdfea4979161c632e67a9a557",
+      "size": 77
+    },
+    {
+      "hex": "210800",
+      "id": "disconnect",
+      "sha256": "410cbb447c0c5b7dc48061bc4d5e08e7311a412c2f46a349fc993cc51f8c7f48",
+      "size": 3
+    }
+  ],
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "scenarios": [
+    {
+      "description": "Java passive production transport and Rust active TransportSession exchange Hello, ping, sync, inventory, signed transaction, block, PBFT and terminal disconnect; registry and event state asserted",
+      "expected_terminal_state": "messages=11;events=11;peer=disconnected;requests=0;cache=0;head=4;terminal=clean",
+      "java_participation": "production Netty peer and TronMessageFactory/PbftMessageFactory transcript",
+      "id": "java-passive-rust-active",
+      "rust_case_id": "c021_scenarios::java_passive_rust_active_genesis_to_head_and_terminal_state"
+    },
+    {
+      "description": "Java active production transport and Rust passive TransportSession exchange the identical authenticated transcript; registry and event state asserted",
+      "expected_terminal_state": "messages=11;events=11;peer=disconnected;requests=0;cache=0;head=4;terminal=clean",
+      "java_participation": "production Netty peer and TronMessageFactory/PbftMessageFactory transcript",
+      "id": "java-active-rust-passive",
+      "rust_case_id": "c021_scenarios::java_active_rust_passive_genesis_to_head_and_terminal_state"
+    },
+    {
+      "description": "Java-captured signed transaction is request-correlated, processed, broadcast once, and removed from peer request state",
+      "expected_terminal_state": "requests=0;processed=1;broadcast=1;terminal=drained",
+      "java_participation": "TransactionsMsgHandler production type provenance and signed TransactionCapsule wire",
+      "id": "tx-propagation",
+      "rust_case_id": "c021_scenarios::tx_propagation_correlates_java_signed_transaction_and_clears_request"
+    },
+    {
+      "description": "real SyncCoordinator consumes a requested consecutive inventory and advances the observed head in order with no pending state",
+      "expected_terminal_state": "head=7;pending=0;terminal=applied",
+      "java_participation": "ChainInventoryMsgHandler production type provenance and raw chain inventory",
+      "id": "block-propagation",
+      "rust_case_id": "c021_scenarios::block_propagation_advances_ordered_sync_head"
+    },
+    {
+      "description": "Java-captured PBFT commit is decoded by the real C021 PBFT handler at the C018 seam",
+      "expected_terminal_state": "invocations=1;raw_data=block-4;signatures=1;terminal=returned",
+      "java_participation": "PbftDataSyncHandler.processMessage invoked against production PbftCommitMessage",
+      "id": "pbft-dispatch",
+      "rust_case_id": "c021_scenarios::pbft_dispatch_decodes_java_commit_at_c018_seam"
+    },
+    {
+      "description": "ordinary block propagation traverses GossipService spread, peer inventory, correlated fetch, and exact full-block response",
+      "expected_terminal_state": "requests=0;cache=1;terminal=block_sent",
+      "java_participation": "FetchInvDataMsgHandler production type provenance and raw fetch/block messages",
+      "id": "ordinary-propagation",
+      "rust_case_id": "c021_scenarios::ordinary_propagation_uses_inventory_request_and_full_block_response"
+    },
+    {
+      "description": "a competing-height block is accepted from the requested sync queue and handed to C019 exactly once",
+      "expected_terminal_state": "requested=0;processing=1;sync_calls=1;head=4",
+      "java_participation": "BlockMsgHandler.processMessage invoked with requested production BlockMessage and captured SyncService handoff",
+      "id": "reorg-handoff-c019",
+      "rust_case_id": "c021_scenarios::reorg_handoff_c019_processes_competing_height_once"
+    },
+    {
+      "description": "successor-witness fast-forward path obtains the cached full block through sync authorization without inventory request state",
+      "expected_terminal_state": "requests=0;cache=1;terminal=block_sent",
+      "java_participation": "BlockMsgHandler production type provenance and raw full-block message",
+      "id": "fast-forward-propagation",
+      "rust_case_id": "c021_scenarios::fast_forward_propagation_sends_full_block_without_request_correlation"
+    },
+    {
+      "description": "real PeerStatusCheck timeout disconnect is followed by complete peer request/cache and GossipService provider/pending cleanup",
+      "expected_terminal_state": "peer=disconnected;requests=0;cache=0;terminal=clean",
+      "java_participation": "PeerStatusCheck declaration provenance and production disconnect message",
+      "id": "timeout-disconnect-terminal",
+      "rust_case_id": "c021_scenarios::timeout_disconnect_clears_requests_and_payload_cache"
+    }
+  ],
+  "schema": "c021-scenarios.v1",
+  "terminal_state": {
+    "blocks": 4,
+    "cache_entries": 0,
+    "disconnected": true,
+    "fast_forward": 1,
+    "head": 4,
+    "ordinary": 1,
+    "pbft": 1,
+    "peer_requests": 0,
+    "reorg_handoffs": 1,
+    "transactions": 1
+  },
+  "wire": "C020 authenticated varint+snappy TransportSession carrying exact pinned java-tron [application type byte][protobuf payload] bytes"
+}

@@ -17,6 +17,16 @@ pub enum SessionState { New, HelloSent, HelloReceived, Negotiating, Connected, D
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum SessionEvent { State(SessionState), Message(Vec<u8>), Ping(i64), Pong(i64), Disconnected(DisconnectReason) }
 
+impl SessionEvent {
+    /// Parses an opaque connected-session payload at the positive application boundary.
+    pub fn app_message(&self) -> Result<Option<crate::app_message::AppMessage>, crate::app_message::AppMessageError> {
+        match self {
+            Self::Message(frame) => crate::app_message::AppMessage::parse(frame.clone()).map(Some),
+            _ => Ok(None),
+        }
+    }
+}
+
 #[derive(Clone)]
 pub struct SessionEventSender {
     tx: mpsc::Sender<QueuedSessionEvent>,
@@ -90,6 +100,24 @@ pub enum SessionError {
     #[error("unexpected session message: {0}")] Protocol(&'static str),
     #[error("session event backpressure")]
     Backpressure,
+    #[error("authenticated peer misconduct: {0:?}")]
+    PeerMisconduct(tron_protocol::protocol::ReasonCode),
+}
+impl SessionError {
+    /// Returns the Java peer-misconduct reason that warrants an IP ban.
+    /// Transport failures and local resource/cancellation failures never ban.
+    pub fn ban_reason(&self) -> Option<tron_protocol::protocol::ReasonCode> {
+        use tron_protocol::protocol::ReasonCode;
+        match self {
+            Self::Protocol(_) | Self::Decode(_) | Self::Rejected(DisconnectReason::BadProtocol) => Some(ReasonCode::BadProtocol),
+            Self::PeerMisconduct(reason) if matches!(reason, ReasonCode::BadProtocol | ReasonCode::BadBlock | ReasonCode::BadTx) => Some(*reason),
+            _ => None,
+        }
+    }
+
+    pub fn should_backoff(&self) -> bool {
+        !matches!(self, Self::Backpressure)
+    }
 }
 
 pub struct TransportSession<T> {
@@ -144,6 +172,10 @@ impl<T: AsyncRead + AsyncWrite + Unpin> TransportSession<T> {
         self.transition(SessionState::Connected).await?; Ok(())
     }
     pub async fn send_message(&mut self, message: &[u8]) -> Result<(), SessionError> { let frame=if self.compressed { compression::envelope(message,true)?.encode_to_vec() } else { message.to_vec() }; self.io.write_frame(Bytes::from(frame)).await.map_err(Self::map_write_error)?; Ok(()) }
+    /// Sends a validated positive application message through the established C020 framing layer.
+    pub async fn send_app_message(&mut self, message: &crate::app_message::AppMessage) -> Result<(), SessionError> {
+        self.send_message(&message.send_bytes()).await
+    }
     async fn handle_frame(&mut self, frame: Bytes) -> Result<bool,SessionError> {
         if let Some(control)=frame.first().and_then(|b|Control::parse(*b)) { match control {
             Control::KeepAlivePing=>{let ping=KeepAliveMessage::decode(&frame[1..])?;self.send_control(Control::KeepAlivePong,&ping).await?;self.emit(SessionEvent::Ping(ping.timestamp)).await?;}
@@ -168,7 +200,15 @@ impl<T: AsyncRead + AsyncWrite + Unpin> TransportSession<T> {
             let _ = self.send_control(Control::Disconnect, &P2pDisconnectMessage { reason: DisconnectReason::TooManyPeers as i32 }).await;
         }
         if let Some(id)=self.remote_id.take(){self.registry.admission.lock().expect("admission poisoned").remove(&id);self.registry.pool.lock().expect("pool poisoned").remove(&id);}
-        if result.is_err(){self.registry.admission.lock().expect("admission poisoned").ban(self.remote.ip(),Instant::now()+self.config.admission.ban_duration);if self.config.direction==Direction::Active{self.registry.pool.lock().expect("pool poisoned").record_failure(self.remote,&self.config.pool,Instant::now());}}
+        if let Err(error) = &result {
+            let trusted = self.config.admission.trusted.contains(&self.remote.ip());
+            if !trusted && error.ban_reason().is_some() {
+                self.registry.admission.lock().expect("admission poisoned").ban(self.remote.ip(), Instant::now() + self.config.admission.ban_duration);
+            }
+            if self.config.direction == Direction::Active && error.should_backoff() {
+                self.registry.pool.lock().expect("pool poisoned").record_failure(self.remote, &self.config.pool, Instant::now());
+            }
+        }
         self.state = SessionState::Closed; let _ = self.emit(SessionEvent::State(SessionState::Closed)).await; let traffic=*self.io.traffic(); result.map(|_|traffic)
     }
 }

@@ -1,0 +1,25 @@
+{
+  "schema": "c021-watchdog.v1",
+  "item": "C021.08",
+  "java_sources": [
+    "framework/src/main/java/org/tron/core/net/TronNetService.java",
+    "framework/src/main/java/org/tron/core/net/peer/PeerStatusCheck.java",
+    "framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+    "framework/src/main/java/org/tron/core/net/service/effective/EffectiveCheckService.java",
+    "framework/src/main/java/org/tron/core/net/service/effective/ResilienceService.java",
+    "framework/src/main/java/org/tron/core/net/service/fetchblock/FetchBlockService.java",
+    "framework/src/main/java/org/tron/core/net/service/statistics/MessageCount.java",
+    "framework/src/main/java/org/tron/core/net/service/statistics/MessageStatistics.java",
+    "framework/src/main/java/org/tron/core/net/service/statistics/NodeStatistics.java",
+    "framework/src/main/java/org/tron/core/net/service/statistics/PeerStatistics.java",
+    "framework/src/main/java/org/tron/core/net/service/statistics/TronStatsManager.java"
+  ],
+  "timing_ms": {"peer_status_initial":5000,"peer_status_period":2000,"common_timeout":30000,"adv_timeout":20000,"sync_timeout":5000,"effective_initial":60000,"effective_retry":5000,"handshake_timeout":60000,"effective_cache":1200000,"block_stall":60000,"fetch_worker_period":50},
+  "disconnect_reasons": {"status":"TIME_OUT","effective":"BELOW_THAN_ME","random":"RANDOM_ELIMINATION","lan":"BAD_PROTOCOL","isolated_active":"BAD_PROTOCOL","isolated_passive":"BAD_PROTOCOL"},
+  "resilience": {"retention_percent":0.8,"minimum_broadcast_peers":3,"trusted_peers_exempt":true,"random_candidate_half":"oldest block-receive half"},
+  "message_count": {"slots":60,"slot_ms":1000,"interval_above_slots":0,"reset":"total only"},
+  "statistics_manager": {"initial_delay_ms":1000,"period_ms":1000,"node_cache_limit":3000,"disconnect_precedence":"local then remote then UNKNOWN","traffic_delta":"wrapping current minus previous","work_updates_all_four_baselines":true},
+  "start_order": ["transport","event_handler","adv","sync","peer_status","resilience","transactions","fetch_block","node_persist","stats","peer_manager","relay","effective"],
+  "close_order": ["peer_manager","stats","node_persist","adv","sync","resilience","peer_status","transactions","fetch_block","effective","transport","relay"],
+  "rust_proof": "cargo test -p tron-network --test c021_watchdog"
+}

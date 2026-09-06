@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "chunk": "C021.05",
+  "contract": [
+    "Transaction and block inventories reject duplicate hashes and unsupported types and are ignored until both synchronization directions complete.",
+    "Fetches correlate to advertised inventory or the peer sync window; advertisement and sync block paths are distinguished before validation.",
+    "Pending inventory is bounded at 100000, transaction payload cache at 50000 for one hour, block cache at 10 for one minute, and spread queues at 1000.",
+    "Java-compatible ten-second inventory windows accept at most maxTps*10 transaction hashes and maxBlockInvPerSecond*10 block hashes; duplicate, per-message, and rate validation completes before any cache or provider insertion.",
+    "Per-peer received/spread inventories are bounded at 20000 entries with one-hour expiry; global provider state has deterministic entry and byte backpressure, one-hour expiry, and removes empty keys on disconnect.",
+    "Requests stale at 15 seconds, advertisement requests time out at 20 seconds, and blocks older than 3 seconds are not spread.",
+    "The provider with the fewest outstanding requests is selected with address tie-breaking; transaction order is retained, blocks spread by ascending height, disconnects requeue only with another provider.",
+    "Transaction IDs and Java advertisement correlation hash the exact preserved Transaction.raw_data wire bytes, independent of signatures and results.",
+    "Transaction responses split at 1000000 serialized bytes and block responses contain exactly one block."
+  ],
+  "pinned_sources": [
+    {"path":"java-tron/framework/src/main/java/org/tron/core/net/messagehandler/InventoryMsgHandler.java","sha256":"c0e215270b802f4234daf0a9930174176d669a3dfa09178fc869a78133a9101e"},
+    {"path":"java-tron/framework/src/main/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandler.java","sha256":"869b4bd8a188ff98060929b0a774ef50ec5b42c47991f68100816212226e7338"},
+    {"path":"java-tron/framework/src/main/java/org/tron/core/net/P2pEventHandlerImpl.java","sha256":"d0ba103dbb4ba5d2d8ceab7ecce688eb96e16cd3e52d8c93034ecb81586893e6"},
+    {"path":"java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java","sha256":"90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff"}
+  ]
+}

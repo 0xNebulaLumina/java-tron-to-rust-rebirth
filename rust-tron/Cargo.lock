@@ -2542,6 +2542,7 @@ version = "0.0.0"
 dependencies = [
  "base64",
  "bytes",
+ "hex",
  "k256",
  "prost",
  "serde",
@@ -2555,6 +2556,7 @@ dependencies = [
  "tokio-util",
  "tron-config",
  "tron-consensus",
+ "tron-crypto",
  "tron-execution",
  "tron-primitives",
  "tron-protocol",

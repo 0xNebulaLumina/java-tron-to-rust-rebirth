@@ -1,0 +1,2354 @@
+{
+  "cases": [
+    {
+      "case_id": "C021-SG-4CE62D5871C61696",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "3631192402fddfc4f3ee0e3f2b973847e7c789b93545f8d004a2a699123b7c20",
+      "java_expected_result": "ids=2001;remain=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "chain_inventory"
+      },
+      "java_line": 38,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/ChainInventoryMsgHandlerTest.java",
+      "java_symbol": "testProcessMessage",
+      "operation": "chain_inventory",
+      "owning_item": "C021.04",
+      "rust_expected": "ids=2001;remain=1",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "dccea2be5ed7cb05a29440b3d3bf25e80a8097bb1dc4bb7b41ae123d9f440a81",
+        "source_sha256": "095723100cdc835bc3b1891ffc9594557e0f65156d24a2c5b35bbb4bae76c5e4",
+        "symbol": "testProcessMessage"
+      },
+      "stable_id": "TCASE-4CE62D5871C61696"
+    },
+    {
+      "case_id": "C021-SG-B1024F92E3F69931",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "39067aedeff6d74af3761f491a667e690ec1be017b50f7fb6202c58a14e64294",
+      "java_expected_result": "tx_batches=2;block_batches=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 31,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandlerTest.java",
+      "java_symbol": "testProcessMessage",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "tx_batches=2;block_batches=1",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "dccea2be5ed7cb05a29440b3d3bf25e80a8097bb1dc4bb7b41ae123d9f440a81",
+        "source_sha256": "c9898cb63ad4de2ca961b58bdfea7cb1ca97e708466f4ce25ce569d8c597adba",
+        "symbol": "testProcessMessage"
+      },
+      "stable_id": "TCASE-B1024F92E3F69931"
+    },
+    {
+      "case_id": "C021-SG-A56480F9117371D2",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "39067aedeff6d74af3761f491a667e690ec1be017b50f7fb6202c58a14e64294",
+      "java_expected_result": "tx_batches=2;block_batches=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 72,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandlerTest.java",
+      "java_symbol": "testIsAdvInv",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "tx_batches=2;block_batches=1",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "273e44893208ea6680df5f27f1c9b49738999d904d722cc9b6ffc180686deb56",
+        "source_sha256": "c9898cb63ad4de2ca961b58bdfea7cb1ca97e708466f4ce25ce569d8c597adba",
+        "symbol": "testIsAdvInv"
+      },
+      "stable_id": "TCASE-A56480F9117371D2"
+    },
+    {
+      "case_id": "C021-SG-944DB9575868B3EF",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "39067aedeff6d74af3761f491a667e690ec1be017b50f7fb6202c58a14e64294",
+      "java_expected_result": "tx_batches=2;block_batches=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 97,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandlerTest.java",
+      "java_symbol": "testSyncFetchCheck",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "tx_batches=2;block_batches=1",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "4d00544577a0c97e6696d768763e18d3c47df208487c823588e5a96bde0c9277",
+        "source_sha256": "c9898cb63ad4de2ca961b58bdfea7cb1ca97e708466f4ce25ce569d8c597adba",
+        "symbol": "testSyncFetchCheck"
+      },
+      "stable_id": "TCASE-944DB9575868B3EF"
+    },
+    {
+      "case_id": "C021-SG-468B328F17909BAD",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "39067aedeff6d74af3761f491a667e690ec1be017b50f7fb6202c58a14e64294",
+      "java_expected_result": "tx_batches=2;block_batches=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 129,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandlerTest.java",
+      "java_symbol": "testDuplicateHashRejected",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "tx_batches=2;block_batches=1",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "d62963fb50e8e8cc3760194ce13163d9bb92e7dc1982ec14dac3690b15b07b64",
+        "source_sha256": "c9898cb63ad4de2ca961b58bdfea7cb1ca97e708466f4ce25ce569d8c597adba",
+        "symbol": "testDuplicateHashRejected"
+      },
+      "stable_id": "TCASE-468B328F17909BAD"
+    },
+    {
+      "case_id": "C021-SG-EFA8CEDFCE570F49",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "39067aedeff6d74af3761f491a667e690ec1be017b50f7fb6202c58a14e64294",
+      "java_expected_result": "tx_batches=2;block_batches=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 160,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandlerTest.java",
+      "java_symbol": "testUnknownInventoryTypeRejected",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "tx_batches=2;block_batches=1",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "cd8d30d1f621ebe744a3fab249725a7e63e7adada4eff8afb306b4c3400152a2",
+        "source_sha256": "c9898cb63ad4de2ca961b58bdfea7cb1ca97e708466f4ce25ce569d8c597adba",
+        "symbol": "testUnknownInventoryTypeRejected"
+      },
+      "stable_id": "TCASE-EFA8CEDFCE570F49"
+    },
+    {
+      "case_id": "C021-SG-613C12A2C206319E",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "39067aedeff6d74af3761f491a667e690ec1be017b50f7fb6202c58a14e64294",
+      "java_expected_result": "tx_batches=2;block_batches=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 181,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandlerTest.java",
+      "java_symbol": "testRateLimiter",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "tx_batches=2;block_batches=1",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "4f6af1a978f118a7397cdb8d6379dd34d22e6d9d9e0b6be855a8a41c75fe291d",
+        "source_sha256": "c9898cb63ad4de2ca961b58bdfea7cb1ca97e708466f4ce25ce569d8c597adba",
+        "symbol": "testRateLimiter"
+      },
+      "stable_id": "TCASE-613C12A2C206319E"
+    },
+    {
+      "case_id": "C021-SG-0C3A4AAA91636D53",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "46e7300da925af6729964d6dae0cff32d1d07664c84f0d57a82b0dd558b80777",
+      "java_expected_result": "accepted=1;duplicate=rejected",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 28,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/InventoryMsgHandlerTest.java",
+      "java_symbol": "testProcessMessage",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "accepted=1;duplicate=rejected",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "dccea2be5ed7cb05a29440b3d3bf25e80a8097bb1dc4bb7b41ae123d9f440a81",
+        "source_sha256": "82261e31037ce4ce56ee26a4fb462c2da03253ebba892fb4c88c386113771bb1",
+        "symbol": "testProcessMessage"
+      },
+      "stable_id": "TCASE-0C3A4AAA91636D53"
+    },
+    {
+      "case_id": "C021-SG-8C02A586720A4E64",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "46e7300da925af6729964d6dae0cff32d1d07664c84f0d57a82b0dd558b80777",
+      "java_expected_result": "accepted=1;duplicate=rejected",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 62,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/InventoryMsgHandlerTest.java",
+      "java_symbol": "testDuplicateHashesRejected",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "accepted=1;duplicate=rejected",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "445023a3f2a43c4a76564bf3fdf9114dbb1ff843375d5ef41379ce2c5c7c7d1d",
+        "source_sha256": "82261e31037ce4ce56ee26a4fb462c2da03253ebba892fb4c88c386113771bb1",
+        "symbol": "testDuplicateHashesRejected"
+      },
+      "stable_id": "TCASE-8C02A586720A4E64"
+    },
+    {
+      "case_id": "C021-SG-BDB3627D235733FA",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "46e7300da925af6729964d6dae0cff32d1d07664c84f0d57a82b0dd558b80777",
+      "java_expected_result": "accepted=1;duplicate=rejected",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 80,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/InventoryMsgHandlerTest.java",
+      "java_symbol": "testUnknownInventoryTypeRejected",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "accepted=1;duplicate=rejected",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "cd8d30d1f621ebe744a3fab249725a7e63e7adada4eff8afb306b4c3400152a2",
+        "source_sha256": "82261e31037ce4ce56ee26a4fb462c2da03253ebba892fb4c88c386113771bb1",
+        "symbol": "testUnknownInventoryTypeRejected"
+      },
+      "stable_id": "TCASE-BDB3627D235733FA"
+    },
+    {
+      "case_id": "C021-SG-845A99ECB21F3BED",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "2b2fbd8917556686b84b40228d59563f0635f3508dc016026b1bdec4c9b8b3e9",
+      "java_expected_result": "order=reject-second;accept-first",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 22,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/PbftDataSyncHandlerTest.java",
+      "java_symbol": "testProcessMessage",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "order=reject-second;accept-first",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "dccea2be5ed7cb05a29440b3d3bf25e80a8097bb1dc4bb7b41ae123d9f440a81",
+        "source_sha256": "0aed6de74c4dd469baae1cfcd17cc487350a35f4c8484f6e42d610c115dcbc82",
+        "symbol": "testProcessMessage"
+      },
+      "stable_id": "TCASE-845A99ECB21F3BED"
+    },
+    {
+      "case_id": "C021-SG-677BB4C5E79F15DC",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "2401b8fe78d71147433ae82cf1bf2960a06d62fa33322ce4dda3e846f05e71b5",
+      "java_expected_result": "token=single-use",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_request"
+      },
+      "java_line": 73,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/SyncBlockChainMsgHandlerTest.java",
+      "java_symbol": "testProcessMessage",
+      "operation": "sync_request",
+      "owning_item": "C021.04",
+      "rust_expected": "token=single-use",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "dccea2be5ed7cb05a29440b3d3bf25e80a8097bb1dc4bb7b41ae123d9f440a81",
+        "source_sha256": "1e438b94c5cc7aa60e31a8d6326b2d4af409e327e174c3a034445b8ce51d9012",
+        "symbol": "testProcessMessage"
+      },
+      "stable_id": "TCASE-677BB4C5E79F15DC"
+    },
+    {
+      "case_id": "C021-SG-7EB41A22981B5863",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "2401b8fe78d71147433ae82cf1bf2960a06d62fa33322ce4dda3e846f05e71b5",
+      "java_expected_result": "token=single-use",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_request"
+      },
+      "java_line": 114,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/SyncBlockChainMsgHandlerTest.java",
+      "java_symbol": "testBlockIdsExceedsLimit",
+      "operation": "sync_request",
+      "owning_item": "C021.04",
+      "rust_expected": "token=single-use",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "66a94b6c21daa2c1b907d35e3626580d36d3961a22ce8cdd1cdd303e9dc48e1c",
+        "source_sha256": "1e438b94c5cc7aa60e31a8d6326b2d4af409e327e174c3a034445b8ce51d9012",
+        "symbol": "testBlockIdsExceedsLimit"
+      },
+      "stable_id": "TCASE-7EB41A22981B5863"
+    },
+    {
+      "case_id": "C021-SG-38D6FB0ABE3797EF",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "2401b8fe78d71147433ae82cf1bf2960a06d62fa33322ce4dda3e846f05e71b5",
+      "java_expected_result": "token=single-use",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_request"
+      },
+      "java_line": 139,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/messagehandler/SyncBlockChainMsgHandlerTest.java",
+      "java_symbol": "testBlockIdsAtLimit",
+      "operation": "sync_request",
+      "owning_item": "C021.04",
+      "rust_expected": "token=single-use",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "d910107fa86aab7f5963c2503a7d72e3be2c3a4b471917d324a33b66e3986bf1",
+        "source_sha256": "1e438b94c5cc7aa60e31a8d6326b2d4af409e327e174c3a034445b8ce51d9012",
+        "symbol": "testBlockIdsAtLimit"
+      },
+      "stable_id": "TCASE-38D6FB0ABE3797EF"
+    },
+    {
+      "case_id": "C021-SG-269AB189286F4D35",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 64,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/services/AdvServiceTest.java",
+      "java_symbol": "test",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "d1463438fb0ea519612d146c0cd1afca1c4536e5c633eafc7fdd73102c112ed9",
+        "source_sha256": "7ab32a40acc529ddb1f77c06b5a020ab7ea9669fca00a358d31816782f5f79ee",
+        "symbol": "test"
+      },
+      "stable_id": "TCASE-269AB189286F4D35"
+    },
+    {
+      "case_id": "C021-SG-A8F607EC03F10554",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "73d15b1c13e02a185edaa38c4fcb83df5536db27d868f00477320194d9a4318f",
+      "java_expected_result": "summary=0,51,76,89,95,98,100",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sparse_summary"
+      },
+      "java_line": 58,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/services/SyncServiceTest.java",
+      "java_symbol": "testStartSync",
+      "operation": "sparse_summary",
+      "owning_item": "C021.04",
+      "rust_expected": "summary=0,51,76,89,95,98,100",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "944309a1b652e0e57f828ce36b32e1df44666f9ad9f9420348127c68d2b6d8de",
+        "source_sha256": "d6cbe9feb87e3ba63b68d54e380ef3c4b8a642473be61103078fa299d04ad98c",
+        "symbol": "testStartSync"
+      },
+      "stable_id": "TCASE-A8F607EC03F10554"
+    },
+    {
+      "case_id": "C021-SG-1A3DD427B47F3ADE",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "2411b217da19965df9dea9c606eb4e4e85d8cac4f97e51761c787762285259c1",
+      "java_expected_result": "queued=3;requested=3;in_process=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_queue"
+      },
+      "java_line": 95,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/services/SyncServiceTest.java",
+      "java_symbol": "testProcessBlock",
+      "operation": "sync_queue",
+      "owning_item": "C021.04",
+      "rust_expected": "queued=3;requested=3;in_process=1",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "266f6e8ba31573cdacc3dfa4480a2b5d5d013ae1661671d3817aeb606f73e39d",
+        "source_sha256": "d6cbe9feb87e3ba63b68d54e380ef3c4b8a642473be61103078fa299d04ad98c",
+        "symbol": "testProcessBlock"
+      },
+      "stable_id": "TCASE-1A3DD427B47F3ADE"
+    },
+    {
+      "case_id": "C021-SG-B1C5F6434AECF9FD",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "2411b217da19965df9dea9c606eb4e4e85d8cac4f97e51761c787762285259c1",
+      "java_expected_result": "queued=3;requested=3;in_process=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_queue"
+      },
+      "java_line": 121,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/services/SyncServiceTest.java",
+      "java_symbol": "testOnDisconnect",
+      "operation": "sync_queue",
+      "owning_item": "C021.04",
+      "rust_expected": "queued=3;requested=3;in_process=1",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "2244876c59671b8dd358d7987c13573037e8a437c767c9dc64cb6e148a86b8da",
+        "source_sha256": "d6cbe9feb87e3ba63b68d54e380ef3c4b8a642473be61103078fa299d04ad98c",
+        "symbol": "testOnDisconnect"
+      },
+      "stable_id": "TCASE-B1C5F6434AECF9FD"
+    },
+    {
+      "case_id": "C021-SG-0FEE0F7630E6D7C8",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "73d15b1c13e02a185edaa38c4fcb83df5536db27d868f00477320194d9a4318f",
+      "java_expected_result": "summary=0,51,76,89,95,98,100",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sparse_summary"
+      },
+      "java_line": 138,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/services/SyncServiceTest.java",
+      "java_symbol": "testStartFetchSyncBlock",
+      "operation": "sparse_summary",
+      "owning_item": "C021.04",
+      "rust_expected": "summary=0,51,76,89,95,98,100",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "2d4e524a89777e1502fb7a47984001e528ed81ccf819f27fe95115183699c354",
+        "source_sha256": "d6cbe9feb87e3ba63b68d54e380ef3c4b8a642473be61103078fa299d04ad98c",
+        "symbol": "testStartFetchSyncBlock"
+      },
+      "stable_id": "TCASE-0FEE0F7630E6D7C8"
+    },
+    {
+      "case_id": "C021-SG-5D4599F9CEB0BA83",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "2411b217da19965df9dea9c606eb4e4e85d8cac4f97e51761c787762285259c1",
+      "java_expected_result": "queued=3;requested=3;in_process=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_queue"
+      },
+      "java_line": 226,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/services/SyncServiceTest.java",
+      "java_symbol": "testHandleSyncBlock",
+      "operation": "sync_queue",
+      "owning_item": "C021.04",
+      "rust_expected": "queued=3;requested=3;in_process=1",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "1c740b1e6a642dbe46087f8ef02c5e9c81b3cf6b103c676a65bc8bf577d417a4",
+        "source_sha256": "d6cbe9feb87e3ba63b68d54e380ef3c4b8a642473be61103078fa299d04ad98c",
+        "symbol": "testHandleSyncBlock"
+      },
+      "stable_id": "TCASE-5D4599F9CEB0BA83"
+    },
+    {
+      "case_id": "C021-SG-2C7414FE2D521C80",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "82e979ea4295549e2f1e752f757045f172fc3a0f77e814306cb6dde4a88240dd",
+      "java_expected_result": "source:1e53fc0983fcab450859fa2745c3e2d415bdfc34a528f36155d57a91161c840e;line:a520878b053ec560df4fe5b479a1f25624c88ac68600ba85368344765df11280;symbol:org.tron.core.net.message.adv",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/FetchInvDataMessage.java",
+      "java_symbol": "org.tron.core.net.message.adv",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "source:1e53fc0983fcab450859fa2745c3e2d415bdfc34a528f36155d57a91161c840e;line:a520878b053ec560df4fe5b479a1f25624c88ac68600ba85368344765df11280;symbol:org.tron.core.net.message.adv",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a520878b053ec560df4fe5b479a1f25624c88ac68600ba85368344765df11280",
+        "source_sha256": "1e53fc0983fcab450859fa2745c3e2d415bdfc34a528f36155d57a91161c840e",
+        "symbol": "org.tron.core.net.message.adv"
+      },
+      "stable_id": "PROD-2C7414FE2D521C80"
+    },
+    {
+      "case_id": "C021-SG-AFF0F43E70E9F215",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8ab31f48d83a2dbb04ebe19664cf1069a2cd43fb73fa59abb0de94a2805a55bb",
+      "java_expected_result": "source:1e53fc0983fcab450859fa2745c3e2d415bdfc34a528f36155d57a91161c840e;line:a520878b053ec560df4fe5b479a1f25624c88ac68600ba85368344765df11280;symbol:java-tron/framework/src/main/java/org/tron/core/net/message/adv/FetchInvDataMessage.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/FetchInvDataMessage.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/FetchInvDataMessage.java",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "source:1e53fc0983fcab450859fa2745c3e2d415bdfc34a528f36155d57a91161c840e;line:a520878b053ec560df4fe5b479a1f25624c88ac68600ba85368344765df11280;symbol:java-tron/framework/src/main/java/org/tron/core/net/message/adv/FetchInvDataMessage.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a520878b053ec560df4fe5b479a1f25624c88ac68600ba85368344765df11280",
+        "source_sha256": "1e53fc0983fcab450859fa2745c3e2d415bdfc34a528f36155d57a91161c840e",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/FetchInvDataMessage.java"
+      },
+      "stable_id": "PROD-AFF0F43E70E9F215"
+    },
+    {
+      "case_id": "C021-SG-060E43E2EEC03EE5",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "47b5df274e2faca37e5deee2f0c5fab9b701d817b5f02766550437e569943640",
+      "java_expected_result": "source:1e53fc0983fcab450859fa2745c3e2d415bdfc34a528f36155d57a91161c840e;line:98215f131aba6f6c4ec5cf1d2c0a49b9c495c8310c09e168396382074ab3f2b8;symbol:FetchInvDataMessage",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 9,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/FetchInvDataMessage.java",
+      "java_symbol": "FetchInvDataMessage",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "source:1e53fc0983fcab450859fa2745c3e2d415bdfc34a528f36155d57a91161c840e;line:98215f131aba6f6c4ec5cf1d2c0a49b9c495c8310c09e168396382074ab3f2b8;symbol:FetchInvDataMessage",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "98215f131aba6f6c4ec5cf1d2c0a49b9c495c8310c09e168396382074ab3f2b8",
+        "source_sha256": "1e53fc0983fcab450859fa2745c3e2d415bdfc34a528f36155d57a91161c840e",
+        "symbol": "FetchInvDataMessage"
+      },
+      "stable_id": "PROD-060E43E2EEC03EE5"
+    },
+    {
+      "case_id": "C021-SG-6876C90325852C36",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "11e94ee244eb7cdbbc32e4ee536a57deb334074606bf5fab522896a32da782fb",
+      "java_expected_result": "source:254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc;line:a520878b053ec560df4fe5b479a1f25624c88ac68600ba85368344765df11280;symbol:java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "source:254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc;line:a520878b053ec560df4fe5b479a1f25624c88ac68600ba85368344765df11280;symbol:java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a520878b053ec560df4fe5b479a1f25624c88ac68600ba85368344765df11280",
+        "source_sha256": "254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java"
+      },
+      "stable_id": "PROD-6876C90325852C36"
+    },
+    {
+      "case_id": "C021-SG-E5FD7274E67159BC",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "ee06967f43d47f28503e504b57daf537c50bf0abaa02ba5a472e23bc5c5b4848",
+      "java_expected_result": "source:254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc;line:a520878b053ec560df4fe5b479a1f25624c88ac68600ba85368344765df11280;symbol:org.tron.core.net.message.adv",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java",
+      "java_symbol": "org.tron.core.net.message.adv",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "source:254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc;line:a520878b053ec560df4fe5b479a1f25624c88ac68600ba85368344765df11280;symbol:org.tron.core.net.message.adv",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a520878b053ec560df4fe5b479a1f25624c88ac68600ba85368344765df11280",
+        "source_sha256": "254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc",
+        "symbol": "org.tron.core.net.message.adv"
+      },
+      "stable_id": "PROD-E5FD7274E67159BC"
+    },
+    {
+      "case_id": "C021-SG-5B8CF98DF8E82E22",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "0c54dd613eba55720126047f9a5a8e0c99c904d4cde20480e851fc9b7889cbf9",
+      "java_expected_result": "source:254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc;line:a217d226f95a15e85a4dce1638ad387ad5f617f73609d399f61318d4edc2f34c;symbol:InventoryMessage",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 15,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java",
+      "java_symbol": "InventoryMessage",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "source:254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc;line:a217d226f95a15e85a4dce1638ad387ad5f617f73609d399f61318d4edc2f34c;symbol:InventoryMessage",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a217d226f95a15e85a4dce1638ad387ad5f617f73609d399f61318d4edc2f34c",
+        "source_sha256": "254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc",
+        "symbol": "InventoryMessage"
+      },
+      "stable_id": "PROD-5B8CF98DF8E82E22"
+    },
+    {
+      "case_id": "C021-SG-C8891E3522B99484",
+      "evidence_kind": "production",
+      "java_expected_digest": "46e7300da925af6729964d6dae0cff32d1d07664c84f0d57a82b0dd558b80777",
+      "java_expected_result": "accepted=1;duplicate=rejected",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 45,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java",
+      "java_symbol": "getAnswerMessage",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "accepted=1;duplicate=rejected",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "97091931ea1509ae6b66fc8d6f9c2cc04e0805302c911486a0e4a47b3310c1b6",
+        "source_sha256": "254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc",
+        "symbol": "getAnswerMessage"
+      },
+      "stable_id": "PROD-C8891E3522B99484"
+    },
+    {
+      "case_id": "C021-SG-466DABD122D9BA19",
+      "evidence_kind": "production",
+      "java_expected_digest": "46e7300da925af6729964d6dae0cff32d1d07664c84f0d57a82b0dd558b80777",
+      "java_expected_result": "accepted=1;duplicate=rejected",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 49,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java",
+      "java_symbol": "getInventory",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "accepted=1;duplicate=rejected",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "ff5e102922b884ad4feb849b0f78c701578b5d50e266081a879f0fed9d3ebd49",
+        "source_sha256": "254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc",
+        "symbol": "getInventory"
+      },
+      "stable_id": "PROD-466DABD122D9BA19"
+    },
+    {
+      "case_id": "C021-SG-80F70B2395D8B34F",
+      "evidence_kind": "production",
+      "java_expected_digest": "46e7300da925af6729964d6dae0cff32d1d07664c84f0d57a82b0dd558b80777",
+      "java_expected_result": "accepted=1;duplicate=rejected",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 53,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java",
+      "java_symbol": "getInvMessageType",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "accepted=1;duplicate=rejected",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "d246748a05d1c0484c0190411a02267084598e5ffb18427fad2c8026629b5868",
+        "source_sha256": "254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc",
+        "symbol": "getInvMessageType"
+      },
+      "stable_id": "PROD-80F70B2395D8B34F"
+    },
+    {
+      "case_id": "C021-SG-198E168C56440627",
+      "evidence_kind": "production",
+      "java_expected_digest": "46e7300da925af6729964d6dae0cff32d1d07664c84f0d57a82b0dd558b80777",
+      "java_expected_result": "accepted=1;duplicate=rejected",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 58,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java",
+      "java_symbol": "getInventoryType",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "accepted=1;duplicate=rejected",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "1461b7af382df3dfc5205e59ba2609b944cb0afb49ec15ae29b417bab31b8415",
+        "source_sha256": "254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc",
+        "symbol": "getInventoryType"
+      },
+      "stable_id": "PROD-198E168C56440627"
+    },
+    {
+      "case_id": "C021-SG-231AA3D8ACEFDF68",
+      "evidence_kind": "production",
+      "java_expected_digest": "46e7300da925af6729964d6dae0cff32d1d07664c84f0d57a82b0dd558b80777",
+      "java_expected_result": "accepted=1;duplicate=rejected",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 63,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java",
+      "java_symbol": "toString",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "accepted=1;duplicate=rejected",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "c57fdeb7f62d36f9818166407fc46551634182c2c9c1a43f9fe9406a2040744f",
+        "source_sha256": "254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc",
+        "symbol": "toString"
+      },
+      "stable_id": "PROD-231AA3D8ACEFDF68"
+    },
+    {
+      "case_id": "C021-SG-CDA1626F4F754BF7",
+      "evidence_kind": "production",
+      "java_expected_digest": "46e7300da925af6729964d6dae0cff32d1d07664c84f0d57a82b0dd558b80777",
+      "java_expected_result": "accepted=1;duplicate=rejected",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 75,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/adv/InventoryMessage.java",
+      "java_symbol": "getHashList",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "accepted=1;duplicate=rejected",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "7613a6b87d1965ef0cb8690c89125b3f4d90b4df734a88d953c8524ee28d4114",
+        "source_sha256": "254553ba32da75e596021164f915d59e87e72fc493c58702ebeeeec2c1822cfc",
+        "symbol": "getHashList"
+      },
+      "stable_id": "PROD-CDA1626F4F754BF7"
+    },
+    {
+      "case_id": "C021-SG-12DC7D11BD586525",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "b10f62e52120acdd9e18fe6d1446afab0e3dbdb688b8c5a04188f45885acd49f",
+      "java_expected_result": "source:026581760738f52ae396f4cfcb8b12b47f7aa1f47ee485907b31b7bfb9bf81e4;line:0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9;symbol:java-tron/framework/src/main/java/org/tron/core/net/message/sync/BlockInventoryMessage.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/BlockInventoryMessage.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/BlockInventoryMessage.java",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "source:026581760738f52ae396f4cfcb8b12b47f7aa1f47ee485907b31b7bfb9bf81e4;line:0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9;symbol:java-tron/framework/src/main/java/org/tron/core/net/message/sync/BlockInventoryMessage.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9",
+        "source_sha256": "026581760738f52ae396f4cfcb8b12b47f7aa1f47ee485907b31b7bfb9bf81e4",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/BlockInventoryMessage.java"
+      },
+      "stable_id": "PROD-12DC7D11BD586525"
+    },
+    {
+      "case_id": "C021-SG-3F145FF73248EC19",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "fa9ebfee76575d178600accc90fb7764867c24e4ba6d6eed86c66c6702b36e24",
+      "java_expected_result": "source:026581760738f52ae396f4cfcb8b12b47f7aa1f47ee485907b31b7bfb9bf81e4;line:0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9;symbol:org.tron.core.net.message.sync",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/BlockInventoryMessage.java",
+      "java_symbol": "org.tron.core.net.message.sync",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "source:026581760738f52ae396f4cfcb8b12b47f7aa1f47ee485907b31b7bfb9bf81e4;line:0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9;symbol:org.tron.core.net.message.sync",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9",
+        "source_sha256": "026581760738f52ae396f4cfcb8b12b47f7aa1f47ee485907b31b7bfb9bf81e4",
+        "symbol": "org.tron.core.net.message.sync"
+      },
+      "stable_id": "PROD-3F145FF73248EC19"
+    },
+    {
+      "case_id": "C021-SG-D4FC44A554806EA8",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "4779297b9cdc1db5b139c8467829ab022093402e082124dd71085dec87089f97",
+      "java_expected_result": "source:026581760738f52ae396f4cfcb8b12b47f7aa1f47ee485907b31b7bfb9bf81e4;line:d152315b122b7393babbdfa338b5fe5be2f6b4606ee3ddee044f700ba5148c58;symbol:BlockInventoryMessage",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 12,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/BlockInventoryMessage.java",
+      "java_symbol": "BlockInventoryMessage",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "source:026581760738f52ae396f4cfcb8b12b47f7aa1f47ee485907b31b7bfb9bf81e4;line:d152315b122b7393babbdfa338b5fe5be2f6b4606ee3ddee044f700ba5148c58;symbol:BlockInventoryMessage",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "d152315b122b7393babbdfa338b5fe5be2f6b4606ee3ddee044f700ba5148c58",
+        "source_sha256": "026581760738f52ae396f4cfcb8b12b47f7aa1f47ee485907b31b7bfb9bf81e4",
+        "symbol": "BlockInventoryMessage"
+      },
+      "stable_id": "PROD-D4FC44A554806EA8"
+    },
+    {
+      "case_id": "C021-SG-1EF4E2467AD45055",
+      "evidence_kind": "production",
+      "java_expected_digest": "2b2fbd8917556686b84b40228d59563f0635f3508dc016026b1bdec4c9b8b3e9",
+      "java_expected_result": "order=reject-second;accept-first",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 38,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/BlockInventoryMessage.java",
+      "java_symbol": "getAnswerMessage",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "order=reject-second;accept-first",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "97091931ea1509ae6b66fc8d6f9c2cc04e0805302c911486a0e4a47b3310c1b6",
+        "source_sha256": "026581760738f52ae396f4cfcb8b12b47f7aa1f47ee485907b31b7bfb9bf81e4",
+        "symbol": "getAnswerMessage"
+      },
+      "stable_id": "PROD-1EF4E2467AD45055"
+    },
+    {
+      "case_id": "C021-SG-5E787366EB305F5B",
+      "evidence_kind": "production",
+      "java_expected_digest": "2b2fbd8917556686b84b40228d59563f0635f3508dc016026b1bdec4c9b8b3e9",
+      "java_expected_result": "order=reject-second;accept-first",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 46,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/BlockInventoryMessage.java",
+      "java_symbol": "getBlockIds",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "order=reject-second;accept-first",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "1c8ad135322dfe19affe6f8fa205bd389427a9bfc3a2a22e1b09f94df08dc497",
+        "source_sha256": "026581760738f52ae396f4cfcb8b12b47f7aa1f47ee485907b31b7bfb9bf81e4",
+        "symbol": "getBlockIds"
+      },
+      "stable_id": "PROD-5E787366EB305F5B"
+    },
+    {
+      "case_id": "C021-SG-18F14AF43080EA3F",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5b768c8ad0dd27dfbfe127aaf654eb64ee37c926edf2c261c719650138a00a75",
+      "java_expected_result": "source:df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978;line:0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9;symbol:java-tron/framework/src/main/java/org/tron/core/net/message/sync/ChainInventoryMessage.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "chain_inventory"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/ChainInventoryMessage.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/ChainInventoryMessage.java",
+      "operation": "chain_inventory",
+      "owning_item": "C021.04",
+      "rust_expected": "source:df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978;line:0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9;symbol:java-tron/framework/src/main/java/org/tron/core/net/message/sync/ChainInventoryMessage.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9",
+        "source_sha256": "df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/ChainInventoryMessage.java"
+      },
+      "stable_id": "PROD-18F14AF43080EA3F"
+    },
+    {
+      "case_id": "C021-SG-F2BA0DE662A698AE",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "715d89ef00d7b00e3a7565cf0c2662bbe57a31928e4162a6c33305ee4ec7e7bc",
+      "java_expected_result": "source:df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978;line:0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9;symbol:org.tron.core.net.message.sync",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "chain_inventory"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/ChainInventoryMessage.java",
+      "java_symbol": "org.tron.core.net.message.sync",
+      "operation": "chain_inventory",
+      "owning_item": "C021.04",
+      "rust_expected": "source:df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978;line:0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9;symbol:org.tron.core.net.message.sync",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9",
+        "source_sha256": "df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978",
+        "symbol": "org.tron.core.net.message.sync"
+      },
+      "stable_id": "PROD-F2BA0DE662A698AE"
+    },
+    {
+      "case_id": "C021-SG-AE6FD8A6040F0C48",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d8785e1edc29745e770d96de8ba9e594e1387f7afd8585dac6aeb3196c53d69d",
+      "java_expected_result": "source:df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978;line:d75ee14833871f7b08ac5e2f0330220cf0c256ebbb4aed14ba2c3fe5742002a0;symbol:ChainInventoryMessage",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "chain_inventory"
+      },
+      "java_line": 14,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/ChainInventoryMessage.java",
+      "java_symbol": "ChainInventoryMessage",
+      "operation": "chain_inventory",
+      "owning_item": "C021.04",
+      "rust_expected": "source:df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978;line:d75ee14833871f7b08ac5e2f0330220cf0c256ebbb4aed14ba2c3fe5742002a0;symbol:ChainInventoryMessage",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "d75ee14833871f7b08ac5e2f0330220cf0c256ebbb4aed14ba2c3fe5742002a0",
+        "source_sha256": "df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978",
+        "symbol": "ChainInventoryMessage"
+      },
+      "stable_id": "PROD-AE6FD8A6040F0C48"
+    },
+    {
+      "case_id": "C021-SG-32CB27D89300CF70",
+      "evidence_kind": "production",
+      "java_expected_digest": "3631192402fddfc4f3ee0e3f2b973847e7c789b93545f8d004a2a699123b7c20",
+      "java_expected_result": "ids=2001;remain=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "chain_inventory"
+      },
+      "java_line": 40,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/ChainInventoryMessage.java",
+      "java_symbol": "getAnswerMessage",
+      "operation": "chain_inventory",
+      "owning_item": "C021.04",
+      "rust_expected": "ids=2001;remain=1",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "97091931ea1509ae6b66fc8d6f9c2cc04e0805302c911486a0e4a47b3310c1b6",
+        "source_sha256": "df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978",
+        "symbol": "getAnswerMessage"
+      },
+      "stable_id": "PROD-32CB27D89300CF70"
+    },
+    {
+      "case_id": "C021-SG-793548D2D248AF0A",
+      "evidence_kind": "production",
+      "java_expected_digest": "3631192402fddfc4f3ee0e3f2b973847e7c789b93545f8d004a2a699123b7c20",
+      "java_expected_result": "ids=2001;remain=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "chain_inventory"
+      },
+      "java_line": 48,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/ChainInventoryMessage.java",
+      "java_symbol": "getBlockIds",
+      "operation": "chain_inventory",
+      "owning_item": "C021.04",
+      "rust_expected": "ids=2001;remain=1",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "1c8ad135322dfe19affe6f8fa205bd389427a9bfc3a2a22e1b09f94df08dc497",
+        "source_sha256": "df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978",
+        "symbol": "getBlockIds"
+      },
+      "stable_id": "PROD-793548D2D248AF0A"
+    },
+    {
+      "case_id": "C021-SG-A9162E377A060017",
+      "evidence_kind": "production",
+      "java_expected_digest": "3631192402fddfc4f3ee0e3f2b973847e7c789b93545f8d004a2a699123b7c20",
+      "java_expected_result": "ids=2001;remain=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "chain_inventory"
+      },
+      "java_line": 60,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/ChainInventoryMessage.java",
+      "java_symbol": "getRemainNum",
+      "operation": "chain_inventory",
+      "owning_item": "C021.04",
+      "rust_expected": "ids=2001;remain=1",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "97b20190dc6692db5dd21785b9b9df28b80cf95c1e95ff932d4cf6755b1b0c1e",
+        "source_sha256": "df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978",
+        "symbol": "getRemainNum"
+      },
+      "stable_id": "PROD-A9162E377A060017"
+    },
+    {
+      "case_id": "C021-SG-DAD909F121FEC5CE",
+      "evidence_kind": "production",
+      "java_expected_digest": "3631192402fddfc4f3ee0e3f2b973847e7c789b93545f8d004a2a699123b7c20",
+      "java_expected_result": "ids=2001;remain=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "chain_inventory"
+      },
+      "java_line": 65,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/ChainInventoryMessage.java",
+      "java_symbol": "toString",
+      "operation": "chain_inventory",
+      "owning_item": "C021.04",
+      "rust_expected": "ids=2001;remain=1",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "c57fdeb7f62d36f9818166407fc46551634182c2c9c1a43f9fe9406a2040744f",
+        "source_sha256": "df7229cef55ad0837df131f80ab9e093556f721265a92864589c07ad426cf978",
+        "symbol": "toString"
+      },
+      "stable_id": "PROD-DAD909F121FEC5CE"
+    },
+    {
+      "case_id": "C021-SG-4C7A02A964B1B648",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "b9348bfb823c1f67b3d5df5057ea20444f22af61c04424779bc363d97f10daf9",
+      "java_expected_result": "source:1323f50603c61c9eb35ba2652fc05c057b73c0373b2a1c827029b96f998687d6;line:0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9;symbol:org.tron.core.net.message.sync",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_request"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/SyncBlockChainMessage.java",
+      "java_symbol": "org.tron.core.net.message.sync",
+      "operation": "sync_request",
+      "owning_item": "C021.04",
+      "rust_expected": "source:1323f50603c61c9eb35ba2652fc05c057b73c0373b2a1c827029b96f998687d6;line:0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9;symbol:org.tron.core.net.message.sync",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9",
+        "source_sha256": "1323f50603c61c9eb35ba2652fc05c057b73c0373b2a1c827029b96f998687d6",
+        "symbol": "org.tron.core.net.message.sync"
+      },
+      "stable_id": "PROD-4C7A02A964B1B648"
+    },
+    {
+      "case_id": "C021-SG-A6AB116651D0BA77",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "4bebb69a12ba1071a65cb1857995263cc87c31f84b4c35b172bb7e4e55939d40",
+      "java_expected_result": "source:1323f50603c61c9eb35ba2652fc05c057b73c0373b2a1c827029b96f998687d6;line:0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9;symbol:java-tron/framework/src/main/java/org/tron/core/net/message/sync/SyncBlockChainMessage.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_request"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/SyncBlockChainMessage.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/SyncBlockChainMessage.java",
+      "operation": "sync_request",
+      "owning_item": "C021.04",
+      "rust_expected": "source:1323f50603c61c9eb35ba2652fc05c057b73c0373b2a1c827029b96f998687d6;line:0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9;symbol:java-tron/framework/src/main/java/org/tron/core/net/message/sync/SyncBlockChainMessage.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "0ad1a656b3c2b0aba6670b112637e8e183ffe56b3c4a370e1810306df4bcabf9",
+        "source_sha256": "1323f50603c61c9eb35ba2652fc05c057b73c0373b2a1c827029b96f998687d6",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/SyncBlockChainMessage.java"
+      },
+      "stable_id": "PROD-A6AB116651D0BA77"
+    },
+    {
+      "case_id": "C021-SG-947EE154E9A922F7",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "291fe4c53aba873e2256dd1495c6ea93acd72b1130428187455124e1c3891dcc",
+      "java_expected_result": "source:1323f50603c61c9eb35ba2652fc05c057b73c0373b2a1c827029b96f998687d6;line:7d539f354206946843008b924e27429cd0c3be503d287bf83e684a7ac8cebcfb;symbol:SyncBlockChainMessage",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_request"
+      },
+      "java_line": 8,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/SyncBlockChainMessage.java",
+      "java_symbol": "SyncBlockChainMessage",
+      "operation": "sync_request",
+      "owning_item": "C021.04",
+      "rust_expected": "source:1323f50603c61c9eb35ba2652fc05c057b73c0373b2a1c827029b96f998687d6;line:7d539f354206946843008b924e27429cd0c3be503d287bf83e684a7ac8cebcfb;symbol:SyncBlockChainMessage",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "7d539f354206946843008b924e27429cd0c3be503d287bf83e684a7ac8cebcfb",
+        "source_sha256": "1323f50603c61c9eb35ba2652fc05c057b73c0373b2a1c827029b96f998687d6",
+        "symbol": "SyncBlockChainMessage"
+      },
+      "stable_id": "PROD-947EE154E9A922F7"
+    },
+    {
+      "case_id": "C021-SG-3FA2B5CC0601C219",
+      "evidence_kind": "production",
+      "java_expected_digest": "2401b8fe78d71147433ae82cf1bf2960a06d62fa33322ce4dda3e846f05e71b5",
+      "java_expected_result": "token=single-use",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_request"
+      },
+      "java_line": 21,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/SyncBlockChainMessage.java",
+      "java_symbol": "toString",
+      "operation": "sync_request",
+      "owning_item": "C021.04",
+      "rust_expected": "token=single-use",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "c57fdeb7f62d36f9818166407fc46551634182c2c9c1a43f9fe9406a2040744f",
+        "source_sha256": "1323f50603c61c9eb35ba2652fc05c057b73c0373b2a1c827029b96f998687d6",
+        "symbol": "toString"
+      },
+      "stable_id": "PROD-3FA2B5CC0601C219"
+    },
+    {
+      "case_id": "C021-SG-6C1E0D60A600C215",
+      "evidence_kind": "production",
+      "java_expected_digest": "2401b8fe78d71147433ae82cf1bf2960a06d62fa33322ce4dda3e846f05e71b5",
+      "java_expected_result": "token=single-use",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_request"
+      },
+      "java_line": 36,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/sync/SyncBlockChainMessage.java",
+      "java_symbol": "getAnswerMessage",
+      "operation": "sync_request",
+      "owning_item": "C021.04",
+      "rust_expected": "token=single-use",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "97091931ea1509ae6b66fc8d6f9c2cc04e0805302c911486a0e4a47b3310c1b6",
+        "source_sha256": "1323f50603c61c9eb35ba2652fc05c057b73c0373b2a1c827029b96f998687d6",
+        "symbol": "getAnswerMessage"
+      },
+      "stable_id": "PROD-6C1E0D60A600C215"
+    },
+    {
+      "case_id": "C021-SG-17E16FE2D468F8B2",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d9b8db6d198488d9b89cda543b68d6839c4736f05267e4254d1be59b3c8b9c92",
+      "java_expected_result": "source:4f0eb949cd2fc205ba546d90d6cc7c01807a8efeda3bc39916d38ea19bc871ba;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:org.tron.core.net.messagehandler",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "chain_inventory"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/ChainInventoryMsgHandler.java",
+      "java_symbol": "org.tron.core.net.messagehandler",
+      "operation": "chain_inventory",
+      "owning_item": "C021.04",
+      "rust_expected": "source:4f0eb949cd2fc205ba546d90d6cc7c01807a8efeda3bc39916d38ea19bc871ba;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:org.tron.core.net.messagehandler",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2",
+        "source_sha256": "4f0eb949cd2fc205ba546d90d6cc7c01807a8efeda3bc39916d38ea19bc871ba",
+        "symbol": "org.tron.core.net.messagehandler"
+      },
+      "stable_id": "PROD-17E16FE2D468F8B2"
+    },
+    {
+      "case_id": "C021-SG-BD4CFB3A861F60FF",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "deca80a800ffdb3985816b48fd6d848bd198583793faf1d3713c05343792c036",
+      "java_expected_result": "source:4f0eb949cd2fc205ba546d90d6cc7c01807a8efeda3bc39916d38ea19bc871ba;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:java-tron/framework/src/main/java/org/tron/core/net/messagehandler/ChainInventoryMsgHandler.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "chain_inventory"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/ChainInventoryMsgHandler.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/ChainInventoryMsgHandler.java",
+      "operation": "chain_inventory",
+      "owning_item": "C021.04",
+      "rust_expected": "source:4f0eb949cd2fc205ba546d90d6cc7c01807a8efeda3bc39916d38ea19bc871ba;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:java-tron/framework/src/main/java/org/tron/core/net/messagehandler/ChainInventoryMsgHandler.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2",
+        "source_sha256": "4f0eb949cd2fc205ba546d90d6cc7c01807a8efeda3bc39916d38ea19bc871ba",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/ChainInventoryMsgHandler.java"
+      },
+      "stable_id": "PROD-BD4CFB3A861F60FF"
+    },
+    {
+      "case_id": "C021-SG-06832A2D98629072",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "ad097665ebce6d24634a5c0b1423cad956043df7cbaf9a3f17ba056dedf361c4",
+      "java_expected_result": "source:4f0eb949cd2fc205ba546d90d6cc7c01807a8efeda3bc39916d38ea19bc871ba;line:192ac577364cd514f856ce059a2725a53f8e03c0f05419d331e671e126929059;symbol:ChainInventoryMsgHandler",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "chain_inventory"
+      },
+      "java_line": 28,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/ChainInventoryMsgHandler.java",
+      "java_symbol": "ChainInventoryMsgHandler",
+      "operation": "chain_inventory",
+      "owning_item": "C021.04",
+      "rust_expected": "source:4f0eb949cd2fc205ba546d90d6cc7c01807a8efeda3bc39916d38ea19bc871ba;line:192ac577364cd514f856ce059a2725a53f8e03c0f05419d331e671e126929059;symbol:ChainInventoryMsgHandler",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "192ac577364cd514f856ce059a2725a53f8e03c0f05419d331e671e126929059",
+        "source_sha256": "4f0eb949cd2fc205ba546d90d6cc7c01807a8efeda3bc39916d38ea19bc871ba",
+        "symbol": "ChainInventoryMsgHandler"
+      },
+      "stable_id": "PROD-06832A2D98629072"
+    },
+    {
+      "case_id": "C021-SG-488F49D6E86CE451",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d3db93d92a76210cebd9ead86499eb8b1f2b5c548d8f9d765028187423c92cab",
+      "java_expected_result": "source:869b4bd8a188ff98060929b0a774ef50ec5b42c47991f68100816212226e7338;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:org.tron.core.net.messagehandler",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandler.java",
+      "java_symbol": "org.tron.core.net.messagehandler",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "source:869b4bd8a188ff98060929b0a774ef50ec5b42c47991f68100816212226e7338;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:org.tron.core.net.messagehandler",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2",
+        "source_sha256": "869b4bd8a188ff98060929b0a774ef50ec5b42c47991f68100816212226e7338",
+        "symbol": "org.tron.core.net.messagehandler"
+      },
+      "stable_id": "PROD-488F49D6E86CE451"
+    },
+    {
+      "case_id": "C021-SG-FAEAE84075CFE53B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "35b8cb8a1c9b8edd0010d7411e78143f976e20b29694cd745e0f030528952cf1",
+      "java_expected_result": "source:869b4bd8a188ff98060929b0a774ef50ec5b42c47991f68100816212226e7338;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:java-tron/framework/src/main/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandler.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandler.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandler.java",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "source:869b4bd8a188ff98060929b0a774ef50ec5b42c47991f68100816212226e7338;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:java-tron/framework/src/main/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandler.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2",
+        "source_sha256": "869b4bd8a188ff98060929b0a774ef50ec5b42c47991f68100816212226e7338",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandler.java"
+      },
+      "stable_id": "PROD-FAEAE84075CFE53B"
+    },
+    {
+      "case_id": "C021-SG-1159BB555BC6EE8B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "212b3cedc744acd17aaa4439c58db13645ba4c4cacaf70252d571aadcca2173c",
+      "java_expected_result": "source:869b4bd8a188ff98060929b0a774ef50ec5b42c47991f68100816212226e7338;line:9329939f0f31d86030ad76c6370cb09a53bbe6cdd215088dd3888cfb772d9fac;symbol:FetchInvDataMsgHandler",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 39,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandler.java",
+      "java_symbol": "FetchInvDataMsgHandler",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "source:869b4bd8a188ff98060929b0a774ef50ec5b42c47991f68100816212226e7338;line:9329939f0f31d86030ad76c6370cb09a53bbe6cdd215088dd3888cfb772d9fac;symbol:FetchInvDataMsgHandler",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "9329939f0f31d86030ad76c6370cb09a53bbe6cdd215088dd3888cfb772d9fac",
+        "source_sha256": "869b4bd8a188ff98060929b0a774ef50ec5b42c47991f68100816212226e7338",
+        "symbol": "FetchInvDataMsgHandler"
+      },
+      "stable_id": "PROD-1159BB555BC6EE8B"
+    },
+    {
+      "case_id": "C021-SG-F3E201855062B9E5",
+      "evidence_kind": "production",
+      "java_expected_digest": "39067aedeff6d74af3761f491a667e690ec1be017b50f7fb6202c58a14e64294",
+      "java_expected_result": "tx_batches=2;block_batches=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "fetch"
+      },
+      "java_line": 142,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/FetchInvDataMsgHandler.java",
+      "java_symbol": "isAdvInv",
+      "operation": "fetch",
+      "owning_item": "C021.05",
+      "rust_expected": "tx_batches=2;block_batches=1",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "0df77fe08bf3c76fc741b978f2967eecf0d7f29ee3ea72f6fc52f7aa0980cb91",
+        "source_sha256": "869b4bd8a188ff98060929b0a774ef50ec5b42c47991f68100816212226e7338",
+        "symbol": "isAdvInv"
+      },
+      "stable_id": "PROD-F3E201855062B9E5"
+    },
+    {
+      "case_id": "C021-SG-9A4958EC6470A08A",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "59c0c7ff1264818ccba88202c578f1d203f9b4722b8532cc1be902b5276aee81",
+      "java_expected_result": "source:c0e215270b802f4234daf0a9930174176d669a3dfa09178fc869a78133a9101e;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:java-tron/framework/src/main/java/org/tron/core/net/messagehandler/InventoryMsgHandler.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/InventoryMsgHandler.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/InventoryMsgHandler.java",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "source:c0e215270b802f4234daf0a9930174176d669a3dfa09178fc869a78133a9101e;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:java-tron/framework/src/main/java/org/tron/core/net/messagehandler/InventoryMsgHandler.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2",
+        "source_sha256": "c0e215270b802f4234daf0a9930174176d669a3dfa09178fc869a78133a9101e",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/InventoryMsgHandler.java"
+      },
+      "stable_id": "PROD-9A4958EC6470A08A"
+    },
+    {
+      "case_id": "C021-SG-FA69E5EB80F8B257",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "63c92fd077c27e5c7e6a84c12d2cf665cfe880eda2a73fd50abc874cbf101522",
+      "java_expected_result": "source:c0e215270b802f4234daf0a9930174176d669a3dfa09178fc869a78133a9101e;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:org.tron.core.net.messagehandler",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/InventoryMsgHandler.java",
+      "java_symbol": "org.tron.core.net.messagehandler",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "source:c0e215270b802f4234daf0a9930174176d669a3dfa09178fc869a78133a9101e;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:org.tron.core.net.messagehandler",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2",
+        "source_sha256": "c0e215270b802f4234daf0a9930174176d669a3dfa09178fc869a78133a9101e",
+        "symbol": "org.tron.core.net.messagehandler"
+      },
+      "stable_id": "PROD-FA69E5EB80F8B257"
+    },
+    {
+      "case_id": "C021-SG-4A9F8C5D63CE8A26",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8d7c62e45933047983d9a645ce9da1b86e471b168cfad654e30b4688b95487d4",
+      "java_expected_result": "source:c0e215270b802f4234daf0a9930174176d669a3dfa09178fc869a78133a9101e;line:798493508119ac5acaa326cf1a5ca60e1bdc69c0a6d90165ab42f3a8f668deff;symbol:InventoryMsgHandler",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory"
+      },
+      "java_line": 23,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/InventoryMsgHandler.java",
+      "java_symbol": "InventoryMsgHandler",
+      "operation": "inventory",
+      "owning_item": "C021.05",
+      "rust_expected": "source:c0e215270b802f4234daf0a9930174176d669a3dfa09178fc869a78133a9101e;line:798493508119ac5acaa326cf1a5ca60e1bdc69c0a6d90165ab42f3a8f668deff;symbol:InventoryMsgHandler",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "798493508119ac5acaa326cf1a5ca60e1bdc69c0a6d90165ab42f3a8f668deff",
+        "source_sha256": "c0e215270b802f4234daf0a9930174176d669a3dfa09178fc869a78133a9101e",
+        "symbol": "InventoryMsgHandler"
+      },
+      "stable_id": "PROD-4A9F8C5D63CE8A26"
+    },
+    {
+      "case_id": "C021-SG-1BBA6C008BBD3875",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "050cc572ba484a821a25da45cda9d957c50f2463f1eef4e4605743dd754d8c6c",
+      "java_expected_result": "source:a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:org.tron.core.net.messagehandler",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/PbftDataSyncHandler.java",
+      "java_symbol": "org.tron.core.net.messagehandler",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "source:a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:org.tron.core.net.messagehandler",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2",
+        "source_sha256": "a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189",
+        "symbol": "org.tron.core.net.messagehandler"
+      },
+      "stable_id": "PROD-1BBA6C008BBD3875"
+    },
+    {
+      "case_id": "C021-SG-D846B6934AF169B3",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "7f5197cd9e43898d3bfbcf0c8558288dc8dfa866a9d3daa47a441bda04a66ab6",
+      "java_expected_result": "source:a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:java-tron/framework/src/main/java/org/tron/core/net/messagehandler/PbftDataSyncHandler.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/PbftDataSyncHandler.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/PbftDataSyncHandler.java",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "source:a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:java-tron/framework/src/main/java/org/tron/core/net/messagehandler/PbftDataSyncHandler.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2",
+        "source_sha256": "a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/PbftDataSyncHandler.java"
+      },
+      "stable_id": "PROD-D846B6934AF169B3"
+    },
+    {
+      "case_id": "C021-SG-37C0BF24ED76E5B8",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "1499ac16eddd053ea80da06d2bdc0a615316437a67302cba485d75fbf20834e7",
+      "java_expected_result": "source:a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189;line:0da4aa70d1cd99215404454da7b8cef62c4eaef9b65eedfe986759400621c750;symbol:PbftDataSyncHandler",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 39,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/PbftDataSyncHandler.java",
+      "java_symbol": "PbftDataSyncHandler",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "source:a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189;line:0da4aa70d1cd99215404454da7b8cef62c4eaef9b65eedfe986759400621c750;symbol:PbftDataSyncHandler",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "0da4aa70d1cd99215404454da7b8cef62c4eaef9b65eedfe986759400621c750",
+        "source_sha256": "a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189",
+        "symbol": "PbftDataSyncHandler"
+      },
+      "stable_id": "PROD-37C0BF24ED76E5B8"
+    },
+    {
+      "case_id": "C021-SG-A4A0BAAA62596CBB",
+      "evidence_kind": "production",
+      "java_expected_digest": "2b2fbd8917556686b84b40228d59563f0635f3508dc016026b1bdec4c9b8b3e9",
+      "java_expected_result": "order=reject-second;accept-first",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 67,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/PbftDataSyncHandler.java",
+      "java_symbol": "processPBFTCommitData",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "order=reject-second;accept-first",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "dd64c30a33b3e0ef48c11fa7f5fe2341684267ecdc4fa0142d3fa0dbeebd323b",
+        "source_sha256": "a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189",
+        "symbol": "processPBFTCommitData"
+      },
+      "stable_id": "PROD-A4A0BAAA62596CBB"
+    },
+    {
+      "case_id": "C021-SG-9ADE3789FCA44380",
+      "evidence_kind": "production",
+      "java_expected_digest": "2b2fbd8917556686b84b40228d59563f0635f3508dc016026b1bdec4c9b8b3e9",
+      "java_expected_result": "order=reject-second;accept-first",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 96,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/PbftDataSyncHandler.java",
+      "java_symbol": "close",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "order=reject-second;accept-first",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "acd298f80fd8e4945a10753e18f6214c1dbd3fd0cee64516b00a39cc2195fc46",
+        "source_sha256": "a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189",
+        "symbol": "close"
+      },
+      "stable_id": "PROD-9ADE3789FCA44380"
+    },
+    {
+      "case_id": "C021-SG-09FB9724007236A0",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "7357e132dac71de21d22ff2c1470543989fccae3dba99bb218471c1eff77042d",
+      "java_expected_result": "source:a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189;line:bb5f6f6483c35f67fe6741f15d1a5df5995490da823d7b80980f7ca84b7de428;symbol:ValidPbftSignTask",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 156,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/PbftDataSyncHandler.java",
+      "java_symbol": "ValidPbftSignTask",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "source:a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189;line:bb5f6f6483c35f67fe6741f15d1a5df5995490da823d7b80980f7ca84b7de428;symbol:ValidPbftSignTask",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "bb5f6f6483c35f67fe6741f15d1a5df5995490da823d7b80980f7ca84b7de428",
+        "source_sha256": "a0c4e2ee0cfe77bb090b9a808f9f3c18ef2075ad8ffaba30cee1b7afe947a189",
+        "symbol": "ValidPbftSignTask"
+      },
+      "stable_id": "PROD-09FB9724007236A0"
+    },
+    {
+      "case_id": "C021-SG-209F7C54D798A13C",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5a30d521873d625b10aceb126db0eacdf06000cbc41d871656ba68c89e774148",
+      "java_expected_result": "source:162c055172a55817ddb55db9411c942a5118a226e949262d753d03ca7f4b3988;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:java-tron/framework/src/main/java/org/tron/core/net/messagehandler/SyncBlockChainMsgHandler.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_request"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/SyncBlockChainMsgHandler.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/SyncBlockChainMsgHandler.java",
+      "operation": "sync_request",
+      "owning_item": "C021.04",
+      "rust_expected": "source:162c055172a55817ddb55db9411c942a5118a226e949262d753d03ca7f4b3988;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:java-tron/framework/src/main/java/org/tron/core/net/messagehandler/SyncBlockChainMsgHandler.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2",
+        "source_sha256": "162c055172a55817ddb55db9411c942a5118a226e949262d753d03ca7f4b3988",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/SyncBlockChainMsgHandler.java"
+      },
+      "stable_id": "PROD-209F7C54D798A13C"
+    },
+    {
+      "case_id": "C021-SG-37D588D79B36A0D1",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "b2ead81f673d89cf05e77d3da78d0dbd71e12a301f67ef6c8eb1bc331f569896",
+      "java_expected_result": "source:162c055172a55817ddb55db9411c942a5118a226e949262d753d03ca7f4b3988;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:org.tron.core.net.messagehandler",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_request"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/SyncBlockChainMsgHandler.java",
+      "java_symbol": "org.tron.core.net.messagehandler",
+      "operation": "sync_request",
+      "owning_item": "C021.04",
+      "rust_expected": "source:162c055172a55817ddb55db9411c942a5118a226e949262d753d03ca7f4b3988;line:a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2;symbol:org.tron.core.net.messagehandler",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "a8a7f34acb4ed572a59e41fa2dbca3960b544179074285f40179959b3754cbd2",
+        "source_sha256": "162c055172a55817ddb55db9411c942a5118a226e949262d753d03ca7f4b3988",
+        "symbol": "org.tron.core.net.messagehandler"
+      },
+      "stable_id": "PROD-37D588D79B36A0D1"
+    },
+    {
+      "case_id": "C021-SG-D8EF5DE6E7EBBD76",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "e9da0b14e30a1ed457d034702e4bbb953247158cb79c2bc407ca4dc92f9ec321",
+      "java_expected_result": "source:162c055172a55817ddb55db9411c942a5118a226e949262d753d03ca7f4b3988;line:eb34acf61cea10c18f3a1d782ea9b03fba516f64e208a09f768c932f02c43e8c;symbol:SyncBlockChainMsgHandler",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_request"
+      },
+      "java_line": 24,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/messagehandler/SyncBlockChainMsgHandler.java",
+      "java_symbol": "SyncBlockChainMsgHandler",
+      "operation": "sync_request",
+      "owning_item": "C021.04",
+      "rust_expected": "source:162c055172a55817ddb55db9411c942a5118a226e949262d753d03ca7f4b3988;line:eb34acf61cea10c18f3a1d782ea9b03fba516f64e208a09f768c932f02c43e8c;symbol:SyncBlockChainMsgHandler",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "eb34acf61cea10c18f3a1d782ea9b03fba516f64e208a09f768c932f02c43e8c",
+        "source_sha256": "162c055172a55817ddb55db9411c942a5118a226e949262d753d03ca7f4b3988",
+        "symbol": "SyncBlockChainMsgHandler"
+      },
+      "stable_id": "PROD-D8EF5DE6E7EBBD76"
+    },
+    {
+      "case_id": "C021-SG-53848597601FE2E7",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "02ae7e492a775a2c96ee64dd01591745cc01c39e03239bbcbfb0c9b4a18b9b90",
+      "java_expected_result": "source:004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254;line:5c3c4c49166a521c2bafba0c4bafa0d63ad1eb9157a081180f272544a37ccec2;symbol:java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "source:004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254;line:5c3c4c49166a521c2bafba0c4bafa0d63ad1eb9157a081180f272544a37ccec2;symbol:java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "5c3c4c49166a521c2bafba0c4bafa0d63ad1eb9157a081180f272544a37ccec2",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java"
+      },
+      "stable_id": "PROD-53848597601FE2E7"
+    },
+    {
+      "case_id": "C021-SG-7D71E4A182546159",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d2a2bd4a1024fff155fe7af3a24e1b6a6c5af18cc9013faf091a1be095ef0705",
+      "java_expected_result": "source:004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254;line:5c3c4c49166a521c2bafba0c4bafa0d63ad1eb9157a081180f272544a37ccec2;symbol:org.tron.core.net.service.adv",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "org.tron.core.net.service.adv",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "source:004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254;line:5c3c4c49166a521c2bafba0c4bafa0d63ad1eb9157a081180f272544a37ccec2;symbol:org.tron.core.net.service.adv",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "5c3c4c49166a521c2bafba0c4bafa0d63ad1eb9157a081180f272544a37ccec2",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "org.tron.core.net.service.adv"
+      },
+      "stable_id": "PROD-7D71E4A182546159"
+    },
+    {
+      "case_id": "C021-SG-242F727D9344F2AE",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "336ebd1d9b168a950408291bb273973f66a52a533262f46b7435cd70761705c0",
+      "java_expected_result": "source:004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254;line:f5a7f65dc3cbf4fc02ea291c07fcaaa0008cf301d162db1c2daf6df4968b55fd;symbol:AdvService",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 43,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "AdvService",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "source:004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254;line:f5a7f65dc3cbf4fc02ea291c07fcaaa0008cf301d162db1c2daf6df4968b55fd;symbol:AdvService",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "f5a7f65dc3cbf4fc02ea291c07fcaaa0008cf301d162db1c2daf6df4968b55fd",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "AdvService"
+      },
+      "stable_id": "PROD-242F727D9344F2AE"
+    },
+    {
+      "case_id": "C021-SG-62D281E5F39C6A31",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 87,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "init",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "d6333a40a0a923d50f975aa6cd6b2ff944723523843edf0f32b5f74a255913bb",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "init"
+      },
+      "stable_id": "PROD-62D281E5F39C6A31"
+    },
+    {
+      "case_id": "C021-SG-C50FE2D0C7A88E5A",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 106,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "close",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "acd298f80fd8e4945a10753e18f6214c1dbd3fd0cee64516b00a39cc2195fc46",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "close"
+      },
+      "stable_id": "PROD-C50FE2D0C7A88E5A"
+    },
+    {
+      "case_id": "C021-SG-316A2272D9C934CF",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 111,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "addInvToCache",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "4efd541d1065dd107d0e4d19c5108a56fb47f806592a217e31e5dc05d0785f62",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "addInvToCache"
+      },
+      "stable_id": "PROD-316A2272D9C934CF"
+    },
+    {
+      "case_id": "C021-SG-E5D668AD3916EFA3",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 116,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "addInv",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "ce774e8b0789f73590782abe79514af4234636cbfd52a81d472bb6a0b7844de5",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "addInv"
+      },
+      "stable_id": "PROD-E5D668AD3916EFA3"
+    },
+    {
+      "case_id": "C021-SG-DE52C7D298EB5B31",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 151,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "getMessage",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "5c915f53261278899d74df07173ca7081645cb8aadfab37feab7a90ca34b26f4",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "getMessage"
+      },
+      "stable_id": "PROD-DE52C7D298EB5B31"
+    },
+    {
+      "case_id": "C021-SG-890B4C1BED041648",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 159,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "fastBroadcastTransaction",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "513d94964e017e70f5228f5130effe59b245cff7435d7b23c99a8013e7aacd4f",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "fastBroadcastTransaction"
+      },
+      "stable_id": "PROD-890B4C1BED041648"
+    },
+    {
+      "case_id": "C021-SG-ED20B2CAFA962013",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 193,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "broadcast",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "3a51f84569107e75d81ebbd020fd9cf3a320d168b123fea4d8feda20ed9b23c9",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "broadcast"
+      },
+      "stable_id": "PROD-ED20B2CAFA962013"
+    },
+    {
+      "case_id": "C021-SG-9A74380CA686E2ED",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 253,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "onDisconnect",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "eadea2ca23851ad32aee6780ebb930a626a7545231e0c120ceea01bb6b75ae37",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "onDisconnect"
+      },
+      "stable_id": "PROD-9A74380CA686E2ED"
+    },
+    {
+      "case_id": "C021-SG-FAB975F431201901",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "37d8bfdcca5b7d0694c063786caa9bf996c2b0a5aa2037183a2b887d4ac5fec8",
+      "java_expected_result": "source:004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254;line:3f23557ff7e5fe812cbeb2c9e7615c0143b96de819003f60a322131539685ffd;symbol:InvSender",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 330,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "InvSender",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "source:004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254;line:3f23557ff7e5fe812cbeb2c9e7615c0143b96de819003f60a322131539685ffd;symbol:InvSender",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "3f23557ff7e5fe812cbeb2c9e7615c0143b96de819003f60a322131539685ffd",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "InvSender"
+      },
+      "stable_id": "PROD-FAB975F431201901"
+    },
+    {
+      "case_id": "C021-SG-08E383A59AAE08B8",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 335,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "clear",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "59f794ad655849e7e1299250f8597174a577b5800b79ebdad20b061dcf1fff58",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "clear"
+      },
+      "stable_id": "PROD-08E383A59AAE08B8"
+    },
+    {
+      "case_id": "C021-SG-E1296AE2366BD5C5",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 339,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "add",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "bf792199b6305ea157aaff5df8c034902636196338fae266bdd833ef1e07f400",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "add"
+      },
+      "stable_id": "PROD-E1296AE2366BD5C5"
+    },
+    {
+      "case_id": "C021-SG-DAFBC35511F5388B",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 349,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "add",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "eb1a7c68ea15904b62ebfb62656925e3cdef3154446878c02ad4dbf773617e6e",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "add"
+      },
+      "stable_id": "PROD-DAFBC35511F5388B"
+    },
+    {
+      "case_id": "C021-SG-D221350F14706C81",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 365,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "getSize",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "4d8802ebe1debce303795c192008b5e2bb35b28f50e353535ad9ae1006fec2ea",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "getSize"
+      },
+      "stable_id": "PROD-D221350F14706C81"
+    },
+    {
+      "case_id": "C021-SG-7F1C5AF5EEED7CA0",
+      "evidence_kind": "production",
+      "java_expected_digest": "0f38757bfb2afbaea3c8f2a200536f4ea1156c9245ef8c27959f5573fdb53c43",
+      "java_expected_result": "spread=1;cached=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "cache_spread"
+      },
+      "java_line": 372,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/adv/AdvService.java",
+      "java_symbol": "sendInv",
+      "operation": "cache_spread",
+      "owning_item": "C021.05",
+      "rust_expected": "spread=1;cached=true",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "d57d706f4a6fdfbc84018a7ef9bc5b8b09404fb51cfa868b86c55dbab6f1c5f9",
+        "source_sha256": "004e7a07a13826208e556ada43ad91627ff369711b1fa0da8ade33f661c38254",
+        "symbol": "sendInv"
+      },
+      "stable_id": "PROD-7F1C5AF5EEED7CA0"
+    },
+    {
+      "case_id": "C021-SG-38B15F9976052C18",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "54a45223b509cf846985d2af51e422036a086e5920cd2a3c9c66a3f63614fa10",
+      "java_expected_result": "source:4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253;line:139dcc7829e564aad2f935c1dbbdfe8fb020f82a05c7bd9a3848bdd850576257;symbol:java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sparse_summary"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java",
+      "operation": "sparse_summary",
+      "owning_item": "C021.04",
+      "rust_expected": "source:4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253;line:139dcc7829e564aad2f935c1dbbdfe8fb020f82a05c7bd9a3848bdd850576257;symbol:java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "139dcc7829e564aad2f935c1dbbdfe8fb020f82a05c7bd9a3848bdd850576257",
+        "source_sha256": "4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java"
+      },
+      "stable_id": "PROD-38B15F9976052C18"
+    },
+    {
+      "case_id": "C021-SG-AB0B5FED348FD04B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "1c4a5d92c0e80ab7959877003da1cf6f5af393de9903890c5977b4b2c80df786",
+      "java_expected_result": "source:4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253;line:139dcc7829e564aad2f935c1dbbdfe8fb020f82a05c7bd9a3848bdd850576257;symbol:org.tron.core.net.service.sync",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_queue"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java",
+      "java_symbol": "org.tron.core.net.service.sync",
+      "operation": "sync_queue",
+      "owning_item": "C021.04",
+      "rust_expected": "source:4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253;line:139dcc7829e564aad2f935c1dbbdfe8fb020f82a05c7bd9a3848bdd850576257;symbol:org.tron.core.net.service.sync",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "139dcc7829e564aad2f935c1dbbdfe8fb020f82a05c7bd9a3848bdd850576257",
+        "source_sha256": "4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253",
+        "symbol": "org.tron.core.net.service.sync"
+      },
+      "stable_id": "PROD-AB0B5FED348FD04B"
+    },
+    {
+      "case_id": "C021-SG-9698557691823F65",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "9962db46264d4c33ffbd19f2798ae27b85a10d2cfdb7445bcaf8a27507c08cb0",
+      "java_expected_result": "source:4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253;line:b68494f2bbf0a083f20dd74e8f608170b086cf6b7356c4182e8e06c39246ce61;symbol:SyncService",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sparse_summary"
+      },
+      "java_line": 40,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java",
+      "java_symbol": "SyncService",
+      "operation": "sparse_summary",
+      "owning_item": "C021.04",
+      "rust_expected": "source:4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253;line:b68494f2bbf0a083f20dd74e8f608170b086cf6b7356c4182e8e06c39246ce61;symbol:SyncService",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "b68494f2bbf0a083f20dd74e8f608170b086cf6b7356c4182e8e06c39246ce61",
+        "source_sha256": "4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253",
+        "symbol": "SyncService"
+      },
+      "stable_id": "PROD-9698557691823F65"
+    },
+    {
+      "case_id": "C021-SG-2ADF734C56C7A824",
+      "evidence_kind": "production",
+      "java_expected_digest": "2411b217da19965df9dea9c606eb4e4e85d8cac4f97e51761c787762285259c1",
+      "java_expected_result": "queued=3;requested=3;in_process=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_queue"
+      },
+      "java_line": 77,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java",
+      "java_symbol": "init",
+      "operation": "sync_queue",
+      "owning_item": "C021.04",
+      "rust_expected": "queued=3;requested=3;in_process=1",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "d6333a40a0a923d50f975aa6cd6b2ff944723523843edf0f32b5f74a255913bb",
+        "source_sha256": "4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253",
+        "symbol": "init"
+      },
+      "stable_id": "PROD-2ADF734C56C7A824"
+    },
+    {
+      "case_id": "C021-SG-D58DD677C90E10C9",
+      "evidence_kind": "production",
+      "java_expected_digest": "2411b217da19965df9dea9c606eb4e4e85d8cac4f97e51761c787762285259c1",
+      "java_expected_result": "queued=3;requested=3;in_process=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_queue"
+      },
+      "java_line": 101,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java",
+      "java_symbol": "close",
+      "operation": "sync_queue",
+      "owning_item": "C021.04",
+      "rust_expected": "queued=3;requested=3;in_process=1",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "acd298f80fd8e4945a10753e18f6214c1dbd3fd0cee64516b00a39cc2195fc46",
+        "source_sha256": "4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253",
+        "symbol": "close"
+      },
+      "stable_id": "PROD-D58DD677C90E10C9"
+    },
+    {
+      "case_id": "C021-SG-82BFF01F21A08E44",
+      "evidence_kind": "production",
+      "java_expected_digest": "73d15b1c13e02a185edaa38c4fcb83df5536db27d868f00477320194d9a4318f",
+      "java_expected_result": "summary=0,51,76,89,95,98,100",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sparse_summary"
+      },
+      "java_line": 106,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java",
+      "java_symbol": "startSync",
+      "operation": "sparse_summary",
+      "owning_item": "C021.04",
+      "rust_expected": "summary=0,51,76,89,95,98,100",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "3cfe3408cc3f8f85a3adbd415c5a6207d0ceebceaba6e9ed2fc5871fa89397b1",
+        "source_sha256": "4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253",
+        "symbol": "startSync"
+      },
+      "stable_id": "PROD-82BFF01F21A08E44"
+    },
+    {
+      "case_id": "C021-SG-5BCDC4107AB5177B",
+      "evidence_kind": "production",
+      "java_expected_digest": "2411b217da19965df9dea9c606eb4e4e85d8cac4f97e51761c787762285259c1",
+      "java_expected_result": "queued=3;requested=3;in_process=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_queue"
+      },
+      "java_line": 119,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java",
+      "java_symbol": "syncNext",
+      "operation": "sync_queue",
+      "owning_item": "C021.04",
+      "rust_expected": "queued=3;requested=3;in_process=1",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "fc32698027b940c08a538d986f34b56f54e6e820a1cd5511a33a168bfebde288",
+        "source_sha256": "4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253",
+        "symbol": "syncNext"
+      },
+      "stable_id": "PROD-5BCDC4107AB5177B"
+    },
+    {
+      "case_id": "C021-SG-206840463136A4A6",
+      "evidence_kind": "production",
+      "java_expected_digest": "2411b217da19965df9dea9c606eb4e4e85d8cac4f97e51761c787762285259c1",
+      "java_expected_result": "queued=3;requested=3;in_process=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_queue"
+      },
+      "java_line": 141,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java",
+      "java_symbol": "processBlock",
+      "operation": "sync_queue",
+      "owning_item": "C021.04",
+      "rust_expected": "queued=3;requested=3;in_process=1",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "ead0be023c84b5a26c7c593b2c4c6a556e94797c6186ccd5fb596712971d8ea1",
+        "source_sha256": "4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253",
+        "symbol": "processBlock"
+      },
+      "stable_id": "PROD-206840463136A4A6"
+    },
+    {
+      "case_id": "C021-SG-6C04EBB8EBC98BE6",
+      "evidence_kind": "production",
+      "java_expected_digest": "2411b217da19965df9dea9c606eb4e4e85d8cac4f97e51761c787762285259c1",
+      "java_expected_result": "queued=3;requested=3;in_process=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "sync_queue"
+      },
+      "java_line": 158,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java",
+      "java_symbol": "onDisconnect",
+      "operation": "sync_queue",
+      "owning_item": "C021.04",
+      "rust_expected": "queued=3;requested=3;in_process=1",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "eadea2ca23851ad32aee6780ebb930a626a7545231e0c120ceea01bb6b75ae37",
+        "source_sha256": "4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253",
+        "symbol": "onDisconnect"
+      },
+      "stable_id": "PROD-6C04EBB8EBC98BE6"
+    },
+    {
+      "case_id": "C021-SG-2BCD0E5DE82AACF8",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "da14ece4934f7dfbe0257782bb7e5f3db82aa8ffa1592871e8434b96058e7678",
+      "java_expected_result": "source:b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd;line:139dcc7829e564aad2f935c1dbbdfe8fb020f82a05c7bd9a3848bdd850576257;symbol:java-tron/framework/src/main/java/org/tron/core/net/service/sync/UnparsedBlock.java",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/UnparsedBlock.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/UnparsedBlock.java",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "source:b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd;line:139dcc7829e564aad2f935c1dbbdfe8fb020f82a05c7bd9a3848bdd850576257;symbol:java-tron/framework/src/main/java/org/tron/core/net/service/sync/UnparsedBlock.java",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "139dcc7829e564aad2f935c1dbbdfe8fb020f82a05c7bd9a3848bdd850576257",
+        "source_sha256": "b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/UnparsedBlock.java"
+      },
+      "stable_id": "PROD-2BCD0E5DE82AACF8"
+    },
+    {
+      "case_id": "C021-SG-B7AE218E4B89DFBE",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "7a5fe077a66138ded2cdf4de70c7f23f35d6dc07683f15aab2d99e358021c1c7",
+      "java_expected_result": "source:b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd;line:139dcc7829e564aad2f935c1dbbdfe8fb020f82a05c7bd9a3848bdd850576257;symbol:org.tron.core.net.service.sync",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/UnparsedBlock.java",
+      "java_symbol": "org.tron.core.net.service.sync",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "source:b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd;line:139dcc7829e564aad2f935c1dbbdfe8fb020f82a05c7bd9a3848bdd850576257;symbol:org.tron.core.net.service.sync",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "139dcc7829e564aad2f935c1dbbdfe8fb020f82a05c7bd9a3848bdd850576257",
+        "source_sha256": "b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd",
+        "symbol": "org.tron.core.net.service.sync"
+      },
+      "stable_id": "PROD-B7AE218E4B89DFBE"
+    },
+    {
+      "case_id": "C021-SG-34DFD7C3057B664F",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "616d27ade11331251ea011e5cb538e370dde335b805c71dcf84fccf433866d51",
+      "java_expected_result": "source:b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd;line:7dfc75dfff521524c59ec765eb8439d958cec3edc2b9a6c5f5f182d5cd4cbbf7;symbol:UnparsedBlock",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 5,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/UnparsedBlock.java",
+      "java_symbol": "UnparsedBlock",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "source:b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd;line:7dfc75dfff521524c59ec765eb8439d958cec3edc2b9a6c5f5f182d5cd4cbbf7;symbol:UnparsedBlock",
+      "source_assertion": {
+        "declaration_kind": "source-declaration",
+        "source_line_sha256": "7dfc75dfff521524c59ec765eb8439d958cec3edc2b9a6c5f5f182d5cd4cbbf7",
+        "source_sha256": "b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd",
+        "symbol": "UnparsedBlock"
+      },
+      "stable_id": "PROD-34DFD7C3057B664F"
+    },
+    {
+      "case_id": "C021-SG-66E5DDB6A71679A1",
+      "evidence_kind": "production",
+      "java_expected_digest": "2b2fbd8917556686b84b40228d59563f0635f3508dc016026b1bdec4c9b8b3e9",
+      "java_expected_result": "order=reject-second;accept-first",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 18,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/UnparsedBlock.java",
+      "java_symbol": "getBlockId",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "order=reject-second;accept-first",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "95305348c8a220d353456b155e0c4904a42ac1e976661cbe9dc4617d38bc6cc5",
+        "source_sha256": "b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd",
+        "symbol": "getBlockId"
+      },
+      "stable_id": "PROD-66E5DDB6A71679A1"
+    },
+    {
+      "case_id": "C021-SG-8EA61EF66DB8EE5C",
+      "evidence_kind": "production",
+      "java_expected_digest": "2b2fbd8917556686b84b40228d59563f0635f3508dc016026b1bdec4c9b8b3e9",
+      "java_expected_result": "order=reject-second;accept-first",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 22,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/UnparsedBlock.java",
+      "java_symbol": "getData",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "order=reject-second;accept-first",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "21d06a7431d44181c696b34c64b7ea9e8241a56c772a5e77859f7c5edb6ac498",
+        "source_sha256": "b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd",
+        "symbol": "getData"
+      },
+      "stable_id": "PROD-8EA61EF66DB8EE5C"
+    },
+    {
+      "case_id": "C021-SG-DB32751EBA9998B9",
+      "evidence_kind": "production",
+      "java_expected_digest": "2b2fbd8917556686b84b40228d59563f0635f3508dc016026b1bdec4c9b8b3e9",
+      "java_expected_result": "order=reject-second;accept-first",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 27,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/UnparsedBlock.java",
+      "java_symbol": "equals",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "order=reject-second;accept-first",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "bb1204c083ff73610b978c863baa8250e99f153db920f31e5c6b71d569100133",
+        "source_sha256": "b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd",
+        "symbol": "equals"
+      },
+      "stable_id": "PROD-DB32751EBA9998B9"
+    },
+    {
+      "case_id": "C021-SG-7F8E8DAC61D4A7E8",
+      "evidence_kind": "production",
+      "java_expected_digest": "2b2fbd8917556686b84b40228d59563f0635f3508dc016026b1bdec4c9b8b3e9",
+      "java_expected_result": "order=reject-second;accept-first",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 38,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/UnparsedBlock.java",
+      "java_symbol": "hashCode",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "order=reject-second;accept-first",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "198e064b16c1311b384cdba2e0ec543f965353aac6dce5d1559e0421ecd4aadb",
+        "source_sha256": "b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd",
+        "symbol": "hashCode"
+      },
+      "stable_id": "PROD-7F8E8DAC61D4A7E8"
+    },
+    {
+      "case_id": "C021-SG-271BBDB13BA4E2D0",
+      "evidence_kind": "production",
+      "java_expected_digest": "2b2fbd8917556686b84b40228d59563f0635f3508dc016026b1bdec4c9b8b3e9",
+      "java_expected_result": "order=reject-second;accept-first",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "ordered_receive"
+      },
+      "java_line": 43,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/sync/UnparsedBlock.java",
+      "java_symbol": "toString",
+      "operation": "ordered_receive",
+      "owning_item": "C021.04",
+      "rust_expected": "order=reject-second;accept-first",
+      "source_assertion": {
+        "declaration_kind": "method",
+        "source_line_sha256": "c57fdeb7f62d36f9818166407fc46551634182c2c9c1a43f9fe9406a2040744f",
+        "source_sha256": "b8484676f6836b532c47bc8a475f793b2c60b757f44172d0ee4002256ef074bd",
+        "symbol": "toString"
+      },
+      "stable_id": "PROD-271BBDB13BA4E2D0"
+    }
+  ],
+  "count": 102,
+  "family": "sync-gossip",
+  "schema": "c021-cases-sync-gossip.v1",
+  "source_ledger": "docs/oracles/c021-ownership-reconciliation.v1.json"
+}

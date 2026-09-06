@@ -96,7 +96,10 @@ async fn slow_event_consumer_is_bounded_by_decompressed_payload_bytes_and_closes
     let (rust, peer) = duplex(1 << 20);
     let mut cfg = config(Direction::Passive); cfg.compression=true; cfg.keepalive_interval=Duration::from_secs(60);
     let (tx, mut rx) = session_event_channel(16, 8, Duration::from_millis(30));
-    let task = tokio::spawn(TransportSession::new(FramedIo::new(rust,Duration::from_secs(1)),SocketAddr::from(([127,0,0,1],4999)),cfg,SessionRegistry::default()).with_events(tx).run(CancellationToken::new()));
+    let registry = SessionRegistry::default();
+    let cfg_for_admission = cfg.clone();
+    let address = SocketAddr::from(([127,0,0,1],4999));
+    let task = tokio::spawn(TransportSession::new(FramedIo::new(rust,Duration::from_secs(1)),address,cfg,registry.clone()).with_events(tx).run(CancellationToken::new()));
     let mut io=FramedIo::new(peer,Duration::from_secs(1));
     control(&mut io,Control::HandshakeHello,&hello(2,7,2)).await;assert_eq!(io.read_frame().await.unwrap()[0],Control::HandshakeHello.byte());
     assert_eq!(io.read_frame().await.unwrap()[0],Control::Status.byte());control(&mut io,Control::Status,&StatusMessage{from:Some(endpoint(2)),version:2,network_id:7,max_connections:4,current_connections:0,timestamp:10}).await;
@@ -109,6 +112,8 @@ async fn slow_event_consumer_is_bounded_by_decompressed_payload_bytes_and_closes
     assert_eq!(disconnect[0], Control::Disconnect.byte());
     assert!(matches!(task.await.unwrap(), Err(SessionError::Backpressure)));
     drop(held);
+    let admitted = registry.admission.lock().unwrap().admit(&hello(3, 7, 2), address.ip(), &vec![1; 64], &cfg_for_admission.admission, std::time::Instant::now());
+    assert_eq!(admitted, Ok(()), "local event backpressure must not ban another peer behind the same NAT");
 }
 
 #[tokio::test]
@@ -147,4 +152,58 @@ async fn ping_flood_with_nonreading_peer_and_cancellation_releases_session_capac
     assert_eq!(registry.admission.lock().unwrap().len(), 0);
     assert_eq!(registry.pool.lock().unwrap().len(), 0);
     flood.abort();
+}
+
+#[test]
+fn only_java_peer_misconduct_reasons_ban() {
+    use std::io;
+    use tron_protocol::protocol::ReasonCode;
+
+    for reason in [ReasonCode::BadProtocol, ReasonCode::BadBlock, ReasonCode::BadTx] {
+        assert_eq!(SessionError::PeerMisconduct(reason).ban_reason(), Some(reason));
+    }
+    assert_eq!(SessionError::Protocol("bad control sequence").ban_reason(), Some(ReasonCode::BadProtocol));
+    assert_eq!(SessionError::Rejected(DisconnectReason::BadProtocol).ban_reason(), Some(ReasonCode::BadProtocol));
+    assert_eq!(SessionError::Io(io::Error::new(io::ErrorKind::ConnectionReset, "reset")).ban_reason(), None);
+    assert_eq!(SessionError::Io(io::Error::new(io::ErrorKind::UnexpectedEof, "eof")).ban_reason(), None);
+    assert_eq!(SessionError::WriteTimeout.ban_reason(), None);
+    assert_eq!(SessionError::Backpressure.ban_reason(), None);
+    assert_eq!(SessionError::Rejected(DisconnectReason::PingTimeout).ban_reason(), None);
+    assert_eq!(SessionError::PeerMisconduct(ReasonCode::Requested).ban_reason(), None);
+}
+
+#[tokio::test]
+async fn transport_reset_does_not_ban_a_second_peer_behind_the_same_nat() {
+    let (rust, peer) = duplex(4096);
+    let registry = SessionRegistry::default();
+    let cfg = config(Direction::Passive);
+    let address = SocketAddr::from(([10, 0, 0, 9], 5001));
+    let task = tokio::spawn(TransportSession::new(FramedIo::new(rust, Duration::from_secs(1)), address, cfg.clone(), registry.clone()).run(CancellationToken::new()));
+    let mut peer = FramedIo::new(peer, Duration::from_secs(1));
+
+    let mut encoded = vec![Control::HandshakeHello.byte()];
+    encoded.extend(hello(2, 7, 2).encode_to_vec());
+    peer.write_frame(Bytes::from(encoded)).await.unwrap();
+    assert_eq!(peer.read_frame().await.unwrap()[0], Control::HandshakeHello.byte());
+    drop(peer);
+    assert!(matches!(task.await.unwrap(), Err(SessionError::Io(_))));
+
+    let admitted = registry.admission.lock().unwrap().admit(&hello(3, 7, 2), address.ip(), &vec![1; 64], &cfg.admission, std::time::Instant::now());
+    assert_eq!(admitted, Ok(()));
+}
+
+#[tokio::test]
+async fn trusted_bad_protocol_is_closed_without_ip_ban() {
+    let (rust, peer) = duplex(4096);
+    let registry = SessionRegistry::default();
+    let address = SocketAddr::from(([127, 0, 0, 2], 5002));
+    let mut cfg = config(Direction::Active);
+    cfg.admission.trusted.insert(address.ip());
+    let task = tokio::spawn(TransportSession::new(FramedIo::new(rust, Duration::from_secs(1)), address, cfg.clone(), registry.clone()).run(CancellationToken::new()));
+    let mut io = FramedIo::new(peer, Duration::from_secs(1));
+    assert_eq!(io.read_frame().await.unwrap()[0], Control::HandshakeHello.byte());
+    control(&mut io, Control::HandshakeHello, &hello(2, 8, 2)).await;
+    assert!(matches!(task.await.unwrap(), Err(SessionError::Rejected(DisconnectReason::BadProtocol))));
+    let admitted = registry.admission.lock().unwrap().admit(&hello(3, 7, 2), address.ip(), &vec![1; 64], &cfg.admission, std::time::Instant::now());
+    assert_eq!(admitted, Ok(()));
 }

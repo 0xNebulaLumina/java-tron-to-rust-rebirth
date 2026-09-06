@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "chunk": "C021.04",
+  "contract": [
+    "Sparse chain summaries begin at the retained canonical low point, advance by (realHigh-low+2)/2, end at the tip, and contain at most 30 IDs.",
+    "The highest summary ID still on the canonical chain is the common block.",
+    "ChainInventory contains the common block followed by at most 2000 consecutive successors; remain is the exact unsent height count.",
+    "Responses require request correlation, 1..2001 IDs, at least 2000 IDs when remain is nonzero, a requested first ID, consecutive heights, and a bounded future terminal height.",
+    "Fetch scheduling is ordered and bounded to 500 global and 100 per peer; timed-out requests are eligible for retry without being treated as unsolicited duplicates.",
+    "Network block bytes pass unchanged to C019 RawBlock/BlockManager; C011 Khaos remains the sole fork graph and no network consensus implementation is introduced."
+  ],
+  "pinned_sources": [
+    {"path":"java-tron/framework/src/main/java/org/tron/core/net/service/sync/SyncService.java","sha256":"4d3086f7a2df3b363f230e50b69b197702f6f5b7f61b2529d0f1fbc8c424b253"},
+    {"path":"java-tron/framework/src/main/java/org/tron/core/net/messagehandler/SyncBlockChainMsgHandler.java","sha256":"162c055172a55817ddb55db9411c942a5118a226e949262d753d03ca7f4b3988"},
+    {"path":"java-tron/framework/src/main/java/org/tron/core/net/messagehandler/ChainInventoryMsgHandler.java","sha256":"4f0eb949cd2fc205ba546d90d6cc7c01807a8efeda3bc39916d38ea19bc871ba"}
+  ]
+}

@@ -1,0 +1,3574 @@
+{
+  "cases": [
+    {
+      "case_id": "C021-PP-810EE570A8441FA2",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "91e6bbd232f44bfddcbd1165d577058934a80bbc44ff60e208ef87f3b7d9a315",
+      "java_expected_result": "true,true,false,true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "limit": 2,
+        "method": "test",
+        "operation": "rate_window",
+        "parameters": {
+          "java_source_line": 11
+        }
+      },
+      "java_line": 11,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/P2pRateLimiterTest.java",
+      "java_symbol": "test",
+      "operation": "rate_window",
+      "owning_item": "C021.03",
+      "rust_expected": "true,true,false,true",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "3d7edda03af1c595b34b90d3b17bf6dd9f434b255832c309b0b6753cf7106877",
+        "source_sha256": "b7ef861ab305d1b1b4c2208de96d33b05e6a0a7145e2fe8ba167d9078686e2cd",
+        "symbol": "test"
+      },
+      "stable_id": "TCASE-810EE570A8441FA2"
+    },
+    {
+      "case_id": "C021-PP-633581F30BD942AA",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "acc203888f5b0ee1d329048b30f60299161b43631f4b044f431b1aa03cb23dc0",
+      "java_expected_result": "false,false,true,false,true,true,false",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testVariableDefaultValue",
+        "operation": "peer_connection",
+        "parameters": {
+          "java_source_line": 48
+        }
+      },
+      "java_line": 48,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerConnectionTest.java",
+      "java_symbol": "testVariableDefaultValue",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "false,false,true,false,true,true,false",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "95a39a651fc2e20eb995a27d58bee65292370d27750d2d7d589ff51a1cd75a0c",
+        "source_sha256": "3b6817d87dce06738a3cc4a3e69c854aeebe00548a4b67da047705508b48074c",
+        "symbol": "testVariableDefaultValue"
+      },
+      "stable_id": "TCASE-633581F30BD942AA"
+    },
+    {
+      "case_id": "C021-PP-007DE56111B0D17C",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "0abde004f440c1d617075611fb26e4de835c8ce0bcd8123fd38c80f3d8d051b1",
+      "java_expected_result": "0,0,0,0,0",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testOnDisconnect",
+        "operation": "peer_connection",
+        "parameters": {
+          "java_source_line": 60
+        }
+      },
+      "java_line": 60,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerConnectionTest.java",
+      "java_symbol": "testOnDisconnect",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "0,0,0,0,0",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "edd2a562ca586b3324926b6ab8227238cbfe6184d1b2144d4e0b2f2af9519ad1",
+        "source_sha256": "3b6817d87dce06738a3cc4a3e69c854aeebe00548a4b67da047705508b48074c",
+        "symbol": "testOnDisconnect"
+      },
+      "stable_id": "TCASE-007DE56111B0D17C"
+    },
+    {
+      "case_id": "C021-PP-D51083ABA648BFB8",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "eb6d71fda054881119fd00d32b6c43205c04fe0f95042d2166ac73c40abd8256",
+      "java_expected_result": "true,false,true,false,true,false",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testIsIdle",
+        "operation": "peer_connection",
+        "parameters": {
+          "java_source_line": 90
+        }
+      },
+      "java_line": 90,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerConnectionTest.java",
+      "java_symbol": "testIsIdle",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "true,false,true,false,true,false",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "726bc0b6deb86ea16b5f0234c05ed3a4b15f1baf56fb40ccfc944f46cd65b361",
+        "source_sha256": "3b6817d87dce06738a3cc4a3e69c854aeebe00548a4b67da047705508b48074c",
+        "symbol": "testIsIdle"
+      },
+      "stable_id": "TCASE-D51083ABA648BFB8"
+    },
+    {
+      "case_id": "C021-PP-F50C180913B3349E",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "cc5f3a1e21d8b09e130c908b5832d9c44ddb1b0bd001c1998a1ec31c3d33021a",
+      "java_expected_result": "true,true,true,false,true,false",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testIsSyncIdle",
+        "operation": "peer_connection",
+        "parameters": {
+          "java_source_line": 120
+        }
+      },
+      "java_line": 120,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerConnectionTest.java",
+      "java_symbol": "testIsSyncIdle",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "true,true,true,false,true,false",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "56f98714e3c59660ffe475841452c7ce05bb4868ab92335800cde00ed7432c2f",
+        "source_sha256": "3b6817d87dce06738a3cc4a3e69c854aeebe00548a4b67da047705508b48074c",
+        "symbol": "testIsSyncIdle"
+      },
+      "stable_id": "TCASE-F50C180913B3349E"
+    },
+    {
+      "case_id": "C021-PP-750A9B2B4BC88BE9",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "b9ec6745be4dca2c233696481c4c23b976befbc94a96eec6d212040ac2906a3d",
+      "java_expected_result": "true,false|false,true|false,false",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testOnConnect",
+        "operation": "peer_connection",
+        "parameters": {
+          "java_source_line": 150
+        }
+      },
+      "java_line": 150,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerConnectionTest.java",
+      "java_symbol": "testOnConnect",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "true,false|false,true|false,false",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "011a0914f8fc2cb7c25d67c5b6c5bd2354f03e2ec1d384c891e33eeba78f4cc2",
+        "source_sha256": "3b6817d87dce06738a3cc4a3e69c854aeebe00548a4b67da047705508b48074c",
+        "symbol": "testOnConnect"
+      },
+      "stable_id": "TCASE-750A9B2B4BC88BE9"
+    },
+    {
+      "case_id": "C021-PP-428C5402E2110041",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "1effa60f359545c709dcdb331c2c34fc2f1eb25b838b388d71ed37a9dbe0ed5d",
+      "java_expected_result": "false,true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testSetChannel",
+        "operation": "peer_connection",
+        "parameters": {
+          "java_source_line": 190
+        }
+      },
+      "java_line": 190,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerConnectionTest.java",
+      "java_symbol": "testSetChannel",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "false,true",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "d2d5ec06a380d7f6a4214c1fcdb0ff3c30b5ff766143a2bfe0719d19f1cc5315",
+        "source_sha256": "3b6817d87dce06738a3cc4a3e69c854aeebe00548a4b67da047705508b48074c",
+        "symbol": "testSetChannel"
+      },
+      "stable_id": "TCASE-428C5402E2110041"
+    },
+    {
+      "case_id": "C021-PP-38135E4222E6DD9D",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "f36d8b81a81b98e3eeee6c7072b0f838913c09828641e4c3a1e8c7293c6d152f",
+      "java_expected_result": "false,false,true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testIsSyncFinish",
+        "operation": "peer_connection",
+        "parameters": {
+          "java_source_line": 213
+        }
+      },
+      "java_line": 213,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerConnectionTest.java",
+      "java_symbol": "testIsSyncFinish",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "false,false,true",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "8688b8071bf9d7a4c7903e68dc5ce8f1a7cd24d7f3a54342c70c9737d03cfdda",
+        "source_sha256": "3b6817d87dce06738a3cc4a3e69c854aeebe00548a4b67da047705508b48074c",
+        "symbol": "testIsSyncFinish"
+      },
+      "stable_id": "TCASE-38135E4222E6DD9D"
+    },
+    {
+      "case_id": "C021-PP-1F5D860174E561E0",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "e7bca5bac75af2cf94eeabb41d5ef73d1869d27792019feaf7515537c33f2c98",
+      "java_expected_result": "true,false",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testCheckAndPutAdvInvRequest",
+        "operation": "peer_connection",
+        "parameters": {
+          "java_source_line": 228
+        }
+      },
+      "java_line": 228,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerConnectionTest.java",
+      "java_symbol": "testCheckAndPutAdvInvRequest",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "true,false",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "fd5284f0dc26e0b33525eed8953cdbcae6e942a56909b142d1fdc3402e5556a1",
+        "source_sha256": "3b6817d87dce06738a3cc4a3e69c854aeebe00548a4b67da047705508b48074c",
+        "symbol": "testCheckAndPutAdvInvRequest"
+      },
+      "stable_id": "TCASE-1F5D860174E561E0"
+    },
+    {
+      "case_id": "C021-PP-0A56D68C033196D1",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "2ef804c970735ea1da1b3bce4e360fc60f4504e13d4f92e616a90d6ada109a7f",
+      "java_expected_result": "true,false,true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testEquals",
+        "operation": "peer_connection",
+        "parameters": {
+          "java_source_line": 240
+        }
+      },
+      "java_line": 240,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerConnectionTest.java",
+      "java_symbol": "testEquals",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "true,false,true",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "bd598e5ee9b5a9690b302a1f66e29ad933f1b17dd56532d087a35484e0975776",
+        "source_sha256": "3b6817d87dce06738a3cc4a3e69c854aeebe00548a4b67da047705508b48074c",
+        "symbol": "testEquals"
+      },
+      "stable_id": "TCASE-0A56D68C033196D1"
+    },
+    {
+      "case_id": "C021-PP-3C1B42FCFE52D679",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "4bc9abcf9ae748baf3ad5cfc205a41b0710dbebf20ead86b9a33d53db542463a",
+      "java_expected_result": "true,true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testHashCode",
+        "operation": "peer_connection",
+        "parameters": {
+          "java_source_line": 271
+        }
+      },
+      "java_line": 271,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerConnectionTest.java",
+      "java_symbol": "testHashCode",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "true,true",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "4809cbd942e1c2d0e66822a50ad270cf90c40b8fce917ef3452ba2eee2dff160",
+        "source_sha256": "3b6817d87dce06738a3cc4a3e69c854aeebe00548a4b67da047705508b48074c",
+        "symbol": "testHashCode"
+      },
+      "stable_id": "TCASE-3C1B42FCFE52D679"
+    },
+    {
+      "case_id": "C021-PP-A69605F203B6EBA6",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "d5cba3526618c01450676461aef847ef363b147ae1c6d775262c6cc8e06d926d",
+      "java_expected_result": "false,false,false,true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testNeedToLog",
+        "operation": "peer_connection",
+        "parameters": {
+          "java_source_line": 301
+        }
+      },
+      "java_line": 301,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerConnectionTest.java",
+      "java_symbol": "testNeedToLog",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "false,false,false,true",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "05c2077b347582ede90aeb1e7d0827f4f82b39d1951f8793cab291c1676c9972",
+        "source_sha256": "3b6817d87dce06738a3cc4a3e69c854aeebe00548a4b67da047705508b48074c",
+        "symbol": "testNeedToLog"
+      },
+      "stable_id": "TCASE-A69605F203B6EBA6"
+    },
+    {
+      "case_id": "C021-PP-45F01A35CADA21DC",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "e7bca5bac75af2cf94eeabb41d5ef73d1869d27792019feaf7515537c33f2c98",
+      "java_expected_result": "true,false",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testAdd",
+        "operation": "peer_manager",
+        "parameters": {
+          "java_source_line": 47
+        }
+      },
+      "java_line": 47,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerManagerTest.java",
+      "java_symbol": "testAdd",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "true,false",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "00f9aa377954c5adbaff8000799737ff39ba57d3f9b381395d120af101ab6c34",
+        "source_sha256": "b0775cbcf71edb82e2cafbccc13da924f32d118960b04978a0d511074016dcb3",
+        "symbol": "testAdd"
+      },
+      "stable_id": "TCASE-45F01A35CADA21DC"
+    },
+    {
+      "case_id": "C021-PP-08D5E716F931A2A8",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "1effa60f359545c709dcdb331c2c34fc2f1eb25b838b388d71ed37a9dbe0ed5d",
+      "java_expected_result": "false,true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testRemove",
+        "operation": "peer_manager",
+        "parameters": {
+          "java_source_line": 72
+        }
+      },
+      "java_line": 72,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerManagerTest.java",
+      "java_symbol": "testRemove",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "false,true",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "ba5e6a2106219ece3a5dcca7e880c99d6623442eb8fe02638495f33bcbadab08",
+        "source_sha256": "b0775cbcf71edb82e2cafbccc13da924f32d118960b04978a0d511074016dcb3",
+        "symbol": "testRemove"
+      },
+      "stable_id": "TCASE-08D5E716F931A2A8"
+    },
+    {
+      "case_id": "C021-PP-E7E5889F9415235B",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+      "java_expected_result": "true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testGetPeerConnection",
+        "operation": "peer_manager",
+        "parameters": {
+          "java_source_line": 98
+        }
+      },
+      "java_line": 98,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerManagerTest.java",
+      "java_symbol": "testGetPeerConnection",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "true",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "acd27ef292b72c94c390149a2ad6035f86ccb8d56ed2525fc630fdf0294a76d1",
+        "source_sha256": "b0775cbcf71edb82e2cafbccc13da924f32d118960b04978a0d511074016dcb3",
+        "symbol": "testGetPeerConnection"
+      },
+      "stable_id": "TCASE-E7E5889F9415235B"
+    },
+    {
+      "case_id": "C021-PP-5644EBE0021A4B22",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "17f8af97ad4a7f7639a4c9171d5185cbafb85462877a4746c21bdb0a4f940ca0",
+      "java_expected_result": "1,2",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testGetPeers",
+        "operation": "peer_manager",
+        "parameters": {
+          "java_source_line": 121
+        }
+      },
+      "java_line": 121,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerManagerTest.java",
+      "java_symbol": "testGetPeers",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "1,2",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "22dc146c024d25580632ec4e4db32eb7b22c57851d7ef1df726513752f5b2472",
+        "source_sha256": "b0775cbcf71edb82e2cafbccc13da924f32d118960b04978a0d511074016dcb3",
+        "symbol": "testGetPeers"
+      },
+      "stable_id": "TCASE-5644EBE0021A4B22"
+    },
+    {
+      "case_id": "C021-PP-369250A0CEEFDE9D",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "40510175845988f13f6162ed8526f0b09f73384467fa855e1e79b44a56562a58",
+      "java_expected_result": "1000",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testSortPeers",
+        "operation": "peer_manager",
+        "parameters": {
+          "java_source_line": 164
+        }
+      },
+      "java_line": 164,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/peer/PeerManagerTest.java",
+      "java_symbol": "testSortPeers",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "1000",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "01b50705dc69563f6e150da428af8d1c747f3c788f3cf93d38d52fdc345e97c8",
+        "source_sha256": "b0775cbcf71edb82e2cafbccc13da924f32d118960b04978a0d511074016dcb3",
+        "symbol": "testSortPeers"
+      },
+      "stable_id": "TCASE-369250A0CEEFDE9D"
+    },
+    {
+      "case_id": "C021-PP-20A05AFAE2014F5D",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "0265236f7b0abda72bdff13de3c1e93697a2eb3f3f7a5d89d7aa4161b72d9c80",
+      "java_expected_result": "Ok,BadProtocol,DuplicatePeer",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testOkHelloMessage",
+        "operation": "hello_policy",
+        "parameters": {
+          "java_source_line": 80
+        }
+      },
+      "java_line": 80,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/services/HandShakeServiceTest.java",
+      "java_symbol": "testOkHelloMessage",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "Ok,BadProtocol,DuplicatePeer",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "fac93477e145b0d6eac66d3f1e47968895d7d3911e1e92aaafb5bca8f59021ed",
+        "source_sha256": "6eec8d9eed896d75f4d510eb2e414fdee69b74c08d209eac3e0e618eb580de70",
+        "symbol": "testOkHelloMessage"
+      },
+      "stable_id": "TCASE-20A05AFAE2014F5D"
+    },
+    {
+      "case_id": "C021-PP-5AA0E71FCDA81674",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "c87de682f376157574fe79d7380e736d744e7e92e06f41e840284c2af56bae6b",
+      "java_expected_result": "true,false,false,false",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testInvalidHelloMessage",
+        "operation": "hello_policy",
+        "parameters": {
+          "java_source_line": 114
+        }
+      },
+      "java_line": 114,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/services/HandShakeServiceTest.java",
+      "java_symbol": "testInvalidHelloMessage",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "true,false,false,false",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "8a89c3a21737ec660f65ea31320f1badece0381698345cb23591d25eded8036c",
+        "source_sha256": "6eec8d9eed896d75f4d510eb2e414fdee69b74c08d209eac3e0e618eb580de70",
+        "symbol": "testInvalidHelloMessage"
+      },
+      "stable_id": "TCASE-5AA0E71FCDA81674"
+    },
+    {
+      "case_id": "C021-PP-F3656269B896B2A7",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "21129ebb27915e5c9e73afbd6d8681899834bded488be02caf42d6b29d7e32d2",
+      "java_expected_result": "true,false,true,false,true,false,true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testInvalidHelloMessage2",
+        "operation": "hello_policy",
+        "parameters": {
+          "java_source_line": 150
+        }
+      },
+      "java_line": 150,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/services/HandShakeServiceTest.java",
+      "java_symbol": "testInvalidHelloMessage2",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "true,false,true,false,true,false,true",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "80b3d5d6d7ff11adda855523e1bcad7ef819da76145ecd0e78bfadf469009051",
+        "source_sha256": "6eec8d9eed896d75f4d510eb2e414fdee69b74c08d209eac3e0e618eb580de70",
+        "symbol": "testInvalidHelloMessage2"
+      },
+      "stable_id": "TCASE-F3656269B896B2A7"
+    },
+    {
+      "case_id": "C021-PP-B543E8B0701CE935",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+      "java_expected_result": "true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testRelayHelloMessage",
+        "operation": "hello_policy",
+        "parameters": {
+          "java_source_line": 181
+        }
+      },
+      "java_line": 181,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/services/HandShakeServiceTest.java",
+      "java_symbol": "testRelayHelloMessage",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "true",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "d51342fd6709af6819a418ded5f6e907de5a7939381dd1d078727ef4682f0c5a",
+        "source_sha256": "6eec8d9eed896d75f4d510eb2e414fdee69b74c08d209eac3e0e618eb580de70",
+        "symbol": "testRelayHelloMessage"
+      },
+      "stable_id": "TCASE-B543E8B0701CE935"
+    },
+    {
+      "case_id": "C021-PP-01616E3CB5543864",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "bf6e4c78a720c5c821ab430f8e713061b4896004c4ca83d8f26db9f34abeaed5",
+      "java_expected_result": "LightNodeSyncFail,IncompatibleChain,Forked,LightNodeSyncFail",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testLowAndGenesisBlockNum",
+        "operation": "hello_policy",
+        "parameters": {
+          "java_source_line": 211
+        }
+      },
+      "java_line": 211,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/services/HandShakeServiceTest.java",
+      "java_symbol": "testLowAndGenesisBlockNum",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "LightNodeSyncFail,IncompatibleChain,Forked,LightNodeSyncFail",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "f85002aaf4ba303107041f73826cd79c848f091a7c522267203b7a5239592f89",
+        "source_sha256": "6eec8d9eed896d75f4d510eb2e414fdee69b74c08d209eac3e0e618eb580de70",
+        "symbol": "testLowAndGenesisBlockNum"
+      },
+      "stable_id": "TCASE-01616E3CB5543864"
+    },
+    {
+      "case_id": "C021-PP-0AC59BD33937D2D0",
+      "evidence_kind": "java_test",
+      "java_expected_digest": "b272e9dedd73873410b0c909eb7582ab73f52919edab2cb5fa40443cbc46e4f6",
+      "java_expected_result": "IncompatibleProtocol",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "method": "testProcessHelloMessage",
+        "operation": "hello_policy",
+        "parameters": {
+          "java_source_line": 288
+        }
+      },
+      "java_line": 288,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/net/services/HandShakeServiceTest.java",
+      "java_symbol": "testProcessHelloMessage",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "IncompatibleProtocol",
+      "source_assertion": {
+        "declaration_kind": "test-method",
+        "source_line_sha256": "bccd7eed8bbefff0decc7addc381ab90a83be5b7ea378929ff17186cb3dd66f2",
+        "source_sha256": "6eec8d9eed896d75f4d510eb2e414fdee69b74c08d209eac3e0e618eb580de70",
+        "symbol": "testProcessHelloMessage"
+      },
+      "stable_id": "TCASE-0AC59BD33937D2D0"
+    },
+    {
+      "case_id": "C021-PP-5548E34D57EFB388",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "org.tron.common.overlay.message",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "c75e8dbf65ef80180bfbbf4335d3db6c9fd11bb8ffa1f1ab0fc79c89f03f0954",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "org.tron.common.overlay.message"
+      },
+      "stable_id": "PROD-5548E34D57EFB388"
+    },
+    {
+      "case_id": "C021-PP-FAEAE7FAC6B155E0",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "c75e8dbf65ef80180bfbbf4335d3db6c9fd11bb8ffa1f1ab0fc79c89f03f0954",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java"
+      },
+      "stable_id": "PROD-FAEAE7FAC6B155E0"
+    },
+    {
+      "case_id": "C021-PP-B42004536BCF1E15",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 21,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "Message",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "f265dbc76b68995a45f5c489136dcb0bdee4ed04b89a7fe37994ad62530595c0",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "Message"
+      },
+      "stable_id": "PROD-B42004536BCF1E15"
+    },
+    {
+      "case_id": "C021-PP-620AE2B28662AC1B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 56,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "getCodedInputStream",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "c70bbff7dba37be97ef445396d767f874fc5c096e299ddd457855c3294fcf4d8",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "getCodedInputStream"
+      },
+      "stable_id": "PROD-620AE2B28662AC1B"
+    },
+    {
+      "case_id": "C021-PP-D4D0445D41CD6B9E",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 64,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "isFilter",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "586f2659716798b47fa5dec77e949609e2dc8da0a55940d8b960420f7bc8c3b1",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "isFilter"
+      },
+      "stable_id": "PROD-D4D0445D41CD6B9E"
+    },
+    {
+      "case_id": "C021-PP-BD4C018474D51E8C",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 68,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "getSendData",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "b1d637431082d36f9d9328a40d2f952fd6b11571f6b282d35fca46473053bc27",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "getSendData"
+      },
+      "stable_id": "PROD-BD4C018474D51E8C"
+    },
+    {
+      "case_id": "C021-PP-D6DFDCCFDB5A338E",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 72,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "getSendBytes",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "b6e3b0eeccc8af8b481567b697c001198df2ad8b36d5d94282ef7cd826103cf1",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "getSendBytes"
+      },
+      "stable_id": "PROD-D6DFDCCFDB5A338E"
+    },
+    {
+      "case_id": "C021-PP-A3139561B452AAF2",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 76,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "getMessageId",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "1ea41fa20e6b51b35758122d532d5ee89fd75bb08573c17be26a898a1eca9cc2",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "getMessageId"
+      },
+      "stable_id": "PROD-A3139561B452AAF2"
+    },
+    {
+      "case_id": "C021-PP-529192AD45D1382B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 81,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "getData",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "21ff83413d850e3802a9b0cac13e6fbc38d2df6a3ddf7cf3fb0e4f8e5f8999ee",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "getData"
+      },
+      "stable_id": "PROD-529192AD45D1382B"
+    },
+    {
+      "case_id": "C021-PP-9142719A4B27B397",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 85,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "getType",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "55add5a738fd0fc0996b7d4e8701eeecc8fc5d3bb264ee09628e877443de9d32",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "getType"
+      },
+      "stable_id": "PROD-9142719A4B27B397"
+    },
+    {
+      "case_id": "C021-PP-0D3B9FC52ECF9681",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 89,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "getAnswerMessage",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "47c73641a6f37602a106b4da1e91e5dbb31e6b5b03b13304da287a2da8a2abe4",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "getAnswerMessage"
+      },
+      "stable_id": "PROD-0D3B9FC52ECF9681"
+    },
+    {
+      "case_id": "C021-PP-94B071C939F87070",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 92,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "toString",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "c53f1ba98b40f45309908843671d5c62fd4f146650ca31d98761041fad555f1a",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "toString"
+      },
+      "stable_id": "PROD-94B071C939F87070"
+    },
+    {
+      "case_id": "C021-PP-B8F968246FE81ED7",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 97,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "hashCode",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "adf707ff7817920b7810ffa6b9810e9b30a759d28388b448802bb08530cae59a",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "hashCode"
+      },
+      "stable_id": "PROD-B8F968246FE81ED7"
+    },
+    {
+      "case_id": "C021-PP-5E626D71C9AD8549",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 102,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/common/overlay/message/Message.java",
+      "java_symbol": "equals",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "792f30a04d2a5e361957962c4bcc44bef16631702ecf46c4b586b65f483069df",
+        "source_sha256": "709f294f01a48100ee17a831c2ec9e4a232934917ec80970d27cd0a678949c84",
+        "symbol": "equals"
+      },
+      "stable_id": "PROD-5E626D71C9AD8549"
+    },
+    {
+      "case_id": "C021-PP-24DAD386610B4FCF",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c3ccdd772b016fb7265eb3dd2e760729d0acf7c35b79f1036b8e0100908acc40",
+      "java_expected_result": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_types"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java",
+      "java_symbol": "org.tron.core.net.message",
+      "operation": "message_types",
+      "owning_item": "C021.01",
+      "rust_expected": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "620b4b6aeb48c7d4e341bc86f225e0871b2460dcf4515854e7f83ed91afc20e5",
+        "source_sha256": "51f9bffb00b6294c45c38843bd8b1b1a5a453689a09775abc700701d74e0a4de",
+        "symbol": "org.tron.core.net.message"
+      },
+      "stable_id": "PROD-24DAD386610B4FCF"
+    },
+    {
+      "case_id": "C021-PP-91B5D57FE2022C8E",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c3ccdd772b016fb7265eb3dd2e760729d0acf7c35b79f1036b8e0100908acc40",
+      "java_expected_result": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_types"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java",
+      "java_symbol": "java-tron/chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java",
+      "operation": "message_types",
+      "owning_item": "C021.01",
+      "rust_expected": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "620b4b6aeb48c7d4e341bc86f225e0871b2460dcf4515854e7f83ed91afc20e5",
+        "source_sha256": "51f9bffb00b6294c45c38843bd8b1b1a5a453689a09775abc700701d74e0a4de",
+        "symbol": "java-tron/chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java"
+      },
+      "stable_id": "PROD-91B5D57FE2022C8E"
+    },
+    {
+      "case_id": "C021-PP-38B92AF89B7ACEBE",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c3ccdd772b016fb7265eb3dd2e760729d0acf7c35b79f1036b8e0100908acc40",
+      "java_expected_result": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_types"
+      },
+      "java_line": 6,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java",
+      "java_symbol": "MessageTypes",
+      "operation": "message_types",
+      "owning_item": "C021.01",
+      "rust_expected": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "e7ab2c6634dd0c07f197c66dce0eb0b52622f6d039f0c13110041ef722976fa7",
+        "source_sha256": "51f9bffb00b6294c45c38843bd8b1b1a5a453689a09775abc700701d74e0a4de",
+        "symbol": "MessageTypes"
+      },
+      "stable_id": "PROD-38B92AF89B7ACEBE"
+    },
+    {
+      "case_id": "C021-PP-C9FEA378B36893ED",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c3ccdd772b016fb7265eb3dd2e760729d0acf7c35b79f1036b8e0100908acc40",
+      "java_expected_result": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_types"
+      },
+      "java_line": 72,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java",
+      "java_symbol": "fromByte",
+      "operation": "message_types",
+      "owning_item": "C021.01",
+      "rust_expected": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "2a5f08b90ba3a7686c403394460770ff281998ffa577f93f2cc3fbc2777179b8",
+        "source_sha256": "51f9bffb00b6294c45c38843bd8b1b1a5a453689a09775abc700701d74e0a4de",
+        "symbol": "fromByte"
+      },
+      "stable_id": "PROD-C9FEA378B36893ED"
+    },
+    {
+      "case_id": "C021-PP-3CA322BF38C2BC3B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c3ccdd772b016fb7265eb3dd2e760729d0acf7c35b79f1036b8e0100908acc40",
+      "java_expected_result": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_types"
+      },
+      "java_line": 76,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java",
+      "java_symbol": "inRange",
+      "operation": "message_types",
+      "owning_item": "C021.01",
+      "rust_expected": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "d51c08324522512bffccad3941e210ddc9d61620201ad303615de0448210ff80",
+        "source_sha256": "51f9bffb00b6294c45c38843bd8b1b1a5a453689a09775abc700701d74e0a4de",
+        "symbol": "inRange"
+      },
+      "stable_id": "PROD-3CA322BF38C2BC3B"
+    },
+    {
+      "case_id": "C021-PP-EF9C5AEABC9103F2",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c3ccdd772b016fb7265eb3dd2e760729d0acf7c35b79f1036b8e0100908acc40",
+      "java_expected_result": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_types"
+      },
+      "java_line": 80,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java",
+      "java_symbol": "inP2pRange",
+      "operation": "message_types",
+      "owning_item": "C021.01",
+      "rust_expected": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "d9e0f95af0fc8c360f698dbee303e6c2dfb74c39a732bb36e9e17e798a96a21a",
+        "source_sha256": "51f9bffb00b6294c45c38843bd8b1b1a5a453689a09775abc700701d74e0a4de",
+        "symbol": "inP2pRange"
+      },
+      "stable_id": "PROD-EF9C5AEABC9103F2"
+    },
+    {
+      "case_id": "C021-PP-9ABC2D8B3866D3FC",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c3ccdd772b016fb7265eb3dd2e760729d0acf7c35b79f1036b8e0100908acc40",
+      "java_expected_result": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_types"
+      },
+      "java_line": 84,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java",
+      "java_symbol": "inTronRange",
+      "operation": "message_types",
+      "owning_item": "C021.01",
+      "rust_expected": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "500bcd8951f5345203907620defe11bfa59a5f8ceb18b74df90791940073dd8b",
+        "source_sha256": "51f9bffb00b6294c45c38843bd8b1b1a5a453689a09775abc700701d74e0a4de",
+        "symbol": "inTronRange"
+      },
+      "stable_id": "PROD-9ABC2D8B3866D3FC"
+    },
+    {
+      "case_id": "C021-PP-3E3E78D38990C349",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c3ccdd772b016fb7265eb3dd2e760729d0acf7c35b79f1036b8e0100908acc40",
+      "java_expected_result": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_types"
+      },
+      "java_line": 88,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java",
+      "java_symbol": "asByte",
+      "operation": "message_types",
+      "owning_item": "C021.01",
+      "rust_expected": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "8ebe5a8c9402b9508467eea5192302bcff0cf7d092d82f8f54a0ae07fed0d8a2",
+        "source_sha256": "51f9bffb00b6294c45c38843bd8b1b1a5a453689a09775abc700701d74e0a4de",
+        "symbol": "asByte"
+      },
+      "stable_id": "PROD-3E3E78D38990C349"
+    },
+    {
+      "case_id": "C021-PP-2D3440E483406C54",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c3ccdd772b016fb7265eb3dd2e760729d0acf7c35b79f1036b8e0100908acc40",
+      "java_expected_result": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_types"
+      },
+      "java_line": 92,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java",
+      "java_symbol": "inPbftRange",
+      "operation": "message_types",
+      "owning_item": "C021.01",
+      "rust_expected": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "6d036a4c40f9d2059dc7513b25a53b99f9fb632af3f34a3f52176ea91faf1b7f",
+        "source_sha256": "51f9bffb00b6294c45c38843bd8b1b1a5a453689a09775abc700701d74e0a4de",
+        "symbol": "inPbftRange"
+      },
+      "stable_id": "PROD-2D3440E483406C54"
+    },
+    {
+      "case_id": "C021-PP-5EC40ECCF53BD916",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c3ccdd772b016fb7265eb3dd2e760729d0acf7c35b79f1036b8e0100908acc40",
+      "java_expected_result": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_types"
+      },
+      "java_line": 97,
+      "java_source": "java-tron/chainbase/src/main/java/org/tron/core/net/message/MessageTypes.java",
+      "java_symbol": "toString",
+      "operation": "message_types",
+      "owning_item": "C021.01",
+      "rust_expected": "accepted=01,02,03,06,07,08,09,14,20,21,22,23,34;reserved=00,04,05,10,11,12,13,30,31,32,33,ff;p2p=20..23;tron=00..14;pbft=34;names=TRX,BLOCK,UNKNOWN,INVENTORY,FETCH_INV_DATA,SYNC_BLOCK_CHAIN",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "c53f1ba98b40f45309908843671d5c62fd4f146650ca31d98761041fad555f1a",
+        "source_sha256": "51f9bffb00b6294c45c38843bd8b1b1a5a453689a09775abc700701d74e0a4de",
+        "symbol": "toString"
+      },
+      "stable_id": "PROD-5EC40ECCF53BD916"
+    },
+    {
+      "case_id": "C021-PP-958DA07614A02984",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5d2b4c2dd2a982166e54f7f8f3fd2d85d4420141ec767fd7acf61d41426b87d2",
+      "java_expected_result": "allow=10:true,overflow:false,next-window:true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "rate_window"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/P2pRateLimiter.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/P2pRateLimiter.java",
+      "operation": "rate_window",
+      "owning_item": "C021.03",
+      "rust_expected": "allow=10:true,overflow:false,next-window:true",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "4bab8a744a7e92890b2fbaabd05d33d2fd58e27fa4feee2e72252381b4a701d0",
+        "source_sha256": "42239fb2f7e2254bfa228b0ef46732754d0198edf51a7602e3f6c688e517582e",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/P2pRateLimiter.java"
+      },
+      "stable_id": "PROD-958DA07614A02984"
+    },
+    {
+      "case_id": "C021-PP-D6EA23C10613EDC4",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5d2b4c2dd2a982166e54f7f8f3fd2d85d4420141ec767fd7acf61d41426b87d2",
+      "java_expected_result": "allow=10:true,overflow:false,next-window:true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "rate_window"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/P2pRateLimiter.java",
+      "java_symbol": "org.tron.core.net",
+      "operation": "rate_window",
+      "owning_item": "C021.03",
+      "rust_expected": "allow=10:true,overflow:false,next-window:true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "4bab8a744a7e92890b2fbaabd05d33d2fd58e27fa4feee2e72252381b4a701d0",
+        "source_sha256": "42239fb2f7e2254bfa228b0ef46732754d0198edf51a7602e3f6c688e517582e",
+        "symbol": "org.tron.core.net"
+      },
+      "stable_id": "PROD-D6EA23C10613EDC4"
+    },
+    {
+      "case_id": "C021-PP-4DFD6383F440F681",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5d2b4c2dd2a982166e54f7f8f3fd2d85d4420141ec767fd7acf61d41426b87d2",
+      "java_expected_result": "allow=10:true,overflow:false,next-window:true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "rate_window"
+      },
+      "java_line": 7,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/P2pRateLimiter.java",
+      "java_symbol": "P2pRateLimiter",
+      "operation": "rate_window",
+      "owning_item": "C021.03",
+      "rust_expected": "allow=10:true,overflow:false,next-window:true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "cb9d08b756f51db4cd523399811669c09a4eab2d67d6aaca143f081096f87105",
+        "source_sha256": "42239fb2f7e2254bfa228b0ef46732754d0198edf51a7602e3f6c688e517582e",
+        "symbol": "P2pRateLimiter"
+      },
+      "stable_id": "PROD-4DFD6383F440F681"
+    },
+    {
+      "case_id": "C021-PP-3CF863FDB12D55AC",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5d2b4c2dd2a982166e54f7f8f3fd2d85d4420141ec767fd7acf61d41426b87d2",
+      "java_expected_result": "allow=10:true,overflow:false,next-window:true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "rate_window"
+      },
+      "java_line": 11,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/P2pRateLimiter.java",
+      "java_symbol": "register",
+      "operation": "rate_window",
+      "owning_item": "C021.03",
+      "rust_expected": "allow=10:true,overflow:false,next-window:true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "0c353b6f153e95a1db913d0399b81eaacb78980cdf6081a5d614d9b1c7fc5f7b",
+        "source_sha256": "42239fb2f7e2254bfa228b0ef46732754d0198edf51a7602e3f6c688e517582e",
+        "symbol": "register"
+      },
+      "stable_id": "PROD-3CF863FDB12D55AC"
+    },
+    {
+      "case_id": "C021-PP-ADDB48FAA9A3D920",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5d2b4c2dd2a982166e54f7f8f3fd2d85d4420141ec767fd7acf61d41426b87d2",
+      "java_expected_result": "allow=10:true,overflow:false,next-window:true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "rate_window"
+      },
+      "java_line": 17,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/P2pRateLimiter.java",
+      "java_symbol": "acquire",
+      "operation": "rate_window",
+      "owning_item": "C021.03",
+      "rust_expected": "allow=10:true,overflow:false,next-window:true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "ca821c8dbdef208b1f8b59d5441d508a40e5ba9a719d252280dcec34f19cd7fd",
+        "source_sha256": "42239fb2f7e2254bfa228b0ef46732754d0198edf51a7602e3f6c688e517582e",
+        "symbol": "acquire"
+      },
+      "stable_id": "PROD-ADDB48FAA9A3D920"
+    },
+    {
+      "case_id": "C021-PP-5CB0315DEA364F74",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5d2b4c2dd2a982166e54f7f8f3fd2d85d4420141ec767fd7acf61d41426b87d2",
+      "java_expected_result": "allow=10:true,overflow:false,next-window:true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "rate_window"
+      },
+      "java_line": 25,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/P2pRateLimiter.java",
+      "java_symbol": "tryAcquire",
+      "operation": "rate_window",
+      "owning_item": "C021.03",
+      "rust_expected": "allow=10:true,overflow:false,next-window:true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "44c19497ca96cc78da24109c577f09e8220385ed29dab8b1303fb3bb29817c48",
+        "source_sha256": "42239fb2f7e2254bfa228b0ef46732754d0198edf51a7602e3f6c688e517582e",
+        "symbol": "tryAcquire"
+      },
+      "stable_id": "PROD-5CB0315DEA364F74"
+    },
+    {
+      "case_id": "C021-PP-4C74D9C197D84004",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "9b58bd251c650ef3f1f8294c50c493233535a4e142b69ec95cfebc8f3c3518b3",
+      "java_expected_result": "transaction=01aa;block=02bb;ping=22c0;pong=23c0;empty=Empty;unsupported=Unsupported(255);bad-ping=InvalidKeepAlive(\"ping\")",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_factory"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/PbftMessageFactory.java",
+      "java_symbol": "org.tron.core.net.message",
+      "operation": "message_factory",
+      "owning_item": "C021.01",
+      "rust_expected": "transaction=01aa;block=02bb;ping=22c0;pong=23c0;empty=Empty;unsupported=Unsupported(255);bad-ping=InvalidKeepAlive(\"ping\")",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "620b4b6aeb48c7d4e341bc86f225e0871b2460dcf4515854e7f83ed91afc20e5",
+        "source_sha256": "be3fa4a04a1df73f1deb48a1913730332af75ed0f84ddae07b79d08525db802a",
+        "symbol": "org.tron.core.net.message"
+      },
+      "stable_id": "PROD-4C74D9C197D84004"
+    },
+    {
+      "case_id": "C021-PP-5DBE42ED47EF306B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "9b58bd251c650ef3f1f8294c50c493233535a4e142b69ec95cfebc8f3c3518b3",
+      "java_expected_result": "transaction=01aa;block=02bb;ping=22c0;pong=23c0;empty=Empty;unsupported=Unsupported(255);bad-ping=InvalidKeepAlive(\"ping\")",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_factory"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/PbftMessageFactory.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/PbftMessageFactory.java",
+      "operation": "message_factory",
+      "owning_item": "C021.01",
+      "rust_expected": "transaction=01aa;block=02bb;ping=22c0;pong=23c0;empty=Empty;unsupported=Unsupported(255);bad-ping=InvalidKeepAlive(\"ping\")",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "620b4b6aeb48c7d4e341bc86f225e0871b2460dcf4515854e7f83ed91afc20e5",
+        "source_sha256": "be3fa4a04a1df73f1deb48a1913730332af75ed0f84ddae07b79d08525db802a",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/PbftMessageFactory.java"
+      },
+      "stable_id": "PROD-5DBE42ED47EF306B"
+    },
+    {
+      "case_id": "C021-PP-A034668DF311DABF",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "9b58bd251c650ef3f1f8294c50c493233535a4e142b69ec95cfebc8f3c3518b3",
+      "java_expected_result": "transaction=01aa;block=02bb;ping=22c0;pong=23c0;empty=Empty;unsupported=Unsupported(255);bad-ping=InvalidKeepAlive(\"ping\")",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_factory"
+      },
+      "java_line": 8,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/PbftMessageFactory.java",
+      "java_symbol": "PbftMessageFactory",
+      "operation": "message_factory",
+      "owning_item": "C021.01",
+      "rust_expected": "transaction=01aa;block=02bb;ping=22c0;pong=23c0;empty=Empty;unsupported=Unsupported(255);bad-ping=InvalidKeepAlive(\"ping\")",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "4aeac022716dc8a1329e4b5ae876e22a8fd14b41b72d392b709f80f9e5ba32c9",
+        "source_sha256": "be3fa4a04a1df73f1deb48a1913730332af75ed0f84ddae07b79d08525db802a",
+        "symbol": "PbftMessageFactory"
+      },
+      "stable_id": "PROD-A034668DF311DABF"
+    },
+    {
+      "case_id": "C021-PP-6B91E74131FE4DFE",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/TronMessage.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/TronMessage.java",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "766e0153d3f7ec95c97e755b1ea7b1681566923b9299365fdc8399443ca20c1d",
+        "source_sha256": "308d675821878bb173101095181bc92946a489f56078aace67f787730508a3fb",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/TronMessage.java"
+      },
+      "stable_id": "PROD-6B91E74131FE4DFE"
+    },
+    {
+      "case_id": "C021-PP-9B020D7062D4801E",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 19,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/TronMessage.java",
+      "java_symbol": "org.tron.core.net.message",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "620b4b6aeb48c7d4e341bc86f225e0871b2460dcf4515854e7f83ed91afc20e5",
+        "source_sha256": "308d675821878bb173101095181bc92946a489f56078aace67f787730508a3fb",
+        "symbol": "org.tron.core.net.message"
+      },
+      "stable_id": "PROD-9B020D7062D4801E"
+    },
+    {
+      "case_id": "C021-PP-44421CD6B19EB8B8",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "8c0c0407f0597a0a2f7a098b252a1fe8013b4c7557058857dffe81ed5c94fe30",
+      "java_expected_result": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_wrapper"
+      },
+      "java_line": 23,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/TronMessage.java",
+      "java_symbol": "TronMessage",
+      "operation": "message_wrapper",
+      "owning_item": "C021.01",
+      "rust_expected": "kind=Transaction;payload=aabb;send=01aabb;id=d798d1fac6bd4bb1c11f50312760351013379a0ab6f0a8c0af8a506b96b2525a;payload-equality=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "cebf00392f59a443cc5d9623e612ec5ab55e6b6a5e5c711daa4b4fcad94301f6",
+        "source_sha256": "308d675821878bb173101095181bc92946a489f56078aace67f787730508a3fb",
+        "symbol": "TronMessage"
+      },
+      "stable_id": "PROD-44421CD6B19EB8B8"
+    },
+    {
+      "case_id": "C021-PP-43178E565990821C",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "9b58bd251c650ef3f1f8294c50c493233535a4e142b69ec95cfebc8f3c3518b3",
+      "java_expected_result": "transaction=01aa;block=02bb;ping=22c0;pong=23c0;empty=Empty;unsupported=Unsupported(255);bad-ping=InvalidKeepAlive(\"ping\")",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_factory"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/TronMessageFactory.java",
+      "java_symbol": "org.tron.core.net.message",
+      "operation": "message_factory",
+      "owning_item": "C021.01",
+      "rust_expected": "transaction=01aa;block=02bb;ping=22c0;pong=23c0;empty=Empty;unsupported=Unsupported(255);bad-ping=InvalidKeepAlive(\"ping\")",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "620b4b6aeb48c7d4e341bc86f225e0871b2460dcf4515854e7f83ed91afc20e5",
+        "source_sha256": "e0907e19ba183da6326cf447ce984e9c823f26f0496eb67db0635d0ee9d9f09b",
+        "symbol": "org.tron.core.net.message"
+      },
+      "stable_id": "PROD-43178E565990821C"
+    },
+    {
+      "case_id": "C021-PP-F6E8132D1D4B734F",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "9b58bd251c650ef3f1f8294c50c493233535a4e142b69ec95cfebc8f3c3518b3",
+      "java_expected_result": "transaction=01aa;block=02bb;ping=22c0;pong=23c0;empty=Empty;unsupported=Unsupported(255);bad-ping=InvalidKeepAlive(\"ping\")",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_factory"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/TronMessageFactory.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/TronMessageFactory.java",
+      "operation": "message_factory",
+      "owning_item": "C021.01",
+      "rust_expected": "transaction=01aa;block=02bb;ping=22c0;pong=23c0;empty=Empty;unsupported=Unsupported(255);bad-ping=InvalidKeepAlive(\"ping\")",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "620b4b6aeb48c7d4e341bc86f225e0871b2460dcf4515854e7f83ed91afc20e5",
+        "source_sha256": "e0907e19ba183da6326cf447ce984e9c823f26f0496eb67db0635d0ee9d9f09b",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/TronMessageFactory.java"
+      },
+      "stable_id": "PROD-F6E8132D1D4B734F"
+    },
+    {
+      "case_id": "C021-PP-34C952CFA3331016",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "9b58bd251c650ef3f1f8294c50c493233535a4e142b69ec95cfebc8f3c3518b3",
+      "java_expected_result": "transaction=01aa;block=02bb;ping=22c0;pong=23c0;empty=Empty;unsupported=Unsupported(255);bad-ping=InvalidKeepAlive(\"ping\")",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "message_factory"
+      },
+      "java_line": 21,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/TronMessageFactory.java",
+      "java_symbol": "TronMessageFactory",
+      "operation": "message_factory",
+      "owning_item": "C021.01",
+      "rust_expected": "transaction=01aa;block=02bb;ping=22c0;pong=23c0;empty=Empty;unsupported=Unsupported(255);bad-ping=InvalidKeepAlive(\"ping\")",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "b60b77ecd182fd0d40e937bf1d69e03e70e262b4d6ea892a3a956c0e2d5adf39",
+        "source_sha256": "e0907e19ba183da6326cf447ce984e9c823f26f0496eb67db0635d0ee9d9f09b",
+        "symbol": "TronMessageFactory"
+      },
+      "stable_id": "PROD-34C952CFA3331016"
+    },
+    {
+      "case_id": "C021-PP-1F82F7EFBB71898B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "org.tron.core.net.message.handshake",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "35228be67c09ba36dc2213de33e23d0bdbbad88ac50f86634def763b3a7d19ca",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "org.tron.core.net.message.handshake"
+      },
+      "stable_id": "PROD-1F82F7EFBB71898B"
+    },
+    {
+      "case_id": "C021-PP-8DC2A69CE5F5C0A0",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "35228be67c09ba36dc2213de33e23d0bdbbad88ac50f86634def763b3a7d19ca",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java"
+      },
+      "stable_id": "PROD-8DC2A69CE5F5C0A0"
+    },
+    {
+      "case_id": "C021-PP-A661FFCEB0E93A36",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 21,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "HelloMessage",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "29a8c6de7eb27f65e4456093a971b8574d4c48fc983fbacd133648a477e51152",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "HelloMessage"
+      },
+      "stable_id": "PROD-A661FFCEB0E93A36"
+    },
+    {
+      "case_id": "C021-PP-BAE5BAC54378B3DD",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 74,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "setHelloMessage",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "0c3432bce4532516c4635f65dbe5962fefb925c9118faabb64f947a20ad10515",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "setHelloMessage"
+      },
+      "stable_id": "PROD-BAE5BAC54378B3DD"
+    },
+    {
+      "case_id": "C021-PP-4E7B26A92F4CF3EB",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 79,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "getVersion",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "5ab2fc7cc595cce130392f5c83aa9e2ac7f0fe6596bddd006e63cfcc891fe2e2",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "getVersion"
+      },
+      "stable_id": "PROD-4E7B26A92F4CF3EB"
+    },
+    {
+      "case_id": "C021-PP-0A68024E73F89C83",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 83,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "getNodeType",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "491132a02fde74d20b5aa863f10bbc931c5ef2d0c681e902f903bd0d607ea5d7",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "getNodeType"
+      },
+      "stable_id": "PROD-0A68024E73F89C83"
+    },
+    {
+      "case_id": "C021-PP-C54F050BB6EF0EF2",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 87,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "getLowestBlockNum",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "3b2e9695613f35c5785359cff039cfc7b4c0b8d29e876d35862d07364f2b158d",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "getLowestBlockNum"
+      },
+      "stable_id": "PROD-C54F050BB6EF0EF2"
+    },
+    {
+      "case_id": "C021-PP-5E0B907A16078126",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 91,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "getTimestamp",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "a1ec62b295cd1adccd627571e9e3488d2d449806fb411e7f99ee61ade44f4c89",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "getTimestamp"
+      },
+      "stable_id": "PROD-5E0B907A16078126"
+    },
+    {
+      "case_id": "C021-PP-666406A0268DAD33",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 95,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "getFrom",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "5ed1884c0db7763da4f4a39ebc5f1a1ecf6cbdad08b0739fc2affef3c901e7c9",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "getFrom"
+      },
+      "stable_id": "PROD-666406A0268DAD33"
+    },
+    {
+      "case_id": "C021-PP-72468077FD6EC805",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 102,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "getGenesisBlockId",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "055d1f14c0f6f84a26da5a124ab873e2f936e56e2e2a5ceb263bcd40d0f3bf3e",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "getGenesisBlockId"
+      },
+      "stable_id": "PROD-72468077FD6EC805"
+    },
+    {
+      "case_id": "C021-PP-D08CA8F125F1F503",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 107,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "getSolidBlockId",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "025c81cdf372997e52f80d0aa8fa8182dc800933ae6f7df3692f017fcbc37909",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "getSolidBlockId"
+      },
+      "stable_id": "PROD-D08CA8F125F1F503"
+    },
+    {
+      "case_id": "C021-PP-C9523FBE609B6E2F",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 112,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "getHeadBlockId",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "aeed40d80ffa565c55bdc8dcffe44e15aa85d3e41d313329613f18525d7908e3",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "getHeadBlockId"
+      },
+      "stable_id": "PROD-C9523FBE609B6E2F"
+    },
+    {
+      "case_id": "C021-PP-26A418289C016B87",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 118,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "getAnswerMessage",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "77fe55f966cae4a6d04bd3c737c89a33881f7997baf3476027c58a72f3f25b9c",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "getAnswerMessage"
+      },
+      "stable_id": "PROD-26A418289C016B87"
+    },
+    {
+      "case_id": "C021-PP-FA69782457AE7D7C",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 123,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "toString",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "c53f1ba98b40f45309908843671d5c62fd4f146650ca31d98761041fad555f1a",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "toString"
+      },
+      "stable_id": "PROD-FA69782457AE7D7C"
+    },
+    {
+      "case_id": "C021-PP-7FF7EDB6748715DE",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 154,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "getInstance",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "2ae391468406e0fd5314c328617f90e9d27a53583e209031ff51d2f058a79e37",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "getInstance"
+      },
+      "stable_id": "PROD-7FF7EDB6748715DE"
+    },
+    {
+      "case_id": "C021-PP-CC0EABDC8FF43131",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 158,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "valid",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "e1ddd610871b86c8a277105ee71aa1bffa91bfd1f2f6b67275ccc352b71ecce3",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "valid"
+      },
+      "stable_id": "PROD-CC0EABDC8FF43131"
+    },
+    {
+      "case_id": "C021-PP-287F7F403019F412",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 193,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/handshake/HelloMessage.java",
+      "java_symbol": "getEndpointFromNode",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "90ce5d99145b845eaf077f052b2a5ab70f18171a63b329478b3b385ce345077a",
+        "source_sha256": "daaee05eb23905bfe8d45ffeb24acd5f6def272e28b29df2958699ceaf4b6a61",
+        "symbol": "getEndpointFromNode"
+      },
+      "stable_id": "PROD-287F7F403019F412"
+    },
+    {
+      "case_id": "C021-PP-A16A198E1DDAAFAB",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PingMessage.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PingMessage.java",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "254d1ba11415caed5349beacd1066be42b568ffcdf25dfe86f8f6f8014f258b3",
+        "source_sha256": "4e1b7d56ae09928a30dbf4c73dcccafc352d7ea05d17fab316c5dd5f310e3705",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PingMessage.java"
+      },
+      "stable_id": "PROD-A16A198E1DDAAFAB"
+    },
+    {
+      "case_id": "C021-PP-F50DD98C98257627",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PingMessage.java",
+      "java_symbol": "org.tron.core.net.message.keepalive",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "254d1ba11415caed5349beacd1066be42b568ffcdf25dfe86f8f6f8014f258b3",
+        "source_sha256": "4e1b7d56ae09928a30dbf4c73dcccafc352d7ea05d17fab316c5dd5f310e3705",
+        "symbol": "org.tron.core.net.message.keepalive"
+      },
+      "stable_id": "PROD-F50DD98C98257627"
+    },
+    {
+      "case_id": "C021-PP-967AC8C1D3EEFFDE",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 7,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PingMessage.java",
+      "java_symbol": "PingMessage",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "94a13d105114b2b05e2b169542c87ff3f0e378adde17f5d5c4f25d720e5e2de7",
+        "source_sha256": "4e1b7d56ae09928a30dbf4c73dcccafc352d7ea05d17fab316c5dd5f310e3705",
+        "symbol": "PingMessage"
+      },
+      "stable_id": "PROD-967AC8C1D3EEFFDE"
+    },
+    {
+      "case_id": "C021-PP-885EA675C52A9420",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 25,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PingMessage.java",
+      "java_symbol": "getData",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "21ff83413d850e3802a9b0cac13e6fbc38d2df6a3ddf7cf3fb0e4f8e5f8999ee",
+        "source_sha256": "4e1b7d56ae09928a30dbf4c73dcccafc352d7ea05d17fab316c5dd5f310e3705",
+        "symbol": "getData"
+      },
+      "stable_id": "PROD-885EA675C52A9420"
+    },
+    {
+      "case_id": "C021-PP-D7F5B92A6141BA97",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 31,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PingMessage.java",
+      "java_symbol": "toString",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "c53f1ba98b40f45309908843671d5c62fd4f146650ca31d98761041fad555f1a",
+        "source_sha256": "4e1b7d56ae09928a30dbf4c73dcccafc352d7ea05d17fab316c5dd5f310e3705",
+        "symbol": "toString"
+      },
+      "stable_id": "PROD-D7F5B92A6141BA97"
+    },
+    {
+      "case_id": "C021-PP-CA11B7D98886EA1F",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 36,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PingMessage.java",
+      "java_symbol": "getAnswerMessage",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "77fe55f966cae4a6d04bd3c737c89a33881f7997baf3476027c58a72f3f25b9c",
+        "source_sha256": "4e1b7d56ae09928a30dbf4c73dcccafc352d7ea05d17fab316c5dd5f310e3705",
+        "symbol": "getAnswerMessage"
+      },
+      "stable_id": "PROD-CA11B7D98886EA1F"
+    },
+    {
+      "case_id": "C021-PP-6F42493C8AAA5BE6",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 41,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PingMessage.java",
+      "java_symbol": "getType",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "55add5a738fd0fc0996b7d4e8701eeecc8fc5d3bb264ee09628e877443de9d32",
+        "source_sha256": "4e1b7d56ae09928a30dbf4c73dcccafc352d7ea05d17fab316c5dd5f310e3705",
+        "symbol": "getType"
+      },
+      "stable_id": "PROD-6F42493C8AAA5BE6"
+    },
+    {
+      "case_id": "C021-PP-0CF8F62A0473844F",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PongMessage.java",
+      "java_symbol": "org.tron.core.net.message.keepalive",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "254d1ba11415caed5349beacd1066be42b568ffcdf25dfe86f8f6f8014f258b3",
+        "source_sha256": "9065baeb8fd6e59b58b511f970dafb893dc240d9d576835ac4a70cf6b959909a",
+        "symbol": "org.tron.core.net.message.keepalive"
+      },
+      "stable_id": "PROD-0CF8F62A0473844F"
+    },
+    {
+      "case_id": "C021-PP-901992BA8083BD5D",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PongMessage.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PongMessage.java",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "254d1ba11415caed5349beacd1066be42b568ffcdf25dfe86f8f6f8014f258b3",
+        "source_sha256": "9065baeb8fd6e59b58b511f970dafb893dc240d9d576835ac4a70cf6b959909a",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PongMessage.java"
+      },
+      "stable_id": "PROD-901992BA8083BD5D"
+    },
+    {
+      "case_id": "C021-PP-96C408AEE816C87B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 7,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PongMessage.java",
+      "java_symbol": "PongMessage",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "45202885cc4275c4ca2fec6a95c1cc8104ab16ad23127a5df047a9507c333ca5",
+        "source_sha256": "9065baeb8fd6e59b58b511f970dafb893dc240d9d576835ac4a70cf6b959909a",
+        "symbol": "PongMessage"
+      },
+      "stable_id": "PROD-96C408AEE816C87B"
+    },
+    {
+      "case_id": "C021-PP-5114613A2A3BB16D",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 25,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PongMessage.java",
+      "java_symbol": "getData",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "21ff83413d850e3802a9b0cac13e6fbc38d2df6a3ddf7cf3fb0e4f8e5f8999ee",
+        "source_sha256": "9065baeb8fd6e59b58b511f970dafb893dc240d9d576835ac4a70cf6b959909a",
+        "symbol": "getData"
+      },
+      "stable_id": "PROD-5114613A2A3BB16D"
+    },
+    {
+      "case_id": "C021-PP-F4AF85B0CCBD09F1",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 30,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PongMessage.java",
+      "java_symbol": "toString",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "c53f1ba98b40f45309908843671d5c62fd4f146650ca31d98761041fad555f1a",
+        "source_sha256": "9065baeb8fd6e59b58b511f970dafb893dc240d9d576835ac4a70cf6b959909a",
+        "symbol": "toString"
+      },
+      "stable_id": "PROD-F4AF85B0CCBD09F1"
+    },
+    {
+      "case_id": "C021-PP-A406C85F7287893D",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 35,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PongMessage.java",
+      "java_symbol": "getAnswerMessage",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "77fe55f966cae4a6d04bd3c737c89a33881f7997baf3476027c58a72f3f25b9c",
+        "source_sha256": "9065baeb8fd6e59b58b511f970dafb893dc240d9d576835ac4a70cf6b959909a",
+        "symbol": "getAnswerMessage"
+      },
+      "stable_id": "PROD-A406C85F7287893D"
+    },
+    {
+      "case_id": "C021-PP-8C14268B159275D9",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 40,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/message/keepalive/PongMessage.java",
+      "java_symbol": "getType",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "55add5a738fd0fc0996b7d4e8701eeecc8fc5d3bb264ee09628e877443de9d32",
+        "source_sha256": "9065baeb8fd6e59b58b511f970dafb893dc240d9d576835ac4a70cf6b959909a",
+        "symbol": "getType"
+      },
+      "stable_id": "PROD-8C14268B159275D9"
+    },
+    {
+      "case_id": "C021-PP-8087BE850708270E",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "89392d064cec87db2470ac227dfdd6a7694208fc8a22ac3e5b42dc11b7cbb623",
+      "java_expected_result": "equal=true;different-kind=true;hash-len=32",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory_item"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/Item.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/peer/Item.java",
+      "operation": "inventory_item",
+      "owning_item": "C021.03",
+      "rust_expected": "equal=true;different-kind=true;hash-len=32",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "7a70551321b26303867b95bf9b9858403c1f778aee01f51b7310cfe5cccfc113",
+        "source_sha256": "c4779bb66d324e9294761fe2381511babfbc276ef87a7d30bac5c95fb6ee4298",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/peer/Item.java"
+      },
+      "stable_id": "PROD-8087BE850708270E"
+    },
+    {
+      "case_id": "C021-PP-99220B3152C453C2",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "89392d064cec87db2470ac227dfdd6a7694208fc8a22ac3e5b42dc11b7cbb623",
+      "java_expected_result": "equal=true;different-kind=true;hash-len=32",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory_item"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/Item.java",
+      "java_symbol": "org.tron.core.net.peer",
+      "operation": "inventory_item",
+      "owning_item": "C021.03",
+      "rust_expected": "equal=true;different-kind=true;hash-len=32",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "7a70551321b26303867b95bf9b9858403c1f778aee01f51b7310cfe5cccfc113",
+        "source_sha256": "c4779bb66d324e9294761fe2381511babfbc276ef87a7d30bac5c95fb6ee4298",
+        "symbol": "org.tron.core.net.peer"
+      },
+      "stable_id": "PROD-99220B3152C453C2"
+    },
+    {
+      "case_id": "C021-PP-D25131A7B6C184BD",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "89392d064cec87db2470ac227dfdd6a7694208fc8a22ac3e5b42dc11b7cbb623",
+      "java_expected_result": "equal=true;different-kind=true;hash-len=32",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory_item"
+      },
+      "java_line": 8,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/Item.java",
+      "java_symbol": "Item",
+      "operation": "inventory_item",
+      "owning_item": "C021.03",
+      "rust_expected": "equal=true;different-kind=true;hash-len=32",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "dad7751666822265bcc14b481d06a5ad9d665610e0f13f759c0566995b86b8ed",
+        "source_sha256": "c4779bb66d324e9294761fe2381511babfbc276ef87a7d30bac5c95fb6ee4298",
+        "symbol": "Item"
+      },
+      "stable_id": "PROD-D25131A7B6C184BD"
+    },
+    {
+      "case_id": "C021-PP-875BC1782E11D04F",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "89392d064cec87db2470ac227dfdd6a7694208fc8a22ac3e5b42dc11b7cbb623",
+      "java_expected_result": "equal=true;different-kind=true;hash-len=32",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory_item"
+      },
+      "java_line": 25,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/Item.java",
+      "java_symbol": "equals",
+      "operation": "inventory_item",
+      "owning_item": "C021.03",
+      "rust_expected": "equal=true;different-kind=true;hash-len=32",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "792f30a04d2a5e361957962c4bcc44bef16631702ecf46c4b586b65f483069df",
+        "source_sha256": "c4779bb66d324e9294761fe2381511babfbc276ef87a7d30bac5c95fb6ee4298",
+        "symbol": "equals"
+      },
+      "stable_id": "PROD-875BC1782E11D04F"
+    },
+    {
+      "case_id": "C021-PP-D9D2B42BD7FF75F8",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "89392d064cec87db2470ac227dfdd6a7694208fc8a22ac3e5b42dc11b7cbb623",
+      "java_expected_result": "equal=true;different-kind=true;hash-len=32",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory_item"
+      },
+      "java_line": 38,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/Item.java",
+      "java_symbol": "hashCode",
+      "operation": "inventory_item",
+      "owning_item": "C021.03",
+      "rust_expected": "equal=true;different-kind=true;hash-len=32",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "adf707ff7817920b7810ffa6b9810e9b30a759d28388b448802bb08530cae59a",
+        "source_sha256": "c4779bb66d324e9294761fe2381511babfbc276ef87a7d30bac5c95fb6ee4298",
+        "symbol": "hashCode"
+      },
+      "stable_id": "PROD-D9D2B42BD7FF75F8"
+    },
+    {
+      "case_id": "C021-PP-155C27092DE40B66",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "89392d064cec87db2470ac227dfdd6a7694208fc8a22ac3e5b42dc11b7cbb623",
+      "java_expected_result": "equal=true;different-kind=true;hash-len=32",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "inventory_item"
+      },
+      "java_line": 43,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/Item.java",
+      "java_symbol": "toString",
+      "operation": "inventory_item",
+      "owning_item": "C021.03",
+      "rust_expected": "equal=true;different-kind=true;hash-len=32",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "c53f1ba98b40f45309908843671d5c62fd4f146650ca31d98761041fad555f1a",
+        "source_sha256": "c4779bb66d324e9294761fe2381511babfbc276ef87a7d30bac5c95fb6ee4298",
+        "symbol": "toString"
+      },
+      "stable_id": "PROD-155C27092DE40B66"
+    },
+    {
+      "case_id": "C021-PP-306C5203B3DEC2B4",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "7a70551321b26303867b95bf9b9858403c1f778aee01f51b7310cfe5cccfc113",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java"
+      },
+      "stable_id": "PROD-306C5203B3DEC2B4"
+    },
+    {
+      "case_id": "C021-PP-9CFC0944AD208CB3",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "org.tron.core.net.peer",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "7a70551321b26303867b95bf9b9858403c1f778aee01f51b7310cfe5cccfc113",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "org.tron.core.net.peer"
+      },
+      "stable_id": "PROD-9CFC0944AD208CB3"
+    },
+    {
+      "case_id": "C021-PP-775A10CF08B64549",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 58,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "PeerConnection",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "0fc62ba9ad0e36f693a0eeb2036ffb8b4516b956b65e766b5490defec19023b2",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "PeerConnection"
+      },
+      "stable_id": "PROD-775A10CF08B64549"
+    },
+    {
+      "case_id": "C021-PP-B893B01524CCAF32",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 171,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "setChannel",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "3298722031b4e7443ca10e19d615a6ae1f4c62fc6e296ba530054a8e7486b369",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "setChannel"
+      },
+      "stable_id": "PROD-B893B01524CCAF32"
+    },
+    {
+      "case_id": "C021-PP-869011D379D02832",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 187,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "setBlockBothHave",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "05d4d24039cf9883f0d5549e17271e5f857a24d5d1caa2d9bd4b599ad694f5a8",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "setBlockBothHave"
+      },
+      "stable_id": "PROD-869011D379D02832"
+    },
+    {
+      "case_id": "C021-PP-E1C54E5FD2BCF34D",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 192,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "isIdle",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "b9a58634a0334cd27b14139c88e432d06367a5eec96821b38b47dfb0267f7aa5",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "isIdle"
+      },
+      "stable_id": "PROD-E1C54E5FD2BCF34D"
+    },
+    {
+      "case_id": "C021-PP-6F6B619706553B60",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 196,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "isSyncIdle",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "6ebbac706167ffc57536a1de0f02d3a1879557bb56f9b761ed89cc30ce2c9d94",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "isSyncIdle"
+      },
+      "stable_id": "PROD-6F6B619706553B60"
+    },
+    {
+      "case_id": "C021-PP-BB938ED7305900CA",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 200,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "sendMessage",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "3779742ba675a6cc72f8b7c8c0b82117d8dcc36b612bdc14da77a10cb51648f3",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "sendMessage"
+      },
+      "stable_id": "PROD-BB938ED7305900CA"
+    },
+    {
+      "case_id": "C021-PP-6990D818900D71BD",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 208,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "onConnect",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "284038d3c10eb85603d158ddeb4f6be149d541366aa198c7030befb3f76fb3b5",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "onConnect"
+      },
+      "stable_id": "PROD-6990D818900D71BD"
+    },
+    {
+      "case_id": "C021-PP-77AB388B2978601C",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 224,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "onDisconnect",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "42734ec43fc51bab9a8c2a86c8acd9ac41c58a35af7cd3d8cc7f0fd86b197261",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "onDisconnect"
+      },
+      "stable_id": "PROD-77AB388B2978601C"
+    },
+    {
+      "case_id": "C021-PP-B92B419639508C33",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 236,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "log",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "7c456dc9477f050f4951f9f532c79f58e51b11e5e0ed73b85a9a0a81148d4c4c",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "log"
+      },
+      "stable_id": "PROD-B92B419639508C33"
+    },
+    {
+      "case_id": "C021-PP-548B9E38C1092642",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 270,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "isSyncFinish",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "2beb083c64acd93ae519d595357abf7f40142d63076469b88f3a10078e2b8fb2",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "isSyncFinish"
+      },
+      "stable_id": "PROD-548B9E38C1092642"
+    },
+    {
+      "case_id": "C021-PP-27AB0916BAE6A7B1",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 274,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "disconnect",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "8a08104facf4f33e56f0d65cb86e5019155f10230a8b34dc4f1c64d3ae9cb386",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "disconnect"
+      },
+      "stable_id": "PROD-27AB0916BAE6A7B1"
+    },
+    {
+      "case_id": "C021-PP-7B37824FF69C0054",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 280,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "getInetSocketAddress",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "ea9047fed7196d68bbeb2a9851bceef33511489c7863114197f80a27a746934b",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "getInetSocketAddress"
+      },
+      "stable_id": "PROD-7B37824FF69C0054"
+    },
+    {
+      "case_id": "C021-PP-65ECF259D5E4C38F",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 284,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "getInetAddress",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "8195481578534dcb422d0102a196dc93d440ed60ba2093f4b87cc32fbce0bb60",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "getInetAddress"
+      },
+      "stable_id": "PROD-65ECF259D5E4C38F"
+    },
+    {
+      "case_id": "C021-PP-004EDF8A40FBEE62",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 288,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "isDisconnect",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "97e4b5fc510e443015c256d31126860086b6795a237d4bfcca3517396ae037c6",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "isDisconnect"
+      },
+      "stable_id": "PROD-004EDF8A40FBEE62"
+    },
+    {
+      "case_id": "C021-PP-C2F351C2BCBB3AAD",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 313,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "needToLog",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "ecc449e002c02d0d85f0a424697a1a3d99264f904616540595a167cc18d788f3",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "needToLog"
+      },
+      "stable_id": "PROD-C2F351C2BCBB3AAD"
+    },
+    {
+      "case_id": "C021-PP-EE43F05087B9419A",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 329,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "checkAndPutAdvInvRequest",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "0277e48e7011081c298c456da8aa3d1984a6cbefb1f73cd292938ae9482ccedb",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "checkAndPutAdvInvRequest"
+      },
+      "stable_id": "PROD-EE43F05087B9419A"
+    },
+    {
+      "case_id": "C021-PP-FF4D88FE6B085FA3",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 338,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "equals",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "792f30a04d2a5e361957962c4bcc44bef16631702ecf46c4b586b65f483069df",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "equals"
+      },
+      "stable_id": "PROD-FF4D88FE6B085FA3"
+    },
+    {
+      "case_id": "C021-PP-00BFF4DE2B843C76",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 346,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerConnection.java",
+      "java_symbol": "hashCode",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "adf707ff7817920b7810ffa6b9810e9b30a759d28388b448802bb08530cae59a",
+        "source_sha256": "90294096b9353b07c0135bc1c2fabb8c053d9034d70b5bc5639fe9a52e9889ff",
+        "symbol": "hashCode"
+      },
+      "stable_id": "PROD-00BFF4DE2B843C76"
+    },
+    {
+      "case_id": "C021-PP-6D04054342D36904",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "33c110c6cc25f2f0a15c2134f4d01dc633b082fe1519b1f946f1a612c3b5df26",
+      "java_expected_result": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_manager"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerManager.java",
+      "java_symbol": "org.tron.core.net.peer",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "7a70551321b26303867b95bf9b9858403c1f778aee01f51b7310cfe5cccfc113",
+        "source_sha256": "950ae6f69e686dc1916612c606b7226635c8212d7bf05ca4557fb275733cf510",
+        "symbol": "org.tron.core.net.peer"
+      },
+      "stable_id": "PROD-6D04054342D36904"
+    },
+    {
+      "case_id": "C021-PP-D0142F0A5AB03B81",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "33c110c6cc25f2f0a15c2134f4d01dc633b082fe1519b1f946f1a612c3b5df26",
+      "java_expected_result": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_manager"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerManager.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerManager.java",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "7a70551321b26303867b95bf9b9858403c1f778aee01f51b7310cfe5cccfc113",
+        "source_sha256": "950ae6f69e686dc1916612c606b7226635c8212d7bf05ca4557fb275733cf510",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerManager.java"
+      },
+      "stable_id": "PROD-D0142F0A5AB03B81"
+    },
+    {
+      "case_id": "C021-PP-DD68902394DB083E",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "33c110c6cc25f2f0a15c2134f4d01dc633b082fe1519b1f946f1a612c3b5df26",
+      "java_expected_result": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_manager"
+      },
+      "java_line": 22,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerManager.java",
+      "java_symbol": "PeerManager",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "81a597fc1e354aea82ce09b80426c36ad1e78e07b6ffe6f61ec01afab070e310",
+        "source_sha256": "950ae6f69e686dc1916612c606b7226635c8212d7bf05ca4557fb275733cf510",
+        "symbol": "PeerManager"
+      },
+      "stable_id": "PROD-DD68902394DB083E"
+    },
+    {
+      "case_id": "C021-PP-9BB2464304FE0319",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "33c110c6cc25f2f0a15c2134f4d01dc633b082fe1519b1f946f1a612c3b5df26",
+      "java_expected_result": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_manager"
+      },
+      "java_line": 37,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerManager.java",
+      "java_symbol": "init",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "d608b442f48165ae662b76cf6dbcb7d2e297f297fe755a9448169434a3689ccb",
+        "source_sha256": "950ae6f69e686dc1916612c606b7226635c8212d7bf05ca4557fb275733cf510",
+        "symbol": "init"
+      },
+      "stable_id": "PROD-9BB2464304FE0319"
+    },
+    {
+      "case_id": "C021-PP-0D2D74F08E265E2A",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "33c110c6cc25f2f0a15c2134f4d01dc633b082fe1519b1f946f1a612c3b5df26",
+      "java_expected_result": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_manager"
+      },
+      "java_line": 48,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerManager.java",
+      "java_symbol": "close",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "78256ba49980b4de479217eac08cc8e6506a8290d1afe09a449fbed6652774b2",
+        "source_sha256": "950ae6f69e686dc1916612c606b7226635c8212d7bf05ca4557fb275733cf510",
+        "symbol": "close"
+      },
+      "stable_id": "PROD-0D2D74F08E265E2A"
+    },
+    {
+      "case_id": "C021-PP-7380C513C7142647",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "33c110c6cc25f2f0a15c2134f4d01dc633b082fe1519b1f946f1a612c3b5df26",
+      "java_expected_result": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_manager"
+      },
+      "java_line": 62,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerManager.java",
+      "java_symbol": "add",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "7877b32d27f0c041b1ef60bf3a966f42d6dd5ac8a0ea3686ff10ad1a6674c8d0",
+        "source_sha256": "950ae6f69e686dc1916612c606b7226635c8212d7bf05ca4557fb275733cf510",
+        "symbol": "add"
+      },
+      "stable_id": "PROD-7380C513C7142647"
+    },
+    {
+      "case_id": "C021-PP-80CEF11C9D4E421C",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "33c110c6cc25f2f0a15c2134f4d01dc633b082fe1519b1f946f1a612c3b5df26",
+      "java_expected_result": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_manager"
+      },
+      "java_line": 78,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerManager.java",
+      "java_symbol": "remove",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "79bc8c21b862f4680a05bd0a9961c38d7f4e19a04680145e4d5fed396253499c",
+        "source_sha256": "950ae6f69e686dc1916612c606b7226635c8212d7bf05ca4557fb275733cf510",
+        "symbol": "remove"
+      },
+      "stable_id": "PROD-80CEF11C9D4E421C"
+    },
+    {
+      "case_id": "C021-PP-0C086BA2D1D09680",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "33c110c6cc25f2f0a15c2134f4d01dc633b082fe1519b1f946f1a612c3b5df26",
+      "java_expected_result": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_manager"
+      },
+      "java_line": 96,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerManager.java",
+      "java_symbol": "sortPeers",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "3e2b4ca9005fa8da5cbd400bbd255d4ffa3258b6ff2aa76c0cfddfe5c0f2aa2f",
+        "source_sha256": "950ae6f69e686dc1916612c606b7226635c8212d7bf05ca4557fb275733cf510",
+        "symbol": "sortPeers"
+      },
+      "stable_id": "PROD-0C086BA2D1D09680"
+    },
+    {
+      "case_id": "C021-PP-B7F65871375EDD5A",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "33c110c6cc25f2f0a15c2134f4d01dc633b082fe1519b1f946f1a612c3b5df26",
+      "java_expected_result": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_manager"
+      },
+      "java_line": 104,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerManager.java",
+      "java_symbol": "getPeerConnection",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "0f7ac91d28013c96116485b4327c4b3e52ef2355a06359a4209e3f9553216ef7",
+        "source_sha256": "950ae6f69e686dc1916612c606b7226635c8212d7bf05ca4557fb275733cf510",
+        "symbol": "getPeerConnection"
+      },
+      "stable_id": "PROD-B7F65871375EDD5A"
+    },
+    {
+      "case_id": "C021-PP-C1180E74B6C90B6A",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "33c110c6cc25f2f0a15c2134f4d01dc633b082fe1519b1f946f1a612c3b5df26",
+      "java_expected_result": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_manager"
+      },
+      "java_line": 113,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/PeerManager.java",
+      "java_symbol": "getPeers",
+      "operation": "peer_manager",
+      "owning_item": "C021.03",
+      "rust_expected": "add=true,true,false;counts=1,1;sorted=5,100;get=true;removed=true;cleanup-at=0;cleanup-after=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "cec01982b7f6404c144262dae24d53db40e51c7c774aae2b65e088ee5fc6de67",
+        "source_sha256": "950ae6f69e686dc1916612c606b7226635c8212d7bf05ca4557fb275733cf510",
+        "symbol": "getPeers"
+      },
+      "stable_id": "PROD-C1180E74B6C90B6A"
+    },
+    {
+      "case_id": "C021-PP-421A141C18985CB9",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/TronState.java",
+      "java_symbol": "org.tron.core.net.peer",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "7a70551321b26303867b95bf9b9858403c1f778aee01f51b7310cfe5cccfc113",
+        "source_sha256": "3885891ad4235c814e94fe8bffa89b78960cefa51b3dfe5db73c80a5ec4207a0",
+        "symbol": "org.tron.core.net.peer"
+      },
+      "stable_id": "PROD-421A141C18985CB9"
+    },
+    {
+      "case_id": "C021-PP-8B560ACDBCAE824B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/TronState.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/peer/TronState.java",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "7a70551321b26303867b95bf9b9858403c1f778aee01f51b7310cfe5cccfc113",
+        "source_sha256": "3885891ad4235c814e94fe8bffa89b78960cefa51b3dfe5db73c80a5ec4207a0",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/peer/TronState.java"
+      },
+      "stable_id": "PROD-8B560ACDBCAE824B"
+    },
+    {
+      "case_id": "C021-PP-4251470234C7BA5A",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "5ff2f118f18cd379bdd36a107da7388ba2311dcf4f387b5ab4bd98de95b2d08a",
+      "java_expected_result": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "peer_connection"
+      },
+      "java_line": 3,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/peer/TronState.java",
+      "java_symbol": "TronState",
+      "operation": "peer_connection",
+      "owning_item": "C021.03",
+      "rust_expected": "defaults=false,false,true,false,true,true,false;idle=false;sync-idle=false;heads=us:true,peer:false|us:false,peer:true|us:false,peer:false;request=true,false;cleanup=0,0,0;ban=3600;equal=true",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "4de008b6f9cab195a9c42b5b94126c6a8507b10ecd587a82771020326dc488f1",
+        "source_sha256": "3885891ad4235c814e94fe8bffa89b78960cefa51b3dfe5db73c80a5ec4207a0",
+        "symbol": "TronState"
+      },
+      "stable_id": "PROD-4251470234C7BA5A"
+    },
+    {
+      "case_id": "C021-PP-8AA932126D1B2210",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/handshake/HandshakeService.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/handshake/HandshakeService.java",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "76d6abff66c27d22c06947ce0234bbd47766971b3589771fb2af0c8f4b2269ff",
+        "source_sha256": "4764e39bb8689e0e84e918be03e004df00fbab1d552a4e3eae0eac9eb268786b",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/handshake/HandshakeService.java"
+      },
+      "stable_id": "PROD-8AA932126D1B2210"
+    },
+    {
+      "case_id": "C021-PP-E774B0E559BF0A6B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/handshake/HandshakeService.java",
+      "java_symbol": "org.tron.core.net.service.handshake",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "76d6abff66c27d22c06947ce0234bbd47766971b3589771fb2af0c8f4b2269ff",
+        "source_sha256": "4764e39bb8689e0e84e918be03e004df00fbab1d552a4e3eae0eac9eb268786b",
+        "symbol": "org.tron.core.net.service.handshake"
+      },
+      "stable_id": "PROD-E774B0E559BF0A6B"
+    },
+    {
+      "case_id": "C021-PP-58D7C892D9156F02",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 22,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/handshake/HandshakeService.java",
+      "java_symbol": "HandshakeService",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "1d7caeafc30459069fd9b7f706166873936dec64dc6ba608f8a03c58489e4830",
+        "source_sha256": "4764e39bb8689e0e84e918be03e004df00fbab1d552a4e3eae0eac9eb268786b",
+        "symbol": "HandshakeService"
+      },
+      "stable_id": "PROD-58D7C892D9156F02"
+    },
+    {
+      "case_id": "C021-PP-02233F03EDB5D95D",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 33,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/handshake/HandshakeService.java",
+      "java_symbol": "startHandshake",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "78f6ee80b2e8e459a50af820ee22cc8c7ec4031568db7bd4f09f440b84dadeed",
+        "source_sha256": "4764e39bb8689e0e84e918be03e004df00fbab1d552a4e3eae0eac9eb268786b",
+        "symbol": "startHandshake"
+      },
+      "stable_id": "PROD-02233F03EDB5D95D"
+    },
+    {
+      "case_id": "C021-PP-727BB6882CE9976B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "46b6b69ac148798f6cb22f3f4fa3db6ad65571ad89ab990e194ec89bdeb9c985",
+      "java_expected_result": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "hello_policy"
+      },
+      "java_line": 37,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/handshake/HandshakeService.java",
+      "java_symbol": "processHelloMessage",
+      "operation": "hello_policy",
+      "owning_item": "C021.02",
+      "rust_expected": "valid=Ok;duplicate-hello=BadProtocol;duplicate-peer=DuplicatePeer;bad-structure=IncompatibleProtocol;bad-identity=UnexpectedIdentity;low=LightNodeSyncFail;version=IncompatibleVersion;genesis=IncompatibleChain;fork=Forked;pruned=LightNodeSyncFail;below=BelowThanMe",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "3469bf4b709ab91d2cd7acd0c9d50d2a27ca8e4ea4e2858008297308767f26f9",
+        "source_sha256": "4764e39bb8689e0e84e918be03e004df00fbab1d552a4e3eae0eac9eb268786b",
+        "symbol": "processHelloMessage"
+      },
+      "stable_id": "PROD-727BB6882CE9976B"
+    },
+    {
+      "case_id": "C021-PP-358BC23202C39FB8",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/keepalive/KeepAliveService.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/keepalive/KeepAliveService.java",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "d18d2a2f2c49ebda763081acaee6d61a0da0cad52d4b712837dd42c52715f82a",
+        "source_sha256": "5f09faf0215854e2677e83661922d6e783f7229f9f2d793cc88bb39ce7547395",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/keepalive/KeepAliveService.java"
+      },
+      "stable_id": "PROD-358BC23202C39FB8"
+    },
+    {
+      "case_id": "C021-PP-920F06D44DB3CAE7",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/keepalive/KeepAliveService.java",
+      "java_symbol": "org.tron.core.net.service.keepalive",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "d18d2a2f2c49ebda763081acaee6d61a0da0cad52d4b712837dd42c52715f82a",
+        "source_sha256": "5f09faf0215854e2677e83661922d6e783f7229f9f2d793cc88bb39ce7547395",
+        "symbol": "org.tron.core.net.service.keepalive"
+      },
+      "stable_id": "PROD-920F06D44DB3CAE7"
+    },
+    {
+      "case_id": "C021-PP-9DB2FCA7A9932BB7",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 12,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/keepalive/KeepAliveService.java",
+      "java_symbol": "KeepAliveService",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "26718a7760a48f8303a03c3250f945254428f5d03d3b29479e0729fc69aa7379",
+        "source_sha256": "5f09faf0215854e2677e83661922d6e783f7229f9f2d793cc88bb39ce7547395",
+        "symbol": "KeepAliveService"
+      },
+      "stable_id": "PROD-9DB2FCA7A9932BB7"
+    },
+    {
+      "case_id": "C021-PP-0E5FED3F53D8E3D1",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "d14ff3c6143838ae6f6f508b922730dbfdc5a129858268bf4bcab8d10c583b58",
+      "java_expected_result": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "keepalive_wrappers"
+      },
+      "java_line": 14,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/keepalive/KeepAliveService.java",
+      "java_symbol": "processMessage",
+      "operation": "keepalive_wrappers",
+      "owning_item": "C021.02",
+      "rust_expected": "ping=22c0;ping-answer=Pong;pong=23c0;pong-answer=none",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "86cf915a6b79a7a9e532fe03a1a413f77e9077dce3f1435b0d07720586d5e46a",
+        "source_sha256": "5f09faf0215854e2677e83661922d6e783f7229f9f2d793cc88bb39ce7547395",
+        "symbol": "processMessage"
+      },
+      "stable_id": "PROD-0E5FED3F53D8E3D1"
+    },
+    {
+      "case_id": "C021-PP-60D8441E5032FF30",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c0e85ba590412eb94253e2ce6975cf03251823a8e9513cf69f7696fb3e083a56",
+      "java_expected_result": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "node_peer_statistics"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/NodeStatistics.java",
+      "java_symbol": "org.tron.core.net.service.statistics",
+      "operation": "node_peer_statistics",
+      "owning_item": "C021.03",
+      "rust_expected": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "e12c86ec1eb40f75b1c6fbde9f8b3ff17a6719331e1210b927c1e6c977da5be9",
+        "source_sha256": "f412bc313e422558c754b8c2a1e6782fe865fff5aa557fcb84c0a81c08521ae1",
+        "symbol": "org.tron.core.net.service.statistics"
+      },
+      "stable_id": "PROD-60D8441E5032FF30"
+    },
+    {
+      "case_id": "C021-PP-A4402F6C64CE4F9B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c0e85ba590412eb94253e2ce6975cf03251823a8e9513cf69f7696fb3e083a56",
+      "java_expected_result": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "node_peer_statistics"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/NodeStatistics.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/NodeStatistics.java",
+      "operation": "node_peer_statistics",
+      "owning_item": "C021.03",
+      "rust_expected": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "e12c86ec1eb40f75b1c6fbde9f8b3ff17a6719331e1210b927c1e6c977da5be9",
+        "source_sha256": "f412bc313e422558c754b8c2a1e6782fe865fff5aa557fcb84c0a81c08521ae1",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/NodeStatistics.java"
+      },
+      "stable_id": "PROD-A4402F6C64CE4F9B"
+    },
+    {
+      "case_id": "C021-PP-F66A5D7D2EDEC642",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c0e85ba590412eb94253e2ce6975cf03251823a8e9513cf69f7696fb3e083a56",
+      "java_expected_result": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "node_peer_statistics"
+      },
+      "java_line": 6,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/NodeStatistics.java",
+      "java_symbol": "NodeStatistics",
+      "operation": "node_peer_statistics",
+      "owning_item": "C021.03",
+      "rust_expected": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "8caec7c948a8a4b8f63df3cf35771c8c473d674f2d35349f0b5a1ef45846386a",
+        "source_sha256": "f412bc313e422558c754b8c2a1e6782fe865fff5aa557fcb84c0a81c08521ae1",
+        "symbol": "NodeStatistics"
+      },
+      "stable_id": "PROD-F66A5D7D2EDEC642"
+    },
+    {
+      "case_id": "C021-PP-6ACAAB337BDD2386",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c0e85ba590412eb94253e2ce6975cf03251823a8e9513cf69f7696fb3e083a56",
+      "java_expected_result": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "node_peer_statistics"
+      },
+      "java_line": 15,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/NodeStatistics.java",
+      "java_symbol": "getDisconnectReason",
+      "operation": "node_peer_statistics",
+      "owning_item": "C021.03",
+      "rust_expected": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "8113f87270fc68270935f1877a59bf2bbd52257ad050832e4be67982eb7ea792",
+        "source_sha256": "f412bc313e422558c754b8c2a1e6782fe865fff5aa557fcb84c0a81c08521ae1",
+        "symbol": "getDisconnectReason"
+      },
+      "stable_id": "PROD-6ACAAB337BDD2386"
+    },
+    {
+      "case_id": "C021-PP-1D565C552FA37C5B",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c0e85ba590412eb94253e2ce6975cf03251823a8e9513cf69f7696fb3e083a56",
+      "java_expected_result": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "node_peer_statistics"
+      },
+      "java_line": 25,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/NodeStatistics.java",
+      "java_symbol": "nodeDisconnectedRemote",
+      "operation": "node_peer_statistics",
+      "owning_item": "C021.03",
+      "rust_expected": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "bda5315db7836bc0842e748a5f6e055cd477a4b74f675fa111bd3b0b07764594",
+        "source_sha256": "f412bc313e422558c754b8c2a1e6782fe865fff5aa557fcb84c0a81c08521ae1",
+        "symbol": "nodeDisconnectedRemote"
+      },
+      "stable_id": "PROD-1D565C552FA37C5B"
+    },
+    {
+      "case_id": "C021-PP-6924A9C7EAFA8659",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c0e85ba590412eb94253e2ce6975cf03251823a8e9513cf69f7696fb3e083a56",
+      "java_expected_result": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "node_peer_statistics"
+      },
+      "java_line": 30,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/NodeStatistics.java",
+      "java_symbol": "nodeDisconnectedLocal",
+      "operation": "node_peer_statistics",
+      "owning_item": "C021.03",
+      "rust_expected": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "20349ff5d9647192cadd2b703d582188b5b48f042c81de2189f1cefc8dbceac4",
+        "source_sha256": "f412bc313e422558c754b8c2a1e6782fe865fff5aa557fcb84c0a81c08521ae1",
+        "symbol": "nodeDisconnectedLocal"
+      },
+      "stable_id": "PROD-6924A9C7EAFA8659"
+    },
+    {
+      "case_id": "C021-PP-B0B26F86C2B5867D",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c0e85ba590412eb94253e2ce6975cf03251823a8e9513cf69f7696fb3e083a56",
+      "java_expected_result": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "node_peer_statistics"
+      },
+      "java_line": 40,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/NodeStatistics.java",
+      "java_symbol": "toString",
+      "operation": "node_peer_statistics",
+      "owning_item": "C021.03",
+      "rust_expected": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "c53f1ba98b40f45309908843671d5c62fd4f146650ca31d98761041fad555f1a",
+        "source_sha256": "f412bc313e422558c754b8c2a1e6782fe865fff5aa557fcb84c0a81c08521ae1",
+        "symbol": "toString"
+      },
+      "stable_id": "PROD-B0B26F86C2B5867D"
+    },
+    {
+      "case_id": "C021-PP-B3DD44D2D05B3C0F",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c0e85ba590412eb94253e2ce6975cf03251823a8e9513cf69f7696fb3e083a56",
+      "java_expected_result": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "node_peer_statistics"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/PeerStatistics.java",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/PeerStatistics.java",
+      "operation": "node_peer_statistics",
+      "owning_item": "C021.03",
+      "rust_expected": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "e12c86ec1eb40f75b1c6fbde9f8b3ff17a6719331e1210b927c1e6c977da5be9",
+        "source_sha256": "2ef7521d68411fe819e5fe1331ff970f660356b786c939849d7e0a505bd00b05",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/PeerStatistics.java"
+      },
+      "stable_id": "PROD-B3DD44D2D05B3C0F"
+    },
+    {
+      "case_id": "C021-PP-EDC982A6859F56BF",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c0e85ba590412eb94253e2ce6975cf03251823a8e9513cf69f7696fb3e083a56",
+      "java_expected_result": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "node_peer_statistics"
+      },
+      "java_line": 1,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/PeerStatistics.java",
+      "java_symbol": "org.tron.core.net.service.statistics",
+      "operation": "node_peer_statistics",
+      "owning_item": "C021.03",
+      "rust_expected": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "e12c86ec1eb40f75b1c6fbde9f8b3ff17a6719331e1210b927c1e6c977da5be9",
+        "source_sha256": "2ef7521d68411fe819e5fe1331ff970f660356b786c939849d7e0a505bd00b05",
+        "symbol": "org.tron.core.net.service.statistics"
+      },
+      "stable_id": "PROD-EDC982A6859F56BF"
+    },
+    {
+      "case_id": "C021-PP-3F600F03A0631052",
+      "evidence_kind": "source_assertion",
+      "java_expected_digest": "c0e85ba590412eb94253e2ce6975cf03251823a8e9513cf69f7696fb3e083a56",
+      "java_expected_result": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "java_input": {
+        "fixture": "java-derived-v1",
+        "operation": "node_peer_statistics"
+      },
+      "java_line": 3,
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/net/service/statistics/PeerStatistics.java",
+      "java_symbol": "PeerStatistics",
+      "operation": "node_peer_statistics",
+      "owning_item": "C021.03",
+      "rust_expected": "initial=Unknown;remote=PingTimeout;local=BadProtocol;times=2;local-wins=BadProtocol;peer-message-total=1",
+      "source_assertion": {
+        "declaration_kind": "declaration",
+        "source_line_sha256": "8f0b8a6b2576111c93c2947c98346b065091bac0a349f909a99d38efd06498aa",
+        "source_sha256": "2ef7521d68411fe819e5fe1331ff970f660356b786c939849d7e0a505bd00b05",
+        "symbol": "PeerStatistics"
+      },
+      "stable_id": "PROD-3F600F03A0631052"
+    }
+  ],
+  "count": 151,
+  "family": "protocol-peer",
+  "schema": "c021-cases-protocol-peer.v1",
+  "source_ledger": "docs/oracles/c021-ownership-reconciliation.v1.json"
+}

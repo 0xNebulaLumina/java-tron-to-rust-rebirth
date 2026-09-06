@@ -1,0 +1,13 @@
+use std::{net::SocketAddr, time::Duration};
+use tron_network::{connection::Direction, peer::{InventoryItem, PeerConnection, PeerManager, RateWindow, BAD_PEER_BAN, DISCONNECTED_CLEANUP_DELAY_MS, INVENTORY_CACHE_LIMIT}};
+use tron_protocol::protocol::ReasonCode;
+
+fn peer(octet:u8,port:u16,direction:Direction)->PeerConnection{PeerConnection::new(SocketAddr::from(([127,0,0,octet],port)),direction,1_000)}
+#[test]
+fn defaults_idle_sync_identity_and_atomic_requests_match_java(){let mut p=peer(1,1,Direction::Active);assert!(!p.bad_peer&&!p.fetch_able&&!p.relay_peer);assert!(p.is_idle()&&!p.is_sync_finished());let i=InventoryItem{hash:[0;32],kind:0};assert!(p.check_and_put_request(i.clone(),1));assert!(!p.check_and_put_request(i,2));assert!(!p.is_idle());p.cleanup();assert!(p.is_idle());p.on_connected_heads(2,1);assert!(!p.need_sync_from_peer&&p.need_sync_from_us);}
+#[test]
+fn caches_are_bounded_expire_and_cleanup_every_request_family(){let mut p=peer(1,1,Direction::Active);for n in 0..=INVENTORY_CACHE_LIMIT{let mut h=[0;32];h[..8].copy_from_slice(&(n as u64).to_be_bytes());p.remember_received(InventoryItem{hash:h,kind:0},0)}assert_eq!(p.cache_sizes().0,INVENTORY_CACHE_LIMIT);let newest=InventoryItem{hash:{let mut h=[0;32];h[..8].copy_from_slice(&(INVENTORY_CACHE_LIMIT as u64).to_be_bytes());h},kind:0};assert!(p.received_contains(&newest,3_599_999));assert!(!p.received_contains(&newest,3_600_000));p.cleanup();assert_eq!(p.cache_sizes(),(0,0,0));}
+#[test]
+fn manager_deduplicates_orders_counts_and_delays_cleanup(){let mut m=PeerManager::default();let mut slow=peer(1,1,Direction::Active);slow.latency_ms=100;let mut fast=peer(2,2,Direction::Passive);fast.latency_ms=5;assert!(m.add(slow));assert!(m.add(fast.clone()));assert!(!m.add(fast));assert_eq!(m.counts(),(1,1));m.sort_by_latency();assert_eq!(m.connected().next().unwrap().latency_ms,5);let addr=SocketAddr::from(([127,0,0,2],2));m.remove(addr);let mut gone=peer(3,3,Direction::Passive);gone.disconnected_at_ms=Some(10);assert!(m.add(gone));assert_eq!(m.cleanup_disconnected(10+DISCONNECTED_CLEANUP_DELAY_MS),0);assert_eq!(m.cleanup_disconnected(11+DISCONNECTED_CLEANUP_DELAY_MS),1);}
+#[test]
+fn bad_protocol_block_and_tx_receive_exact_one_hour_bans_and_rates_are_bounded(){for r in [ReasonCode::BadProtocol,ReasonCode::BadBlock,ReasonCode::BadTx]{assert_eq!(PeerConnection::ban_duration(r),Some(Duration::from_secs(3600)));}assert_eq!(BAD_PEER_BAN,Duration::from_secs(3600));assert_eq!(PeerConnection::ban_duration(ReasonCode::PingTimeout),None);let mut rate=RateWindow::new(10,0);assert!(rate.allow(10,0));assert!(!rate.allow(1,0));assert!(rate.allow(10,61));}

@@ -2658,76 +2658,88 @@
     {
       "id": "C021",
       "title": "Application P2P, sync, gossip, and relay",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-09-06",
       "resume": null,
       "items": [
         {
           "id": "C021.01",
           "description": "Exact positive type-byte factory; reject reserved/unsupported types as Java does.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Pinned positive application type bytes, reserved rejection, and exact raw message bytes are covered by c021_protocol."
         },
         {
           "id": "C021.02",
           "description": "Application Hello construction/validation/policy and fixed-byte ping/pong.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Exact Hello bytes and policy outcomes plus application 22c0/23c0 keepalives are gated independently from C020 control traffic."
         },
         {
           "id": "C021.03",
           "description": "Peer state, inventory/request caches, rate limits, latency ordering, cleanup and one-hour bad bans.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Peer/cache/rate/ordering/cleanup/ban behavior is covered by c021_peer and terminal-state scenarios."
         },
         {
           "id": "C021.04",
           "description": "Sparse summary, chain inventory validation, batch/remain rules, ordered fetch/process.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Sparse summaries, 2000-successor batches, exact remain rules, correlation, ordering, and retry are covered by c021_sync."
         },
         {
           "id": "C021.05",
           "description": "Advertisement inventory/fetch/spread, bounded caches and stale suppression.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Inventory/fetch/spread correlation, limits, batching, expiry, and disconnect requeue are covered by c021_gossip."
         },
         {
           "id": "C021.06",
           "description": "Transaction/block/PBFT handlers, request correlation, size/time/signature/Merkle/errors.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Handler validation and exact application captures cover transaction, block, PBFT, request, signature, time, and error paths; raw blocks hand off to C019."
         },
         {
           "id": "C021.07",
           "description": "Fast-forward witness Hello signing/trust and successor full-block relay.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Witness Hello authentication, successor selection, and distinct uncorrelated full-block fast-forward propagation are covered by c021_relay and live scenarios."
         },
         {
           "id": "C021.08",
           "description": "Watchdog/effective/resilience/fetch/statistics services and disconnect mapping.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Pinned watchdog intervals, resilience/effective/fetch/statistics behavior, disconnect mapping, and deterministic service lifecycle are covered by c021_watchdog."
         },
         {
           "id": "C021.09",
           "description": "Execute and individually report every P2P manifest scenario, including active/passive and bidirectional handshakes, ordinary and fast-forward propagation, convergence and terminal peer/cache state.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Nine manifest scenarios execute through guarded Java-active and Java-passive peers and compare exact application bytes, events, head, queues, caches, ordinary/fast-forward paths, C019 reorg handoff, and terminal disconnect state."
         }
       ],
       "gate": {
         "id": "C021.V",
-        "description": "Two-way Java\u2194Rust genesis-to-head sync, tx/block propagation, reorg, ordinary/fast-forward, timeout/disconnect gates pass.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Canonical source-ledger gate accounts for exactly 103 Java-test plus 399 production rows: 480 execute once across protocol-peer 151, sync-gossip 102, handlers 89, and relay-watchdog 138; 22 Wallet/Database gRPC client rows are explicit C022 seams. Declaration evidence is separate from behavior execution: 250 rows authenticate exact source/file/line hashes, while 230 behavior rows validate exact stable-ID to Java input/result/digest and emitted Rust result maps. The gate rejects duplicate, missing, extra, or catchall evidence. Nine guarded Java-participating scenarios validate exact IDs, Rust case IDs, raw-message digests, terminal states, and emit the canonical scenario report; bounded gossip callers handle every cache Result explicitly.",
+        "status": "passed",
+        "commands": [
+          {"name":"C021 canonical 502-row exact family union","cwd":".","argv":["python3","tools/network/c021_gate.py","cases"],"timeout_seconds":1200},
+          {"name":"C021 application type/Hello protocol","cwd":".","argv":["python3","tools/network/c021_gate.py","protocol"],"timeout_seconds":1200},
+          {"name":"C021 peer state and caches","cwd":".","argv":["python3","tools/network/c021_gate.py","peer"],"timeout_seconds":1200},
+          {"name":"C021 sparse sync and ordered fetch","cwd":".","argv":["python3","tools/network/c021_gate.py","sync"],"timeout_seconds":1200},
+          {"name":"C021 gossip inventory and propagation","cwd":".","argv":["python3","tools/network/c021_gate.py","gossip"],"timeout_seconds":1200},
+          {"name":"C021 transaction block and PBFT handlers","cwd":".","argv":["python3","tools/network/c021_gate.py","handlers"],"timeout_seconds":1200},
+          {"name":"C021 fast-forward witness relay","cwd":".","argv":["python3","tools/network/c021_gate.py","relay"],"timeout_seconds":1200},
+          {"name":"C021 watchdog statistics and service lifecycle","cwd":".","argv":["python3","tools/network/c021_gate.py","watchdog"],"timeout_seconds":1200},
+          {"name":"C021 guarded live bidirectional Java Rust scenarios","cwd":".","argv":["python3","tools/network/c021_gate.py","scenario"],"timeout_seconds":3600},
+          {"name":"C021 exact tron-network all-targets check","cwd":".","argv":["python3","tools/network/c021_gate.py","all-targets"],"timeout_seconds":1200},
+          {"name":"C021 manifests and row ownership reconciliation","cwd":".","argv":["python3","tools/network/c021_gate.py","metadata"],"timeout_seconds":300}
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
+        "state": "approved",
+        "round": 1,
         "findings": []
       },
       "blocker": null
