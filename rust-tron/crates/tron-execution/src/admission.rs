@@ -18,9 +18,22 @@ impl core::fmt::Display for AdmissionError{fn fmt(&self,f:&mut core::fmt::Format
 impl std::error::Error for AdmissionError{}
 
 
+pub trait SignatureVerifier {
+ fn verify(&mut self,policy:AdmissionPolicy,tx:&RawWireTransaction,input:SignatureAdmission<'_>)->Result<(),AdmissionError>;
+}
+
+#[derive(Default)]
+pub struct CryptoSignatureVerifier;
+impl SignatureVerifier for CryptoSignatureVerifier {
+ fn verify(&mut self,policy:AdmissionPolicy,tx:&RawWireTransaction,input:SignatureAdmission<'_>)->Result<(),AdmissionError>{validate_signatures_with_policy(policy,tx,input)}
+}
+
 pub struct AdmissionValidator{pub policy:AdmissionPolicy}
 impl AdmissionValidator{
- pub fn validate<F>(&self,tx:&mut RawWireTransaction,origin:AdmissionOrigin,clock:AdmissionClock,signature:SignatureAdmission<'_>,mut recent_block:F)->Result<Hash32,AdmissionError>where F:FnMut(&[u8;2])->Option<Vec<u8>>{
+ pub fn validate<F>(&self,tx:&mut RawWireTransaction,origin:AdmissionOrigin,clock:AdmissionClock,signature:SignatureAdmission<'_>,recent_block:F)->Result<Hash32,AdmissionError>where F:FnMut(&[u8;2])->Option<Vec<u8>>{
+  self.validate_with_verifier(tx,origin,clock,signature,recent_block,&mut CryptoSignatureVerifier)
+ }
+ pub fn validate_with_verifier<F,V:SignatureVerifier>(&self,tx:&mut RawWireTransaction,origin:AdmissionOrigin,clock:AdmissionClock,signature:SignatureAdmission<'_>,mut recent_block:F,verifier:&mut V)->Result<Hash32,AdmissionError>where F:FnMut(&[u8;2])->Option<Vec<u8>>{
   let contract_count=tx.message().raw_data.as_ref().ok_or_else(||AdmissionError::MalformedTransaction("transaction raw_data is missing".into()))?.contract.len();
   match contract_count{0=>return Err(AdmissionError::MissingContract),1=>{},n=>return Err(AdmissionError::MultipleContracts{count:n})}
   let result_count=tx.message().ret.len();
@@ -32,14 +45,15 @@ impl AdmissionValidator{
   let raw=tx.message().raw_data.as_ref().expect("raw_data checked above");let expiration=raw.expiration;if origin==AdmissionOrigin::Block&&self.policy.consensus_logic_optimization&&expiration<clock.next_block_slot_time{return Err(AdmissionError::ExpiredForNextSlot{expiration,next_slot:clock.next_block_slot_time})}if expiration<=clock.head_block_time{return Err(AdmissionError::Expired{expiration,head:clock.head_block_time})}if expiration>clock.head_block_time.saturating_add(self.policy.expiration_horizon_millis){return Err(AdmissionError::ExpirationBeyondHorizon{expiration,head:clock.head_block_time,horizon:self.policy.expiration_horizon_millis})}
   if raw.ref_block_bytes.len()!=2{return Err(AdmissionError::TaposBlockNotFound{key:[0,0]})}let key=[raw.ref_block_bytes[0],raw.ref_block_bytes[1]];let actual=recent_block(&key).ok_or(AdmissionError::TaposBlockNotFound{key})?;if actual!=raw.ref_block_hash{return Err(AdmissionError::TaposHashMismatch{expected:raw.ref_block_hash.clone(),actual})}
   let id=tx.transaction_id(self.policy.engine);
-  self.validate_signatures(tx,signature)?;
+  if !tx.signature_verification_cached(){verifier.verify(self.policy,tx,signature)?;tx.set_signature_verification_cached(true);}
   if origin==AdmissionOrigin::Network{tx.sanitize_top_level_unknown_fields().map_err(|e|AdmissionError::MalformedTransaction(e.to_string()))?;}
   Ok(id)
  }
- pub fn validate_signatures(&self,tx:&RawWireTransaction,input:SignatureAdmission<'_>)->Result<(),AdmissionError>{let raw=tx.message().raw_data.as_ref().ok_or(AdmissionError::MissingContract)?;let contract=&raw.contract[0];let signatures=&tx.message().signature;if input.ownerless_shielded{if signatures.is_empty(){return Ok(())}return Err(AdmissionError::UnexpectedTransparentSignature)}if signatures.is_empty(){return Err(AdmissionError::MissingSignature)}if signatures.len()>self.policy.total_signature_limit{return Err(AdmissionError::TooManySignatures{count:signatures.len(),max:self.policy.total_signature_limit})}for(i,s)in signatures.iter().enumerate(){RecoverableSignature::from_ingress_wire(s).map_err(|_|AdmissionError::SignatureIngressFormat{index:i,length:s.len()})?;}
-  let owned;let permission=if let Some(p)=input.permission{p}else{let owner=input.default_owner.ok_or(AdmissionError::PermissionMissing{permission_id:contract.permission_id})?;owned=default_permission(contract.permission_id,owner,input.default_active_operations)?;&owned};check_permission(contract,permission)?;
-  let mut keys=Vec::with_capacity(permission.keys.len());for key in &permission.keys{keys.push(PermissionKey{address:TronAddress21::validate_mainnet(&key.address).map_err(|_|AdmissionError::InvalidPermissionAddress)?,weight:key.weight})}let weight=recover_permission_weight(self.policy.engine,tx.transaction_id(self.policy.engine).as_bytes(),signatures,&keys,self.policy.duplicate_signer_policy).map_err(AdmissionError::Signature)?;if weight.current_weight<permission.threshold{return Err(AdmissionError::InsufficientWeight{weight:weight.current_weight,threshold:permission.threshold})}Ok(())}
+ pub fn validate_signatures(&self,tx:&RawWireTransaction,input:SignatureAdmission<'_>)->Result<(),AdmissionError>{validate_signatures_with_policy(self.policy,tx,input)}
 }
+fn validate_signatures_with_policy(policy:AdmissionPolicy,tx:&RawWireTransaction,input:SignatureAdmission<'_>)->Result<(),AdmissionError>{let raw=tx.message().raw_data.as_ref().ok_or(AdmissionError::MissingContract)?;let contract=&raw.contract[0];let signatures=&tx.message().signature;if input.ownerless_shielded{if signatures.is_empty(){return Ok(())}return Err(AdmissionError::UnexpectedTransparentSignature)}if signatures.is_empty(){return Err(AdmissionError::MissingSignature)}if signatures.len()>policy.total_signature_limit{return Err(AdmissionError::TooManySignatures{count:signatures.len(),max:policy.total_signature_limit})}for(i,s)in signatures.iter().enumerate(){RecoverableSignature::from_ingress_wire(s).map_err(|_|AdmissionError::SignatureIngressFormat{index:i,length:s.len()})?;}
+  let owned;let permission=if let Some(p)=input.permission{p}else{let owner=input.default_owner.ok_or(AdmissionError::PermissionMissing{permission_id:contract.permission_id})?;owned=default_permission(contract.permission_id,owner,input.default_active_operations)?;&owned};check_permission(contract,permission)?;
+  let mut keys=Vec::with_capacity(permission.keys.len());for key in &permission.keys{keys.push(PermissionKey{address:TronAddress21::validate_mainnet(&key.address).map_err(|_|AdmissionError::InvalidPermissionAddress)?,weight:key.weight})}let weight=recover_permission_weight(policy.engine,tx.transaction_id(policy.engine).as_bytes(),signatures,&keys,policy.duplicate_signer_policy).map_err(AdmissionError::Signature)?;if weight.current_weight<permission.threshold{return Err(AdmissionError::InsufficientWeight{weight:weight.current_weight,threshold:permission.threshold})}Ok(())}
 fn default_permission(id:i32,owner:&[u8],ops:Option<&[u8]>)->Result<Permission,AdmissionError>{let key=tron_protocol::protocol::Key{address:owner.to_vec(),weight:1};match id{0=>Ok(Permission{r#type:PermissionType::Owner as i32,id:0,permission_name:"owner".into(),threshold:1,parent_id:0,operations:vec![],keys:vec![key]}),2=>Ok(Permission{r#type:PermissionType::Active as i32,id:2,permission_name:"active".into(),threshold:1,parent_id:0,operations:ops.unwrap_or(&[]).to_vec(),keys:vec![key]}),_=>Err(AdmissionError::PermissionMissing{permission_id:id})}}
 fn check_permission(contract:&Contract,permission:&Permission)->Result<(),AdmissionError>{if contract.permission_id==0{return Ok(())}if permission.r#type!=PermissionType::Active as i32{return Err(AdmissionError::PermissionType)}let t=usize::try_from(contract.r#type).map_err(|_|AdmissionError::PermissionDenied)?;let byte=t/8;let bit=t%8;if permission.operations.get(byte).is_none_or(|v|v&(1<<bit)==0){return Err(AdmissionError::PermissionDenied)}Ok(())}
 #[must_use]pub fn tapos_ref_block_bytes(height:i64)->[u8;2]{let b=height.to_be_bytes();[b[6],b[7]]}

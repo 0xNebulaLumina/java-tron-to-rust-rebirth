@@ -40,6 +40,10 @@ impl PendingSession {
         self.outer.take();
         Ok(())
     }
+    #[doc(hidden)]
+    pub fn inject_committed_close_failure(&mut self) -> Result<(), SessionError> {
+        self.manager.inject_committed_pending_outer()
+    }
 
     pub fn close(&mut self) -> Result<(), SessionError> {
         let Some(outer) = self.outer.as_mut() else { return Ok(()); };

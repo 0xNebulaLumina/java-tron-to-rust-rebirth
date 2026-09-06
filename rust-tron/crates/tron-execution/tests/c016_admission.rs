@@ -52,3 +52,24 @@ fn permission_ingress_operations_and_ownerless_rules(){let(tx,permission)=signed
 
 #[test]
 fn cache_is_bounded_ttl_checked_and_rotates_two_blooms(){let mut c=cache();let ids=(0..6).map(|n|tron_primitives::Hash32::from([n;32])).collect::<Vec<_>>();for(i,id)in ids.iter().enumerate().take(5){c.insert(*id,i as i64,i as i64).unwrap()}assert_eq!(c.len(),4);assert!(!c.contains_recent(&ids[0],5).unwrap());assert!(c.might_contain(&ids[4],5).unwrap());assert!(!c.contains_recent(&ids[4],105).unwrap());assert!(matches!(c.contains_recent(&ids[4],104),Err(CacheError::TimeReversal{..})));}
+
+struct CountingVerifier{calls:usize,fail:bool}
+impl SignatureVerifier for CountingVerifier{
+ fn verify(&mut self,_:AdmissionPolicy,_:&RawWireTransaction,_:SignatureAdmission<'_>)->Result<(),AdmissionError>{self.calls+=1;if self.fail{Err(AdmissionError::PermissionDenied)}else{Ok(())}}
+}
+
+#[test]
+fn successful_signature_verification_is_cached_and_failed_verification_is_not(){
+ let validator=AdmissionValidator{policy:Default::default()};
+ let(mut tx,permission)=signed_wire(0,1_000,0,false);
+ let mut verifier=CountingVerifier{calls:0,fail:false};
+ let recent=|_:&[u8;2]|Some(vec![8,9,10,11,12,13,14,15]);
+ validator.validate_with_verifier(&mut tx,AdmissionOrigin::Block,clock(1),signature(&permission),recent,&mut verifier).unwrap();
+ assert_eq!(verifier.calls,1);assert!(tx.signature_verification_cached());
+ verifier.fail=true;
+ validator.validate_with_verifier(&mut tx,AdmissionOrigin::Block,clock(1),signature(&permission),recent,&mut verifier).unwrap();
+ assert_eq!(verifier.calls,1,"cached admission must skip only the cryptographic verifier");
+ let(mut rejected,permission)=signed_wire(0,1_000,0,false);rejected.clear_signature_verification_cache();
+ assert_eq!(validator.validate_with_verifier(&mut rejected,AdmissionOrigin::Block,clock(1),signature(&permission),recent,&mut verifier),Err(AdmissionError::PermissionDenied));
+ assert_eq!(verifier.calls,2);assert!(!rejected.signature_verification_cached());
+}

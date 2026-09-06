@@ -6,7 +6,8 @@ use std::rc::{Rc, Weak};
 use tron_primitives::{BlockId, Hash32};
 
 pub const DEFAULT_KHAOS_CAPACITY: i64 = 1024;
-const KHAOS_BYTES_PER_CAPACITY: usize = 1024;
+const DEFAULT_MAX_BLOCK_BYTES: usize = 2_000_000;
+const KHAOS_BLOCK_OVERHEAD: usize = std::mem::size_of::<BlockId>() + std::mem::size_of::<Hash32>() + std::mem::size_of::<i64>();
 pub trait RetainedSize {
     fn retained_size(&self) -> usize;
 }
@@ -66,9 +67,16 @@ pub struct KhaosLimits {
 
 impl KhaosLimits {
     fn from_capacity(capacity: i64) -> Self {
-        let entries = usize::try_from(capacity.max(1)).unwrap_or(usize::MAX);
-        let bytes = entries.saturating_mul(KHAOS_BYTES_PER_CAPACITY);
-        Self { max_list_entries: entries, max_total_bytes: bytes, max_orphan_entries: entries, max_orphan_bytes: bytes }
+        Self::for_block_policy(DEFAULT_MAX_BLOCK_BYTES, capacity, 1)
+    }
+
+    pub fn for_block_policy(max_block_bytes: usize, fork_depth: i64, branch_width: usize) -> Self {
+        let depth = usize::try_from(fork_depth.max(1)).unwrap_or(usize::MAX);
+        let branches = branch_width.max(1);
+        let entries = depth.saturating_mul(branches);
+        let per_block = max_block_bytes.saturating_add(KHAOS_BLOCK_OVERHEAD);
+        let bytes = entries.saturating_mul(per_block);
+        Self { max_list_entries: entries, max_total_bytes: bytes, max_orphan_entries: depth, max_orphan_bytes: depth.saturating_mul(per_block) }
     }
 }
 
@@ -326,14 +334,28 @@ impl<T: RetainedSize> KhaosStore<T> {
             .and_then(|overhead| overhead.checked_add(block.block.value.retained_size()))
     }
 
+    fn check_resource_limit(&self, incoming_bytes: usize, pinned: Option<&KhaosBlock<T>>) -> Result<(), KhaosError> {
+        if self.max_entries == 0 || incoming_bytes > self.max_bytes {
+            return Err(KhaosError::ResourceLimit { resource: "khaos store", maximum: self.max_bytes });
+        }
+        let mut remaining_entries = self.list_entries;
+        let mut remaining_bytes = self.total_bytes;
+        for candidate in &self.insertion_order {
+            if remaining_entries < self.max_entries && remaining_bytes.checked_add(incoming_bytes).is_some_and(|total| total <= self.max_bytes) { return Ok(()); }
+            if pinned.is_some_and(|parent| Rc::ptr_eq(candidate, parent)) { continue; }
+            remaining_entries = remaining_entries.saturating_sub(1);
+            remaining_bytes = remaining_bytes.saturating_sub(Self::accounted_bytes(candidate).unwrap_or(usize::MAX));
+        }
+        if remaining_entries < self.max_entries && remaining_bytes.checked_add(incoming_bytes).is_some_and(|total| total <= self.max_bytes) { Ok(()) }
+        else { Err(KhaosError::ResourceLimit { resource: "khaos store", maximum: self.max_bytes }) }
+    }
+
     fn evict_for_resource_limit(
         &mut self,
         incoming_bytes: usize,
         pinned: Option<&KhaosBlock<T>>,
     ) -> Result<(), KhaosError> {
-        if self.max_entries == 0 || incoming_bytes > self.max_bytes {
-            return Err(KhaosError::ResourceLimit { resource: "khaos store", maximum: self.max_bytes });
-        }
+        self.check_resource_limit(incoming_bytes, pinned)?;
         let mut remaining_entries = self.list_entries;
         let mut remaining_bytes = self.total_bytes;
         let mut victims = Vec::new();
@@ -343,22 +365,12 @@ impl<T: RetainedSize> KhaosStore<T> {
             {
                 break;
             }
-            if pinned.is_some_and(|parent| Rc::ptr_eq(candidate, parent)) {
-                continue;
-            }
+            if pinned.is_some_and(|parent| Rc::ptr_eq(candidate, parent)) { continue; }
             remaining_entries = remaining_entries.saturating_sub(1);
-            remaining_bytes = remaining_bytes
-                .saturating_sub(Self::accounted_bytes(candidate).unwrap_or(usize::MAX));
+            remaining_bytes = remaining_bytes.saturating_sub(Self::accounted_bytes(candidate).unwrap_or(usize::MAX));
             victims.push(Rc::clone(candidate));
         }
-        if remaining_entries >= self.max_entries
-            || remaining_bytes.checked_add(incoming_bytes).is_none_or(|total| total > self.max_bytes)
-        {
-            return Err(KhaosError::ResourceLimit { resource: "khaos store", maximum: self.max_bytes });
-        }
-        for victim in victims {
-            self.evict_entry(&victim);
-        }
+        for victim in victims { self.evict_entry(&victim); }
         Ok(())
     }
 
@@ -471,6 +483,13 @@ impl<T: RetainedSize> KhaosDatabase<T> {
         Ok(&self.head.as_ref().expect("push establishes a head").block)
     }
 
+    pub fn check_linked_resource(&self, parent_id: &BlockId, retained_size: usize) -> Result<(), KhaosError> {
+        let parent = self.mini_store.get_by_hash(parent_id).ok_or(KhaosError::NonCommonBlock)?;
+        let incoming = KHAOS_BLOCK_OVERHEAD.checked_add(retained_size)
+            .ok_or(KhaosError::ResourceLimit { resource: "khaos store", maximum: self.mini_store.max_bytes })?;
+        self.mini_store.check_resource_limit(incoming, Some(&parent))
+    }
+
     pub fn remove_blk(&mut self, id: &BlockId) -> Result<(), KhaosError> {
         if !self.mini_store.remove(id) {
             self.mini_unlinked_store.remove(id);
@@ -488,6 +507,14 @@ impl<T: RetainedSize> KhaosDatabase<T> {
         self.mini_store.by_hash.get(id).or_else(|| self.mini_unlinked_store.by_hash.get(id)).map(|node| &node.block)
     }
     pub fn get_head(&self) -> Option<&KhaosBlockData<T>> { self.head.as_ref().map(|head| &head.block) }
+    /// Selects a retained linked block as the canonical graph head.
+    /// Fork switching uses this before rewinding and after each replayed block;
+    /// it never changes graph membership.
+    pub fn set_head(&mut self, id: &BlockId) -> Result<(), KhaosError> {
+        let head = self.mini_store.get_by_hash(id).ok_or(KhaosError::NonCommonBlock)?;
+        self.head = Some(head);
+        Ok(())
+    }
     pub fn has_data(&self) -> bool { !self.mini_store.is_empty() }
 
     pub fn pop(&mut self) -> bool {

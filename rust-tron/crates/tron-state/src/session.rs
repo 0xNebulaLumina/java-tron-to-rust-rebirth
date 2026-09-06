@@ -164,6 +164,12 @@ impl SessionManager {
         self.build_root(true)
     }
 
+    #[must_use]
+    pub fn committed_view(&self) -> ReadView {
+        let state = self.lock();
+        ReadView::capture(&state.root, &[])
+    }
+
     fn build_root(&self, temporarily_enable: bool) -> Result<Session, SessionError> {
         let mut state = self.lock();
         if state.active != 0 { return Err(SessionError::ActiveSessions(state.active)); }
@@ -229,6 +235,29 @@ impl SessionManager {
         let mut state = self.lock();
         if state.pending_outer == Some(id) { state.pending_outer = None; }
     }
+    #[doc(hidden)]
+    pub fn inject_committed_pending_outer(&self) -> Result<(), SessionError> {
+        let mut state = self.lock();
+        let id = state.pending_outer.ok_or(SessionError::InvalidSession)?;
+        let layer = state.layers.iter_mut().find(|layer| layer.id == id).ok_or(SessionError::InvalidSession)?;
+        if layer.committed || layer.abandoned { return Err(SessionError::InvalidSession); }
+        layer.committed = true;
+        state.active = state.active.checked_sub(1).ok_or(SessionError::NoActiveSession)?;
+        Ok(())
+    }
+
+    /// Removes the reserved pending outer layer and every descendant even when
+    /// ordinary close cannot revoke a partially committed speculative stack.
+    /// This is reserved for failure recovery before reconstructing a snapshot.
+    pub fn force_reset_pending_outer(&self) {
+        let mut state = self.lock();
+        let Some(id) = state.pending_outer.take() else { return };
+        let Some(index) = state.layers.iter().position(|layer| layer.id == id) else { return };
+        let discarded = state.layers.split_off(index);
+        let discarded_active = discarded.iter().filter(|layer| !layer.committed && !layer.abandoned).count();
+        state.active = state.active.saturating_sub(discarded_active);
+        if discarded.iter().any(|layer| layer.disable_on_exit) { state.enabled = false; }
+    }
     /// Captures the current Java HEAD logical state without active speculative layers.
     #[must_use]
     pub fn session_view(&self) -> ReadView { self.read_view() }
@@ -251,6 +280,28 @@ impl SessionManager {
     }
 
     pub(crate) fn committed_checkpoints(&self) -> Vec<CommittedCheckpoint> { self.lock().checkpoints.clone() }
+    /// Returns committed checkpoint points in ancestry order for exact state/cursor comparisons.
+    #[must_use]
+    pub fn checkpoint_points(&self) -> Vec<CursorPoint> {
+        self.lock().checkpoints.iter().map(|checkpoint| checkpoint.point).collect()
+    }
+
+    /// Atomically removes the latest committed overlay and its matching checkpoint.
+    /// Neither stack changes when the requested identity is not the current checkpoint.
+    pub fn rewind_checkpoint(&self, expected: CheckpointIdentity) -> Result<bool, SessionError> {
+        let mut state = self.lock();
+        if state.active != 0 { return Err(SessionError::ActiveSessions(state.active)); }
+        let Some(layer) = state.layers.last() else {
+            return if state.checkpoints.is_empty() { Ok(false) } else { Err(SessionError::InvalidSession) };
+        };
+        let Some(checkpoint) = state.checkpoints.last() else { return Err(SessionError::InvalidSession); };
+        if !layer.committed || layer.abandoned || checkpoint.point.identity != expected {
+            return Err(SessionError::InvalidSession);
+        }
+        state.layers.pop();
+        state.checkpoints.pop();
+        Ok(true)
+    }
 
     pub(crate) fn checkpoint_state_with<T, E>(
         &self,
@@ -712,6 +763,32 @@ impl Session {
     pub fn is_active(&self) -> bool { !self.finalized && self.id.is_some() }
 
     pub fn commit(&mut self) -> Result<(), SessionError> { self.finish(Finish::Commit) }
+    /// Commits this session and records its block checkpoint under the same manager lock.
+    /// Validation completes before either the layer or checkpoint history is mutated.
+    pub fn commit_with_checkpoint(&mut self, point: CursorPoint) -> Result<(), SessionError> {
+        if self.finalized { return Ok(()); }
+        let Some(id) = self.id else { self.finalized = true; return Ok(()); };
+        let mut state = self.manager.lock();
+        let Some(index) = state.layers.iter().position(|layer| layer.id == id) else {
+            self.finalized = true;
+            return Err(SessionError::InvalidSession);
+        };
+        if state.layers[index].committed || state.layers[index].abandoned
+            || state.layers[index + 1..].iter().any(|layer| !layer.committed || layer.abandoned)
+            || state.checkpoints.iter().any(|checkpoint| checkpoint.point.identity == point.identity)
+            || state.checkpoints.last().is_some_and(|head| point.block <= head.point.block)
+        {
+            return Err(SessionError::InvalidSession);
+        }
+        let parent = state.checkpoints.last().map(|checkpoint| checkpoint.point.identity);
+        let view = ReadView::capture(&state.root, &state.layers);
+        state.layers[index].committed = true;
+        state.active = state.active.checked_sub(1).ok_or(SessionError::NoActiveSession)?;
+        state.checkpoints.push(CommittedCheckpoint { point, parent, view });
+        if state.layers[index].disable_on_exit { state.enabled = false; }
+        self.finalized = true;
+        Ok(())
+    }
     #[must_use]
     pub(crate) fn identity(&self) -> Option<u64> { self.id }
     pub fn child(&self) -> Result<Session, SessionError> {

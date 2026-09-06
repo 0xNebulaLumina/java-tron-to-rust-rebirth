@@ -363,6 +363,26 @@ fn deep_payload_limits_reject_without_linked_or_orphan_mutation() {
 }
 
 #[test]
+fn block_policy_budget_retains_maximum_blocks_across_fork_depth() {
+    let max_block_bytes = 2_000_000;
+    let depth = 4;
+    let branches = 2;
+    let limits = KhaosLimits::for_block_policy(max_block_bytes, depth, branches);
+    assert_eq!(limits.max_list_entries, usize::try_from(depth).unwrap() * branches);
+    assert!(limits.max_total_bytes >= limits.max_list_entries * max_block_bytes);
+
+    let root = id(0, 60);
+    let mut db = KhaosDatabase::new();
+    db.set_limits(limits);
+    db.start(owned_block(0, 60, None, max_block_bytes - 5)).unwrap();
+    for number in 1..depth {
+        let parent = if number == 1 { root } else { id(number - 1, 60 + u8::try_from(number - 1).unwrap()) };
+        db.push(owned_block(number, 60 + u8::try_from(number).unwrap(), Some(parent), max_block_bytes - 5)).unwrap();
+    }
+    assert_eq!(db.linked_store().list_entries(), usize::try_from(depth).unwrap());
+}
+
+#[test]
 fn branch_rejects_repeated_parent_ids_and_nondecreasing_heights() {
     let root = id(0, 1);
     let child = id(1, 2);

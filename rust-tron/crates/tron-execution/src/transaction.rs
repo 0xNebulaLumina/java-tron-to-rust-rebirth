@@ -8,6 +8,7 @@ pub struct RawWireTransaction {
     transaction: Transaction,
     full_bytes: Vec<u8>,
     raw_data_bytes: Vec<u8>,
+    signature_verification_cached: bool,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -28,13 +29,16 @@ impl RawWireTransaction {
             if number==1 && wire==2 { if raw.is_some(){return Err(TransactionWireError::MultipleRawData)} raw=Some(payload.to_vec()); }
             Ok(())
         })?;
-        Ok(Self{transaction,full_bytes,raw_data_bytes:raw.ok_or(TransactionWireError::MissingRawData)?})
+        Ok(Self{transaction,full_bytes,raw_data_bytes:raw.ok_or(TransactionWireError::MissingRawData)?,signature_verification_cached:false})
     }
     #[must_use] pub fn message(&self)->&Transaction { &self.transaction }
     #[must_use] pub fn full_bytes(&self)->&[u8] { &self.full_bytes }
     #[must_use] pub fn raw_data_bytes(&self)->&[u8] { &self.raw_data_bytes }
     #[must_use] pub fn transaction_id(&self,engine:CryptoEngine)->Hash32 { selected_digest(engine,&self.raw_data_bytes).into() }
     #[must_use] pub fn full_hash(&self,engine:CryptoEngine)->Hash32 { selected_digest(engine,&self.full_bytes).into() }
+    #[must_use] pub const fn signature_verification_cached(&self)->bool { self.signature_verification_cached }
+    pub fn clear_signature_verification_cache(&mut self) { self.signature_verification_cached=false; }
+    pub fn set_signature_verification_cached(&mut self, verified: bool) { self.signature_verification_cached=verified; }
     #[must_use] pub fn has_top_level_unknown_fields(&self)->bool { let mut unknown=false; let _=scan_fields(&self.full_bytes,|n,_,_,_|{unknown|=!matches!(n,1|2|5);Ok(())}); unknown }
     pub fn sanitize_top_level_unknown_fields(&mut self)->Result<bool,TransactionWireError>{
         if !self.has_top_level_unknown_fields(){return Ok(false)}

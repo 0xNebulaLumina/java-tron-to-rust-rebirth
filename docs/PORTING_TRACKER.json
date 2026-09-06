@@ -2528,64 +2528,95 @@
     {
       "id": "C019",
       "title": "Block manager and fork switching",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-09-06",
       "resume": null,
       "items": [
         {
           "id": "C019.01",
           "description": "Block timestamp/parent/size/signature/witness/version validation and construction.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "BlockManager validates exact wire/header identity, parent/height/time/version/size/duplicate/signature/schedule/shielded bounds before child-session application."
         },
         {
           "id": "C019.02",
           "description": "Ordered transaction execution/result comparison, Merkle/account roots and block ID.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Ordered C016 execution compares supplied results and validates full-wire transaction Merkle and account-state roots before atomic publication."
         },
         {
           "id": "C019.03",
           "description": "Rewards, maintenance, recent/history/index persistence and receive metadata.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Child-session hooks cover MASTER backup, rewards/proposals/maintenance/DPoS/fork statistics; block/recent/history/index/receive metadata and consensus views publish atomically."
         },
         {
           "id": "C019.04",
           "description": "Fork switch rewind/replay, signature-cache clearing, failure restoration.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "ForkManager rewinds old head-first, clears transaction/signature caches, replays replacement oldest-first, and restores old state, graph, cache, pending queues and visibility on every replay failure."
         },
         {
           "id": "C019.05",
           "description": "Pending suspension/requeue and HEAD/SOLIDITY/PBFT advancement.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Pending state suspends before canonical rewind, restores exact timestamps/order on failure, and resumes held transactions before refreshed abandoned-block transactions; block hooks advance distinct consensus views inside checkpoints."
         },
         {
           "id": "C019.06",
           "description": "Event/filter removed/reapply hooks and state-consistent ordering.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Removed events publish old head-first; replacement contract/filter/block events remain buffered until full replay success, preventing failed-branch forward visibility."
         },
         {
           "id": "C019.07",
           "description": "Extend consensus manifests with explicit branch graphs, minimum reorg depths, injected replay failures, restoration, pending requeue, cursor and event assertions.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Published pinned Java Manager oracle/instrumentation, explicit depth-two branch graph and failure/restoration/pending/view/root/event scenarios, plus exact production, Java-test, C017 and C011 row reconciliation."
         }
       ],
       "gate": {
         "id": "C019.V",
-        "description": "Multi-branch Java differential state/root/event/view fixtures pass atomically.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed and cleanly reviewed: the pinned instrumented Java Manager oracle covers three scenarios; the focused Rust targets pass exactly 6 block, 6 fork, and 6 multi-branch scenario tests; and the locked tron-execution all-targets check passes. Failed pending rebuilds capture discard errors, force-remove malformed pending sessions and descendants when necessary, restore the prior branch, head, checkpoints, complete store image, caches, pending queues and timestamps, speculative session, views, roots, and event/filter visibility, and preserve combined original/discard/restoration errors.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C019 pinned Java Manager oracle, scenario manifests and ownership reconciliation",
+            "cwd": ".",
+            "argv": ["python3", "tools/execution/c019_gate.py", "metadata", "oracle"],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C019 block application contracts",
+            "cwd": ".",
+            "argv": ["python3", "tools/execution/c019_gate.py", "block"],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C019 fork switching contracts",
+            "cwd": ".",
+            "argv": ["python3", "tools/execution/c019_gate.py", "fork"],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C019 multi-branch differential scenarios",
+            "cwd": ".",
+            "argv": ["python3", "tools/execution/c019_gate.py", "scenario"],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C019 exact tron-execution all-targets check",
+            "cwd": ".",
+            "argv": ["python3", "tools/execution/c019_gate.py", "all-targets"],
+            "timeout_seconds": 1200
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
+        "state": "approved",
+        "round": 1,
         "findings": []
       },
       "blocker": null

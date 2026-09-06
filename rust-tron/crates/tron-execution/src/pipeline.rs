@@ -270,7 +270,7 @@ impl TransactionProcessor {
     pub fn process_transaction(&mut self, mut tx: RawWireTransaction, context: ProcessContext) -> Result<ProcessOutput, ProcessError> {
         let mut session = self.sessions.build_session_enabled()?;
         let cache_before = self.cache.clone();
-        let result = self.process_in(&session, &mut tx, &context).and_then(|output| {
+        let result = self.process_in_session(&session, &mut tx, &context).and_then(|output| {
             self.cache.insert(output.transaction_id, context.clock.block_number, context.clock.now).map_err(|error| stage(PipelineStage::PersistCache, error.to_string()))?;
             session.store(StoreKind::TransactionHistory).put(output.transaction_id.as_bytes(), &output.info.encode_to_vec()).map_err(|error| stage(PipelineStage::PersistInfo, error.to_string()))?;
             Ok(output)
@@ -284,8 +284,9 @@ impl TransactionProcessor {
         }
     }
 
-    fn process_in(&mut self, session: &Session, tx: &mut RawWireTransaction, context: &ProcessContext) -> Result<ProcessOutput, ProcessError> {
+    pub fn process_in_session(&mut self, session: &Session, tx: &mut RawWireTransaction, context: &ProcessContext) -> Result<ProcessOutput, ProcessError> {
         let id = self.pipeline.admit(tx, session, context)?;
+        tx.set_signature_verification_cached(true);
         // Cache is the fast-path reservation and rejects before any durable lookup.
         // The durable store remains authoritative after cache expiry or eviction.
         if self.cache.contains_recent(&id, context.clock.now).map_err(|error| stage(PipelineStage::Duplicate, error.to_string()))? { return Err(ProcessError::Duplicate(id)); }

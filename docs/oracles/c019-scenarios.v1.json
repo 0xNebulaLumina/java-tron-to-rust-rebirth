@@ -1,0 +1,171 @@
+{
+  "branch_graph": {
+    "canonical": [
+      "G0",
+      "A1",
+      "A2"
+    ],
+    "common_ancestor": "G0",
+    "genesis": "G0",
+    "removed": [
+      "A2",
+      "A1"
+    ],
+    "replacement": [
+      "G0",
+      "B1",
+      "B2",
+      "B3"
+    ],
+    "replayed": [
+      "B1",
+      "B2",
+      "B3"
+    ]
+  },
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "minimum_reorg_depth": 2,
+  "rust_target": "c019_scenarios",
+  "rust_tests": [
+    "multi_branch_switch_rewinds_head_first_and_replays_oldest_first",
+    "removed_callbacks_observe_each_old_block_as_current_head",
+    "invalid_new_witness_signature_removes_branch_and_restores_old_head",
+    "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+    "transaction_signature_cache_can_be_invalidated_for_fork_revalidation"
+  ],
+  "scenarios": [
+    {
+      "cache": "updated",
+      "graph": "A2",
+      "id": "valid-apply",
+      "result": "head=A2",
+      "state": "committed"
+    },
+    {
+      "graph": "retains-B1-B3",
+      "id": "side-fork",
+      "result": "head=A2",
+      "state": "unchanged"
+    },
+    {
+      "id": "successful-switch",
+      "removed": [
+        "A2",
+        "A1"
+      ],
+      "replayed": [
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "received_at": {
+        "B1": "original",
+        "B2": "original",
+        "B3": "original"
+      },
+      "result": "head=B3"
+    },
+    {
+      "failure_at": "B3",
+      "id": "invalid-witness-signature",
+      "replacement_removed": true,
+      "restored": [
+        "state",
+        "graph",
+        "cache",
+        "pending",
+        "checkpoints",
+        "HEAD",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "result": "head=A2"
+    },
+    {
+      "failure_at": "B3-after-B1-B2",
+      "forward_events_published": false,
+      "all_store_bytes_restored": true,
+      "checkpoint_ids_and_cursors_restored": true,
+      "removed_events_published": true,
+      "compensating_old_branch_reapply_published": true,
+      "id": "mid-replay-apply-failure",
+      "restored": [
+        "state",
+        "graph",
+        "cache",
+        "pending",
+        "checkpoints",
+        "HEAD",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "result": "head=A2"
+    },
+    {
+      "id": "pending-requeue",
+      "order": [
+        "held-pending",
+        "popped-A2",
+        "popped-A1"
+      ],
+      "timestamps": {
+        "held-pending": "preserved",
+        "popped": "refreshed-at-switch"
+      }
+    },
+    {
+      "id": "event-order",
+      "reapply": [
+        "B1:block-filter",
+        "B1:logs",
+        "B1:block",
+        "B2:block-filter",
+        "B2:logs",
+        "B2:block",
+        "B3:block-filter",
+        "B3:logs",
+        "B3:block"
+      ],
+      "removed": [
+        "A2:contract@HEAD=A2",
+        "A2:block@HEAD=A2",
+        "A2:logs@HEAD=A2",
+        "A1:contract@HEAD=A1",
+        "A1:block@HEAD=A1",
+        "A1:logs@HEAD=A1"
+      ]
+    },
+    {
+      "checkpoints_before": [
+        "G0",
+        "A1",
+        "A2"
+      ],
+      "checkpoints_after_success": [
+        "G0",
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "failed_switch_equality": [
+        "StoreKind::ALL bytes",
+        "logical roots",
+        "checkpoint identities",
+        "HEAD cursor",
+        "SOLIDITY cursor",
+        "PBFT cursor",
+        "cache",
+        "pending",
+        "events"
+      ],
+      "cursors": [
+        "HEAD",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "id": "views-and-roots",
+      "root_contract": "exact logical root captured at every checkpoint; failed replay restores A2 root byte-for-byte"
+    }
+  ],
+  "schema": "c019-scenarios.v1"
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "java-tron-c019-block-apply-v1",
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "source": "framework/src/main/java/org/tron/core/db/Manager.java processBlock/pushBlock and core/src/main/java/org/tron/core/capsule/BlockCapsule.java",
+  "vectors": [
+    {
+      "id": "empty-merkle",
+      "transaction_full_bytes_hex": [],
+      "root_hex": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "id": "single-full-wire-merkle",
+      "transaction_full_bytes_hex": ["0a00"],
+      "root_hex": "102b51b9765a56a3e899f7cf0ee38e5251f9c503b357b330a49183eb7b155604"
+    }
+  ],
+  "fork_switch": {
+    "branch_order": {
+      "removed": "old-head-to-common-ancestor-exclusive",
+      "replayed": "common-ancestor-child-to-new-head"
+    },
+    "removed_order_per_block": ["contract-events", "block-and-transaction-events", "logs-filter", "khaos-pop", "fastPop"],
+    "reapply_order_per_block": ["contract-events-during-apply", "block-filter", "logs-filter", "block-and-transaction-events"],
+    "failure": "remove the replacement branch, rewind its committed sessions, replay the original branch oldest-first, restore cache and pending queues"
+  },
+  "invariants": [
+    "block id hashes exact raw-header wire bytes then overlays signed height",
+    "transaction Merkle leaves hash exact full transaction wire bytes",
+    "invalid block application leaves graph, committed state, and transaction cache unchanged",
+    "backup MASTER seam and block side effects execute inside the child session",
+    "pending execution is suspended before fastPop and held pending precedes timestamp-refreshed popped transactions after success",
+    "every replayed transaction clears signature-verification cache and every replayed block revalidates its witness signature",
+    "failed replacement replay restores canonical state, Khaos head, transaction cache, event visibility, and pending queue contents"
+  ]
+}
