@@ -211,3 +211,16 @@ fn descriptor_inventory_has_exact_service_and_method_totals() {
     assert!(source.contains("\"method_count\": 204"));
     assert!(source.contains("\"unmapped\": []"));
 }
+
+#[test]
+fn production_provider_uses_shared_monitor_and_node_info_sources() {
+    let (path,ctx)=context();
+    let monitor:Arc<dyn tron_apis::MonitorSource>=Arc::new(||tron_apis::MetricsInfo{interval:77,..Default::default()});
+    let node:Arc<dyn Fn()->tron_apis::NodeInfo+Send+Sync>=Arc::new(||tron_apis::NodeInfo{block:"shared-head".into(),current_connect_count:4,..Default::default()});
+    let provider=RpcDomainProvider::with_operational_sources(ctx,monitor,node);
+    assert_eq!(provider.metrics().interval,77);
+    let observed=provider.node_info();
+    assert_eq!((observed.block.as_str(),observed.current_connect_count),("shared-head",4));
+    drop(provider);
+    std::fs::remove_dir_all(path).unwrap();
+}

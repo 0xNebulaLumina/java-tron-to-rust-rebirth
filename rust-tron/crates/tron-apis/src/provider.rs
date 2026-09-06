@@ -9,14 +9,26 @@ use tron_protocol::protocol::*;
 use tron_state::{CursorView, StoreKind};
 use zeroize::Zeroize;
 
-use crate::{ApiContext, ApiCursor, ApiError, ShieldedWallet, WalletMutation, WalletQuery};
+use crate::{ApiContext, ApiCursor, ApiError, MonitorSource, ShieldedWallet, WalletMutation, WalletQuery};
 
 #[derive(Clone)]
-pub struct RpcDomainProvider { context: ApiContext }
+pub struct RpcDomainProvider {
+    context: ApiContext,
+    monitor: Option<std::sync::Arc<dyn MonitorSource>>,
+    node_info: Option<std::sync::Arc<dyn Fn() -> NodeInfo + Send + Sync>>,
+}
 
 impl RpcDomainProvider {
     #[must_use]
-    pub fn new(context: ApiContext) -> Self { Self { context } }
+    pub fn new(context: ApiContext) -> Self { Self { context, monitor: None, node_info: None } }
+    #[must_use]
+    pub fn with_monitor(context: ApiContext, monitor: std::sync::Arc<dyn MonitorSource>) -> Self {
+        Self { context, monitor: Some(monitor), node_info: None }
+    }
+    #[must_use]
+    pub fn with_operational_sources(context: ApiContext, monitor: std::sync::Arc<dyn MonitorSource>, node_info: std::sync::Arc<dyn Fn() -> NodeInfo + Send + Sync>) -> Self {
+        Self { context, monitor: Some(monitor), node_info: Some(node_info) }
+    }
     fn query(&self, cursor: ApiCursor) -> WalletQuery { WalletQuery::new(self.context.clone(), cursor) }
     fn view(&self, cursor: ApiCursor) -> crate::TypedReadView { self.context.view(cursor) }
     fn digest(&self, bytes: &[u8]) -> Vec<u8> { selected_digest(self.context.crypto_engine(), bytes).to_vec() }
@@ -263,11 +275,18 @@ impl RpcDomainProvider {
     pub fn get_block(&self,p:BlockReq,cursor:ApiCursor)->Result<BlockExtention,ApiError>{let query=self.query(cursor);if p.id_or_num.is_empty(){query.block_extension_by_num(self.dynamic(cursor,"LATEST_BLOCK_HEADER_NUMBER")?)}else if let Ok(n)=p.id_or_num.parse::<i64>(){query.block_extension_by_num(n)}else{query.block_extension_by_id(&decode_hex(&p.id_or_num)?)} }
     pub fn dynamic_properties(&self)->Result<DynamicProperties,ApiError>{Ok(DynamicProperties{last_solidity_block_num:self.dynamic(ApiCursor::Solidity,"LATEST_BLOCK_HEADER_NUMBER")?})}
     pub fn node_info(&self)->NodeInfo {
+        if let Some(source) = &self.node_info { return source(); }
         let head = self.context.head().point();
         let solid = self.context.solidity().point();
         self.context.network().node_info(head.block, solid.block).into_proto()
     }
-    pub fn metrics(&self)->MetricsInfo { let head=self.context.head().point(); let block=self.query(ApiCursor::Head).now_block().ok(); let timestamp=block.as_ref().and_then(|b|b.block_header.as_ref()).and_then(|h|h.raw_data.as_ref()).map_or(0,|h|h.timestamp); MetricsInfo { interval:1,node:Some(metrics_info::NodeInfo{ip:"127.0.0.1".into(),node_type:0,version:env!("CARGO_PKG_VERSION").into(),backup_status:0}),blockchain:Some(metrics_info::BlockChainInfo{head_block_num:head.block as i64,head_block_timestamp:timestamp,head_block_hash:hex(&head.identity.bytes()),fork_count:0,fail_fork_count:0,block_process_time:None,tps:None,transaction_cache_size:self.context.pending().lock().map(|p|p.len() as i32).unwrap_or(0),missed_transaction:None,witnesses:Vec::new(),fail_process_block_num:0,fail_process_block_reason:String::new(),dup_witness:Vec::new()}),net:None } }
+    pub fn metrics(&self)->MetricsInfo {
+        if let Some(monitor) = &self.monitor { return monitor.stats(); }
+        let head=self.context.head().point();
+        let block=self.query(ApiCursor::Head).now_block().ok();
+        let timestamp=block.as_ref().and_then(|b|b.block_header.as_ref()).and_then(|h|h.raw_data.as_ref()).map_or(0,|h|h.timestamp);
+        MetricsInfo { interval:0,node:Some(metrics_info::NodeInfo{ip:String::new(),node_type:0,version:env!("CARGO_PKG_VERSION").into(),backup_status:0}),blockchain:Some(metrics_info::BlockChainInfo{head_block_num:head.block as i64,head_block_timestamp:timestamp,head_block_hash:hex(&head.identity.bytes()),fork_count:0,fail_fork_count:0,block_process_time:None,tps:None,transaction_cache_size:self.context.pending().lock().map(|p|p.len() as i32).unwrap_or(0),missed_transaction:None,witnesses:Vec::new(),fail_process_block_num:0,fail_process_block_reason:String::new(),dup_witness:Vec::new()}),net:None }
+    }
     fn scan_notes<F>(&self,start:i64,end:i64,cursor:ApiCursor,mut decrypt:F)->Result<Vec<decrypt_notes::NoteTx>,ApiError>
     where F:FnMut(&tron_shielded::EncryptedNote)->tron_shielded::Result<Option<tron_shielded::DecryptedNote>> {
         Self::require_range(start,end)?;

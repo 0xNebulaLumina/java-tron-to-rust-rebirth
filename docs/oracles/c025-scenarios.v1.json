@@ -1,0 +1,26 @@
+{
+  "schema": "c025-scenarios-v1",
+  "count": 5,
+  "scenarios": [
+    {
+      "id": "C025-SCENARIO-LIVE-ZMQ",
+      "rust_case": "c025_scenarios::live_zeromq_subscriber_receives_topic_and_json_frames"
+    },
+    {
+      "id": "C025-SCENARIO-PROM-SCRAPE",
+      "rust_case": "c025_scenarios::live_prometheus_scrape_exposes_monitor_updates"
+    },
+    {
+      "id": "C025-SCENARIO-C022-MONITOR",
+      "rust_case": "c025_scenarios::c022_monitor_and_node_info_share_provider_snapshot"
+    },
+    {
+      "id": "C025-SCENARIO-C019-REORG",
+      "rust_case": "c025_scenarios::c019_reorg_emits_removed_then_reapplied_events"
+    },
+    {
+      "id": "C025-SCENARIO-LIFECYCLE",
+      "rust_case": "c025_lifecycle::operations_start_after_network_and_apis_then_shutdown_in_reverse"
+    }
+  ]
+}

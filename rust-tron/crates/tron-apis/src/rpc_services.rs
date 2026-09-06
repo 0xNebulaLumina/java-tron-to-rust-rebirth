@@ -15,8 +15,11 @@ impl RpcApiServices {
     pub fn new(context: ApiContext) -> Self { Self::with_blocking_executor(context, BlockingExecutor::default()) }
     #[must_use]
     pub fn with_blocking_executor(context: ApiContext, blocking: BlockingExecutor) -> Self {
-        Self { provider: RpcDomainProvider::new(context.clone()), context, blocking, http_cursor: None }
+        let provider=RpcDomainProvider::new(context.clone());
+        Self { provider, context, blocking, http_cursor: None }
     }
+    #[must_use]
+    pub fn with_provider(context: ApiContext, provider: RpcDomainProvider) -> Self { Self { provider, context, blocking: BlockingExecutor::default(), http_cursor: None } }
     pub(crate) fn with_http_cursor(mut self, cursor: ApiCursor) -> Self { self.http_cursor = Some(cursor); self }
     fn query(&self, cursor: ApiCursor) -> WalletQuery { WalletQuery::new(self.context.clone(), self.http_cursor.unwrap_or(cursor)) }
     fn mutation(&self) -> WalletMutation { WalletMutation::new(self.context.clone()) }

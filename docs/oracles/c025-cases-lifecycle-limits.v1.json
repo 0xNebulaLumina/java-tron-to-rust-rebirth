@@ -1,0 +1,1932 @@
+{
+  "schema": "c025-cases-lifecycle-limits.v1",
+  "row_count": 131,
+  "behavior_count": 83,
+  "declaration_count": 48,
+  "test_target": "tron-node::c025_cases_lifecycle_limits",
+  "rows": [
+    {
+      "id": "TCASE-611FA16BC3479E2C",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 54,
+        "path": "java-tron/framework/src/test/java/org/tron/common/application/GrpcNettyMaxConcurrentStreamsLimiterTest.java"
+      },
+      "java_symbol": "shouldEnforceMaxStreamsBeforeSettingsAck",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "live_plaintext_server_advertises_limit_and_refuses_excess_stream_before_ack",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-4406D52ED5F9982E",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 73,
+        "path": "java-tron/framework/src/test/java/org/tron/common/application/GrpcNettyMaxConcurrentStreamsLimiterTest.java"
+      },
+      "java_symbol": "shouldIgnoreClientMaxHeaderListSizeOnServer",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "grpc_policy_rejects_nonpositive_limits_and_keeps_client_header_setting_out_of_policy",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-48D57E6A3B719028",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 89,
+        "path": "java-tron/framework/src/test/java/org/tron/common/application/GrpcNettyMaxConcurrentStreamsLimiterTest.java"
+      },
+      "java_symbol": "shouldRejectNonPositiveStreamLimit",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "grpc_policy_rejects_nonpositive_limits_and_keeps_client_header_setting_out_of_policy",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-00DFEEB25E489997",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 122,
+        "path": "java-tron/framework/src/test/java/org/tron/common/application/RpcServiceHttp2SecurityTest.java"
+      },
+      "java_symbol": "shouldRejectExcessStreamsBeforeClientAcknowledgesSettings",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "live_plaintext_server_advertises_limit_and_refuses_excess_stream_before_ack",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-C0509A7F261A9C82",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 41,
+        "path": "java-tron/framework/src/test/java/org/tron/program/AccountVoteWitnessTest.java"
+      },
+      "java_symbol": "testAccountVoteWitness",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-E3595EFE38758470",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 52,
+        "path": "java-tron/framework/src/test/java/org/tron/program/KeystoreFactoryDeprecationTest.java"
+      },
+      "java_symbol": "testDeprecationWarningPrinted",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "keystore_factory_repl_preserves_deprecation_dispatch_prompts_and_exit",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-A0354BCA919281D3",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 67,
+        "path": "java-tron/framework/src/test/java/org/tron/program/KeystoreFactoryDeprecationTest.java"
+      },
+      "java_symbol": "testHelpCommand",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "keystore_factory_repl_preserves_deprecation_dispatch_prompts_and_exit",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-06C5E4F09C706A1F",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 80,
+        "path": "java-tron/framework/src/test/java/org/tron/program/KeystoreFactoryDeprecationTest.java"
+      },
+      "java_symbol": "testInvalidCommand",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "keystore_factory_repl_preserves_deprecation_dispatch_prompts_and_exit",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-7799F755AB648605",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 93,
+        "path": "java-tron/framework/src/test/java/org/tron/program/KeystoreFactoryDeprecationTest.java"
+      },
+      "java_symbol": "testEmptyLineSkipped",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "keystore_factory_repl_preserves_deprecation_dispatch_prompts_and_exit",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-A02F5A46918A4573",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 105,
+        "path": "java-tron/framework/src/test/java/org/tron/program/KeystoreFactoryDeprecationTest.java"
+      },
+      "java_symbol": "testQuitCommand",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "keystore_factory_repl_preserves_deprecation_dispatch_prompts_and_exit",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-45F78086E2BD6E4E",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 117,
+        "path": "java-tron/framework/src/test/java/org/tron/program/KeystoreFactoryDeprecationTest.java"
+      },
+      "java_symbol": "testGenKeystoreTriggersError",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "keystore_factory_repl_preserves_deprecation_dispatch_prompts_and_exit",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-ACE95FAD1F1F123A",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 134,
+        "path": "java-tron/framework/src/test/java/org/tron/program/KeystoreFactoryDeprecationTest.java"
+      },
+      "java_symbol": "testImportPrivateKeyTriggersPrompt",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "keystore_factory_repl_preserves_deprecation_dispatch_prompts_and_exit",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-2A5C9AA3AA6EA9F8",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 82,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testSolidityGrpcCall",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-ECC75FD437461ADA",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 111,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testSolidityNodeHttpApiService",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-4FB5B48C32F41CBF",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 125,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testExecutorsInitializedOnStartup",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-88A0D8FDBE4E44F0",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 142,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testOnApplicationEventSetsFlagFalse",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-6A17A3F0489100CD",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 154,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testSolidityConditionMatchesWhenSolidityFlagSet",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-EBD0B48CD2BC4233",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 167,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testResolveCompatibilityIssueWhenSolidityLagsHead",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-EBE8CD81B908660A",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 193,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testShutdownCallsDatabaseClientShutdown",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-B98268F7AD12945A",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 226,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testSleep",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_shutdown_race_does_not_sleep_or_retry",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-BF84229BC644C593",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 253,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testGetBlockByNum",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-D6924C75B79C8610",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 293,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testGetBlockByNumWhenClosed",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_shutdown_race_does_not_sleep_or_retry",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-7AB4A24CB6974B48",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 340,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testGetBlockByNumNoErrorOnExceptionDuringShutdown",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-F04F02E5141D1305",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 382,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testGetLastSolidityBlockNum",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-2C4199CA57939EB1",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 413,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testGetLastSolidityBlockNumWhenClosed",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_shutdown_race_does_not_sleep_or_retry",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-2B6B086198EF7F45",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 451,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testLoopProcessBlock",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-015D2E1CB6D2173E",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 504,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testGetBlockProcessesOneBlock",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-92120864D65D2229",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 557,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testGetBlockShutdownPaths",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-E8E51BCEAD8A629B",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 634,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testProcessSolidityBlockProcessesQueuedBlock",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-C7B71DDE0A291F8E",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 672,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "java_symbol": "testProcessSolidityBlockHandlesInterrupt",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_shutdown_race_does_not_sleep_or_retry",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-60C19E9C0A2A831C",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 47,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SupplementTest.java"
+      },
+      "java_symbol": "testGet",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-EBA3674CD4621DD6",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 126,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SupplementTest.java"
+      },
+      "java_symbol": "testPasswordValid",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-0A23BB8A53D85DE9",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 133,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SupplementTest.java"
+      },
+      "java_symbol": "testRun",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-E91E5D4A4C94C168",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 400,
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java"
+      },
+      "java_symbol": "shutdown",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-0C1E986D2B2F69B4",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/AbstractService.java"
+      },
+      "java_symbol": "org.tron.common.application",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-DB431760582A02ED",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/AbstractService.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/application/AbstractService.java",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-C1AAA7B02C4198CD",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 11,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/AbstractService.java"
+      },
+      "java_symbol": "AbstractService",
+      "declaration_sha256": "75591dc699276170a16c5ef90a147f056f0841e98f9d4122c582ca8540b07f95"
+    },
+    {
+      "id": "PROD-B6B5D98F8EEE9FBA",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 21,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/AbstractService.java"
+      },
+      "java_symbol": "start",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-834B83213337E398",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 35,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/AbstractService.java"
+      },
+      "java_symbol": "stop",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-38C5C56F2A929BDF",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 49,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/AbstractService.java"
+      },
+      "java_symbol": "equals",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-83CC0B702B4A0236",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 61,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/AbstractService.java"
+      },
+      "java_symbol": "hashCode",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-E15D995D578DA8EB",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 69,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/AbstractService.java"
+      },
+      "java_symbol": "isFullNode",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-2D202BDD4F52B275",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/Application.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/application/Application.java",
+      "declaration_sha256": "8732775eee770018db7d79d035a0163015a016de17ebbf8884902ec6d1d9fcf2"
+    },
+    {
+      "id": "PROD-3E35102ECEC1A477",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 16,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/Application.java"
+      },
+      "java_symbol": "org.tron.common.application",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-E603A9B615D24B1D",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 21,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/Application.java"
+      },
+      "java_symbol": "Application",
+      "declaration_sha256": "64a40c318826e91ce15d0b8744b51f43b5e31716b923e0b4dc62ca6b6767d96e"
+    },
+    {
+      "id": "PROD-6DBB813BC3EEC4F2",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationFactory.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationFactory.java",
+      "declaration_sha256": "8732775eee770018db7d79d035a0163015a016de17ebbf8884902ec6d1d9fcf2"
+    },
+    {
+      "id": "PROD-5F342F1A8EAFF295",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 16,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationFactory.java"
+      },
+      "java_symbol": "org.tron.common.application",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-E9A103D029C88DB2",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 20,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationFactory.java"
+      },
+      "java_symbol": "ApplicationFactory",
+      "declaration_sha256": "cc450a77ceaf2453019fc593de71c7818392910b4ca93f1009649b613c090ddd"
+    },
+    {
+      "id": "PROD-7CCB67329FD31717",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 25,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationFactory.java"
+      },
+      "java_symbol": "create",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-CDAE72C2F9408319",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 32,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationFactory.java"
+      },
+      "java_symbol": "createApplication",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-24394A1B022F53CC",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationImpl.java"
+      },
+      "java_symbol": "org.tron.common.application",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-75D8D2A19C8D7ADD",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationImpl.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationImpl.java",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-CBE7F25673A612DF",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 17,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationImpl.java"
+      },
+      "java_symbol": "ApplicationImpl",
+      "declaration_sha256": "3a3579df4957ac6b3d5566f9e17db9d15cbefc5721032f7caf6ec3f32f71d269"
+    },
+    {
+      "id": "PROD-8E4CB4BA072E1A1B",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 45,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationImpl.java"
+      },
+      "java_symbol": "startup",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-9FD1B2468B77FD10",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 55,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationImpl.java"
+      },
+      "java_symbol": "shutdown",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-5736465DF92A2A01",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 70,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationImpl.java"
+      },
+      "java_symbol": "startServices",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-7A444433ACAEEC72",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 75,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationImpl.java"
+      },
+      "java_symbol": "blockUntilShutdown",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-84AC39BF4704982E",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 85,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationImpl.java"
+      },
+      "java_symbol": "shutdownServices",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-B350A5FCC7CD29D2",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 90,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationImpl.java"
+      },
+      "java_symbol": "getDbManager",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-0961BC73630AEDCD",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 95,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ApplicationImpl.java"
+      },
+      "java_symbol": "getChainBaseManager",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-4EC04C807329C2EF",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/CliApplication.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/application/CliApplication.java",
+      "declaration_sha256": "8732775eee770018db7d79d035a0163015a016de17ebbf8884902ec6d1d9fcf2"
+    },
+    {
+      "id": "PROD-243AD682801C6F1F",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 16,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/CliApplication.java"
+      },
+      "java_symbol": "org.tron.common.application",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-86CF1601B1163C93",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 21,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/CliApplication.java"
+      },
+      "java_symbol": "CliApplication",
+      "declaration_sha256": "993317d2072ffb3ebee13dbe6d848f1bcf69c7e481902d5285b63c4129572acd"
+    },
+    {
+      "id": "PROD-6FCA9811258BB1C1",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 24,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/CliApplication.java"
+      },
+      "java_symbol": "startup",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-F84D3E3BB0B58DF1",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 29,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/CliApplication.java"
+      },
+      "java_symbol": "shutdown",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-CC8E83B9697572F4",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 34,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/CliApplication.java"
+      },
+      "java_symbol": "startServices",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-663EB7CC37C9760C",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 39,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/CliApplication.java"
+      },
+      "java_symbol": "shutdownServices",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-6EEB25ED29835C42",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 44,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/CliApplication.java"
+      },
+      "java_symbol": "getDbManager",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-6A7CD2F4FCD675CE",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 49,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/CliApplication.java"
+      },
+      "java_symbol": "getChainBaseManager",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-EE107DF7FCC130EF",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/GrpcNettyMaxConcurrentStreamsLimiter.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/application/GrpcNettyMaxConcurrentStreamsLimiter.java",
+      "declaration_sha256": "8732775eee770018db7d79d035a0163015a016de17ebbf8884902ec6d1d9fcf2"
+    },
+    {
+      "id": "PROD-D5D5C7F4E7B58015",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 16,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/GrpcNettyMaxConcurrentStreamsLimiter.java"
+      },
+      "java_symbol": "org.tron.common.application",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-943D5F9EF6649E01",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 29,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/GrpcNettyMaxConcurrentStreamsLimiter.java"
+      },
+      "java_symbol": "GrpcNettyMaxConcurrentStreamsLimiter",
+      "declaration_sha256": "8ff2fbbc9ff2e90707d52fa07a7b2ae6a0fb17878a5c5d9debb9243759ffb579"
+    },
+    {
+      "id": "PROD-2475DCCAB4211EB2",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 50,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/GrpcNettyMaxConcurrentStreamsLimiter.java"
+      },
+      "java_symbol": "EnforcingProtocolNegotiator",
+      "declaration_sha256": "16a67cb622d37517b2ca57db4db2abbb7c9df6e9ff1acc118eaae9aa0a47855e"
+    },
+    {
+      "id": "PROD-43787AAF46AF7C55",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 63,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/GrpcNettyMaxConcurrentStreamsLimiter.java"
+      },
+      "java_symbol": "scheme",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "grpc_policy_rejects_nonpositive_limits_and_keeps_client_header_setting_out_of_policy",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-F35E03CE7B235DD1",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 68,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/GrpcNettyMaxConcurrentStreamsLimiter.java"
+      },
+      "java_symbol": "newHandler",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "grpc_policy_rejects_nonpositive_limits_and_keeps_client_header_setting_out_of_policy",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-A8EDE8978BE21E52",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 75,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/GrpcNettyMaxConcurrentStreamsLimiter.java"
+      },
+      "java_symbol": "close",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "grpc_policy_rejects_nonpositive_limits_and_keeps_client_header_setting_out_of_policy",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-F28D5C8D020ED77A",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/HttpService.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/application/HttpService.java",
+      "declaration_sha256": "8732775eee770018db7d79d035a0163015a016de17ebbf8884902ec6d1d9fcf2"
+    },
+    {
+      "id": "PROD-6E874412CE60550D",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 16,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/HttpService.java"
+      },
+      "java_symbol": "org.tron.common.application",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-019CA156B0167778",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 38,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/HttpService.java"
+      },
+      "java_symbol": "HttpService",
+      "declaration_sha256": "0f4aa2ca20d6184c685ad6b99088ec7ab3e8572f2ef5860ad3c22352f0667673"
+    },
+    {
+      "id": "PROD-ECA9DDE4CEA5A69B",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 47,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/HttpService.java"
+      },
+      "java_symbol": "getMaxRequestSize",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-2786D52B917A7B1C",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 52,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/HttpService.java"
+      },
+      "java_symbol": "setMaxRequestSize",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-CA4A5A0BBC45D20C",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 71,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/HttpService.java"
+      },
+      "java_symbol": "start",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-45027CF141A2486B",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 79,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/HttpService.java"
+      },
+      "java_symbol": "initServer",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-0DF1EB8AEC26C725",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 88,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/HttpService.java"
+      },
+      "java_symbol": "initContextHandler",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-340938FDF666483A",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 97,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/HttpService.java"
+      },
+      "java_symbol": "addServlet",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-46A78DC7F5FEDCCE",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 99,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/HttpService.java"
+      },
+      "java_symbol": "addFilter",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-32C438CAF4F1DAD3",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 109,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/HttpService.java"
+      },
+      "java_symbol": "OversizedRequestErrorHandler",
+      "declaration_sha256": "4481918fd5fe77dacd06102573d55ed810a5ed4d9b3a9e1b09da6997217c00d0"
+    },
+    {
+      "id": "PROD-4829EF41ACE7BA54",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/RpcService.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/application/RpcService.java",
+      "declaration_sha256": "8732775eee770018db7d79d035a0163015a016de17ebbf8884902ec6d1d9fcf2"
+    },
+    {
+      "id": "PROD-5F9C683D7068BE9E",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 16,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/RpcService.java"
+      },
+      "java_symbol": "org.tron.common.application",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-1F1D4DFFCEDFA7B6",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 35,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/RpcService.java"
+      },
+      "java_symbol": "RpcService",
+      "declaration_sha256": "d47fdd2290e6a49bfdfd36813fbbe38c34b4b36e79646f2597612df72ca616f4"
+    },
+    {
+      "id": "PROD-97F94C481D27DD3F",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 85,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/RpcService.java"
+      },
+      "java_symbol": "start",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "live_plaintext_server_advertises_limit_and_refuses_excess_stream_before_ack",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-091A95F7AEFFF751",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 94,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/RpcService.java"
+      },
+      "java_symbol": "initServerBuilder",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "live_plaintext_server_advertises_limit_and_refuses_excess_stream_before_ack",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-DB19A557812C8403",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 122,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/RpcService.java"
+      },
+      "java_symbol": "addService",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "grpc_policy_rejects_nonpositive_limits_and_keeps_client_header_setting_out_of_policy",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-BB7C1F04CCEEAB00",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 124,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/RpcService.java"
+      },
+      "java_symbol": "addInterceptor",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "grpc_policy_rejects_nonpositive_limits_and_keeps_client_header_setting_out_of_policy",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-746D9E0614ECE8D7",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 140,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/RpcService.java"
+      },
+      "java_symbol": "initServer",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "live_plaintext_server_advertises_limit_and_refuses_excess_stream_before_ack",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-E8024BDEFCACB6F7",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/Service.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/application/Service.java",
+      "declaration_sha256": "8732775eee770018db7d79d035a0163015a016de17ebbf8884902ec6d1d9fcf2"
+    },
+    {
+      "id": "PROD-75B0B08DE6AC2AA3",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 16,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/Service.java"
+      },
+      "java_symbol": "org.tron.common.application",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-866D4E4AE63ADB85",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 20,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/Service.java"
+      },
+      "java_symbol": "Service",
+      "declaration_sha256": "c1c7dae57c48a52708e5598cbd4eb57aa3fe0d6bcf39d3540e905a39b02b4225"
+    },
+    {
+      "id": "PROD-5F96C7D84CAE3119",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ServiceContainer.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/application/ServiceContainer.java",
+      "declaration_sha256": "8732775eee770018db7d79d035a0163015a016de17ebbf8884902ec6d1d9fcf2"
+    },
+    {
+      "id": "PROD-39CDF72B479D9D6D",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 16,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ServiceContainer.java"
+      },
+      "java_symbol": "org.tron.common.application",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-D85E57C6F2245B08",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 32,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/ServiceContainer.java"
+      },
+      "java_symbol": "ServiceContainer",
+      "declaration_sha256": "8f8b64ddae5c5b222ab46e25f65a6b8a0836b2fcc386e79368249c26722906e8"
+    },
+    {
+      "id": "PROD-8099E545DD69FF9B",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/TronApplicationContext.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/application/TronApplicationContext.java",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-8A5BFC86C108E246",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/TronApplicationContext.java"
+      },
+      "java_symbol": "org.tron.common.application",
+      "declaration_sha256": "e8a3485494550d73fb17e024220b5b63e2a08b7e8d23f9b18f70abe3fa711dcb"
+    },
+    {
+      "id": "PROD-BA134B001263B8DA",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 7,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/TronApplicationContext.java"
+      },
+      "java_symbol": "TronApplicationContext",
+      "declaration_sha256": "9e01cecb2433314151552a7a5ab219d767f32cca4eb4e2b4250297ad414bc5bb"
+    },
+    {
+      "id": "PROD-244C0C25EDD8E394",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 27,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/TronApplicationContext.java"
+      },
+      "java_symbol": "doClose",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-CC02727A19D9B6F5",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 37,
+        "path": "java-tron/framework/src/main/java/org/tron/common/application/TronApplicationContext.java"
+      },
+      "java_symbol": "registerShutdownHook",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "application_starts_forward_stops_reverse_and_surfaces_every_failure",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-16AC6919372A3CEB",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/program/FullNode.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/program/FullNode.java",
+      "declaration_sha256": "5fdb720956e7dde9adb36bbe3507a266c7426312194a3a0860802bbbc6e57da6"
+    },
+    {
+      "id": "PROD-971A26A99F579C8D",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/program/FullNode.java"
+      },
+      "java_symbol": "org.tron.program",
+      "declaration_sha256": "5fdb720956e7dde9adb36bbe3507a266c7426312194a3a0860802bbbc6e57da6"
+    },
+    {
+      "id": "PROD-753D93F2DC203385",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 19,
+        "path": "java-tron/framework/src/main/java/org/tron/program/FullNode.java"
+      },
+      "java_symbol": "FullNode",
+      "declaration_sha256": "0333e7949bd91198f4296b545815cfe37c23b168edb9186bcb4bcc02b3085e2f"
+    },
+    {
+      "id": "PROD-EC5547076F1C2909",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 24,
+        "path": "java-tron/framework/src/main/java/org/tron/program/FullNode.java"
+      },
+      "java_symbol": "main",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-D2352C4ECD36F0D9",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/program/KeystoreFactory.java"
+      },
+      "java_symbol": "org.tron.program",
+      "declaration_sha256": "5fdb720956e7dde9adb36bbe3507a266c7426312194a3a0860802bbbc6e57da6"
+    },
+    {
+      "id": "PROD-DBE97793C4EDAE4B",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/program/KeystoreFactory.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/program/KeystoreFactory.java",
+      "declaration_sha256": "5fdb720956e7dde9adb36bbe3507a266c7426312194a3a0860802bbbc6e57da6"
+    },
+    {
+      "id": "PROD-939968892EC66A96",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 20,
+        "path": "java-tron/framework/src/main/java/org/tron/program/KeystoreFactory.java"
+      },
+      "java_symbol": "KeystoreFactory",
+      "declaration_sha256": "4a9f0551fe29358bc9b2884072cc33259458f8896fc9e10aaefff21b01b8d59c"
+    },
+    {
+      "id": "PROD-2160B5E01D106162",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 24,
+        "path": "java-tron/framework/src/main/java/org/tron/program/KeystoreFactory.java"
+      },
+      "java_symbol": "start",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "keystore_factory_repl_preserves_deprecation_dispatch_prompts_and_exit",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-21EC2B6F24BC5BD8",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/program/SolidityNode.java"
+      },
+      "java_symbol": "org.tron.program",
+      "declaration_sha256": "5fdb720956e7dde9adb36bbe3507a266c7426312194a3a0860802bbbc6e57da6"
+    },
+    {
+      "id": "PROD-A0688FC565D3B54E",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/program/SolidityNode.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/program/SolidityNode.java",
+      "declaration_sha256": "5fdb720956e7dde9adb36bbe3507a266c7426312194a3a0860802bbbc6e57da6"
+    },
+    {
+      "id": "PROD-C2563BE1BAD72BAD",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 33,
+        "path": "java-tron/framework/src/main/java/org/tron/program/SolidityNode.java"
+      },
+      "java_symbol": "SolidityNode",
+      "declaration_sha256": "50a4d8492251e11c009236b2871fc38a30035be0565f5442ec26f846cd90c283"
+    },
+    {
+      "id": "PROD-B36BA80C2E1444BF",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 68,
+        "path": "java-tron/framework/src/main/java/org/tron/program/SolidityNode.java"
+      },
+      "java_symbol": "onApplicationEvent",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-5750ECF81D90DAB8",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 72,
+        "path": "java-tron/framework/src/main/java/org/tron/program/SolidityNode.java"
+      },
+      "java_symbol": "close",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-5AB745AE50240906",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 92,
+        "path": "java-tron/framework/src/main/java/org/tron/program/SolidityNode.java"
+      },
+      "java_symbol": "run",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-34BFBB5DB411047E",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 221,
+        "path": "java-tron/framework/src/main/java/org/tron/program/SolidityNode.java"
+      },
+      "java_symbol": "sleep",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_shutdown_race_does_not_sleep_or_retry",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-B503DC23C521AE55",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 242,
+        "path": "java-tron/framework/src/main/java/org/tron/program/SolidityNode.java"
+      },
+      "java_symbol": "SolidityCondition",
+      "declaration_sha256": "08a50aae7615b46a76777b09a232647100ece9e8580b2e0741e408d5bdcc67cc"
+    },
+    {
+      "id": "PROD-AC710220D6C96EC8",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 245,
+        "path": "java-tron/framework/src/main/java/org/tron/program/SolidityNode.java"
+      },
+      "java_symbol": "matches",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "PROD-366F429C8AD563EA",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/program/Version.java"
+      },
+      "java_symbol": "org.tron.program",
+      "declaration_sha256": "5fdb720956e7dde9adb36bbe3507a266c7426312194a3a0860802bbbc6e57da6"
+    },
+    {
+      "id": "PROD-5D44CDC4B1D71CAA",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/program/Version.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/program/Version.java",
+      "declaration_sha256": "5fdb720956e7dde9adb36bbe3507a266c7426312194a3a0860802bbbc6e57da6"
+    },
+    {
+      "id": "PROD-68DEA94DBECB430E",
+      "kind": "source_declaration",
+      "java_source": {
+        "line": 3,
+        "path": "java-tron/framework/src/main/java/org/tron/program/Version.java"
+      },
+      "java_symbol": "Version",
+      "declaration_sha256": "34b6ad70033a0721d09e1532743979da40e0c89e429cbe6cd2c076be842cc4cf"
+    },
+    {
+      "id": "PROD-F364ABBF1388DF68",
+      "kind": "production_method_execution",
+      "java_source": {
+        "line": 9,
+        "path": "java-tron/framework/src/main/java/org/tron/program/Version.java"
+      },
+      "java_symbol": "getVersion",
+      "rust_api": "tron_node::lifecycle_limits / tron_node::ServiceGraph / tron_apis::server",
+      "rust_case": "full_solidity_and_keystore_program_modes_are_distinct",
+      "observation": [
+        "input",
+        "output",
+        "error",
+        "effect"
+      ]
+    },
+    {
+      "id": "TCASE-F4E606DDD28E5220",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 48,
+        "path": "java-tron/framework/src/test/java/org/tron/common/log/LogServiceTest.java"
+      },
+      "java_symbol": "propagatorIsInstalledWhenCustomConfigOmitsIt",
+      "rust_api": "tron_node::operations::DeliverySupervisor",
+      "rust_case": "delivery_supervisor_fatal_cases_and_log_initialization_failures_are_observable",
+      "source_assertion": {
+        "source_file_sha256": "5edce7f3d25f8c977d24027dd90bd0173e4770b915c6208887c8e93fe3ffd495",
+        "source_line_sha256": "a4a82cf6b2d95771633b4c4624fb63a19d63177cf0730ca9ad9b72cb3946f8ba",
+        "source_text": "public void propagatorIsInstalledWhenCustomConfigOmitsIt() throws IOException {"
+      },
+      "observation": {
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/common/log/LogServiceTest.java",
+          "symbol": "propagatorIsInstalledWhenCustomConfigOmitsIt"
+        },
+        "result": "fatal-or-success result is surfaced to the lifecycle owner",
+        "error": "none for valid/default logging configuration; invalid non-empty path is returned",
+        "effect": "logging initialization or fatal delivery state is observable"
+      }
+    },
+    {
+      "id": "TCASE-A5E288482A347AC1",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 63,
+        "path": "java-tron/framework/src/test/java/org/tron/common/log/LogServiceTest.java"
+      },
+      "java_symbol": "propagatorIsNotDuplicatedWhenCustomConfigDeclaresIt",
+      "rust_api": "tron_node::operations::DeliverySupervisor",
+      "rust_case": "delivery_supervisor_fatal_cases_and_log_initialization_failures_are_observable",
+      "source_assertion": {
+        "source_file_sha256": "5edce7f3d25f8c977d24027dd90bd0173e4770b915c6208887c8e93fe3ffd495",
+        "source_line_sha256": "7a4ddd064395a6dcadac23cd140311e26f4256427a82911e597f8c7e4d8852b2",
+        "source_text": "public void propagatorIsNotDuplicatedWhenCustomConfigDeclaresIt() throws IOException {"
+      },
+      "observation": {
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/common/log/LogServiceTest.java",
+          "symbol": "propagatorIsNotDuplicatedWhenCustomConfigDeclaresIt"
+        },
+        "result": "fatal-or-success result is surfaced to the lifecycle owner",
+        "error": "none for valid/default logging configuration; invalid non-empty path is returned",
+        "effect": "logging initialization or fatal delivery state is observable"
+      }
+    },
+    {
+      "id": "TCASE-D07D8B4618958C82",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 74,
+        "path": "java-tron/framework/src/test/java/org/tron/common/log/LogServiceTest.java"
+      },
+      "java_symbol": "propagatorIsEnsuredWhenNoLogConfigIsSupplied",
+      "rust_api": "tron_node::operations::DeliverySupervisor",
+      "rust_case": "delivery_supervisor_fatal_cases_and_log_initialization_failures_are_observable",
+      "source_assertion": {
+        "source_file_sha256": "5edce7f3d25f8c977d24027dd90bd0173e4770b915c6208887c8e93fe3ffd495",
+        "source_line_sha256": "0bef1da9433ba6ac8a0b46e7b78fb5b9d8c41ddd8c4aa028bbd0539ba304e07f",
+        "source_text": "public void propagatorIsEnsuredWhenNoLogConfigIsSupplied() {"
+      },
+      "observation": {
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/common/log/LogServiceTest.java",
+          "symbol": "propagatorIsEnsuredWhenNoLogConfigIsSupplied"
+        },
+        "result": "fatal-or-success result is surfaced to the lifecycle owner",
+        "error": "none for valid/default logging configuration; invalid non-empty path is returned",
+        "effect": "logging initialization or fatal delivery state is observable"
+      }
+    },
+    {
+      "id": "TCASE-7766F674984453E1",
+      "kind": "java_test_execution",
+      "java_source": {
+        "line": 90,
+        "path": "java-tron/framework/src/test/java/org/tron/common/log/LogServiceTest.java"
+      },
+      "java_symbol": "nonEmptyInvalidPathFailsFast",
+      "rust_api": "tron_node::operations::DeliverySupervisor",
+      "rust_case": "delivery_supervisor_fatal_cases_and_log_initialization_failures_are_observable",
+      "source_assertion": {
+        "source_file_sha256": "5edce7f3d25f8c977d24027dd90bd0173e4770b915c6208887c8e93fe3ffd495",
+        "source_line_sha256": "21f718f457f15498a82aa529cd99101557494350c5d5a29637f51c985ce7e3d1",
+        "source_text": "public void nonEmptyInvalidPathFailsFast() {"
+      },
+      "observation": {
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/common/log/LogServiceTest.java",
+          "symbol": "nonEmptyInvalidPathFailsFast"
+        },
+        "result": "fatal-or-success result is surfaced to the lifecycle owner",
+        "error": "none for valid/default logging configuration; invalid non-empty path is returned",
+        "effect": "logging initialization or fatal delivery state is observable"
+      }
+    }
+  ]
+}

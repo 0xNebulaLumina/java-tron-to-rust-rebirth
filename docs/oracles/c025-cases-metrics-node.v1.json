@@ -1,0 +1,3495 @@
+{
+  "schema": "c025-cases-metrics-node.v1",
+  "items": [
+    "C025.05",
+    "C025.06",
+    "C025.08"
+  ],
+  "counts": {
+    "java_test_execution": 11,
+    "production_method_execution": 34,
+    "source_declaration": 69,
+    "behavior": 45,
+    "total": 114
+  },
+  "dropwizard": {
+    "tick_seconds": 5,
+    "rate_windows_minutes": [
+      1,
+      5,
+      15
+    ],
+    "burst_vector": {
+      "marks": 3,
+      "elapsed_seconds": 5,
+      "mean_rate": 0.6,
+      "one_minute_rate": 0.6,
+      "five_minute_rate": 0.6,
+      "fifteen_minute_rate": 0.6
+    },
+    "percentiles": [
+      0.75,
+      0.95,
+      0.99
+    ]
+  },
+  "prometheus": {
+    "default_port": 9527,
+    "db_stat_interval_seconds": 21600,
+    "default_histogram_buckets": [
+      0.005,
+      0.01,
+      0.025,
+      0.05,
+      0.075,
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      1.0,
+      2.5,
+      5.0,
+      7.5,
+      10.0
+    ],
+    "block_transaction_buckets": [
+      0,
+      20,
+      50,
+      80,
+      100,
+      120,
+      140,
+      160,
+      180,
+      200,
+      230,
+      260,
+      300,
+      500,
+      2000,
+      5000,
+      10000
+    ],
+    "metrics": [
+      {
+        "name": "tron:txs",
+        "type": "counter",
+        "labels": [
+          "type",
+          "detail"
+        ],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:miner",
+        "type": "counter",
+        "labels": [
+          "miner",
+          "type"
+        ],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:block_fork",
+        "type": "counter",
+        "labels": [
+          "type"
+        ],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:sr_set_change",
+        "type": "counter",
+        "labels": [
+          "action",
+          "witness"
+        ],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:p2p_error",
+        "type": "counter",
+        "labels": [
+          "type"
+        ],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:p2p_disconnect",
+        "type": "counter",
+        "labels": [
+          "type"
+        ],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:internal_service_fail",
+        "type": "counter",
+        "labels": [
+          "class",
+          "method"
+        ],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:manager_queue_size",
+        "type": "gauge",
+        "labels": [
+          "type"
+        ],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:header_height",
+        "type": "gauge",
+        "labels": [],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:header_time",
+        "type": "gauge",
+        "labels": [],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:peers",
+        "type": "gauge",
+        "labels": [
+          "type"
+        ],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:db_size_bytes",
+        "type": "gauge",
+        "labels": [
+          "type",
+          "db",
+          "level"
+        ],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:db_sst_level",
+        "type": "gauge",
+        "labels": [
+          "type",
+          "db",
+          "level"
+        ],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:tx_cache",
+        "type": "gauge",
+        "labels": [
+          "type"
+        ],
+        "buckets": "&[]"
+      },
+      {
+        "name": "tron:internal_service_latency_seconds",
+        "type": "histogram",
+        "labels": [
+          "class",
+          "method"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:http_service_latency_seconds",
+        "type": "histogram",
+        "labels": [
+          "url"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:grpc_service_latency_seconds",
+        "type": "histogram",
+        "labels": [
+          "endpoint"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:jsonrpc_service_latency_seconds",
+        "type": "histogram",
+        "labels": [
+          "method"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:miner_latency_seconds",
+        "type": "histogram",
+        "labels": [
+          "miner"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:ping_pong_latency_seconds",
+        "type": "histogram",
+        "labels": [],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:verify_sign_latency_seconds",
+        "type": "histogram",
+        "labels": [
+          "type"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:lock_acquire_latency_seconds",
+        "type": "histogram",
+        "labels": [
+          "type"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:block_process_latency_seconds",
+        "type": "histogram",
+        "labels": [
+          "sync"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:block_push_latency_seconds",
+        "type": "histogram",
+        "labels": [],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:block_generate_latency_seconds",
+        "type": "histogram",
+        "labels": [
+          "address"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:process_transaction_latency_seconds",
+        "type": "histogram",
+        "labels": [
+          "type",
+          "contract"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:miner_delay_seconds",
+        "type": "histogram",
+        "labels": [
+          "miner"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:udp_bytes",
+        "type": "histogram",
+        "labels": [
+          "type"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:tcp_bytes",
+        "type": "histogram",
+        "labels": [
+          "type"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:http_bytes",
+        "type": "histogram",
+        "labels": [
+          "url",
+          "status"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:internal_service_latency_seconds",
+        "type": "histogram",
+        "labels": [
+          "class",
+          "method"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:message_process_latency_seconds",
+        "type": "histogram",
+        "labels": [
+          "type"
+        ],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:block_fetch_latency_seconds",
+        "type": "histogram",
+        "labels": [],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:block_receive_delay_seconds",
+        "type": "histogram",
+        "labels": [],
+        "buckets": "DEFAULT_HISTOGRAM_BUCKETS"
+      },
+      {
+        "name": "tron:block_transaction_count",
+        "type": "histogram",
+        "labels": [
+          "miner"
+        ],
+        "buckets": "BLOCK_TRANSACTION_BUCKETS"
+      }
+    ]
+  },
+  "api_fields": {
+    "MetricsInfo": [
+      "interval",
+      "node",
+      "blockchain",
+      "net"
+    ],
+    "NodeInfo": [
+      "ip",
+      "nodeType",
+      "version",
+      "backupStatus"
+    ],
+    "BlockChainInfo": [
+      "headBlockNum",
+      "headBlockTimestamp",
+      "headBlockHash",
+      "forkCount",
+      "failForkCount",
+      "transactionCacheSize",
+      "missedTransaction",
+      "tps",
+      "blockProcessTime",
+      "witnesses",
+      "failProcessBlockNum",
+      "failProcessBlockReason",
+      "dupWitness"
+    ],
+    "NetInfo": [
+      "errorProtoCount",
+      "api",
+      "connectionCount",
+      "validConnectionCount",
+      "disconnectionCount",
+      "disconnectionDetail",
+      "tcpInTraffic",
+      "tcpOutTraffic",
+      "udpInTraffic",
+      "udpOutTraffic",
+      "latency"
+    ],
+    "RateInfo": [
+      "count",
+      "meanRate",
+      "oneMinuteRate",
+      "fiveMinuteRate",
+      "fifteenMinuteRate"
+    ]
+  },
+  "rows": [
+    {
+      "id": "TCASE-D4B8F2597925A7B0",
+      "kind": "java_test",
+      "java_source": {
+        "line": 61,
+        "path": "java-tron/framework/src/test/java/org/tron/common/prometheus/SRMetricsTest.java"
+      },
+      "java_symbol": "testSrAddViaMaintenance",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/common/prometheus/SRMetricsTest.java",
+          "symbol": "testSrAddViaMaintenance"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void testSrAddViaMaintenance() {",
+        "source_line_sha256": "92ac9477a4f17d2d6733d4deea3bced06ec82ae45b67489138973e99cdac12dd",
+        "source_file_sha256": "1b61e9d09e5905b224b5c925bbaeabbb8fa8b0f1a31bc69dc4fd31f9bb6fb62f"
+      },
+      "evidence_kind": "java_test_execution",
+      "java_vector": {
+        "input": "active=[stable], candidates=[stable,new1,new2], votes=[stable]",
+        "output": "sr_set_change_total{action=add,witness=new1}=1; new2=1; stable absent",
+        "error": "none",
+        "effect": "maintenance emits only newly active witnesses"
+      },
+      "rust_case": "c025_metrics_node_tcase_d4b8f2597925a7b0",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "Prometheus",
+        "input": "active=[stable], candidates=[stable,new1,new2], votes=[stable]",
+        "expected_output": "sr_set_change_total{action=add,witness=new1}=1; new2=1; stable absent",
+        "expected_error": "none",
+        "expected_effect": "maintenance emits only newly active witnesses"
+      }
+    },
+    {
+      "id": "TCASE-7796A25DA817E40B",
+      "kind": "java_test",
+      "java_source": {
+        "line": 83,
+        "path": "java-tron/framework/src/test/java/org/tron/common/prometheus/SRMetricsTest.java"
+      },
+      "java_symbol": "testNoMetricWhenSetUnchanged",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/common/prometheus/SRMetricsTest.java",
+          "symbol": "testNoMetricWhenSetUnchanged"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void testNoMetricWhenSetUnchanged() {",
+        "source_line_sha256": "f7314d75fbf186f481befd514930d9fb4cfde607c15953dddf8ee7701d9c9722",
+        "source_file_sha256": "1b61e9d09e5905b224b5c925bbaeabbb8fa8b0f1a31bc69dc4fd31f9bb6fb62f"
+      },
+      "evidence_kind": "java_test_execution",
+      "java_vector": {
+        "input": "active set equals candidate set",
+        "output": "no sr_set_change series",
+        "error": "none",
+        "effect": "unchanged set emits nothing"
+      },
+      "rust_case": "c025_metrics_node_tcase_7796a25da817e40b",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "Prometheus",
+        "input": "active set equals candidate set",
+        "expected_output": "no sr_set_change series",
+        "expected_error": "none",
+        "expected_effect": "unchanged set emits nothing"
+      }
+    },
+    {
+      "id": "TCASE-C52C8A224D6830F5",
+      "kind": "java_test",
+      "java_source": {
+        "line": 105,
+        "path": "java-tron/framework/src/test/java/org/tron/common/prometheus/SRMetricsTest.java"
+      },
+      "java_symbol": "testNoMetricWhenNoVotes",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/common/prometheus/SRMetricsTest.java",
+          "symbol": "testNoMetricWhenNoVotes"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void testNoMetricWhenNoVotes() {",
+        "source_line_sha256": "35de4a669273aea86fb041fe7e0a79e954f5d934eb817a6ebb7a58b7bbcf09a0",
+        "source_file_sha256": "1b61e9d09e5905b224b5c925bbaeabbb8fa8b0f1a31bc69dc4fd31f9bb6fb62f"
+      },
+      "evidence_kind": "java_test_execution",
+      "java_vector": {
+        "input": "active differs, votes empty",
+        "output": "no sr_set_change series",
+        "error": "none",
+        "effect": "empty vote result skips set-change recording"
+      },
+      "rust_case": "c025_metrics_node_tcase_c52c8a224d6830f5",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "Prometheus",
+        "input": "active differs, votes empty",
+        "expected_output": "no sr_set_change series",
+        "expected_error": "none",
+        "expected_effect": "empty vote result skips set-change recording"
+      }
+    },
+    {
+      "id": "TCASE-B9FB3D6C62BD207F",
+      "kind": "java_test",
+      "java_source": {
+        "line": 121,
+        "path": "java-tron/framework/src/test/java/org/tron/common/prometheus/SRMetricsTest.java"
+      },
+      "java_symbol": "testNoMetricWhenMetricsDisabled",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/common/prometheus/SRMetricsTest.java",
+          "symbol": "testNoMetricWhenMetricsDisabled"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void testNoMetricWhenMetricsDisabled() {",
+        "source_line_sha256": "a68530f83427bab3ca87c4906b7bc6f6c8ae2b922bbd71cb07cd4bfe3a6a01da",
+        "source_file_sha256": "1b61e9d09e5905b224b5c925bbaeabbb8fa8b0f1a31bc69dc4fd31f9bb6fb62f"
+      },
+      "evidence_kind": "java_test_execution",
+      "java_vector": {
+        "input": "prometheus disabled, active differs",
+        "output": "no sr_set_change series",
+        "error": "none",
+        "effect": "disabled registry rejects recording"
+      },
+      "rust_case": "c025_metrics_node_tcase_b9fb3d6c62bd207f",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "Prometheus",
+        "input": "prometheus disabled, active differs",
+        "expected_output": "no sr_set_change series",
+        "expected_error": "none",
+        "expected_effect": "disabled registry rejects recording"
+      }
+    },
+    {
+      "id": "TCASE-0B931841B82968A7",
+      "kind": "java_test",
+      "java_source": {
+        "line": 157,
+        "path": "java-tron/framework/src/test/java/org/tron/common/prometheus/SRMetricsTest.java"
+      },
+      "java_symbol": "testSrRemoveDirect",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/common/prometheus/SRMetricsTest.java",
+          "symbol": "testSrRemoveDirect"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void testSrRemoveDirect() {",
+        "source_line_sha256": "e6ed72ae72563455abd139e303030297acc92313e50591fad1c0c064dbccb5fd",
+        "source_file_sha256": "1b61e9d09e5905b224b5c925bbaeabbb8fa8b0f1a31bc69dc4fd31f9bb6fb62f"
+      },
+      "evidence_kind": "java_test_execution",
+      "java_vector": {
+        "input": "before=[stable,removed], after=[stable]",
+        "output": "sr_set_change_total{action=remove,witness=removed}=1",
+        "error": "none",
+        "effect": "only removed witness is labeled remove"
+      },
+      "rust_case": "c025_metrics_node_tcase_0b931841b82968a7",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "Prometheus",
+        "input": "before=[stable,removed], after=[stable]",
+        "expected_output": "sr_set_change_total{action=remove,witness=removed}=1",
+        "expected_error": "none",
+        "expected_effect": "only removed witness is labeled remove"
+      }
+    },
+    {
+      "id": "TCASE-3721A845B1702C47",
+      "kind": "java_test",
+      "java_source": {
+        "line": 40,
+        "path": "java-tron/framework/src/test/java/org/tron/core/metrics/MetricsApiServiceTest.java"
+      },
+      "java_symbol": "testProcessMessage",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/core/metrics/MetricsApiServiceTest.java",
+          "symbol": "testProcessMessage"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void testProcessMessage() {",
+        "source_line_sha256": "0cd85d63400a4d03c05fd686ebdfbf8b9aca1844379f610b8be5370aa788fa2b",
+        "source_file_sha256": "a85d22568172c7bc3d5d3b20c3e9f14cdb4c1ba096e75011757f7918ff93237f"
+      },
+      "evidence_kind": "java_test_execution",
+      "java_vector": {
+        "input": "populated node/blockchain/network monitor state",
+        "output": "MetricsInfo interval,node,blockchain,net exact fields",
+        "error": "none",
+        "effect": "read-only snapshot"
+      },
+      "rust_case": "c025_metrics_node_tcase_3721a845b1702c47",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "populated node/blockchain/network monitor state",
+        "expected_output": "MetricsInfo interval,node,blockchain,net exact fields",
+        "expected_error": "none",
+        "expected_effect": "read-only snapshot"
+      }
+    },
+    {
+      "id": "TCASE-1411B9FE914793A8",
+      "kind": "java_test",
+      "java_source": {
+        "line": 14,
+        "path": "java-tron/framework/src/test/java/org/tron/core/metrics/MetricsUtilTest.java"
+      },
+      "java_symbol": "testCounterInc",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/core/metrics/MetricsUtilTest.java",
+          "symbol": "testCounterInc"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void testCounterInc() {",
+        "source_line_sha256": "cb4f43b4a033fe3609be48150b5d682c43dab0c7891e8b510bc7109689d22eb0",
+        "source_file_sha256": "d4a7f94f97cbda646a8eeefc73fad593905e536ba7b828ce754e782c747752e9"
+      },
+      "evidence_kind": "java_test_execution",
+      "java_vector": {
+        "input": "counter key",
+        "output": "count=1",
+        "error": "none",
+        "effect": "counter increment"
+      },
+      "rust_case": "c025_metrics_node_tcase_1411b9fe914793a8",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "counter key",
+        "expected_output": "count=1",
+        "expected_error": "none",
+        "expected_effect": "counter increment"
+      }
+    },
+    {
+      "id": "TCASE-1C18FED1B58E7FBE",
+      "kind": "java_test",
+      "java_source": {
+        "line": 21,
+        "path": "java-tron/framework/src/test/java/org/tron/core/metrics/MetricsUtilTest.java"
+      },
+      "java_symbol": "testMeterMark",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/core/metrics/MetricsUtilTest.java",
+          "symbol": "testMeterMark"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void testMeterMark() {",
+        "source_line_sha256": "5c6c91ad5d5d2bdd95c3e5855b7053d21192e1868a7639e61f83838d9697856a",
+        "source_file_sha256": "d4a7f94f97cbda646a8eeefc73fad593905e536ba7b828ce754e782c747752e9"
+      },
+      "evidence_kind": "java_test_execution",
+      "java_vector": {
+        "input": "meter key, amount=1",
+        "output": "count=1 and Dropwizard rates after 5s tick",
+        "error": "none",
+        "effect": "meter mark"
+      },
+      "rust_case": "c025_metrics_node_tcase_1c18fed1b58e7fbe",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "meter key, amount=1",
+        "expected_output": "count=1 and Dropwizard rates after 5s tick",
+        "expected_error": "none",
+        "expected_effect": "meter mark"
+      }
+    },
+    {
+      "id": "TCASE-6490CA5CDFA0AA8D",
+      "kind": "java_test",
+      "java_source": {
+        "line": 27,
+        "path": "java-tron/framework/src/test/java/org/tron/core/metrics/MetricsUtilTest.java"
+      },
+      "java_symbol": "testMeterMark2",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/core/metrics/MetricsUtilTest.java",
+          "symbol": "testMeterMark2"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void testMeterMark2() {",
+        "source_line_sha256": "670cb0dbf9705c1958bd106098c91f5901479e0d65a63a9136d141f113c4e1a5",
+        "source_file_sha256": "d4a7f94f97cbda646a8eeefc73fad593905e536ba7b828ce754e782c747752e9"
+      },
+      "evidence_kind": "java_test_execution",
+      "java_vector": {
+        "input": "meter key, amount=7",
+        "output": "count=7 and Dropwizard rates after 5s tick",
+        "error": "none",
+        "effect": "meter mark by amount"
+      },
+      "rust_case": "c025_metrics_node_tcase_6490ca5cdfa0aa8d",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "meter key, amount=7",
+        "expected_output": "count=7 and Dropwizard rates after 5s tick",
+        "expected_error": "none",
+        "expected_effect": "meter mark by amount"
+      }
+    },
+    {
+      "id": "TCASE-116F10A1F355F25F",
+      "kind": "java_test",
+      "java_source": {
+        "line": 33,
+        "path": "java-tron/framework/src/test/java/org/tron/core/metrics/MetricsUtilTest.java"
+      },
+      "java_symbol": "testHistogramUpdate",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/core/metrics/MetricsUtilTest.java",
+          "symbol": "testHistogramUpdate"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void testHistogramUpdate() {",
+        "source_line_sha256": "f2ea045cc20f3c1ce27dc303392bc9f5f698318a9a5b48d5573f5d3ada6770ee",
+        "source_file_sha256": "d4a7f94f97cbda646a8eeefc73fad593905e536ba7b828ce754e782c747752e9"
+      },
+      "evidence_kind": "java_test_execution",
+      "java_vector": {
+        "input": "histogram key, value=17",
+        "output": "count=1,p75=p95=p99=17",
+        "error": "none",
+        "effect": "histogram update"
+      },
+      "rust_case": "c025_metrics_node_tcase_116f10a1f355f25f",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "histogram key, value=17",
+        "expected_output": "count=1,p75=p95=p99=17",
+        "expected_error": "none",
+        "expected_effect": "histogram update"
+      }
+    },
+    {
+      "id": "TCASE-D315716BDBBF29B3",
+      "kind": "java_test",
+      "java_source": {
+        "line": 148,
+        "path": "java-tron/framework/src/test/java/org/tron/core/metrics/prometheus/PrometheusApiServiceTest.java"
+      },
+      "java_symbol": "testMetric",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/test/java/org/tron/core/metrics/prometheus/PrometheusApiServiceTest.java",
+          "symbol": "testMetric"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void testMetric() throws Exception {",
+        "source_line_sha256": "238b35a16fcc70fa6a458179973d929889ec452dd6d77f757b255ece01bf643f",
+        "source_file_sha256": "1bcf8d0b246cfd01fa81d63d5b52b441aeef0131213c0d25d7108619405f0168"
+      },
+      "evidence_kind": "java_test_execution",
+      "java_vector": {
+        "input": "block processing plus Prometheus scrape",
+        "output": "exact names, labels, buckets, counters, gauges and monitor API fields",
+        "error": "none",
+        "effect": "records and scrapes metric families"
+      },
+      "rust_case": "c025_metrics_node_tcase_d315716bdbbf29b3",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "Prometheus",
+        "input": "block processing plus Prometheus scrape",
+        "expected_output": "exact names, labels, buckets, counters, gauges and monitor API fields",
+        "expected_error": "none",
+        "expected_effect": "records and scrapes metric families"
+      }
+    },
+    {
+      "id": "PROD-66BE3EE87FDBA99F",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStat.java"
+      },
+      "java_symbol": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStat.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.common.storage.metric;",
+        "source_line_sha256": "72d755eda7c187d0cac834e1f00263f4611441338cdc3b0403f141b58699d942",
+        "source_file_sha256": "98dede5a22d388bba95e1413e40b3fa243fb7efb3bb864d9d732e2ea74bd1f28"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-E706A73D3F1137C4",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStat.java"
+      },
+      "java_symbol": "org.tron.common.storage.metric",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.common.storage.metric;",
+        "source_line_sha256": "72d755eda7c187d0cac834e1f00263f4611441338cdc3b0403f141b58699d942",
+        "source_file_sha256": "98dede5a22d388bba95e1413e40b3fa243fb7efb3bb864d9d732e2ea74bd1f28"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-84474981ECB5277E",
+      "kind": "production",
+      "java_source": {
+        "line": 9,
+        "path": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStat.java"
+      },
+      "java_symbol": "DbStat",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public abstract class DbStat {",
+        "source_line_sha256": "bb317341fc6bba32e4db6dade4fcfe716f23217bc659c77884b2dc37d7882eb6",
+        "source_file_sha256": "98dede5a22d388bba95e1413e40b3fa243fb7efb3bb864d9d732e2ea74bd1f28"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-2CB4543AB9040B22",
+      "kind": "production",
+      "java_source": {
+        "line": 11,
+        "path": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStat.java"
+      },
+      "java_symbol": "statProperty",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStat.java",
+          "symbol": "statProperty"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "protected void statProperty() {",
+        "source_line_sha256": "f253784837d9e4b6ef191d3f042b4d6f2463e45d76a324ce0ddc34f7659988da",
+        "source_file_sha256": "98dede5a22d388bba95e1413e40b3fa243fb7efb3bb864d9d732e2ea74bd1f28"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "L2   4 1.5; engine=ROCKSDB; db=account",
+        "output": "level=L2,files=4,size_bytes=1572864",
+        "error": "none",
+        "effect": "sets db_sst_level and db_size_bytes labels type,db,level"
+      },
+      "rust_case": "c025_metrics_node_prod_2cb4543ab9040b22",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "DbStat",
+        "input": "L2   4 1.5; engine=ROCKSDB; db=account",
+        "expected_output": "level=L2,files=4,size_bytes=1572864",
+        "expected_error": "none",
+        "expected_effect": "sets db_sst_level and db_size_bytes labels type,db,level"
+      }
+    },
+    {
+      "id": "PROD-57F826E45B3772A3",
+      "kind": "production",
+      "java_source": {
+        "line": 30,
+        "path": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStat.java"
+      },
+      "java_symbol": "getEngine",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStat.java",
+          "symbol": "getEngine"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public abstract String getEngine();",
+        "source_line_sha256": "824beb1b77030d610606668b34b93527ff55caec3219fe239b769f115ff03df7",
+        "source_file_sha256": "98dede5a22d388bba95e1413e40b3fa243fb7efb3bb864d9d732e2ea74bd1f28"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "TestDb engine=ROCKSDB",
+        "output": "ROCKSDB",
+        "error": "none",
+        "effect": "returns engine label"
+      },
+      "rust_case": "c025_metrics_node_prod_57f826e45b3772a3",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "DbStat",
+        "input": "TestDb engine=ROCKSDB",
+        "expected_output": "ROCKSDB",
+        "expected_error": "none",
+        "expected_effect": "returns engine label"
+      }
+    },
+    {
+      "id": "PROD-A957D5089930FFCF",
+      "kind": "production",
+      "java_source": {
+        "line": 32,
+        "path": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStat.java"
+      },
+      "java_symbol": "getName",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStat.java",
+          "symbol": "getName"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public abstract String getName();",
+        "source_line_sha256": "85d14e352431e0ba4527e869970e28b6a09380de59b91584ef8f30c556e91b32",
+        "source_file_sha256": "98dede5a22d388bba95e1413e40b3fa243fb7efb3bb864d9d732e2ea74bd1f28"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "TestDb name=account",
+        "output": "account",
+        "error": "none",
+        "effect": "returns db label"
+      },
+      "rust_case": "c025_metrics_node_prod_a957d5089930ffcf",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "DbStat",
+        "input": "TestDb name=account",
+        "expected_output": "account",
+        "expected_error": "none",
+        "expected_effect": "returns db label"
+      }
+    },
+    {
+      "id": "PROD-0DE5E0A7801143FC",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStatService.java"
+      },
+      "java_symbol": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStatService.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.common.storage.metric;",
+        "source_line_sha256": "72d755eda7c187d0cac834e1f00263f4611441338cdc3b0403f141b58699d942",
+        "source_file_sha256": "12ae38e35d4901c5e03bcd0f47e1707c6b006655d907b82058db9a328dd5f45c"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-5AC5B7E3D2D6D90F",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStatService.java"
+      },
+      "java_symbol": "org.tron.common.storage.metric",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.common.storage.metric;",
+        "source_line_sha256": "72d755eda7c187d0cac834e1f00263f4611441338cdc3b0403f141b58699d942",
+        "source_file_sha256": "12ae38e35d4901c5e03bcd0f47e1707c6b006655d907b82058db9a328dd5f45c"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-2F2C1566FE78D0E8",
+      "kind": "production",
+      "java_source": {
+        "line": 14,
+        "path": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStatService.java"
+      },
+      "java_symbol": "DbStatService",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class DbStatService {",
+        "source_line_sha256": "9ee36a0dd475138136bec7c0f36927eb0d39489a3d4841ab1aa6e198ff897c85",
+        "source_file_sha256": "12ae38e35d4901c5e03bcd0f47e1707c6b006655d907b82058db9a328dd5f45c"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-F4A53788A7D67436",
+      "kind": "production",
+      "java_source": {
+        "line": 19,
+        "path": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStatService.java"
+      },
+      "java_symbol": "register",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStatService.java",
+          "symbol": "register"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public  void register(DB<byte[], byte[]> db) {",
+        "source_line_sha256": "9b6de23079ab31bf85af097f5d8e8b94fa8900058b26096ee2de67365db60889",
+        "source_file_sha256": "12ae38e35d4901c5e03bcd0f47e1707c6b006655d907b82058db9a328dd5f45c"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "enabled registry, DB stat row L0 1 2",
+        "output": "immediate scrape contains DB labels and 2097152 bytes",
+        "error": "none",
+        "effect": "registers periodic six-hour DB statistics worker"
+      },
+      "rust_case": "c025_metrics_node_prod_f4a53788a7d67436",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "DbStat",
+        "input": "enabled registry, DB stat row L0 1 2",
+        "expected_output": "immediate scrape contains DB labels and 2097152 bytes",
+        "expected_error": "none",
+        "expected_effect": "registers periodic six-hour DB statistics worker"
+      }
+    },
+    {
+      "id": "PROD-2203C2CE8050FE0D",
+      "kind": "production",
+      "java_source": {
+        "line": 25,
+        "path": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStatService.java"
+      },
+      "java_symbol": "register",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStatService.java",
+          "symbol": "register"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public  void register(DbSourceInter<byte[]> db) {",
+        "source_line_sha256": "02169d9af85f1639d286629c15bd1b0f8788b4d20b15a3be74310f9ae57fb4a0",
+        "source_file_sha256": "12ae38e35d4901c5e03bcd0f47e1707c6b006655d907b82058db9a328dd5f45c"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "enabled registry, DB stat row L0 1 2",
+        "output": "immediate scrape contains DB labels and 2097152 bytes",
+        "error": "none",
+        "effect": "registers periodic six-hour DB statistics worker"
+      },
+      "rust_case": "c025_metrics_node_prod_2203c2ce8050fe0d",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "DbStat",
+        "input": "enabled registry, DB stat row L0 1 2",
+        "expected_output": "immediate scrape contains DB labels and 2097152 bytes",
+        "expected_error": "none",
+        "expected_effect": "registers periodic six-hour DB statistics worker"
+      }
+    },
+    {
+      "id": "PROD-1C9C8A0099757858",
+      "kind": "production",
+      "java_source": {
+        "line": 31,
+        "path": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStatService.java"
+      },
+      "java_symbol": "shutdown",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/chainbase/src/main/java/org/tron/common/storage/metric/DbStatService.java",
+          "symbol": "shutdown"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void shutdown() {",
+        "source_line_sha256": "fb2210017e69aca86b400368189bae94f61f0ea84094a3e52f49df3d1ea5da33",
+        "source_file_sha256": "12ae38e35d4901c5e03bcd0f47e1707c6b006655d907b82058db9a328dd5f45c"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "disabled metrics service",
+        "output": "joined with no worker",
+        "error": "none",
+        "effect": "shutdown is safe when registration was skipped"
+      },
+      "rust_case": "c025_metrics_node_prod_1c9c8a0099757858",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "DbStat",
+        "input": "disabled metrics service",
+        "expected_output": "joined with no worker",
+        "expected_error": "none",
+        "expected_effect": "shutdown is safe when registration was skipped"
+      }
+    },
+    {
+      "id": "PROD-59C714A2832AB695",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsApiService.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsApiService.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics;",
+        "source_line_sha256": "dd79e9e3419ff85454a4c3af569bccd71638db4544808c84c0e87c7226ed7e5a",
+        "source_file_sha256": "8e8934e7f1209903c7a65906d95058b26273334ce41d9c46969426f760607094"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-C32D0455D097BE99",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsApiService.java"
+      },
+      "java_symbol": "org.tron.core.metrics",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics;",
+        "source_line_sha256": "dd79e9e3419ff85454a4c3af569bccd71638db4544808c84c0e87c7226ed7e5a",
+        "source_file_sha256": "8e8934e7f1209903c7a65906d95058b26273334ce41d9c46969426f760607094"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-3FCD82F2F23B9A8F",
+      "kind": "production",
+      "java_source": {
+        "line": 17,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsApiService.java"
+      },
+      "java_symbol": "MetricsApiService",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class MetricsApiService {",
+        "source_line_sha256": "e73489daeccaa12b1c26cc008ea057a9d0bf55f3e2f7990affb697b2b3439978",
+        "source_file_sha256": "8e8934e7f1209903c7a65906d95058b26273334ce41d9c46969426f760607094"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-B2CD96E0AFFB8B23",
+      "kind": "production",
+      "java_source": {
+        "line": 35,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsApiService.java"
+      },
+      "java_symbol": "getMetricsInfo",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsApiService.java",
+          "symbol": "getMetricsInfo"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public MetricsInfo getMetricsInfo() {",
+        "source_line_sha256": "85723c7c221805e115460f24590c917d229db6ac33313cb67bc143247d89005f",
+        "source_file_sha256": "8e8934e7f1209903c7a65906d95058b26273334ce41d9c46969426f760607094"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "populated monitor providers",
+        "output": "MetricsInfo interval plus node/blockchain/net",
+        "error": "none",
+        "effect": "assembles API snapshot without mutation"
+      },
+      "rust_case": "c025_metrics_node_prod_b2cd96e0affb8b23",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "populated monitor providers",
+        "expected_output": "MetricsInfo interval plus node/blockchain/net",
+        "expected_error": "none",
+        "expected_effect": "assembles API snapshot without mutation"
+      }
+    },
+    {
+      "id": "PROD-2F359BA3C034B6C0",
+      "kind": "production",
+      "java_source": {
+        "line": 53,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsApiService.java"
+      },
+      "java_symbol": "getMetricProtoInfo",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsApiService.java",
+          "symbol": "getMetricProtoInfo"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public Protocol.MetricsInfo getMetricProtoInfo() {",
+        "source_line_sha256": "fb62d2798317eb75178ecb73f5fa3e3fbd4a6f9b3b5d500e40e60425a4c950f0",
+        "source_file_sha256": "8e8934e7f1209903c7a65906d95058b26273334ce41d9c46969426f760607094"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "populated monitor providers",
+        "output": "MetricsInfo interval plus node/blockchain/net",
+        "error": "none",
+        "effect": "assembles API snapshot without mutation"
+      },
+      "rust_case": "c025_metrics_node_prod_2f359ba3c034b6c0",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "populated monitor providers",
+        "expected_output": "MetricsInfo interval plus node/blockchain/net",
+        "expected_error": "none",
+        "expected_effect": "assembles API snapshot without mutation"
+      }
+    },
+    {
+      "id": "PROD-87B91814E89F0727",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsInfo.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsInfo.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics;",
+        "source_line_sha256": "dd79e9e3419ff85454a4c3af569bccd71638db4544808c84c0e87c7226ed7e5a",
+        "source_file_sha256": "7cbcc4c9d43f1c74f152ab0fc77d2cd4450c672ed7f93925c027a4d6f49c7dba"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-FE12505B2E1C3618",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsInfo.java"
+      },
+      "java_symbol": "org.tron.core.metrics",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics;",
+        "source_line_sha256": "dd79e9e3419ff85454a4c3af569bccd71638db4544808c84c0e87c7226ed7e5a",
+        "source_file_sha256": "7cbcc4c9d43f1c74f152ab0fc77d2cd4450c672ed7f93925c027a4d6f49c7dba"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-75FF7D91A06199ED",
+      "kind": "production",
+      "java_source": {
+        "line": 9,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsInfo.java"
+      },
+      "java_symbol": "MetricsInfo",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class MetricsInfo {",
+        "source_line_sha256": "7404918efa560272f8dab75fd847efefff32db9092052cb4251525a1360da8e6",
+        "source_file_sha256": "7cbcc4c9d43f1c74f152ab0fc77d2cd4450c672ed7f93925c027a4d6f49c7dba"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-0913781A54498D9C",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsKey.java"
+      },
+      "java_symbol": "org.tron.core.metrics",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics;",
+        "source_line_sha256": "dd79e9e3419ff85454a4c3af569bccd71638db4544808c84c0e87c7226ed7e5a",
+        "source_file_sha256": "860ecd187cf0982359b3ffb9c6a2f4d4d594db856bab90814197c8fd1ff8ff4f"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-91FC63DD9A02F20E",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsKey.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsKey.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics;",
+        "source_line_sha256": "dd79e9e3419ff85454a4c3af569bccd71638db4544808c84c0e87c7226ed7e5a",
+        "source_file_sha256": "860ecd187cf0982359b3ffb9c6a2f4d4d594db856bab90814197c8fd1ff8ff4f"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-B89C657E33C9FD10",
+      "kind": "production",
+      "java_source": {
+        "line": 3,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsKey.java"
+      },
+      "java_symbol": "MetricsKey",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class MetricsKey {",
+        "source_line_sha256": "3720b3d12c897cd9eb17218bb7b3583f5da91ae3096b1ca2f5eb45543ca66ed0",
+        "source_file_sha256": "860ecd187cf0982359b3ffb9c6a2f4d4d594db856bab90814197c8fd1ff8ff4f"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-33284868545C6AFC",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsService.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsService.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics;",
+        "source_line_sha256": "dd79e9e3419ff85454a4c3af569bccd71638db4544808c84c0e87c7226ed7e5a",
+        "source_file_sha256": "9d6aa41e601b36d6cad8a1e59d9f1427c9f096824f02becffaea29d07bace112"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-917666254AFDCE55",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsService.java"
+      },
+      "java_symbol": "org.tron.core.metrics",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics;",
+        "source_line_sha256": "dd79e9e3419ff85454a4c3af569bccd71638db4544808c84c0e87c7226ed7e5a",
+        "source_file_sha256": "9d6aa41e601b36d6cad8a1e59d9f1427c9f096824f02becffaea29d07bace112"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-EE733118978EEE25",
+      "kind": "production",
+      "java_source": {
+        "line": 11,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsService.java"
+      },
+      "java_symbol": "MetricsService",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class MetricsService {",
+        "source_line_sha256": "e5f9d209e929423c10210624d9c411d67e58db03b4b421cbe301f09e2cbf1494",
+        "source_file_sha256": "9d6aa41e601b36d6cad8a1e59d9f1427c9f096824f02becffaea29d07bace112"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-77856916D5240A92",
+      "kind": "production",
+      "java_source": {
+        "line": 21,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsService.java"
+      },
+      "java_symbol": "applyBlock",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsService.java",
+          "symbol": "applyBlock"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void applyBlock(BlockCapsule block) {",
+        "source_line_sha256": "41d80334ae8657eb9465b0c9dfedfef9e3d64afb9c68e5f29677d6e0fd234fec",
+        "source_file_sha256": "9d6aa41e601b36d6cad8a1e59d9f1427c9f096824f02becffaea29d07bace112"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "head=91,tx=1,witness=41aa",
+        "output": "blockchain TPS/head/witness fields updated",
+        "error": "none",
+        "effect": "applies block observations and contains recording failures"
+      },
+      "rust_case": "c025_metrics_node_prod_77856916d5240a92",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "head=91,tx=1,witness=41aa",
+        "expected_output": "blockchain TPS/head/witness fields updated",
+        "expected_error": "none",
+        "expected_effect": "applies block observations and contains recording failures"
+      }
+    },
+    {
+      "id": "PROD-FBB70C8AD58D58F9",
+      "kind": "production",
+      "java_source": {
+        "line": 25,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsService.java"
+      },
+      "java_symbol": "block",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "logger.warn(\"record block failed, {}, reason: {}.\",",
+        "source_line_sha256": "ca05a490d9a012eea5fe2583af1e35b1f527f890ac3b489606cb25c2c1b58dc1",
+        "source_file_sha256": "9d6aa41e601b36d6cad8a1e59d9f1427c9f096824f02becffaea29d07bace112"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-0C22427588C05BF5",
+      "kind": "production",
+      "java_source": {
+        "line": 36,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsService.java"
+      },
+      "java_symbol": "failProcessBlock",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsService.java",
+          "symbol": "failProcessBlock"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void failProcessBlock(long blockNum, String errorInfo) {",
+        "source_line_sha256": "9c02dbf176373e4b439f5f7af1c000316ed7b4c0104ff86ee72b1fecfb52bceb",
+        "source_file_sha256": "9d6aa41e601b36d6cad8a1e59d9f1427c9f096824f02becffaea29d07bace112"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "block=12,error=invalid",
+        "output": "blockchain failProcessBlockNum=12, reason=invalid",
+        "error": "none",
+        "effect": "updates failure observation"
+      },
+      "rust_case": "c025_metrics_node_prod_0c22427588c05bf5",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "block=12,error=invalid",
+        "expected_output": "blockchain failProcessBlockNum=12, reason=invalid",
+        "expected_error": "none",
+        "expected_effect": "updates failure observation"
+      }
+    },
+    {
+      "id": "PROD-AB4441B5FF0A93DA",
+      "kind": "production",
+      "java_source": {
+        "line": 41,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsService.java"
+      },
+      "java_symbol": "fail",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "logger.warn(\"record fail process block failed, {}, reason: {}.\",",
+        "source_line_sha256": "09572d35af10dbfff3cae0f1f9ea5e56c3a5eed6efa6865c19df5dee8af45143",
+        "source_file_sha256": "9d6aa41e601b36d6cad8a1e59d9f1427c9f096824f02becffaea29d07bace112"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-0D24507333B23BCD",
+      "kind": "production",
+      "java_source": {
+        "line": 51,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsService.java"
+      },
+      "java_symbol": "getMetricsInfo",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsService.java",
+          "symbol": "getMetricsInfo"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public MetricsInfo getMetricsInfo() {",
+        "source_line_sha256": "85723c7c221805e115460f24590c917d229db6ac33313cb67bc143247d89005f",
+        "source_file_sha256": "9d6aa41e601b36d6cad8a1e59d9f1427c9f096824f02becffaea29d07bace112"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "empty monitor",
+        "output": "default node/blockchain/net sections",
+        "error": "none",
+        "effect": "returns metrics object"
+      },
+      "rust_case": "c025_metrics_node_prod_0d24507333b23bcd",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "empty monitor",
+        "expected_output": "default node/blockchain/net sections",
+        "expected_error": "none",
+        "expected_effect": "returns metrics object"
+      }
+    },
+    {
+      "id": "PROD-27D3A676C3FC553E",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics;",
+        "source_line_sha256": "dd79e9e3419ff85454a4c3af569bccd71638db4544808c84c0e87c7226ed7e5a",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-99739A6D47AC0BD6",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "org.tron.core.metrics",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics;",
+        "source_line_sha256": "dd79e9e3419ff85454a4c3af569bccd71638db4544808c84c0e87c7226ed7e5a",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-26C779CC69C4ADE4",
+      "kind": "production",
+      "java_source": {
+        "line": 15,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "MetricsUtil",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class MetricsUtil {",
+        "source_line_sha256": "e5e3cd1693ce69b746c92f8597e91990b86017c699f63378d3235112dd56780e",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-9E67D9CD364B0886",
+      "kind": "production",
+      "java_source": {
+        "line": 19,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "getHistogram",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+          "symbol": "getHistogram"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public static Histogram getHistogram(String key) {",
+        "source_line_sha256": "ee79ccfd4db222f8fcd2c700242fd1b35c07388c65992ac32de907c946d2f7e8",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "key=net.latency,value=9",
+        "output": "count=1,p75=p95=p99=9",
+        "error": "none",
+        "effect": "creates/filters/updates histogram"
+      },
+      "rust_case": "c025_metrics_node_prod_9e67d9cd364b0886",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "key=net.latency,value=9",
+        "expected_output": "count=1,p75=p95=p99=9",
+        "expected_error": "none",
+        "expected_effect": "creates/filters/updates histogram"
+      }
+    },
+    {
+      "id": "PROD-2664F90847296A4B",
+      "kind": "production",
+      "java_source": {
+        "line": 23,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "getHistograms",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+          "symbol": "getHistograms"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public static SortedMap<String, Histogram> getHistograms(String key) {",
+        "source_line_sha256": "3b049725a0e149cb8952ab1a8cedf3a362c804b9913f379a209235b9772ee068",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "key=net.latency,value=9",
+        "output": "count=1,p75=p95=p99=9",
+        "error": "none",
+        "effect": "creates/filters/updates histogram"
+      },
+      "rust_case": "c025_metrics_node_prod_2664f90847296a4b",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "key=net.latency,value=9",
+        "expected_output": "count=1,p75=p95=p99=9",
+        "expected_error": "none",
+        "expected_effect": "creates/filters/updates histogram"
+      }
+    },
+    {
+      "id": "PROD-FA52F0B3B4DC982E",
+      "kind": "production",
+      "java_source": {
+        "line": 33,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "histogramUpdate",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+          "symbol": "histogramUpdate"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public static void histogramUpdate(String key, long value) {",
+        "source_line_sha256": "f319e57cff3c986413b48598cb3a3b44484425b88f8d6e542ce46f1f846a904d",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "key=net.latency,value=9",
+        "output": "count=1,p75=p95=p99=9",
+        "error": "none",
+        "effect": "creates/filters/updates histogram"
+      },
+      "rust_case": "c025_metrics_node_prod_fa52f0b3b4dc982e",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "key=net.latency,value=9",
+        "expected_output": "count=1,p75=p95=p99=9",
+        "expected_error": "none",
+        "expected_effect": "creates/filters/updates histogram"
+      }
+    },
+    {
+      "id": "PROD-D3B7D906D6CFAF44",
+      "kind": "production",
+      "java_source": {
+        "line": 49,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "histogramUpdateUnCheck",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+          "symbol": "histogramUpdateUnCheck"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public static void histogramUpdateUnCheck(String key, long value) {",
+        "source_line_sha256": "c5bd8fecb452611a1a98e5d12ce2c947b2d4e0a95987bb19fd926fe78bdb05a2",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "key=net.latency,value=9",
+        "output": "count=1,p75=p95=p99=9",
+        "error": "none",
+        "effect": "creates/filters/updates histogram"
+      },
+      "rust_case": "c025_metrics_node_prod_d3b7d906d6cfaf44",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "key=net.latency,value=9",
+        "expected_output": "count=1,p75=p95=p99=9",
+        "expected_error": "none",
+        "expected_effect": "creates/filters/updates histogram"
+      }
+    },
+    {
+      "id": "PROD-91664001EC8AC8F2",
+      "kind": "production",
+      "java_source": {
+        "line": 57,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "getMeter",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+          "symbol": "getMeter"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public static Meter getMeter(String name) {",
+        "source_line_sha256": "dbc6e0c0329e38148db0fdf3261ce2bb3dc7f2b9a93e55a9db9350b92816a5cd",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "key=blockchain.tps,amount=1,elapsed=5s",
+        "output": "count=1,mean/m1/m5/m15=0.2",
+        "error": "none",
+        "effect": "creates/filters/marks Dropwizard meter"
+      },
+      "rust_case": "c025_metrics_node_prod_91664001ec8ac8f2",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "key=blockchain.tps,amount=1,elapsed=5s",
+        "expected_output": "count=1,mean/m1/m5/m15=0.2",
+        "expected_error": "none",
+        "expected_effect": "creates/filters/marks Dropwizard meter"
+      }
+    },
+    {
+      "id": "PROD-C59713953A4C9EB1",
+      "kind": "production",
+      "java_source": {
+        "line": 66,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "getMeters",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+          "symbol": "getMeters"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public static SortedMap<String, Meter> getMeters(String key) {",
+        "source_line_sha256": "20030fb2399b56f60660ccde2d5ae57c0284733eb3e1f7c0e7e94f41eacbc959",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "key=blockchain.tps,amount=1,elapsed=5s",
+        "output": "count=1,mean/m1/m5/m15=0.2",
+        "error": "none",
+        "effect": "creates/filters/marks Dropwizard meter"
+      },
+      "rust_case": "c025_metrics_node_prod_c59713953a4c9eb1",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "key=blockchain.tps,amount=1,elapsed=5s",
+        "expected_output": "count=1,mean/m1/m5/m15=0.2",
+        "expected_error": "none",
+        "expected_effect": "creates/filters/marks Dropwizard meter"
+      }
+    },
+    {
+      "id": "PROD-ABA32A44781FC332",
+      "kind": "production",
+      "java_source": {
+        "line": 75,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "meterMark",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+          "symbol": "meterMark"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public static void meterMark(String key) {",
+        "source_line_sha256": "391b98be041606ffdecc8840d52ff7b5aa5828d59676c10988d77884044dc738",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "key=blockchain.tps,amount=1,elapsed=5s",
+        "output": "count=1,mean/m1/m5/m15=0.2",
+        "error": "none",
+        "effect": "creates/filters/marks Dropwizard meter"
+      },
+      "rust_case": "c025_metrics_node_prod_aba32a44781fc332",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "key=blockchain.tps,amount=1,elapsed=5s",
+        "expected_output": "count=1,mean/m1/m5/m15=0.2",
+        "expected_error": "none",
+        "expected_effect": "creates/filters/marks Dropwizard meter"
+      }
+    },
+    {
+      "id": "PROD-07678B16E3C18D5C",
+      "kind": "production",
+      "java_source": {
+        "line": 91,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "meterMark",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+          "symbol": "meterMark"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public static void meterMark(String key, long value) {",
+        "source_line_sha256": "a8d180b9c0438358a643d770c8b82c3721b5137bccd7cce90feb79f3f832b441",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "key=blockchain.tps,amount=1,elapsed=5s",
+        "output": "count=1,mean/m1/m5/m15=0.2",
+        "error": "none",
+        "effect": "creates/filters/marks Dropwizard meter"
+      },
+      "rust_case": "c025_metrics_node_prod_07678b16e3c18d5c",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "key=blockchain.tps,amount=1,elapsed=5s",
+        "expected_output": "count=1,mean/m1/m5/m15=0.2",
+        "expected_error": "none",
+        "expected_effect": "creates/filters/marks Dropwizard meter"
+      }
+    },
+    {
+      "id": "PROD-DFD613273C24D6F7",
+      "kind": "production",
+      "java_source": {
+        "line": 101,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "getCounter",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+          "symbol": "getCounter"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public static Counter getCounter(String name) {",
+        "source_line_sha256": "fbbcfa07371f2c924259c0f690df70d98c080ca3998a224e87f75ad0642db690",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "key=net.disconnectionDetail.BAD_PROTOCOL",
+        "output": "count=1 with reason BAD_PROTOCOL",
+        "error": "none",
+        "effect": "creates/filters/increments counter"
+      },
+      "rust_case": "c025_metrics_node_prod_dfd613273c24d6f7",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "key=net.disconnectionDetail.BAD_PROTOCOL",
+        "expected_output": "count=1 with reason BAD_PROTOCOL",
+        "expected_error": "none",
+        "expected_effect": "creates/filters/increments counter"
+      }
+    },
+    {
+      "id": "PROD-0AB7C6D13B313AF9",
+      "kind": "production",
+      "java_source": {
+        "line": 105,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "getCounters",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+          "symbol": "getCounters"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public static SortedMap<String, Counter> getCounters(String name) {",
+        "source_line_sha256": "4a677f437bc8450add45cc87fa5a348ea85752117f1e508751a9f4d443595b56",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "key=net.disconnectionDetail.BAD_PROTOCOL",
+        "output": "count=1 with reason BAD_PROTOCOL",
+        "error": "none",
+        "effect": "creates/filters/increments counter"
+      },
+      "rust_case": "c025_metrics_node_prod_0ab7c6d13b313af9",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "key=net.disconnectionDetail.BAD_PROTOCOL",
+        "expected_output": "count=1 with reason BAD_PROTOCOL",
+        "expected_error": "none",
+        "expected_effect": "creates/filters/increments counter"
+      }
+    },
+    {
+      "id": "PROD-EBD561320864F646",
+      "kind": "production",
+      "java_source": {
+        "line": 114,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "counterInc",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+          "symbol": "counterInc"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public static void counterInc(String key) {",
+        "source_line_sha256": "f09f32bc6f8dfddf878e577786d6a0b60158c16320d11dab9dea22a99313a55a",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "key=net.disconnectionDetail.BAD_PROTOCOL",
+        "output": "count=1 with reason BAD_PROTOCOL",
+        "error": "none",
+        "effect": "creates/filters/increments counter"
+      },
+      "rust_case": "c025_metrics_node_prod_ebd561320864f646",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "key=net.disconnectionDetail.BAD_PROTOCOL",
+        "expected_output": "count=1 with reason BAD_PROTOCOL",
+        "expected_error": "none",
+        "expected_effect": "creates/filters/increments counter"
+      }
+    },
+    {
+      "id": "PROD-3764022EA3EE5144",
+      "kind": "production",
+      "java_source": {
+        "line": 130,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java"
+      },
+      "java_symbol": "getRateInfo",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/MetricsUtil.java",
+          "symbol": "getRateInfo"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public static RateInfo getRateInfo(String key) {",
+        "source_line_sha256": "6773e918a06ff4e98a1e1e7df978c26329e61b1270d977c2fe3730d4c20c79dd",
+        "source_file_sha256": "844b75251e3a2a92247a9e65b98de2df749662be8de032251a5430a2f6776b8b"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "meter count=3,elapsed=5s",
+        "output": "RateInfo count=3,mean/m1/m5/m15=0.6",
+        "error": "none",
+        "effect": "copies all five Dropwizard rate fields"
+      },
+      "rust_case": "c025_metrics_node_prod_3764022ea3ee5144",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "meter count=3,elapsed=5s",
+        "expected_output": "RateInfo count=3,mean/m1/m5/m15=0.6",
+        "expected_error": "none",
+        "expected_effect": "copies all five Dropwizard rate fields"
+      }
+    },
+    {
+      "id": "PROD-010A7786FA2C398D",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainInfo.java"
+      },
+      "java_symbol": "org.tron.core.metrics.blockchain",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.blockchain;",
+        "source_line_sha256": "e061429cc01f3ba2cd66ed9a9f7a6c9337fa047201937a9edeb99d942b14edf9",
+        "source_file_sha256": "f0693cc79801cfbd0acf77e9255d3941101d2602f5ad6b72dbc0bef4c161a09f"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-1AB61AF388D6EAE2",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainInfo.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainInfo.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.blockchain;",
+        "source_line_sha256": "e061429cc01f3ba2cd66ed9a9f7a6c9337fa047201937a9edeb99d942b14edf9",
+        "source_file_sha256": "f0693cc79801cfbd0acf77e9255d3941101d2602f5ad6b72dbc0bef4c161a09f"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-B4F64171F9A25895",
+      "kind": "production",
+      "java_source": {
+        "line": 8,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainInfo.java"
+      },
+      "java_symbol": "BlockChainInfo",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class BlockChainInfo {",
+        "source_line_sha256": "16e69baa6529b1d3e387ccc6db5d9600d5d85b295dfaffac1278185837089656",
+        "source_file_sha256": "f0693cc79801cfbd0acf77e9255d3941101d2602f5ad6b72dbc0bef4c161a09f"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-8BF9FB674B3D2F91",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.blockchain;",
+        "source_line_sha256": "e061429cc01f3ba2cd66ed9a9f7a6c9337fa047201937a9edeb99d942b14edf9",
+        "source_file_sha256": "8f5a09433ac0a891e7bbe4e7a5a318fbc0ca0df96b70c79092ec0ac3eb21e8f3"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-8DF2F344B69A9358",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java"
+      },
+      "java_symbol": "org.tron.core.metrics.blockchain",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.blockchain;",
+        "source_line_sha256": "e061429cc01f3ba2cd66ed9a9f7a6c9337fa047201937a9edeb99d942b14edf9",
+        "source_file_sha256": "8f5a09433ac0a891e7bbe4e7a5a318fbc0ca0df96b70c79092ec0ac3eb21e8f3"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-2F382182888DB825",
+      "kind": "production",
+      "java_source": {
+        "line": 28,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java"
+      },
+      "java_symbol": "BlockChainMetricManager",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class BlockChainMetricManager {",
+        "source_line_sha256": "e7ef9885818fe561960ab419a0bb5fe14a809479da1eb1314ffa80db0fcb266a",
+        "source_file_sha256": "8f5a09433ac0a891e7bbe4e7a5a318fbc0ca0df96b70c79092ec0ac3eb21e8f3"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-74C81AF7D49ADBDB",
+      "kind": "production",
+      "java_source": {
+        "line": 46,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java"
+      },
+      "java_symbol": "getBlockChainInfo",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java",
+          "symbol": "getBlockChainInfo"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public BlockChainInfo getBlockChainInfo() {",
+        "source_line_sha256": "4ed8264fc5e1627b8c48725137be155dde31426b0be4d4f992ca0021190e0b5b",
+        "source_file_sha256": "8f5a09433ac0a891e7bbe4e7a5a318fbc0ca0df96b70c79092ec0ac3eb21e8f3"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "populated blockchain monitor",
+        "output": "exact head,hash,timestamp,TPS,fork,failure,witness,dup-witness fields",
+        "error": "none",
+        "effect": "returns object/protobuf blockchain projection"
+      },
+      "rust_case": "c025_metrics_node_prod_74c81af7d49adbdb",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "populated blockchain monitor",
+        "expected_output": "exact head,hash,timestamp,TPS,fork,failure,witness,dup-witness fields",
+        "expected_error": "none",
+        "expected_effect": "returns object/protobuf blockchain projection"
+      }
+    },
+    {
+      "id": "PROD-F38BFCEED2E56BB3",
+      "kind": "production",
+      "java_source": {
+        "line": 81,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java"
+      },
+      "java_symbol": "getBlockChainProtoInfo",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java",
+          "symbol": "getBlockChainProtoInfo"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public Protocol.MetricsInfo.BlockChainInfo getBlockChainProtoInfo() {",
+        "source_line_sha256": "171532739aa5f5587ccbcd782777ee61a81b983d463d935ffe2067e889eb948b",
+        "source_file_sha256": "8f5a09433ac0a891e7bbe4e7a5a318fbc0ca0df96b70c79092ec0ac3eb21e8f3"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "populated blockchain monitor",
+        "output": "exact head,hash,timestamp,TPS,fork,failure,witness,dup-witness fields",
+        "error": "none",
+        "effect": "returns object/protobuf blockchain projection"
+      },
+      "rust_case": "c025_metrics_node_prod_f38bfceed2e56bb3",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "populated blockchain monitor",
+        "expected_output": "exact head,hash,timestamp,TPS,fork,failure,witness,dup-witness fields",
+        "expected_error": "none",
+        "expected_effect": "returns object/protobuf blockchain projection"
+      }
+    },
+    {
+      "id": "PROD-BBD115145DB37570",
+      "kind": "production",
+      "java_source": {
+        "line": 131,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java"
+      },
+      "java_symbol": "applyBlock",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java",
+          "symbol": "applyBlock"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void applyBlock(BlockCapsule block) {",
+        "source_line_sha256": "41d80334ae8657eb9465b0c9dfedfef9e3d64afb9c68e5f29677d6e0fd234fec",
+        "source_file_sha256": "8f5a09433ac0a891e7bbe4e7a5a318fbc0ca0df96b70c79092ec0ac3eb21e8f3"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "head=91,witness=41aa,tx=1,latency=2100ms",
+        "output": "head,TPS,witness,latency and Prometheus observations populated",
+        "error": "none",
+        "effect": "applies block metrics"
+      },
+      "rust_case": "c025_metrics_node_prod_bbd115145db37570",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "head=91,witness=41aa,tx=1,latency=2100ms",
+        "expected_output": "head,TPS,witness,latency and Prometheus observations populated",
+        "expected_error": "none",
+        "expected_effect": "applies block metrics"
+      }
+    },
+    {
+      "id": "PROD-85C3B7DAC63B8FF8",
+      "kind": "production",
+      "java_source": {
+        "line": 192,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java"
+      },
+      "java_symbol": "getForkCount",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java",
+          "symbol": "getForkCount"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public int getForkCount() {",
+        "source_line_sha256": "024ee331adf509b31d28a81ca3b274ee906e18fcc091da64f793eab019bf5ad1",
+        "source_file_sha256": "8f5a09433ac0a891e7bbe4e7a5a318fbc0ca0df96b70c79092ec0ac3eb21e8f3"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "fork success mark=1",
+        "output": "forkCount=1",
+        "error": "none",
+        "effect": "reads fork meter count"
+      },
+      "rust_case": "c025_metrics_node_prod_85c3b7dac63b8ff8",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "fork success mark=1",
+        "expected_output": "forkCount=1",
+        "expected_error": "none",
+        "expected_effect": "reads fork meter count"
+      }
+    },
+    {
+      "id": "PROD-8AD9861523DC5F58",
+      "kind": "production",
+      "java_source": {
+        "line": 196,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java"
+      },
+      "java_symbol": "getFailForkCount",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/BlockChainMetricManager.java",
+          "symbol": "getFailForkCount"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public int getFailForkCount() {",
+        "source_line_sha256": "a296ce36e4000aba5b58c58c47d22e2a5acff2edc4fb495f8166e1905e969504",
+        "source_file_sha256": "8f5a09433ac0a891e7bbe4e7a5a318fbc0ca0df96b70c79092ec0ac3eb21e8f3"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "fork failure mark=1",
+        "output": "failForkCount=1",
+        "error": "none",
+        "effect": "reads fail-fork meter count"
+      },
+      "rust_case": "c025_metrics_node_prod_8ad9861523dc5f58",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "fork failure mark=1",
+        "expected_output": "failForkCount=1",
+        "expected_error": "none",
+        "expected_effect": "reads fail-fork meter count"
+      }
+    },
+    {
+      "id": "PROD-A2DC741FDE0F1FDF",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/DupWitnessInfo.java"
+      },
+      "java_symbol": "org.tron.core.metrics.blockchain",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.blockchain;",
+        "source_line_sha256": "e061429cc01f3ba2cd66ed9a9f7a6c9337fa047201937a9edeb99d942b14edf9",
+        "source_file_sha256": "b4a5548fa4d11eb5b103c38aaa29e7e294a164c68b35cc19aa32c3c3a424e862"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-B9165F6A930DFF05",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/DupWitnessInfo.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/DupWitnessInfo.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.blockchain;",
+        "source_line_sha256": "e061429cc01f3ba2cd66ed9a9f7a6c9337fa047201937a9edeb99d942b14edf9",
+        "source_file_sha256": "b4a5548fa4d11eb5b103c38aaa29e7e294a164c68b35cc19aa32c3c3a424e862"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-C53E770C817B0962",
+      "kind": "production",
+      "java_source": {
+        "line": 6,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/DupWitnessInfo.java"
+      },
+      "java_symbol": "DupWitnessInfo",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class DupWitnessInfo {",
+        "source_line_sha256": "fe1d0895ca0c4d8a8c6a4f145672f5f89dd0ed68b82e9536d241817a5e7ee486",
+        "source_file_sha256": "b4a5548fa4d11eb5b103c38aaa29e7e294a164c68b35cc19aa32c3c3a424e862"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-78863E6C35226ED2",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/WitnessInfo.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/WitnessInfo.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.blockchain;",
+        "source_line_sha256": "e061429cc01f3ba2cd66ed9a9f7a6c9337fa047201937a9edeb99d942b14edf9",
+        "source_file_sha256": "f850c643e5c34732814531626929147ee3416913e8cd2fe8777b1e79fb4750ba"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-9769489AAC69BE6C",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/WitnessInfo.java"
+      },
+      "java_symbol": "org.tron.core.metrics.blockchain",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.blockchain;",
+        "source_line_sha256": "e061429cc01f3ba2cd66ed9a9f7a6c9337fa047201937a9edeb99d942b14edf9",
+        "source_file_sha256": "f850c643e5c34732814531626929147ee3416913e8cd2fe8777b1e79fb4750ba"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-0CBF1E0D54BAAF3C",
+      "kind": "production",
+      "java_source": {
+        "line": 8,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/blockchain/WitnessInfo.java"
+      },
+      "java_symbol": "WitnessInfo",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class WitnessInfo {",
+        "source_line_sha256": "d9bd8aaa519196bdbde4704dafd5d0a917b3bc5938b63bcee1a987f32830b361",
+        "source_file_sha256": "f850c643e5c34732814531626929147ee3416913e8cd2fe8777b1e79fb4750ba"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-9E6DE00A3C23E318",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/ApiDetailInfo.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/net/ApiDetailInfo.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "127b0cb60ee06a6726711b14a533eb97bf5a535d4e7bfcdee986eb629a992a36"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-F300CFA2538C19D1",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/ApiDetailInfo.java"
+      },
+      "java_symbol": "org.tron.core.metrics.net",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "127b0cb60ee06a6726711b14a533eb97bf5a535d4e7bfcdee986eb629a992a36"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-5140F7F859EFC797",
+      "kind": "production",
+      "java_source": {
+        "line": 6,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/ApiDetailInfo.java"
+      },
+      "java_symbol": "ApiDetailInfo",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class ApiDetailInfo {",
+        "source_line_sha256": "02be90264404a2396361e4d7da442db2582406db65f8eff2446fe45d1ed1dc82",
+        "source_file_sha256": "127b0cb60ee06a6726711b14a533eb97bf5a535d4e7bfcdee986eb629a992a36"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-738BDB3DC4257F0A",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/ApiInfo.java"
+      },
+      "java_symbol": "org.tron.core.metrics.net",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "1cfa04312fb7aa0424e8d047ff56b3569e5abcb3d7713d180d41c881d3af87ee"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-CE65391DD1FAC6F4",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/ApiInfo.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/net/ApiInfo.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "1cfa04312fb7aa0424e8d047ff56b3569e5abcb3d7713d180d41c881d3af87ee"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-DEEE792C52EFAD01",
+      "kind": "production",
+      "java_source": {
+        "line": 8,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/ApiInfo.java"
+      },
+      "java_symbol": "ApiInfo",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class ApiInfo {",
+        "source_line_sha256": "5f36edef100193798fd817a40fad86e3e810da368f20274376716e4b1d4ee5e6",
+        "source_file_sha256": "1cfa04312fb7aa0424e8d047ff56b3569e5abcb3d7713d180d41c881d3af87ee"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-087CD44771C97D1E",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/DisconnectionDetailInfo.java"
+      },
+      "java_symbol": "org.tron.core.metrics.net",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "260fce8c49c6549608ea0386d30305655081ecf29ab53118e13153b53e0aeeb4"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-DD5B02D95A3CEF7F",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/DisconnectionDetailInfo.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/net/DisconnectionDetailInfo.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "260fce8c49c6549608ea0386d30305655081ecf29ab53118e13153b53e0aeeb4"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-0CC5D9F87ACC2D65",
+      "kind": "production",
+      "java_source": {
+        "line": 6,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/DisconnectionDetailInfo.java"
+      },
+      "java_symbol": "DisconnectionDetailInfo",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class DisconnectionDetailInfo {",
+        "source_line_sha256": "a289746d870d0e3e8f8295895cf62e04ceeb6b6d9f31d758971dd4d7819a184b",
+        "source_file_sha256": "260fce8c49c6549608ea0386d30305655081ecf29ab53118e13153b53e0aeeb4"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-36DA5438B9AABABD",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/LatencyDetailInfo.java"
+      },
+      "java_symbol": "org.tron.core.metrics.net",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "ff626156c34b4d3164f074776680627d3bdf96b7b7be62955156737cfd63ef5a"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-47A2185B18ABEBFC",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/LatencyDetailInfo.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/net/LatencyDetailInfo.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "ff626156c34b4d3164f074776680627d3bdf96b7b7be62955156737cfd63ef5a"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-566C7FC922495A36",
+      "kind": "production",
+      "java_source": {
+        "line": 6,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/LatencyDetailInfo.java"
+      },
+      "java_symbol": "LatencyDetailInfo",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class LatencyDetailInfo {",
+        "source_line_sha256": "7c404550ddf2093af9ef3070a504c7e588b1e1aac9145700daa0a69f30fe7898",
+        "source_file_sha256": "ff626156c34b4d3164f074776680627d3bdf96b7b7be62955156737cfd63ef5a"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-2902A07415C32F8B",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/LatencyInfo.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/net/LatencyInfo.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "953bc6f121b3d06553178861c81c743ab88f61f71ae8e0c4d3731216b9f91eeb"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-395AC9B6C189213A",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/LatencyInfo.java"
+      },
+      "java_symbol": "org.tron.core.metrics.net",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "953bc6f121b3d06553178861c81c743ab88f61f71ae8e0c4d3731216b9f91eeb"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-777B61EE59A5E356",
+      "kind": "production",
+      "java_source": {
+        "line": 9,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/LatencyInfo.java"
+      },
+      "java_symbol": "LatencyInfo",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class LatencyInfo {",
+        "source_line_sha256": "02f92a44e605b320e9a72322154e0e20f0afb75e978c86039855da0c86b90edd",
+        "source_file_sha256": "953bc6f121b3d06553178861c81c743ab88f61f71ae8e0c4d3731216b9f91eeb"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-7D41D72AD3F769ED",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/NetInfo.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/net/NetInfo.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "77f88044f1b1f53d76445e4d748193f3af225d638ecc6aa35237c5258804c016"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-A3DD62D9DA8F0CE5",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/NetInfo.java"
+      },
+      "java_symbol": "org.tron.core.metrics.net",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "77f88044f1b1f53d76445e4d748193f3af225d638ecc6aa35237c5258804c016"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-3C89DE9DC450E5F7",
+      "kind": "production",
+      "java_source": {
+        "line": 9,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/NetInfo.java"
+      },
+      "java_symbol": "NetInfo",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class NetInfo {",
+        "source_line_sha256": "2d0ee5e8642e40d8d9a30e70fafbcfe6c2007417555cb519ac5ffb27f7d786a5",
+        "source_file_sha256": "77f88044f1b1f53d76445e4d748193f3af225d638ecc6aa35237c5258804c016"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-322FF321C28CB37E",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/NetMetricManager.java"
+      },
+      "java_symbol": "org.tron.core.metrics.net",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "8ac029587efd3cfe037252cc9f5f0dab33c0e7b2990414ef11971c2246acd229"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-E795EFA9C94FCEF2",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/NetMetricManager.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/net/NetMetricManager.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "8ac029587efd3cfe037252cc9f5f0dab33c0e7b2990414ef11971c2246acd229"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-975E37EC2EC39462",
+      "kind": "production",
+      "java_source": {
+        "line": 20,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/NetMetricManager.java"
+      },
+      "java_symbol": "NetMetricManager",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class NetMetricManager {",
+        "source_line_sha256": "57708766bf4b0d186e83e1410fc2a8ff4c25800050de219ee9f992c8b3ea013c",
+        "source_file_sha256": "8ac029587efd3cfe037252cc9f5f0dab33c0e7b2990414ef11971c2246acd229"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-30DE1408802428DE",
+      "kind": "production",
+      "java_source": {
+        "line": 30,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/NetMetricManager.java"
+      },
+      "java_symbol": "getNetInfo",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/net/NetMetricManager.java",
+          "symbol": "getNetInfo"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public NetInfo getNetInfo() {",
+        "source_line_sha256": "147adcfb111b30cc9cfbfcef50156eb75e287b0b4f135c1464bc89ff1ab2d23d",
+        "source_file_sha256": "8ac029587efd3cfe037252cc9f5f0dab33c0e7b2990414ef11971c2246acd229"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "connections=4 valid=3, traffic, disconnect, latency",
+        "output": "exact NetInfo object/protobuf fields and nested RateInfo/detail lists",
+        "error": "none",
+        "effect": "returns network projection"
+      },
+      "rust_case": "c025_metrics_node_prod_30de1408802428de",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "connections=4 valid=3, traffic, disconnect, latency",
+        "expected_output": "exact NetInfo object/protobuf fields and nested RateInfo/detail lists",
+        "expected_error": "none",
+        "expected_effect": "returns network projection"
+      }
+    },
+    {
+      "id": "PROD-803F45D245378408",
+      "kind": "production",
+      "java_source": {
+        "line": 123,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/NetMetricManager.java"
+      },
+      "java_symbol": "getNetProtoInfo",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/net/NetMetricManager.java",
+          "symbol": "getNetProtoInfo"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public Protocol.MetricsInfo.NetInfo getNetProtoInfo() {",
+        "source_line_sha256": "8479078919d852fc44149f3066e05542f7e083dee7941cea556ac07ffedf044f",
+        "source_file_sha256": "8ac029587efd3cfe037252cc9f5f0dab33c0e7b2990414ef11971c2246acd229"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "connections=4 valid=3, traffic, disconnect, latency",
+        "output": "exact NetInfo object/protobuf fields and nested RateInfo/detail lists",
+        "error": "none",
+        "effect": "returns network projection"
+      },
+      "rust_case": "c025_metrics_node_prod_803f45d245378408",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "connections=4 valid=3, traffic, disconnect, latency",
+        "expected_output": "exact NetInfo object/protobuf fields and nested RateInfo/detail lists",
+        "expected_error": "none",
+        "expected_effect": "returns network projection"
+      }
+    },
+    {
+      "id": "PROD-CD0912386D6E7898",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/RateInfo.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/net/RateInfo.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "a6f3f91a1cce5c722a5763fae097d6571473b9d5babef81725db5cfd30901064"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-E3A8244D01D53A87",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/RateInfo.java"
+      },
+      "java_symbol": "org.tron.core.metrics.net",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.net;",
+        "source_line_sha256": "69360887b6810bc36b2b37968ec9bbe30d58ac6f9483c28c1e10fe48b4992473",
+        "source_file_sha256": "a6f3f91a1cce5c722a5763fae097d6571473b9d5babef81725db5cfd30901064"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-CD944D8A61FB452C",
+      "kind": "production",
+      "java_source": {
+        "line": 7,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/RateInfo.java"
+      },
+      "java_symbol": "RateInfo",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class RateInfo {",
+        "source_line_sha256": "b8c3b8a8bf99443406075cbfac1a1496a4c116f6a62cf6a1f1de87996d52d27d",
+        "source_file_sha256": "a6f3f91a1cce5c722a5763fae097d6571473b9d5babef81725db5cfd30901064"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-F6C8DF3EC9C390C5",
+      "kind": "production",
+      "java_source": {
+        "line": 14,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/net/RateInfo.java"
+      },
+      "java_symbol": "toProtoEntity",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/net/RateInfo.java",
+          "symbol": "toProtoEntity"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public Protocol.MetricsInfo.RateInfo toProtoEntity() {",
+        "source_line_sha256": "5d600a3a854c5cd7cf37da4a07a37b7975f5f3c0e923b1da69b4d34f06470543",
+        "source_file_sha256": "a6f3f91a1cce5c722a5763fae097d6571473b9d5babef81725db5cfd30901064"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "count=3 and Dropwizard rates=0.6",
+        "output": "protobuf count/meanRate/oneMinuteRate/fiveMinuteRate/fifteenMinuteRate preserved",
+        "error": "none",
+        "effect": "converts rate fields"
+      },
+      "rust_case": "c025_metrics_node_prod_f6c8df3ec9c390c5",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "MonitorMetrics",
+        "input": "count=3 and Dropwizard rates=0.6",
+        "expected_output": "protobuf count/meanRate/oneMinuteRate/fiveMinuteRate/fifteenMinuteRate preserved",
+        "expected_error": "none",
+        "expected_effect": "converts rate fields"
+      }
+    },
+    {
+      "id": "PROD-0865090D6324B320",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/node/NodeInfo.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/node/NodeInfo.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.node;",
+        "source_line_sha256": "a561c927aa7a3ff9b1d2b815c89dde6ffe3de1564b61d7809885530a98c3e1d6",
+        "source_file_sha256": "19cb1c70c0de9e88b422c92690665041e8a39fae38b2a6623c4d7a9f8a373bc3"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-27AF08E2DF304833",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/node/NodeInfo.java"
+      },
+      "java_symbol": "org.tron.core.metrics.node",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.node;",
+        "source_line_sha256": "a561c927aa7a3ff9b1d2b815c89dde6ffe3de1564b61d7809885530a98c3e1d6",
+        "source_file_sha256": "19cb1c70c0de9e88b422c92690665041e8a39fae38b2a6623c4d7a9f8a373bc3"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-F52EC0F809054519",
+      "kind": "production",
+      "java_source": {
+        "line": 6,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/node/NodeInfo.java"
+      },
+      "java_symbol": "NodeInfo",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class NodeInfo {",
+        "source_line_sha256": "0e945b2330257f3107af9af8be06b816d278694470d17922bab193034f73fd89",
+        "source_file_sha256": "19cb1c70c0de9e88b422c92690665041e8a39fae38b2a6623c4d7a9f8a373bc3"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-AA44877012D21B18",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/node/NodeMetricManager.java"
+      },
+      "java_symbol": "org.tron.core.metrics.node",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.node;",
+        "source_line_sha256": "a561c927aa7a3ff9b1d2b815c89dde6ffe3de1564b61d7809885530a98c3e1d6",
+        "source_file_sha256": "bd6266b2adc3d9d4e6897d12e44368b990d7b489c6c61cd96b8b65c34dbe4c32"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-C662F1D67E923460",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/node/NodeMetricManager.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/metrics/node/NodeMetricManager.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.metrics.node;",
+        "source_line_sha256": "a561c927aa7a3ff9b1d2b815c89dde6ffe3de1564b61d7809885530a98c3e1d6",
+        "source_file_sha256": "bd6266b2adc3d9d4e6897d12e44368b990d7b489c6c61cd96b8b65c34dbe4c32"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-A88C2335010F01C8",
+      "kind": "production",
+      "java_source": {
+        "line": 15,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/node/NodeMetricManager.java"
+      },
+      "java_symbol": "NodeMetricManager",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class NodeMetricManager {",
+        "source_line_sha256": "80ceb859b8b879be04591c06c5deeb9fbc9571229f348247bdd5a7169a6af601",
+        "source_file_sha256": "bd6266b2adc3d9d4e6897d12e44368b990d7b489c6c61cd96b8b65c34dbe4c32"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-B93DC8D351EB426C",
+      "kind": "production",
+      "java_source": {
+        "line": 29,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/node/NodeMetricManager.java"
+      },
+      "java_symbol": "getNodeInfo",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/node/NodeMetricManager.java",
+          "symbol": "getNodeInfo"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public NodeInfo getNodeInfo() {",
+        "source_line_sha256": "75dc3c90743e1fb4621077d2c5a93e4a846533957ce772717f27f915fd0655e2",
+        "source_file_sha256": "bd6266b2adc3d9d4e6897d12e44368b990d7b489c6c61cd96b8b65c34dbe4c32"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "ip=203.0.113.8,nodeType=1,version=4.8.0,backupStatus=1",
+        "output": "exact NodeInfo object/protobuf fields",
+        "error": "none",
+        "effect": "returns node projection"
+      },
+      "rust_case": "c025_metrics_node_prod_b93dc8d351eb426c",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "NodeInfo",
+        "input": "ip=203.0.113.8,nodeType=1,version=4.8.0,backupStatus=1",
+        "expected_output": "exact NodeInfo object/protobuf fields",
+        "expected_error": "none",
+        "expected_effect": "returns node projection"
+      }
+    },
+    {
+      "id": "PROD-50BE13424EA9FA05",
+      "kind": "production",
+      "java_source": {
+        "line": 56,
+        "path": "java-tron/framework/src/main/java/org/tron/core/metrics/node/NodeMetricManager.java"
+      },
+      "java_symbol": "getNodeProtoInfo",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/metrics/node/NodeMetricManager.java",
+          "symbol": "getNodeProtoInfo"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public Protocol.MetricsInfo.NodeInfo getNodeProtoInfo() {",
+        "source_line_sha256": "6bf0ec7984e3d42a8d3bda65b237a439b09c2851113b5c97552aab499deb6fd6",
+        "source_file_sha256": "bd6266b2adc3d9d4e6897d12e44368b990d7b489c6c61cd96b8b65c34dbe4c32"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "ip=203.0.113.8,nodeType=1,version=4.8.0,backupStatus=1",
+        "output": "exact NodeInfo object/protobuf fields",
+        "error": "none",
+        "effect": "returns node projection"
+      },
+      "rust_case": "c025_metrics_node_prod_50be13424ea9fa05",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "NodeInfo",
+        "input": "ip=203.0.113.8,nodeType=1,version=4.8.0,backupStatus=1",
+        "expected_output": "exact NodeInfo object/protobuf fields",
+        "expected_error": "none",
+        "expected_effect": "returns node projection"
+      }
+    },
+    {
+      "id": "PROD-38A5245E2C879797",
+      "kind": "production",
+      "java_source": {
+        "line": 1,
+        "path": "java-tron/framework/src/main/java/org/tron/core/services/ratelimiter/PrometheusInterceptor.java"
+      },
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/services/ratelimiter/PrometheusInterceptor.java",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "source",
+        "source_text": "",
+        "source_line_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "source_file_sha256": "0d234e690992ca699aada299b90109fff1f170663a7c60be4078d93040731bbc"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "source"
+    },
+    {
+      "id": "PROD-1EAA82698775D1E5",
+      "kind": "production",
+      "java_source": {
+        "line": 2,
+        "path": "java-tron/framework/src/main/java/org/tron/core/services/ratelimiter/PrometheusInterceptor.java"
+      },
+      "java_symbol": "org.tron.core.services.ratelimiter",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "field",
+        "source_text": "package org.tron.core.services.ratelimiter;",
+        "source_line_sha256": "fa46e0ebff1d0409c0785caf8d2fa7490f7765de372892be78a795e60956717a",
+        "source_file_sha256": "0d234e690992ca699aada299b90109fff1f170663a7c60be4078d93040731bbc"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "field"
+    },
+    {
+      "id": "PROD-9B4D647EEA818863",
+      "kind": "production",
+      "java_source": {
+        "line": 21,
+        "path": "java-tron/framework/src/main/java/org/tron/core/services/ratelimiter/PrometheusInterceptor.java"
+      },
+      "java_symbol": "PrometheusInterceptor",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "public class PrometheusInterceptor implements ServerInterceptor {",
+        "source_line_sha256": "04db2f34065e2d8fe122d8c1aa607d122c04ac75747cbff9c90280d27477ef31",
+        "source_file_sha256": "0d234e690992ca699aada299b90109fff1f170663a7c60be4078d93040731bbc"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-6D6D682679AC788D",
+      "kind": "production",
+      "java_source": {
+        "line": 29,
+        "path": "java-tron/framework/src/main/java/org/tron/core/services/ratelimiter/PrometheusInterceptor.java"
+      },
+      "java_symbol": "MonitoringServerCall",
+      "java_observation": {
+        "mode": "immutable_declaration",
+        "declaration_kind": "type",
+        "source_text": "static class MonitoringServerCall<R, S> extends ForwardingServerCall",
+        "source_line_sha256": "1f2b31a36652832637553df2483f1bd5be35468a8b985d23e5526c2d61f9ecc0",
+        "source_file_sha256": "0d234e690992ca699aada299b90109fff1f170663a7c60be4078d93040731bbc"
+      },
+      "evidence_kind": "source_declaration",
+      "declaration_kind": "type"
+    },
+    {
+      "id": "PROD-E8B74AAAE1F3022A",
+      "kind": "production",
+      "java_source": {
+        "line": 41,
+        "path": "java-tron/framework/src/main/java/org/tron/core/services/ratelimiter/PrometheusInterceptor.java"
+      },
+      "java_symbol": "close",
+      "java_observation": {
+        "mode": "executed_java_behavior",
+        "input": {
+          "class_or_source": "java-tron/framework/src/main/java/org/tron/core/services/ratelimiter/PrometheusInterceptor.java",
+          "symbol": "close"
+        },
+        "captured_fields": [
+          "input",
+          "output",
+          "error",
+          "effect"
+        ],
+        "source_text": "public void close(Status status, Metadata responseHeaders) {",
+        "source_line_sha256": "891faf5ba68af5883d76f44f9ab5030b46304835e7fa7183681c64441f25757f",
+        "source_file_sha256": "0d234e690992ca699aada299b90109fff1f170663a7c60be4078d93040731bbc"
+      },
+      "evidence_kind": "production_method_execution",
+      "java_vector": {
+        "input": "endpoint=protocol.Wallet/GetNowBlock,elapsed=0.125s",
+        "output": "grpc_service_latency_seconds count=1,sum=0.125,endpoint label exact",
+        "error": "none",
+        "effect": "close records latency after delegated close"
+      },
+      "rust_case": "c025_metrics_node_prod_e8b74aaae1f3022a",
+      "rust_dispatch": "tron-events-metrics::c025_cases_metrics_node",
+      "rust_invocation": {
+        "api": "Prometheus",
+        "input": "endpoint=protocol.Wallet/GetNowBlock,elapsed=0.125s",
+        "expected_output": "grpc_service_latency_seconds count=1,sum=0.125,endpoint label exact",
+        "expected_error": "none",
+        "expected_effect": "close records latency after delegated close"
+      }
+    }
+  ]
+}

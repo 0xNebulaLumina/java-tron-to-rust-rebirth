@@ -1,0 +1,99 @@
+{
+  "schema": "c025-events-plugin-zeromq.v1",
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "sources": [
+    {
+      "path": "java-tron/framework/src/main/java/org/tron/common/logsfilter/EventPluginLoader.java",
+      "sha256": "f647f8be3ac76f0f517e7d7a485bc9aa18576851991cb51be4fe1863cf6786a7"
+    },
+    {
+      "path": "java-tron/framework/src/main/java/org/tron/common/logsfilter/nativequeue/NativeMessageQueue.java",
+      "sha256": "6e45d4a330a2d35f58d8749600efb4be5d893800f6b7a6949a31b68f9e737da1"
+    },
+    {
+      "path": "java-tron/common/src/main/java/org/tron/common/logsfilter/EventPluginConfig.java",
+      "sha256": "df4652c2640346394426283920f460fdfa7196986a5c8a9a80ea2af749eb0ea3"
+    },
+    {
+      "path": "java-tron/common/src/main/java/org/tron/common/logsfilter/TriggerConfig.java",
+      "sha256": "040146b4941a0d876eec8cdd0b14697d2ad5145526e08e43f7ecba94fd6285c2"
+    },
+    {
+      "path": "java-tron/common/src/main/java/org/tron/common/logsfilter/trigger/Trigger.java",
+      "sha256": "6f1bf5b80cb97ae461270a081c8043ffdfd513ef9dc134f43254084d5035cf43"
+    },
+    {
+      "path": "java-tron/common/src/main/java/org/tron/common/logsfilter/trigger/BlockLogTrigger.java",
+      "sha256": "da7de2c7b9a294a66654c4683927eacbf23fe564a46d3637aeb4a440d747b4db"
+    },
+    {
+      "path": "java-tron/common/src/main/java/org/tron/common/logsfilter/trigger/TransactionLogTrigger.java",
+      "sha256": "71b7a0e57f7d95e4793ef01598dfc7a71db630b92175c864ea688c4b0d776e56"
+    },
+    {
+      "path": "java-tron/common/src/main/java/org/tron/common/logsfilter/trigger/ContractTrigger.java",
+      "sha256": "50e9691d8a0ad0729d9e28be5376922aff3919e123934eb1b89edafc6d8f12a0"
+    },
+    {
+      "path": "java-tron/common/src/main/java/org/tron/common/logsfilter/trigger/ContractLogTrigger.java",
+      "sha256": "8988a3df86cc25a410b87317d41fbed2f49bf847eef7cf2748241965894f05f2"
+    },
+    {
+      "path": "java-tron/common/src/main/java/org/tron/common/logsfilter/trigger/ContractEventTrigger.java",
+      "sha256": "57f8c3da07e02cfab426545f5d3cb8e1a727c7ff1e25f609035070c63814f041"
+    },
+    {
+      "path": "java-tron/common/src/main/java/org/tron/common/logsfilter/trigger/SolidityTrigger.java",
+      "sha256": "54de5fc3b025a7cabcd48f552f195c0bd03fb8ae408c5917dd2c6ea50a9f415c"
+    }
+  ],
+  "vectors": {
+    "trigger_names": [
+      "blockTrigger",
+      "transactionTrigger",
+      "contractLogTrigger",
+      "contractEventTrigger",
+      "solidityTrigger",
+      "solidityEventTrigger",
+      "solidityLogTrigger"
+    ],
+    "queue": {
+      "realtime_capacity": 10000,
+      "flush_millis": 1000,
+      "reorg": "all removals first, forwards oldest-first"
+    },
+    "plugin": {
+      "minimum_version": "3.0.0",
+      "configuration_order": [
+        "serverAddress",
+        "dbConfig",
+        "topics",
+        "start"
+      ],
+      "busy_pending_threshold": 50000,
+      "isolation": "child process JSON-lines; no dynamic library loading"
+    },
+    "zeromq": {
+      "crate": "zeromq",
+      "crate_version": "0.4.1",
+      "rust_version": "1.85.1",
+      "bind": "tcp://*:<port>",
+      "default_port": 5555,
+      "send_hwm": 1000,
+      "frames": [
+        "topic UTF-8",
+        "JSON UTF-8"
+      ]
+    }
+  },
+  "rust_proofs": [
+    "c025_events::java_block_schema_uses_camel_case_and_removed",
+    "c025_events::bounded_batch_is_atomic_and_reorg_order_is_exact",
+    "c025_plugin::accepts_version_three_and_configures_before_lifecycle",
+    "c025_plugin::rejects_old_plugin_without_loading_it_in_process",
+    "c025_zeromq::live_subscriber_receives_topic_then_json_frames",
+    "c025_plugin::publish_uses_custom_topic_and_disabled_trigger_is_silent",
+    "c025_plugin::eth_compatible_transaction_matches_java_contract_address_rule",
+    "c025_plugin::configured_modes_separate_realtime_solid_history_and_unconfigured"
+  ]
+}

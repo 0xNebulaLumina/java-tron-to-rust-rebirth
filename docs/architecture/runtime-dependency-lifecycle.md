@@ -153,6 +153,26 @@ idempotent only after every registered service has stopped. Never-completing sta
 are bounded by the composition root. Restart is intentionally unsupported, so cancellation remains
 the original graph-wide token for its full lifetime.
 
+External event delivery is owned by its lifecycle service rather than detached from the graph.
+Process plugins have an 8 KiB newline-terminated hello bound and a five-second handshake deadline.
+All stdin traffic crosses a bounded 64-entry writer queue and each acknowledged write has a
+two-second deadline, so a plugin that never reads cannot block a lifecycle polling thread. Every
+partial startup failure kills and waits for the child and joins its IPC helper. Shutdown reports a
+failed `Stop` write, allows two seconds for graceful exit, then kills and always waits for the child;
+drop follows the same cleanup path.
+
+The ZeroMQ publisher has a configured high-water-mark queue and rejects rather than waits when that
+queue is full. Its Tokio worker task races bind and every socket send against explicit deadlines and
+uses a `CancellationToken` for shutdown. Shutdown waits at most three seconds for the owned
+`JoinHandle`, aborts it after the deadline, and never performs an OS-thread join. Worker bind, send,
+panic, and timeout failures remain observable through the publisher lifecycle.
+
+`ProductionNode::from_config` is the production composition root: it constructs the concrete API
+provider, event-queue, process-plugin, ZeroMQ, monitor-metrics, Prometheus HTTP, DB-statistics, and
+readiness hooks from owned dependencies. The same bindings expose the C019 transactional event sink
+and C022 RPC domain provider; callers provide operational dependencies, not fabricated lifecycle
+hooks. `compose_production_node` is the node-entrypoint callsite for this path.
+
 API selection is a composition plan, not an API implementation. Full and Solidity surfaces are
 mode-gated, PBFT surfaces additionally require `committee.allowPBFT == 1`, and enabled ports must be
 non-zero `u16` values unique across all selected HTTP, RPC, and JSON-RPC surfaces. P2P is a Full-mode

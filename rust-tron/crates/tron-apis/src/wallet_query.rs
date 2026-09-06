@@ -651,6 +651,12 @@ impl DatabaseQuery {
 pub trait MonitorSource: Send + Sync {
     fn stats(&self) -> MetricsInfo;
 }
+impl<F> MonitorSource for F
+where
+    F: Fn() -> MetricsInfo + Send + Sync,
+{
+    fn stats(&self) -> MetricsInfo { self() }
+}
 pub struct MonitorQuery<S>(pub S);
 impl<S: MonitorSource> MonitorQuery<S> {
     #[must_use]

@@ -2,6 +2,8 @@
 //!
 //! This crate deliberately implements no storage, API, transport, or consensus behavior. The
 //! composition root receives already-constructed services and owns their ordering and shutdown.
+pub mod operations;
+pub mod lifecycle_limits;
 
 use std::{
     collections::{BTreeMap, BTreeSet},

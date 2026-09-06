@@ -1,0 +1,30 @@
+{
+  "schema": "c025-metrics-node-info.v1",
+  "items": ["C025.05", "C025.06"],
+  "prometheus": {
+    "default_port": 9527,
+    "db_stat_interval_seconds": 21600,
+    "counter_names": ["tron:txs", "tron:miner", "tron:block_fork", "tron:sr_set_change", "tron:p2p_error", "tron:p2p_disconnect", "tron:internal_service_fail"],
+    "gauge_names": ["tron:header_height", "tron:header_time", "tron:peers", "tron:db_size_bytes", "tron:db_sst_level", "tron:manager_queue_size", "tron:tx_cache"],
+    "histogram_names": ["tron:http_service_latency_seconds", "tron:grpc_service_latency_seconds", "tron:jsonrpc_service_latency_seconds", "tron:miner_latency_seconds", "tron:ping_pong_latency_seconds", "tron:verify_sign_latency_seconds", "tron:lock_acquire_latency_seconds", "tron:block_process_latency_seconds", "tron:block_push_latency_seconds", "tron:block_generate_latency_seconds", "tron:process_transaction_latency_seconds", "tron:miner_delay_seconds", "tron:udp_bytes", "tron:tcp_bytes", "tron:http_bytes", "tron:internal_service_latency_seconds", "tron:message_process_latency_seconds", "tron:block_fetch_latency_seconds", "tron:block_receive_delay_seconds", "tron:block_transaction_count"],
+    "block_transaction_buckets": [0, 20, 50, 80, 100, 120, 140, 160, 180, 200, 230, 260, 300, 500, 2000, 5000, 10000],
+    "disabled_behavior": "recording is a no-op and no scrape text is exposed",
+    "cardinality": "series are bounded per metric; label arity must exactly match the Java declaration"
+  },
+  "monitor": {
+    "interval_unit": "seconds since MetricsApiService construction",
+    "rate_windows_seconds": [60, 300, 900],
+    "latency_percentiles": [0.75, 0.95, 0.99],
+    "latency_delay_threshold_millis": [1000, 2000, 3000],
+    "traffic": ["tcp.in", "tcp.out", "udp.in", "udp.out"],
+    "details": ["disconnect reason", "API method", "witness latency", "duplicate witness", "failed block number and reason"]
+  },
+  "node_info": {
+    "sections": ["block", "connection", "peer", "config", "machine", "cheat witness"],
+    "quirks": ["PeerInfo.needSyncFromPeer is populated from syncFlag", "empty sync-to-fetch peek is -1", "dbVersion is always 2", "totalFlow remains zero in NodeInfoService"],
+    "machine_unavailable_rates": -1,
+    "health": "unhealthy only when a deadlock is observed",
+    "readiness_order": ["no peers", "syncing", "stalled", "ready"]
+  },
+  "rust_tests": ["tron-events-metrics/tests/c025_metrics.rs", "tron-events-metrics/tests/c025_node_info.rs"]
+}

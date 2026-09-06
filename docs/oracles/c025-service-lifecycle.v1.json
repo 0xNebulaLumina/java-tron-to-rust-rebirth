@@ -1,0 +1,40 @@
+{
+  "schema": "c025-service-graph-v1",
+  "startup_order": [
+    "network",
+    "apis",
+    "operations-api-provider",
+    "event-queues",
+    "event-plugin",
+    "zeromq",
+    "monitor-metrics",
+    "prometheus",
+    "db-stats",
+    "node-readiness"
+  ],
+  "shutdown_contract": [
+    "revoke-readiness",
+    "cancel-ingress",
+    "drain-event-queues",
+    "flush-exporters-and-plugins",
+    "stop-exporters-plugins-and-owned-tasks",
+    "aggregate-all-failures"
+  ],
+  "stop_conditions": [
+    "SIGINT",
+    "SIGTERM",
+    "operator",
+    "fatal-service-failure"
+  ],
+  "readiness": "all enabled ingress accepting and state initialized",
+  "health": "false on fatal service failure",
+  "prometheus_http": {
+    "max_connections": 16,
+    "max_request_bytes": 8192,
+    "absolute_request_deadline_millis": 2000,
+    "idle_io_deadline_millis": 500,
+    "client_failure_policy": "contained and logged without terminating the listener",
+    "shutdown": "cancel ingress, drain supervised workers, abort at deadline"
+  },
+  "grpc_max_streams_seam": "C022 transport admission enforces configured maximum before HTTP/2 settings acknowledgement; C025 owns lifecycle/operational failure observation only"
+}

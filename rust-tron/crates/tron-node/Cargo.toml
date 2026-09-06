@@ -20,7 +20,10 @@ tron-shielded = { path = "../tron-shielded" }
 tron-state = { path = "../tron-state" }
 tron-storage = { path = "../tron-storage" }
 tron-tvm = { path = "../tron-tvm" }
-tokio = { version = "=1.53.1", features = ["macros", "rt", "sync", "time"] }
+tokio = { version = "=1.53.1", features = ["io-util", "macros", "net", "rt", "signal", "sync", "time"] }
+tokio-util = { version = "=0.7.15", features = ["rt"] }
+
+parking_lot = "=0.12.4"
 
 [lints]
 workspace = true

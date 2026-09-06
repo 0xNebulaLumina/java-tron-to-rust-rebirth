@@ -3275,70 +3275,81 @@
     {
       "id": "C025",
       "title": "Events, plugins, metrics, and operations",
-      "status": "todo",
-      "owner": null,
-      "updated": null,
+      "status": "done",
+      "owner": "operations-port",
+      "updated": "2026-09-06",
       "resume": null,
       "items": [
         {
           "id": "C025.01",
           "description": "Block/transaction/contract event/log and solidity trigger schemas/modes.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Java-compatible event schemas and trigger serialization are implemented and covered by focused cases."
         },
         {
           "id": "C025.02",
           "description": "Async history/realtime/solid queues, redundant/ETH/solidified modes and reorg ordering.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Bounded history/realtime/solid queues preserve atomic reorg removed-before-reapply ordering."
         },
         {
           "id": "C025.03",
           "description": "PF4J-compatible plugin boundary or approved equivalent with explicit compatibility adapter.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "The explicit process-plugin compatibility adapter enforces version, handshake, topic, pending, failure, and shutdown contracts."
         },
         {
           "id": "C025.04",
           "description": "ZeroMQ PUB topic frame + JSON frame, bind/HWM/failure/shutdown behavior.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Live ZeroMQ PUB/SUB proof covers the two-frame topic/JSON wire contract, bind, HWM, failure, and joined shutdown."
         },
         {
           "id": "C025.05",
           "description": "Monitor metrics and Prometheus names/labels/latencies/traffic/disconnect/block detail.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Monitor, Prometheus, API latency, traffic, disconnect, block, and DB statistics inventories and behavior are covered."
         },
         {
           "id": "C025.06",
           "description": "NodeInfo observed fields/quirks, health/readiness and metrics enablement.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "NodeInfo compatibility, shared C022 Monitor provider state, readiness, health, and metrics enablement are covered."
         },
         {
           "id": "C025.07",
           "description": "Service startup, reverse shutdown, signals, stop conditions and surfaced failures.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "The explicit graph starts after network/APIs, revokes readiness and ingress, drains and flushes, stops in reverse, joins owned work, handles signal/operator/fatal stops, and aggregates failures."
         },
         {
           "id": "C025.08",
           "description": "Generate metric/event/service inventories; define scrape windows, float/counter tolerances, labels, API-specific interceptors, event order and standalone checkpoint comparisons; require zero unmapped rows.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Exact reconciliation covers 135 pinned Java tests and 365 production rows with zero unmapped rows: three disjoint family suites emit 295 exact ID-to-input/result/effect/error behavior maps (including delivery-supervisor fatal lifecycle cases), while 205 declarations authenticate source hashes only; five live cross-domain scenarios cover ZMQ, Prometheus, C022 Monitor/NodeInfo, C019 reorg, and lifecycle."
         }
       ],
       "gate": {
         "id": "C025.V",
-        "description": "Live subscriber, metric parity, event reorg, lifecycle and failure-propagation gates pass.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed and cleanly reviewed: guarded Java oracle execution, immutable declaration-source authentication, exact 255/114/131 family partition of all 500 canonical rows with zero duplicates or catchalls, exactly 295 emitted Rust behavior maps plus 205 declarations, live scenario outputs, family-bound central hashes, focused suites, locked all-targets checks, and the passing C019 and C022 seam gates.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C025 full gate",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/operations/c025_gate.py",
+              "all"
+            ],
+            "timeout_seconds": 3600
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
+        "state": "approved",
+        "round": 1,
         "findings": []
       },
       "blocker": null

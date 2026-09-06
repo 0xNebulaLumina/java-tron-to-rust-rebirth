@@ -1,0 +1,37 @@
+use std::collections::BTreeMap;
+use std::fs;
+use std::sync::Arc;
+use std::time::{SystemTime, UNIX_EPOCH};
+use tron_protocol::protocol::{NodeInfo, node_info};
+
+#[derive(Clone, Debug, Default)]
+pub struct PeerObservation {
+    pub last_sync_block:String,pub remain_num:i64,pub last_block_update_time:i64,pub disconnected:bool,pub head_block_time_we_both_have:i64,pub need_sync_from_peer:bool,pub need_sync_from_us:bool,pub host:String,pub port:i32,pub node_id:String,pub connect_time:i64,pub avg_latency:f64,pub sync_to_fetch_size:i32,pub sync_to_fetch_size_peek_num:Option<i64>,pub sync_block_requested_size:i32,pub un_fetch_sync_num:i64,pub block_in_process_size:i32,pub head_block_we_both_have:String,pub active:bool,pub score:i32,pub node_count:i32,pub in_flow:i64,pub disconnect_times:i32,pub local_disconnect_reason:Option<String>,pub remote_disconnect_reason:Option<String>,
+}
+impl PeerObservation {
+    #[must_use] pub fn into_proto(self)->node_info::PeerInfo { node_info::PeerInfo{last_sync_block:self.last_sync_block,remain_num:self.remain_num,last_block_update_time:self.last_block_update_time,sync_flag:self.disconnected,head_block_time_we_both_have:self.head_block_time_we_both_have,
+        // Java transferToProtoEntity intentionally copies syncFlag here instead of needSyncFromPeer.
+        need_sync_from_peer:self.disconnected,need_sync_from_us:self.need_sync_from_us,host:self.host,port:self.port,node_id:self.node_id,connect_time:self.connect_time,avg_latency:self.avg_latency,sync_to_fetch_size:self.sync_to_fetch_size,sync_to_fetch_size_peek_num:self.sync_to_fetch_size_peek_num.unwrap_or(-1),sync_block_requested_size:self.sync_block_requested_size,un_fetch_syn_num:self.un_fetch_sync_num,block_in_porc_size:self.block_in_process_size,head_block_we_both_have:self.head_block_we_both_have,is_active:self.active,score:self.score,node_count:self.node_count,in_flow:self.in_flow,disconnect_times:self.disconnect_times,local_disconnect_reason:self.local_disconnect_reason.unwrap_or_default(),remote_disconnect_reason:self.remote_disconnect_reason.unwrap_or_default()}}
+}
+
+#[derive(Clone, Debug)]
+pub struct NodeConfigObservation { pub code_version:String,pub p2p_version:String,pub listen_port:i32,pub discover_enable:bool,pub active_node_size:i32,pub passive_node_size:i32,pub seed_node_size:i32,pub max_connect_count:i32,pub same_ip_max_connect_count:i32,pub backup_listen_port:i32,pub backup_member_size:i32,pub backup_priority:i32,pub min_participation_rate:i32,pub support_constant:bool,pub min_time_ratio:f64,pub max_time_ratio:f64,pub allow_creation_of_contracts:i64,pub allow_adaptive_energy:i64 }
+impl Default for NodeConfigObservation { fn default()->Self{Self{code_version:env!("CARGO_PKG_VERSION").into(),p2p_version:String::new(),listen_port:18888,discover_enable:true,active_node_size:0,passive_node_size:0,seed_node_size:0,max_connect_count:0,same_ip_max_connect_count:0,backup_listen_port:10001,backup_member_size:0,backup_priority:0,min_participation_rate:0,support_constant:true,min_time_ratio:0.0,max_time_ratio:0.0,allow_creation_of_contracts:0,allow_adaptive_energy:0}} }
+impl From<NodeConfigObservation> for node_info::ConfigNodeInfo { fn from(v:NodeConfigObservation)->Self{Self{code_version:v.code_version,p2p_version:v.p2p_version,listen_port:v.listen_port,discover_enable:v.discover_enable,active_node_size:v.active_node_size,passive_node_size:v.passive_node_size,send_node_size:v.seed_node_size,max_connect_count:v.max_connect_count,same_ip_max_connect_count:v.same_ip_max_connect_count,backup_listen_port:v.backup_listen_port,backup_member_size:v.backup_member_size,backup_priority:v.backup_priority,db_version:2,min_participation_rate:v.min_participation_rate,support_constant:v.support_constant,min_time_ratio:v.min_time_ratio,max_time_ratio:v.max_time_ratio,allow_creation_of_contracts:v.allow_creation_of_contracts,allow_adaptive_energy:v.allow_adaptive_energy}} }
+
+pub trait NodeInfoProvider:Send+Sync { fn begin_sync_number(&self)->i64; fn head_block_id(&self)->String; fn solidity_block_id(&self)->String; fn peers(&self)->Vec<PeerObservation>; fn config(&self)->NodeConfigObservation; fn cheat_witnesses(&self)->BTreeMap<String,String>; }
+
+#[derive(Clone)]
+pub struct NodeInfoObserver<P>{provider:Arc<P>}
+impl<P:NodeInfoProvider> NodeInfoObserver<P>{#[must_use]pub fn new(provider:Arc<P>)->Self{Self{provider}} #[must_use]pub fn snapshot(&self)->NodeInfo{let peers=self.provider.peers();let active=peers.iter().filter(|p|p.active).count();let passive=peers.len().saturating_sub(active);NodeInfo{begin_sync_num:self.provider.begin_sync_number(),block:self.provider.head_block_id(),solidity_block:self.provider.solidity_block_id(),current_connect_count:sat_i32(peers.len()),active_connect_count:sat_i32(active),passive_connect_count:sat_i32(passive),total_flow:0,peer_info_list:peers.into_iter().map(PeerObservation::into_proto).collect(),config_node_info:Some(self.provider.config().into()),machine_info:Some(machine_info()),cheat_witness_info_map:self.provider.cheat_witnesses()}}}
+
+#[derive(Clone,Copy,Debug,Eq,PartialEq)]pub enum HealthStatus{Healthy,Unhealthy}
+#[derive(Clone,Copy,Debug,Eq,PartialEq)]pub enum ReadinessStatus{Ready,Syncing,NoPeers,Stalled}
+#[derive(Clone,Debug)]pub struct OperationalStatus{pub health:HealthStatus,pub readiness:ReadinessStatus,pub observed_at_millis:u64}
+impl OperationalStatus{#[must_use]pub fn from_node(node:&NodeInfo,now_millis:u64,max_head_age_millis:u64)->Self{let head_time=node.peer_info_list.iter().map(|p|p.last_block_update_time.max(p.head_block_time_we_both_have)).max().unwrap_or(0);let readiness=if node.current_connect_count<=0{ReadinessStatus::NoPeers}else if node.begin_sync_num>0{ReadinessStatus::Syncing}else if head_time>0&&i64::try_from(now_millis).unwrap_or(i64::MAX).saturating_sub(head_time)>i64::try_from(max_head_age_millis).unwrap_or(i64::MAX){ReadinessStatus::Stalled}else{ReadinessStatus::Ready};let health=if node.machine_info.as_ref().is_some_and(|m|m.dead_lock_thread_count>0){HealthStatus::Unhealthy}else{HealthStatus::Healthy};Self{health,readiness,observed_at_millis:now_millis}}}
+
+#[must_use]pub fn machine_info()->node_info::MachineInfo{let cpu=sat_i32(std::thread::available_parallelism().map_or(1,usize::from));let(total,free)=linux_memory();node_info::MachineInfo{thread_count:linux_thread_count().unwrap_or(cpu),dead_lock_thread_count:0,cpu_count:cpu,total_memory:total,free_memory:free,cpu_rate:-1.0,java_version:format!("rust-{}",env!("CARGO_PKG_VERSION")),os_name:format!("{} {}",std::env::consts::OS,std::env::consts::ARCH),jvm_total_memory:0,jvm_free_memory:0,process_cpu_rate:-1.0,memory_desc_info_list:Vec::new(),dead_lock_thread_info_list:Vec::new()}}
+fn linux_memory()->(i64,i64){let Ok(text)=fs::read_to_string("/proc/meminfo")else{return(0,0)};let mut total=0;let mut free=0;for line in text.lines(){let mut fields=line.split_whitespace();match fields.next(){Some("MemTotal:")=>total=fields.next().and_then(|v|v.parse::<i64>().ok()).unwrap_or(0).saturating_mul(1024),Some("MemAvailable:")=>free=fields.next().and_then(|v|v.parse::<i64>().ok()).unwrap_or(0).saturating_mul(1024),_=>{}}}(total,free)}
+fn linux_thread_count()->Option<i32>{let text=fs::read_to_string("/proc/self/status").ok()?;text.lines().find_map(|l|l.strip_prefix("Threads:")).and_then(|v|v.trim().parse().ok())}
+fn sat_i32(v:usize)->i32{i32::try_from(v).unwrap_or(i32::MAX)}
+#[must_use]pub fn unix_time_millis()->u64{SystemTime::now().duration_since(UNIX_EPOCH).unwrap_or_default().as_millis().try_into().unwrap_or(u64::MAX)}
