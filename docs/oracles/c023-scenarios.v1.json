@@ -1,0 +1,163 @@
+{
+  "contract": "C023.03-C023.06",
+  "version": 2,
+  "scenarios": [
+    {
+      "id": "C023-S-001",
+      "java_equivalence_class": "descriptor-get",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "GET descriptor route"
+    },
+    {
+      "id": "C023-S-002",
+      "java_equivalence_class": "descriptor-post",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "POST JSON descriptor route"
+    },
+    {
+      "id": "C023-S-003",
+      "java_equivalence_class": "parser-form",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "POST form conversion"
+    },
+    {
+      "id": "C023-S-004",
+      "java_equivalence_class": "custom-validate",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "validate-address custom handler"
+    },
+    {
+      "id": "C023-S-005",
+      "java_equivalence_class": "custom-broadcasthex",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "broadcast-hex custom handler"
+    },
+    {
+      "id": "C023-S-006",
+      "java_equivalence_class": "monitor-get",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "monitor GET"
+    },
+    {
+      "id": "C023-S-007",
+      "java_equivalence_class": "head-cursor",
+      "rust_case": "c023_scenarios::all_215_inventory_rows_execute_through_real_localhost_http",
+      "terminal_state": "observed",
+      "evidence": "HEAD cursor"
+    },
+    {
+      "id": "C023-S-008",
+      "java_equivalence_class": "solidity-cursor",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "SOLIDITY cursor"
+    },
+    {
+      "id": "C023-S-009",
+      "java_equivalence_class": "pbft-cursor",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "PBFT cursor"
+    },
+    {
+      "id": "C023-S-010",
+      "java_equivalence_class": "parser-json",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "JSON parser"
+    },
+    {
+      "id": "C023-S-011",
+      "java_equivalence_class": "visible",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "visible flag"
+    },
+    {
+      "id": "C023-S-012",
+      "java_equivalence_class": "int64-get",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "GET int64 string conversion"
+    },
+    {
+      "id": "C023-S-013",
+      "java_equivalence_class": "disabled-404",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "disabled normalized route"
+    },
+    {
+      "id": "C023-S-014",
+      "java_equivalence_class": "lite-closed",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "lite history closure"
+    },
+    {
+      "id": "C023-S-015",
+      "java_equivalence_class": "body-413",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "admission body limit"
+    },
+    {
+      "id": "C023-S-016",
+      "java_equivalence_class": "rate-limit",
+      "rust_case": "c023_http_controls::body_connection_and_rate_limits_release_permits",
+      "terminal_state": "observed",
+      "evidence": "endpoint/IP/global admission"
+    },
+    {
+      "id": "C023-S-017",
+      "java_equivalence_class": "process-error",
+      "rust_case": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "terminal_state": "observed",
+      "evidence": "Java-shaped error body"
+    },
+    {
+      "id": "C023-S-018",
+      "java_equivalence_class": "all-routes",
+      "rust_case": "c023_scenarios::all_215_inventory_rows_execute_through_real_localhost_http",
+      "terminal_state": "observed",
+      "evidence": "all production rows"
+    }
+  ],
+  "boundaries": {
+    "body": [
+      "limit",
+      "limit+1",
+      "chunked-limit+1"
+    ],
+    "parser": [
+      "json",
+      "form",
+      "trailing-comma",
+      "null",
+      "invalid-field"
+    ],
+    "filter": [
+      "disabled-normalized-path",
+      "lite-history",
+      "process-error"
+    ],
+    "rate": [
+      "endpoint",
+      "ip",
+      "global",
+      "permit-release"
+    ],
+    "cursor": [
+      "HEAD",
+      "SOLIDITY",
+      "PBFT"
+    ]
+  },
+  "status": "captured"
+}

@@ -2584,31 +2584,52 @@
           {
             "name": "C019 pinned Java Manager oracle, scenario manifests and ownership reconciliation",
             "cwd": ".",
-            "argv": ["python3", "tools/execution/c019_gate.py", "metadata", "oracle"],
+            "argv": [
+              "python3",
+              "tools/execution/c019_gate.py",
+              "metadata",
+              "oracle"
+            ],
             "timeout_seconds": 3600
           },
           {
             "name": "C019 block application contracts",
             "cwd": ".",
-            "argv": ["python3", "tools/execution/c019_gate.py", "block"],
+            "argv": [
+              "python3",
+              "tools/execution/c019_gate.py",
+              "block"
+            ],
             "timeout_seconds": 1200
           },
           {
             "name": "C019 fork switching contracts",
             "cwd": ".",
-            "argv": ["python3", "tools/execution/c019_gate.py", "fork"],
+            "argv": [
+              "python3",
+              "tools/execution/c019_gate.py",
+              "fork"
+            ],
             "timeout_seconds": 1200
           },
           {
             "name": "C019 multi-branch differential scenarios",
             "cwd": ".",
-            "argv": ["python3", "tools/execution/c019_gate.py", "scenario"],
+            "argv": [
+              "python3",
+              "tools/execution/c019_gate.py",
+              "scenario"
+            ],
             "timeout_seconds": 1200
           },
           {
             "name": "C019 exact tron-execution all-targets check",
             "cwd": ".",
-            "argv": ["python3", "tools/execution/c019_gate.py", "all-targets"],
+            "argv": [
+              "python3",
+              "tools/execution/c019_gate.py",
+              "all-targets"
+            ],
             "timeout_seconds": 1200
           }
         ],
@@ -2629,30 +2650,124 @@
       "updated": "2026-09-06",
       "resume": null,
       "items": [
-        {"id":"C020.01","description":"TCP varint frame codec, 5,242,880-byte maximum, traffic accounting, read timeout.","status":"done","note":"FramedIo separately counts exact sent/received wire bytes (including varint prefixes) and payload bytes; 0/127/128/16,383/16,384 and pipelined vectors, bounded buffering, timeout, and the exact 5,242,880-byte maximum pass."},
-        {"id":"C020.02","description":"Negative control bytes and exact external Connect protobuf schemas.","status":"done","note":"Authenticated bundled Connect.proto/generated classes define exact controls and schemas; TransportSession routes Hello, Status, ping, pong, upgrade, disconnect, and application envelopes on distinct paths."},
-        {"id":"C020.03","description":"Active/passive handshake, network/version asymmetry, admission, duplicate/self/capacity/trust rules.","status":"done","note":"Production TransportSession sends/receives Hello over FramedIo, validates endpoint/network/version/self/duplicate/capacity/same-IP/recent-ban before Connected, registers pool/admission lifecycle, and drives both live authenticated-libp2p-JAR Netty directions."},
-        {"id":"C020.04","description":"Compression negotiation, snappy envelope, 5 MiB uncompressed protection.","status":"done","note":"TransportSession exchanges Status and upgrade frames before Connected, uses bounded Snappy envelopes, and the live Java peer sends a negotiated compressed message decoded by Rust; unknown and expanded/compressed oversize cases remain bounded."},
-        {"id":"C020.05","description":"External keepalive, disconnect, temporary IP ban and reconnect behavior.","status":"done","note":"TransportSession timestamps ping/pong, enforces pong/read timeout, sends reasoned disconnect on cancellation/rejection, drains exactly, removes admission/pool state, applies temporary bans and active reconnect backoff; focused lifecycle and live Java scenarios pass."},
-        {"id":"C020.06","description":"Kademlia UDP raw envelope, limits, buckets/table/XOR/lookup/timeouts/eviction.","status":"done","note":"Bidirectional Java/Rust packet observations resolve discovery as raw type-byte plus protobuf; bounded Kademlia XOR ranking, eviction, capture-IP, lookup, and timeout behavior is implemented."},
-        {"id":"C020.07","description":"DNS tree signed root/leaf validation and candidate production.","status":"done","note":"DNS root/branch/node parsing, label hashing, recoverable signature verification, sequence monotonicity, traversal bounds, cycles, and candidates are covered by deterministic vectors."},
-        {"id":"C020.08","description":"Connection pool, node detection/status probe, candidate ranking, persisted peers.","status":"done","note":"Connection pools, deterministic candidate ranking, UDP status probing, and bounded sorted peer persistence are implemented."},
-        {"id":"C020.09","description":"Publish the P2P harness manifest: pinned Java artifact/config, topology, deterministic chain, capture hashes, directions/roles, payload boundaries, compression matrix, malformed corpus, timing tolerances, disconnect/ban expectations, discovery/DNS datasets and minimum sync/reorg depths.","status":"done","note":"Published authenticated binary inventory, harness/capture contract, topology, matrices, timing, malformed datasets, DNS/discovery vectors, sync/reorg depths, and the C018 secure datagram attestation seam without source-ledger overclaim."}
+        {
+          "id": "C020.01",
+          "description": "TCP varint frame codec, 5,242,880-byte maximum, traffic accounting, read timeout.",
+          "status": "done",
+          "note": "FramedIo separately counts exact sent/received wire bytes (including varint prefixes) and payload bytes; 0/127/128/16,383/16,384 and pipelined vectors, bounded buffering, timeout, and the exact 5,242,880-byte maximum pass."
+        },
+        {
+          "id": "C020.02",
+          "description": "Negative control bytes and exact external Connect protobuf schemas.",
+          "status": "done",
+          "note": "Authenticated bundled Connect.proto/generated classes define exact controls and schemas; TransportSession routes Hello, Status, ping, pong, upgrade, disconnect, and application envelopes on distinct paths."
+        },
+        {
+          "id": "C020.03",
+          "description": "Active/passive handshake, network/version asymmetry, admission, duplicate/self/capacity/trust rules.",
+          "status": "done",
+          "note": "Production TransportSession sends/receives Hello over FramedIo, validates endpoint/network/version/self/duplicate/capacity/same-IP/recent-ban before Connected, registers pool/admission lifecycle, and drives both live authenticated-libp2p-JAR Netty directions."
+        },
+        {
+          "id": "C020.04",
+          "description": "Compression negotiation, snappy envelope, 5 MiB uncompressed protection.",
+          "status": "done",
+          "note": "TransportSession exchanges Status and upgrade frames before Connected, uses bounded Snappy envelopes, and the live Java peer sends a negotiated compressed message decoded by Rust; unknown and expanded/compressed oversize cases remain bounded."
+        },
+        {
+          "id": "C020.05",
+          "description": "External keepalive, disconnect, temporary IP ban and reconnect behavior.",
+          "status": "done",
+          "note": "TransportSession timestamps ping/pong, enforces pong/read timeout, sends reasoned disconnect on cancellation/rejection, drains exactly, removes admission/pool state, applies temporary bans and active reconnect backoff; focused lifecycle and live Java scenarios pass."
+        },
+        {
+          "id": "C020.06",
+          "description": "Kademlia UDP raw envelope, limits, buckets/table/XOR/lookup/timeouts/eviction.",
+          "status": "done",
+          "note": "Bidirectional Java/Rust packet observations resolve discovery as raw type-byte plus protobuf; bounded Kademlia XOR ranking, eviction, capture-IP, lookup, and timeout behavior is implemented."
+        },
+        {
+          "id": "C020.07",
+          "description": "DNS tree signed root/leaf validation and candidate production.",
+          "status": "done",
+          "note": "DNS root/branch/node parsing, label hashing, recoverable signature verification, sequence monotonicity, traversal bounds, cycles, and candidates are covered by deterministic vectors."
+        },
+        {
+          "id": "C020.08",
+          "description": "Connection pool, node detection/status probe, candidate ranking, persisted peers.",
+          "status": "done",
+          "note": "Connection pools, deterministic candidate ranking, UDP status probing, and bounded sorted peer persistence are implemented."
+        },
+        {
+          "id": "C020.09",
+          "description": "Publish the P2P harness manifest: pinned Java artifact/config, topology, deterministic chain, capture hashes, directions/roles, payload boundaries, compression matrix, malformed corpus, timing tolerances, disconnect/ban expectations, discovery/DNS datasets and minimum sync/reorg depths.",
+          "status": "done",
+          "note": "Published authenticated binary inventory, harness/capture contract, topology, matrices, timing, malformed datasets, DNS/discovery vectors, sync/reorg depths, and the C018 secure datagram attestation seam without source-ledger overclaim."
+        }
       ],
       "gate": {
         "id": "C020.V",
-        "description": "Captured and live Java↔Rust bidirectional TCP, compression, malformed, UDP, DNS and ban tests pass; UDP ambiguity is results-resolved.",
+        "description": "Captured and live Java\u2194Rust bidirectional TCP, compression, malformed, UDP, DNS and ban tests pass; UDP ambiguity is results-resolved.",
         "status": "passed",
         "commands": [
-          {"name":"C020 authenticated binary metadata and manifests","cwd":".","argv":["python3","tools/network/c020_gate.py","metadata"],"timeout_seconds":300},
-          {"name":"C020 TCP framing, controls, handshake, compression, admission, timeout, ban and pool","cwd":".","argv":["python3","tools/network/c020_gate.py","tcp"],"timeout_seconds":1200},
-          {"name":"C020 UDP discovery, DNS and persistence","cwd":".","argv":["python3","tools/network/c020_gate.py","discovery"],"timeout_seconds":1200},
-          {"name":"C020 live bidirectional Java Netty TCP and Java UDP interoperability","cwd":".","argv":["python3","tools/network/c020_gate.py","scenario"],"timeout_seconds":3600},
-          {"name":"C020 exact tron-network all-targets check","cwd":".","argv":["python3","tools/network/c020_gate.py","all-targets"],"timeout_seconds":1200}
+          {
+            "name": "C020 authenticated binary metadata and manifests",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c020_gate.py",
+              "metadata"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C020 TCP framing, controls, handshake, compression, admission, timeout, ban and pool",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c020_gate.py",
+              "tcp"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C020 UDP discovery, DNS and persistence",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c020_gate.py",
+              "discovery"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C020 live bidirectional Java Netty TCP and Java UDP interoperability",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c020_gate.py",
+              "scenario"
+            ],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C020 exact tron-network all-targets check",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c020_gate.py",
+              "all-targets"
+            ],
+            "timeout_seconds": 1200
+          }
         ],
         "last_failure": null
       },
-      "review": {"state":"approved","round":1,"findings":[]},
+      "review": {
+        "state": "approved",
+        "round": 1,
+        "findings": []
+      },
       "blocker": null
     },
     {
@@ -2723,17 +2838,116 @@
         "description": "Canonical source-ledger gate accounts for exactly 103 Java-test plus 399 production rows: 480 execute once across protocol-peer 151, sync-gossip 102, handlers 89, and relay-watchdog 138; 22 Wallet/Database gRPC client rows are explicit C022 seams. Declaration evidence is separate from behavior execution: 250 rows authenticate exact source/file/line hashes, while 230 behavior rows validate exact stable-ID to Java input/result/digest and emitted Rust result maps. The gate rejects duplicate, missing, extra, or catchall evidence. Nine guarded Java-participating scenarios validate exact IDs, Rust case IDs, raw-message digests, terminal states, and emit the canonical scenario report; bounded gossip callers handle every cache Result explicitly.",
         "status": "passed",
         "commands": [
-          {"name":"C021 canonical 502-row exact family union","cwd":".","argv":["python3","tools/network/c021_gate.py","cases"],"timeout_seconds":1200},
-          {"name":"C021 application type/Hello protocol","cwd":".","argv":["python3","tools/network/c021_gate.py","protocol"],"timeout_seconds":1200},
-          {"name":"C021 peer state and caches","cwd":".","argv":["python3","tools/network/c021_gate.py","peer"],"timeout_seconds":1200},
-          {"name":"C021 sparse sync and ordered fetch","cwd":".","argv":["python3","tools/network/c021_gate.py","sync"],"timeout_seconds":1200},
-          {"name":"C021 gossip inventory and propagation","cwd":".","argv":["python3","tools/network/c021_gate.py","gossip"],"timeout_seconds":1200},
-          {"name":"C021 transaction block and PBFT handlers","cwd":".","argv":["python3","tools/network/c021_gate.py","handlers"],"timeout_seconds":1200},
-          {"name":"C021 fast-forward witness relay","cwd":".","argv":["python3","tools/network/c021_gate.py","relay"],"timeout_seconds":1200},
-          {"name":"C021 watchdog statistics and service lifecycle","cwd":".","argv":["python3","tools/network/c021_gate.py","watchdog"],"timeout_seconds":1200},
-          {"name":"C021 guarded live bidirectional Java Rust scenarios","cwd":".","argv":["python3","tools/network/c021_gate.py","scenario"],"timeout_seconds":3600},
-          {"name":"C021 exact tron-network all-targets check","cwd":".","argv":["python3","tools/network/c021_gate.py","all-targets"],"timeout_seconds":1200},
-          {"name":"C021 manifests and row ownership reconciliation","cwd":".","argv":["python3","tools/network/c021_gate.py","metadata"],"timeout_seconds":300}
+          {
+            "name": "C021 canonical 502-row exact family union",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c021_gate.py",
+              "cases"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C021 application type/Hello protocol",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c021_gate.py",
+              "protocol"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C021 peer state and caches",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c021_gate.py",
+              "peer"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C021 sparse sync and ordered fetch",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c021_gate.py",
+              "sync"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C021 gossip inventory and propagation",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c021_gate.py",
+              "gossip"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C021 transaction block and PBFT handlers",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c021_gate.py",
+              "handlers"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C021 fast-forward witness relay",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c021_gate.py",
+              "relay"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C021 watchdog statistics and service lifecycle",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c021_gate.py",
+              "watchdog"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C021 guarded live bidirectional Java Rust scenarios",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c021_gate.py",
+              "scenario"
+            ],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C021 exact tron-network all-targets check",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c021_gate.py",
+              "all-targets"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C021 manifests and row ownership reconciliation",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/network/c021_gate.py",
+              "metadata"
+            ],
+            "timeout_seconds": 300
+          }
         ],
         "last_failure": null
       },
@@ -2812,10 +3026,53 @@
         "description": "Full C022 gate passes with zero unmapped rows: seven services and 204 descriptor methods, 196 concrete tonic handlers, eight exact pinned-Java UNIMPLEMENTED methods, 260 guarded Java tests, and a 306-row ownership reconciliation comprising those tests, 22 C021 gRPC-client seams, 22 C006 shielded seams, and two future C023 HTTP seams. The gate runs metadata/ownership, guarded pinned-Java descriptor and test captures, focused wallet mutation/query, cursor, server, limit, DR-004 extension and scenario suites, plus the locked tron-apis all-targets check.",
         "status": "passed",
         "commands": [
-          {"name":"C022 metadata and exact ownership reconciliation","cwd":".","argv":["python3","tools/api/c022_gate.py","metadata"],"timeout_seconds":120},
-          {"name":"C022 guarded pinned Java descriptor capture","cwd":".","argv":["python3","tools/api/c022_gate.py","oracle"],"timeout_seconds":1200},
-          {"name":"C022 exact 260 guarded pinned Java tests","cwd":".","argv":["python3","tools/api/c022_gate.py","java-tests"],"timeout_seconds":1800},
-          {"name":"C022 canonical Rust suites and all-targets","cwd":".","argv":["python3","tools/api/c022_gate.py","wallet-mutation","wallet-query","cursors","server","limits","extension","scenarios","all-targets"],"timeout_seconds":1800}
+          {
+            "name": "C022 metadata and exact ownership reconciliation",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/api/c022_gate.py",
+              "metadata"
+            ],
+            "timeout_seconds": 120
+          },
+          {
+            "name": "C022 guarded pinned Java descriptor capture",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/api/c022_gate.py",
+              "oracle"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C022 exact 260 guarded pinned Java tests",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/api/c022_gate.py",
+              "java-tests"
+            ],
+            "timeout_seconds": 1800
+          },
+          {
+            "name": "C022 canonical Rust suites and all-targets",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/api/c022_gate.py",
+              "wallet-mutation",
+              "wallet-query",
+              "cursors",
+              "server",
+              "limits",
+              "extension",
+              "scenarios",
+              "all-targets"
+            ],
+            "timeout_seconds": 1800
+          }
         ],
         "last_failure": null
       },
@@ -2829,65 +3086,95 @@
     {
       "id": "C023",
       "title": "HTTP protobuf-JSON",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-09-06",
       "resume": null,
       "items": [
         {
           "id": "C023.01A",
           "description": "Generate the servlet-derived HTTP route inventory; implement bounded `/wallet` account/asset/witness/governance families with local route gates.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "The complete 215-route executable Axum inventory covers exact methods and bounded `/wallet` account, asset, witness, and governance route families with HEAD cursor dispatch."
         },
         {
           "id": "C023.01B",
           "description": "Implement transaction/contract/shielded and chain/resource/market route families with local gates.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Transaction, contract, shielded, chain, resource, and market route families execute concrete C022 services with exact protobuf/custom request and response types."
         },
         {
           "id": "C023.02",
           "description": "Implement bounded `/walletsolidity`, `/walletpbft`, `/net`, and `/monitor` families with local gates.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Bounded Solidity, PBFT, net, and monitor surfaces execute concrete C022 services with isolated route registration and exact SOLIDITY/PBFT cursor propagation."
         },
         {
           "id": "C023.03",
           "description": "JSON/form request parsing, `visible`, `Any`, Permission_id, extra_data, broadcasthex.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Lenient JSON/form request parsing, visible mode, Any, Permission_id, extra_data, transaction, and broadcasthex custom decoding are implemented."
         },
         {
           "id": "C023.04",
           "description": "Hex/Base58/name protobuf JSON, escaping, defaults, and GET-only `int64_as_string` scope.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Hex/Base58/name byte printing, escaping, defaults, and GET-only int64_as_string scope match the pinned HTTP contract."
         },
         {
           "id": "C023.05",
           "description": "HTTP 404 disabled, lite gates, `{\"Error\":\"class : message\"}`, size 413, connection/rate behavior.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Disabled/lite/error/413 controls, admission-before-parsing, bounded rate maps, absolute first-header/request/max-age deadlines, idle I/O deadlines, cancellation, and permit release are enforced."
         },
         {
           "id": "C023.06",
           "description": "Define comparison policy: included/excluded headers, byte/status/error rules, controlled clock, concurrency/rate schedules and state/cursor checkpoints.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Guarded Java equivalence, exact 333-method result maps, 548-row reconciliation, all 215 production routes, and exactly 18 identified terminal scenarios provide zero-unmapped evidence."
         }
       ],
       "gate": {
         "id": "C023.V",
-        "description": "Zero-unmapped route inventory and all per-family/boundary cases pass with results.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed and cleanly reviewed: zero-unmapped 215-route inventory, guarded Java equivalence capture, exact 548-row reconciliation, JSON/custom/control suites, exactly 18 terminal scenarios including isolated Full/Solidity/PBFT surfaces and slowloris bounds, and the locked all-targets check pass.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C023 full gate",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/api/c023_gate.py",
+              "all"
+            ],
+            "timeout_seconds": 3600
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 2,
+        "findings": [
+          {
+            "id": "C023-R1-001",
+            "summary": "Shared route registration could collapse duplicate paths across Full, Solidity, and PBFT HTTP servers instead of preserving surface-specific dispatch and cursors.",
+            "status": "closed",
+            "resolution": "Route construction and deduplication are surface-specific; the exact 215 identities and live duplicate getnodeinfo behavior prove distinct Full, Solidity, and PBFT dispatch."
+          },
+          {
+            "id": "C023-R1-002",
+            "summary": "Connection admission needed absolute first-header and maximum-age bounds in addition to idle I/O and request limits so silent or drip-fed clients could not retain permits indefinitely.",
+            "status": "closed",
+            "resolution": "Added absolute first-header and connection-age deadlines, read/write idle deadlines, cancellation-safe permit release, and 50 silent plus 50 drip-socket scenario coverage; admission remains before body collection and parsing."
+          },
+          {
+            "id": "C023-R2-003",
+            "summary": "Final correctness and security reviews required confirmation of surface isolation, bounded admission and deadlines, exact route/scenario accounting, and correctly aligned tracker item notes.",
+            "status": "closed",
+            "resolution": "Independent final correctness and security reviews are clean with zero blocker findings. Item notes now align with C023.01A route families, C023.01B transaction/contract/shielded/chain/resource/market, C023.02 surfaces, C023.03 parsing, C023.04 printing, C023.05 controls, and C023.06 evidence."
+          }
+        ]
       },
       "blocker": null
     },

@@ -7,6 +7,7 @@ pub struct RpcApiServices {
     context: ApiContext,
     provider: RpcDomainProvider,
     blocking: BlockingExecutor,
+    http_cursor: Option<ApiCursor>,
 }
 
 impl RpcApiServices {
@@ -14,9 +15,10 @@ impl RpcApiServices {
     pub fn new(context: ApiContext) -> Self { Self::with_blocking_executor(context, BlockingExecutor::default()) }
     #[must_use]
     pub fn with_blocking_executor(context: ApiContext, blocking: BlockingExecutor) -> Self {
-        Self { provider: RpcDomainProvider::new(context.clone()), context, blocking }
+        Self { provider: RpcDomainProvider::new(context.clone()), context, blocking, http_cursor: None }
     }
-    fn query(&self, cursor: ApiCursor) -> WalletQuery { WalletQuery::new(self.context.clone(), cursor) }
+    pub(crate) fn with_http_cursor(mut self, cursor: ApiCursor) -> Self { self.http_cursor = Some(cursor); self }
+    fn query(&self, cursor: ApiCursor) -> WalletQuery { WalletQuery::new(self.context.clone(), self.http_cursor.unwrap_or(cursor)) }
     fn mutation(&self) -> WalletMutation { WalletMutation::new(self.context.clone()) }
     fn response<T>(value: Result<T, ApiError>) -> Result<tonic::Response<T>, tonic::Status> {
         value.map(tonic::Response::new).map_err(Into::into)
@@ -1163,7 +1165,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::Account>,
     ) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.account(&input.address))
     }
     async fn get_account_by_id(
@@ -1171,7 +1173,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::Account>,
     ) -> std::result::Result<tonic::Response<super::Account>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.account_by_id(&input.account_id))
     }
     async fn list_witnesses(
@@ -1179,7 +1181,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::EmptyMessage>,
     ) -> std::result::Result<tonic::Response<super::WitnessList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.witnesses())
     }
     async fn get_paginated_now_witness_list(
@@ -1187,7 +1189,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::PaginatedMessage>,
     ) -> std::result::Result<tonic::Response<super::WitnessList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.paginated_witnesses(&input))
     }
     async fn get_asset_issue_list(
@@ -1195,7 +1197,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::EmptyMessage>,
     ) -> std::result::Result<tonic::Response<super::AssetIssueList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.assets())
     }
     async fn get_paginated_asset_issue_list(
@@ -1203,7 +1205,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::PaginatedMessage>,
     ) -> std::result::Result<tonic::Response<super::AssetIssueList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.paginated_assets(&input))
     }
     async fn get_asset_issue_by_name(
@@ -1211,7 +1213,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::BytesMessage>,
     ) -> std::result::Result<tonic::Response<super::AssetIssueContract>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.asset_by_name(&input.value))
     }
     async fn get_asset_issue_list_by_name(
@@ -1219,7 +1221,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::BytesMessage>,
     ) -> std::result::Result<tonic::Response<super::AssetIssueList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.assets_by_name(&input.value))
     }
     async fn get_asset_issue_by_id(
@@ -1227,7 +1229,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::BytesMessage>,
     ) -> std::result::Result<tonic::Response<super::AssetIssueContract>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.asset_by_id(&input.value))
     }
     async fn get_now_block(
@@ -1235,7 +1237,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::EmptyMessage>,
     ) -> std::result::Result<tonic::Response<super::Block>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.now_block())
     }
     async fn get_now_block2(
@@ -1243,7 +1245,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::EmptyMessage>,
     ) -> std::result::Result<tonic::Response<super::BlockExtention>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.now_block().map(|v| q.block_extension(v)))
     }
     async fn get_block_by_num(
@@ -1251,7 +1253,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::NumberMessage>,
     ) -> std::result::Result<tonic::Response<super::Block>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.block_by_num(input.num))
     }
     async fn get_block_by_num2(
@@ -1259,7 +1261,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::NumberMessage>,
     ) -> std::result::Result<tonic::Response<super::BlockExtention>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.block_by_num(input.num).map(|v| q.block_extension(v)))
     }
     async fn get_transaction_count_by_block_num(
@@ -1267,7 +1269,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::NumberMessage>,
     ) -> std::result::Result<tonic::Response<super::NumberMessage>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.transaction_count_by_block(input.num))
     }
     async fn get_delegated_resource(
@@ -1275,7 +1277,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::DelegatedResourceMessage>,
     ) -> std::result::Result<tonic::Response<super::DelegatedResourceList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.delegated_resource(&input.from_address,&input.to_address))
     }
     async fn get_delegated_resource_v2(
@@ -1283,7 +1285,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::DelegatedResourceMessage>,
     ) -> std::result::Result<tonic::Response<super::DelegatedResourceList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.delegated_resource(&input.from_address,&input.to_address))
     }
     async fn get_delegated_resource_account_index(
@@ -1292,7 +1294,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
     ) -> std::result::Result<tonic::Response<super::DelegatedResourceAccountIndex>, tonic::Status>
     {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.delegated_resource_index(&input.value))
     }
     async fn get_delegated_resource_account_index_v2(
@@ -1301,7 +1303,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
     ) -> std::result::Result<tonic::Response<super::DelegatedResourceAccountIndex>, tonic::Status>
     {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.delegated_resource_index(&input.value))
     }
     async fn get_can_delegated_max_size(
@@ -1312,7 +1314,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         tonic::Status,
     > {
         let input = request.into_inner();
-        Self::response(self.provider.delegated_max(input, ApiCursor::Solidity))
+        Self::response(self.provider.delegated_max(input, self.http_cursor.unwrap_or(ApiCursor::Solidity)))
     }
     async fn get_available_unfreeze_count(
         &self,
@@ -1322,7 +1324,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         tonic::Status,
     > {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.available_unfreeze_count(&input.owner_address))
     }
     async fn get_can_withdraw_unfreeze_amount(
@@ -1333,7 +1335,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         tonic::Status,
     > {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.withdrawable_unfreeze_amount(&input.owner_address,input.timestamp))
     }
     async fn get_exchange_by_id(
@@ -1341,7 +1343,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::BytesMessage>,
     ) -> std::result::Result<tonic::Response<super::Exchange>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(Self::identifier(&input.value).and_then(|id| q.exchange(id)))
     }
     async fn list_exchanges(
@@ -1349,7 +1351,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::EmptyMessage>,
     ) -> std::result::Result<tonic::Response<super::ExchangeList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.exchanges())
     }
     async fn get_transaction_by_id(
@@ -1357,7 +1359,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::BytesMessage>,
     ) -> std::result::Result<tonic::Response<super::Transaction>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.transaction(&input.value))
     }
     async fn get_transaction_info_by_id(
@@ -1365,7 +1367,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::BytesMessage>,
     ) -> std::result::Result<tonic::Response<super::TransactionInfo>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.transaction_info(&input.value))
     }
     async fn get_merkle_tree_voucher_info(
@@ -1375,7 +1377,8 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
     {
         let input = request.into_inner();
         let provider = self.provider.clone();
-        self.blocking_response(move |_| provider.voucher(input, ApiCursor::Solidity)).await
+        let cursor = self.http_cursor.unwrap_or(ApiCursor::Solidity);
+        self.blocking_response(move |_| provider.voucher(input, cursor)).await
     }
     async fn scan_note_by_ivk(
         &self,
@@ -1383,7 +1386,8 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
     ) -> std::result::Result<tonic::Response<super::DecryptNotes>, tonic::Status> {
         let input = request.into_inner();
         let provider=self.provider.clone();
-        self.blocking.run(move |_|provider.scan_ivk(input,ApiCursor::Solidity)).await.map(tonic::Response::new)
+        let cursor = self.http_cursor.unwrap_or(ApiCursor::Solidity);
+        self.blocking.run(move |_|provider.scan_ivk(input,cursor)).await.map(tonic::Response::new)
     }
     async fn scan_and_mark_note_by_ivk(
         &self,
@@ -1391,7 +1395,8 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
     ) -> std::result::Result<tonic::Response<super::DecryptNotesMarked>, tonic::Status> {
         let input = request.into_inner();
         let provider=self.provider.clone();
-        self.blocking.run(move |_|provider.scan_mark(input,ApiCursor::Solidity)).await.map(tonic::Response::new)
+        let cursor = self.http_cursor.unwrap_or(ApiCursor::Solidity);
+        self.blocking.run(move |_|provider.scan_mark(input,cursor)).await.map(tonic::Response::new)
     }
     async fn scan_note_by_ovk(
         &self,
@@ -1399,7 +1404,8 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
     ) -> std::result::Result<tonic::Response<super::DecryptNotes>, tonic::Status> {
         let input = request.into_inner();
         let provider=self.provider.clone();
-        self.blocking.run(move |_|provider.scan_ovk(input,ApiCursor::Solidity)).await.map(tonic::Response::new)
+        let cursor = self.http_cursor.unwrap_or(ApiCursor::Solidity);
+        self.blocking.run(move |_|provider.scan_ovk(input,cursor)).await.map(tonic::Response::new)
     }
     async fn is_spend(
         &self,
@@ -1407,21 +1413,24 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
     ) -> std::result::Result<tonic::Response<super::SpendResult>, tonic::Status> {
         let input = request.into_inner();
         let provider = self.provider.clone();
-        self.blocking_response(move |_| Ok(provider.is_spend(&input, ApiCursor::Solidity))).await
+        let cursor = self.http_cursor.unwrap_or(ApiCursor::Solidity);
+        self.blocking_response(move |_| Ok(provider.is_spend(&input, cursor))).await
     }
     async fn scan_shielded_trc20_notes_by_ivk(
         &self,
         request: tonic::Request<super::IvkDecryptTrc20Parameters>,
     ) -> std::result::Result<tonic::Response<super::DecryptNotesTrc20>, tonic::Status> {
         let input=request.into_inner();let provider=self.provider.clone();
-        self.blocking.run(move |_|provider.scan_trc20_ivk(input,ApiCursor::Solidity)).await.map(tonic::Response::new)
+        let cursor = self.http_cursor.unwrap_or(ApiCursor::Solidity);
+        self.blocking.run(move |_|provider.scan_trc20_ivk(input,cursor)).await.map(tonic::Response::new)
     }
     async fn scan_shielded_trc20_notes_by_ovk(
         &self,
         request: tonic::Request<super::OvkDecryptTrc20Parameters>,
     ) -> std::result::Result<tonic::Response<super::DecryptNotesTrc20>, tonic::Status> {
         let input=request.into_inner();let provider=self.provider.clone();
-        self.blocking.run(move |_|provider.scan_trc20_ovk(input,ApiCursor::Solidity)).await.map(tonic::Response::new)
+        let cursor = self.http_cursor.unwrap_or(ApiCursor::Solidity);
+        self.blocking.run(move |_|provider.scan_trc20_ovk(input,cursor)).await.map(tonic::Response::new)
     }
     async fn is_shielded_trc20_contract_note_spent(
         &self,
@@ -1429,21 +1438,22 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
     ) -> std::result::Result<tonic::Response<super::NullifierResult>, tonic::Status> {
         let input = request.into_inner();
         let provider = self.provider.clone();
-        self.blocking_response(move |_| Ok(provider.trc20_spent(&input, ApiCursor::Solidity))).await
+        let cursor = self.http_cursor.unwrap_or(ApiCursor::Solidity);
+        self.blocking_response(move |_| Ok(provider.trc20_spent(&input, cursor))).await
     }
     async fn get_reward_info(
         &self,
         request: tonic::Request<super::BytesMessage>,
     ) -> std::result::Result<tonic::Response<super::NumberMessage>, tonic::Status> {
         let input = request.into_inner();
-        Ok(tonic::Response::new(self.provider.reward(&input.value, ApiCursor::Solidity)))
+        Ok(tonic::Response::new(self.provider.reward(&input.value, self.http_cursor.unwrap_or(ApiCursor::Solidity))))
     }
     async fn get_brokerage_info(
         &self,
         request: tonic::Request<super::BytesMessage>,
     ) -> std::result::Result<tonic::Response<super::NumberMessage>, tonic::Status> {
         let input = request.into_inner();
-        Ok(tonic::Response::new(self.provider.brokerage(&input.value, ApiCursor::Solidity)))
+        Ok(tonic::Response::new(self.provider.brokerage(&input.value, self.http_cursor.unwrap_or(ApiCursor::Solidity))))
     }
     async fn trigger_constant_contract(
         &self,
@@ -1451,7 +1461,8 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
     ) -> std::result::Result<tonic::Response<super::TransactionExtention>, tonic::Status> {
         let input = request.into_inner();
         let provider = self.provider.clone();
-        self.blocking_response(move |_| provider.trigger_constant(input, ApiCursor::Solidity)).await
+        let cursor = self.http_cursor.unwrap_or(ApiCursor::Solidity);
+        self.blocking_response(move |_| provider.trigger_constant(input, cursor)).await
     }
     async fn estimate_energy(
         &self,
@@ -1459,14 +1470,15 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
     ) -> std::result::Result<tonic::Response<super::EstimateEnergyMessage>, tonic::Status> {
         let input = request.into_inner();
         let provider = self.provider.clone();
-        self.blocking_response(move |_| Ok(provider.estimate_energy(input, ApiCursor::Solidity))).await
+        let cursor = self.http_cursor.unwrap_or(ApiCursor::Solidity);
+        self.blocking_response(move |_| Ok(provider.estimate_energy(input, cursor))).await
     }
     async fn get_transaction_info_by_block_num(
         &self,
         request: tonic::Request<super::NumberMessage>,
     ) -> std::result::Result<tonic::Response<super::TransactionInfoList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.transaction_infos_by_block(input.num))
     }
     async fn get_market_order_by_id(
@@ -1474,7 +1486,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::BytesMessage>,
     ) -> std::result::Result<tonic::Response<super::MarketOrder>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.market_order(&input.value))
     }
     async fn get_market_order_by_account(
@@ -1482,7 +1494,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::BytesMessage>,
     ) -> std::result::Result<tonic::Response<super::MarketOrderList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.market_orders_by_account(&input.value))
     }
     async fn get_market_price_by_pair(
@@ -1490,7 +1502,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::MarketOrderPair>,
     ) -> std::result::Result<tonic::Response<super::MarketPriceList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.market_prices(&input))
     }
     async fn get_market_order_list_by_pair(
@@ -1498,7 +1510,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::MarketOrderPair>,
     ) -> std::result::Result<tonic::Response<super::MarketOrderList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.market_orders_by_pair(&input))
     }
     async fn get_market_pair_list(
@@ -1506,7 +1518,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::EmptyMessage>,
     ) -> std::result::Result<tonic::Response<super::MarketOrderPairList>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.market_pairs())
     }
     async fn get_burn_trx(
@@ -1514,7 +1526,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::EmptyMessage>,
     ) -> std::result::Result<tonic::Response<super::NumberMessage>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.burn_trx())
     }
     async fn get_block(
@@ -1522,14 +1534,14 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::BlockReq>,
     ) -> std::result::Result<tonic::Response<super::BlockExtention>, tonic::Status> {
         let input = request.into_inner();
-        Self::response(self.provider.get_block(input, ApiCursor::Solidity))
+        Self::response(self.provider.get_block(input, self.http_cursor.unwrap_or(ApiCursor::Solidity)))
     }
     async fn get_bandwidth_prices(
         &self,
         request: tonic::Request<super::EmptyMessage>,
     ) -> std::result::Result<tonic::Response<super::PricesResponseMessage>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.bandwidth_prices())
     }
     async fn get_energy_prices(
@@ -1537,7 +1549,7 @@ impl crate::solidity::wallet_solidity_server::WalletSolidity for RpcApiServices 
         request: tonic::Request<super::EmptyMessage>,
     ) -> std::result::Result<tonic::Response<super::PricesResponseMessage>, tonic::Status> {
         let input = request.into_inner();
-        let q = self.query(ApiCursor::Solidity);
+        let q = self.query(self.http_cursor.unwrap_or(ApiCursor::Solidity));
         Self::response(q.energy_prices())
     }
 }

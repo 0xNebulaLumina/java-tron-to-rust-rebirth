@@ -137,6 +137,8 @@ dependencies = [
  "http",
  "http-body",
  "http-body-util",
+ "hyper",
+ "hyper-util",
  "itoa",
  "matchit",
  "memchr",
@@ -145,8 +147,12 @@ dependencies = [
  "pin-project-lite",
  "rustversion",
  "serde",
+ "serde_json",
+ "serde_path_to_error",
+ "serde_urlencoded",
  "sync_wrapper",
- "tower 0.5.3",
+ "tokio",
+ "tower 0.5.2",
  "tower-layer",
  "tower-service",
 ]
@@ -786,6 +792,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1"
 
 [[package]]
+name = "form_urlencoded"
+version = "1.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cb4cb245038516f5f85277875cdaa4f7d2c9a0fa0468de06ed190163b1581fcf"
+dependencies = [
+ "percent-encoding",
+]
+
+[[package]]
 name = "fpe"
 version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1109,14 +1124,13 @@ dependencies = [
 
 [[package]]
 name = "hyper"
-version = "1.11.1"
+version = "1.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "27b501faa50e7a26c3d3560ca625132f4078a17771f4810baf70475ae48cbe43"
+checksum = "256fb8d4bd6413123cc9d91832d78325c48ff41677595be797d90f42969beae0"
 dependencies = [
- "atomic-waker",
  "bytes",
  "futures-channel",
- "futures-core",
+ "futures-util",
  "h2",
  "http",
  "http-body",
@@ -1144,9 +1158,9 @@ dependencies = [
 
 [[package]]
 name = "hyper-util"
-version = "0.1.20"
+version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "96547c2556ec9d12fb1578c4eaf448b04993e7fb79cbaad930a656880a6bdfa0"
+checksum = "df2dcfbe0677734ab2f3ffa7fa7bfd4706bfdc1ef393f2ee30184aed67e631b4"
 dependencies = [
  "bytes",
  "futures-channel",
@@ -1154,9 +1168,8 @@ dependencies = [
  "http",
  "http-body",
  "hyper",
- "libc",
  "pin-project-lite",
- "socket2 0.6.5",
+ "socket2 0.5.10",
  "tokio",
  "tower-service",
  "tracing",
@@ -2073,6 +2086,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "serde_urlencoded"
+version = "0.7.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d3491c14715ca2294c4d6a88f15e84739788c1d030eed8c110436aafdaa2f3fd"
+dependencies = [
+ "form_urlencoded",
+ "itoa",
+ "ryu",
+ "serde",
+]
+
+[[package]]
 name = "serdect"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2445,16 +2470,19 @@ dependencies = [
 
 [[package]]
 name = "tower"
-version = "0.5.3"
+version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ebe5ef63511595f1344e2d5cfa636d973292adc0eec1f0ad45fae9f0851ab1d4"
+checksum = "d039ad9159c98b70ecfd540b2573b97f7f52c3e8d9f8ad57a24b916a536975f9"
 dependencies = [
  "futures-core",
  "futures-util",
  "pin-project-lite",
  "sync_wrapper",
+ "tokio",
+ "tokio-util",
  "tower-layer",
  "tower-service",
+ "tracing",
 ]
 
 [[package]]
@@ -2504,16 +2532,23 @@ dependencies = [
 name = "tron-apis"
 version = "0.0.0"
 dependencies = [
+ "axum",
+ "base64",
  "bytes",
  "flate2",
  "http-body-util",
+ "hyper",
+ "hyper-util",
+ "percent-encoding",
  "prost",
  "prost-reflect",
+ "serde",
+ "serde_json",
  "tokio",
  "tokio-stream",
  "tonic",
  "tonic-reflection",
- "tower 0.5.3",
+ "tower 0.5.2",
  "tron-config",
  "tron-crypto",
  "tron-execution",

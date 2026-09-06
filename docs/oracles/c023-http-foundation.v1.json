@@ -1,0 +1,32 @@
+{
+  "contract": "C023.03-C023.05",
+  "version": 1,
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "sources": [
+    {"path":"java-tron/framework/src/main/java/org/tron/core/services/http/JsonFormat.java","sha256":"7b6baf462d996888732ac8a156e5539962a415bb3a951cd4a7e08283f461f28d"},
+    {"path":"java-tron/framework/src/main/java/org/tron/core/services/http/Util.java","sha256":"b454d2b4fe003c3be845783c8fc50011c46c2315ddda6cf8e4ecebff41362ee3"},
+    {"path":"java-tron/framework/src/main/java/org/tron/core/services/http/PostParams.java","sha256":"0f9fcc07f5086badb14939cf37f11d0ba18c24126e9e9bc8d23fbba48cbdec3d"},
+    {"path":"java-tron/framework/src/main/java/org/tron/core/services/http/RateLimiterServlet.java","sha256":"e113f119cc42cb7041cb7733943728596927165549e383c6fe7503c0132b8bc3"},
+    {"path":"java-tron/framework/src/main/java/org/tron/core/services/filter/HttpApiAccessFilter.java","sha256":"fc1f25f4187f4c0337f2c4f2ca8930442475be7da30534a577f4adc49441222d"},
+    {"path":"java-tron/framework/src/main/java/org/tron/core/services/filter/LiteFnQueryHttpFilter.java","sha256":"b9abb0cb663b63e1161fab805fd955e8f1a20fd8bb5b8878bad8bf8d4e21d7ae"},
+    {"path":"java-tron/framework/src/main/java/org/tron/common/application/HttpService.java","sha256":"cc1b05ddfb720632dcb46e5c817d6c06a31ccfcee96db4f583ae6d3dd8e9b6a2"}
+  ],
+  "vectors": {
+    "visible_address": {"hex":"410000000000000000000000000000000000000000","base58check":"T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb"},
+    "visible_name_utf8": {"text":"TRON-名称","hex":"54524f4e2de5908de7a7b0"},
+    "invisible_bytes": "lowercase hexadecimal",
+    "unknown_field": "skip recursively",
+    "null_known_field": "treat as absent",
+    "trailing_comma": "accepted for objects and repeated arrays",
+    "permission_id": "Permission_id mutates the first transaction contract when positive",
+    "extra_data": {"visible":"UTF-8 bytes","invisible":"hex bytes"},
+    "broadcasthex": "transaction is protobuf wire bytes encoded as hex",
+    "int64_as_string": "GET query only and cleared after every request",
+    "disabled": {"status":404,"content_type":"application/json; charset=utf-8","body":"{\"Error\":\"this API is unavailable due to config\"}\n"},
+    "lite": {"status":200,"content_type":"application/json; charset=utf-8","body":"this API is closed because this node is a lite fullnode"},
+    "process_error": {"status":200,"shape":"{\"Error\":\"<class> : <message>\"}\n"},
+    "max_request_bytes":4194304,
+    "default_connection_cap":50,
+    "rate_order":["endpoint","global","handler","release global","release endpoint"]
+  }
+}
