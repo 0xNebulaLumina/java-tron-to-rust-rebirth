@@ -21,6 +21,22 @@ impl<T> PendingPool<T>{
   if let Some(reason)=reason{return BroadcastResult::Rejected{transaction_id:id,reason}}
   if item.shielded{self.shielded+=1}if item.smart{self.smart.push_back(item)}else{self.pending.push_back(item)}BroadcastResult::Accepted{transaction_id:id}
  }
+ /// Executes admission and transaction effects in a child of the canonical pending
+ /// session, then publishes both the speculative state and queue entry atomically.
+ /// Failed validation/execution never becomes visible in either pending state or queues.
+ pub fn admit<F,E>(&mut self,item:PendingTransaction<T>,now:i64,execute:F)->Result<BroadcastResult,E>
+ where F:FnOnce(&PendingTransaction<T>,&Session)->Result<(),E>,E:From<SessionError>{
+  let id=item.id;
+  let reason=if self.session.is_none(){Some(PendingReject::Closed)}else if now-item.received_at>=self.limits.timeout_millis{Some(PendingReject::Expired)}else if self.contains(&id){Some(PendingReject::Duplicate)}else if self.len()>=self.limits.maximum{Some(PendingReject::Full)}else if item.shielded&&self.shielded>=self.limits.shielded_maximum{Some(PendingReject::ShieldedFull)}else{None};
+  if let Some(reason)=reason{return Ok(BroadcastResult::Rejected{transaction_id:id,reason})}
+  let pending=self.session.as_ref().expect("open checked above");
+  let mut child=pending.child().map_err(E::from)?;
+  if let Err(error)=execute(&item,&child){let _=child.revoke();return Err(error)}
+  if let Err(error)=pending.merge_child(&mut child){let _=child.revoke();return Err(E::from(error))}
+  if item.shielded{self.shielded+=1}
+  if item.smart{self.smart.push_back(item)}else{self.pending.push_back(item)}
+  Ok(BroadcastResult::Accepted{transaction_id:id})
+ }
  pub fn pop(&mut self,now:i64)->Option<PendingTransaction<T>> where T:Clone{self.expire(now);let item=self.pending.pop_front()?;self.popped.push_back(item.clone());Some(item)}
  pub fn take_next(&mut self,now:i64)->Option<PendingTransaction<T>>{self.expire(now);let item=self.pending.pop_front()?;if item.shielded{self.shielded-=1}Some(item)}
  pub fn mark_popped(&mut self,item:PendingTransaction<T>){if item.shielded{self.shielded+=1}self.popped.push_back(item)}
@@ -69,31 +85,44 @@ impl<T> PendingPool<T>{
  pub fn inject_committed_discard_failure(&mut self){self.inject_discard_commit=true}
  #[doc(hidden)]
  pub fn inject_replay_failure(&mut self){self.inject_replay_failure=true}
- /// Replays transactions which had already contributed to the speculative
- /// pending session. Successful fork replay drops transactions no longer valid
- /// on the replacement branch; failed-fork restoration is strict because the
- /// original speculative state must be reconstructed exactly.
+ /// Replays every transaction which contributed to the speculative pending
+ /// session, while preserving its ordinary, popped, or smart queue ownership.
+ /// Successful fork replay drops transactions no longer valid on the replacement
+ /// branch; failed-fork restoration is strict because the original speculative
+ /// state must be reconstructed exactly.
  pub fn replay_speculative<F>(&mut self,strict:bool,mut execute:F)->Result<(),SessionError>
  where F:FnMut(&mut PendingTransaction<T>,&Session)->Result<(),String>{
   if self.inject_replay_failure{self.inject_replay_failure=false;return Err(SessionError::InvalidSession)}
   let pending=self.session.as_ref().ok_or(SessionError::InvalidSession)?;
-  let mut replay=std::mem::take(&mut self.popped);
+  let mut replay=VecDeque::with_capacity(self.len());
+  replay.extend(std::mem::take(&mut self.pending).into_iter().map(|item|(0,item)));
+  replay.extend(std::mem::take(&mut self.popped).into_iter().map(|item|(1,item)));
+  replay.extend(std::mem::take(&mut self.smart).into_iter().map(|item|(2,item)));
   let mut retained=VecDeque::with_capacity(replay.len());
-  while let Some(mut item)=replay.pop_front(){
-   let mut child=match pending.child(){Ok(child)=>child,Err(error)=>{retained.push_back(item);retained.append(&mut replay);self.popped=retained;return Err(error)}};
+  while let Some((queue,mut item))=replay.pop_front(){
+   let mut child=match pending.child(){Ok(child)=>child,Err(error)=>{retained.push_back((queue,item));retained.append(&mut replay);self.restore_replay(retained);return Err(error)}};
    match execute(&mut item,&child){
-    Ok(())=>match pending.merge_child(&mut child){Ok(())=>retained.push_back(item),Err(error)=>{retained.push_back(item);retained.append(&mut replay);self.popped=retained;return Err(error)}},
+    Ok(())=>match pending.merge_child(&mut child){Ok(())=>retained.push_back((queue,item)),Err(error)=>{retained.push_back((queue,item));retained.append(&mut replay);self.restore_replay(retained);return Err(error)}},
     Err(_message) if !strict=>{let _=child.revoke();},
-    Err(_message)=>{let _=child.revoke();retained.push_back(item);retained.append(&mut replay);self.popped=retained;return Err(SessionError::InvalidSession)},
+    Err(_message)=>{let _=child.revoke();retained.push_back((queue,item));retained.append(&mut replay);self.restore_replay(retained);return Err(SessionError::InvalidSession)},
    }
   }
-  self.popped=retained;self.recount();Ok(())
+  self.restore_replay(retained);Ok(())
+ }
+ fn restore_replay(&mut self,mut replay:VecDeque<(u8,PendingTransaction<T>)>){
+  while let Some((queue,item))=replay.pop_front(){match queue{0=>self.pending.push_back(item),1=>self.popped.push_back(item),_=>self.smart.push_back(item)}}self.recount()
  }
  fn manager(&self)->SessionManager{self.manager.clone()}
  pub fn shutdown(&mut self)->Result<(),SessionError>{if let Some(mut session)=self.session.take(){session.close()?}self.pending.clear();self.popped.clear();self.smart.clear();self.shielded=0;Ok(())}
  fn contains(&self,id:&Hash32)->bool{self.pending.iter().chain(&self.popped).chain(&self.smart).any(|item|&item.id==id)}
  fn expire(&mut self,now:i64){let timeout=self.limits.timeout_millis;self.pending.retain(|item|now-item.received_at<timeout);self.popped.retain(|item|now-item.received_at<timeout);self.smart.retain(|item|now-item.received_at<timeout);self.recount()}
  fn recount(&mut self){self.shielded=self.pending.iter().chain(&self.popped).chain(&self.smart).filter(|item|item.shielded).count()}
- #[must_use]pub fn pending_ids(&self)->Vec<Hash32>{self.pending.iter().map(|x|x.id).collect()}
+ #[must_use]pub fn pending_ids(&self)->Vec<Hash32>{self.pending.iter().chain(&self.smart).map(|x|x.id).collect()}
+ /// Java `getTxFromPending` searches the ordinary pending queue followed by
+ /// `rePushTransactions` (the smart queue). Popped transactions contribute to
+ /// `getPendingSize`, but are deliberately not queryable/listed.
+ #[must_use]pub fn pending_transaction(&self,id:&Hash32)->Option<&PendingTransaction<T>>{
+  self.pending.iter().chain(&self.smart).find(|item|&item.id==id)
+ }
  #[must_use]pub fn queue_ids(&self)->(Vec<Hash32>,Vec<Hash32>,Vec<Hash32>){(self.pending.iter().map(|x|x.id).collect(),self.popped.iter().map(|x|x.id).collect(),self.smart.iter().map(|x|x.id).collect())}
 }

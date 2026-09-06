@@ -7,11 +7,28 @@ license.workspace = true
 publish.workspace = true
 
 [dependencies]
+prost.workspace = true
+prost-reflect = "=0.14.7"
+tonic.workspace = true
+tonic-reflection = "=0.12.3"
+tower = { version = "0.5", default-features = false }
+bytes = "1"
+flate2 = "1"
+http-body-util = "0.1"
+tron-crypto = { path = "../tron-crypto" }
+tron-shielded = { path = "../tron-shielded" }
 tron-config = { path = "../tron-config" }
 tron-execution = { path = "../tron-execution" }
 tron-primitives = { path = "../tron-primitives" }
 tron-protocol = { path = "../tron-protocol" }
+tokio = { version = "1", features = ["rt", "sync", "time"] }
 tron-state = { path = "../tron-state" }
+zeroize = "=1.8.1"
+
+[dev-dependencies]
+tron-storage = { path = "../tron-storage" }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net", "time"] }
+tokio-stream = { version = "0.1", features = ["net"] }
 
 [lints]
 workspace = true

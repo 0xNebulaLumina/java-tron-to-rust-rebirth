@@ -1,0 +1,38 @@
+{
+  "schema": "c022-wallet-query.v1",
+  "java_reference": [
+    "framework/src/main/java/org/tron/core/Wallet.java",
+    "framework/src/main/java/org/tron/core/services/RpcApiService.java",
+    "framework/src/main/java/org/tron/core/services/interfaceOnSolidity/RpcApiServiceOnSolidity.java",
+    "framework/src/main/java/org/tron/core/services/interfaceOnPBFT/RpcApiServiceOnPBFT.java",
+    "framework/src/main/java/org/tron/core/services/NodeInfoService.java"
+  ],
+  "cursor_views": ["HEAD", "SOLIDITY", "PBFT"],
+  "families": [
+    "account", "asset", "witness", "proposal", "exchange", "market",
+    "transaction", "block", "resource", "chain", "node", "pending", "pricing",
+    "constant", "database", "monitor", "network"
+  ],
+  "pagination": {
+    "maximum_page_size": 100,
+    "maximum_block_range": 100,
+    "negative_offset_or_limit": "invalid_argument",
+    "witness_zero_limit": "invalid_argument",
+    "offset_past_end": "empty"
+  },
+  "wallet_extension": {
+    "GetTransactionsFromThis": "UNIMPLEMENTED",
+    "GetTransactionsFromThis2": "UNIMPLEMENTED",
+    "GetTransactionsToThis": "UNIMPLEMENTED",
+    "GetTransactionsToThis2": "UNIMPLEMENTED"
+  },
+  "pbft_omissions": [
+    "GetPaginatedNowWitnessList", "GetTransactionInfoByBlockNum", "GetMemoFee",
+    "GetChainParameters", "GetNodeInfo", "PendingQueries", "WalletExtension", "Monitor", "Network"
+  ],
+  "read_only_vm": "C014/C015 immutable cursor snapshot; no writable session exposed",
+  "node_info": [
+    "sync", "head/solidity", "connection counts", "flow", "peers", "configuration",
+    "machine/runtime", "cheat-witness map"
+  ]
+}

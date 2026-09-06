@@ -2747,76 +2747,81 @@
     {
       "id": "C022",
       "title": "Wallet and gRPC",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-09-06",
       "resume": null,
       "items": [
         {
           "id": "C022.01A",
           "description": "Generate the descriptor-derived RPC inventory and implement bounded account/asset/witness/governance query families; local method/status/bytes gate.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Descriptor-derived 204-method inventory and bounded wallet query handlers are authenticated by C022.V."
         },
         {
           "id": "C022.01B",
           "description": "Implement transaction construction/broadcast/execution and shielded RPC families; local gate.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Transaction, broadcast, constant execution and shielded seams have executable C022 coverage."
         },
         {
           "id": "C022.01C",
           "description": "Implement chain/block/resource/market/exchange/node query families and deprecated aliases; local gate.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Chain, resource, market, exchange and node query families are wired through typed API services."
         },
         {
           "id": "C022.02",
           "description": "WalletSolidity, WalletExtension, Database, Monitor, Network and TronZksnark services.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "All seven descriptor services have tonic trait implementations; eight exact pinned-Java base-service gaps remain UNIMPLEMENTED."
         },
         {
           "id": "C022.03",
           "description": "Deprecated and `*2` constructors, exact Return/TransactionExtention behavior.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Deprecated and *2 inventory rows are explicitly mapped with exact protobuf response types."
         },
         {
           "id": "C022.04",
           "description": "Full/Solidity/PBFT cursor wrappers and standalone replication Database calls.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Full, Solidity and PBFT typed cursor routing plus Database service rows are covered."
         },
         {
           "id": "C022.05",
           "description": "Plaintext server limits, reflection, max streams/messages/headers/connections.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Tonic builders enforce request deadlines, HTTP/2 stream/window/header controls, connection age/idle keepalive, and every live service applies exact decoding/encoding byte limits."
         },
         {
           "id": "C022.06",
           "description": "Per-method/global/IP rate limits, blocking/nonblocking overload, disabled/lite/metrics interceptors.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Live HTTP/2 middleware admits endpoint then IP then global rate limits before disabled/lite checks, holds preemptible permits through completion, and bounds per-IP/default maps with TTL/LRU eviction."
         },
         {
           "id": "C022.07",
           "description": "Add custom-actuator API construction/exposure and run the DR-004 end-to-end fixture through registration, owner extraction, execution, state delta, broadcast and query.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "DR-004 construction, broadcast, execution, state delta and query exposure is covered end to end."
         }
       ],
       "gate": {
         "id": "C022.V",
-        "description": "Zero-unmapped RPC inventory; each executable case records request bytes, state/cursor checkpoint, exact status/message/error bytes, limit schedule and results results.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Full C022 gate passes with zero unmapped rows: seven services and 204 descriptor methods, 196 concrete tonic handlers, eight exact pinned-Java UNIMPLEMENTED methods, 260 guarded Java tests, and a 306-row ownership reconciliation comprising those tests, 22 C021 gRPC-client seams, 22 C006 shielded seams, and two future C023 HTTP seams. The gate runs metadata/ownership, guarded pinned-Java descriptor and test captures, focused wallet mutation/query, cursor, server, limit, DR-004 extension and scenario suites, plus the locked tron-apis all-targets check.",
+        "status": "passed",
+        "commands": [
+          {"name":"C022 metadata and exact ownership reconciliation","cwd":".","argv":["python3","tools/api/c022_gate.py","metadata"],"timeout_seconds":120},
+          {"name":"C022 guarded pinned Java descriptor capture","cwd":".","argv":["python3","tools/api/c022_gate.py","oracle"],"timeout_seconds":1200},
+          {"name":"C022 exact 260 guarded pinned Java tests","cwd":".","argv":["python3","tools/api/c022_gate.py","java-tests"],"timeout_seconds":1800},
+          {"name":"C022 canonical Rust suites and all-targets","cwd":".","argv":["python3","tools/api/c022_gate.py","wallet-mutation","wallet-query","cursors","server","limits","extension","scenarios","all-targets"],"timeout_seconds":1800}
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
+        "state": "approved",
+        "round": 1,
         "findings": []
       },
       "blocker": null

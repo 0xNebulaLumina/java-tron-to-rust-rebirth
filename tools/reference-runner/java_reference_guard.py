@@ -210,7 +210,10 @@ class JavaReferenceSession:
         }
 
     def close(self) -> None:
+        global _INSTALLED
         self._temporary.cleanup()
+        if _INSTALLED is self:
+            _INSTALLED = None
 
     def __enter__(self) -> "JavaReferenceSession":
         return self

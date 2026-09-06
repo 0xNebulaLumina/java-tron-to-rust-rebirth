@@ -54,7 +54,7 @@ fn held_session_merge_bounded_smart_drain_and_fork_requeue_are_exact() {
     let mut cache = cache();
     cache.insert([9; 32].into(), 1, 0).unwrap();
     q.requeue_after_fork(&mut cache, 50).unwrap();
-    assert_eq!(q.pending_ids(), vec![Hash32::from([5u8; 32]), Hash32::from([1u8; 32]), Hash32::from([2u8; 32]), Hash32::from([3u8; 32])]);
+    assert_eq!(q.pending_ids(), vec![Hash32::from([5u8; 32]), Hash32::from([1u8; 32]), Hash32::from([2u8; 32]), Hash32::from([3u8; 32]), Hash32::from([4u8; 32])]);
     assert_eq!(q.take_next(50).unwrap().received_at, 15);
     assert_eq!(q.take_next(50).unwrap().received_at, 50);
     assert_eq!(q.take_next(50).unwrap().received_at, 50);
@@ -95,6 +95,81 @@ fn refreshed_popped_transactions_receive_a_full_new_timeout_window() {
     q.mark_popped(item(4, 0, false, false));
     q.requeue_after_fork(&mut cache(), 300).unwrap();
     assert!(q.take_next(310).is_none());
+    q.shutdown().unwrap();
+    fs::remove_dir_all(p).unwrap();
+}
+
+#[test]
+fn pending_queries_match_java_pending_repush_and_popped_visibility() {
+    let (p, m) = manager("query-visibility");
+    let mut q = PendingPool::new(m, limits()).unwrap();
+    q.broadcast(item(1, 1, false, false), 1);
+    q.broadcast(item(2, 2, false, true), 2);
+    q.broadcast(item(3, 3, false, false), 3);
+    assert_eq!(q.execute_next(4, |_, _| Ok(())).unwrap(), BroadcastResult::Accepted { transaction_id: [1; 32].into() });
+
+    assert_eq!(q.len(), 3, "popped transactions contribute to Java pending size");
+    assert_eq!(q.pending_ids(), vec![Hash32::from([3; 32]), Hash32::from([2; 32])]);
+    assert_eq!(q.pending_transaction(&Hash32::from([3; 32])).map(|tx| tx.transaction), Some(3));
+    assert_eq!(q.pending_transaction(&Hash32::from([2; 32])).map(|tx| tx.transaction), Some(2));
+    assert!(q.pending_transaction(&Hash32::from([1; 32])).is_none(), "popped transactions are not exposed by Java lookup");
+
+    q.shutdown().unwrap();
+    fs::remove_dir_all(p).unwrap();
+}
+
+#[test]
+fn admission_publishes_state_and_queue_only_after_success() {
+    let (p, m) = manager("atomic-admission");
+    let mut q = PendingPool::new(m.clone(), limits()).unwrap();
+
+    let failed: Result<BroadcastResult, tron_state::SessionError> = q.admit(item(1, 1, false, false), 1, |_, session| {
+        session.store(StoreKind::Code).put(b"atomic", b"rejected")?;
+        Err(tron_state::SessionError::InvalidSession)
+    });
+    assert_eq!(failed.unwrap_err(), tron_state::SessionError::InvalidSession);
+    assert!(q.is_empty());
+
+    let accepted: Result<BroadcastResult, tron_state::SessionError> = q.admit(item(2, 2, false, false), 2, |_, session| {
+        assert_eq!(session.store(StoreKind::Code).get(b"atomic"), None);
+        session.store(StoreKind::Code).put(b"atomic", b"accepted")
+    });
+    assert_eq!(accepted.unwrap(), BroadcastResult::Accepted { transaction_id: [2; 32].into() });
+    assert_eq!(q.len(), 1);
+    assert_eq!(q.queue_ids(), (vec![Hash32::from([2; 32])], vec![], vec![]));
+    assert_eq!(q.pending_ids(), vec![Hash32::from([2; 32])]);
+    assert_eq!(q.pending_transaction(&Hash32::from([2; 32])).map(|tx| tx.transaction), Some(2));
+
+    let smart: Result<BroadcastResult, tron_state::SessionError> = q.admit(item(3, 3, false, true), 3, |_, _| Ok(()));
+    assert_eq!(smart.unwrap(), BroadcastResult::Accepted { transaction_id: [3; 32].into() });
+    assert_eq!(q.queue_ids(), (vec![Hash32::from([2; 32])], vec![], vec![Hash32::from([3; 32])]));
+    assert_eq!(q.pending_ids(), vec![Hash32::from([2; 32]), Hash32::from([3; 32])]);
+
+    q.shutdown().unwrap();
+    assert_eq!(m.durable_store(StoreKind::Code).get(b"atomic"), None);
+    fs::remove_dir_all(p).unwrap();
+}
+
+#[test]
+fn fork_replay_covers_pending_popped_and_smart_without_changing_ownership() {
+    let (p, m) = manager("replay-queues");
+    let mut q = PendingPool::new(m, limits()).unwrap();
+    q.broadcast(item(1, 1, false, false), 1);
+    q.mark_popped(item(2, 2, true, false));
+    q.broadcast(item(3, 3, false, true), 3);
+
+    let mut replayed = Vec::new();
+    q.replay_speculative(false, |transaction, _| {
+        replayed.push(transaction.transaction);
+        if transaction.transaction == 3 { Err("invalid on replacement branch".into()) } else { Ok(()) }
+    }).unwrap();
+
+    assert_eq!(replayed, vec![1, 2, 3]);
+    assert_eq!(q.queue_ids(), (vec![Hash32::from([1; 32])], vec![Hash32::from([2; 32])], vec![]));
+    assert_eq!(q.len(), 2);
+    assert!(matches!(q.broadcast(item(4, 4, true, false), 4), BroadcastResult::Accepted { .. }));
+    assert!(matches!(q.broadcast(item(5, 5, true, false), 5), BroadcastResult::Rejected { reason: PendingReject::ShieldedFull, .. }));
+
     q.shutdown().unwrap();
     fs::remove_dir_all(p).unwrap();
 }

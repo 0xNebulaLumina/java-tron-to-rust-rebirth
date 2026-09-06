@@ -551,6 +551,18 @@ impl ViewStore {
         let Some(rows) = self.image.get(&self.name) else { return Vec::new(); };
         rows.range(prefix.to_vec()..).take_while(|(key, _)| key.starts_with(prefix)).map(|(key, value)| (key.clone(), value.clone())).collect()
     }
+    /// Returns a bounded Java-key-ordered prefix window without cloning rows before `offset`.
+    #[must_use]
+    pub fn prefix_window(&self, prefix: &[u8], offset: usize, limit: usize) -> Vec<(Vec<u8>, Vec<u8>)> {
+        if limit == 0 { return Vec::new(); }
+        let Some(rows) = self.image.get(&self.name) else { return Vec::new(); };
+        rows.range(prefix.to_vec()..)
+            .take_while(|(key, _)| key.starts_with(prefix))
+            .skip(offset)
+            .take(limit)
+            .map(|(key, value)| (key.clone(), value.clone()))
+            .collect()
+    }
     pub fn market_ordered(&self, pair: &[u8], excluded: &[u8], limit: usize) -> tron_storage::Result<tron_storage::MarketQueryResult> {
         if pair.len() != tron_primitives::MARKET_PAIR_LENGTH { return Err(tron_storage::StorageError::MarketKey { actual: pair.len() }); }
         if limit == 0 { return Ok(tron_storage::MarketQueryResult { rows: Vec::new(), visited: 0 }); }

@@ -284,6 +284,19 @@ impl TransactionProcessor {
         }
     }
 
+    /// Runs the canonical processor inside an already-owned pending child session.
+    /// State remains speculative; the caller decides whether to merge or revoke the child.
+    pub fn process_pending(&mut self, session: &Session, mut tx: RawWireTransaction, context: &ProcessContext) -> Result<ProcessOutput, ProcessError> {
+        let cache_before = self.cache.clone();
+        let result = self.process_in_session(session, &mut tx, context).and_then(|output| {
+            self.cache.insert(output.transaction_id, context.clock.block_number, context.clock.now).map_err(|error| stage(PipelineStage::PersistCache, error.to_string()))?;
+            session.store(StoreKind::TransactionHistory).put(output.transaction_id.as_bytes(), &output.info.encode_to_vec()).map_err(|error| stage(PipelineStage::PersistInfo, error.to_string()))?;
+            Ok(output)
+        });
+        if result.is_err() { self.cache = cache_before; }
+        result
+    }
+
     pub fn process_in_session(&mut self, session: &Session, tx: &mut RawWireTransaction, context: &ProcessContext) -> Result<ProcessOutput, ProcessError> {
         let id = self.pipeline.admit(tx, session, context)?;
         tx.set_signature_verification_cached(true);

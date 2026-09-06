@@ -18,7 +18,7 @@ pub use error::{ParameterKind,Result,ShieldedError};
 pub use inventory::{JLIBRUSTZCASH_METHODS,JLIBSODIUM_METHODS,JLibrustzcashMethod,JLibsodiumMethod};
 pub use merkle::{IncrementalMerkleTree,IncrementalMerkleVoucher,IncrementalWitness,JavaMerklePath};
 pub use parameters::{TRON_OUTPUT_BLAKE2B512,TRON_OUTPUT_SIZE,TRON_SPEND_BLAKE2B512,TRON_SPEND_SIZE,TronParameters,load_tron_parameters};
-pub use note::{decrypt_pre_zip212_note,encrypt_pre_zip212_note,external_key_path,recover_pre_zip212_note,DecryptedNote,EncryptedNote,ExternalKeyPath,ENC_CIPHERTEXT_BYTES,MEMO_BYTES,OUT_CIPHERTEXT_BYTES};
+pub use note::{burn_nonce,decrypt_pre_zip212_note,encrypt_burn_record,encrypt_pre_zip212_note,encrypt_pre_zip212_note_returning_esk,encrypt_pre_zip212_note_with_esk,external_key_path,recover_burn_record,recover_pre_zip212_note,DecryptedNote,EncryptedNote,EncryptedNoteWithEsk,ExternalKeyPath,BURN_CIPHERTEXT_BYTES,BURN_RECORD_BYTES,ENC_CIPHERTEXT_BYTES,MEMO_BYTES,OUT_CIPHERTEXT_BYTES};
 pub use raw::ShieldedRawAdapter;
 pub use params::*;
 pub use primitives::{ask_to_ak,check_diversifier,compute_cm,compute_nf,crh_ivk,empty_root,generate_r,ivk_to_pkd,ka_agree,ka_derive_public,merkle_hash,nsk_to_nk,spend_sig,to_scalar,tree_uncommitted,zip32_xfvk_address,zip32_xsk_derive,zip32_xsk_master};

@@ -6,7 +6,8 @@ use ff::Field;
 use sapling_crypto::value::{NoteValue, ValueCommitTrapdoor, ValueCommitment};
 use tron_shielded::{
     aead_decrypt, aead_encrypt, blake2b_salt_personal, decrypt_pre_zip212_note,
-    encrypt_pre_zip212_note, external_key_path, generate_r, recover_pre_zip212_note,
+    encrypt_burn_record, encrypt_pre_zip212_note, encrypt_pre_zip212_note_with_esk,
+    external_key_path, generate_r, recover_burn_record, recover_pre_zip212_note,
     zip32_xsk_master, Black2bSaltPersonalParams, Chacha20Poly1305IetfEncryptParams,
     Chacha20poly1305IetfDecryptParams, ShieldedError, SodiumCompat, Validate, AEAD_TAG_BYTES,
     FAILURE, MAX_SODIUM_OUTPUT_BYTES, MEMO_BYTES, SUCCESS,
@@ -48,6 +49,28 @@ fn pre_zip212_note_round_trips_through_external_keys_and_preserves_memo() {
     assert_eq!(recipient.memo, memo);
     assert_eq!(recipient.diversifier, keys.diversifier);
     assert_eq!(encrypted.note_commitment.len(), 32);
+}
+#[test]
+fn caller_supplied_esk_controls_ciphertext_epk_and_round_trips() {
+    let keys = external_key_path(&zip32_xsk_master(b"C022 exact esk fixture")).unwrap();
+    let rcm = generate_r();
+    let esk = generate_r();
+    let cv = ValueCommitment::derive(NoteValue::from_raw(42), ValueCommitTrapdoor::random(&mut rand_core::OsRng)).to_bytes();
+    let encrypted = encrypt_pre_zip212_note_with_esk(keys.payment_address, 42, rcm, Some(keys.ovk), cv, [7; MEMO_BYTES], esk).unwrap();
+    assert_eq!(encrypted.ephemeral_key, tron_shielded::ka_derive_public(keys.diversifier, esk).unwrap());
+    assert_eq!(decrypt_pre_zip212_note(keys.ivk, &encrypted).unwrap().unwrap().value, 42);
+    assert_eq!(recover_pre_zip212_note(keys.ovk, &encrypted).unwrap().unwrap().rcm, rcm);
+}
+
+#[test]
+fn ovk_burn_record_is_nonce_bound_and_recovers_amount_and_address() {
+    let ovk = [3; 32]; let nf = [5; 32]; let mut amount = [0; 32]; amount[31] = 9;
+    let mut address = [0; 21]; address[0] = 0x41; address[20] = 7;
+    let record = encrypt_burn_record(ovk, amount, address, nf).unwrap();
+    assert_eq!(record.len(), 96); assert_eq!(&record[92..], &[0,0,0,1]);
+    assert_eq!(recover_burn_record(ovk, &record, Some(nf), Some(amount), Some(address)).unwrap(), Some((amount,address)));
+    let mut wrong = nf; wrong[0] ^= 1;
+    assert!(recover_burn_record(ovk, &record, Some(wrong), Some(amount), Some(address)).unwrap().is_none());
 }
 
 #[test]

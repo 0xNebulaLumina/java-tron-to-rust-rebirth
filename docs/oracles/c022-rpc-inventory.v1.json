@@ -1,0 +1,3091 @@
+{
+  "schema": "c022-rpc-inventory.v1",
+  "descriptor_sha256": "b17c04a4fd6c91380c51fc6ec152910fe207a99ecfee9c1b4b5d412a589bb912",
+  "service_count": 7,
+  "method_count": 204,
+  "services": [
+    {
+      "name": "Wallet",
+      "method_count": 147
+    },
+    {
+      "name": "WalletSolidity",
+      "method_count": 47
+    },
+    {
+      "name": "WalletExtension",
+      "method_count": 4
+    },
+    {
+      "name": "Database",
+      "method_count": 4
+    },
+    {
+      "name": "Monitor",
+      "method_count": 1
+    },
+    {
+      "name": "Network",
+      "method_count": 0
+    },
+    {
+      "name": "TronZksnark",
+      "method_count": 1
+    }
+  ],
+  "methods": [
+    {
+      "path": "/protocol.Wallet/GetAccount",
+      "service": "Wallet",
+      "method": "GetAccount",
+      "java_method": "getAccount",
+      "input_type": ".protocol.Account",
+      "output_type": ".protocol.Account",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_account",
+      "non_default_case": {
+        "request": ".protocol.Account",
+        "expected": ".protocol.Account",
+        "route": "RpcApiServices::get_account"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetAccountById",
+      "service": "Wallet",
+      "method": "GetAccountById",
+      "java_method": "getAccountById",
+      "input_type": ".protocol.Account",
+      "output_type": ".protocol.Account",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_account_by_id",
+      "non_default_case": {
+        "request": ".protocol.Account",
+        "expected": ".protocol.Account",
+        "route": "RpcApiServices::get_account_by_id"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetAccountBalance",
+      "service": "Wallet",
+      "method": "GetAccountBalance",
+      "java_method": "getAccountBalance",
+      "input_type": ".protocol.AccountBalanceRequest",
+      "output_type": ".protocol.AccountBalanceResponse",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_account_balance",
+      "non_default_case": {
+        "request": ".protocol.AccountBalanceRequest",
+        "expected": ".protocol.AccountBalanceResponse",
+        "route": "RpcApiServices::get_account_balance"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetBlockBalanceTrace",
+      "service": "Wallet",
+      "method": "GetBlockBalanceTrace",
+      "java_method": "getBlockBalanceTrace",
+      "input_type": ".protocol.BlockBalanceTrace.BlockIdentifier",
+      "output_type": ".protocol.BlockBalanceTrace",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block_balance_trace",
+      "non_default_case": {
+        "request": ".protocol.BlockBalanceTrace.BlockIdentifier",
+        "expected": ".protocol.BlockBalanceTrace",
+        "route": "RpcApiServices::get_block_balance_trace"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateTransaction",
+      "service": "Wallet",
+      "method": "CreateTransaction",
+      "java_method": "createTransaction",
+      "input_type": ".protocol.TransferContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_transaction",
+      "non_default_case": {
+        "request": ".protocol.TransferContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::create_transaction"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateTransaction2",
+      "service": "Wallet",
+      "method": "CreateTransaction2",
+      "java_method": "createTransaction2",
+      "input_type": ".protocol.TransferContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_transaction2",
+      "non_default_case": {
+        "request": ".protocol.TransferContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::create_transaction2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/BroadcastTransaction",
+      "service": "Wallet",
+      "method": "BroadcastTransaction",
+      "java_method": "broadcastTransaction",
+      "input_type": ".protocol.Transaction",
+      "output_type": ".protocol.Return",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::broadcast_transaction",
+      "non_default_case": {
+        "request": ".protocol.Transaction",
+        "expected": ".protocol.Return",
+        "route": "RpcApiServices::broadcast_transaction"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UpdateAccount",
+      "service": "Wallet",
+      "method": "UpdateAccount",
+      "java_method": "updateAccount",
+      "input_type": ".protocol.AccountUpdateContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::update_account",
+      "non_default_case": {
+        "request": ".protocol.AccountUpdateContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::update_account"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/SetAccountId",
+      "service": "Wallet",
+      "method": "SetAccountId",
+      "java_method": "setAccountId",
+      "input_type": ".protocol.SetAccountIdContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::set_account_id",
+      "non_default_case": {
+        "request": ".protocol.SetAccountIdContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::set_account_id"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UpdateAccount2",
+      "service": "Wallet",
+      "method": "UpdateAccount2",
+      "java_method": "updateAccount2",
+      "input_type": ".protocol.AccountUpdateContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::update_account2",
+      "non_default_case": {
+        "request": ".protocol.AccountUpdateContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::update_account2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/VoteWitnessAccount",
+      "service": "Wallet",
+      "method": "VoteWitnessAccount",
+      "java_method": "voteWitnessAccount",
+      "input_type": ".protocol.VoteWitnessContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::vote_witness_account",
+      "non_default_case": {
+        "request": ".protocol.VoteWitnessContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::vote_witness_account"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UpdateSetting",
+      "service": "Wallet",
+      "method": "UpdateSetting",
+      "java_method": "updateSetting",
+      "input_type": ".protocol.UpdateSettingContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::update_setting",
+      "non_default_case": {
+        "request": ".protocol.UpdateSettingContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::update_setting"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UpdateEnergyLimit",
+      "service": "Wallet",
+      "method": "UpdateEnergyLimit",
+      "java_method": "updateEnergyLimit",
+      "input_type": ".protocol.UpdateEnergyLimitContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::update_energy_limit",
+      "non_default_case": {
+        "request": ".protocol.UpdateEnergyLimitContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::update_energy_limit"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/VoteWitnessAccount2",
+      "service": "Wallet",
+      "method": "VoteWitnessAccount2",
+      "java_method": "voteWitnessAccount2",
+      "input_type": ".protocol.VoteWitnessContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::vote_witness_account2",
+      "non_default_case": {
+        "request": ".protocol.VoteWitnessContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::vote_witness_account2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateAssetIssue",
+      "service": "Wallet",
+      "method": "CreateAssetIssue",
+      "java_method": "createAssetIssue",
+      "input_type": ".protocol.AssetIssueContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_asset_issue",
+      "non_default_case": {
+        "request": ".protocol.AssetIssueContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::create_asset_issue"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateAssetIssue2",
+      "service": "Wallet",
+      "method": "CreateAssetIssue2",
+      "java_method": "createAssetIssue2",
+      "input_type": ".protocol.AssetIssueContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_asset_issue2",
+      "non_default_case": {
+        "request": ".protocol.AssetIssueContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::create_asset_issue2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UpdateWitness",
+      "service": "Wallet",
+      "method": "UpdateWitness",
+      "java_method": "updateWitness",
+      "input_type": ".protocol.WitnessUpdateContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::update_witness",
+      "non_default_case": {
+        "request": ".protocol.WitnessUpdateContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::update_witness"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UpdateWitness2",
+      "service": "Wallet",
+      "method": "UpdateWitness2",
+      "java_method": "updateWitness2",
+      "input_type": ".protocol.WitnessUpdateContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::update_witness2",
+      "non_default_case": {
+        "request": ".protocol.WitnessUpdateContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::update_witness2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateAccount",
+      "service": "Wallet",
+      "method": "CreateAccount",
+      "java_method": "createAccount",
+      "input_type": ".protocol.AccountCreateContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_account",
+      "non_default_case": {
+        "request": ".protocol.AccountCreateContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::create_account"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateAccount2",
+      "service": "Wallet",
+      "method": "CreateAccount2",
+      "java_method": "createAccount2",
+      "input_type": ".protocol.AccountCreateContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_account2",
+      "non_default_case": {
+        "request": ".protocol.AccountCreateContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::create_account2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateWitness",
+      "service": "Wallet",
+      "method": "CreateWitness",
+      "java_method": "createWitness",
+      "input_type": ".protocol.WitnessCreateContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_witness",
+      "non_default_case": {
+        "request": ".protocol.WitnessCreateContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::create_witness"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateWitness2",
+      "service": "Wallet",
+      "method": "CreateWitness2",
+      "java_method": "createWitness2",
+      "input_type": ".protocol.WitnessCreateContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_witness2",
+      "non_default_case": {
+        "request": ".protocol.WitnessCreateContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::create_witness2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/TransferAsset",
+      "service": "Wallet",
+      "method": "TransferAsset",
+      "java_method": "transferAsset",
+      "input_type": ".protocol.TransferAssetContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::transfer_asset",
+      "non_default_case": {
+        "request": ".protocol.TransferAssetContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::transfer_asset"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/TransferAsset2",
+      "service": "Wallet",
+      "method": "TransferAsset2",
+      "java_method": "transferAsset2",
+      "input_type": ".protocol.TransferAssetContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::transfer_asset2",
+      "non_default_case": {
+        "request": ".protocol.TransferAssetContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::transfer_asset2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ParticipateAssetIssue",
+      "service": "Wallet",
+      "method": "ParticipateAssetIssue",
+      "java_method": "participateAssetIssue",
+      "input_type": ".protocol.ParticipateAssetIssueContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::participate_asset_issue",
+      "non_default_case": {
+        "request": ".protocol.ParticipateAssetIssueContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::participate_asset_issue"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ParticipateAssetIssue2",
+      "service": "Wallet",
+      "method": "ParticipateAssetIssue2",
+      "java_method": "participateAssetIssue2",
+      "input_type": ".protocol.ParticipateAssetIssueContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::participate_asset_issue2",
+      "non_default_case": {
+        "request": ".protocol.ParticipateAssetIssueContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::participate_asset_issue2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/FreezeBalance",
+      "service": "Wallet",
+      "method": "FreezeBalance",
+      "java_method": "freezeBalance",
+      "input_type": ".protocol.FreezeBalanceContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::freeze_balance",
+      "non_default_case": {
+        "request": ".protocol.FreezeBalanceContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::freeze_balance"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/FreezeBalance2",
+      "service": "Wallet",
+      "method": "FreezeBalance2",
+      "java_method": "freezeBalance2",
+      "input_type": ".protocol.FreezeBalanceContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::freeze_balance2",
+      "non_default_case": {
+        "request": ".protocol.FreezeBalanceContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::freeze_balance2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/FreezeBalanceV2",
+      "service": "Wallet",
+      "method": "FreezeBalanceV2",
+      "java_method": "freezeBalanceV2",
+      "input_type": ".protocol.FreezeBalanceV2Contract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::freeze_balance_v2",
+      "non_default_case": {
+        "request": ".protocol.FreezeBalanceV2Contract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::freeze_balance_v2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UnfreezeBalance",
+      "service": "Wallet",
+      "method": "UnfreezeBalance",
+      "java_method": "unfreezeBalance",
+      "input_type": ".protocol.UnfreezeBalanceContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::unfreeze_balance",
+      "non_default_case": {
+        "request": ".protocol.UnfreezeBalanceContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::unfreeze_balance"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UnfreezeBalance2",
+      "service": "Wallet",
+      "method": "UnfreezeBalance2",
+      "java_method": "unfreezeBalance2",
+      "input_type": ".protocol.UnfreezeBalanceContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::unfreeze_balance2",
+      "non_default_case": {
+        "request": ".protocol.UnfreezeBalanceContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::unfreeze_balance2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UnfreezeBalanceV2",
+      "service": "Wallet",
+      "method": "UnfreezeBalanceV2",
+      "java_method": "unfreezeBalanceV2",
+      "input_type": ".protocol.UnfreezeBalanceV2Contract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::unfreeze_balance_v2",
+      "non_default_case": {
+        "request": ".protocol.UnfreezeBalanceV2Contract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::unfreeze_balance_v2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UnfreezeAsset",
+      "service": "Wallet",
+      "method": "UnfreezeAsset",
+      "java_method": "unfreezeAsset",
+      "input_type": ".protocol.UnfreezeAssetContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::unfreeze_asset",
+      "non_default_case": {
+        "request": ".protocol.UnfreezeAssetContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::unfreeze_asset"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UnfreezeAsset2",
+      "service": "Wallet",
+      "method": "UnfreezeAsset2",
+      "java_method": "unfreezeAsset2",
+      "input_type": ".protocol.UnfreezeAssetContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::unfreeze_asset2",
+      "non_default_case": {
+        "request": ".protocol.UnfreezeAssetContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::unfreeze_asset2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/WithdrawBalance",
+      "service": "Wallet",
+      "method": "WithdrawBalance",
+      "java_method": "withdrawBalance",
+      "input_type": ".protocol.WithdrawBalanceContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::withdraw_balance",
+      "non_default_case": {
+        "request": ".protocol.WithdrawBalanceContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::withdraw_balance"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/WithdrawBalance2",
+      "service": "Wallet",
+      "method": "WithdrawBalance2",
+      "java_method": "withdrawBalance2",
+      "input_type": ".protocol.WithdrawBalanceContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::withdraw_balance2",
+      "non_default_case": {
+        "request": ".protocol.WithdrawBalanceContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::withdraw_balance2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/WithdrawExpireUnfreeze",
+      "service": "Wallet",
+      "method": "WithdrawExpireUnfreeze",
+      "java_method": "withdrawExpireUnfreeze",
+      "input_type": ".protocol.WithdrawExpireUnfreezeContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::withdraw_expire_unfreeze",
+      "non_default_case": {
+        "request": ".protocol.WithdrawExpireUnfreezeContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::withdraw_expire_unfreeze"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/DelegateResource",
+      "service": "Wallet",
+      "method": "DelegateResource",
+      "java_method": "delegateResource",
+      "input_type": ".protocol.DelegateResourceContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::delegate_resource",
+      "non_default_case": {
+        "request": ".protocol.DelegateResourceContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::delegate_resource"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UnDelegateResource",
+      "service": "Wallet",
+      "method": "UnDelegateResource",
+      "java_method": "unDelegateResource",
+      "input_type": ".protocol.UnDelegateResourceContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::un_delegate_resource",
+      "non_default_case": {
+        "request": ".protocol.UnDelegateResourceContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::un_delegate_resource"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CancelAllUnfreezeV2",
+      "service": "Wallet",
+      "method": "CancelAllUnfreezeV2",
+      "java_method": "cancelAllUnfreezeV2",
+      "input_type": ".protocol.CancelAllUnfreezeV2Contract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::cancel_all_unfreeze_v2",
+      "non_default_case": {
+        "request": ".protocol.CancelAllUnfreezeV2Contract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::cancel_all_unfreeze_v2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UpdateAsset",
+      "service": "Wallet",
+      "method": "UpdateAsset",
+      "java_method": "updateAsset",
+      "input_type": ".protocol.UpdateAssetContract",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::update_asset",
+      "non_default_case": {
+        "request": ".protocol.UpdateAssetContract",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::update_asset"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UpdateAsset2",
+      "service": "Wallet",
+      "method": "UpdateAsset2",
+      "java_method": "updateAsset2",
+      "input_type": ".protocol.UpdateAssetContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::update_asset2",
+      "non_default_case": {
+        "request": ".protocol.UpdateAssetContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::update_asset2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ProposalCreate",
+      "service": "Wallet",
+      "method": "ProposalCreate",
+      "java_method": "proposalCreate",
+      "input_type": ".protocol.ProposalCreateContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::proposal_create",
+      "non_default_case": {
+        "request": ".protocol.ProposalCreateContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::proposal_create"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ProposalApprove",
+      "service": "Wallet",
+      "method": "ProposalApprove",
+      "java_method": "proposalApprove",
+      "input_type": ".protocol.ProposalApproveContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::proposal_approve",
+      "non_default_case": {
+        "request": ".protocol.ProposalApproveContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::proposal_approve"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ProposalDelete",
+      "service": "Wallet",
+      "method": "ProposalDelete",
+      "java_method": "proposalDelete",
+      "input_type": ".protocol.ProposalDeleteContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::proposal_delete",
+      "non_default_case": {
+        "request": ".protocol.ProposalDeleteContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::proposal_delete"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/BuyStorage",
+      "service": "Wallet",
+      "method": "BuyStorage",
+      "java_method": "buyStorage",
+      "input_type": ".protocol.BuyStorageContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "unimplemented",
+      "rust_handler": "RpcApiServices::buy_storage",
+      "non_default_case": {
+        "request": ".protocol.BuyStorageContract",
+        "expected": "UNIMPLEMENTED"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/BuyStorageBytes",
+      "service": "Wallet",
+      "method": "BuyStorageBytes",
+      "java_method": "buyStorageBytes",
+      "input_type": ".protocol.BuyStorageBytesContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "unimplemented",
+      "rust_handler": "RpcApiServices::buy_storage_bytes",
+      "non_default_case": {
+        "request": ".protocol.BuyStorageBytesContract",
+        "expected": "UNIMPLEMENTED"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/SellStorage",
+      "service": "Wallet",
+      "method": "SellStorage",
+      "java_method": "sellStorage",
+      "input_type": ".protocol.SellStorageContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "unimplemented",
+      "rust_handler": "RpcApiServices::sell_storage",
+      "non_default_case": {
+        "request": ".protocol.SellStorageContract",
+        "expected": "UNIMPLEMENTED"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ExchangeCreate",
+      "service": "Wallet",
+      "method": "ExchangeCreate",
+      "java_method": "exchangeCreate",
+      "input_type": ".protocol.ExchangeCreateContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::exchange_create",
+      "non_default_case": {
+        "request": ".protocol.ExchangeCreateContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::exchange_create"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ExchangeInject",
+      "service": "Wallet",
+      "method": "ExchangeInject",
+      "java_method": "exchangeInject",
+      "input_type": ".protocol.ExchangeInjectContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::exchange_inject",
+      "non_default_case": {
+        "request": ".protocol.ExchangeInjectContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::exchange_inject"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ExchangeWithdraw",
+      "service": "Wallet",
+      "method": "ExchangeWithdraw",
+      "java_method": "exchangeWithdraw",
+      "input_type": ".protocol.ExchangeWithdrawContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::exchange_withdraw",
+      "non_default_case": {
+        "request": ".protocol.ExchangeWithdrawContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::exchange_withdraw"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ExchangeTransaction",
+      "service": "Wallet",
+      "method": "ExchangeTransaction",
+      "java_method": "exchangeTransaction",
+      "input_type": ".protocol.ExchangeTransactionContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::exchange_transaction",
+      "non_default_case": {
+        "request": ".protocol.ExchangeTransactionContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::exchange_transaction"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/MarketSellAsset",
+      "service": "Wallet",
+      "method": "MarketSellAsset",
+      "java_method": "marketSellAsset",
+      "input_type": ".protocol.MarketSellAssetContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::market_sell_asset",
+      "non_default_case": {
+        "request": ".protocol.MarketSellAssetContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::market_sell_asset"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/MarketCancelOrder",
+      "service": "Wallet",
+      "method": "MarketCancelOrder",
+      "java_method": "marketCancelOrder",
+      "input_type": ".protocol.MarketCancelOrderContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::market_cancel_order",
+      "non_default_case": {
+        "request": ".protocol.MarketCancelOrderContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::market_cancel_order"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetMarketOrderById",
+      "service": "Wallet",
+      "method": "GetMarketOrderById",
+      "java_method": "getMarketOrderById",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.MarketOrder",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_market_order_by_id",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.MarketOrder",
+        "route": "RpcApiServices::get_market_order_by_id"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetMarketOrderByAccount",
+      "service": "Wallet",
+      "method": "GetMarketOrderByAccount",
+      "java_method": "getMarketOrderByAccount",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.MarketOrderList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_market_order_by_account",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.MarketOrderList",
+        "route": "RpcApiServices::get_market_order_by_account"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetMarketPriceByPair",
+      "service": "Wallet",
+      "method": "GetMarketPriceByPair",
+      "java_method": "getMarketPriceByPair",
+      "input_type": ".protocol.MarketOrderPair",
+      "output_type": ".protocol.MarketPriceList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_market_price_by_pair",
+      "non_default_case": {
+        "request": ".protocol.MarketOrderPair",
+        "expected": ".protocol.MarketPriceList",
+        "route": "RpcApiServices::get_market_price_by_pair"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetMarketOrderListByPair",
+      "service": "Wallet",
+      "method": "GetMarketOrderListByPair",
+      "java_method": "getMarketOrderListByPair",
+      "input_type": ".protocol.MarketOrderPair",
+      "output_type": ".protocol.MarketOrderList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_market_order_list_by_pair",
+      "non_default_case": {
+        "request": ".protocol.MarketOrderPair",
+        "expected": ".protocol.MarketOrderList",
+        "route": "RpcApiServices::get_market_order_list_by_pair"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetMarketPairList",
+      "service": "Wallet",
+      "method": "GetMarketPairList",
+      "java_method": "getMarketPairList",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.MarketOrderPairList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_market_pair_list",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.MarketOrderPairList",
+        "route": "RpcApiServices::get_market_pair_list"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ListNodes",
+      "service": "Wallet",
+      "method": "ListNodes",
+      "java_method": "listNodes",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.NodeList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::list_nodes",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.NodeList",
+        "route": "RpcApiServices::list_nodes"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetAssetIssueByAccount",
+      "service": "Wallet",
+      "method": "GetAssetIssueByAccount",
+      "java_method": "getAssetIssueByAccount",
+      "input_type": ".protocol.Account",
+      "output_type": ".protocol.AssetIssueList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_asset_issue_by_account",
+      "non_default_case": {
+        "request": ".protocol.Account",
+        "expected": ".protocol.AssetIssueList",
+        "route": "RpcApiServices::get_asset_issue_by_account"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetAccountNet",
+      "service": "Wallet",
+      "method": "GetAccountNet",
+      "java_method": "getAccountNet",
+      "input_type": ".protocol.Account",
+      "output_type": ".protocol.AccountNetMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_account_net",
+      "non_default_case": {
+        "request": ".protocol.Account",
+        "expected": ".protocol.AccountNetMessage",
+        "route": "RpcApiServices::get_account_net"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetAccountResource",
+      "service": "Wallet",
+      "method": "GetAccountResource",
+      "java_method": "getAccountResource",
+      "input_type": ".protocol.Account",
+      "output_type": ".protocol.AccountResourceMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_account_resource",
+      "non_default_case": {
+        "request": ".protocol.Account",
+        "expected": ".protocol.AccountResourceMessage",
+        "route": "RpcApiServices::get_account_resource"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetAssetIssueByName",
+      "service": "Wallet",
+      "method": "GetAssetIssueByName",
+      "java_method": "getAssetIssueByName",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.AssetIssueContract",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_asset_issue_by_name",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.AssetIssueContract",
+        "route": "RpcApiServices::get_asset_issue_by_name"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetAssetIssueListByName",
+      "service": "Wallet",
+      "method": "GetAssetIssueListByName",
+      "java_method": "getAssetIssueListByName",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.AssetIssueList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_asset_issue_list_by_name",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.AssetIssueList",
+        "route": "RpcApiServices::get_asset_issue_list_by_name"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetAssetIssueById",
+      "service": "Wallet",
+      "method": "GetAssetIssueById",
+      "java_method": "getAssetIssueById",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.AssetIssueContract",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_asset_issue_by_id",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.AssetIssueContract",
+        "route": "RpcApiServices::get_asset_issue_by_id"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetNowBlock",
+      "service": "Wallet",
+      "method": "GetNowBlock",
+      "java_method": "getNowBlock",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.Block",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_now_block",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.Block",
+        "route": "RpcApiServices::get_now_block"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetNowBlock2",
+      "service": "Wallet",
+      "method": "GetNowBlock2",
+      "java_method": "getNowBlock2",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.BlockExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_now_block2",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.BlockExtention",
+        "route": "RpcApiServices::get_now_block2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetBlockByNum",
+      "service": "Wallet",
+      "method": "GetBlockByNum",
+      "java_method": "getBlockByNum",
+      "input_type": ".protocol.NumberMessage",
+      "output_type": ".protocol.Block",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block_by_num",
+      "non_default_case": {
+        "request": ".protocol.NumberMessage",
+        "expected": ".protocol.Block",
+        "route": "RpcApiServices::get_block_by_num"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetBlockByNum2",
+      "service": "Wallet",
+      "method": "GetBlockByNum2",
+      "java_method": "getBlockByNum2",
+      "input_type": ".protocol.NumberMessage",
+      "output_type": ".protocol.BlockExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block_by_num2",
+      "non_default_case": {
+        "request": ".protocol.NumberMessage",
+        "expected": ".protocol.BlockExtention",
+        "route": "RpcApiServices::get_block_by_num2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetTransactionCountByBlockNum",
+      "service": "Wallet",
+      "method": "GetTransactionCountByBlockNum",
+      "java_method": "getTransactionCountByBlockNum",
+      "input_type": ".protocol.NumberMessage",
+      "output_type": ".protocol.NumberMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_transaction_count_by_block_num",
+      "non_default_case": {
+        "request": ".protocol.NumberMessage",
+        "expected": ".protocol.NumberMessage",
+        "route": "RpcApiServices::get_transaction_count_by_block_num"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetBlockById",
+      "service": "Wallet",
+      "method": "GetBlockById",
+      "java_method": "getBlockById",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.Block",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block_by_id",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.Block",
+        "route": "RpcApiServices::get_block_by_id"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetBlockByLimitNext",
+      "service": "Wallet",
+      "method": "GetBlockByLimitNext",
+      "java_method": "getBlockByLimitNext",
+      "input_type": ".protocol.BlockLimit",
+      "output_type": ".protocol.BlockList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block_by_limit_next",
+      "non_default_case": {
+        "request": ".protocol.BlockLimit",
+        "expected": ".protocol.BlockList",
+        "route": "RpcApiServices::get_block_by_limit_next"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetBlockByLimitNext2",
+      "service": "Wallet",
+      "method": "GetBlockByLimitNext2",
+      "java_method": "getBlockByLimitNext2",
+      "input_type": ".protocol.BlockLimit",
+      "output_type": ".protocol.BlockListExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block_by_limit_next2",
+      "non_default_case": {
+        "request": ".protocol.BlockLimit",
+        "expected": ".protocol.BlockListExtention",
+        "route": "RpcApiServices::get_block_by_limit_next2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetBlockByLatestNum",
+      "service": "Wallet",
+      "method": "GetBlockByLatestNum",
+      "java_method": "getBlockByLatestNum",
+      "input_type": ".protocol.NumberMessage",
+      "output_type": ".protocol.BlockList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block_by_latest_num",
+      "non_default_case": {
+        "request": ".protocol.NumberMessage",
+        "expected": ".protocol.BlockList",
+        "route": "RpcApiServices::get_block_by_latest_num"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetBlockByLatestNum2",
+      "service": "Wallet",
+      "method": "GetBlockByLatestNum2",
+      "java_method": "getBlockByLatestNum2",
+      "input_type": ".protocol.NumberMessage",
+      "output_type": ".protocol.BlockListExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block_by_latest_num2",
+      "non_default_case": {
+        "request": ".protocol.NumberMessage",
+        "expected": ".protocol.BlockListExtention",
+        "route": "RpcApiServices::get_block_by_latest_num2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetTransactionById",
+      "service": "Wallet",
+      "method": "GetTransactionById",
+      "java_method": "getTransactionById",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_transaction_by_id",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::get_transaction_by_id"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/DeployContract",
+      "service": "Wallet",
+      "method": "DeployContract",
+      "java_method": "deployContract",
+      "input_type": ".protocol.CreateSmartContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::deploy_contract",
+      "non_default_case": {
+        "request": ".protocol.CreateSmartContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::deploy_contract"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetContract",
+      "service": "Wallet",
+      "method": "GetContract",
+      "java_method": "getContract",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.SmartContract",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_contract",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.SmartContract",
+        "route": "RpcApiServices::get_contract"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetContractInfo",
+      "service": "Wallet",
+      "method": "GetContractInfo",
+      "java_method": "getContractInfo",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.SmartContractDataWrapper",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_contract_info",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.SmartContractDataWrapper",
+        "route": "RpcApiServices::get_contract_info"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/TriggerContract",
+      "service": "Wallet",
+      "method": "TriggerContract",
+      "java_method": "triggerContract",
+      "input_type": ".protocol.TriggerSmartContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::trigger_contract",
+      "non_default_case": {
+        "request": ".protocol.TriggerSmartContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::trigger_contract"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/TriggerConstantContract",
+      "service": "Wallet",
+      "method": "TriggerConstantContract",
+      "java_method": "triggerConstantContract",
+      "input_type": ".protocol.TriggerSmartContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::trigger_constant_contract",
+      "non_default_case": {
+        "request": ".protocol.TriggerSmartContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::trigger_constant_contract"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/EstimateEnergy",
+      "service": "Wallet",
+      "method": "EstimateEnergy",
+      "java_method": "estimateEnergy",
+      "input_type": ".protocol.TriggerSmartContract",
+      "output_type": ".protocol.EstimateEnergyMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::estimate_energy",
+      "non_default_case": {
+        "request": ".protocol.TriggerSmartContract",
+        "expected": ".protocol.EstimateEnergyMessage",
+        "route": "RpcApiServices::estimate_energy"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ClearContractABI",
+      "service": "Wallet",
+      "method": "ClearContractABI",
+      "java_method": "clearContractABI",
+      "input_type": ".protocol.ClearABIContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::clear_contract_abi",
+      "non_default_case": {
+        "request": ".protocol.ClearABIContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::clear_contract_abi"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ListWitnesses",
+      "service": "Wallet",
+      "method": "ListWitnesses",
+      "java_method": "listWitnesses",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.WitnessList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::list_witnesses",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.WitnessList",
+        "route": "RpcApiServices::list_witnesses"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetPaginatedNowWitnessList",
+      "service": "Wallet",
+      "method": "GetPaginatedNowWitnessList",
+      "java_method": "getPaginatedNowWitnessList",
+      "input_type": ".protocol.PaginatedMessage",
+      "output_type": ".protocol.WitnessList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_paginated_now_witness_list",
+      "non_default_case": {
+        "request": ".protocol.PaginatedMessage",
+        "expected": ".protocol.WitnessList",
+        "route": "RpcApiServices::get_paginated_now_witness_list"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetDelegatedResource",
+      "service": "Wallet",
+      "method": "GetDelegatedResource",
+      "java_method": "getDelegatedResource",
+      "input_type": ".protocol.DelegatedResourceMessage",
+      "output_type": ".protocol.DelegatedResourceList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_delegated_resource",
+      "non_default_case": {
+        "request": ".protocol.DelegatedResourceMessage",
+        "expected": ".protocol.DelegatedResourceList",
+        "route": "RpcApiServices::get_delegated_resource"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetDelegatedResourceV2",
+      "service": "Wallet",
+      "method": "GetDelegatedResourceV2",
+      "java_method": "getDelegatedResourceV2",
+      "input_type": ".protocol.DelegatedResourceMessage",
+      "output_type": ".protocol.DelegatedResourceList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_delegated_resource_v2",
+      "non_default_case": {
+        "request": ".protocol.DelegatedResourceMessage",
+        "expected": ".protocol.DelegatedResourceList",
+        "route": "RpcApiServices::get_delegated_resource_v2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetDelegatedResourceAccountIndex",
+      "service": "Wallet",
+      "method": "GetDelegatedResourceAccountIndex",
+      "java_method": "getDelegatedResourceAccountIndex",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.DelegatedResourceAccountIndex",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_delegated_resource_account_index",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.DelegatedResourceAccountIndex",
+        "route": "RpcApiServices::get_delegated_resource_account_index"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetDelegatedResourceAccountIndexV2",
+      "service": "Wallet",
+      "method": "GetDelegatedResourceAccountIndexV2",
+      "java_method": "getDelegatedResourceAccountIndexV2",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.DelegatedResourceAccountIndex",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_delegated_resource_account_index_v2",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.DelegatedResourceAccountIndex",
+        "route": "RpcApiServices::get_delegated_resource_account_index_v2"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetCanDelegatedMaxSize",
+      "service": "Wallet",
+      "method": "GetCanDelegatedMaxSize",
+      "java_method": "getCanDelegatedMaxSize",
+      "input_type": ".protocol.CanDelegatedMaxSizeRequestMessage",
+      "output_type": ".protocol.CanDelegatedMaxSizeResponseMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_can_delegated_max_size",
+      "non_default_case": {
+        "request": ".protocol.CanDelegatedMaxSizeRequestMessage",
+        "expected": ".protocol.CanDelegatedMaxSizeResponseMessage",
+        "route": "RpcApiServices::get_can_delegated_max_size"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetAvailableUnfreezeCount",
+      "service": "Wallet",
+      "method": "GetAvailableUnfreezeCount",
+      "java_method": "getAvailableUnfreezeCount",
+      "input_type": ".protocol.GetAvailableUnfreezeCountRequestMessage",
+      "output_type": ".protocol.GetAvailableUnfreezeCountResponseMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_available_unfreeze_count",
+      "non_default_case": {
+        "request": ".protocol.GetAvailableUnfreezeCountRequestMessage",
+        "expected": ".protocol.GetAvailableUnfreezeCountResponseMessage",
+        "route": "RpcApiServices::get_available_unfreeze_count"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetCanWithdrawUnfreezeAmount",
+      "service": "Wallet",
+      "method": "GetCanWithdrawUnfreezeAmount",
+      "java_method": "getCanWithdrawUnfreezeAmount",
+      "input_type": ".protocol.CanWithdrawUnfreezeAmountRequestMessage",
+      "output_type": ".protocol.CanWithdrawUnfreezeAmountResponseMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_can_withdraw_unfreeze_amount",
+      "non_default_case": {
+        "request": ".protocol.CanWithdrawUnfreezeAmountRequestMessage",
+        "expected": ".protocol.CanWithdrawUnfreezeAmountResponseMessage",
+        "route": "RpcApiServices::get_can_withdraw_unfreeze_amount"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ListProposals",
+      "service": "Wallet",
+      "method": "ListProposals",
+      "java_method": "listProposals",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.ProposalList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::list_proposals",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.ProposalList",
+        "route": "RpcApiServices::list_proposals"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetPaginatedProposalList",
+      "service": "Wallet",
+      "method": "GetPaginatedProposalList",
+      "java_method": "getPaginatedProposalList",
+      "input_type": ".protocol.PaginatedMessage",
+      "output_type": ".protocol.ProposalList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_paginated_proposal_list",
+      "non_default_case": {
+        "request": ".protocol.PaginatedMessage",
+        "expected": ".protocol.ProposalList",
+        "route": "RpcApiServices::get_paginated_proposal_list"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetProposalById",
+      "service": "Wallet",
+      "method": "GetProposalById",
+      "java_method": "getProposalById",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.Proposal",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_proposal_by_id",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.Proposal",
+        "route": "RpcApiServices::get_proposal_by_id"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ListExchanges",
+      "service": "Wallet",
+      "method": "ListExchanges",
+      "java_method": "listExchanges",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.ExchangeList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::list_exchanges",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.ExchangeList",
+        "route": "RpcApiServices::list_exchanges"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetPaginatedExchangeList",
+      "service": "Wallet",
+      "method": "GetPaginatedExchangeList",
+      "java_method": "getPaginatedExchangeList",
+      "input_type": ".protocol.PaginatedMessage",
+      "output_type": ".protocol.ExchangeList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_paginated_exchange_list",
+      "non_default_case": {
+        "request": ".protocol.PaginatedMessage",
+        "expected": ".protocol.ExchangeList",
+        "route": "RpcApiServices::get_paginated_exchange_list"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetExchangeById",
+      "service": "Wallet",
+      "method": "GetExchangeById",
+      "java_method": "getExchangeById",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.Exchange",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_exchange_by_id",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.Exchange",
+        "route": "RpcApiServices::get_exchange_by_id"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetChainParameters",
+      "service": "Wallet",
+      "method": "GetChainParameters",
+      "java_method": "getChainParameters",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.ChainParameters",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_chain_parameters",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.ChainParameters",
+        "route": "RpcApiServices::get_chain_parameters"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetAssetIssueList",
+      "service": "Wallet",
+      "method": "GetAssetIssueList",
+      "java_method": "getAssetIssueList",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.AssetIssueList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_asset_issue_list",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.AssetIssueList",
+        "route": "RpcApiServices::get_asset_issue_list"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetPaginatedAssetIssueList",
+      "service": "Wallet",
+      "method": "GetPaginatedAssetIssueList",
+      "java_method": "getPaginatedAssetIssueList",
+      "input_type": ".protocol.PaginatedMessage",
+      "output_type": ".protocol.AssetIssueList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_paginated_asset_issue_list",
+      "non_default_case": {
+        "request": ".protocol.PaginatedMessage",
+        "expected": ".protocol.AssetIssueList",
+        "route": "RpcApiServices::get_paginated_asset_issue_list"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/TotalTransaction",
+      "service": "Wallet",
+      "method": "TotalTransaction",
+      "java_method": "totalTransaction",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.NumberMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::total_transaction",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.NumberMessage",
+        "route": "RpcApiServices::total_transaction"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetNextMaintenanceTime",
+      "service": "Wallet",
+      "method": "GetNextMaintenanceTime",
+      "java_method": "getNextMaintenanceTime",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.NumberMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_next_maintenance_time",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.NumberMessage",
+        "route": "RpcApiServices::get_next_maintenance_time"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetTransactionInfoById",
+      "service": "Wallet",
+      "method": "GetTransactionInfoById",
+      "java_method": "getTransactionInfoById",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.TransactionInfo",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_transaction_info_by_id",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.TransactionInfo",
+        "route": "RpcApiServices::get_transaction_info_by_id"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/AccountPermissionUpdate",
+      "service": "Wallet",
+      "method": "AccountPermissionUpdate",
+      "java_method": "accountPermissionUpdate",
+      "input_type": ".protocol.AccountPermissionUpdateContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::account_permission_update",
+      "non_default_case": {
+        "request": ".protocol.AccountPermissionUpdateContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::account_permission_update"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetTransactionSignWeight",
+      "service": "Wallet",
+      "method": "GetTransactionSignWeight",
+      "java_method": "getTransactionSignWeight",
+      "input_type": ".protocol.Transaction",
+      "output_type": ".protocol.TransactionSignWeight",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_transaction_sign_weight",
+      "non_default_case": {
+        "request": ".protocol.Transaction",
+        "expected": ".protocol.TransactionSignWeight",
+        "route": "RpcApiServices::get_transaction_sign_weight"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetTransactionApprovedList",
+      "service": "Wallet",
+      "method": "GetTransactionApprovedList",
+      "java_method": "getTransactionApprovedList",
+      "input_type": ".protocol.Transaction",
+      "output_type": ".protocol.TransactionApprovedList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_transaction_approved_list",
+      "non_default_case": {
+        "request": ".protocol.Transaction",
+        "expected": ".protocol.TransactionApprovedList",
+        "route": "RpcApiServices::get_transaction_approved_list"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetNodeInfo",
+      "service": "Wallet",
+      "method": "GetNodeInfo",
+      "java_method": "getNodeInfo",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.NodeInfo",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_node_info",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.NodeInfo",
+        "route": "RpcApiServices::get_node_info"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetRewardInfo",
+      "service": "Wallet",
+      "method": "GetRewardInfo",
+      "java_method": "getRewardInfo",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.NumberMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_reward_info",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.NumberMessage",
+        "route": "RpcApiServices::get_reward_info"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetBrokerageInfo",
+      "service": "Wallet",
+      "method": "GetBrokerageInfo",
+      "java_method": "getBrokerageInfo",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.NumberMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_brokerage_info",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.NumberMessage",
+        "route": "RpcApiServices::get_brokerage_info"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/UpdateBrokerage",
+      "service": "Wallet",
+      "method": "UpdateBrokerage",
+      "java_method": "updateBrokerage",
+      "input_type": ".protocol.UpdateBrokerageContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::update_brokerage",
+      "non_default_case": {
+        "request": ".protocol.UpdateBrokerageContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::update_brokerage"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateShieldedTransaction",
+      "service": "Wallet",
+      "method": "CreateShieldedTransaction",
+      "java_method": "createShieldedTransaction",
+      "input_type": ".protocol.PrivateParameters",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_shielded_transaction",
+      "non_default_case": {
+        "request": ".protocol.PrivateParameters",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::create_shielded_transaction"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetMerkleTreeVoucherInfo",
+      "service": "Wallet",
+      "method": "GetMerkleTreeVoucherInfo",
+      "java_method": "getMerkleTreeVoucherInfo",
+      "input_type": ".protocol.OutputPointInfo",
+      "output_type": ".protocol.IncrementalMerkleVoucherInfo",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_merkle_tree_voucher_info",
+      "non_default_case": {
+        "request": ".protocol.OutputPointInfo",
+        "expected": ".protocol.IncrementalMerkleVoucherInfo",
+        "route": "RpcApiServices::get_merkle_tree_voucher_info"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ScanNoteByIvk",
+      "service": "Wallet",
+      "method": "ScanNoteByIvk",
+      "java_method": "scanNoteByIvk",
+      "input_type": ".protocol.IvkDecryptParameters",
+      "output_type": ".protocol.DecryptNotes",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::scan_note_by_ivk",
+      "non_default_case": {
+        "request": ".protocol.IvkDecryptParameters",
+        "expected": ".protocol.DecryptNotes",
+        "route": "RpcApiServices::scan_note_by_ivk"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ScanAndMarkNoteByIvk",
+      "service": "Wallet",
+      "method": "ScanAndMarkNoteByIvk",
+      "java_method": "scanAndMarkNoteByIvk",
+      "input_type": ".protocol.IvkDecryptAndMarkParameters",
+      "output_type": ".protocol.DecryptNotesMarked",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::scan_and_mark_note_by_ivk",
+      "non_default_case": {
+        "request": ".protocol.IvkDecryptAndMarkParameters",
+        "expected": ".protocol.DecryptNotesMarked",
+        "route": "RpcApiServices::scan_and_mark_note_by_ivk"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ScanNoteByOvk",
+      "service": "Wallet",
+      "method": "ScanNoteByOvk",
+      "java_method": "scanNoteByOvk",
+      "input_type": ".protocol.OvkDecryptParameters",
+      "output_type": ".protocol.DecryptNotes",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::scan_note_by_ovk",
+      "non_default_case": {
+        "request": ".protocol.OvkDecryptParameters",
+        "expected": ".protocol.DecryptNotes",
+        "route": "RpcApiServices::scan_note_by_ovk"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetSpendingKey",
+      "service": "Wallet",
+      "method": "GetSpendingKey",
+      "java_method": "getSpendingKey",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.BytesMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_spending_key",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.BytesMessage",
+        "route": "RpcApiServices::get_spending_key"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetExpandedSpendingKey",
+      "service": "Wallet",
+      "method": "GetExpandedSpendingKey",
+      "java_method": "getExpandedSpendingKey",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.ExpandedSpendingKeyMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_expanded_spending_key",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.ExpandedSpendingKeyMessage",
+        "route": "RpcApiServices::get_expanded_spending_key"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetAkFromAsk",
+      "service": "Wallet",
+      "method": "GetAkFromAsk",
+      "java_method": "getAkFromAsk",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.BytesMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_ak_from_ask",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.BytesMessage",
+        "route": "RpcApiServices::get_ak_from_ask"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetNkFromNsk",
+      "service": "Wallet",
+      "method": "GetNkFromNsk",
+      "java_method": "getNkFromNsk",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.BytesMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_nk_from_nsk",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.BytesMessage",
+        "route": "RpcApiServices::get_nk_from_nsk"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetIncomingViewingKey",
+      "service": "Wallet",
+      "method": "GetIncomingViewingKey",
+      "java_method": "getIncomingViewingKey",
+      "input_type": ".protocol.ViewingKeyMessage",
+      "output_type": ".protocol.IncomingViewingKeyMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_incoming_viewing_key",
+      "non_default_case": {
+        "request": ".protocol.ViewingKeyMessage",
+        "expected": ".protocol.IncomingViewingKeyMessage",
+        "route": "RpcApiServices::get_incoming_viewing_key"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetDiversifier",
+      "service": "Wallet",
+      "method": "GetDiversifier",
+      "java_method": "getDiversifier",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.DiversifierMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_diversifier",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.DiversifierMessage",
+        "route": "RpcApiServices::get_diversifier"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetNewShieldedAddress",
+      "service": "Wallet",
+      "method": "GetNewShieldedAddress",
+      "java_method": "getNewShieldedAddress",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.ShieldedAddressInfo",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_new_shielded_address",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.ShieldedAddressInfo",
+        "route": "RpcApiServices::get_new_shielded_address"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetZenPaymentAddress",
+      "service": "Wallet",
+      "method": "GetZenPaymentAddress",
+      "java_method": "getZenPaymentAddress",
+      "input_type": ".protocol.IncomingViewingKeyDiversifierMessage",
+      "output_type": ".protocol.PaymentAddressMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_zen_payment_address",
+      "non_default_case": {
+        "request": ".protocol.IncomingViewingKeyDiversifierMessage",
+        "expected": ".protocol.PaymentAddressMessage",
+        "route": "RpcApiServices::get_zen_payment_address"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetRcm",
+      "service": "Wallet",
+      "method": "GetRcm",
+      "java_method": "getRcm",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.BytesMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_rcm",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.BytesMessage",
+        "route": "RpcApiServices::get_rcm"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/IsSpend",
+      "service": "Wallet",
+      "method": "IsSpend",
+      "java_method": "isSpend",
+      "input_type": ".protocol.NoteParameters",
+      "output_type": ".protocol.SpendResult",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::is_spend",
+      "non_default_case": {
+        "request": ".protocol.NoteParameters",
+        "expected": ".protocol.SpendResult",
+        "route": "RpcApiServices::is_spend"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateShieldedTransactionWithoutSpendAuthSig",
+      "service": "Wallet",
+      "method": "CreateShieldedTransactionWithoutSpendAuthSig",
+      "java_method": "createShieldedTransactionWithoutSpendAuthSig",
+      "input_type": ".protocol.PrivateParametersWithoutAsk",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_shielded_transaction_without_spend_auth_sig",
+      "non_default_case": {
+        "request": ".protocol.PrivateParametersWithoutAsk",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::create_shielded_transaction_without_spend_auth_sig"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetShieldTransactionHash",
+      "service": "Wallet",
+      "method": "GetShieldTransactionHash",
+      "java_method": "getShieldTransactionHash",
+      "input_type": ".protocol.Transaction",
+      "output_type": ".protocol.BytesMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_shield_transaction_hash",
+      "non_default_case": {
+        "request": ".protocol.Transaction",
+        "expected": ".protocol.BytesMessage",
+        "route": "RpcApiServices::get_shield_transaction_hash"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateSpendAuthSig",
+      "service": "Wallet",
+      "method": "CreateSpendAuthSig",
+      "java_method": "createSpendAuthSig",
+      "input_type": ".protocol.SpendAuthSigParameters",
+      "output_type": ".protocol.BytesMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_spend_auth_sig",
+      "non_default_case": {
+        "request": ".protocol.SpendAuthSigParameters",
+        "expected": ".protocol.BytesMessage",
+        "route": "RpcApiServices::create_spend_auth_sig"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateShieldNullifier",
+      "service": "Wallet",
+      "method": "CreateShieldNullifier",
+      "java_method": "createShieldNullifier",
+      "input_type": ".protocol.NfParameters",
+      "output_type": ".protocol.BytesMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_shield_nullifier",
+      "non_default_case": {
+        "request": ".protocol.NfParameters",
+        "expected": ".protocol.BytesMessage",
+        "route": "RpcApiServices::create_shield_nullifier"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateShieldedContractParameters",
+      "service": "Wallet",
+      "method": "CreateShieldedContractParameters",
+      "java_method": "createShieldedContractParameters",
+      "input_type": ".protocol.PrivateShieldedTRC20Parameters",
+      "output_type": ".protocol.ShieldedTRC20Parameters",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_shielded_contract_parameters",
+      "non_default_case": {
+        "request": ".protocol.PrivateShieldedTRC20Parameters",
+        "expected": ".protocol.ShieldedTRC20Parameters",
+        "route": "RpcApiServices::create_shielded_contract_parameters"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateShieldedContractParametersWithoutAsk",
+      "service": "Wallet",
+      "method": "CreateShieldedContractParametersWithoutAsk",
+      "java_method": "createShieldedContractParametersWithoutAsk",
+      "input_type": ".protocol.PrivateShieldedTRC20ParametersWithoutAsk",
+      "output_type": ".protocol.ShieldedTRC20Parameters",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_shielded_contract_parameters_without_ask",
+      "non_default_case": {
+        "request": ".protocol.PrivateShieldedTRC20ParametersWithoutAsk",
+        "expected": ".protocol.ShieldedTRC20Parameters",
+        "route": "RpcApiServices::create_shielded_contract_parameters_without_ask"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ScanShieldedTRC20NotesByIvk",
+      "service": "Wallet",
+      "method": "ScanShieldedTRC20NotesByIvk",
+      "java_method": "scanShieldedTRC20NotesByIvk",
+      "input_type": ".protocol.IvkDecryptTRC20Parameters",
+      "output_type": ".protocol.DecryptNotesTRC20",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::scan_shielded_trc20_notes_by_ivk",
+      "non_default_case": {
+        "request": ".protocol.IvkDecryptTRC20Parameters",
+        "expected": ".protocol.DecryptNotesTRC20",
+        "route": "RpcApiServices::scan_shielded_trc20_notes_by_ivk"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/ScanShieldedTRC20NotesByOvk",
+      "service": "Wallet",
+      "method": "ScanShieldedTRC20NotesByOvk",
+      "java_method": "scanShieldedTRC20NotesByOvk",
+      "input_type": ".protocol.OvkDecryptTRC20Parameters",
+      "output_type": ".protocol.DecryptNotesTRC20",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::scan_shielded_trc20_notes_by_ovk",
+      "non_default_case": {
+        "request": ".protocol.OvkDecryptTRC20Parameters",
+        "expected": ".protocol.DecryptNotesTRC20",
+        "route": "RpcApiServices::scan_shielded_trc20_notes_by_ovk"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/IsShieldedTRC20ContractNoteSpent",
+      "service": "Wallet",
+      "method": "IsShieldedTRC20ContractNoteSpent",
+      "java_method": "isShieldedTRC20ContractNoteSpent",
+      "input_type": ".protocol.NfTRC20Parameters",
+      "output_type": ".protocol.NullifierResult",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::is_shielded_trc20_contract_note_spent",
+      "non_default_case": {
+        "request": ".protocol.NfTRC20Parameters",
+        "expected": ".protocol.NullifierResult",
+        "route": "RpcApiServices::is_shielded_trc20_contract_note_spent"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetTriggerInputForShieldedTRC20Contract",
+      "service": "Wallet",
+      "method": "GetTriggerInputForShieldedTRC20Contract",
+      "java_method": "getTriggerInputForShieldedTRC20Contract",
+      "input_type": ".protocol.ShieldedTRC20TriggerContractParameters",
+      "output_type": ".protocol.BytesMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_trigger_input_for_shielded_trc20_contract",
+      "non_default_case": {
+        "request": ".protocol.ShieldedTRC20TriggerContractParameters",
+        "expected": ".protocol.BytesMessage",
+        "route": "RpcApiServices::get_trigger_input_for_shielded_trc20_contract"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/CreateCommonTransaction",
+      "service": "Wallet",
+      "method": "CreateCommonTransaction",
+      "java_method": "createCommonTransaction",
+      "input_type": ".protocol.Transaction",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::create_common_transaction",
+      "non_default_case": {
+        "request": ".protocol.Transaction",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::create_common_transaction"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetTransactionInfoByBlockNum",
+      "service": "Wallet",
+      "method": "GetTransactionInfoByBlockNum",
+      "java_method": "getTransactionInfoByBlockNum",
+      "input_type": ".protocol.NumberMessage",
+      "output_type": ".protocol.TransactionInfoList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_transaction_info_by_block_num",
+      "non_default_case": {
+        "request": ".protocol.NumberMessage",
+        "expected": ".protocol.TransactionInfoList",
+        "route": "RpcApiServices::get_transaction_info_by_block_num"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetBurnTrx",
+      "service": "Wallet",
+      "method": "GetBurnTrx",
+      "java_method": "getBurnTrx",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.NumberMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_burn_trx",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.NumberMessage",
+        "route": "RpcApiServices::get_burn_trx"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetTransactionFromPending",
+      "service": "Wallet",
+      "method": "GetTransactionFromPending",
+      "java_method": "getTransactionFromPending",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_transaction_from_pending",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::get_transaction_from_pending"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetTransactionListFromPending",
+      "service": "Wallet",
+      "method": "GetTransactionListFromPending",
+      "java_method": "getTransactionListFromPending",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.TransactionIdList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_transaction_list_from_pending",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.TransactionIdList",
+        "route": "RpcApiServices::get_transaction_list_from_pending"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetPendingSize",
+      "service": "Wallet",
+      "method": "GetPendingSize",
+      "java_method": "getPendingSize",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.NumberMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_pending_size",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.NumberMessage",
+        "route": "RpcApiServices::get_pending_size"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetBlock",
+      "service": "Wallet",
+      "method": "GetBlock",
+      "java_method": "getBlock",
+      "input_type": ".protocol.BlockReq",
+      "output_type": ".protocol.BlockExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block",
+      "non_default_case": {
+        "request": ".protocol.BlockReq",
+        "expected": ".protocol.BlockExtention",
+        "route": "RpcApiServices::get_block"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetBandwidthPrices",
+      "service": "Wallet",
+      "method": "GetBandwidthPrices",
+      "java_method": "getBandwidthPrices",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.PricesResponseMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_bandwidth_prices",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.PricesResponseMessage",
+        "route": "RpcApiServices::get_bandwidth_prices"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetEnergyPrices",
+      "service": "Wallet",
+      "method": "GetEnergyPrices",
+      "java_method": "getEnergyPrices",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.PricesResponseMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_energy_prices",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.PricesResponseMessage",
+        "route": "RpcApiServices::get_energy_prices"
+      }
+    },
+    {
+      "path": "/protocol.Wallet/GetMemoFee",
+      "service": "Wallet",
+      "method": "GetMemoFee",
+      "java_method": "getMemoFee",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.PricesResponseMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_memo_fee",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.PricesResponseMessage",
+        "route": "RpcApiServices::get_memo_fee"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetAccount",
+      "service": "WalletSolidity",
+      "method": "GetAccount",
+      "java_method": "getAccount",
+      "input_type": ".protocol.Account",
+      "output_type": ".protocol.Account",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_account",
+      "non_default_case": {
+        "request": ".protocol.Account",
+        "expected": ".protocol.Account",
+        "route": "RpcApiServices::get_account"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetAccountById",
+      "service": "WalletSolidity",
+      "method": "GetAccountById",
+      "java_method": "getAccountById",
+      "input_type": ".protocol.Account",
+      "output_type": ".protocol.Account",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_account_by_id",
+      "non_default_case": {
+        "request": ".protocol.Account",
+        "expected": ".protocol.Account",
+        "route": "RpcApiServices::get_account_by_id"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/ListWitnesses",
+      "service": "WalletSolidity",
+      "method": "ListWitnesses",
+      "java_method": "listWitnesses",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.WitnessList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::list_witnesses",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.WitnessList",
+        "route": "RpcApiServices::list_witnesses"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetPaginatedNowWitnessList",
+      "service": "WalletSolidity",
+      "method": "GetPaginatedNowWitnessList",
+      "java_method": "getPaginatedNowWitnessList",
+      "input_type": ".protocol.PaginatedMessage",
+      "output_type": ".protocol.WitnessList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_paginated_now_witness_list",
+      "non_default_case": {
+        "request": ".protocol.PaginatedMessage",
+        "expected": ".protocol.WitnessList",
+        "route": "RpcApiServices::get_paginated_now_witness_list"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetAssetIssueList",
+      "service": "WalletSolidity",
+      "method": "GetAssetIssueList",
+      "java_method": "getAssetIssueList",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.AssetIssueList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_asset_issue_list",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.AssetIssueList",
+        "route": "RpcApiServices::get_asset_issue_list"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetPaginatedAssetIssueList",
+      "service": "WalletSolidity",
+      "method": "GetPaginatedAssetIssueList",
+      "java_method": "getPaginatedAssetIssueList",
+      "input_type": ".protocol.PaginatedMessage",
+      "output_type": ".protocol.AssetIssueList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_paginated_asset_issue_list",
+      "non_default_case": {
+        "request": ".protocol.PaginatedMessage",
+        "expected": ".protocol.AssetIssueList",
+        "route": "RpcApiServices::get_paginated_asset_issue_list"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetAssetIssueByName",
+      "service": "WalletSolidity",
+      "method": "GetAssetIssueByName",
+      "java_method": "getAssetIssueByName",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.AssetIssueContract",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_asset_issue_by_name",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.AssetIssueContract",
+        "route": "RpcApiServices::get_asset_issue_by_name"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetAssetIssueListByName",
+      "service": "WalletSolidity",
+      "method": "GetAssetIssueListByName",
+      "java_method": "getAssetIssueListByName",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.AssetIssueList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_asset_issue_list_by_name",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.AssetIssueList",
+        "route": "RpcApiServices::get_asset_issue_list_by_name"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetAssetIssueById",
+      "service": "WalletSolidity",
+      "method": "GetAssetIssueById",
+      "java_method": "getAssetIssueById",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.AssetIssueContract",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_asset_issue_by_id",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.AssetIssueContract",
+        "route": "RpcApiServices::get_asset_issue_by_id"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetNowBlock",
+      "service": "WalletSolidity",
+      "method": "GetNowBlock",
+      "java_method": "getNowBlock",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.Block",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_now_block",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.Block",
+        "route": "RpcApiServices::get_now_block"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetNowBlock2",
+      "service": "WalletSolidity",
+      "method": "GetNowBlock2",
+      "java_method": "getNowBlock2",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.BlockExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_now_block2",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.BlockExtention",
+        "route": "RpcApiServices::get_now_block2"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetBlockByNum",
+      "service": "WalletSolidity",
+      "method": "GetBlockByNum",
+      "java_method": "getBlockByNum",
+      "input_type": ".protocol.NumberMessage",
+      "output_type": ".protocol.Block",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block_by_num",
+      "non_default_case": {
+        "request": ".protocol.NumberMessage",
+        "expected": ".protocol.Block",
+        "route": "RpcApiServices::get_block_by_num"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetBlockByNum2",
+      "service": "WalletSolidity",
+      "method": "GetBlockByNum2",
+      "java_method": "getBlockByNum2",
+      "input_type": ".protocol.NumberMessage",
+      "output_type": ".protocol.BlockExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block_by_num2",
+      "non_default_case": {
+        "request": ".protocol.NumberMessage",
+        "expected": ".protocol.BlockExtention",
+        "route": "RpcApiServices::get_block_by_num2"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetTransactionCountByBlockNum",
+      "service": "WalletSolidity",
+      "method": "GetTransactionCountByBlockNum",
+      "java_method": "getTransactionCountByBlockNum",
+      "input_type": ".protocol.NumberMessage",
+      "output_type": ".protocol.NumberMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_transaction_count_by_block_num",
+      "non_default_case": {
+        "request": ".protocol.NumberMessage",
+        "expected": ".protocol.NumberMessage",
+        "route": "RpcApiServices::get_transaction_count_by_block_num"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetDelegatedResource",
+      "service": "WalletSolidity",
+      "method": "GetDelegatedResource",
+      "java_method": "getDelegatedResource",
+      "input_type": ".protocol.DelegatedResourceMessage",
+      "output_type": ".protocol.DelegatedResourceList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_delegated_resource",
+      "non_default_case": {
+        "request": ".protocol.DelegatedResourceMessage",
+        "expected": ".protocol.DelegatedResourceList",
+        "route": "RpcApiServices::get_delegated_resource"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetDelegatedResourceV2",
+      "service": "WalletSolidity",
+      "method": "GetDelegatedResourceV2",
+      "java_method": "getDelegatedResourceV2",
+      "input_type": ".protocol.DelegatedResourceMessage",
+      "output_type": ".protocol.DelegatedResourceList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_delegated_resource_v2",
+      "non_default_case": {
+        "request": ".protocol.DelegatedResourceMessage",
+        "expected": ".protocol.DelegatedResourceList",
+        "route": "RpcApiServices::get_delegated_resource_v2"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetDelegatedResourceAccountIndex",
+      "service": "WalletSolidity",
+      "method": "GetDelegatedResourceAccountIndex",
+      "java_method": "getDelegatedResourceAccountIndex",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.DelegatedResourceAccountIndex",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_delegated_resource_account_index",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.DelegatedResourceAccountIndex",
+        "route": "RpcApiServices::get_delegated_resource_account_index"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetDelegatedResourceAccountIndexV2",
+      "service": "WalletSolidity",
+      "method": "GetDelegatedResourceAccountIndexV2",
+      "java_method": "getDelegatedResourceAccountIndexV2",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.DelegatedResourceAccountIndex",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_delegated_resource_account_index_v2",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.DelegatedResourceAccountIndex",
+        "route": "RpcApiServices::get_delegated_resource_account_index_v2"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetCanDelegatedMaxSize",
+      "service": "WalletSolidity",
+      "method": "GetCanDelegatedMaxSize",
+      "java_method": "getCanDelegatedMaxSize",
+      "input_type": ".protocol.CanDelegatedMaxSizeRequestMessage",
+      "output_type": ".protocol.CanDelegatedMaxSizeResponseMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_can_delegated_max_size",
+      "non_default_case": {
+        "request": ".protocol.CanDelegatedMaxSizeRequestMessage",
+        "expected": ".protocol.CanDelegatedMaxSizeResponseMessage",
+        "route": "RpcApiServices::get_can_delegated_max_size"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetAvailableUnfreezeCount",
+      "service": "WalletSolidity",
+      "method": "GetAvailableUnfreezeCount",
+      "java_method": "getAvailableUnfreezeCount",
+      "input_type": ".protocol.GetAvailableUnfreezeCountRequestMessage",
+      "output_type": ".protocol.GetAvailableUnfreezeCountResponseMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_available_unfreeze_count",
+      "non_default_case": {
+        "request": ".protocol.GetAvailableUnfreezeCountRequestMessage",
+        "expected": ".protocol.GetAvailableUnfreezeCountResponseMessage",
+        "route": "RpcApiServices::get_available_unfreeze_count"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetCanWithdrawUnfreezeAmount",
+      "service": "WalletSolidity",
+      "method": "GetCanWithdrawUnfreezeAmount",
+      "java_method": "getCanWithdrawUnfreezeAmount",
+      "input_type": ".protocol.CanWithdrawUnfreezeAmountRequestMessage",
+      "output_type": ".protocol.CanWithdrawUnfreezeAmountResponseMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_can_withdraw_unfreeze_amount",
+      "non_default_case": {
+        "request": ".protocol.CanWithdrawUnfreezeAmountRequestMessage",
+        "expected": ".protocol.CanWithdrawUnfreezeAmountResponseMessage",
+        "route": "RpcApiServices::get_can_withdraw_unfreeze_amount"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetExchangeById",
+      "service": "WalletSolidity",
+      "method": "GetExchangeById",
+      "java_method": "getExchangeById",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.Exchange",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_exchange_by_id",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.Exchange",
+        "route": "RpcApiServices::get_exchange_by_id"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/ListExchanges",
+      "service": "WalletSolidity",
+      "method": "ListExchanges",
+      "java_method": "listExchanges",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.ExchangeList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::list_exchanges",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.ExchangeList",
+        "route": "RpcApiServices::list_exchanges"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetTransactionById",
+      "service": "WalletSolidity",
+      "method": "GetTransactionById",
+      "java_method": "getTransactionById",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.Transaction",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_transaction_by_id",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.Transaction",
+        "route": "RpcApiServices::get_transaction_by_id"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetTransactionInfoById",
+      "service": "WalletSolidity",
+      "method": "GetTransactionInfoById",
+      "java_method": "getTransactionInfoById",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.TransactionInfo",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_transaction_info_by_id",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.TransactionInfo",
+        "route": "RpcApiServices::get_transaction_info_by_id"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetMerkleTreeVoucherInfo",
+      "service": "WalletSolidity",
+      "method": "GetMerkleTreeVoucherInfo",
+      "java_method": "getMerkleTreeVoucherInfo",
+      "input_type": ".protocol.OutputPointInfo",
+      "output_type": ".protocol.IncrementalMerkleVoucherInfo",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_merkle_tree_voucher_info",
+      "non_default_case": {
+        "request": ".protocol.OutputPointInfo",
+        "expected": ".protocol.IncrementalMerkleVoucherInfo",
+        "route": "RpcApiServices::get_merkle_tree_voucher_info"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/ScanNoteByIvk",
+      "service": "WalletSolidity",
+      "method": "ScanNoteByIvk",
+      "java_method": "scanNoteByIvk",
+      "input_type": ".protocol.IvkDecryptParameters",
+      "output_type": ".protocol.DecryptNotes",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::scan_note_by_ivk",
+      "non_default_case": {
+        "request": ".protocol.IvkDecryptParameters",
+        "expected": ".protocol.DecryptNotes",
+        "route": "RpcApiServices::scan_note_by_ivk"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/ScanAndMarkNoteByIvk",
+      "service": "WalletSolidity",
+      "method": "ScanAndMarkNoteByIvk",
+      "java_method": "scanAndMarkNoteByIvk",
+      "input_type": ".protocol.IvkDecryptAndMarkParameters",
+      "output_type": ".protocol.DecryptNotesMarked",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::scan_and_mark_note_by_ivk",
+      "non_default_case": {
+        "request": ".protocol.IvkDecryptAndMarkParameters",
+        "expected": ".protocol.DecryptNotesMarked",
+        "route": "RpcApiServices::scan_and_mark_note_by_ivk"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/ScanNoteByOvk",
+      "service": "WalletSolidity",
+      "method": "ScanNoteByOvk",
+      "java_method": "scanNoteByOvk",
+      "input_type": ".protocol.OvkDecryptParameters",
+      "output_type": ".protocol.DecryptNotes",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::scan_note_by_ovk",
+      "non_default_case": {
+        "request": ".protocol.OvkDecryptParameters",
+        "expected": ".protocol.DecryptNotes",
+        "route": "RpcApiServices::scan_note_by_ovk"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/IsSpend",
+      "service": "WalletSolidity",
+      "method": "IsSpend",
+      "java_method": "isSpend",
+      "input_type": ".protocol.NoteParameters",
+      "output_type": ".protocol.SpendResult",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::is_spend",
+      "non_default_case": {
+        "request": ".protocol.NoteParameters",
+        "expected": ".protocol.SpendResult",
+        "route": "RpcApiServices::is_spend"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/ScanShieldedTRC20NotesByIvk",
+      "service": "WalletSolidity",
+      "method": "ScanShieldedTRC20NotesByIvk",
+      "java_method": "scanShieldedTRC20NotesByIvk",
+      "input_type": ".protocol.IvkDecryptTRC20Parameters",
+      "output_type": ".protocol.DecryptNotesTRC20",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::scan_shielded_trc20_notes_by_ivk",
+      "non_default_case": {
+        "request": ".protocol.IvkDecryptTRC20Parameters",
+        "expected": ".protocol.DecryptNotesTRC20",
+        "route": "RpcApiServices::scan_shielded_trc20_notes_by_ivk"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/ScanShieldedTRC20NotesByOvk",
+      "service": "WalletSolidity",
+      "method": "ScanShieldedTRC20NotesByOvk",
+      "java_method": "scanShieldedTRC20NotesByOvk",
+      "input_type": ".protocol.OvkDecryptTRC20Parameters",
+      "output_type": ".protocol.DecryptNotesTRC20",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::scan_shielded_trc20_notes_by_ovk",
+      "non_default_case": {
+        "request": ".protocol.OvkDecryptTRC20Parameters",
+        "expected": ".protocol.DecryptNotesTRC20",
+        "route": "RpcApiServices::scan_shielded_trc20_notes_by_ovk"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/IsShieldedTRC20ContractNoteSpent",
+      "service": "WalletSolidity",
+      "method": "IsShieldedTRC20ContractNoteSpent",
+      "java_method": "isShieldedTRC20ContractNoteSpent",
+      "input_type": ".protocol.NfTRC20Parameters",
+      "output_type": ".protocol.NullifierResult",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::is_shielded_trc20_contract_note_spent",
+      "non_default_case": {
+        "request": ".protocol.NfTRC20Parameters",
+        "expected": ".protocol.NullifierResult",
+        "route": "RpcApiServices::is_shielded_trc20_contract_note_spent"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetRewardInfo",
+      "service": "WalletSolidity",
+      "method": "GetRewardInfo",
+      "java_method": "getRewardInfo",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.NumberMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_reward_info",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.NumberMessage",
+        "route": "RpcApiServices::get_reward_info"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetBrokerageInfo",
+      "service": "WalletSolidity",
+      "method": "GetBrokerageInfo",
+      "java_method": "getBrokerageInfo",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.NumberMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_brokerage_info",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.NumberMessage",
+        "route": "RpcApiServices::get_brokerage_info"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/TriggerConstantContract",
+      "service": "WalletSolidity",
+      "method": "TriggerConstantContract",
+      "java_method": "triggerConstantContract",
+      "input_type": ".protocol.TriggerSmartContract",
+      "output_type": ".protocol.TransactionExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::trigger_constant_contract",
+      "non_default_case": {
+        "request": ".protocol.TriggerSmartContract",
+        "expected": ".protocol.TransactionExtention",
+        "route": "RpcApiServices::trigger_constant_contract"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/EstimateEnergy",
+      "service": "WalletSolidity",
+      "method": "EstimateEnergy",
+      "java_method": "estimateEnergy",
+      "input_type": ".protocol.TriggerSmartContract",
+      "output_type": ".protocol.EstimateEnergyMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::estimate_energy",
+      "non_default_case": {
+        "request": ".protocol.TriggerSmartContract",
+        "expected": ".protocol.EstimateEnergyMessage",
+        "route": "RpcApiServices::estimate_energy"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetTransactionInfoByBlockNum",
+      "service": "WalletSolidity",
+      "method": "GetTransactionInfoByBlockNum",
+      "java_method": "getTransactionInfoByBlockNum",
+      "input_type": ".protocol.NumberMessage",
+      "output_type": ".protocol.TransactionInfoList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_transaction_info_by_block_num",
+      "non_default_case": {
+        "request": ".protocol.NumberMessage",
+        "expected": ".protocol.TransactionInfoList",
+        "route": "RpcApiServices::get_transaction_info_by_block_num"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetMarketOrderById",
+      "service": "WalletSolidity",
+      "method": "GetMarketOrderById",
+      "java_method": "getMarketOrderById",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.MarketOrder",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_market_order_by_id",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.MarketOrder",
+        "route": "RpcApiServices::get_market_order_by_id"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetMarketOrderByAccount",
+      "service": "WalletSolidity",
+      "method": "GetMarketOrderByAccount",
+      "java_method": "getMarketOrderByAccount",
+      "input_type": ".protocol.BytesMessage",
+      "output_type": ".protocol.MarketOrderList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_market_order_by_account",
+      "non_default_case": {
+        "request": ".protocol.BytesMessage",
+        "expected": ".protocol.MarketOrderList",
+        "route": "RpcApiServices::get_market_order_by_account"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetMarketPriceByPair",
+      "service": "WalletSolidity",
+      "method": "GetMarketPriceByPair",
+      "java_method": "getMarketPriceByPair",
+      "input_type": ".protocol.MarketOrderPair",
+      "output_type": ".protocol.MarketPriceList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_market_price_by_pair",
+      "non_default_case": {
+        "request": ".protocol.MarketOrderPair",
+        "expected": ".protocol.MarketPriceList",
+        "route": "RpcApiServices::get_market_price_by_pair"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetMarketOrderListByPair",
+      "service": "WalletSolidity",
+      "method": "GetMarketOrderListByPair",
+      "java_method": "getMarketOrderListByPair",
+      "input_type": ".protocol.MarketOrderPair",
+      "output_type": ".protocol.MarketOrderList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_market_order_list_by_pair",
+      "non_default_case": {
+        "request": ".protocol.MarketOrderPair",
+        "expected": ".protocol.MarketOrderList",
+        "route": "RpcApiServices::get_market_order_list_by_pair"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetMarketPairList",
+      "service": "WalletSolidity",
+      "method": "GetMarketPairList",
+      "java_method": "getMarketPairList",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.MarketOrderPairList",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_market_pair_list",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.MarketOrderPairList",
+        "route": "RpcApiServices::get_market_pair_list"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetBurnTrx",
+      "service": "WalletSolidity",
+      "method": "GetBurnTrx",
+      "java_method": "getBurnTrx",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.NumberMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_burn_trx",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.NumberMessage",
+        "route": "RpcApiServices::get_burn_trx"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetBlock",
+      "service": "WalletSolidity",
+      "method": "GetBlock",
+      "java_method": "getBlock",
+      "input_type": ".protocol.BlockReq",
+      "output_type": ".protocol.BlockExtention",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block",
+      "non_default_case": {
+        "request": ".protocol.BlockReq",
+        "expected": ".protocol.BlockExtention",
+        "route": "RpcApiServices::get_block"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetBandwidthPrices",
+      "service": "WalletSolidity",
+      "method": "GetBandwidthPrices",
+      "java_method": "getBandwidthPrices",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.PricesResponseMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_bandwidth_prices",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.PricesResponseMessage",
+        "route": "RpcApiServices::get_bandwidth_prices"
+      }
+    },
+    {
+      "path": "/protocol.WalletSolidity/GetEnergyPrices",
+      "service": "WalletSolidity",
+      "method": "GetEnergyPrices",
+      "java_method": "getEnergyPrices",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.PricesResponseMessage",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_energy_prices",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.PricesResponseMessage",
+        "route": "RpcApiServices::get_energy_prices"
+      }
+    },
+    {
+      "path": "/protocol.WalletExtension/GetTransactionsFromThis",
+      "service": "WalletExtension",
+      "method": "GetTransactionsFromThis",
+      "java_method": "getTransactionsFromThis",
+      "input_type": ".protocol.AccountPaginated",
+      "output_type": ".protocol.TransactionList",
+      "java_disposition": "unimplemented",
+      "rust_handler": "RpcApiServices::get_transactions_from_this",
+      "non_default_case": {
+        "request": ".protocol.AccountPaginated",
+        "expected": "UNIMPLEMENTED"
+      }
+    },
+    {
+      "path": "/protocol.WalletExtension/GetTransactionsFromThis2",
+      "service": "WalletExtension",
+      "method": "GetTransactionsFromThis2",
+      "java_method": "getTransactionsFromThis2",
+      "input_type": ".protocol.AccountPaginated",
+      "output_type": ".protocol.TransactionListExtention",
+      "java_disposition": "unimplemented",
+      "rust_handler": "RpcApiServices::get_transactions_from_this2",
+      "non_default_case": {
+        "request": ".protocol.AccountPaginated",
+        "expected": "UNIMPLEMENTED"
+      }
+    },
+    {
+      "path": "/protocol.WalletExtension/GetTransactionsToThis",
+      "service": "WalletExtension",
+      "method": "GetTransactionsToThis",
+      "java_method": "getTransactionsToThis",
+      "input_type": ".protocol.AccountPaginated",
+      "output_type": ".protocol.TransactionList",
+      "java_disposition": "unimplemented",
+      "rust_handler": "RpcApiServices::get_transactions_to_this",
+      "non_default_case": {
+        "request": ".protocol.AccountPaginated",
+        "expected": "UNIMPLEMENTED"
+      }
+    },
+    {
+      "path": "/protocol.WalletExtension/GetTransactionsToThis2",
+      "service": "WalletExtension",
+      "method": "GetTransactionsToThis2",
+      "java_method": "getTransactionsToThis2",
+      "input_type": ".protocol.AccountPaginated",
+      "output_type": ".protocol.TransactionListExtention",
+      "java_disposition": "unimplemented",
+      "rust_handler": "RpcApiServices::get_transactions_to_this2",
+      "non_default_case": {
+        "request": ".protocol.AccountPaginated",
+        "expected": "UNIMPLEMENTED"
+      }
+    },
+    {
+      "path": "/protocol.Database/getBlockReference",
+      "service": "Database",
+      "method": "getBlockReference",
+      "java_method": "getBlockReference",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.BlockReference",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block_reference",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.BlockReference",
+        "route": "RpcApiServices::get_block_reference"
+      }
+    },
+    {
+      "path": "/protocol.Database/GetDynamicProperties",
+      "service": "Database",
+      "method": "GetDynamicProperties",
+      "java_method": "getDynamicProperties",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.DynamicProperties",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_dynamic_properties",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.DynamicProperties",
+        "route": "RpcApiServices::get_dynamic_properties"
+      }
+    },
+    {
+      "path": "/protocol.Database/GetNowBlock",
+      "service": "Database",
+      "method": "GetNowBlock",
+      "java_method": "getNowBlock",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.Block",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_now_block",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.Block",
+        "route": "RpcApiServices::get_now_block"
+      }
+    },
+    {
+      "path": "/protocol.Database/GetBlockByNum",
+      "service": "Database",
+      "method": "GetBlockByNum",
+      "java_method": "getBlockByNum",
+      "input_type": ".protocol.NumberMessage",
+      "output_type": ".protocol.Block",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_block_by_num",
+      "non_default_case": {
+        "request": ".protocol.NumberMessage",
+        "expected": ".protocol.Block",
+        "route": "RpcApiServices::get_block_by_num"
+      }
+    },
+    {
+      "path": "/protocol.Monitor/GetStatsInfo",
+      "service": "Monitor",
+      "method": "GetStatsInfo",
+      "java_method": "getStatsInfo",
+      "input_type": ".protocol.EmptyMessage",
+      "output_type": ".protocol.MetricsInfo",
+      "java_disposition": "implemented",
+      "rust_handler": "RpcApiServices::get_stats_info",
+      "non_default_case": {
+        "request": ".protocol.EmptyMessage",
+        "expected": ".protocol.MetricsInfo",
+        "route": "RpcApiServices::get_stats_info"
+      }
+    },
+    {
+      "path": "/protocol.TronZksnark/CheckZksnarkProof",
+      "service": "TronZksnark",
+      "method": "CheckZksnarkProof",
+      "java_method": "checkZksnarkProof",
+      "input_type": ".protocol.ZksnarkRequest",
+      "output_type": ".protocol.ZksnarkResponse",
+      "java_disposition": "unimplemented",
+      "rust_handler": "RpcApiServices::check_zksnark_proof",
+      "non_default_case": {
+        "request": ".protocol.ZksnarkRequest",
+        "expected": "UNIMPLEMENTED"
+      }
+    }
+  ],
+  "unmapped": []
+}

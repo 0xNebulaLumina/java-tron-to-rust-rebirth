@@ -1,9 +1,45 @@
-//! Generated canonical gRPC API surface.
-//!
-//! Runtime API implementations remain owned by C022-C024 and C026. This crate only gives callers
-//! stable names for the generated clients, server traits, and protobuf messages.
+//! C022 wallet/domain API foundation over typed state cursors and the canonical execution path.
 
 pub use tron_protocol::protocol::*;
+pub mod blocking;
+pub mod constant;
+pub mod context;
+pub mod cursors;
+pub mod error;
+pub mod extension_api;
+pub mod interceptors;
+pub mod node_info;
+pub mod provider;
+pub mod rate_limit;
+pub mod rpc_services;
+pub mod server;
+#[path = "wallet.rs"]
+mod wallet_domain;
+pub mod wallet_mutation;
+pub mod wallet_query;
+
+pub use blocking::{BlockingCancellation, BlockingExecutor};
+pub use constant::{ConstantOutcome, ConstantService, ReadOnlyVm};
+pub use context::{ApiContext, ApiCursor, TypedReadView};
+pub use cursors::{CursorRouter, PbftMethod};
+pub use error::ApiError;
+pub use extension_api::ExtensionApi;
+pub use interceptors::ApiInterceptors;
+pub use node_info::{
+    DisconnectedNetworkSnapshot, NetworkSnapshot, NodeInfoService, NodeInfoSnapshot, NodeInfoSource,
+};
+pub use rate_limit::ApiRateLimiter;
+pub use provider::RpcDomainProvider;
+pub use rpc_services::RpcApiServices;
+pub use server::{GrpcServerPlan, ServerMode};
+pub use wallet_domain::{
+    DIVERSIFIER_BYTES, MAX_SHIELDED_OUTPUTS, MAX_SHIELDED_SCAN_BLOCKS, MAX_SHIELDED_SPENDS,
+    SHIELDED_KEY_BYTES, ShieldedWallet,
+};
+pub use wallet_mutation::WalletMutation;
+pub use wallet_query::{
+    DatabaseQuery, MonitorQuery, MonitorSource, NetworkQuery, WalletExtensionQuery, WalletQuery,
+};
 
 pub mod wallet {
     pub use tron_protocol::protocol::{wallet_client, wallet_server};

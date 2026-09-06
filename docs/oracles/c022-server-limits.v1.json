@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "items": ["C022.05", "C022.06", "C022.07"],
+  "java_sources": [
+    {"path":"framework/src/main/java/org/tron/core/services/RpcApiService.java","sha256":"620e14afca7dba3401ff53b1cbb6d4e3d87f8e3ff17ba487d934274bfb155dcb"},
+    {"path":"framework/src/main/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptor.java","sha256":"859c03514a3c96a70a50a2ebb163fbb2884c9acd3b809de653b789b9b21d43b7"},
+    {"path":"framework/src/main/java/org/tron/core/services/ratelimiter/RpcApiAccessInterceptor.java","sha256":"d840699892bae933de4d13b7f2023450d7e4d26492805dc29c2a407b53cd6dd0"},
+    {"path":"framework/src/main/java/org/tron/core/services/ratelimiter/RateLimiterInterceptor.java","sha256":"800276e61042574c568b6ecaf179e06e0b8f34f746e39be7ae04a45a20c4feab"},
+    {"path":"framework/src/main/java/org/tron/core/services/ratelimiter/GlobalRateLimiter.java","sha256":"e2a7ce7c56cc278587371831f893b6745989cc2b1d64f69b4e3d79ae809cd3b4"}
+  ],
+  "transport": {
+    "plaintext": true,
+    "ports": {"full":50051,"solidity":50061,"pbft":50071},
+    "default_max_message_bytes":4194304,
+    "default_max_concurrent_calls_per_connection":100,
+    "default_flow_control_window":1048576,
+    "default_max_header_list_size":8192,
+    "reflection_default":false
+  },
+  "interceptors": {
+    "order":["endpoint_rate_limit","global_ip_rate_limit","global_qps_rate_limit","disabled_api","lite_history","metrics"],
+    "disabled":{"code":"UNAVAILABLE","message":"this API is unavailable due to config","matching":"case-insensitive method name after slash"},
+    "lite":{"code":"UNAVAILABLE","message":"this API is closed because this node is a lite fullnode","method_count":43},
+    "overload":{"code":"RESOURCE_EXHAUSTED","message":""},
+    "handler_initialization":{"code":"INTERNAL","message":"rpc handler init failed"}
+  },
+  "limits": {
+    "endpoint_default_qps":1000,
+    "global_qps":50000,
+    "global_ip_qps":10000,
+    "strategies":["GlobalPreemptibleAdapter","QpsRateLimiterAdapter","IPQPSRateLimiterAdapter"],
+    "preemptible_release":["completion","cancellation","handler_initialization_failure","later_global_rejection"],
+    "blocking_default":true,
+    "rate_map":{"max_entries":4096,"idle_ttl_seconds":300,"overflow":"expire idle then evict inactive LRU; reject before insertion when no entry is evictable"}
+  },
+  "proofs": [
+    "c022_server::full_solidity_pbft_plans_use_plaintext_ports_and_exact_services",
+    "c022_server::ports_and_transport_limits_are_rejected_before_binding",
+    "c022_server::message_boundaries_are_inclusive",
+    "c022_limits::disabled_and_lite_interceptors_preserve_java_lists_messages_and_precedence",
+    "c022_limits::nonblocking_endpoint_global_and_ip_limits_return_resource_exhausted",
+    "c022_limits::preemptible_permit_releases_on_completion_and_global_rejection",
+    "c022_limits::per_ip_and_endpoint_maps_are_lru_bounded_and_expire_idle_entries",
+    "c022_limits::blocking_acquire_honors_deadline_and_configuration_errors",
+    "c022_scenarios::disabled_and_lite_interceptors_reject_live_calls_before_handler_dispatch",
+    "c022_extension_e2e::trusted_extension_construct_broadcast_execute_and_query_payload",
+    "c022_extension_e2e::malformed_payload_and_descriptor_collisions_fail_closed"
+  ],
+  "dr004": {
+    "descriptor_oracle":"dr004-extension-fixtures.v1.json",
+    "trusted_static_provider":true,
+    "sequence":["registration","construction","owner_extraction","broadcast","pending_execution","state_query"],
+    "negative_cases":["malformed_payload","descriptor_collision"]
+  }
+}
