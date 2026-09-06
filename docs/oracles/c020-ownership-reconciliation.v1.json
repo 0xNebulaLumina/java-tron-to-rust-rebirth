@@ -1,0 +1,20 @@
+{
+  "schema":"c020-ownership-reconciliation.v1",
+  "acceptance_gate":"C020.V",
+  "production_ledger_rows":0,
+  "java_test_ledger_rows":0,
+  "binary_only":true,
+  "claim":"No Java source or test ledger coverage is claimed for libp2p 2.2.9. C020 authenticates the Maven JAR, bundled protos, selected implementation classes, packet captures, and live Java/Rust peers.",
+  "items":{
+    "C020.01":"FramedIo exact sent/received wire and payload counters, varint-boundary/pipelined vectors, and read-timeout implementation",
+    "C020.02":"authenticated Connect.proto plus separately routed negative-control/schema tests",
+    "C020.03":"production TransportSession active/passive Hello, admission, lifecycle registry, and live authenticated-JAR Netty directions",
+    "C020.04":"TransportSession Status/upgrade negotiation, bounded snappy envelope, and live compressed Java-to-Rust delivery",
+    "C020.05":"TransportSession timestamped ping/pong, disconnect/drain, temporary ban, pool cleanup, and bounded reconnect backoff tests",
+    "C020.06":"authenticated Discover.proto, raw UDP live directions, Kademlia tests",
+    "C020.07":"DNS signed-tree vectors and validation tests",
+    "C020.08":"candidate pool/status/persistence tests",
+    "C020.09":"c020-harness-manifest.v1.json",
+    "C020.V":"c020_gate.py tcp/discovery/scenario/all-targets"
+  }
+}

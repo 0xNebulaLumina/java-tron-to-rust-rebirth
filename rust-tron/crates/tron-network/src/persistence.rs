@@ -1,0 +1,14 @@
+//! Java-compatible persisted peer JSON stored under the literal `peers` key.
+use serde::{Deserialize,Serialize};
+use std::{fs,io,path::{Path,PathBuf},time::Duration};
+use tokio::{sync::watch,task::JoinHandle};
+pub const PEERS_KEY:&str="peers";pub const MAX_PERSISTED_PEERS:usize=30;pub const PERSIST_INTERVAL:Duration=Duration::from_secs(60);
+#[derive(Debug,Clone,PartialEq,Eq,Serialize,Deserialize)] #[serde(rename_all="camelCase")] pub struct PersistedPeer { pub host:String,pub port:u16,#[serde(default)]pub update_time:i64 }
+pub fn decode_peers(json:&[u8])->Vec<PersistedPeer>{serde_json::from_slice(json).unwrap_or_default()}
+pub fn encode_peers<I:IntoIterator<Item=PersistedPeer>>(peers:I)->Result<Vec<u8>,serde_json::Error>{let mut peers:Vec<_>=peers.into_iter().collect();peers.sort_by(|a,b|b.update_time.cmp(&a.update_time).then_with(||a.host.cmp(&b.host)).then_with(||a.port.cmp(&b.port)));peers.dedup_by(|a,b|a.host==b.host&&a.port==b.port);peers.truncate(MAX_PERSISTED_PEERS);serde_json::to_vec(&peers)}
+pub trait PeerStore:Send+Sync+'static { fn get(&self,key:&[u8])->io::Result<Option<Vec<u8>>>;fn put(&self,key:&[u8],value:&[u8])->io::Result<()>; }
+#[derive(Debug,Clone)] pub struct JsonFilePeerStore{path:PathBuf}impl JsonFilePeerStore{pub fn new(path:impl Into<PathBuf>)->Self{Self{path:path.into()}}}impl PeerStore for JsonFilePeerStore{fn get(&self,key:&[u8])->io::Result<Option<Vec<u8>>>{if key!=PEERS_KEY.as_bytes(){return Ok(None)}match fs::read(&self.path){Ok(v)=>Ok(Some(v)),Err(e)if e.kind()==io::ErrorKind::NotFound=>Ok(None),Err(e)=>Err(e)}}fn put(&self,key:&[u8],value:&[u8])->io::Result<()>{if key!=PEERS_KEY.as_bytes(){return Err(io::Error::new(io::ErrorKind::InvalidInput,"unsupported key"))}if let Some(parent)=self.path.parent(){fs::create_dir_all(parent)?}let tmp=self.path.with_extension("tmp");fs::write(&tmp,value)?;fs::rename(tmp,&self.path)}}
+pub fn read_peers(store:&dyn PeerStore)->Vec<PersistedPeer>{store.get(PEERS_KEY.as_bytes()).ok().flatten().map_or_else(Vec::new,|v|decode_peers(&v))}
+pub fn write_peers(store:&dyn PeerStore,peers:impl IntoIterator<Item=PersistedPeer>)->io::Result<()>{let bytes=encode_peers(peers).map_err(io::Error::other)?;store.put(PEERS_KEY.as_bytes(),&bytes)}
+pub struct PersistenceTask{stop:watch::Sender<bool>,task:JoinHandle<io::Result<()>>}impl PersistenceTask{pub fn spawn(store:std::sync::Arc<dyn PeerStore>,snapshot:std::sync::Arc<dyn Fn()->Vec<PersistedPeer>+Send+Sync>,interval:Duration)->Self{let(stop,mut rx)=watch::channel(false);let task=tokio::spawn(async move{let mut ticker=tokio::time::interval(interval);ticker.tick().await;loop{tokio::select!{_=ticker.tick()=>write_peers(store.as_ref(),snapshot())?,_=rx.changed()=>return Ok(())}}});Self{stop,task}}pub async fn shutdown(self)->io::Result<()>{let _=self.stop.send(true);self.task.await.map_err(io::Error::other)?}}
+pub fn path_store(path:&Path)->JsonFilePeerStore{JsonFilePeerStore::new(path)}

@@ -1,0 +1,20 @@
+{
+  "schema":"c020-harness-manifest.v1",
+  "artifact":"io.github.tronprotocol:libp2p:2.2.9",
+  "config":{"bind":"127.0.0.1","network_id":728126428,"version":1,"maximum_frame_bytes":5242880,"maximum_discovery_bytes":2047},
+  "topology":["java-netty-listener/rust-initiator","rust-listener/java-netty-initiator","java-udp-listener/rust-initiator","rust-udp-listener/java-initiator"],
+  "deterministic_chain":{"genesis":"c020-isolated","block_interval_ms":3000,"minimum_sync_depth":64,"minimum_reorg_depth":8},
+  "captures":{"directions":["java-to-rust","rust-to-java"],"tcp_helper":"tools/network/capture_tcp.py","udp_helper":"tools/network/c020_discovery/capture_udp.py","clock":"monotonic-or-packet-timestamp","live_gate_target":"scenario","tcp_driver":"Rust TransportSession over FramedIo; authenticated libp2p JAR Netty codec/message peer","state_transitions":["New","HelloSent/HelloReceived","Negotiating","Connected","Draining","Closed"]},
+  "roles":["active","passive","trusted","dns","persisted","discovered"],
+  "payload_boundaries":{"tcp":[0,1,127,128,16383,16384,5242880,5242881],"udp":[0,1,2,2047,2048]},
+  "controls":{"keepalive_ping":"ff","keepalive_pong":"fe","handshake_hello":"fd","status":"fc","disconnect":"fb","compression_upgrade":"fa"},
+  "compression_matrix":["uncompress","snappy","unknown-type","compressed-over-limit","uncompressed-over-limit","live-negotiated-snappy"],
+  "malformed_corpus":["unterminated-varint","varint-overflow","empty-frame","truncated-protobuf","unknown-control","unknown-compression","oversize-frame","oversize-datagram"],
+  "timing":{"read_timeout_ms":3000,"capture_tolerance_ms":250,"ban_ms":10000,"reconnect_after_expiry":true},
+  "disconnect_ban_expectations":["network-mismatch","version-mismatch","self","duplicate","capacity","same-ip","temporary-ban","reconnect-after-expiry"],
+  "discovery_datasets":["raw-type-byte-ping-pong","find-neighbours","xor-ranking","bucket-eviction","captured-source-ip","timeout"],
+  "dns_datasets":["valid-signed-root","bad-signature","stale-sequence","branch-cycle","record-limit","persisted-peer-roundtrip"],
+  "udp_envelope_resolution":{"result":"raw [one-byte message type][protobuf body]","evidence":"bidirectional localhost Java DatagramSocket to Rust decode/encode in c020_scenarios; no length prefix or wrapper observed"},
+  "secure_datagram_attestation_seam":{"owner":"C020","consumer":"C018 BackupService","inbound_fields":["peer identity","exact source address and port","transport session","strictly increasing sequence"],"outbound_fields":["configured destination identity","destination address and port","local identity and source port","active session","strictly increasing per-peer sequence"],"payload_policy":"preserve exact enclosed bytes; reject absent/duplicate/stale attestation; no plaintext fallback","production_policy":"SecureDatagramSocket always invokes seal before UDP send; a missing or rejected seal fails closed"},
+  "closure_review":{"state":"approved","round":1,"findings":[],"suite_counts":{"session":3,"tcp":12,"discovery":13,"live":4},"actual_jar_capture":{"artifact_sha256":"01df0a95ec660a6349575a17a454d3f96afa2ac602a467bded66afe0ea69ac30","artifact_size":390984,"authenticated_members":16,"packet_captures":5,"verification":"C020Oracle evidence regenerated from the authenticated JAR and matched every checked-in TCP/UDP capture"}}
+}

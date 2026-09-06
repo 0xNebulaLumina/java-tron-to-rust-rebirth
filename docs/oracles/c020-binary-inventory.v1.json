@@ -1,0 +1,28 @@
+{
+  "schema": "c020-binary-inventory.v1",
+  "artifact": {
+    "coordinate": "io.github.tronprotocol:libp2p:2.2.9",
+    "sha256": "01df0a95ec660a6349575a17a454d3f96afa2ac602a467bded66afe0ea69ac30",
+    "size": 390984,
+    "provenance": "Gradle dependency verification metadata; binary-only behavioral oracle"
+  },
+  "members": [
+    {"path":"Connect.proto","size":1128,"sha256":"6066aad80e033328e2c30b91e632b4142c6cfb767d6cd4b8949ba98afb0f8657"},
+    {"path":"Discover.proto","size":816,"sha256":"000dbaf1e4e413c2af8f79d0c10c7884d9af70a357f62954687843e859f1aa76"},
+    {"path":"org/tron/p2p/connection/socket/P2pProtobufVarint32FrameDecoder.class","size":3696,"sha256":"03eff60a1bf59e081c66c640823d207480af22c7023cb184b90c73f6ea5a8cea"},
+    {"path":"org/tron/p2p/connection/socket/P2pChannelInitializer.class","size":4408,"sha256":"2f798382ea2f42b8e96e6f3a5c18b695c736c29cbd82bc5e8191522988d974f8"},
+    {"path":"org/tron/p2p/connection/message/handshake/HelloMessage.class","size":3469,"sha256":"1aa05b13d46a9b3fd49f73ae594d6dd8f987fff7f391667c2f198ebb1c2deba1"},
+    {"path":"org/tron/p2p/connection/message/base/P2pDisconnectMessage.class","size":2226,"sha256":"868f6f698da3ffa4c073a166fc04f07a48bd92d6f4a2d34e31a1e2feff7881ec"},
+    {"path":"org/tron/p2p/protos/Connect$CompressMessage.class","size":11635,"sha256":"1af128ec99d571b25786c79dfe2a0440dcffe65b684108d7add2db847305a38c"},
+    {"path":"org/tron/p2p/discover/socket/P2pPacketDecoder.class","size":4306,"sha256":"4d7a4c6f240b0f48227f60b23cece5407825c3df3945f4c474832c1284f292d3"},
+    {"path":"org/tron/p2p/discover/message/Message.class","size":2866,"sha256":"9c234a2310136befaaedd0c88083f6cd0fe20bba29279e066a7637d7cf4f3866"},
+    {"path":"org/tron/p2p/discover/message/kad/PingMessage.class","size":3179,"sha256":"2760b4e2013e4309e82046c198857c86f54c5dc936ab42c588caa2b692d3c051"},
+    {"path":"org/tron/p2p/discover/message/kad/PongMessage.class","size":2983,"sha256":"06334b65cf6a26e854b73daf0a4331743233c71bc7fea66e9f6877caa38e83aa"},
+    {"path":"org/tron/p2p/connection/socket/PeerServer.class","size":5151,"sha256":"2cbf1728edcd0aa14aa35fc5196e90010a2dff2cc8ac444be386fc0d2c1159f9"},
+    {"path":"org/tron/p2p/connection/socket/PeerClient.class","size":6722,"sha256":"9fcfb2373050a8ead41d498d3587b19cce326c2520d00682d569f3528e671cc8"},
+    {"path":"org/tron/p2p/discover/socket/DiscoverServer.class","size":5412,"sha256":"956ef6590f547426c78bfac8100646fbbec1176243cc24460946d9311f613dee"},
+    {"path":"org/tron/p2p/protos/Connect.class","size":5479,"sha256":"434362eb9b268304071a20b9d633f80ae5ccfd440e5e8b048e8a37b5b5b1a6ec"},
+    {"path":"org/tron/p2p/protos/Discover.class","size":6242,"sha256":"64a879e4c41bf053918a91d5debb8ee855aa23a8f8af089e0707a880636013f2"}
+  ],
+  "source_ledger_claim": "none: the delegated implementation is binary-only; authenticated members and executable observations are the evidence"
+}

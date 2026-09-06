@@ -1,0 +1,48 @@
+{
+  "schema": "c020-discovery.v1",
+  "artifact": {
+    "coordinate": "io.github.tronprotocol:libp2p:2.2.9",
+    "sha256": "01df0a95ec660a6349575a17a454d3f96afa2ac602a467bded66afe0ea69ac30",
+    "size": 390984,
+    "source": "java-tron/gradle/verification-metadata.xml"
+  },
+  "wire": {
+    "transport": "udp",
+    "envelope": "type-byte || protobuf",
+    "minimum_bytes": 2,
+    "maximum_bytes": 2047,
+    "message_types": {"ping": 1, "pong": 2, "find_neighbours": 3, "neighbours": 4},
+    "captured_ip_policy": "UDP source IP must match the declared preferred endpoint IP; source never overrides declared address or port",
+    "endpoint_address_encoding": "UTF-8 textual IP literals; address is IPv4, addressIpv6 is IPv6, address takes precedence when both are present; no binary encoding observed",
+    "legacy_plain_discovery": true,
+    "backup_datagram_seam": "bidirectional authenticated peer identity + exact source/destination address and port + active session + strictly increasing per-peer sequence; exact enclosed payload bytes; no plaintext fallback"
+  },
+  "schemas": {
+    "Endpoint": {"address": 1, "port": 2, "nodeId": 3, "addressIpv6": 4},
+    "Ping": {"from": 1, "to": 2, "version": 3, "timestamp": 4},
+    "Pong": {"from": 1, "echo": 2, "timestamp": 3},
+    "FindNeighbours": {"from": 1, "targetId": 2, "timestamp": 3},
+    "Neighbours": {"from": 1, "neighbours": 2, "timestamp": 3},
+    "EndPoints": {"nodes": 1},
+    "DnsRoot": {"treeRoot": 1, "signature": 2},
+    "TreeRoot": {"eRoot": 1, "lRoot": 2, "seq": 3}
+  },
+  "kademlia": {"id_bytes": 64, "buckets": 256, "bucket_size": 16, "metric": "xor", "eviction": "least-recent candidate is pinged; dead entry is replaced from bounded replacement cache"},
+  "dns": {"root_prefix": "tree-root-v1:", "branch_prefix": "tree-branch:", "link_prefix": "tree://", "node_prefix": "nodes:", "hash": "keccak256-first-16-base32-no-pad (26 characters)", "signature": "65-byte recoverable secp256k1 signature over protobuf TreeRoot text form", "sequence": "strictly increasing", "max_traversal_records": 4096},
+  "persistence": {"json_key": "peers", "maximum": 30, "sort": "updateTime descending; host and port tie-break", "interval_seconds": 60, "parse_failure": "empty list"},
+  "harness": {
+    "topology": ["java-listener/rust-initiator", "rust-listener/java-initiator"],
+    "deterministic_chain": {"genesis": "c020-isolated", "block_interval_ms": 3000},
+    "directions": ["java-to-rust", "rust-to-java"],
+    "roles": ["active", "passive", "trusted", "dns", "persisted", "discovered"],
+    "payload_boundaries": [1, 2, 2047, 2048],
+    "compression_matrix": ["none", "snappy"],
+    "malformed": ["empty", "type-only", "unknown-type", "truncated-protobuf", "oversize"],
+    "timing_tolerance_ms": 250,
+    "disconnect_ban": ["normal-disconnect", "temporary-ip-ban", "reconnect-after-expiry"],
+    "discovery_datasets": ["ping-pong", "find-neighbours", "bucket-eviction", "captured-ip"],
+    "dns_datasets": ["valid-root", "bad-signature", "stale-sequence", "branch-cycle", "record-limit"],
+    "minimum_sync_depth": 64,
+    "minimum_reorg_depth": 8
+  }
+}

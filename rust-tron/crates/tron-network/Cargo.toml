@@ -13,6 +13,21 @@ tron-execution = { path = "../tron-execution" }
 tron-primitives = { path = "../tron-primitives" }
 tron-protocol = { path = "../tron-protocol" }
 tron-state = { path = "../tron-state" }
+base64 = "=0.22.1"
+bytes = "=1.10.1"
+k256 = { version = "=0.13.4", features = ["ecdsa"] }
+prost = { workspace = true }
+serde = { version = "=1.0.219", features = ["derive"] }
+serde_json = "=1.0.143"
+sha2 = "=0.10.9"
+thiserror = "=2.0.12"
+sha3 = "=0.10.8"
+snap = "=1.1.1"
+tokio-util = { version = "=0.7.15", features = ["codec", "rt"] }
+tokio = { version = "=1.53.1", features = ["io-util", "net", "rt", "sync", "time", "macros"] }
+
+[dev-dependencies]
+tempfile = "=3.21.0"
 
 [lints]
 workspace = true
