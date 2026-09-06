@@ -16,6 +16,12 @@ pub mod http_routes;
 pub mod http_rpc;
 pub mod http_router;
 pub mod provider;
+pub mod jsonrpc;
+pub mod jsonrpc_methods;
+pub mod jsonrpc_types;
+pub mod jsonrpc_filters;
+pub mod jsonrpc_backend;
+pub mod jsonrpc_server;
 pub mod rate_limit;
 pub mod rpc_services;
 pub mod server;
@@ -36,6 +42,13 @@ pub use node_info::{
 };
 pub use rate_limit::ApiRateLimiter;
 pub use provider::RpcDomainProvider;
+pub use jsonrpc::{JsonRpcHttpResponse, JsonRpcLimits, JsonRpcProcessor};
+pub use jsonrpc_methods::{JsonRpcBackend, RejectingBackend, TronJsonRpcConfig, TronJsonRpcMethods, TRON_JSON_RPC_METHODS};
+pub use jsonrpc_types::{BlockTag, BuildArguments, CallArguments, JsonRpcError, JsonRpcId};
+pub use jsonrpc_backend::ContextJsonRpcBackend;
+pub use jsonrpc_filters::{FilterLimits, FilterManager, FilterUsage, ProductionFilterSink};
+pub use jsonrpc_server::{JsonRpcServerConfig, JsonRpcServerSet, JsonRpcSurface};
+pub use http_server::{HttpServerConfig, HttpServerPlan};
 pub use rpc_services::RpcApiServices;
 pub use server::{GrpcServerPlan, ServerMode};
 pub use wallet_domain::{

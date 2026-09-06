@@ -1,0 +1,527 @@
+{
+  "schema": "c024-jsonrpc-methods-v1",
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "count": 52,
+  "methods": [
+    {
+      "name": "web3_clientVersion",
+      "index": 0,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "web3_sha3",
+      "index": 1,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getBlockTransactionCountByHash",
+      "index": 2,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getBlockTransactionCountByNumber",
+      "index": 3,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getBlockByHash",
+      "index": 4,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getBlockByNumber",
+      "index": 5,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "net_version",
+      "index": 6,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_chainId",
+      "index": 7,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "net_listening",
+      "index": 8,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_protocolVersion",
+      "index": 9,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_blockNumber",
+      "index": 10,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getBalance",
+      "index": 11,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getStorageAt",
+      "index": 12,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getCode",
+      "index": 13,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_coinbase",
+      "index": 14,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_gasPrice",
+      "index": 15,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_estimateGas",
+      "index": 16,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getTransactionByHash",
+      "index": 17,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getTransactionByBlockHashAndIndex",
+      "index": 18,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getTransactionByBlockNumberAndIndex",
+      "index": 19,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getTransactionReceipt",
+      "index": 20,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getBlockReceipts",
+      "index": 21,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_call",
+      "index": 22,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "net_peerCount",
+      "index": 23,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_syncing",
+      "index": 24,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getUncleByBlockHashAndIndex",
+      "index": 25,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getUncleByBlockNumberAndIndex",
+      "index": 26,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getUncleCountByBlockHash",
+      "index": 27,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getUncleCountByBlockNumber",
+      "index": 28,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getWork",
+      "index": 29,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_hashrate",
+      "index": 30,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_mining",
+      "index": 31,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_accounts",
+      "index": 32,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "buildTransaction",
+      "index": 33,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_submitWork",
+      "index": 34,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_sendRawTransaction",
+      "index": 35,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_sendTransaction",
+      "index": 36,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_sign",
+      "index": 37,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_signTransaction",
+      "index": 38,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "parity_nextNonce",
+      "index": 39,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getTransactionCount",
+      "index": 40,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getCompilers",
+      "index": 41,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_compileSolidity",
+      "index": 42,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_compileLLL",
+      "index": 43,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_compileSerpent",
+      "index": 44,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_submitHashrate",
+      "index": 45,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_newFilter",
+      "index": 46,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_newBlockFilter",
+      "index": 47,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_uninstallFilter",
+      "index": 48,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getFilterChanges",
+      "index": 49,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getLogs",
+      "index": 50,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    },
+    {
+      "name": "eth_getFilterLogs",
+      "index": 51,
+      "surface": [
+        "FULL",
+        "SOLIDITY",
+        "PBFT"
+      ],
+      "rust_dispatch": "TronJsonRpcMethods::execute"
+    }
+  ]
+}

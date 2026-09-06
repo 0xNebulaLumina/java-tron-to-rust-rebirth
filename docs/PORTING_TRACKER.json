@@ -3181,82 +3181,93 @@
     {
       "id": "C024",
       "title": "JSON-RPC and filters",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-09-06",
       "resume": null,
       "items": [
         {
           "id": "C024.01",
           "description": "Servlet parse/batch/nesting/token/request/response constraints and HTTP-200 JSON-RPC errors.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "HTTP-200 JSON-RPC parsing, notification, batch, nesting, token, request and response limits are implemented and gated."
         },
         {
           "id": "C024.02A",
           "description": "Generate the interface-derived method inventory; implement bounded web3/net/chain/block/account/state families with local gates.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "The authenticated 52-method inventory and bounded web3/net/block/account/state dispatch are reconciled."
         },
         {
           "id": "C024.02B",
           "description": "Implement call/gas/transaction/receipt/buildTransaction families with local gates.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Call/estimate use the C014/C015 read-only VM seam; transaction and receipt families use C022 cursor providers."
         },
         {
           "id": "C024.02C",
           "description": "Implement sync/mining/filter/log families and deliberate unsupported/null/zero behavior with local gates.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Sync/mining/uncle constants, filter/log families and deliberate method-not-found behavior are exact and gated."
         },
         {
           "id": "C024.03",
           "description": "Tron address/hash/quantity/tag conversions and genesis-derived chain ID.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "TRON address, hash, quantity, block-tag and genesis-derived chain-ID conversions have focused coverage."
         },
         {
           "id": "C024.04",
           "description": "buildTransaction supported contract families and exact unsupported method-not-found/null/zero behavior.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "buildTransaction argument validation and exact unsupported/null/zero behavior are covered by the method gate."
         },
         {
           "id": "C024.05",
           "description": "Log bloom/exact topics/addresses/ranges and full/Solidity filter maps.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "2048-bit bloom, section bloom, exact address/topic/range matching and isolated Full/Solidity maps are implemented."
         },
         {
           "id": "C024.06",
           "description": "New/block/uninstall/changes/logs/filterLogs, five-minute expiry, caps, reorg removed/reapply.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Filter create/uninstall/change/log queries, controlled five-minute expiry, caps, concurrency and C019 removed/reapply are implemented."
         },
         {
           "id": "C024.07",
           "description": "Full/Solidity/PBFT ports and cursor routing; preserve absence on standalone Solidity where observed.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Mandatory 8545/8555/8565 servers route HEAD/SOLIDITY/PBFT independently with PBFT filter absence and bounded admission/deadlines."
         },
         {
           "id": "C024.08",
           "description": "Define request/state checkpoint, exact result/error comparison, batch/limit/concurrency schedules and controlled-clock expiry cases.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Thirteen terminal schedules cover checkpoints, exact result/errors, batch/limits/concurrency/expiry/reorg, live divergent cursors, and family surface isolation."
         }
       ],
       "gate": {
         "id": "C024.V",
-        "description": "Zero-unmapped method inventory; all family/error/limit/filter/reorg cases pass with results.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed and cleanly reviewed: exact 52-method inventory, 227 pinned-Java tests plus 52 production methods in 279 zero-unmapped rows, exactly 13 terminal scenarios, bounded JSON-RPC request/response execution and filter queues/history/ranges, isolated Full/Solidity/PBFT surfaces, controlled expiry/reorg delivery, and the locked all-targets check pass.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C024 full gate",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/api/c024_gate.py",
+              "all"
+            ],
+            "timeout_seconds": 3600
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
+        "state": "approved",
+        "round": 1,
         "findings": []
       },
       "blocker": null

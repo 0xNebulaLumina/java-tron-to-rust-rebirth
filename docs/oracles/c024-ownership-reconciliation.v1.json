@@ -1,0 +1,2650 @@
+{
+  "schema": "c024-ownership-reconciliation-v1",
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "canonical_counts": {
+    "production_methods": 52,
+    "java_tests": 227,
+    "total": 279
+  },
+  "unmapped": [],
+  "rows": [
+    {
+      "id": "C024-METHOD-01",
+      "kind": "production_method",
+      "method": "web3_clientVersion",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-02",
+      "kind": "production_method",
+      "method": "web3_sha3",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-03",
+      "kind": "production_method",
+      "method": "eth_getBlockTransactionCountByHash",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-04",
+      "kind": "production_method",
+      "method": "eth_getBlockTransactionCountByNumber",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-05",
+      "kind": "production_method",
+      "method": "eth_getBlockByHash",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-06",
+      "kind": "production_method",
+      "method": "eth_getBlockByNumber",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-07",
+      "kind": "production_method",
+      "method": "net_version",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-08",
+      "kind": "production_method",
+      "method": "eth_chainId",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-09",
+      "kind": "production_method",
+      "method": "net_listening",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-10",
+      "kind": "production_method",
+      "method": "eth_protocolVersion",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-11",
+      "kind": "production_method",
+      "method": "eth_blockNumber",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-12",
+      "kind": "production_method",
+      "method": "eth_getBalance",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-13",
+      "kind": "production_method",
+      "method": "eth_getStorageAt",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-14",
+      "kind": "production_method",
+      "method": "eth_getCode",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-15",
+      "kind": "production_method",
+      "method": "eth_coinbase",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-16",
+      "kind": "production_method",
+      "method": "eth_gasPrice",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-17",
+      "kind": "production_method",
+      "method": "eth_estimateGas",
+      "owning_item": "C024.02A",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-18",
+      "kind": "production_method",
+      "method": "eth_getTransactionByHash",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-19",
+      "kind": "production_method",
+      "method": "eth_getTransactionByBlockHashAndIndex",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-20",
+      "kind": "production_method",
+      "method": "eth_getTransactionByBlockNumberAndIndex",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-21",
+      "kind": "production_method",
+      "method": "eth_getTransactionReceipt",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-22",
+      "kind": "production_method",
+      "method": "eth_getBlockReceipts",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-23",
+      "kind": "production_method",
+      "method": "eth_call",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-24",
+      "kind": "production_method",
+      "method": "net_peerCount",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-25",
+      "kind": "production_method",
+      "method": "eth_syncing",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-26",
+      "kind": "production_method",
+      "method": "eth_getUncleByBlockHashAndIndex",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-27",
+      "kind": "production_method",
+      "method": "eth_getUncleByBlockNumberAndIndex",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-28",
+      "kind": "production_method",
+      "method": "eth_getUncleCountByBlockHash",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-29",
+      "kind": "production_method",
+      "method": "eth_getUncleCountByBlockNumber",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-30",
+      "kind": "production_method",
+      "method": "eth_getWork",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-31",
+      "kind": "production_method",
+      "method": "eth_hashrate",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-32",
+      "kind": "production_method",
+      "method": "eth_mining",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-33",
+      "kind": "production_method",
+      "method": "eth_accounts",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-34",
+      "kind": "production_method",
+      "method": "buildTransaction",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-35",
+      "kind": "production_method",
+      "method": "eth_submitWork",
+      "owning_item": "C024.02B",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-36",
+      "kind": "production_method",
+      "method": "eth_sendRawTransaction",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-37",
+      "kind": "production_method",
+      "method": "eth_sendTransaction",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-38",
+      "kind": "production_method",
+      "method": "eth_sign",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-39",
+      "kind": "production_method",
+      "method": "eth_signTransaction",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-40",
+      "kind": "production_method",
+      "method": "parity_nextNonce",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-41",
+      "kind": "production_method",
+      "method": "eth_getTransactionCount",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-42",
+      "kind": "production_method",
+      "method": "eth_getCompilers",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-43",
+      "kind": "production_method",
+      "method": "eth_compileSolidity",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-44",
+      "kind": "production_method",
+      "method": "eth_compileLLL",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-45",
+      "kind": "production_method",
+      "method": "eth_compileSerpent",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-46",
+      "kind": "production_method",
+      "method": "eth_submitHashrate",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-47",
+      "kind": "production_method",
+      "method": "eth_newFilter",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-48",
+      "kind": "production_method",
+      "method": "eth_newBlockFilter",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-49",
+      "kind": "production_method",
+      "method": "eth_uninstallFilter",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-50",
+      "kind": "production_method",
+      "method": "eth_getFilterChanges",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-51",
+      "kind": "production_method",
+      "method": "eth_getLogs",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "C024-METHOD-52",
+      "kind": "production_method",
+      "method": "eth_getFilterLogs",
+      "owning_item": "C024.02C",
+      "rust_symbol": "ContextJsonRpcBackend::execute"
+    },
+    {
+      "id": "TCASE-EE86529B83A9D41E",
+      "kind": "java_test",
+      "source": {
+        "line": 34,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/ApiUtilTest.java"
+      },
+      "source_sha256": "8ef1e02d3635acf7a51882465b8a548dbbb4c347f1b3a8427d2cae2514731a0f",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-6C39867D43E57EA3",
+      "kind": "java_test",
+      "source": {
+        "line": 46,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/ApiUtilTest.java"
+      },
+      "source_sha256": "8ef1e02d3635acf7a51882465b8a548dbbb4c347f1b3a8427d2cae2514731a0f",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-9CE6FB470C7C698C",
+      "kind": "java_test",
+      "source": {
+        "line": 22,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/BloomTest.java"
+      },
+      "source_sha256": "2c04ae634a53bde9e8ab47589b366d314e52ee4eb90fea95deaea3653ef2ced4",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-9980E47BE16B92D6",
+      "kind": "java_test",
+      "source": {
+        "line": 30,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/BloomTest.java"
+      },
+      "source_sha256": "2c04ae634a53bde9e8ab47589b366d314e52ee4eb90fea95deaea3653ef2ced4",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-D68F35D00B54F276",
+      "kind": "java_test",
+      "source": {
+        "line": 58,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/BloomTest.java"
+      },
+      "source_sha256": "2c04ae634a53bde9e8ab47589b366d314e52ee4eb90fea95deaea3653ef2ced4",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-D74248D3A85B8663",
+      "kind": "java_test",
+      "source": {
+        "line": 75,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/BloomTest.java"
+      },
+      "source_sha256": "2c04ae634a53bde9e8ab47589b366d314e52ee4eb90fea95deaea3653ef2ced4",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-F5991DEA4DF7DC5D",
+      "kind": "java_test",
+      "source": {
+        "line": 93,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/BloomTest.java"
+      },
+      "source_sha256": "2c04ae634a53bde9e8ab47589b366d314e52ee4eb90fea95deaea3653ef2ced4",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-12A0C1F2BC04E598",
+      "kind": "java_test",
+      "source": {
+        "line": 133,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/BloomTest.java"
+      },
+      "source_sha256": "2c04ae634a53bde9e8ab47589b366d314e52ee4eb90fea95deaea3653ef2ced4",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-D1746E09857BFB29",
+      "kind": "java_test",
+      "source": {
+        "line": 70,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/BuildTransactionTest.java"
+      },
+      "source_sha256": "a380a54d3e2f41b655a2e26a0c1d4dbff39981517d66a103173772200e78d7bb",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-D0218EB243022BB6",
+      "kind": "java_test",
+      "source": {
+        "line": 85,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/BuildTransactionTest.java"
+      },
+      "source_sha256": "a380a54d3e2f41b655a2e26a0c1d4dbff39981517d66a103173772200e78d7bb",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-A5B43324265036C5",
+      "kind": "java_test",
+      "source": {
+        "line": 101,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/BuildTransactionTest.java"
+      },
+      "source_sha256": "a380a54d3e2f41b655a2e26a0c1d4dbff39981517d66a103173772200e78d7bb",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-28B299C00616A860",
+      "kind": "java_test",
+      "source": {
+        "line": 146,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/BuildTransactionTest.java"
+      },
+      "source_sha256": "a380a54d3e2f41b655a2e26a0c1d4dbff39981517d66a103173772200e78d7bb",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-C705308EAF3ABC5C",
+      "kind": "java_test",
+      "source": {
+        "line": 168,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/BuildTransactionTest.java"
+      },
+      "source_sha256": "a380a54d3e2f41b655a2e26a0c1d4dbff39981517d66a103173772200e78d7bb",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-D437499FBD03B2D7",
+      "kind": "java_test",
+      "source": {
+        "line": 39,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/ConcurrentHashMapTest.java"
+      },
+      "source_sha256": "880803c9c184ac53d0b622d60b5b8761fc1a38247289061aefef56e8a638fda7",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-6111DFA9F7B545A2",
+      "kind": "java_test",
+      "source": {
+        "line": 48,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/HandleLogsFilterTest.java"
+      },
+      "source_sha256": "d6051fb6504848864f75da3f0a14b83c392c02a95a4b34795870f01c02f8b398",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-6CA1ED7283D8CDC4",
+      "kind": "java_test",
+      "source": {
+        "line": 67,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/HandleLogsFilterTest.java"
+      },
+      "source_sha256": "d6051fb6504848864f75da3f0a14b83c392c02a95a4b34795870f01c02f8b398",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-19172C53C6BEDA91",
+      "kind": "java_test",
+      "source": {
+        "line": 87,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/HandleLogsFilterTest.java"
+      },
+      "source_sha256": "d6051fb6504848864f75da3f0a14b83c392c02a95a4b34795870f01c02f8b398",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-21F1AE740470747A",
+      "kind": "java_test",
+      "source": {
+        "line": 113,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/HandleLogsFilterTest.java"
+      },
+      "source_sha256": "d6051fb6504848864f75da3f0a14b83c392c02a95a4b34795870f01c02f8b398",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-CB09F54DA4DDA062",
+      "kind": "java_test",
+      "source": {
+        "line": 136,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/HandleLogsFilterTest.java"
+      },
+      "source_sha256": "d6051fb6504848864f75da3f0a14b83c392c02a95a4b34795870f01c02f8b398",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-15CDCFCF2708AAAE",
+      "kind": "java_test",
+      "source": {
+        "line": 159,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/HandleLogsFilterTest.java"
+      },
+      "source_sha256": "d6051fb6504848864f75da3f0a14b83c392c02a95a4b34795870f01c02f8b398",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-0BD98820C438F069",
+      "kind": "java_test",
+      "source": {
+        "line": 181,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/HandleLogsFilterTest.java"
+      },
+      "source_sha256": "d6051fb6504848864f75da3f0a14b83c392c02a95a4b34795870f01c02f8b398",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-7C3CE8FFDBA42A0B",
+      "kind": "java_test",
+      "source": {
+        "line": 203,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/HandleLogsFilterTest.java"
+      },
+      "source_sha256": "d6051fb6504848864f75da3f0a14b83c392c02a95a4b34795870f01c02f8b398",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-B3BFFF2FDB4C11A5",
+      "kind": "java_test",
+      "source": {
+        "line": 229,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/HandleLogsFilterTest.java"
+      },
+      "source_sha256": "d6051fb6504848864f75da3f0a14b83c392c02a95a4b34795870f01c02f8b398",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-AA6553A6D85AAD3C",
+      "kind": "java_test",
+      "source": {
+        "line": 267,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/HandleLogsFilterTest.java"
+      },
+      "source_sha256": "d6051fb6504848864f75da3f0a14b83c392c02a95a4b34795870f01c02f8b398",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-CEF5596D62B82C75",
+      "kind": "java_test",
+      "source": {
+        "line": 55,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcCallAndEstimateGasTest.java"
+      },
+      "source_sha256": "7afc99e07f581fa84b84d97f757b70d4efec11bd969c1430ca05dd22a43d0b04",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-8604CEBE983B48C1",
+      "kind": "java_test",
+      "source": {
+        "line": 66,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcCallAndEstimateGasTest.java"
+      },
+      "source_sha256": "7afc99e07f581fa84b84d97f757b70d4efec11bd969c1430ca05dd22a43d0b04",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-ECE65C4F797314DA",
+      "kind": "java_test",
+      "source": {
+        "line": 78,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcCallAndEstimateGasTest.java"
+      },
+      "source_sha256": "7afc99e07f581fa84b84d97f757b70d4efec11bd969c1430ca05dd22a43d0b04",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-8478C21A7197BB0E",
+      "kind": "java_test",
+      "source": {
+        "line": 87,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcCallAndEstimateGasTest.java"
+      },
+      "source_sha256": "7afc99e07f581fa84b84d97f757b70d4efec11bd969c1430ca05dd22a43d0b04",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-26B79A30F465990F",
+      "kind": "java_test",
+      "source": {
+        "line": 99,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcCallAndEstimateGasTest.java"
+      },
+      "source_sha256": "7afc99e07f581fa84b84d97f757b70d4efec11bd969c1430ca05dd22a43d0b04",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-3D4775A92AAB842F",
+      "kind": "java_test",
+      "source": {
+        "line": 109,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcCallAndEstimateGasTest.java"
+      },
+      "source_sha256": "7afc99e07f581fa84b84d97f757b70d4efec11bd969c1430ca05dd22a43d0b04",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-4D6BF08441E4876C",
+      "kind": "java_test",
+      "source": {
+        "line": 121,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcCallAndEstimateGasTest.java"
+      },
+      "source_sha256": "7afc99e07f581fa84b84d97f757b70d4efec11bd969c1430ca05dd22a43d0b04",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-FB5C9E60A41E37B5",
+      "kind": "java_test",
+      "source": {
+        "line": 131,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcCallAndEstimateGasTest.java"
+      },
+      "source_sha256": "7afc99e07f581fa84b84d97f757b70d4efec11bd969c1430ca05dd22a43d0b04",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-318E1B6403F7F308",
+      "kind": "java_test",
+      "source": {
+        "line": 144,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcCallAndEstimateGasTest.java"
+      },
+      "source_sha256": "7afc99e07f581fa84b84d97f757b70d4efec11bd969c1430ca05dd22a43d0b04",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-A1CC6FC53BF6A72A",
+      "kind": "java_test",
+      "source": {
+        "line": 156,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcCallAndEstimateGasTest.java"
+      },
+      "source_sha256": "7afc99e07f581fa84b84d97f757b70d4efec11bd969c1430ca05dd22a43d0b04",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-7544DF8C8D164D95",
+      "kind": "java_test",
+      "source": {
+        "line": 103,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcTest.java"
+      },
+      "source_sha256": "6df4210dc276f6dd1f69a2cdbb2d0ad346eee478536be1268af0b4c3e4f45bb6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-FF788EAEB966E7BF",
+      "kind": "java_test",
+      "source": {
+        "line": 117,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcTest.java"
+      },
+      "source_sha256": "6df4210dc276f6dd1f69a2cdbb2d0ad346eee478536be1268af0b4c3e4f45bb6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-615B357A408DA919",
+      "kind": "java_test",
+      "source": {
+        "line": 128,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcTest.java"
+      },
+      "source_sha256": "6df4210dc276f6dd1f69a2cdbb2d0ad346eee478536be1268af0b4c3e4f45bb6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-CA56277F7D7EB438",
+      "kind": "java_test",
+      "source": {
+        "line": 158,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcTest.java"
+      },
+      "source_sha256": "6df4210dc276f6dd1f69a2cdbb2d0ad346eee478536be1268af0b4c3e4f45bb6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-EDCB6B72F18D80D7",
+      "kind": "java_test",
+      "source": {
+        "line": 202,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcTest.java"
+      },
+      "source_sha256": "6df4210dc276f6dd1f69a2cdbb2d0ad346eee478536be1268af0b4c3e4f45bb6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-4C917EEA1FB3B8F7",
+      "kind": "java_test",
+      "source": {
+        "line": 291,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcTest.java"
+      },
+      "source_sha256": "6df4210dc276f6dd1f69a2cdbb2d0ad346eee478536be1268af0b4c3e4f45bb6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E3CCC24E69FDFD28",
+      "kind": "java_test",
+      "source": {
+        "line": 359,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcTest.java"
+      },
+      "source_sha256": "6df4210dc276f6dd1f69a2cdbb2d0ad346eee478536be1268af0b4c3e4f45bb6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-FE11B585D0AB868E",
+      "kind": "java_test",
+      "source": {
+        "line": 417,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcTest.java"
+      },
+      "source_sha256": "6df4210dc276f6dd1f69a2cdbb2d0ad346eee478536be1268af0b4c3e4f45bb6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-0E1EBC511D4C7973",
+      "kind": "java_test",
+      "source": {
+        "line": 457,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonRpcTest.java"
+      },
+      "source_sha256": "6df4210dc276f6dd1f69a2cdbb2d0ad346eee478536be1268af0b4c3e4f45bb6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-0AD631CE6E47FAD7",
+      "kind": "java_test",
+      "source": {
+        "line": 224,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-156ECC67B8281CAC",
+      "kind": "java_test",
+      "source": {
+        "line": 243,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-8DB084B87D569071",
+      "kind": "java_test",
+      "source": {
+        "line": 270,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-739A8DD8C1D4CC89",
+      "kind": "java_test",
+      "source": {
+        "line": 313,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-17FD3DEA3E1EDFC0",
+      "kind": "java_test",
+      "source": {
+        "line": 328,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-C7EB0C846F93E23C",
+      "kind": "java_test",
+      "source": {
+        "line": 394,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-5CCCF71D7AED68D7",
+      "kind": "java_test",
+      "source": {
+        "line": 415,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-61F65AB7C1B86626",
+      "kind": "java_test",
+      "source": {
+        "line": 450,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-3699026B5AE38329",
+      "kind": "java_test",
+      "source": {
+        "line": 461,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E6F2C7ED263727B2",
+      "kind": "java_test",
+      "source": {
+        "line": 525,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-4658FC9718B9378D",
+      "kind": "java_test",
+      "source": {
+        "line": 554,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-B5A9D6925C77EA20",
+      "kind": "java_test",
+      "source": {
+        "line": 612,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-82EFA62465A4F49E",
+      "kind": "java_test",
+      "source": {
+        "line": 651,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-BDAA59C548EC3349",
+      "kind": "java_test",
+      "source": {
+        "line": 670,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E43EF50226ADB368",
+      "kind": "java_test",
+      "source": {
+        "line": 775,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-6280558E8C514A0B",
+      "kind": "java_test",
+      "source": {
+        "line": 820,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-CFB1189D8D79E191",
+      "kind": "java_test",
+      "source": {
+        "line": 1081,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-634CE07867C78805",
+      "kind": "java_test",
+      "source": {
+        "line": 1165,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-1607A44CC14A5718",
+      "kind": "java_test",
+      "source": {
+        "line": 1194,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-B61794017C10DE53",
+      "kind": "java_test",
+      "source": {
+        "line": 1218,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E25F3760F6DBC30F",
+      "kind": "java_test",
+      "source": {
+        "line": 1254,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-1AC0813675F120F1",
+      "kind": "java_test",
+      "source": {
+        "line": 1333,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-5959E751C449EA01",
+      "kind": "java_test",
+      "source": {
+        "line": 1362,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-55A4E64BC5DA8E62",
+      "kind": "java_test",
+      "source": {
+        "line": 1446,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-2CC7C0C755096A23",
+      "kind": "java_test",
+      "source": {
+        "line": 1493,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-906E18A08318F3B7",
+      "kind": "java_test",
+      "source": {
+        "line": 1539,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-39B631CAC617976A",
+      "kind": "java_test",
+      "source": {
+        "line": 1562,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-86C48BC905B18A42",
+      "kind": "java_test",
+      "source": {
+        "line": 1579,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/JsonrpcServiceTest.java"
+      },
+      "source_sha256": "e0a132e196063020c57fb60ab5f53834a2f74bb67754c126fee41875f13ee607",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-F748C5C682FFEC21",
+      "kind": "java_test",
+      "source": {
+        "line": 60,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogBlockQueryTest.java"
+      },
+      "source_sha256": "f90b03f8fa2b10ee0d5885659e4c1c51b7778e1fe269a7c652bb350151215b84",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-1CE8C5CAD59E899F",
+      "kind": "java_test",
+      "source": {
+        "line": 57,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchExactlyTest.java"
+      },
+      "source_sha256": "7753e96c6a982d2b39846b1643b41f56dbfe95b1ffe3a5200eabe1cacc5c7191",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-1DDE03FEDE792A62",
+      "kind": "java_test",
+      "source": {
+        "line": 70,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchExactlyTest.java"
+      },
+      "source_sha256": "7753e96c6a982d2b39846b1643b41f56dbfe95b1ffe3a5200eabe1cacc5c7191",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-B6CDF52CC07700DF",
+      "kind": "java_test",
+      "source": {
+        "line": 83,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchExactlyTest.java"
+      },
+      "source_sha256": "7753e96c6a982d2b39846b1643b41f56dbfe95b1ffe3a5200eabe1cacc5c7191",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-7D6DD4E53F6876E3",
+      "kind": "java_test",
+      "source": {
+        "line": 96,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchExactlyTest.java"
+      },
+      "source_sha256": "7753e96c6a982d2b39846b1643b41f56dbfe95b1ffe3a5200eabe1cacc5c7191",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-5D3F4F5C5D07BA02",
+      "kind": "java_test",
+      "source": {
+        "line": 112,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchExactlyTest.java"
+      },
+      "source_sha256": "7753e96c6a982d2b39846b1643b41f56dbfe95b1ffe3a5200eabe1cacc5c7191",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-FA308D0A274AE779",
+      "kind": "java_test",
+      "source": {
+        "line": 124,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchExactlyTest.java"
+      },
+      "source_sha256": "7753e96c6a982d2b39846b1643b41f56dbfe95b1ffe3a5200eabe1cacc5c7191",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-13C0BE97E5ACF622",
+      "kind": "java_test",
+      "source": {
+        "line": 136,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchExactlyTest.java"
+      },
+      "source_sha256": "7753e96c6a982d2b39846b1643b41f56dbfe95b1ffe3a5200eabe1cacc5c7191",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-7784F77028B340CF",
+      "kind": "java_test",
+      "source": {
+        "line": 151,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchExactlyTest.java"
+      },
+      "source_sha256": "7753e96c6a982d2b39846b1643b41f56dbfe95b1ffe3a5200eabe1cacc5c7191",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-8013BE0665F034DA",
+      "kind": "java_test",
+      "source": {
+        "line": 168,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchExactlyTest.java"
+      },
+      "source_sha256": "7753e96c6a982d2b39846b1643b41f56dbfe95b1ffe3a5200eabe1cacc5c7191",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-2D03286B51FA76A5",
+      "kind": "java_test",
+      "source": {
+        "line": 187,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchExactlyTest.java"
+      },
+      "source_sha256": "7753e96c6a982d2b39846b1643b41f56dbfe95b1ffe3a5200eabe1cacc5c7191",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-441066B9B67B44B7",
+      "kind": "java_test",
+      "source": {
+        "line": 214,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchExactlyTest.java"
+      },
+      "source_sha256": "7753e96c6a982d2b39846b1643b41f56dbfe95b1ffe3a5200eabe1cacc5c7191",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-A6B8CFE44520605A",
+      "kind": "java_test",
+      "source": {
+        "line": 87,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchOverLimitTest.java"
+      },
+      "source_sha256": "7406c2479b93c8a71c96f2905db62c8e1d95cd93dbb5052b99e3dfce731ea1d6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-15E2B8DCBBCE8ACB",
+      "kind": "java_test",
+      "source": {
+        "line": 103,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchOverLimitTest.java"
+      },
+      "source_sha256": "7406c2479b93c8a71c96f2905db62c8e1d95cd93dbb5052b99e3dfce731ea1d6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-AD1C75EBFD8A0EF9",
+      "kind": "java_test",
+      "source": {
+        "line": 121,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchOverLimitTest.java"
+      },
+      "source_sha256": "7406c2479b93c8a71c96f2905db62c8e1d95cd93dbb5052b99e3dfce731ea1d6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-7B1F5B6F34FF9DB0",
+      "kind": "java_test",
+      "source": {
+        "line": 134,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/LogMatchOverLimitTest.java"
+      },
+      "source_sha256": "7406c2479b93c8a71c96f2905db62c8e1d95cd93dbb5052b99e3dfce731ea1d6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-C4498BFD74159E60",
+      "kind": "java_test",
+      "source": {
+        "line": 50,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/SectionBloomStoreTest.java"
+      },
+      "source_sha256": "3171c8553d031990da249f8188e605380103cd42b69544fc398ee34920165338",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-CCB29F90BEA8DF5C",
+      "kind": "java_test",
+      "source": {
+        "line": 100,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/SectionBloomStoreTest.java"
+      },
+      "source_sha256": "3171c8553d031990da249f8188e605380103cd42b69544fc398ee34920165338",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-F72BA60853C89153",
+      "kind": "java_test",
+      "source": {
+        "line": 62,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/WalletCursorTest.java"
+      },
+      "source_sha256": "8dde01f684497e6bc9acd74ded3c05684d7f21a3b5d8a2fb1ef603572026b634",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-A07C1E7B45ED41D3",
+      "kind": "java_test",
+      "source": {
+        "line": 86,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/WalletCursorTest.java"
+      },
+      "source_sha256": "8dde01f684497e6bc9acd74ded3c05684d7f21a3b5d8a2fb1ef603572026b634",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-1362CBFF3C8E03FB",
+      "kind": "java_test",
+      "source": {
+        "line": 109,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/WalletCursorTest.java"
+      },
+      "source_sha256": "8dde01f684497e6bc9acd74ded3c05684d7f21a3b5d8a2fb1ef603572026b634",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-899C8B66ABE62BEC",
+      "kind": "java_test",
+      "source": {
+        "line": 140,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/WalletCursorTest.java"
+      },
+      "source_sha256": "8dde01f684497e6bc9acd74ded3c05684d7f21a3b5d8a2fb1ef603572026b634",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E89BA084F739E616",
+      "kind": "java_test",
+      "source": {
+        "line": 162,
+        "path": "java-tron/framework/src/test/java/org/tron/core/jsonrpc/WalletCursorTest.java"
+      },
+      "source_sha256": "8dde01f684497e6bc9acd74ded3c05684d7f21a3b5d8a2fb1ef603572026b634",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E08D1554B0546211",
+      "kind": "java_test",
+      "source": {
+        "line": 26,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BlockResultTest.java"
+      },
+      "source_sha256": "395d869a2df154a28d8fcfa920b77057f732a884b96a44044d8e5b8d498bddbf",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-823BA80C1976AD86",
+      "kind": "java_test",
+      "source": {
+        "line": 40,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-3CC25D78927466F0",
+      "kind": "java_test",
+      "source": {
+        "line": 53,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-9B05985AA87591BC",
+      "kind": "java_test",
+      "source": {
+        "line": 61,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-740EB6E111B60FB2",
+      "kind": "java_test",
+      "source": {
+        "line": 67,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-B6645E98140357DD",
+      "kind": "java_test",
+      "source": {
+        "line": 73,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-645309E1210A937D",
+      "kind": "java_test",
+      "source": {
+        "line": 83,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-F440DA847487B68A",
+      "kind": "java_test",
+      "source": {
+        "line": 90,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-6E1E4D96AD50CB51",
+      "kind": "java_test",
+      "source": {
+        "line": 97,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-0C4A02B068EC5B66",
+      "kind": "java_test",
+      "source": {
+        "line": 106,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-70F95245FEE82DD6",
+      "kind": "java_test",
+      "source": {
+        "line": 114,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-3780678BA7A517AD",
+      "kind": "java_test",
+      "source": {
+        "line": 121,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-7DD17DCD95A88666",
+      "kind": "java_test",
+      "source": {
+        "line": 128,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E26A8A9CDE7EFA34",
+      "kind": "java_test",
+      "source": {
+        "line": 143,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-64081A38BDCB38D5",
+      "kind": "java_test",
+      "source": {
+        "line": 157,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-2DACA82AF7F169F2",
+      "kind": "java_test",
+      "source": {
+        "line": 172,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-0DD1680B1560F00B",
+      "kind": "java_test",
+      "source": {
+        "line": 184,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-3792841FDF2ADDAD",
+      "kind": "java_test",
+      "source": {
+        "line": 197,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-0F10AD84A0953877",
+      "kind": "java_test",
+      "source": {
+        "line": 208,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-D59334F3EE42B7B8",
+      "kind": "java_test",
+      "source": {
+        "line": 220,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-F37E73D14C3F21EC",
+      "kind": "java_test",
+      "source": {
+        "line": 231,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-055CD3C1A0D34A78",
+      "kind": "java_test",
+      "source": {
+        "line": 247,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-9BA8104F3FA15BF5",
+      "kind": "java_test",
+      "source": {
+        "line": 259,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-92DD41121F0BE009",
+      "kind": "java_test",
+      "source": {
+        "line": 267,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-774499E5E346C73E",
+      "kind": "java_test",
+      "source": {
+        "line": 275,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-621DB7832518CCF2",
+      "kind": "java_test",
+      "source": {
+        "line": 282,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-BEE794C53FE771FD",
+      "kind": "java_test",
+      "source": {
+        "line": 293,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-3872CB185C0034EB",
+      "kind": "java_test",
+      "source": {
+        "line": 300,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-666C058932C78C12",
+      "kind": "java_test",
+      "source": {
+        "line": 312,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-D4ECADA62C9714F1",
+      "kind": "java_test",
+      "source": {
+        "line": 320,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/BuildArgumentsTest.java"
+      },
+      "source_sha256": "33b24910e4d5e73d89f0cfd79c03611561b8fe96754f944947760e9a14a85b71",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-A1A8ED5E4A7D29A3",
+      "kind": "java_test",
+      "source": {
+        "line": 38,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-C70DB2E824806DD6",
+      "kind": "java_test",
+      "source": {
+        "line": 45,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E7D11821AC96FE7C",
+      "kind": "java_test",
+      "source": {
+        "line": 51,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-6D261008B409DFDA",
+      "kind": "java_test",
+      "source": {
+        "line": 58,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-1BEFC5753EAC5242",
+      "kind": "java_test",
+      "source": {
+        "line": 65,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-F416942C8A544078",
+      "kind": "java_test",
+      "source": {
+        "line": 73,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-38105C6C4DFE7C3F",
+      "kind": "java_test",
+      "source": {
+        "line": 82,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-6B56D1D58979B249",
+      "kind": "java_test",
+      "source": {
+        "line": 91,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-61984D5886C422EE",
+      "kind": "java_test",
+      "source": {
+        "line": 100,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-5AB1FDF725FFF0BF",
+      "kind": "java_test",
+      "source": {
+        "line": 110,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-B08F1B3FA276B9C4",
+      "kind": "java_test",
+      "source": {
+        "line": 119,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-126A26AB2171679D",
+      "kind": "java_test",
+      "source": {
+        "line": 127,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-73FBD26CFA7B1AB6",
+      "kind": "java_test",
+      "source": {
+        "line": 135,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-CAF79D3006900529",
+      "kind": "java_test",
+      "source": {
+        "line": 143,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-1BD59ACF97A2EBBB",
+      "kind": "java_test",
+      "source": {
+        "line": 150,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-11BB6C627768D1B5",
+      "kind": "java_test",
+      "source": {
+        "line": 161,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-438F837863E09E3C",
+      "kind": "java_test",
+      "source": {
+        "line": 168,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-0E4B5ECB886C794F",
+      "kind": "java_test",
+      "source": {
+        "line": 180,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-031772D310D67AD5",
+      "kind": "java_test",
+      "source": {
+        "line": 188,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-C10EB297D9A351C1",
+      "kind": "java_test",
+      "source": {
+        "line": 197,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-F55FE36E630E8BCA",
+      "kind": "java_test",
+      "source": {
+        "line": 209,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E121F9D67B0A915B",
+      "kind": "java_test",
+      "source": {
+        "line": 225,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/CallArgumentsTest.java"
+      },
+      "source_sha256": "4741aadcacfb3c5b4a51fc67c579a90ed99e85e9656651317cbb441d9cc3dadd",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-2724BD6D503A3158",
+      "kind": "java_test",
+      "source": {
+        "line": 12,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-551F6BA53BF586C8",
+      "kind": "java_test",
+      "source": {
+        "line": 18,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-CDAAC5DFB3436BBD",
+      "kind": "java_test",
+      "source": {
+        "line": 23,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-6A3E3148520C05EB",
+      "kind": "java_test",
+      "source": {
+        "line": 29,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-2876DFC1DF15288B",
+      "kind": "java_test",
+      "source": {
+        "line": 39,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-BA9E8B8B5D6AE770",
+      "kind": "java_test",
+      "source": {
+        "line": 51,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-4816E4D3FDEB71A2",
+      "kind": "java_test",
+      "source": {
+        "line": 60,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-3070E129B1E27CF2",
+      "kind": "java_test",
+      "source": {
+        "line": 67,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-C776D307263325BA",
+      "kind": "java_test",
+      "source": {
+        "line": 74,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-64D48FACE9461210",
+      "kind": "java_test",
+      "source": {
+        "line": 80,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-EA55A61A6EEFB1F8",
+      "kind": "java_test",
+      "source": {
+        "line": 87,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-8DA642C04574F38E",
+      "kind": "java_test",
+      "source": {
+        "line": 96,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-B1BB7B6895AE1CFB",
+      "kind": "java_test",
+      "source": {
+        "line": 103,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-D99FF38FB8799CA8",
+      "kind": "java_test",
+      "source": {
+        "line": 109,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-7AC4CDF8DA793CC4",
+      "kind": "java_test",
+      "source": {
+        "line": 117,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-952472126E9A1058",
+      "kind": "java_test",
+      "source": {
+        "line": 123,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-7ED732B14133BC3B",
+      "kind": "java_test",
+      "source": {
+        "line": 131,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-B2BCA7E6E5EA9E6F",
+      "kind": "java_test",
+      "source": {
+        "line": 139,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-C5637C8C2EF96229",
+      "kind": "java_test",
+      "source": {
+        "line": 152,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-9B01C31D6669FC38",
+      "kind": "java_test",
+      "source": {
+        "line": 160,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-189725BA14E9D5F7",
+      "kind": "java_test",
+      "source": {
+        "line": 167,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-DB60C98B96833378",
+      "kind": "java_test",
+      "source": {
+        "line": 174,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-A9B8DD37C6834B36",
+      "kind": "java_test",
+      "source": {
+        "line": 183,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-609A21E163714756",
+      "kind": "java_test",
+      "source": {
+        "line": 193,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-857B91BEB3EA80E8",
+      "kind": "java_test",
+      "source": {
+        "line": 200,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-28BE8CE59DB8EC48",
+      "kind": "java_test",
+      "source": {
+        "line": 207,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-569F158132DCB471",
+      "kind": "java_test",
+      "source": {
+        "line": 213,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcApiUtilTest.java"
+      },
+      "source_sha256": "312b70bcfba9d6cefb0458eef999758f92a7f1a6eb529feb1735e1ff3cc084f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-ECD6D79A3A9D5CBD",
+      "kind": "java_test",
+      "source": {
+        "line": 32,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcErrorResolverTest.java"
+      },
+      "source_sha256": "1a55523e4ae57ae8e05f42a731bcaff151e0cdfed3cce6f227aaf9280c42869d",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-099F61D14395026C",
+      "kind": "java_test",
+      "source": {
+        "line": 60,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-1E79FA83F69E01AD",
+      "kind": "java_test",
+      "source": {
+        "line": 73,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-B2D4B6C8A9CC40EE",
+      "kind": "java_test",
+      "source": {
+        "line": 83,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-A272D3600509FB45",
+      "kind": "java_test",
+      "source": {
+        "line": 94,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-1B9AAD1A7AE52C78",
+      "kind": "java_test",
+      "source": {
+        "line": 113,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-ED5558550A12122E",
+      "kind": "java_test",
+      "source": {
+        "line": 124,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-54659C1B20B2E2C1",
+      "kind": "java_test",
+      "source": {
+        "line": 148,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-502D4134310EADD0",
+      "kind": "java_test",
+      "source": {
+        "line": 159,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-6B0D6D5A1F7227C6",
+      "kind": "java_test",
+      "source": {
+        "line": 172,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-F16E0B46FE6C1F7B",
+      "kind": "java_test",
+      "source": {
+        "line": 189,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-6BE67728A26712C0",
+      "kind": "java_test",
+      "source": {
+        "line": 206,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-3F65AC190FF2F5B1",
+      "kind": "java_test",
+      "source": {
+        "line": 239,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-27596370819BB9AB",
+      "kind": "java_test",
+      "source": {
+        "line": 255,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-B20A431E4D96DE4A",
+      "kind": "java_test",
+      "source": {
+        "line": 261,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-1C7EC1149F02CDE9",
+      "kind": "java_test",
+      "source": {
+        "line": 275,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-A08476B70FF8ECE0",
+      "kind": "java_test",
+      "source": {
+        "line": 289,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-D59B35FDF0685A4A",
+      "kind": "java_test",
+      "source": {
+        "line": 301,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-813F5FCD4C3E5FBB",
+      "kind": "java_test",
+      "source": {
+        "line": 309,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-6051931A2000F7DD",
+      "kind": "java_test",
+      "source": {
+        "line": 317,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-BFCA3F02AE9A5C39",
+      "kind": "java_test",
+      "source": {
+        "line": 327,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-0EB1B1604C71D480",
+      "kind": "java_test",
+      "source": {
+        "line": 338,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-81CBA444AADA34C6",
+      "kind": "java_test",
+      "source": {
+        "line": 357,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-8F98775360094073",
+      "kind": "java_test",
+      "source": {
+        "line": 371,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-EAF75AEB99AAB8B7",
+      "kind": "java_test",
+      "source": {
+        "line": 395,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/JsonRpcServletTest.java"
+      },
+      "source_sha256": "c059b3c43229bd2b9d60d69883380f6d1cecf3463a900c54c89f1a3894de3c86",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-4A7119327B7072D3",
+      "kind": "java_test",
+      "source": {
+        "line": 42,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-5ECFB07850C79C73",
+      "kind": "java_test",
+      "source": {
+        "line": 51,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-61CA138F9825DC6F",
+      "kind": "java_test",
+      "source": {
+        "line": 58,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-575B8F1B8D128493",
+      "kind": "java_test",
+      "source": {
+        "line": 67,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E36361C2CF2CC11A",
+      "kind": "java_test",
+      "source": {
+        "line": 76,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-798260EB9A492B4A",
+      "kind": "java_test",
+      "source": {
+        "line": 83,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-4175A838CF7168DF",
+      "kind": "java_test",
+      "source": {
+        "line": 92,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-13B20FDEAD56BC80",
+      "kind": "java_test",
+      "source": {
+        "line": 101,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-2FF857572FBD0CEB",
+      "kind": "java_test",
+      "source": {
+        "line": 108,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-9764633055EDA27E",
+      "kind": "java_test",
+      "source": {
+        "line": 116,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-29861D61947511CF",
+      "kind": "java_test",
+      "source": {
+        "line": 125,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-63BA3BBB49D0AFF9",
+      "kind": "java_test",
+      "source": {
+        "line": 133,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-85327893B57C7BA2",
+      "kind": "java_test",
+      "source": {
+        "line": 142,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-9511265651A137A5",
+      "kind": "java_test",
+      "source": {
+        "line": 153,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/LogFilterWrapperStrategyTest.java"
+      },
+      "source_sha256": "5ca5828b8c473fdd7cbce798722af8f14b5f5845d1665079fc3f46577f4126e6",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-513A7EDCC21D3ECF",
+      "kind": "java_test",
+      "source": {
+        "line": 31,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/TransactionReceiptTest.java"
+      },
+      "source_sha256": "074f7a5d85c15c35dd5fec655b0d77d86eb90adef8ee498809436640bc563a55",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-C6AE00AEE4B3585A",
+      "kind": "java_test",
+      "source": {
+        "line": 39,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/TransactionResultTest.java"
+      },
+      "source_sha256": "702c9b41b6660824dc41863b21c8655009c4803d2d7195057b079154dc5ac25b",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-978E38DC0159D042",
+      "kind": "java_test",
+      "source": {
+        "line": 65,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/TransactionResultTest.java"
+      },
+      "source_sha256": "702c9b41b6660824dc41863b21c8655009c4803d2d7195057b079154dc5ac25b",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-9996D0746BDBCEF9",
+      "kind": "java_test",
+      "source": {
+        "line": 10,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/TronJsonRpcRevertReasonTest.java"
+      },
+      "source_sha256": "2c4b05a6212e676b4abbaf936bae32bc015902095534b34e61bfc9bd737473f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-D3A4CEAC7FCA57BE",
+      "kind": "java_test",
+      "source": {
+        "line": 22,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/TronJsonRpcRevertReasonTest.java"
+      },
+      "source_sha256": "2c4b05a6212e676b4abbaf936bae32bc015902095534b34e61bfc9bd737473f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-47288C3D558FBED2",
+      "kind": "java_test",
+      "source": {
+        "line": 31,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/TronJsonRpcRevertReasonTest.java"
+      },
+      "source_sha256": "2c4b05a6212e676b4abbaf936bae32bc015902095534b34e61bfc9bd737473f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-BC4ED1A104013950",
+      "kind": "java_test",
+      "source": {
+        "line": 41,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/TronJsonRpcRevertReasonTest.java"
+      },
+      "source_sha256": "2c4b05a6212e676b4abbaf936bae32bc015902095534b34e61bfc9bd737473f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E9DF91269B82705A",
+      "kind": "java_test",
+      "source": {
+        "line": 50,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/TronJsonRpcRevertReasonTest.java"
+      },
+      "source_sha256": "2c4b05a6212e676b4abbaf936bae32bc015902095534b34e61bfc9bd737473f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-91B984CE945A0779",
+      "kind": "java_test",
+      "source": {
+        "line": 61,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/TronJsonRpcRevertReasonTest.java"
+      },
+      "source_sha256": "2c4b05a6212e676b4abbaf936bae32bc015902095534b34e61bfc9bd737473f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E5201058B63C5B52",
+      "kind": "java_test",
+      "source": {
+        "line": 66,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/TronJsonRpcRevertReasonTest.java"
+      },
+      "source_sha256": "2c4b05a6212e676b4abbaf936bae32bc015902095534b34e61bfc9bd737473f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-5E39D81E7744947E",
+      "kind": "java_test",
+      "source": {
+        "line": 73,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/TronJsonRpcRevertReasonTest.java"
+      },
+      "source_sha256": "2c4b05a6212e676b4abbaf936bae32bc015902095534b34e61bfc9bd737473f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-90E4AB1EEAE1A45A",
+      "kind": "java_test",
+      "source": {
+        "line": 81,
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/jsonrpc/TronJsonRpcRevertReasonTest.java"
+      },
+      "source_sha256": "2c4b05a6212e676b4abbaf936bae32bc015902095534b34e61bfc9bd737473f3",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-A018B2B32E0CCF80",
+      "kind": "java_test",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+        "line": 435
+      },
+      "source_sha256": "ccbc5bbaee524040397d8072da6cafd2ec0882876f478c501717a243de6a55ea",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-87A4901403CA57A8",
+      "kind": "java_test",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+        "line": 466
+      },
+      "source_sha256": "ccbc5bbaee524040397d8072da6cafd2ec0882876f478c501717a243de6a55ea",
+      "owning_item": "C024.08"
+    },
+    {
+      "id": "TCASE-E91A33B73B4F0AE4",
+      "kind": "java_test",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+        "line": 523
+      },
+      "source_sha256": "ccbc5bbaee524040397d8072da6cafd2ec0882876f478c501717a243de6a55ea",
+      "owning_item": "C024.08"
+    }
+  ],
+  "review": {
+    "state": "approved",
+    "findings": []
+  }
+}

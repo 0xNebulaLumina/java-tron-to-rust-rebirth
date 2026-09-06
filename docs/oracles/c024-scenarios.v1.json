@@ -1,0 +1,84 @@
+{
+  "schema": "c024-scenarios-v1",
+  "count": 13,
+  "scenarios": [
+    {
+      "id": "C024-SCENARIO-01",
+      "name": "single-batch-notification",
+      "rust_case": "c024_jsonrpc::single_batch_notification_and_ids",
+      "terminal_state": "observed"
+    },
+    {
+      "id": "C024-SCENARIO-02",
+      "name": "parse-and-limits",
+      "rust_case": "c024_jsonrpc::parse_request_batch_and_response_limits_are_http_200",
+      "terminal_state": "observed"
+    },
+    {
+      "id": "C024-SCENARIO-03",
+      "name": "method-inventory",
+      "rust_case": "c024_methods::inventory_is_exact_and_unique",
+      "terminal_state": "observed"
+    },
+    {
+      "id": "C024-SCENARIO-04",
+      "name": "conversions",
+      "rust_case": "c024_methods::constants_sha3_chain_id_and_deliberate_results",
+      "terminal_state": "observed"
+    },
+    {
+      "id": "C024-SCENARIO-05",
+      "name": "surface-isolation",
+      "rust_case": "c024_methods::unsupported_and_accidental_ethereum_methods_are_not_exposed",
+      "terminal_state": "observed"
+    },
+    {
+      "id": "C024-SCENARIO-06",
+      "name": "bloom-and-topics",
+      "rust_case": "c024_filters::bloom_uses_java_bits_and_section_candidates",
+      "terminal_state": "observed"
+    },
+    {
+      "id": "C024-SCENARIO-07",
+      "name": "filter-lifecycle",
+      "rust_case": "c024_filters::maps_drain_refresh_expire_and_caps",
+      "terminal_state": "observed"
+    },
+    {
+      "id": "C024-SCENARIO-08",
+      "name": "reorg",
+      "rust_case": "c024_filters::logs_queries_changes_and_reorg_removed_reapply",
+      "terminal_state": "observed"
+    },
+    {
+      "id": "C024-SCENARIO-09",
+      "name": "ports-cursors",
+      "rust_case": "c024_server::mandatory_ports_and_surface_order_are_exact",
+      "terminal_state": "observed"
+    },
+    {
+      "id": "C024-SCENARIO-10",
+      "name": "server-controls",
+      "rust_case": "c024_server::collisions_zero_capacity_and_zero_deadlines_are_rejected",
+      "terminal_state": "observed"
+    },
+    {
+      "id": "C024-SCENARIO-11",
+      "name": "families",
+      "rust_case": "c024_scenarios::representative_every_method_family_and_no_accidental_surface",
+      "terminal_state": "observed"
+    },
+    {
+      "id": "C024-SCENARIO-12",
+      "name": "batch-schedule",
+      "rust_case": "c024_scenarios::batch_notifications_errors_and_exact_schedule",
+      "terminal_state": "observed"
+    },
+    {
+      "id": "C024-SCENARIO-13",
+      "name": "live-divergent-cursors",
+      "rust_case": "c024_cursor_live::nonzero_divergent_head_solidity_pbft_numbers_are_read_live",
+      "terminal_state": "observed"
+    }
+  ]
+}
