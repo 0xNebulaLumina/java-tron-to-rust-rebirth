@@ -1,0 +1,48 @@
+{
+  "schema": "c018-backup-vectors.v1",
+  "wire": {
+    "type": "0x05",
+    "protobuf": "protocol.BackupMessage",
+    "maximum_exclusive_datagram_size": 2048,
+    "vectors": [
+      {"flag":false,"priority":6,"hex":"051006"},
+      {"flag":true,"priority":10,"hex":"050801100a"},
+      {"flag":false,"priority":0,"hex":"05"}
+    ]
+  },
+  "transport_authentication": {
+    "production_input": "AuthenticatedDatagram supplied by a secure transport adapter",
+    "identity": "packet attestation identity must equal the resolved configured member and source IP",
+    "port": "source port must exactly equal configured backup port",
+    "replay": "sequence must strictly increase within a session; session must not decrease; newer session retires older session",
+    "legacy_udp": "SystemUdpSocket yields only Unauthenticated packets and BackupService legacy Java mode is non-producing",
+    "payload": "authenticated transport preserves exact 0x05 || protocol.BackupMessage bytes",
+    "seams": {
+      "C020": "secure P2P/network adapter supplies packet identity and session/sequence attestation",
+      "C028": "production lifecycle requires that adapter and forbids silent plain-UDP fallback"
+    }
+  },
+  "timing": {
+    "default_keep_alive_ms": 3000,
+    "timeout_intervals": 6,
+    "timeout_comparison": "elapsed > keep_alive_interval * 6",
+    "first_send_delay_ms": 1000,
+    "dns_refresh_ms": 60000
+  },
+  "election": [
+    "startup status is INIT",
+    "INIT yields to any MASTER flag or strictly higher priority",
+    "SLAVER timeout moves to INIT and resets timeout origin",
+    "INIT timeout moves to MASTER",
+    "MASTER yields only to a peer MASTER with higher priority, or equal priority when local textual IP is lexicographically smaller",
+    "SLAVER sends no keepalive; INIT sends flag=false; MASTER sends flag=true"
+  ],
+  "lifecycle": [
+    "server starts only for a nonzero port and a nonempty configured member list",
+    "only resolved allowlisted member IPs can affect election",
+    "DNS failures retain the last successfully resolved address set",
+    "unexpected socket failure rebinds until cancellation",
+    "close cancels and joins the event loop; a closed service can restart"
+  ],
+  "rust_proof": "cargo test -p tron-consensus --test c018_backup"
+}

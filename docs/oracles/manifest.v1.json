@@ -120,6 +120,22 @@
     "path": "c017-source-inventory.v1.json",
     "sha256": "eea6268ef7a1900ba1faedba336b059858653ac82278915c9365d5c9118c553b"
   },
+  "c018_backup_source_inventory": {
+    "path": "c018-backup-source-inventory.v1.json",
+    "sha256": "1b80bd510f335f6b9365b2bad0da592d71e01e3916f45a106b48045d099b4300"
+  },
+  "c018_backup_vectors": {
+    "path": "c018-backup-vectors.v1.json",
+    "sha256": "533625b03a7afb38af329451c92f3e1650a1c11ff20bfb3568400b370f6337db"
+  },
+  "c018_ownership_reconciliation": {
+    "path": "c018-ownership-reconciliation.v1.json",
+    "sha256": "af2144473a7aaae15c19c6d63e86bbb148df471187b7381a538a01a8566dc39c"
+  },
+  "c018_pbft_vectors": {
+    "path": "c018-pbft-vectors.v1.json",
+    "sha256": "e5e571fceb62d86442cdf7748f8f42f21a016997794b0ac02865b2ff05ed79b3"
+  },
   "dr004_extension_fixtures": "dr004-extension-fixtures.v1.json",
   "fixture_schema": "schemas/fixture-v1.schema.json",
   "fixtures": [
@@ -198,5 +214,25 @@
   "c017_cases_lifecycle": {
     "path": "c017-cases-lifecycle.v1.json",
     "sha256": "64c405f8ffb8abb6117b7269f86c5fd4b133a68e4071023fdef0bbbe26d3109b"
+  },
+  "c018_cases": {
+    "path": "c018-cases.v1.json",
+    "sha256": "cbfd9b4ef553a61be30a2db44077e3c6e69fed3c0cafc3435d9d9108497cb716"
+  },
+  "c018_cases_pbft": {
+    "path": "c018-cases-pbft.v1.json",
+    "sha256": "094179f1f9bd0e94231e63e39a2beeb40cafa9538bdad78a305e0979491654a2"
+  },
+  "c018_cases_persistence": {
+    "path": "c018-cases-persistence.v1.json",
+    "sha256": "97bd1536a7ea001e5e8177005be2ca605eeb5dfc4d397f7b454a189b4ab05a82"
+  },
+  "c018_cases_backup_wire": {
+    "path": "c018-cases-backup-wire.v1.json",
+    "sha256": "0c8e4f946d906fa657a75f47d1648d9f90be24c9f614ba669475ed7c60ab363b"
+  },
+  "c018_cases_backup_election": {
+    "path": "c018-cases-backup-election.v1.json",
+    "sha256": "17931ef6186057b1090e0f411f872ed5fa802fd99d2bb278129320a4b02336b7"
   }
 }

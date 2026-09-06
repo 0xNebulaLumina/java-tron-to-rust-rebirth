@@ -1,0 +1,41 @@
+{
+  "schema": "c018-pbft-vectors.v1",
+  "scope": ["C018.01", "C018.02", "C018.03"],
+  "java_sources": [
+    {"path":"java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftMessage.java","sha256":"1c8eb372a178dcbb2557ce00fc427a4c4474582e17a63b3dc1d13473d7ea13b1"},
+    {"path":"java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java","sha256":"74408086932db52a335bb752a6128248035c9073a9870dd6e52ab5d14b6d73eb"},
+    {"path":"java-tron/consensus/src/main/java/org/tron/consensus/pbft/PbftMessageHandle.java","sha256":"1b10cdc1d647bedd4692e0b2b521bf18319a8370433b13e3bc57ba769896c3d8"},
+    {"path":"java-tron/consensus/src/main/java/org/tron/consensus/pbft/PbftMessageAction.java","sha256":"1793956443d4226caadbdce424a36e5dbc6b1d1a8f7c466ad58f3758fe760d64"},
+    {"path":"java-tron/chainbase/src/main/java/org/tron/core/db/PbftSignDataStore.java","sha256":"81d831c5de5922db59dde594369e672fe43c138597fcd3b0cbd61b068a80a0f2"}
+  ],
+  "vectors": [
+    {
+      "id": "C018.PBFT.BLOCK.UNSIGNED",
+      "private_key_hex": null,
+      "input": {"msg_type":"PREPREPARE","data_type":"BLOCK","view_n":7,"epoch":42,"data_hex":"626c6f636b2d6964"},
+      "raw_hex": "08021807202a2a08626c6f636b2d6964",
+      "message_hex": "0a1008021807202a2a08626c6f636b2d6964"
+    },
+    {
+      "id": "C018.PBFT.BLOCK.SIGNED",
+      "private_key_hex": "0000000000000000000000000000000000000000000000000000000000000001",
+      "input": {"msg_type":"PREPREPARE","data_type":"BLOCK","view_n":7,"epoch":42,"data_hex":"626c6f636b2d6964"},
+      "sha256_raw_hex": "4f40c0a0cff993daad17d6bf2db7b1f3a42cd06367b7d98afe17df4c32249fc3",
+      "message_hex": "0a1008021807202a2a08626c6f636b2d696412419c55482de9d85dd9d562839b664f032fcf1b96ab3b8f4e5d263da340ce8edd5153002427fe312fc4a8d25529e8cda2a910ad12badb106e55ecc58b056f3e657500"
+    },
+    {
+      "id": "C018.PBFT.SRL.UNSIGNED",
+      "input": {"msg_type":"PREPREPARE","data_type":"SRL","view_n":99,"epoch":99,"addresses":["414141414141414141414141414141414141414141","424242424242424242424242424242424242424242"]},
+      "raw_hex": "08021001186320632a2e0a154141414141414141414141414141414141414141410a15424242424242424242424242424242424242424242"
+    }
+  ],
+  "contracts": {
+    "message": "PBFTMessage contains Raw and signature only; Raw contains msg_type, data_type, view_n, epoch, and data, with protobuf defaults omitted and no key field.",
+    "signature": "SHA-256 over exact Raw protobuf bytes, secp256k1 recoverable r||s||recovery_id signature, recovered TRON address must be in the epoch-selected witness list.",
+    "quorum": "Configured quorum defaults to 19 and clamps to 1..committee_size; commit occurs at quorum, not quorum-1, and remains true at quorum+1.",
+    "lifecycle": "PREPREPARE gates PREPARE; PREPARE quorum emits COMMIT; COMMIT quorum aggregates signatures. Votes deduplicate by recovered witness, expire under explicit bounds, and outbound messages are returned as forwarding effects.",
+    "persistence": "PBFTCommitResult is stored under ASCII BLOCK<number> or SRL<epoch>. LATEST_PBFT_BLOCK_NUM is an ASCII common-store key whose big-endian i64 value only advances monotonically.",
+    "sidecar": "PBFT produces forwarding and persistence effects only and has no DPoS scheduling, witness selection, fork-choice, or block-selection authority."
+  },
+  "rust_test": "cargo test -p tron-consensus --test c018_pbft"
+}

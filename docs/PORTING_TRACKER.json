@@ -2416,58 +2416,111 @@
     {
       "id": "C018",
       "title": "PBFT sidecar and backup election",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-09-06",
       "resume": null,
       "items": [
         {
           "id": "C018.01",
           "description": "PBFT raw/message signing, recovery, dedup, expiry, forwarding and action dispatch.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Exact protobuf raw/message bytes and deterministic recoverable secp256k1 signatures are pinned from Java; Rust validates witness membership, deduplicates recovered signers, expires bounded rounds, and returns forwarding/action effects."
         },
         {
           "id": "C018.02",
           "description": "Commit/SRL quorum validation and sign-data persistence/retrieval.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Quorum defaults/clamping and quorum-1/at/+1 boundaries are explicit; BLOCK/SRL commit bytes use Java ASCII keys and PBFTCommitResult encoding, with a monotonically advancing big-endian PBFT cursor."
         },
         {
           "id": "C018.03",
           "description": "Preserve PBFT as auxiliary sidecar, not block-selection consensus.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "The sidecar exposes forwarding, commit persistence, and cursor effects only. The combined scenario proves no schedule, fork-choice, witness-selection, or block-selection authority; C021 wire handling remains separate."
         },
         {
           "id": "C018.04",
           "description": "Backup UDP `0x05` envelope, allowlist, 3s keepalive, six-interval timeout.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Pinned Java bytes cover the 0x05 plus BackupMessage envelope and size boundary; injected and real localhost UDP proofs cover allowlisting, DNS membership, keepalive timing, strict six-interval timeout, socket lifecycle, and restart."
         },
         {
           "id": "C018.05",
           "description": "Priority then IP tie-break MASTER/SLAVER election and service lifecycle.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "INIT/MASTER/SLAVER transitions, Java's SLAVER spelling, priority and textual-IP tie-breaks, timeout reset, cancellation/join, and restartable service lifecycle are replayed exactly; the role remains a C019 consumer seam."
         },
         {
           "id": "C018.06",
           "description": "Extend consensus manifests with PBFT quorum\u22121/at/+1, expiry, dedup, invalid signatures, backup election and timeout scenarios.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Four authenticated family manifests prove every retained row exactly once: PBFT 51, persistence/cursor 15, backup wire/DNS/lifecycle 60, backup election 10. Declarations use exact source-hash/type/constant assertions; methods invoke their Rust API with pinned Java capture input/output/error. Shared observations require an identical-observation digest. C019 owns role consumption and C021 authenticated transport/dispatch; neither takes canonical C018 evidence rows."
         }
       ],
       "gate": {
         "id": "C018.V",
-        "description": "Message/store/quorum/election/timeouts match Java, including real UDP behavior.",
-        "status": "unconfigured",
-        "commands": [],
+        "description": "Passed and cleanly reviewed: all 136 authenticated source-ledger rows execute exactly once through four row-specific suites. The gate compares every canonical source, line, symbol, ownership, Java expected output/error, and executable Rust ID-to-result field; generic seed/fanout evidence is forbidden. Focused runtime proof is PBFT 10 tests, backup 9 tests, and one combined scenario. C019 owns backup-role consumption and C021 owns authenticated transport/dispatch seams without taking C018 row ownership.",
+        "status": "passed",
+        "commands": [
+          {
+            "name": "pbft",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/consensus/c018_gate.py",
+              "metadata",
+              "oracle",
+              "pbft"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "cases",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/consensus/c018_gate.py",
+              "cases"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "backup",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/consensus/c018_gate.py",
+              "backup"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "scenario",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/consensus/c018_gate.py",
+              "scenario"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "all-targets",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/consensus/c018_gate.py",
+              "all-targets"
+            ],
+            "timeout_seconds": 600
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
+        "state": "approved",
+        "round": 1,
         "findings": []
       },
       "blocker": null

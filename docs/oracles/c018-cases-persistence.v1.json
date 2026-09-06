@@ -1,0 +1,547 @@
+{
+  "schema": "c018-cases-persistence.v1",
+  "family": "persistence",
+  "source": "c018-cases.v1.json",
+  "case_count": 15,
+  "included_assertion_families": [
+    "persistence",
+    "cursor"
+  ],
+  "excluded_owner_prefixes": [
+    "C019",
+    "C021"
+  ],
+  "cases": [
+    {
+      "case_id": "C018-P-0C93C9E576A2686F",
+      "stable_id": "PROD-0C93C9E576A2686F",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java:61::setData",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+        "java_line": 61,
+        "java_symbol": "setData",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "set-data:raw=01020304",
+      "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+      "java_line": 61,
+      "java_symbol": "setData",
+      "java_source_sha256": "74408086932db52a335bb752a6128248035c9073a9870dd6e52ab5d14b6d73eb",
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-0C93C9E576A2686F",
+      "java_fixture": {
+        "id": "JAVA-PROD-0C93C9E576A2686F",
+        "input": {
+          "operation": null,
+          "fixture": null
+        },
+        "output_or_error": "set-data:raw=01020304",
+        "observation_digest": "325ffae362ac4588e85e263f2b7afbea2972f05a80bbc9183f33c130ded6adbf"
+      },
+      "java_expected_digest": "0760b1422327ab4139bd45ae1709701236ff8ebead24fa755f6aeea23feca244",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "persistence"
+    },
+    {
+      "case_id": "C018-P-2112B1267A2C41E8",
+      "stable_id": "PROD-2112B1267A2C41E8",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java:66::setType",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+        "java_line": 66,
+        "java_symbol": "setType",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "set-type:key=SRL77",
+      "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+      "java_line": 66,
+      "java_symbol": "setType",
+      "java_source_sha256": "74408086932db52a335bb752a6128248035c9073a9870dd6e52ab5d14b6d73eb",
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-2112B1267A2C41E8",
+      "java_fixture": {
+        "id": "JAVA-PROD-2112B1267A2C41E8",
+        "input": {
+          "operation": null,
+          "fixture": null
+        },
+        "output_or_error": "set-type:key=SRL77",
+        "observation_digest": "f2d0a990ca8205463b2566dd16b5ae0983c381a3648f5d85857386d7f33b109f"
+      },
+      "java_expected_digest": "b6907652d5819c221fff7113e70f548947ac0a6a0f277a886227b040e354940a",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "persistence"
+    },
+    {
+      "case_id": "C018-P-D6F8EFBA4FC6BA86",
+      "stable_id": "PROD-D6F8EFBA4FC6BA86",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java:75::getKey",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+        "java_line": 75,
+        "java_symbol": "getKey",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "get-key:41_0_417e5f4552091a69125d5dfcb7b8c2659029395bdf",
+      "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+      "java_line": 75,
+      "java_symbol": "getKey",
+      "java_source_sha256": "74408086932db52a335bb752a6128248035c9073a9870dd6e52ab5d14b6d73eb",
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-D6F8EFBA4FC6BA86",
+      "java_fixture": {
+        "id": "JAVA-PROD-D6F8EFBA4FC6BA86",
+        "input": {
+          "operation": null,
+          "fixture": null
+        },
+        "output_or_error": "get-key:41_0_417e5f4552091a69125d5dfcb7b8c2659029395bdf",
+        "observation_digest": "8c5347f66ba48c7b1db41390caa17873c90314e39ff9cace0283805e775a5441"
+      },
+      "java_expected_digest": "bb3d0ec1d6e69b9df44a68da3502bf029cd9a5142f3df170b4067fe2db1876b3",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "persistence"
+    },
+    {
+      "case_id": "C018-P-ECFE6E660AD54AC9",
+      "stable_id": "PROD-ECFE6E660AD54AC9",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java:79::getDataKey",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+        "java_line": 79,
+        "java_symbol": "getDataKey",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "get-data-key:41_0_abcd",
+      "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+      "java_line": 79,
+      "java_symbol": "getDataKey",
+      "java_source_sha256": "74408086932db52a335bb752a6128248035c9073a9870dd6e52ab5d14b6d73eb",
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-ECFE6E660AD54AC9",
+      "java_fixture": {
+        "id": "JAVA-PROD-ECFE6E660AD54AC9",
+        "input": {
+          "operation": null,
+          "fixture": null
+        },
+        "output_or_error": "get-data-key:41_0_abcd",
+        "observation_digest": "6ea5f6ebb59220cfc57324502fa8f9ebcdc6f0623e56333ea0097ee713cab089"
+      },
+      "java_expected_digest": "cae2357c7f5b215fa6eeb844146bcb0955d80c0b0f8be913dabffe128a6c21a5",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "persistence"
+    },
+    {
+      "case_id": "C018-P-1FC905C7AA030100",
+      "stable_id": "PROD-1FC905C7AA030100",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java:83::getNumber",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+        "java_line": 83,
+        "java_symbol": "getNumber",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "get-number:41",
+      "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+      "java_line": 83,
+      "java_symbol": "getNumber",
+      "java_source_sha256": "74408086932db52a335bb752a6128248035c9073a9870dd6e52ab5d14b6d73eb",
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-1FC905C7AA030100",
+      "java_fixture": {
+        "id": "JAVA-PROD-1FC905C7AA030100",
+        "input": {
+          "operation": null,
+          "fixture": null
+        },
+        "output_or_error": "get-number:41",
+        "observation_digest": "16b0ffe6ba034892ae9fe72862a61299662fcd07b27bb6c762518b55d6ecbaf4"
+      },
+      "java_expected_digest": "16b7514d22554cc975d7a2632de0da0dc8fa85d7dc12cbeff9f2532502f34632",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "persistence"
+    },
+    {
+      "case_id": "C018-P-ADE15537EFAFF18C",
+      "stable_id": "PROD-ADE15537EFAFF18C",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java:87::getEpoch",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+        "java_line": 87,
+        "java_symbol": "getEpoch",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "get-epoch:77",
+      "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+      "java_line": 87,
+      "java_symbol": "getEpoch",
+      "java_source_sha256": "74408086932db52a335bb752a6128248035c9073a9870dd6e52ab5d14b6d73eb",
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-ADE15537EFAFF18C",
+      "java_fixture": {
+        "id": "JAVA-PROD-ADE15537EFAFF18C",
+        "input": {
+          "operation": null,
+          "fixture": null
+        },
+        "output_or_error": "get-epoch:77",
+        "observation_digest": "c013c0c5a6f4f23c4bb7eb0e9b5c6f34f35f57cc2d396724918ba22dc221774f"
+      },
+      "java_expected_digest": "ba5d7b330a88fa44a7ba0c85997b85e0b23139cafa3be6f87e38dd65280bbe90",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "persistence"
+    },
+    {
+      "case_id": "C018-P-E94F256CD64F6EE1",
+      "stable_id": "PROD-E94F256CD64F6EE1",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java:91::getDataType",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+        "java_line": 91,
+        "java_symbol": "getDataType",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "get-data-type:Block",
+      "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+      "java_line": 91,
+      "java_symbol": "getDataType",
+      "java_source_sha256": "74408086932db52a335bb752a6128248035c9073a9870dd6e52ab5d14b6d73eb",
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-E94F256CD64F6EE1",
+      "java_fixture": {
+        "id": "JAVA-PROD-E94F256CD64F6EE1",
+        "input": {
+          "operation": null,
+          "fixture": null
+        },
+        "output_or_error": "get-data-type:Block",
+        "observation_digest": "024c7ae7a4a26c5722ac8d1d6c0aeee0aedd4079244f024e46c2c97423e1b227"
+      },
+      "java_expected_digest": "c10fff89a7eafd5010a60025a53db9ebc5fada945464ee54cfa955eebb3e93b1",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "persistence"
+    },
+    {
+      "case_id": "C018-P-9947E90DEFD37032",
+      "stable_id": "PROD-9947E90DEFD37032",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java:95::getNo",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+        "java_line": 95,
+        "java_symbol": "getNo",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "base-no:41_0",
+      "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+      "java_line": 95,
+      "java_symbol": "getNo",
+      "java_source_sha256": "74408086932db52a335bb752a6128248035c9073a9870dd6e52ab5d14b6d73eb",
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-9947E90DEFD37032",
+      "java_fixture": {
+        "id": "JAVA-PROD-9947E90DEFD37032",
+        "input": {
+          "operation": null,
+          "fixture": null
+        },
+        "output_or_error": "base-no:41_0",
+        "observation_digest": "99ea08b241c6031db53f346ef4eea1a88434269e5d9359c26cf644516b02236a"
+      },
+      "java_expected_digest": "df83c8cf5ce54fe07fd2d5b5c82e4ac01d27e0430d527bba408454d03e4b3abb",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "cursor"
+    },
+    {
+      "case_id": "C018-P-A7D50D9B1ABE253C",
+      "stable_id": "PROD-A7D50D9B1ABE253C",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java:104::toString",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+        "java_line": 104,
+        "java_symbol": "toString",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "to-string:type=Block,msg=Preprepare,view=41,epoch=77,data=abcd",
+      "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+      "java_line": 104,
+      "java_symbol": "toString",
+      "java_source_sha256": "74408086932db52a335bb752a6128248035c9073a9870dd6e52ab5d14b6d73eb",
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-A7D50D9B1ABE253C",
+      "java_fixture": {
+        "id": "JAVA-PROD-A7D50D9B1ABE253C",
+        "input": {
+          "operation": null,
+          "fixture": null
+        },
+        "output_or_error": "to-string:type=Block,msg=Preprepare,view=41,epoch=77,data=abcd",
+        "observation_digest": "108472e1f5f640cabe93622384019c762ee89fc1dd98e4d85054fc0362dffe70"
+      },
+      "java_expected_digest": "2527ab39cb3ff419bdba825a2119ceeea161ecf2a63a280f94c550767b9e7062",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "cursor"
+    },
+    {
+      "case_id": "C018-P-C8D77BAE711CE263",
+      "stable_id": "PROD-C8D77BAE711CE263",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java:114::getDataString",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+        "java_line": 114,
+        "java_symbol": "getDataString",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "data-string:srl-members=2",
+      "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftBaseMessage.java",
+      "java_line": 114,
+      "java_symbol": "getDataString",
+      "java_source_sha256": "74408086932db52a335bb752a6128248035c9073a9870dd6e52ab5d14b6d73eb",
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-C8D77BAE711CE263",
+      "java_fixture": {
+        "id": "JAVA-PROD-C8D77BAE711CE263",
+        "input": {
+          "operation": null,
+          "fixture": null
+        },
+        "output_or_error": "data-string:srl-members=2",
+        "observation_digest": "8d9ae4aea5698be8be44f7aff4252949c3d4fc75598bebe97f5038d6425bcab9"
+      },
+      "java_expected_digest": "d988f5f61df2b9eed6f9ed3e7a40e84d8c455a77e4adfd9e57e62034e52ebcc0",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "cursor"
+    },
+    {
+      "case_id": "C018-P-FD808B85A5DE3226",
+      "stable_id": "PROD-FD808B85A5DE3226",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftMessage.java:27::getNo",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftMessage.java",
+        "java_line": 27,
+        "java_symbol": "getNo",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "message-no:41_0",
+      "java_source": "java-tron/consensus/src/main/java/org/tron/consensus/pbft/message/PbftMessage.java",
+      "java_line": 27,
+      "java_symbol": "getNo",
+      "java_source_sha256": "1c8eb372a178dcbb2557ce00fc427a4c4474582e17a63b3dc1d13473d7ea13b1",
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-FD808B85A5DE3226",
+      "java_fixture": {
+        "id": "JAVA-PROD-FD808B85A5DE3226",
+        "input": {
+          "operation": null,
+          "fixture": null
+        },
+        "output_or_error": "message-no:41_0",
+        "observation_digest": "3964ab6d7e5a75b64b8290febca99b242a09d7a3462d4a6ea01fb8985e2e1d36"
+      },
+      "java_expected_digest": "8d36289b08bbf3a424465c1bd56c36fec701be9dd8379644d6af3d279e601cea",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "cursor"
+    },
+    {
+      "case_id": "C018-P-65B7EFA9EAAF09D6",
+      "stable_id": "PROD-65B7EFA9EAAF09D6",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java:1::java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java",
+        "java_line": 1,
+        "java_symbol": "java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "source:{\"declaration_kind\":\"source-file\",\"source_line_sha256\":\"6802f1cfae76fdb7873b43308cab04d42e325e3af566db3c9e08f171fedd24cd\",\"source_sha256\":\"f3247858d1303c76132ea6ab9ba53402c1c8c7c77d4c88fdbe0a8d09e63ab44d\",\"symbol\":\"java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java\"}",
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java",
+      "java_line": 1,
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java",
+      "java_source_sha256": "f3247858d1303c76132ea6ab9ba53402c1c8c7c77d4c88fdbe0a8d09e63ab44d",
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-65B7EFA9EAAF09D6",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "6802f1cfae76fdb7873b43308cab04d42e325e3af566db3c9e08f171fedd24cd",
+        "source_sha256": "f3247858d1303c76132ea6ab9ba53402c1c8c7c77d4c88fdbe0a8d09e63ab44d",
+        "symbol": "java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java"
+      },
+      "java_expected_digest": "5958f89bdd348f1a06aea1d82023ea976dc24f5434944612dd57f0d19e971937",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "persistence"
+    },
+    {
+      "case_id": "C018-P-A85722A38459C55C",
+      "stable_id": "PROD-A85722A38459C55C",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java:1::org.tron.core.consensus",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java",
+        "java_line": 1,
+        "java_symbol": "org.tron.core.consensus",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "source:{\"declaration_kind\":\"package\",\"source_line_sha256\":\"6802f1cfae76fdb7873b43308cab04d42e325e3af566db3c9e08f171fedd24cd\",\"source_sha256\":\"f3247858d1303c76132ea6ab9ba53402c1c8c7c77d4c88fdbe0a8d09e63ab44d\",\"symbol\":\"org.tron.core.consensus\"}",
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java",
+      "java_line": 1,
+      "java_symbol": "org.tron.core.consensus",
+      "java_source_sha256": "f3247858d1303c76132ea6ab9ba53402c1c8c7c77d4c88fdbe0a8d09e63ab44d",
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-A85722A38459C55C",
+      "source_assertion": {
+        "declaration_kind": "package",
+        "source_line_sha256": "6802f1cfae76fdb7873b43308cab04d42e325e3af566db3c9e08f171fedd24cd",
+        "source_sha256": "f3247858d1303c76132ea6ab9ba53402c1c8c7c77d4c88fdbe0a8d09e63ab44d",
+        "symbol": "org.tron.core.consensus"
+      },
+      "java_expected_digest": "b3757aba51b62454c21318648b6bf33404cef9320220cb023ac6d014b5ca7a3a",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "persistence"
+    },
+    {
+      "case_id": "C018-P-7444EE2E3517C0BB",
+      "stable_id": "PROD-7444EE2E3517C0BB",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java:17::PbftBaseImpl",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java",
+        "java_line": 17,
+        "java_symbol": "PbftBaseImpl",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "source:{\"declaration_kind\":\"class\",\"source_line_sha256\":\"d3e6eb10f2f1d2fd3d77787fbebb352cac21659773e2b7a8c70913f661ac0a58\",\"source_sha256\":\"f3247858d1303c76132ea6ab9ba53402c1c8c7c77d4c88fdbe0a8d09e63ab44d\",\"symbol\":\"PbftBaseImpl\"}",
+      "java_source": "java-tron/framework/src/main/java/org/tron/core/consensus/PbftBaseImpl.java",
+      "java_line": 17,
+      "java_symbol": "PbftBaseImpl",
+      "java_source_sha256": "f3247858d1303c76132ea6ab9ba53402c1c8c7c77d4c88fdbe0a8d09e63ab44d",
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-7444EE2E3517C0BB",
+      "source_assertion": {
+        "declaration_kind": "class",
+        "source_line_sha256": "d3e6eb10f2f1d2fd3d77787fbebb352cac21659773e2b7a8c70913f661ac0a58",
+        "source_sha256": "f3247858d1303c76132ea6ab9ba53402c1c8c7c77d4c88fdbe0a8d09e63ab44d",
+        "symbol": "PbftBaseImpl"
+      },
+      "java_expected_digest": "437868cdec45b2c7246d56e5255973025882a4002f7ae83387dad7708974483c",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "persistence"
+    },
+    {
+      "case_id": "C018-T-C343F01A5DD51501",
+      "stable_id": "TCASE-C343F01A5DD51501",
+      "suite": "c018_cases_persistence",
+      "evidence": "java-tron/framework/src/test/java/org/tron/core/pbft/PbftApiTest.java:46::pbftapi",
+      "disposition": "covered",
+      "parameters": {
+        "java_source": "java-tron/framework/src/test/java/org/tron/core/pbft/PbftApiTest.java",
+        "java_line": 46,
+        "java_symbol": "pbftapi",
+        "owning_item": "C018.06",
+        "acceptance_gate": "C018.V"
+      },
+      "expected_result": "api-pbft-view:block=6:signatures=2",
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/pbft/PbftApiTest.java",
+      "java_line": 46,
+      "java_symbol": "pbftapi",
+      "java_source_sha256": "6e9fa0f13faba0d19c556e93ff24ba8ae2aecce7127665395a002368bf77ccf2",
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-T-C343F01A5DD51501",
+      "java_fixture": {
+        "id": "JAVA-TCASE-C343F01A5DD51501",
+        "input": {
+          "operation": null,
+          "fixture": null
+        },
+        "output_or_error": "api-pbft-view:block=6:signatures=2",
+        "observation_digest": "b31c677b1f5094cd5d151c7b60c4884fd98645528c1544e07fab0e2adaa49882"
+      },
+      "java_expected_digest": "a6132a83d92145d2dbaf37670dd4c56367b506b8e4fe213ea93fb35f5f948cf9",
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-test",
+      "assertion_family": "persistence"
+    }
+  ]
+}

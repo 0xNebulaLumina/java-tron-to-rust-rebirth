@@ -95,6 +95,25 @@ and root processes that deliberately bypass the common advisory lock are outside
 exclusion does not permit pathname-based publication or weaken ownership, mode, no-follow, or
 inode-safe cleanup checks.
 
+## C018 authenticated backup datagram boundary
+
+The witness-backup `0x05 || BackupMessage` bytes remain Java-compatible application payload,
+but a source socket tuple is not an identity and grants no election authority. Production
+`BackupService` consumes only packet-level `AuthenticatedDatagram` values emitted by a secure
+transport adapter such as WireGuard/IPsec/DTLS or the future C020 P2P-bound receiver. The
+attestation binds the configured member identity, exact source port, monotonically increasing
+transport session, and sequence number to the individual payload. Identity/source mismatch,
+wrong port, missing attestation, duplicate or decreasing sequence, and stale session are rejected
+before protobuf decoding or liveness refresh. A newer session retires every older session for that
+identity. C020 owns the secure receiver and key/session lifecycle; it must preserve the enclosed
+payload bytes exactly rather than re-encode them.
+
+`SystemUdpSocket` is retained only as explicit Java wire-compatibility/test mode. Its packets are
+always `Unauthenticated`, its service is non-producing, it does not tick into `MASTER`, and no
+received tuple can alter witness role. C028 composition and deployment must require a configured
+secure transport adapter before enabling witness production and must not silently fall back to
+plain UDP.
+
 ## C009 revoking state and cursor boundary
 
 Speculative state is capability-scoped. `SessionManager::read_view` and

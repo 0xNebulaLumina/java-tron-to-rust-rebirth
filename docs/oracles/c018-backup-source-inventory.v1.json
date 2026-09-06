@@ -1,0 +1,20 @@
+{
+  "schema": "c018-backup-source-inventory.v1",
+  "java_revision": "160000 gitlink pinned by repository guard",
+  "sources": [
+    {"path":"framework/src/main/java/org/tron/common/backup/BackupManager.java","sha256":"15e46c4cd9a978696cbba870520d6b4ae214f69e68abedae09fa74e5107106fa"},
+    {"path":"framework/src/main/java/org/tron/common/backup/message/KeepAliveMessage.java","sha256":"12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f"},
+    {"path":"framework/src/main/java/org/tron/common/backup/message/Message.java","sha256":"54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095"},
+    {"path":"framework/src/main/java/org/tron/common/backup/message/UdpMessageTypeEnum.java","sha256":"b4dd86e35cb2dab36443564792b0b41a1dbbeda3477fa54d8a40fe2ff6e9b770"},
+    {"path":"framework/src/main/java/org/tron/common/backup/socket/BackupServer.java","sha256":"1153bf48423efecee0a3e1ad0b3c861ee6df7c287f4a81cd727d02d16632e778"},
+    {"path":"framework/src/main/java/org/tron/common/backup/socket/EventHandler.java","sha256":"8c20e4828a25424d7f08dd2b5f95945c15d3dd8d2390c5ce6fd80bf2bbef286e"},
+    {"path":"framework/src/main/java/org/tron/common/backup/socket/MessageHandler.java","sha256":"532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21"},
+    {"path":"framework/src/main/java/org/tron/common/backup/socket/PacketDecoder.java","sha256":"24cefc209588652150003207959c9fa0f6d8c20e20972df146f0b38dbd55e75d"},
+    {"path":"framework/src/main/java/org/tron/common/backup/socket/UdpEvent.java","sha256":"6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481"},
+    {"path":"framework/src/test/java/org/tron/common/backup/BackupManagerTest.java","sha256":"61c8f0542e937c6191f47d559382534d12314c56184a2b4cd0b28ffab665607e"},
+    {"path":"framework/src/test/java/org/tron/common/backup/BackupServerTest.java","sha256":"734a67ab5ba99ebb551aacaba25e1b5e1dc171a14964435d5180f85ec1ff9575"},
+    {"path":"framework/src/test/java/org/tron/common/backup/KeepAliveMessageTest.java","sha256":"fd39df4cb64c0a74eb13a9d66588963d1e37e4c4ff58f914a8125799b6219eed"},
+    {"path":"framework/src/test/java/org/tron/common/backup/UdpMessageTypeEnumTest.java","sha256":"914de296aa981925e5dc8abd48d75a67fc4c1ebb7897b0c1a151e1e9790e0fd8"},
+    {"path":"protocol/src/main/protos/core/Discover.proto","sha256":"87fd67a605956f8308fa88b3d97101d03ad55616b15a55b5f9253fe279205f78"}
+  ]
+}

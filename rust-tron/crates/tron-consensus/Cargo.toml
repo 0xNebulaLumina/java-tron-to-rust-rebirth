@@ -15,9 +15,9 @@ tron-execution = { path = "../tron-execution" }
 tron-primitives = { path = "../tron-primitives" }
 tron-protocol = { path = "../tron-protocol" }
 tron-state = { path = "../tron-state" }
+tron-storage = { path = "../tron-storage" }
 
 [dev-dependencies]
-tron-storage = { path = "../tron-storage" }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 

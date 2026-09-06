@@ -1,6 +1,8 @@
 //! Java-compatible DPoS scheduling, production guards, and maintenance transitions.
 
+pub mod backup;
 pub mod maintenance;
+pub mod pbft;
 pub mod proposal;
 pub mod rewards;
 pub mod solidity;

@@ -1,0 +1,2117 @@
+{
+  "schema": "c018-cases-backup-wire.v1",
+  "source_ledger": "docs/oracles/c018-cases.v1.json",
+  "source_inventory": "docs/oracles/c018-backup-source-inventory.v1.json",
+  "count": 60,
+  "family_counts": {
+    "backup-wire": 31,
+    "backup-dns": 23,
+    "backup-lifecycle": 6
+  },
+  "cases": [
+    {
+      "stable_id": "PROD-AD72EA51C90D57B5",
+      "case_id": "C018-P-AD72EA51C90D57B5",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/KeepAliveMessage.java",
+      "java_source_sha256": "12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/backup/message/KeepAliveMessage.java",
+      "java_expected_result": "source:{\"declaration_kind\":\"source-file\",\"source_line_sha256\":\"e7579f0086f3c6902c16de50aa0f892d4102c62e6863db36745495feca62bd66\",\"source_sha256\":\"12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f\",\"symbol\":\"java-tron/framework/src/main/java/org/tron/common/backup/message/KeepAliveMessage.java\"}",
+      "java_expected_digest": "9550bc0fd61e4e4c2d749514096906a87d5a77badb6ccb024afc734feea8c4e9",
+      "operation": {
+        "kind": "wire",
+        "flag": false,
+        "priority": 6,
+        "hex": "051006"
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-AD72EA51C90D57B5",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "e7579f0086f3c6902c16de50aa0f892d4102c62e6863db36745495feca62bd66",
+        "source_sha256": "12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f",
+        "symbol": "java-tron/framework/src/main/java/org/tron/common/backup/message/KeepAliveMessage.java"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-E7B5EE6265FBAC0A",
+      "case_id": "C018-P-E7B5EE6265FBAC0A",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/KeepAliveMessage.java",
+      "java_source_sha256": "12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f",
+      "java_symbol": "org.tron.common.backup.message",
+      "java_expected_result": "source:{\"declaration_kind\":\"package\",\"source_line_sha256\":\"e7579f0086f3c6902c16de50aa0f892d4102c62e6863db36745495feca62bd66\",\"source_sha256\":\"12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f\",\"symbol\":\"org.tron.common.backup.message\"}",
+      "java_expected_digest": "a62e77cc2db08dc9d71d2e0cdbdd56da6352ec7fa8a318e53e83364587706dd4",
+      "operation": {
+        "kind": "wire",
+        "flag": true,
+        "priority": 7,
+        "hex": "0508011007"
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-E7B5EE6265FBAC0A",
+      "source_assertion": {
+        "declaration_kind": "package",
+        "source_line_sha256": "e7579f0086f3c6902c16de50aa0f892d4102c62e6863db36745495feca62bd66",
+        "source_sha256": "12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f",
+        "symbol": "org.tron.common.backup.message"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-C6BB43A2B1D519FC",
+      "case_id": "C018-P-C6BB43A2B1D519FC",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/KeepAliveMessage.java",
+      "java_source_sha256": "12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f",
+      "java_symbol": "KeepAliveMessage",
+      "java_expected_result": "source:{\"declaration_kind\":\"class\",\"source_line_sha256\":\"57aaf676172e4b61a321ce80347899c9a96ddba20a28716d930ce5101cf87de3\",\"source_sha256\":\"12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f\",\"symbol\":\"KeepAliveMessage\"}",
+      "java_expected_digest": "bbe6ca4cae3fa56d57d8e234601ceba62b8badd79760eebaab923829aa11720c",
+      "operation": {
+        "kind": "wire",
+        "flag": false,
+        "priority": 8,
+        "hex": "051008"
+      },
+      "java_line": 8,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-C6BB43A2B1D519FC",
+      "source_assertion": {
+        "declaration_kind": "class",
+        "source_line_sha256": "57aaf676172e4b61a321ce80347899c9a96ddba20a28716d930ce5101cf87de3",
+        "source_sha256": "12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f",
+        "symbol": "KeepAliveMessage"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-FF53C817D49BCB99",
+      "case_id": "C018-P-FF53C817D49BCB99",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/KeepAliveMessage.java",
+      "java_source_sha256": "12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f",
+      "java_symbol": "getFlag",
+      "java_expected_result": "op=wire;hex=0508011009;decoded_flag=true;decoded_priority=9",
+      "java_expected_digest": "24a95c34c9b7eac1ecb75c39dfd0e92fb1a397e04a8549a6b01e0a545fbb9fa4",
+      "operation": {
+        "kind": "wire",
+        "flag": true,
+        "priority": 9,
+        "hex": "0508011009"
+      },
+      "java_line": 23,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-FF53C817D49BCB99",
+      "java_fixture": {
+        "id": "JAVA-PROD-FF53C817D49BCB99",
+        "input": {
+          "kind": "wire",
+          "flag": true,
+          "priority": 9,
+          "hex": "0508011009"
+        },
+        "output_or_error": "op=wire;hex=0508011009;decoded_flag=true;decoded_priority=9",
+        "observation_digest": "dff393ce5e79cc0eb5bd2f7926fcf481a9ce0111ff44efc46d87427a44beffe4"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-2B185CFF4C5D30A0",
+      "case_id": "C018-P-2B185CFF4C5D30A0",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/KeepAliveMessage.java",
+      "java_source_sha256": "12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f",
+      "java_symbol": "getPriority",
+      "java_expected_result": "op=wire;hex=05100a;decoded_flag=false;decoded_priority=10",
+      "java_expected_digest": "1b436b3e2444046238cac953009361b5db814e14c917459312da1f86a89776d9",
+      "operation": {
+        "kind": "wire",
+        "flag": false,
+        "priority": 10,
+        "hex": "05100a"
+      },
+      "java_line": 27,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-2B185CFF4C5D30A0",
+      "java_fixture": {
+        "id": "JAVA-PROD-2B185CFF4C5D30A0",
+        "input": {
+          "kind": "wire",
+          "flag": false,
+          "priority": 10,
+          "hex": "05100a"
+        },
+        "output_or_error": "op=wire;hex=05100a;decoded_flag=false;decoded_priority=10",
+        "observation_digest": "eb6b6f7a2eb91ee30c8e64dfde1011ac2f1345aed6110bb0625a192548be46be"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-1049F7C404510B8A",
+      "case_id": "C018-P-1049F7C404510B8A",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/KeepAliveMessage.java",
+      "java_source_sha256": "12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f",
+      "java_symbol": "getTimestamp",
+      "java_expected_result": "op=timestamp;at=SLAVER;after=INIT",
+      "java_expected_digest": "c8ccaab22233752fa941b860b0e0bcd6aedf1be535434a58fdee8798224d204c",
+      "operation": {
+        "kind": "timestamp",
+        "received_ms": 105,
+        "timeout_ms": 600,
+        "at_timeout_status": "SLAVER",
+        "after_timeout_status": "INIT"
+      },
+      "java_line": 32,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-1049F7C404510B8A",
+      "java_fixture": {
+        "id": "JAVA-PROD-1049F7C404510B8A",
+        "input": {
+          "kind": "timestamp",
+          "received_ms": 105,
+          "timeout_ms": 600,
+          "at_timeout_status": "SLAVER",
+          "after_timeout_status": "INIT"
+        },
+        "output_or_error": "op=timestamp;at=SLAVER;after=INIT",
+        "observation_digest": "1e232d88d3c07cee9bb06cf8f8663384b3a64249f876a80cb32a3e22146922dc"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-A567FA0D0486693B",
+      "case_id": "C018-P-A567FA0D0486693B",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/KeepAliveMessage.java",
+      "java_source_sha256": "12c64f7c86473e0b35d293c2aceb80c85e5771d19f17d63b9cd162de67d3888f",
+      "java_symbol": "getFrom",
+      "java_expected_result": "op=sender;status=SLAVER",
+      "java_expected_digest": "b9597176c4c70f4ce5b25ae10b6c86c46081b66de3599cc1a4ab03806793c9e7",
+      "operation": {
+        "kind": "sender",
+        "local": "10.0.0.1",
+        "sender": "10.0.0.2",
+        "priority": 12,
+        "expected_status": "SLAVER"
+      },
+      "java_line": 37,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-A567FA0D0486693B",
+      "java_fixture": {
+        "id": "JAVA-PROD-A567FA0D0486693B",
+        "input": {
+          "kind": "sender",
+          "local": "10.0.0.1",
+          "sender": "10.0.0.2",
+          "priority": 12,
+          "expected_status": "SLAVER"
+        },
+        "output_or_error": "op=sender;status=SLAVER",
+        "observation_digest": "3fa79d8462a0d9c2af268e4d4b94793b0fbfeb16f472f8f2e835611def6b0b7f"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-236A7A5587557651",
+      "case_id": "C018-P-236A7A5587557651",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_expected_result": "source:{\"declaration_kind\":\"source-file\",\"source_line_sha256\":\"e7579f0086f3c6902c16de50aa0f892d4102c62e6863db36745495feca62bd66\",\"source_sha256\":\"54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095\",\"symbol\":\"java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java\"}",
+      "java_expected_digest": "cfd159224990a13ca6a8317ff0f60186c41d8d3efd8ef24857230f2fda0312fa",
+      "operation": {
+        "kind": "wire",
+        "flag": true,
+        "priority": 13,
+        "hex": "050801100d"
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-236A7A5587557651",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "e7579f0086f3c6902c16de50aa0f892d4102c62e6863db36745495feca62bd66",
+        "source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+        "symbol": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-FB9C01DCFD7E614C",
+      "case_id": "C018-P-FB9C01DCFD7E614C",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "org.tron.common.backup.message",
+      "java_expected_result": "source:{\"declaration_kind\":\"package\",\"source_line_sha256\":\"e7579f0086f3c6902c16de50aa0f892d4102c62e6863db36745495feca62bd66\",\"source_sha256\":\"54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095\",\"symbol\":\"org.tron.common.backup.message\"}",
+      "java_expected_digest": "5bd267f4e4f54202ec942b0e7cff38ec0d74b38cf5ebcdf44c209b6e85a8e0bf",
+      "operation": {
+        "kind": "wire",
+        "flag": false,
+        "priority": 14,
+        "hex": "05100e"
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-FB9C01DCFD7E614C",
+      "source_assertion": {
+        "declaration_kind": "package",
+        "source_line_sha256": "e7579f0086f3c6902c16de50aa0f892d4102c62e6863db36745495feca62bd66",
+        "source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+        "symbol": "org.tron.common.backup.message"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-1A92B810CD543C87",
+      "case_id": "C018-P-1A92B810CD543C87",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "Message",
+      "java_expected_result": "source:{\"declaration_kind\":\"class\",\"source_line_sha256\":\"f265dbc76b68995a45f5c489136dcb0bdee4ed04b89a7fe37994ad62530595c0\",\"source_sha256\":\"54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095\",\"symbol\":\"Message\"}",
+      "java_expected_digest": "bf03b6b89e2f837d96899b8840c922bcc50e673e2f091a143891d1f26d360e43",
+      "operation": {
+        "kind": "wire",
+        "flag": true,
+        "priority": 15,
+        "hex": "050801100f"
+      },
+      "java_line": 11,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-1A92B810CD543C87",
+      "source_assertion": {
+        "declaration_kind": "class",
+        "source_line_sha256": "f265dbc76b68995a45f5c489136dcb0bdee4ed04b89a7fe37994ad62530595c0",
+        "source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+        "symbol": "Message"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-8225BE6CA53A991C",
+      "case_id": "C018-P-8225BE6CA53A991C",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "getNode",
+      "java_expected_result": "op=wire;hex=051010;decoded_flag=false;decoded_priority=16",
+      "java_expected_digest": "2717695dcea3d46cf6f2dd89690ee7ee0387d21a2a089989b6c48037cc67031d",
+      "operation": {
+        "kind": "wire",
+        "flag": false,
+        "priority": 16,
+        "hex": "051010"
+      },
+      "java_line": 21,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-8225BE6CA53A991C",
+      "java_fixture": {
+        "id": "JAVA-PROD-8225BE6CA53A991C",
+        "input": {
+          "kind": "wire",
+          "flag": false,
+          "priority": 16,
+          "hex": "051010"
+        },
+        "output_or_error": "op=wire;hex=051010;decoded_flag=false;decoded_priority=16",
+        "observation_digest": "c24b302f939993cb03cf0f4f5e0187c9a7cd4b806b5d933bd865394169fe6220"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-AF310810990754CB",
+      "case_id": "C018-P-AF310810990754CB",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "getType",
+      "java_expected_result": "op=wire;hex=0508011011;decoded_flag=true;decoded_priority=17",
+      "java_expected_digest": "52aa19fc72d85d82b47ab7251348651e099e6113402d10c6ba60b1406a5edc4e",
+      "operation": {
+        "kind": "wire",
+        "flag": true,
+        "priority": 17,
+        "hex": "0508011011"
+      },
+      "java_line": 39,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-AF310810990754CB",
+      "java_fixture": {
+        "id": "JAVA-PROD-AF310810990754CB",
+        "input": {
+          "kind": "wire",
+          "flag": true,
+          "priority": 17,
+          "hex": "0508011011"
+        },
+        "output_or_error": "op=wire;hex=0508011011;decoded_flag=true;decoded_priority=17",
+        "observation_digest": "5e020c820191977c03da08d9b0239210ade572dfb3482789747e48dfb0b385ef"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-CB1168A8EE7781B5",
+      "case_id": "C018-P-CB1168A8EE7781B5",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "getData",
+      "java_expected_result": "op=wire;hex=051012;decoded_flag=false;decoded_priority=18",
+      "java_expected_digest": "534d5c3a0b49266af013b4c462f4ca64ab33c2f6e4525eaf187a7f300c09b3f5",
+      "operation": {
+        "kind": "wire",
+        "flag": false,
+        "priority": 18,
+        "hex": "051012"
+      },
+      "java_line": 43,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-CB1168A8EE7781B5",
+      "java_fixture": {
+        "id": "JAVA-PROD-CB1168A8EE7781B5",
+        "input": {
+          "kind": "wire",
+          "flag": false,
+          "priority": 18,
+          "hex": "051012"
+        },
+        "output_or_error": "op=wire;hex=051012;decoded_flag=false;decoded_priority=18",
+        "observation_digest": "d628f1ad47004852b189be322468c01e548b47433a027b8e694fdeac121b11b8"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-DEA71314F017E591",
+      "case_id": "C018-P-DEA71314F017E591",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "getSendData",
+      "java_expected_result": "op=wire;hex=0508011013;decoded_flag=true;decoded_priority=19",
+      "java_expected_digest": "5876bb1c61517be107828df91360d136027752ff4897d78c3b8317a5e6210d4a",
+      "operation": {
+        "kind": "wire",
+        "flag": true,
+        "priority": 19,
+        "hex": "0508011013"
+      },
+      "java_line": 47,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-DEA71314F017E591",
+      "java_fixture": {
+        "id": "JAVA-PROD-DEA71314F017E591",
+        "input": {
+          "kind": "wire",
+          "flag": true,
+          "priority": 19,
+          "hex": "0508011013"
+        },
+        "output_or_error": "op=wire;hex=0508011013;decoded_flag=true;decoded_priority=19",
+        "observation_digest": "1b56a54dfb98b62763b509fc18bd0ac6e86b8631d7a90ae2f5a21a2e74c0153e"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-665B16E1429A9BF4",
+      "case_id": "C018-P-665B16E1429A9BF4",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "getMessageId",
+      "java_expected_result": "op=wire;hex=0508011014;decoded_flag=true;decoded_priority=20",
+      "java_expected_digest": "900eee919ac85fb0ad181409dfc271cd1d3258f3e18ac9e69e5bfb6afcf238fa",
+      "operation": {
+        "kind": "wire",
+        "flag": true,
+        "priority": 20,
+        "hex": "0508011014"
+      },
+      "java_line": 51,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-665B16E1429A9BF4",
+      "java_fixture": {
+        "id": "JAVA-PROD-665B16E1429A9BF4",
+        "input": {
+          "kind": "wire",
+          "flag": true,
+          "priority": 20,
+          "hex": "0508011014"
+        },
+        "output_or_error": "op=wire;hex=0508011014;decoded_flag=true;decoded_priority=20",
+        "observation_digest": "d059506e2787cc067317dd24774dcb6f2ed2ece65b91264dcba553d259b08abc"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-A35E70727616EB6E",
+      "case_id": "C018-P-A35E70727616EB6E",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "getFrom",
+      "java_expected_result": "op=sender;status=SLAVER",
+      "java_expected_digest": "b9597176c4c70f4ce5b25ae10b6c86c46081b66de3599cc1a4ab03806793c9e7",
+      "operation": {
+        "kind": "sender",
+        "local": "10.0.0.1",
+        "sender": "10.0.0.2",
+        "priority": 21,
+        "expected_status": "SLAVER"
+      },
+      "java_line": 55,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-A35E70727616EB6E",
+      "java_fixture": {
+        "id": "JAVA-PROD-A35E70727616EB6E",
+        "input": {
+          "kind": "sender",
+          "local": "10.0.0.1",
+          "sender": "10.0.0.2",
+          "priority": 21,
+          "expected_status": "SLAVER"
+        },
+        "output_or_error": "op=sender;status=SLAVER",
+        "observation_digest": "3dac4f50d82b24dce6a364f562745e06fb7046a49a6c6b504438e00947427177"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-B96D6530F167158F",
+      "case_id": "C018-P-B96D6530F167158F",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "getTimestamp",
+      "java_expected_result": "op=timestamp;at=SLAVER;after=INIT",
+      "java_expected_digest": "c8ccaab22233752fa941b860b0e0bcd6aedf1be535434a58fdee8798224d204c",
+      "operation": {
+        "kind": "timestamp",
+        "received_ms": 116,
+        "timeout_ms": 600,
+        "at_timeout_status": "SLAVER",
+        "after_timeout_status": "INIT"
+      },
+      "java_line": 57,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-B96D6530F167158F",
+      "java_fixture": {
+        "id": "JAVA-PROD-B96D6530F167158F",
+        "input": {
+          "kind": "timestamp",
+          "received_ms": 116,
+          "timeout_ms": 600,
+          "at_timeout_status": "SLAVER",
+          "after_timeout_status": "INIT"
+        },
+        "output_or_error": "op=timestamp;at=SLAVER;after=INIT",
+        "observation_digest": "df27adb823672505a00c4bd418d84730d852d01e10bee46fc7e5f250966e1880"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-1C38E06781D5A029",
+      "case_id": "C018-P-1C38E06781D5A029",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "toString",
+      "java_expected_result": "op=debug;contains=priority: 23,flag: true",
+      "java_expected_digest": "38b330503eb0c4640e858ce20e6c8fa7f52498a7d52790d391c27022ae59958c",
+      "operation": {
+        "kind": "debug",
+        "flag": true,
+        "priority": 23,
+        "contains": [
+          "priority: 23",
+          "flag: true"
+        ]
+      },
+      "java_line": 60,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-1C38E06781D5A029",
+      "java_fixture": {
+        "id": "JAVA-PROD-1C38E06781D5A029",
+        "input": {
+          "kind": "debug",
+          "flag": true,
+          "priority": 23,
+          "contains": [
+            "priority: 23",
+            "flag: true"
+          ]
+        },
+        "output_or_error": "op=debug;contains=priority: 23,flag: true",
+        "observation_digest": "8a6e7521ca6164026404ef4506dda798a62edc4d8a8df3ed4d56606cc6c9dc8a"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-B0D18CE0175089D1",
+      "case_id": "C018-P-B0D18CE0175089D1",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "equals",
+      "java_expected_result": "op=equality;equal=true",
+      "java_expected_digest": "be216341c8382a51f7cea6f29ceaf123e6af1c535147aa96bd5ac0bdaa036fb1",
+      "operation": {
+        "kind": "equality",
+        "left": {
+          "flag": true,
+          "priority": 24
+        },
+        "right": {
+          "flag": true,
+          "priority": 24
+        },
+        "equal": true
+      },
+      "java_line": 65,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-B0D18CE0175089D1",
+      "java_fixture": {
+        "id": "JAVA-PROD-B0D18CE0175089D1",
+        "input": {
+          "kind": "equality",
+          "left": {
+            "flag": true,
+            "priority": 24
+          },
+          "right": {
+            "flag": true,
+            "priority": 24
+          },
+          "equal": true
+        },
+        "output_or_error": "op=equality;equal=true",
+        "observation_digest": "e49d46f739a68b11d14924e8c5801c7b1821c64fcd8f38207144c09cf2feb953"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-58E45DDDF9399210",
+      "case_id": "C018-P-58E45DDDF9399210",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/Message.java",
+      "java_source_sha256": "54f52bab14ed6f4461afafb1d17fb877c9aa0f6984a99f865be5572aaf431095",
+      "java_symbol": "hashCode",
+      "java_expected_result": "op=equality;equal=false",
+      "java_expected_digest": "355f673312f4b5c2474f4f4e5f48efdd6bae7cde55ee980aff15ab8d284896a5",
+      "operation": {
+        "kind": "equality",
+        "left": {
+          "flag": false,
+          "priority": 25
+        },
+        "right": {
+          "flag": false,
+          "priority": 26
+        },
+        "equal": false
+      },
+      "java_line": 70,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-58E45DDDF9399210",
+      "java_fixture": {
+        "id": "JAVA-PROD-58E45DDDF9399210",
+        "input": {
+          "kind": "equality",
+          "left": {
+            "flag": false,
+            "priority": 25
+          },
+          "right": {
+            "flag": false,
+            "priority": 26
+          },
+          "equal": false
+        },
+        "output_or_error": "op=equality;equal=false",
+        "observation_digest": "178a14c340fda4d276d47bd86b7a8180a50cc6ae1951cdd5215f477a38dc32f1"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-9B34AB2B19B1863B",
+      "case_id": "C018-P-9B34AB2B19B1863B",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/UdpMessageTypeEnum.java",
+      "java_source_sha256": "b4dd86e35cb2dab36443564792b0b41a1dbbeda3477fa54d8a40fe2ff6e9b770",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/backup/message/UdpMessageTypeEnum.java",
+      "java_expected_result": "source:{\"declaration_kind\":\"source-file\",\"source_line_sha256\":\"e7579f0086f3c6902c16de50aa0f892d4102c62e6863db36745495feca62bd66\",\"source_sha256\":\"b4dd86e35cb2dab36443564792b0b41a1dbbeda3477fa54d8a40fe2ff6e9b770\",\"symbol\":\"java-tron/framework/src/main/java/org/tron/common/backup/message/UdpMessageTypeEnum.java\"}",
+      "java_expected_digest": "4a069a9067d1fdfa2681634c010057e2692b71c3a9315f1463ce93a6b6720165",
+      "operation": {
+        "kind": "udp_type",
+        "input": 5,
+        "expected": 5
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-9B34AB2B19B1863B",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "e7579f0086f3c6902c16de50aa0f892d4102c62e6863db36745495feca62bd66",
+        "source_sha256": "b4dd86e35cb2dab36443564792b0b41a1dbbeda3477fa54d8a40fe2ff6e9b770",
+        "symbol": "java-tron/framework/src/main/java/org/tron/common/backup/message/UdpMessageTypeEnum.java"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-DF545F84A9B6AC16",
+      "case_id": "C018-P-DF545F84A9B6AC16",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/UdpMessageTypeEnum.java",
+      "java_source_sha256": "b4dd86e35cb2dab36443564792b0b41a1dbbeda3477fa54d8a40fe2ff6e9b770",
+      "java_symbol": "org.tron.common.backup.message",
+      "java_expected_result": "source:{\"declaration_kind\":\"package\",\"source_line_sha256\":\"e7579f0086f3c6902c16de50aa0f892d4102c62e6863db36745495feca62bd66\",\"source_sha256\":\"b4dd86e35cb2dab36443564792b0b41a1dbbeda3477fa54d8a40fe2ff6e9b770\",\"symbol\":\"org.tron.common.backup.message\"}",
+      "java_expected_digest": "75ef1de4678ce302e6113aebaaeba0d74b4cc9797bfe742aca2aded425b493de",
+      "operation": {
+        "kind": "udp_type",
+        "input": 5,
+        "expected": 5
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-DF545F84A9B6AC16",
+      "source_assertion": {
+        "declaration_kind": "package",
+        "source_line_sha256": "e7579f0086f3c6902c16de50aa0f892d4102c62e6863db36745495feca62bd66",
+        "source_sha256": "b4dd86e35cb2dab36443564792b0b41a1dbbeda3477fa54d8a40fe2ff6e9b770",
+        "symbol": "org.tron.common.backup.message"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-167708168191F688",
+      "case_id": "C018-P-167708168191F688",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/UdpMessageTypeEnum.java",
+      "java_source_sha256": "b4dd86e35cb2dab36443564792b0b41a1dbbeda3477fa54d8a40fe2ff6e9b770",
+      "java_symbol": "UdpMessageTypeEnum",
+      "java_expected_result": "source:{\"declaration_kind\":\"enum\",\"source_line_sha256\":\"a510f425778ed77983fe51136536306dfac267447dc9c805284e80fe05bf807f\",\"source_sha256\":\"b4dd86e35cb2dab36443564792b0b41a1dbbeda3477fa54d8a40fe2ff6e9b770\",\"symbol\":\"UdpMessageTypeEnum\"}",
+      "java_expected_digest": "4d234fce20d3bc2bfc8ceb340f7ed61ee45a79e2cf8b7c63ca90402fa722fa3b",
+      "operation": {
+        "kind": "udp_type",
+        "input": 5,
+        "expected": 5
+      },
+      "java_line": 6,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-167708168191F688",
+      "source_assertion": {
+        "declaration_kind": "enum",
+        "source_line_sha256": "a510f425778ed77983fe51136536306dfac267447dc9c805284e80fe05bf807f",
+        "source_sha256": "b4dd86e35cb2dab36443564792b0b41a1dbbeda3477fa54d8a40fe2ff6e9b770",
+        "symbol": "UdpMessageTypeEnum"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-AAA7D666A4EDE22F",
+      "case_id": "C018-P-AAA7D666A4EDE22F",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/UdpMessageTypeEnum.java",
+      "java_source_sha256": "b4dd86e35cb2dab36443564792b0b41a1dbbeda3477fa54d8a40fe2ff6e9b770",
+      "java_symbol": "fromByte",
+      "java_expected_result": "op=udp_type;type=4;accepted=false",
+      "java_expected_digest": "75dcb461a0b2274a8fe1b2bc1da8e0b89bf1a3b9b04609baa91cbe3a3f0f72c6",
+      "operation": {
+        "kind": "udp_type",
+        "input": 4,
+        "expected": null
+      },
+      "java_line": 26,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-AAA7D666A4EDE22F",
+      "java_fixture": {
+        "id": "JAVA-PROD-AAA7D666A4EDE22F",
+        "input": {
+          "kind": "udp_type",
+          "input": 4,
+          "expected": null
+        },
+        "output_or_error": "op=udp_type;type=4;accepted=false",
+        "observation_digest": "b353cbe6cdb1e27ea8d1d779576d698a70abad86b4d189c4d6bf9e52ce4d06ab"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-87680593E40DC86D",
+      "case_id": "C018-P-87680593E40DC86D",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/message/UdpMessageTypeEnum.java",
+      "java_source_sha256": "b4dd86e35cb2dab36443564792b0b41a1dbbeda3477fa54d8a40fe2ff6e9b770",
+      "java_symbol": "getType",
+      "java_expected_result": "op=udp_type;type=5;accepted=true",
+      "java_expected_digest": "cff20633e3f1b7104198a53011ee53f39de9017f0ac021fa0fb0b07574b56ffe",
+      "operation": {
+        "kind": "udp_type",
+        "input": 5,
+        "expected": 5
+      },
+      "java_line": 31,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-87680593E40DC86D",
+      "java_fixture": {
+        "id": "JAVA-PROD-87680593E40DC86D",
+        "input": {
+          "kind": "udp_type",
+          "input": 5,
+          "expected": 5
+        },
+        "output_or_error": "op=udp_type;type=5;accepted=true",
+        "observation_digest": "70d8517bed7424b6be2a46cffe47b4b66429dfa1c55681fd6b83ac1fcbb1542a"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-BBA4FE061C210AAE",
+      "case_id": "C018-P-BBA4FE061C210AAE",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/BackupServer.java",
+      "java_source_sha256": "1153bf48423efecee0a3e1ad0b3c861ee6df7c287f4a81cd727d02d16632e778",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/backup/socket/BackupServer.java",
+      "java_expected_result": "source:{\"declaration_kind\":\"source-file\",\"source_line_sha256\":\"0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224\",\"source_sha256\":\"1153bf48423efecee0a3e1ad0b3c861ee6df7c287f4a81cd727d02d16632e778\",\"symbol\":\"java-tron/framework/src/main/java/org/tron/common/backup/socket/BackupServer.java\"}",
+      "java_expected_digest": "bc98f1156f4f9592793c1c6348672d19e5ab4f5a85651198fce2cc42984cdae1",
+      "operation": {
+        "kind": "lifecycle",
+        "port": 19004,
+        "members": [
+          "192.0.2.24"
+        ],
+        "start": true,
+        "duplicate": false,
+        "restart": true
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-BBA4FE061C210AAE",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224",
+        "source_sha256": "1153bf48423efecee0a3e1ad0b3c861ee6df7c287f4a81cd727d02d16632e778",
+        "symbol": "java-tron/framework/src/main/java/org/tron/common/backup/socket/BackupServer.java"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-lifecycle"
+    },
+    {
+      "stable_id": "PROD-C6F5DAC873645023",
+      "case_id": "C018-P-C6F5DAC873645023",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/BackupServer.java",
+      "java_source_sha256": "1153bf48423efecee0a3e1ad0b3c861ee6df7c287f4a81cd727d02d16632e778",
+      "java_symbol": "org.tron.common.backup.socket",
+      "java_expected_result": "source:{\"declaration_kind\":\"package\",\"source_line_sha256\":\"0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224\",\"source_sha256\":\"1153bf48423efecee0a3e1ad0b3c861ee6df7c287f4a81cd727d02d16632e778\",\"symbol\":\"org.tron.common.backup.socket\"}",
+      "java_expected_digest": "f42fa331b948f9dc8e4c1c877d817a95853e6339492f405f7ef518af5fa42fd3",
+      "operation": {
+        "kind": "lifecycle",
+        "port": 19005,
+        "members": [
+          "192.0.2.25"
+        ],
+        "start": true,
+        "duplicate": false,
+        "restart": true
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-C6F5DAC873645023",
+      "source_assertion": {
+        "declaration_kind": "package",
+        "source_line_sha256": "0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224",
+        "source_sha256": "1153bf48423efecee0a3e1ad0b3c861ee6df7c287f4a81cd727d02d16632e778",
+        "symbol": "org.tron.common.backup.socket"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-lifecycle"
+    },
+    {
+      "stable_id": "PROD-FDA1DCEC576DD6F0",
+      "case_id": "C018-P-FDA1DCEC576DD6F0",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/BackupServer.java",
+      "java_source_sha256": "1153bf48423efecee0a3e1ad0b3c861ee6df7c287f4a81cd727d02d16632e778",
+      "java_symbol": "BackupServer",
+      "java_expected_result": "source:{\"declaration_kind\":\"class\",\"source_line_sha256\":\"f4457735b8636005760a04fbc743b2914202e0bf8273c0f2a6a2173266ea2eaa\",\"source_sha256\":\"1153bf48423efecee0a3e1ad0b3c861ee6df7c287f4a81cd727d02d16632e778\",\"symbol\":\"BackupServer\"}",
+      "java_expected_digest": "c27813da9a8d198814ed57846fdfdbb2e6e0657deb0df53efc9509cac19b380a",
+      "operation": {
+        "kind": "lifecycle",
+        "port": 19006,
+        "members": [
+          "192.0.2.26"
+        ],
+        "start": true,
+        "duplicate": false,
+        "restart": true
+      },
+      "java_line": 22,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-FDA1DCEC576DD6F0",
+      "source_assertion": {
+        "declaration_kind": "class",
+        "source_line_sha256": "f4457735b8636005760a04fbc743b2914202e0bf8273c0f2a6a2173266ea2eaa",
+        "source_sha256": "1153bf48423efecee0a3e1ad0b3c861ee6df7c287f4a81cd727d02d16632e778",
+        "symbol": "BackupServer"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-lifecycle"
+    },
+    {
+      "stable_id": "PROD-7B96D211F9847C75",
+      "case_id": "C018-P-7B96D211F9847C75",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/BackupServer.java",
+      "java_source_sha256": "1153bf48423efecee0a3e1ad0b3c861ee6df7c287f4a81cd727d02d16632e778",
+      "java_symbol": "initServer",
+      "java_expected_result": "op=lifecycle;start=true;duplicate=false;restart=true",
+      "java_expected_digest": "27e2495b4d25e5725db554818c43b8103b6e361ea140c279faefb8cd59f86aed",
+      "operation": {
+        "kind": "lifecycle",
+        "port": 19007,
+        "members": [
+          "192.0.2.27"
+        ],
+        "start": true,
+        "duplicate": false,
+        "restart": true
+      },
+      "java_line": 42,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-7B96D211F9847C75",
+      "java_fixture": {
+        "id": "JAVA-PROD-7B96D211F9847C75",
+        "input": {
+          "kind": "lifecycle",
+          "port": 19007,
+          "members": [
+            "192.0.2.27"
+          ],
+          "start": true,
+          "duplicate": false,
+          "restart": true
+        },
+        "output_or_error": "op=lifecycle;start=true;duplicate=false;restart=true",
+        "observation_digest": "ed9ad56ef1c33f14613477294cb1b84db8af4de10392f0673e5558db5a322d6f"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-lifecycle"
+    },
+    {
+      "stable_id": "PROD-EA246B751DB46827",
+      "case_id": "C018-P-EA246B751DB46827",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/BackupServer.java",
+      "java_source_sha256": "1153bf48423efecee0a3e1ad0b3c861ee6df7c287f4a81cd727d02d16632e778",
+      "java_symbol": "close",
+      "java_expected_result": "op=lifecycle;start=true;duplicate=false;restart=true",
+      "java_expected_digest": "27e2495b4d25e5725db554818c43b8103b6e361ea140c279faefb8cd59f86aed",
+      "operation": {
+        "kind": "lifecycle",
+        "port": 19008,
+        "members": [
+          "192.0.2.28"
+        ],
+        "start": true,
+        "duplicate": false,
+        "restart": true
+      },
+      "java_line": 95,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-EA246B751DB46827",
+      "java_fixture": {
+        "id": "JAVA-PROD-EA246B751DB46827",
+        "input": {
+          "kind": "lifecycle",
+          "port": 19008,
+          "members": [
+            "192.0.2.28"
+          ],
+          "start": true,
+          "duplicate": false,
+          "restart": true
+        },
+        "output_or_error": "op=lifecycle;start=true;duplicate=false;restart=true",
+        "observation_digest": "8a263f7e28e7a3a1c4ccc782aed5eb2bcbe86c20853db944d9a7a071347d63fa"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-lifecycle"
+    },
+    {
+      "stable_id": "PROD-50FA3E57C5E0ECAE",
+      "case_id": "C018-P-50FA3E57C5E0ECAE",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/EventHandler.java",
+      "java_source_sha256": "8c20e4828a25424d7f08dd2b5f95945c15d3dd8d2390c5ce6fd80bf2bbef286e",
+      "java_symbol": "org.tron.common.backup.socket",
+      "java_expected_result": "source:{\"declaration_kind\":\"package\",\"source_line_sha256\":\"0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224\",\"source_sha256\":\"8c20e4828a25424d7f08dd2b5f95945c15d3dd8d2390c5ce6fd80bf2bbef286e\",\"symbol\":\"org.tron.common.backup.socket\"}",
+      "java_expected_digest": "9dceb6248c0e9add5538503eeb4825c43a7604203bb870331790fadbcd8023b8",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.40",
+          "192.0.2.41"
+        ],
+        "expected": "192.0.2.40",
+        "ignored": "192.0.2.41"
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-50FA3E57C5E0ECAE",
+      "source_assertion": {
+        "declaration_kind": "package",
+        "source_line_sha256": "0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224",
+        "source_sha256": "8c20e4828a25424d7f08dd2b5f95945c15d3dd8d2390c5ce6fd80bf2bbef286e",
+        "symbol": "org.tron.common.backup.socket"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-FA17A12440319051",
+      "case_id": "C018-P-FA17A12440319051",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/EventHandler.java",
+      "java_source_sha256": "8c20e4828a25424d7f08dd2b5f95945c15d3dd8d2390c5ce6fd80bf2bbef286e",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/backup/socket/EventHandler.java",
+      "java_expected_result": "source:{\"declaration_kind\":\"source-file\",\"source_line_sha256\":\"0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224\",\"source_sha256\":\"8c20e4828a25424d7f08dd2b5f95945c15d3dd8d2390c5ce6fd80bf2bbef286e\",\"symbol\":\"java-tron/framework/src/main/java/org/tron/common/backup/socket/EventHandler.java\"}",
+      "java_expected_digest": "fdd80c162d2f46e0e3589026f410a343f3b398852210b43b9bce7a3cf5a60702",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.42",
+          "192.0.2.43"
+        ],
+        "expected": "192.0.2.42",
+        "ignored": "192.0.2.43"
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-FA17A12440319051",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224",
+        "source_sha256": "8c20e4828a25424d7f08dd2b5f95945c15d3dd8d2390c5ce6fd80bf2bbef286e",
+        "symbol": "java-tron/framework/src/main/java/org/tron/common/backup/socket/EventHandler.java"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-C1CAB6F2D536F2AD",
+      "case_id": "C018-P-C1CAB6F2D536F2AD",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/EventHandler.java",
+      "java_source_sha256": "8c20e4828a25424d7f08dd2b5f95945c15d3dd8d2390c5ce6fd80bf2bbef286e",
+      "java_symbol": "EventHandler",
+      "java_expected_result": "source:{\"declaration_kind\":\"interface\",\"source_line_sha256\":\"c2fe048072507816c3a78c01123d0556054dfec702493a5e4c41ea82d9cc6ada\",\"source_sha256\":\"8c20e4828a25424d7f08dd2b5f95945c15d3dd8d2390c5ce6fd80bf2bbef286e\",\"symbol\":\"EventHandler\"}",
+      "java_expected_digest": "a07575001e1d19f2ddde8eba0b5ecc8aef937e9c39f3e7feee9ad228ae15f97a",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.44",
+          "192.0.2.45"
+        ],
+        "expected": "192.0.2.44",
+        "ignored": "192.0.2.45"
+      },
+      "java_line": 3,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-C1CAB6F2D536F2AD",
+      "source_assertion": {
+        "declaration_kind": "interface",
+        "source_line_sha256": "c2fe048072507816c3a78c01123d0556054dfec702493a5e4c41ea82d9cc6ada",
+        "source_sha256": "8c20e4828a25424d7f08dd2b5f95945c15d3dd8d2390c5ce6fd80bf2bbef286e",
+        "symbol": "EventHandler"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-D9B986BC9B5CF5CB",
+      "case_id": "C018-P-D9B986BC9B5CF5CB",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/MessageHandler.java",
+      "java_source_sha256": "532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/backup/socket/MessageHandler.java",
+      "java_expected_result": "source:{\"declaration_kind\":\"source-file\",\"source_line_sha256\":\"766e0153d3f7ec95c97e755b1ea7b1681566923b9299365fdc8399443ca20c1d\",\"source_sha256\":\"532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21\",\"symbol\":\"java-tron/framework/src/main/java/org/tron/common/backup/socket/MessageHandler.java\"}",
+      "java_expected_digest": "a7aabc462728593e762c014f765e78b7b99bbb743612d69d13d423ce9924b67b",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.46",
+          "192.0.2.47"
+        ],
+        "expected": "192.0.2.46",
+        "ignored": "192.0.2.47"
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-D9B986BC9B5CF5CB",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "766e0153d3f7ec95c97e755b1ea7b1681566923b9299365fdc8399443ca20c1d",
+        "source_sha256": "532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21",
+        "symbol": "java-tron/framework/src/main/java/org/tron/common/backup/socket/MessageHandler.java"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-BFE6BB1CC997DCCE",
+      "case_id": "C018-P-BFE6BB1CC997DCCE",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/MessageHandler.java",
+      "java_source_sha256": "532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21",
+      "java_symbol": "org.tron.common.backup.socket",
+      "java_expected_result": "source:{\"declaration_kind\":\"package\",\"source_line_sha256\":\"0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224\",\"source_sha256\":\"532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21\",\"symbol\":\"org.tron.common.backup.socket\"}",
+      "java_expected_digest": "099b406552bc9cd6c9f1681cec76e5f322357ef01849f8939083d70484a40a64",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.48",
+          "192.0.2.49"
+        ],
+        "expected": "192.0.2.48",
+        "ignored": "192.0.2.49"
+      },
+      "java_line": 19,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-BFE6BB1CC997DCCE",
+      "source_assertion": {
+        "declaration_kind": "package",
+        "source_line_sha256": "0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224",
+        "source_sha256": "532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21",
+        "symbol": "org.tron.common.backup.socket"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-E41EE2ED027F4792",
+      "case_id": "C018-P-E41EE2ED027F4792",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/MessageHandler.java",
+      "java_source_sha256": "532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21",
+      "java_symbol": "MessageHandler",
+      "java_expected_result": "source:{\"declaration_kind\":\"class\",\"source_line_sha256\":\"61d0ac90d3a86040c66aada610f7a300375aaabd85f7f360bd2753b2b34f2eae\",\"source_sha256\":\"532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21\",\"symbol\":\"MessageHandler\"}",
+      "java_expected_digest": "be33ee2083afe2b46e3ac2bcc0107bf8ae74294fd7bbe1fb40983ea88f2b3bfd",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.50",
+          "192.0.2.51"
+        ],
+        "expected": "192.0.2.50",
+        "ignored": "192.0.2.51"
+      },
+      "java_line": 32,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-E41EE2ED027F4792",
+      "source_assertion": {
+        "declaration_kind": "class",
+        "source_line_sha256": "61d0ac90d3a86040c66aada610f7a300375aaabd85f7f360bd2753b2b34f2eae",
+        "source_sha256": "532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21",
+        "symbol": "MessageHandler"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-877E718E9CF5C982",
+      "case_id": "C018-P-877E718E9CF5C982",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/MessageHandler.java",
+      "java_source_sha256": "532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21",
+      "java_symbol": "channelRead0",
+      "java_expected_result": "op=allowlist;{\"authenticated\":true,\"expected_status\":\"SLAVER\",\"kind\":\"allowlist\",\"member\":\"192.0.2.52\",\"spoof\":\"192.0.2.53\"}",
+      "java_expected_digest": "42ad37f8b7ea0b7ec83c7849301cf2fd878e34b63cf3022c82f508f91ca6106b",
+      "operation": {
+        "kind": "allowlist",
+        "member": "192.0.2.52",
+        "spoof": "192.0.2.53",
+        "authenticated": true,
+        "expected_status": "SLAVER"
+      },
+      "java_line": 50,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-877E718E9CF5C982",
+      "java_fixture": {
+        "id": "JAVA-PROD-877E718E9CF5C982",
+        "input": {
+          "kind": "allowlist",
+          "member": "192.0.2.52",
+          "spoof": "192.0.2.53",
+          "authenticated": true,
+          "expected_status": "SLAVER"
+        },
+        "output_or_error": "op=allowlist;{\"authenticated\":true,\"expected_status\":\"SLAVER\",\"kind\":\"allowlist\",\"member\":\"192.0.2.52\",\"spoof\":\"192.0.2.53\"}",
+        "observation_digest": "76090325c56efa522a22ad37f8342d7b1b6192e2e1c4191295dfcab38a42f317"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-569643EE607625F0",
+      "case_id": "C018-P-569643EE607625F0",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/MessageHandler.java",
+      "java_source_sha256": "532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21",
+      "java_symbol": "accept",
+      "java_expected_result": "op=allowlist;{\"authenticated\":false,\"expected_status\":\"INIT\",\"kind\":\"allowlist\",\"member\":\"192.0.2.54\",\"spoof\":\"192.0.2.55\"}",
+      "java_expected_digest": "14b9c3a04b1c425337e2db2953b5ea9c82ce322090521976605cb92f6a5ca7e2",
+      "operation": {
+        "kind": "allowlist",
+        "member": "192.0.2.54",
+        "spoof": "192.0.2.55",
+        "authenticated": false,
+        "expected_status": "INIT"
+      },
+      "java_line": 59,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-569643EE607625F0",
+      "java_fixture": {
+        "id": "JAVA-PROD-569643EE607625F0",
+        "input": {
+          "kind": "allowlist",
+          "member": "192.0.2.54",
+          "spoof": "192.0.2.55",
+          "authenticated": false,
+          "expected_status": "INIT"
+        },
+        "output_or_error": "op=allowlist;{\"authenticated\":false,\"expected_status\":\"INIT\",\"kind\":\"allowlist\",\"member\":\"192.0.2.54\",\"spoof\":\"192.0.2.55\"}",
+        "observation_digest": "d256675bf5686d73341b2453b9eef55200815e546e2406dd6f1042bc181d8604"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-CAAB450D5162BF9A",
+      "case_id": "C018-P-CAAB450D5162BF9A",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/MessageHandler.java",
+      "java_source_sha256": "532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21",
+      "java_symbol": "channelReadComplete",
+      "java_expected_result": "op=dns_refresh;{\"expected_first\":\"192.0.2.56\",\"expected_refreshed\":\"192.0.2.57\",\"ignored_initial\":\"192.0.2.57\",\"ignored_refreshed\":\"192.0.2.56\",\"initial\":[\"192.0.2.56\",\"192.0.2.57\"],\"refresh\":[\"192.0.2.57\",\"192.0.2.56\"]}",
+      "java_expected_digest": "232d20e0efd3c7b78a8f69f625341905ad6144038465e90e02d4d53c0c73fed1",
+      "operation": {
+        "kind": "dns_refresh",
+        "initial": [
+          "192.0.2.56",
+          "192.0.2.57"
+        ],
+        "refresh": [
+          "192.0.2.57",
+          "192.0.2.56"
+        ],
+        "expected_first": "192.0.2.56",
+        "expected_refreshed": "192.0.2.57",
+        "ignored_initial": "192.0.2.57",
+        "ignored_refreshed": "192.0.2.56"
+      },
+      "java_line": 75,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-CAAB450D5162BF9A",
+      "java_fixture": {
+        "id": "JAVA-PROD-CAAB450D5162BF9A",
+        "input": {
+          "kind": "dns_refresh",
+          "initial": [
+            "192.0.2.56",
+            "192.0.2.57"
+          ],
+          "refresh": [
+            "192.0.2.57",
+            "192.0.2.56"
+          ],
+          "expected_first": "192.0.2.56",
+          "expected_refreshed": "192.0.2.57",
+          "ignored_initial": "192.0.2.57",
+          "ignored_refreshed": "192.0.2.56"
+        },
+        "output_or_error": "op=dns_refresh;{\"expected_first\":\"192.0.2.56\",\"expected_refreshed\":\"192.0.2.57\",\"ignored_initial\":\"192.0.2.57\",\"ignored_refreshed\":\"192.0.2.56\",\"initial\":[\"192.0.2.56\",\"192.0.2.57\"],\"refresh\":[\"192.0.2.57\",\"192.0.2.56\"]}",
+        "observation_digest": "b45a2d496936bb8080f025df763ffeca6556b561d57aa882b61ab500b78c8cf3"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-7F11BBF454BE9DBC",
+      "case_id": "C018-P-7F11BBF454BE9DBC",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/MessageHandler.java",
+      "java_source_sha256": "532082e8b3fa7af852c88fb494af6d89390a0b0ec7e193772a2b71acc5eabb21",
+      "java_symbol": "exceptionCaught",
+      "java_expected_result": "op=dns_failure;{\"expected_after_failure\":\"192.0.2.58\",\"initial\":\"192.0.2.58\"}",
+      "java_expected_digest": "35c464e8e7d6b50700b82e5d5be2ee8fb4e103000312cb5bdc441f89a4083267",
+      "operation": {
+        "kind": "dns_failure",
+        "initial": "192.0.2.58",
+        "expected_after_failure": "192.0.2.58"
+      },
+      "java_line": 80,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-7F11BBF454BE9DBC",
+      "java_fixture": {
+        "id": "JAVA-PROD-7F11BBF454BE9DBC",
+        "input": {
+          "kind": "dns_failure",
+          "initial": "192.0.2.58",
+          "expected_after_failure": "192.0.2.58"
+        },
+        "output_or_error": "op=dns_failure;{\"expected_after_failure\":\"192.0.2.58\",\"initial\":\"192.0.2.58\"}",
+        "observation_digest": "bd624f1e23e662689a1af5c4f5d24a7ba82091e03eb927c3d6f971980943658d"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-FC589848C1EC4FFB",
+      "case_id": "C018-P-FC589848C1EC4FFB",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/PacketDecoder.java",
+      "java_source_sha256": "24cefc209588652150003207959c9fa0f6d8c20e20972df146f0b38dbd55e75d",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/backup/socket/PacketDecoder.java",
+      "java_expected_result": "source:{\"declaration_kind\":\"source-file\",\"source_line_sha256\":\"766e0153d3f7ec95c97e755b1ea7b1681566923b9299365fdc8399443ca20c1d\",\"source_sha256\":\"24cefc209588652150003207959c9fa0f6d8c20e20972df146f0b38dbd55e75d\",\"symbol\":\"java-tron/framework/src/main/java/org/tron/common/backup/socket/PacketDecoder.java\"}",
+      "java_expected_digest": "0e997ccfba65faf971371905ec2d6c5245af22ca177a4eaaa8d495be525f9c87",
+      "operation": {
+        "kind": "wire",
+        "flag": true,
+        "priority": 31,
+        "hex": "050801101f"
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-FC589848C1EC4FFB",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "766e0153d3f7ec95c97e755b1ea7b1681566923b9299365fdc8399443ca20c1d",
+        "source_sha256": "24cefc209588652150003207959c9fa0f6d8c20e20972df146f0b38dbd55e75d",
+        "symbol": "java-tron/framework/src/main/java/org/tron/common/backup/socket/PacketDecoder.java"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-A279C9DD3710D0FD",
+      "case_id": "C018-P-A279C9DD3710D0FD",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/PacketDecoder.java",
+      "java_source_sha256": "24cefc209588652150003207959c9fa0f6d8c20e20972df146f0b38dbd55e75d",
+      "java_symbol": "org.tron.common.backup.socket",
+      "java_expected_result": "source:{\"declaration_kind\":\"package\",\"source_line_sha256\":\"0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224\",\"source_sha256\":\"24cefc209588652150003207959c9fa0f6d8c20e20972df146f0b38dbd55e75d\",\"symbol\":\"org.tron.common.backup.socket\"}",
+      "java_expected_digest": "dde850c01348dee8258acea0d32a1bf0e482c716063760a203289632ae6e8d66",
+      "operation": {
+        "kind": "decode_reject",
+        "hex": "0500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "error": "invalid backup datagram"
+      },
+      "java_line": 19,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-A279C9DD3710D0FD",
+      "source_assertion": {
+        "declaration_kind": "package",
+        "source_line_sha256": "0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224",
+        "source_sha256": "24cefc209588652150003207959c9fa0f6d8c20e20972df146f0b38dbd55e75d",
+        "symbol": "org.tron.common.backup.socket"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-5F8B6301C554C9D1",
+      "case_id": "C018-P-5F8B6301C554C9D1",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/PacketDecoder.java",
+      "java_source_sha256": "24cefc209588652150003207959c9fa0f6d8c20e20972df146f0b38dbd55e75d",
+      "java_symbol": "PacketDecoder",
+      "java_expected_result": "source:{\"declaration_kind\":\"class\",\"source_line_sha256\":\"0f9ca8d1d8838dc6b964062a096e17e3df80c454f63afdd08bf0768467f6fd09\",\"source_sha256\":\"24cefc209588652150003207959c9fa0f6d8c20e20972df146f0b38dbd55e75d\",\"symbol\":\"PacketDecoder\"}",
+      "java_expected_digest": "1864c7a16b099362ed90ff320b4f45460955f3d962ff4ae3be73c53a087b4abf",
+      "operation": {
+        "kind": "decode_reject",
+        "hex": "04",
+        "error": "invalid backup datagram"
+      },
+      "java_line": 30,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-5F8B6301C554C9D1",
+      "source_assertion": {
+        "declaration_kind": "class",
+        "source_line_sha256": "0f9ca8d1d8838dc6b964062a096e17e3df80c454f63afdd08bf0768467f6fd09",
+        "source_sha256": "24cefc209588652150003207959c9fa0f6d8c20e20972df146f0b38dbd55e75d",
+        "symbol": "PacketDecoder"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "PROD-65481506044C5C4A",
+      "case_id": "C018-P-65481506044C5C4A",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/UdpEvent.java",
+      "java_source_sha256": "6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481",
+      "java_symbol": "java-tron/framework/src/main/java/org/tron/common/backup/socket/UdpEvent.java",
+      "java_expected_result": "source:{\"declaration_kind\":\"source-file\",\"source_line_sha256\":\"766e0153d3f7ec95c97e755b1ea7b1681566923b9299365fdc8399443ca20c1d\",\"source_sha256\":\"6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481\",\"symbol\":\"java-tron/framework/src/main/java/org/tron/common/backup/socket/UdpEvent.java\"}",
+      "java_expected_digest": "526d8dd8840fedf86cf5efe67ce745cf827793558b6ca078a69aa5f7c4e9edd8",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.60",
+          "192.0.2.61"
+        ],
+        "expected": "192.0.2.60",
+        "ignored": "192.0.2.61"
+      },
+      "java_line": 1,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-65481506044C5C4A",
+      "source_assertion": {
+        "declaration_kind": "source-file",
+        "source_line_sha256": "766e0153d3f7ec95c97e755b1ea7b1681566923b9299365fdc8399443ca20c1d",
+        "source_sha256": "6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481",
+        "symbol": "java-tron/framework/src/main/java/org/tron/common/backup/socket/UdpEvent.java"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-6347DFEB056CE16E",
+      "case_id": "C018-P-6347DFEB056CE16E",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/UdpEvent.java",
+      "java_source_sha256": "6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481",
+      "java_symbol": "org.tron.common.backup.socket",
+      "java_expected_result": "source:{\"declaration_kind\":\"package\",\"source_line_sha256\":\"0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224\",\"source_sha256\":\"6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481\",\"symbol\":\"org.tron.common.backup.socket\"}",
+      "java_expected_digest": "4be9d833710cdba96425d41fcaca328b752a25f8cab348762b6386de43cc55cf",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.62",
+          "192.0.2.63"
+        ],
+        "expected": "192.0.2.62",
+        "ignored": "192.0.2.63"
+      },
+      "java_line": 19,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-6347DFEB056CE16E",
+      "source_assertion": {
+        "declaration_kind": "package",
+        "source_line_sha256": "0c5f81e0730e491f8b0d29b0c00e6a413968b8707407f586210e5bac50815224",
+        "source_sha256": "6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481",
+        "symbol": "org.tron.common.backup.socket"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-671ABF9DF45F1A25",
+      "case_id": "C018-P-671ABF9DF45F1A25",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/UdpEvent.java",
+      "java_source_sha256": "6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481",
+      "java_symbol": "UdpEvent",
+      "java_expected_result": "source:{\"declaration_kind\":\"class\",\"source_line_sha256\":\"3a73f3fd5889f85d03f5431cb1478e46a50e1c14c6f5a5905c8a653a8be80d28\",\"source_sha256\":\"6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481\",\"symbol\":\"UdpEvent\"}",
+      "java_expected_digest": "1b3ca394037d559bbf733acfff1e4bcd38711f52be91fd28aa791218047ac6d1",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.64",
+          "192.0.2.65"
+        ],
+        "expected": "192.0.2.64",
+        "ignored": "192.0.2.65"
+      },
+      "java_line": 24,
+      "evidence_kind": "source_assertion",
+      "executable_id": "C018-P-671ABF9DF45F1A25",
+      "source_assertion": {
+        "declaration_kind": "class",
+        "source_line_sha256": "3a73f3fd5889f85d03f5431cb1478e46a50e1c14c6f5a5905c8a653a8be80d28",
+        "source_sha256": "6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481",
+        "symbol": "UdpEvent"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-ECEFD2D2436B9CF5",
+      "case_id": "C018-P-ECEFD2D2436B9CF5",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/UdpEvent.java",
+      "java_source_sha256": "6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481",
+      "java_symbol": "getMessage",
+      "java_expected_result": "op=dns_first;{\"answers\":[\"192.0.2.66\",\"192.0.2.67\"],\"expected\":\"192.0.2.66\",\"ignored\":\"192.0.2.67\"}",
+      "java_expected_digest": "7e1a75ef86532fb59e7193acb7ba3ff238578b83e03b4076c904830b3f00a3cd",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.66",
+          "192.0.2.67"
+        ],
+        "expected": "192.0.2.66",
+        "ignored": "192.0.2.67"
+      },
+      "java_line": 34,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-ECEFD2D2436B9CF5",
+      "java_fixture": {
+        "id": "JAVA-PROD-ECEFD2D2436B9CF5",
+        "input": {
+          "kind": "dns_first",
+          "answers": [
+            "192.0.2.66",
+            "192.0.2.67"
+          ],
+          "expected": "192.0.2.66",
+          "ignored": "192.0.2.67"
+        },
+        "output_or_error": "op=dns_first;{\"answers\":[\"192.0.2.66\",\"192.0.2.67\"],\"expected\":\"192.0.2.66\",\"ignored\":\"192.0.2.67\"}",
+        "observation_digest": "ade9b634d3ce0813aa9fe563123eed8cad9e866ace63fc0c213f797d310825e9"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-D2E53E89CED2BE6E",
+      "case_id": "C018-P-D2E53E89CED2BE6E",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/UdpEvent.java",
+      "java_source_sha256": "6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481",
+      "java_symbol": "setMessage",
+      "java_expected_result": "op=dns_first;{\"answers\":[\"192.0.2.68\",\"192.0.2.69\"],\"expected\":\"192.0.2.68\",\"ignored\":\"192.0.2.69\"}",
+      "java_expected_digest": "ac8b2a36842cecb12efbae17f1cf5b67bdb5408d6d1a58cb4a7dbfc77382b0e7",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.68",
+          "192.0.2.69"
+        ],
+        "expected": "192.0.2.68",
+        "ignored": "192.0.2.69"
+      },
+      "java_line": 38,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-D2E53E89CED2BE6E",
+      "java_fixture": {
+        "id": "JAVA-PROD-D2E53E89CED2BE6E",
+        "input": {
+          "kind": "dns_first",
+          "answers": [
+            "192.0.2.68",
+            "192.0.2.69"
+          ],
+          "expected": "192.0.2.68",
+          "ignored": "192.0.2.69"
+        },
+        "output_or_error": "op=dns_first;{\"answers\":[\"192.0.2.68\",\"192.0.2.69\"],\"expected\":\"192.0.2.68\",\"ignored\":\"192.0.2.69\"}",
+        "observation_digest": "23beb8291f8c6718bac33863ca5f9ba9e564eb643ebebbe3eac7ff93b6c5ffa4"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-88989A7136559D16",
+      "case_id": "C018-P-88989A7136559D16",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/UdpEvent.java",
+      "java_source_sha256": "6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481",
+      "java_symbol": "getAddress",
+      "java_expected_result": "op=dns_first;{\"answers\":[\"192.0.2.70\",\"192.0.2.71\"],\"expected\":\"192.0.2.70\",\"ignored\":\"192.0.2.71\"}",
+      "java_expected_digest": "440c1e26ff4c33a06c9da5a424726adfb13733590382c0d016698fc2ea395d4e",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.70",
+          "192.0.2.71"
+        ],
+        "expected": "192.0.2.70",
+        "ignored": "192.0.2.71"
+      },
+      "java_line": 42,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-88989A7136559D16",
+      "java_fixture": {
+        "id": "JAVA-PROD-88989A7136559D16",
+        "input": {
+          "kind": "dns_first",
+          "answers": [
+            "192.0.2.70",
+            "192.0.2.71"
+          ],
+          "expected": "192.0.2.70",
+          "ignored": "192.0.2.71"
+        },
+        "output_or_error": "op=dns_first;{\"answers\":[\"192.0.2.70\",\"192.0.2.71\"],\"expected\":\"192.0.2.70\",\"ignored\":\"192.0.2.71\"}",
+        "observation_digest": "ea8c653dde9ef6ab695fde3d113c5ecbfa665e3e7ed3205605d91f170e1c9944"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "PROD-C497B9DC64377C30",
+      "case_id": "C018-P-C497B9DC64377C30",
+      "java_source": "java-tron/framework/src/main/java/org/tron/common/backup/socket/UdpEvent.java",
+      "java_source_sha256": "6507abff0b2445e6db38a00472e942feb0983341e32a6503097a0616b1a26481",
+      "java_symbol": "setAddress",
+      "java_expected_result": "op=dns_refresh;{\"expected_first\":\"192.0.2.72\",\"expected_refreshed\":\"192.0.2.73\",\"ignored_initial\":\"192.0.2.73\",\"ignored_refreshed\":\"192.0.2.72\",\"initial\":[\"192.0.2.72\",\"192.0.2.73\"],\"refresh\":[\"192.0.2.73\",\"192.0.2.72\"]}",
+      "java_expected_digest": "511ab5a1837b26fac5c06d071714290a2f9a0567e54d5535f840711eb0d56d27",
+      "operation": {
+        "kind": "dns_refresh",
+        "initial": [
+          "192.0.2.72",
+          "192.0.2.73"
+        ],
+        "refresh": [
+          "192.0.2.73",
+          "192.0.2.72"
+        ],
+        "expected_first": "192.0.2.72",
+        "expected_refreshed": "192.0.2.73",
+        "ignored_initial": "192.0.2.73",
+        "ignored_refreshed": "192.0.2.72"
+      },
+      "java_line": 46,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-P-C497B9DC64377C30",
+      "java_fixture": {
+        "id": "JAVA-PROD-C497B9DC64377C30",
+        "input": {
+          "kind": "dns_refresh",
+          "initial": [
+            "192.0.2.72",
+            "192.0.2.73"
+          ],
+          "refresh": [
+            "192.0.2.73",
+            "192.0.2.72"
+          ],
+          "expected_first": "192.0.2.72",
+          "expected_refreshed": "192.0.2.73",
+          "ignored_initial": "192.0.2.73",
+          "ignored_refreshed": "192.0.2.72"
+        },
+        "output_or_error": "op=dns_refresh;{\"expected_first\":\"192.0.2.72\",\"expected_refreshed\":\"192.0.2.73\",\"ignored_initial\":\"192.0.2.73\",\"ignored_refreshed\":\"192.0.2.72\",\"initial\":[\"192.0.2.72\",\"192.0.2.73\"],\"refresh\":[\"192.0.2.73\",\"192.0.2.72\"]}",
+        "observation_digest": "0c5aac4fbd37c638220302d6760b9203d69cbf9b518a7cf5b2bf5da4e228881e"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-symbol",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "TCASE-35F378360B5A29BF",
+      "case_id": "C018-T-35F378360B5A29BF",
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/backup/BackupManagerTest.java",
+      "java_source_sha256": "61c8f0542e937c6191f47d559382534d12314c56184a2b4cd0b28ffab665607e",
+      "java_symbol": "testSendKeepAliveMessage",
+      "java_expected_result": "op=wire;hex=051022;decoded_flag=false;decoded_priority=34",
+      "java_expected_digest": "c5c7ad03b29822f0830ad1bac4d459bc6bc0cff6cac892e9d99ca30d9ae2824a",
+      "operation": {
+        "kind": "wire",
+        "flag": false,
+        "priority": 34,
+        "hex": "051022"
+      },
+      "java_line": 124,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-T-35F378360B5A29BF",
+      "java_fixture": {
+        "id": "JAVA-TCASE-35F378360B5A29BF",
+        "input": {
+          "kind": "wire",
+          "flag": false,
+          "priority": 34,
+          "hex": "051022"
+        },
+        "output_or_error": "op=wire;hex=051022;decoded_flag=false;decoded_priority=34",
+        "observation_digest": "62eea22346e93bb78074cb706dfa18b5c8f351f643affd45ca71284e5fb1edf5"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-test",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "TCASE-6B9157887A6D5516",
+      "case_id": "C018-T-6B9157887A6D5516",
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/backup/BackupManagerTest.java",
+      "java_source_sha256": "61c8f0542e937c6191f47d559382534d12314c56184a2b4cd0b28ffab665607e",
+      "java_symbol": "testInitResolvesDomainsToMembers",
+      "java_expected_result": "op=dns_first;{\"answers\":[\"192.0.2.74\",\"192.0.2.75\"],\"expected\":\"192.0.2.74\",\"ignored\":\"192.0.2.75\"}",
+      "java_expected_digest": "8738ed2374286872d993bb91e5328143cd288bbea3d0e56e66018d4f114fb26f",
+      "operation": {
+        "kind": "dns_first",
+        "answers": [
+          "192.0.2.74",
+          "192.0.2.75"
+        ],
+        "expected": "192.0.2.74",
+        "ignored": "192.0.2.75"
+      },
+      "java_line": 157,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-T-6B9157887A6D5516",
+      "java_fixture": {
+        "id": "JAVA-TCASE-6B9157887A6D5516",
+        "input": {
+          "kind": "dns_first",
+          "answers": [
+            "192.0.2.74",
+            "192.0.2.75"
+          ],
+          "expected": "192.0.2.74",
+          "ignored": "192.0.2.75"
+        },
+        "output_or_error": "op=dns_first;{\"answers\":[\"192.0.2.74\",\"192.0.2.75\"],\"expected\":\"192.0.2.74\",\"ignored\":\"192.0.2.75\"}",
+        "observation_digest": "f61f6d87fe3d27f0a53bf7d0d858055eb401f59f7dd0789d8f12f04c5166bc5b"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-test",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "TCASE-8555C3CEDCA861B1",
+      "case_id": "C018-T-8555C3CEDCA861B1",
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/backup/BackupManagerTest.java",
+      "java_source_sha256": "61c8f0542e937c6191f47d559382534d12314c56184a2b4cd0b28ffab665607e",
+      "java_symbol": "testInitSkipsUnresolvableDomain",
+      "java_expected_result": "op=dns_failure;{\"expected_after_failure\":\"192.0.2.76\",\"initial\":\"192.0.2.76\"}",
+      "java_expected_digest": "0dab5190e20df8a1dca5fb804bb4071ce1dbb2f62c40381a5133408eafbcc1c4",
+      "operation": {
+        "kind": "dns_failure",
+        "initial": "192.0.2.76",
+        "expected_after_failure": "192.0.2.76"
+      },
+      "java_line": 172,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-T-8555C3CEDCA861B1",
+      "java_fixture": {
+        "id": "JAVA-TCASE-8555C3CEDCA861B1",
+        "input": {
+          "kind": "dns_failure",
+          "initial": "192.0.2.76",
+          "expected_after_failure": "192.0.2.76"
+        },
+        "output_or_error": "op=dns_failure;{\"expected_after_failure\":\"192.0.2.76\",\"initial\":\"192.0.2.76\"}",
+        "observation_digest": "49bfd34dcec502dabfc239f889695c145f975a903564cfe89d341c4141c7d959"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-test",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "TCASE-67DBF5912DCADE87",
+      "case_id": "C018-T-67DBF5912DCADE87",
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/backup/BackupManagerTest.java",
+      "java_source_sha256": "61c8f0542e937c6191f47d559382534d12314c56184a2b4cd0b28ffab665607e",
+      "java_symbol": "testInitSkipsDomainResolvingToLocalIp",
+      "java_expected_result": "op=dns_local_skip;{\"local\":\"192.0.2.78\",\"resolved\":\"192.0.2.78\",\"sent_count\":0}",
+      "java_expected_digest": "8c0fbc18d6000ab8c0ef6b293fcddb9855f6f9002421046ff175977cb19b8143",
+      "operation": {
+        "kind": "dns_local_skip",
+        "local": "192.0.2.78",
+        "resolved": "192.0.2.78",
+        "sent_count": 0
+      },
+      "java_line": 185,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-T-67DBF5912DCADE87",
+      "java_fixture": {
+        "id": "JAVA-TCASE-67DBF5912DCADE87",
+        "input": {
+          "kind": "dns_local_skip",
+          "local": "192.0.2.78",
+          "resolved": "192.0.2.78",
+          "sent_count": 0
+        },
+        "output_or_error": "op=dns_local_skip;{\"local\":\"192.0.2.78\",\"resolved\":\"192.0.2.78\",\"sent_count\":0}",
+        "observation_digest": "186c549e34f9c18d7af46b0f1213f2e7e72cb9c7e532551ff61ddff7fcd581ba"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-test",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "TCASE-5770DDF53E33ACA0",
+      "case_id": "C018-T-5770DDF53E33ACA0",
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/backup/BackupManagerTest.java",
+      "java_source_sha256": "61c8f0542e937c6191f47d559382534d12314c56184a2b4cd0b28ffab665607e",
+      "java_symbol": "testRefreshMemberIpsIpChanged",
+      "java_expected_result": "op=dns_refresh;{\"expected_first\":\"192.0.2.80\",\"expected_refreshed\":\"192.0.2.81\",\"ignored_initial\":\"192.0.2.81\",\"ignored_refreshed\":\"192.0.2.80\",\"initial\":[\"192.0.2.80\",\"192.0.2.81\"],\"refresh\":[\"192.0.2.81\",\"192.0.2.80\"]}",
+      "java_expected_digest": "375f5e5f679da9cc7fdff2043276a03d412e3ad9aee2431b0019bc93d41c1b29",
+      "operation": {
+        "kind": "dns_refresh",
+        "initial": [
+          "192.0.2.80",
+          "192.0.2.81"
+        ],
+        "refresh": [
+          "192.0.2.81",
+          "192.0.2.80"
+        ],
+        "expected_first": "192.0.2.80",
+        "expected_refreshed": "192.0.2.81",
+        "ignored_initial": "192.0.2.81",
+        "ignored_refreshed": "192.0.2.80"
+      },
+      "java_line": 202,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-T-5770DDF53E33ACA0",
+      "java_fixture": {
+        "id": "JAVA-TCASE-5770DDF53E33ACA0",
+        "input": {
+          "kind": "dns_refresh",
+          "initial": [
+            "192.0.2.80",
+            "192.0.2.81"
+          ],
+          "refresh": [
+            "192.0.2.81",
+            "192.0.2.80"
+          ],
+          "expected_first": "192.0.2.80",
+          "expected_refreshed": "192.0.2.81",
+          "ignored_initial": "192.0.2.81",
+          "ignored_refreshed": "192.0.2.80"
+        },
+        "output_or_error": "op=dns_refresh;{\"expected_first\":\"192.0.2.80\",\"expected_refreshed\":\"192.0.2.81\",\"ignored_initial\":\"192.0.2.81\",\"ignored_refreshed\":\"192.0.2.80\",\"initial\":[\"192.0.2.80\",\"192.0.2.81\"],\"refresh\":[\"192.0.2.81\",\"192.0.2.80\"]}",
+        "observation_digest": "b68f28f58ee9ea4fd5ccb2079bb91bf37453cbc8183ce1a45d2174f3898b6858"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-test",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "TCASE-C8A03580031871F6",
+      "case_id": "C018-T-C8A03580031871F6",
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/backup/BackupManagerTest.java",
+      "java_source_sha256": "61c8f0542e937c6191f47d559382534d12314c56184a2b4cd0b28ffab665607e",
+      "java_symbol": "testRefreshMemberIpsIpUnchanged",
+      "java_expected_result": "op=dns_refresh;{\"expected_first\":\"192.0.2.82\",\"expected_refreshed\":\"192.0.2.82\",\"ignored_initial\":\"192.0.2.83\",\"ignored_refreshed\":\"192.0.2.83\",\"initial\":[\"192.0.2.82\",\"192.0.2.83\"],\"refresh\":[\"192.0.2.82\",\"192.0.2.83\"]}",
+      "java_expected_digest": "51184b053a292ba788b41ad2f558937efce411e7fdca2efd213ad0e78a87c4ff",
+      "operation": {
+        "kind": "dns_refresh",
+        "initial": [
+          "192.0.2.82",
+          "192.0.2.83"
+        ],
+        "refresh": [
+          "192.0.2.82",
+          "192.0.2.83"
+        ],
+        "expected_first": "192.0.2.82",
+        "expected_refreshed": "192.0.2.82",
+        "ignored_initial": "192.0.2.83",
+        "ignored_refreshed": "192.0.2.83"
+      },
+      "java_line": 218,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-T-C8A03580031871F6",
+      "java_fixture": {
+        "id": "JAVA-TCASE-C8A03580031871F6",
+        "input": {
+          "kind": "dns_refresh",
+          "initial": [
+            "192.0.2.82",
+            "192.0.2.83"
+          ],
+          "refresh": [
+            "192.0.2.82",
+            "192.0.2.83"
+          ],
+          "expected_first": "192.0.2.82",
+          "expected_refreshed": "192.0.2.82",
+          "ignored_initial": "192.0.2.83",
+          "ignored_refreshed": "192.0.2.83"
+        },
+        "output_or_error": "op=dns_refresh;{\"expected_first\":\"192.0.2.82\",\"expected_refreshed\":\"192.0.2.82\",\"ignored_initial\":\"192.0.2.83\",\"ignored_refreshed\":\"192.0.2.83\",\"initial\":[\"192.0.2.82\",\"192.0.2.83\"],\"refresh\":[\"192.0.2.82\",\"192.0.2.83\"]}",
+        "observation_digest": "f58eccf55bad7332f55f324e2c604ee5dcfa67ef7cacdc980314bfe258b8822e"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-test",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "TCASE-EAB3792D3709A245",
+      "case_id": "C018-T-EAB3792D3709A245",
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/backup/BackupManagerTest.java",
+      "java_source_sha256": "61c8f0542e937c6191f47d559382534d12314c56184a2b4cd0b28ffab665607e",
+      "java_symbol": "testRefreshMemberIpsDnsFailure",
+      "java_expected_result": "op=dns_failure;{\"expected_after_failure\":\"192.0.2.84\",\"initial\":\"192.0.2.84\"}",
+      "java_expected_digest": "cbe7ea37a4e71caa56053b9f94f9c6179b0da4ba9b0110180224a75151e11dcb",
+      "operation": {
+        "kind": "dns_failure",
+        "initial": "192.0.2.84",
+        "expected_after_failure": "192.0.2.84"
+      },
+      "java_line": 233,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-T-EAB3792D3709A245",
+      "java_fixture": {
+        "id": "JAVA-TCASE-EAB3792D3709A245",
+        "input": {
+          "kind": "dns_failure",
+          "initial": "192.0.2.84",
+          "expected_after_failure": "192.0.2.84"
+        },
+        "output_or_error": "op=dns_failure;{\"expected_after_failure\":\"192.0.2.84\",\"initial\":\"192.0.2.84\"}",
+        "observation_digest": "d0631e04456436b367428a5b6f0d1704c96543164fe591386438134adb072f94"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-test",
+      "assertion_family": "backup-dns"
+    },
+    {
+      "stable_id": "TCASE-D2DF8D9F2C7A059A",
+      "case_id": "C018-T-D2DF8D9F2C7A059A",
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/backup/BackupServerTest.java",
+      "java_source_sha256": "734a67ab5ba99ebb551aacaba25e1b5e1dc171a14964435d5180f85ec1ff9575",
+      "java_symbol": "test",
+      "java_expected_result": "op=lifecycle;start=true;duplicate=false;restart=true",
+      "java_expected_digest": "27e2495b4d25e5725db554818c43b8103b6e361ea140c279faefb8cd59f86aed",
+      "operation": {
+        "kind": "lifecycle",
+        "port": 19009,
+        "members": [
+          "192.0.2.29"
+        ],
+        "start": true,
+        "duplicate": false,
+        "restart": true
+      },
+      "java_line": 47,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-T-D2DF8D9F2C7A059A",
+      "java_fixture": {
+        "id": "JAVA-TCASE-D2DF8D9F2C7A059A",
+        "input": {
+          "kind": "lifecycle",
+          "port": 19009,
+          "members": [
+            "192.0.2.29"
+          ],
+          "start": true,
+          "duplicate": false,
+          "restart": true
+        },
+        "output_or_error": "op=lifecycle;start=true;duplicate=false;restart=true",
+        "observation_digest": "6cb9bedc7a4ff35c4ad861d1ddea84c57f7ca4b3eaa192f06b60729ff26e7f42"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-test",
+      "assertion_family": "backup-lifecycle"
+    },
+    {
+      "stable_id": "TCASE-413E4BCCE324CAF4",
+      "case_id": "C018-T-413E4BCCE324CAF4",
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/backup/KeepAliveMessageTest.java",
+      "java_source_sha256": "fd39df4cb64c0a74eb13a9d66588963d1e37e4c4ff58f914a8125799b6219eed",
+      "java_symbol": "test",
+      "java_expected_result": "op=wire;hex=0508011023;decoded_flag=true;decoded_priority=35",
+      "java_expected_digest": "bc2c1acc7e124256a257f26559debaa7a069197f69e892c30e5a4206ed850970",
+      "operation": {
+        "kind": "wire",
+        "flag": true,
+        "priority": 35,
+        "hex": "0508011023"
+      },
+      "java_line": 13,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-T-413E4BCCE324CAF4",
+      "java_fixture": {
+        "id": "JAVA-TCASE-413E4BCCE324CAF4",
+        "input": {
+          "kind": "wire",
+          "flag": true,
+          "priority": 35,
+          "hex": "0508011023"
+        },
+        "output_or_error": "op=wire;hex=0508011023;decoded_flag=true;decoded_priority=35",
+        "observation_digest": "fef81f3d7d3221072f2c67d382be80a520f6d8d8728d8a2f0e8d52876ae5eeda"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-test",
+      "assertion_family": "backup-wire"
+    },
+    {
+      "stable_id": "TCASE-B6CF3677DEB6062B",
+      "case_id": "C018-T-B6CF3677DEB6062B",
+      "java_source": "java-tron/framework/src/test/java/org/tron/common/backup/UdpMessageTypeEnumTest.java",
+      "java_source_sha256": "914de296aa981925e5dc8abd48d75a67fc4c1ebb7897b0c1a151e1e9790e0fd8",
+      "java_symbol": "test",
+      "java_expected_result": "op=udp_type;type=5;accepted=true",
+      "java_expected_digest": "cff20633e3f1b7104198a53011ee53f39de9017f0ac021fa0fb0b07574b56ffe",
+      "operation": {
+        "kind": "udp_type",
+        "input": 5,
+        "expected": 5
+      },
+      "java_line": 13,
+      "evidence_kind": "method_fixture",
+      "executable_id": "C018-T-B6CF3677DEB6062B",
+      "java_fixture": {
+        "id": "JAVA-TCASE-B6CF3677DEB6062B",
+        "input": {
+          "kind": "udp_type",
+          "input": 5,
+          "expected": 5
+        },
+        "output_or_error": "op=udp_type;type=5;accepted=true",
+        "observation_digest": "70d8517bed7424b6be2a46cffe47b4b66429dfa1c55681fd6b83ac1fcbb1542a"
+      },
+      "owning_item": "C018.06",
+      "acceptance_gate": "C018.V",
+      "seam_owner": "C018",
+      "case_kind": "java-test",
+      "assertion_family": "backup-wire"
+    }
+  ]
+}
