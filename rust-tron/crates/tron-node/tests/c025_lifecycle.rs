@@ -35,7 +35,7 @@ impl OperationalHooks for Hook {
 
 fn hook(name: &'static str, log: &Arc<Mutex<Vec<String>>>) -> Box<dyn OperationalHooks> { Box::new(Hook { name, log: log.clone(), fail_stop: false }) }
 fn components(log: &Arc<Mutex<Vec<String>>>) -> OperationsComponents { OperationsComponents { api_provider:hook(API_PROVIDER_SERVICE,log), queues:hook(EVENT_QUEUE_SERVICE,log), plugin:hook(EVENT_PLUGIN_SERVICE,log), zeromq:hook(ZEROMQ_SERVICE,log), metrics:hook(METRICS_SERVICE,log), prometheus:hook(PROMETHEUS_SERVICE,log), db_stats:hook(DB_STATS_SERVICE,log), readiness:hook(READINESS_SERVICE,log) } }
-fn context() -> NodeContext { NodeContext::new(Arc::new(Config::default()), CancellationToken::default(), Arc::new(Clock)) }
+fn context() -> NodeContext { let mut config=Config::default(); config.node.trust_node="127.0.0.1:50051".into(); NodeContext::new(Arc::new(config), CancellationToken::default(), Arc::new(Clock)) }
 
 #[tokio::test]
 async fn operations_start_after_network_and_apis_then_shutdown_in_reverse() {
@@ -57,6 +57,25 @@ async fn operations_start_after_network_and_apis_then_shutdown_in_reverse() {
     let api_stop=values.iter().position(|v|v=="stop:apis").unwrap();
     assert!(readiness_stop < plugin_stop && plugin_stop < queue_cancel && queue_cancel < api_stop);
     println!("C025_LIFECYCLE startup=network,apis,operations-api-provider,event-queues shutdown=node-readiness,event-plugin,event-queues,apis");
+}
+
+#[tokio::test]
+async fn solidity_starts_replica_before_standalone_apis_and_never_starts_p2p() {
+    let log=Arc::new(Mutex::new(Vec::new()));
+    let services=solidity_production_service_graph(
+        vec![Box::new(Base{name:"core",deps:&[],log:log.clone()})],
+        Box::new(Base{name:tron_node::solidity_replica::SOLIDITY_REPLICA_SERVICE,deps:&["core"],log:log.clone()}),
+        Box::new(Base{name:NETWORK_SERVICE,deps:&["core"],log:log.clone()}),
+        Box::new(Base{name:API_SERVICE,deps:&[tron_node::solidity_replica::SOLIDITY_REPLICA_SERVICE],log:log.clone()}),
+        components(&log),
+    );
+    let mut graph=ServiceGraph::new(context(),NodeMode::Solidity,services).unwrap();
+    graph.start(Duration::from_secs(1),Duration::from_secs(1)).await.unwrap();
+    let started=graph.started_services().collect::<Vec<_>>();
+    assert_eq!(&started[..4],["core",tron_node::solidity_replica::SOLIDITY_REPLICA_SERVICE,API_SERVICE,API_PROVIDER_SERVICE]);
+    assert!(!started.contains(&NETWORK_SERVICE));
+    assert!(!log.lock().unwrap().iter().any(|entry| entry=="start:network"));
+    graph.shutdown(Duration::from_secs(1)).await.unwrap();
 }
 
 #[tokio::test]

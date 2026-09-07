@@ -142,6 +142,13 @@ impl SessionManager {
     }
     #[must_use]
     pub fn durable_store(&self, kind: StoreKind) -> DurableStore { DurableStore { manager: self.clone(), name: kind.name() } }
+    /// Publishes metadata about an already-recorded checkpoint without disturbing active
+    /// speculative overlays. Existing read views retain their captured state.
+    pub fn publish_committed_metadata(&self, kind: StoreKind, key: &[u8], value: &[u8]) -> Result<(), SessionError> {
+        let state = self.lock();
+        state.root.store_by_name(kind.name()).put(key, value)?;
+        Ok(())
+    }
 
     pub fn durable_namespace(&self, name: impl Into<String>) -> Result<DurableStore, StoreNameError> {
         Ok(DurableStore { manager: self.clone(), name: StoreName::new(name)? })
@@ -168,6 +175,12 @@ impl SessionManager {
     pub fn committed_view(&self) -> ReadView {
         let state = self.lock();
         ReadView::capture(&state.root, &[])
+    }
+
+    /// Latest durable checkpoint for cursor publication by composition roots.
+    #[must_use]
+    pub fn latest_checkpoint(&self) -> Option<CursorPoint> {
+        self.lock().checkpoints.last().map(|checkpoint| checkpoint.point)
     }
 
     fn build_root(&self, temporarily_enable: bool) -> Result<Session, SessionError> {

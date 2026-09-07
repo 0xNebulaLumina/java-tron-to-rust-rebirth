@@ -172,6 +172,10 @@ provider, event-queue, process-plugin, ZeroMQ, monitor-metrics, Prometheus HTTP,
 readiness hooks from owned dependencies. The same bindings expose the C019 transactional event sink
 and C022 RPC domain provider; callers provide operational dependencies, not fabricated lifecycle
 hooks. `compose_production_node` is the node-entrypoint callsite for this path.
+The `NodeContext` owns the single effective production configuration; `ProductionNodeDependencies`
+does not carry a second copy that could diverge. Every public production constructor validates that
+context configuration for the selected mode before creating node status, stop controls, operational
+hooks, the Solidity database source and replica, or the service graph.
 
 API selection is a composition plan, not an API implementation. Full and Solidity surfaces are
 mode-gated, PBFT surfaces additionally require `committee.allowPBFT == 1`, and enabled ports must be

@@ -2662,6 +2662,7 @@ name = "tron-config"
 version = "0.0.0"
 dependencies = [
  "hocon",
+ "http",
  "serde",
  "thiserror 2.0.12",
  "tron-primitives",
@@ -2776,8 +2777,10 @@ name = "tron-node"
 version = "0.0.0"
 dependencies = [
  "parking_lot",
+ "prost",
  "tokio",
  "tokio-util",
+ "tonic",
  "tron-apis",
  "tron-config",
  "tron-consensus",

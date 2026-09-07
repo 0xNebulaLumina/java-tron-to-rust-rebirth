@@ -3357,52 +3357,148 @@
     {
       "id": "C026",
       "title": "Standalone Solidity node",
-      "status": "todo",
-      "owner": null,
-      "updated": null,
+      "status": "done",
+      "owner": "c026-final-integration",
+      "updated": "2026-09-07",
       "resume": null,
       "items": [
         {
           "id": "C026.01",
           "description": "Require/parse trust-node and reject invalid/missing configuration.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Solidity-mode production composition has one canonical configuration and one shared endpoint grammar: Config::validate_for_mode and TonicDatabaseSource both use database_endpoint_authority, accepting DNS, IPv4, and bracketed IPv6 with a nonzero u16 port while rejecting schemes, userinfo, paths, queries, fragments, empty/invalid hosts, unbracketed or extra-colon authorities, and zero/out-of-range ports. ProductionNode::from_config validates dependencies.context.config() before NodeStatus, StopController, operational hooks, database client, replica, or service-graph construction. Public compose_production_node and factory-seam proofs exercise the previously accepted malformed authorities and observe zero owned-service inspections or factory calls; valid configuration builds exactly one graph. ServiceGraph retains defense-in-depth validation, Full and keystore modes remain unaffected, and P2P remains categorically Full-only."
         },
         {
           "id": "C026.02",
           "description": "Database gRPC polling for dynamic solidity height and sequential blocks.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Added the plaintext tonic DatabaseSource client and fixed polling of DynamicProperties.lastSolidityBlockNum with exact sequential GetBlockByNum requests, returned-height validation, queue-100 contract, and 3s/1s fixed schedules."
         },
         {
           "id": "C026.03",
           "description": "Verify/apply blocks, retry/backoff/failure/cancellation and restart persistence.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Replica apply preserves Java cancellation visibility and restart reconciliation. Every ProductionNode constructor now binds StopController to the node's single synchronized status state and asserts that invariant. Startup fatal publication atomically prevents readiness success and preserves the exact cause. After operator, interrupt, terminate, or signal selection, production shutdown completes the graph before atomically draining fatal causes; any queued fatal is authoritative, graph cleanup errors are structurally retained, and ordinary nonfatal shutdown remains successful. SolidityReplica stop retains its JoinHandle across cancellation/outer timeout so the graph remains Stopping and retry joins the owned worker/source; simultaneous worker and DatabaseSource shutdown failures preserve both exact causes in stable aggregation."
         },
         {
           "id": "C026.04",
           "description": "Generate a versioned standalone-Solidity exposure manifest with stable service/method/route/port row IDs. For every general API inventory row record required, forbidden or not-applicable exposure plus cursor routing; implement exactly that subset, with no P2P or full-cursor JSON-RPC.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Registered the exact 262-row standalone Solidity exposure contract: 6 services, 203 methods, 45 SOLIDITY-cursor HTTP routes, and 8 required/forbidden ports; live Rust servers bind gRPC 50051 and HTTP 8091 while forbidden families and transports remain absent."
         },
         {
           "id": "C026.05",
           "description": "Generate and validate the exposure manifest from source/config descriptors with zero added, missing or changed rows; bind every row to executable endpoint/absence/cursor results.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Authenticated all 18 stable SolidityNodeTest IDs with row-specific observations and exact canonical Rust proofs or C025 exclusions. The gate requires all twenty-two named replica/production lifecycle tests, including public compose_production_node canonical-config prevalidation with zero invalid owned-service inspection and one valid graph, exact factory-entry invalid-config rejection with zero service/resource construction and one valid invocation, factory-enforced shared control state, atomic ordered multi-fatal startup drain with original and unwind context, authoritative fatal shutdown reporting, timeout-safe stop retry, exact dual-error preservation, durable cursor, interrupt cancellation, and reverse unwind, to be attributed, cargo-discoverable, and routed through canonical integration evidence."
         }
       ],
       "gate": {
         "id": "C026.V",
         "description": "Cross-language full\u2192Solidity replication and API-state parity pass; standalone exposure manifest has zero difference and every required/forbidden/cursor row has passing results.",
-        "status": "unconfigured",
-        "commands": [],
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C026 metadata and reconciliation",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/node/c026_gate.py",
+              "metadata"
+            ],
+            "timeout_seconds": 120
+          },
+          {
+            "name": "C026 guarded Java oracle",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/node/c026_gate.py",
+              "oracle"
+            ],
+            "timeout_seconds": 900
+          },
+          {
+            "name": "C026 exposure",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-apis",
+              "--test",
+              "c026_exposure",
+              "--locked"
+            ],
+            "timeout_seconds": 900
+          },
+          {
+            "name": "C026 scenarios",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-apis",
+              "--test",
+              "c026_scenarios",
+              "--locked",
+              "--",
+              "--test-threads=1"
+            ],
+            "timeout_seconds": 900
+          },
+          {
+            "name": "C026 replica",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-node",
+              "--test",
+              "c026_replica",
+              "--locked"
+            ],
+            "timeout_seconds": 900
+          },
+          {
+            "name": "C026 configuration",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-config",
+              "--test",
+              "c026_solidity",
+              "--locked"
+            ],
+            "timeout_seconds": 900
+          },
+          {
+            "name": "C026 all targets",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "check",
+              "-p",
+              "tron-apis",
+              "-p",
+              "tron-node",
+              "-p",
+              "tron-config",
+              "--all-targets",
+              "--locked"
+            ],
+            "timeout_seconds": 1200
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
+        "state": "approved",
+        "round": 1,
         "findings": []
       },
       "blocker": null

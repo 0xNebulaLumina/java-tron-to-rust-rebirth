@@ -1,0 +1,693 @@
+{
+  "schema": "c026-ownership-reconciliation-v1",
+  "version": 1,
+  "java_source_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "canonical_counts": {
+    "solidity_node_java_tests": 18,
+    "covered": 15,
+    "excluded": 3,
+    "seams": 4,
+    "unmapped": 0
+  },
+  "rows": [
+    {
+      "id": "TCASE-2A5C9AA3AA6EA9F8",
+      "kind": "java_test",
+      "java_case": "testSolidityGrpcCall",
+      "source": {
+        "line": 82,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.04",
+      "status": "covered",
+      "rust_dispatch": "tron-apis::c026_scenarios::standalone_live_grpc_services_and_forbidden_families_are_observed",
+      "proof": {
+        "category": "live_grpc",
+        "observes": [
+          "required-service-call",
+          "forbidden-family-rejection"
+        ],
+        "rust_symbol": "tron-apis::c026_scenarios::standalone_live_grpc_services_and_forbidden_families_are_observed"
+      }
+    },
+    {
+      "id": "TCASE-ECC75FD437461ADA",
+      "kind": "java_test",
+      "java_case": "testSolidityNodeHttpApiService",
+      "source": {
+        "line": 111,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.04",
+      "status": "covered",
+      "rust_dispatch": "tron-apis::c026_scenarios::all_45_solidity_routes_execute_on_live_isolated_http",
+      "proof": {
+        "category": "live_http",
+        "observes": [
+          "all-45-routes-execute",
+          "solidity-cursor"
+        ],
+        "rust_symbol": "tron-apis::c026_scenarios::all_45_solidity_routes_execute_on_live_isolated_http"
+      }
+    },
+    {
+      "id": "TCASE-4FB5B48C32F41CBF",
+      "kind": "java_test",
+      "java_case": "testExecutorsInitializedOnStartup",
+      "source": {
+        "line": 125,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C025.08",
+      "status": "excluded",
+      "rust_dispatch": "tron-node::c025_cases_lifecycle_limits",
+      "exclusion_reason": "Approved C025.V owns executor initialization, application-close state, and Solidity condition selection; C026 consumes that lifecycle contract without re-owning it.",
+      "proof": {
+        "category": "c025_exact_exclusion",
+        "observes": [
+          "executor-initialization",
+          "application-lifecycle"
+        ],
+        "artifact": "c025-row-evidence.v1.json",
+        "evidence_row_id": "TCASE-4FB5B48C32F41CBF",
+        "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client"
+      }
+    },
+    {
+      "id": "TCASE-88A0D8FDBE4E44F0",
+      "kind": "java_test",
+      "java_case": "testOnApplicationEventSetsFlagFalse",
+      "source": {
+        "line": 142,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C025.08",
+      "status": "excluded",
+      "rust_dispatch": "tron-node::c025_cases_lifecycle_limits",
+      "exclusion_reason": "Approved C025.V owns executor initialization, application-close state, and Solidity condition selection; C026 consumes that lifecycle contract without re-owning it.",
+      "proof": {
+        "category": "c025_exact_exclusion",
+        "observes": [
+          "application-close-flag",
+          "application-lifecycle"
+        ],
+        "artifact": "c025-row-evidence.v1.json",
+        "evidence_row_id": "TCASE-88A0D8FDBE4E44F0",
+        "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client"
+      }
+    },
+    {
+      "id": "TCASE-6A17A3F0489100CD",
+      "kind": "java_test",
+      "java_case": "testSolidityConditionMatchesWhenSolidityFlagSet",
+      "source": {
+        "line": 154,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C025.08",
+      "status": "excluded",
+      "rust_dispatch": "tron-node::c025_cases_lifecycle_limits",
+      "exclusion_reason": "Approved C025.V owns executor initialization, application-close state, and Solidity condition selection; C026 consumes that lifecycle contract without re-owning it.",
+      "proof": {
+        "category": "c025_exact_exclusion",
+        "observes": [
+          "solidity-condition-selection",
+          "application-lifecycle"
+        ],
+        "artifact": "c025-row-evidence.v1.json",
+        "evidence_row_id": "TCASE-6A17A3F0489100CD",
+        "rust_case": "solidity_replica_retries_fetches_processes_and_shuts_down_client"
+      }
+    },
+    {
+      "id": "TCASE-EBD0B48CD2BC4233",
+      "kind": "java_test",
+      "java_case": "testResolveCompatibilityIssueWhenSolidityLagsHead",
+      "source": {
+        "line": 167,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.03",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::startup_reconciles_stale_marker_to_committed_head_before_fetching_next_height",
+      "proof": {
+        "category": "replica_startup_reconciliation",
+        "observes": [
+          "startup-marker-3",
+          "committed-head-10",
+          "reconciled-marker-10",
+          "first-trust-node-fetch-11"
+        ],
+        "rust_symbol": "tron-node::c026_replica::startup_reconciles_stale_marker_to_committed_head_before_fetching_next_height"
+      }
+    },
+    {
+      "id": "TCASE-EBE8CD81B908660A",
+      "kind": "java_test",
+      "java_case": "testShutdownCallsDatabaseClientShutdown",
+      "source": {
+        "line": 193,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.03",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::service_shutdown_joins_publication_before_closing_database_client",
+      "proof": {
+        "category": "replica_shutdown",
+        "observes": [
+          "joined-publication",
+          "database-client-close",
+          "no-fatal-stop"
+        ],
+        "rust_symbol": "tron-node::c026_replica::service_shutdown_joins_publication_before_closing_database_client"
+      }
+    },
+    {
+      "id": "TCASE-B98268F7AD12945A",
+      "kind": "java_test",
+      "java_case": "testSleep",
+      "source": {
+        "line": 226,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.02",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::startup_reconciles_stale_marker_to_committed_head_before_fetching_next_height",
+      "proof": {
+        "category": "replica_restart",
+        "observes": [
+          "cancellation-visible",
+          "startup-reconciliation-before-fetch"
+        ],
+        "rust_symbol": "tron-node::c026_replica::startup_reconciles_stale_marker_to_committed_head_before_fetching_next_height"
+      }
+    },
+    {
+      "id": "TCASE-BF84229BC644C593",
+      "kind": "java_test",
+      "java_case": "testGetBlockByNum",
+      "source": {
+        "line": 253,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.02",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::retries_same_height_then_applies_exact_sequence_and_persists",
+      "proof": {
+        "category": "replica_retry",
+        "observes": [
+          "exact-height-fetch",
+          "sequential-apply",
+          "cursor-persist"
+        ],
+        "rust_symbol": "tron-node::c026_replica::retries_same_height_then_applies_exact_sequence_and_persists"
+      }
+    },
+    {
+      "id": "TCASE-D6924C75B79C8610",
+      "kind": "java_test",
+      "java_case": "testGetBlockByNumWhenClosed",
+      "source": {
+        "line": 293,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.03",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::startup_reconciles_stale_marker_to_committed_head_before_fetching_next_height",
+      "proof": {
+        "category": "replica_restart",
+        "observes": [
+          "closed-source-cancellation",
+          "no-publication-after-cancel"
+        ],
+        "rust_symbol": "tron-node::c026_replica::startup_reconciles_stale_marker_to_committed_head_before_fetching_next_height"
+      }
+    },
+    {
+      "id": "TCASE-7AB4A24CB6974B48",
+      "kind": "java_test",
+      "java_case": "testGetBlockByNumNoErrorOnExceptionDuringShutdown",
+      "source": {
+        "line": 340,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.03",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::source_fetch_error_during_shutdown_still_closes_database_source",
+      "proof": {
+        "category": "replica_shutdown",
+        "observes": [
+          "shutdown-fetch-error-tolerated",
+          "database-client-close"
+        ],
+        "rust_symbol": "tron-node::c026_replica::source_fetch_error_during_shutdown_still_closes_database_source"
+      }
+    },
+    {
+      "id": "TCASE-F04F02E5141D1305",
+      "kind": "java_test",
+      "java_case": "testGetLastSolidityBlockNum",
+      "source": {
+        "line": 382,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.02",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::retries_same_height_then_applies_exact_sequence_and_persists",
+      "proof": {
+        "category": "replica_retry",
+        "observes": [
+          "dynamic-solidity-height",
+          "cursor-persist"
+        ],
+        "rust_symbol": "tron-node::c026_replica::retries_same_height_then_applies_exact_sequence_and_persists"
+      }
+    },
+    {
+      "id": "TCASE-2C4199CA57939EB1",
+      "kind": "java_test",
+      "java_case": "testGetLastSolidityBlockNumWhenClosed",
+      "source": {
+        "line": 413,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.03",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::durable_solidity_cursor_remains_readable_after_database_source_closes",
+      "proof": {
+        "category": "replica_shutdown",
+        "observes": [
+          "closed-cursor-read",
+          "joined-publication"
+        ],
+        "rust_symbol": "tron-node::c026_replica::durable_solidity_cursor_remains_readable_after_database_source_closes"
+      }
+    },
+    {
+      "id": "TCASE-2B6B086198EF7F45",
+      "kind": "java_test",
+      "java_case": "testLoopProcessBlock",
+      "source": {
+        "line": 451,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.02",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::startup_reconciles_stale_marker_to_committed_head_before_fetching_next_height",
+      "proof": {
+        "category": "replica_restart",
+        "observes": [
+          "loop-cancellation",
+          "restart-advances-from-local-head"
+        ],
+        "rust_symbol": "tron-node::c026_replica::startup_reconciles_stale_marker_to_committed_head_before_fetching_next_height"
+      }
+    },
+    {
+      "id": "TCASE-015D2E1CB6D2173E",
+      "kind": "java_test",
+      "java_case": "testGetBlockProcessesOneBlock",
+      "source": {
+        "line": 504,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.03",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::returned_height_mismatch_retries_without_apply_or_cursor_advance",
+      "proof": {
+        "category": "replica_mismatch",
+        "observes": [
+          "returned-height-validation",
+          "no-apply",
+          "no-cursor-advance",
+          "retry"
+        ],
+        "rust_symbol": "tron-node::c026_replica::returned_height_mismatch_retries_without_apply_or_cursor_advance"
+      }
+    },
+    {
+      "id": "TCASE-92120864D65D2229",
+      "kind": "java_test",
+      "java_case": "testGetBlockShutdownPaths",
+      "source": {
+        "line": 557,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.03",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::service_shutdown_joins_publication_before_closing_database_client",
+      "proof": {
+        "category": "replica_shutdown",
+        "observes": [
+          "shutdown-paths",
+          "joined-publication",
+          "database-client-close"
+        ],
+        "rust_symbol": "tron-node::c026_replica::service_shutdown_joins_publication_before_closing_database_client"
+      }
+    },
+    {
+      "id": "TCASE-E8E51BCEAD8A629B",
+      "kind": "java_test",
+      "java_case": "testProcessSolidityBlockProcessesQueuedBlock",
+      "source": {
+        "line": 634,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.03",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::startup_reconciles_stale_marker_to_committed_head_before_fetching_next_height",
+      "proof": {
+        "category": "replica_restart",
+        "observes": [
+          "queued-block-apply",
+          "publication-cancellation"
+        ],
+        "rust_symbol": "tron-node::c026_replica::startup_reconciles_stale_marker_to_committed_head_before_fetching_next_height"
+      }
+    },
+    {
+      "id": "TCASE-C7B71DDE0A291F8E",
+      "kind": "java_test",
+      "java_case": "testProcessSolidityBlockHandlesInterrupt",
+      "source": {
+        "line": 672,
+        "path": "java-tron/framework/src/test/java/org/tron/program/SolidityNodeTest.java"
+      },
+      "source_sha256": "b62fab97c14ae9e2d8359f0620e378cc904c065f3895e8c780282ccd3d824d67",
+      "owning_item": "C026.03",
+      "status": "covered",
+      "rust_dispatch": "tron-node::c026_replica::interrupt_cancels_inflight_replica_read_and_closes_database_source",
+      "proof": {
+        "category": "replica_shutdown",
+        "observes": [
+          "interrupt-cancellation",
+          "joined-publication",
+          "database-client-close"
+        ],
+        "rust_symbol": "tron-node::c026_replica::interrupt_cancels_inflight_replica_read_and_closes_database_source"
+      }
+    }
+  ],
+  "seams": [
+    {
+      "id": "C026-SEAM-C021-DATABASE-CLIENT",
+      "source_chunk": "C021",
+      "source_artifact": "c021-ownership-reconciliation.v1.json",
+      "classification": "excluded",
+      "count": 22,
+      "c026_case": "DatabaseSource trust-node polling replaces P2P protocol ownership; all 22 Wallet/Database protocol client rows remain explicit C022 exclusions and are not re-owned by C026",
+      "source_sha256": "b924a037fa6c02449a740540a131965da189b33c84221cbe1824a22a916e4c9a"
+    },
+    {
+      "id": "C026-SEAM-C022-GRPC",
+      "source_chunk": "C022",
+      "source_artifact": "c022-ownership-reconciliation.v1.json",
+      "classification": "covered",
+      "count": 203,
+      "c026_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact classifies every general descriptor method and c026_scenarios proves standalone service composition",
+      "source_sha256": "5a6226284f5d1cfccdeeaaec56193cc96cc8002c6cbabb313a33c31c1324de10"
+    },
+    {
+      "id": "C026-SEAM-C023-HTTP",
+      "source_chunk": "C023",
+      "source_artifact": "c023-ownership-reconciliation.v1.json",
+      "classification": "covered",
+      "count": 45,
+      "c026_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable binds every Solidity route to the SOLIDITY cursor",
+      "source_sha256": "7db3620b4a0e445cef7545aedf0b1066f14a7525a7ae157cc4ba8016ae166c19"
+    },
+    {
+      "id": "C026-SEAM-C025-LIFECYCLE",
+      "source_chunk": "C025",
+      "source_artifact": "c025-ownership-reconciliation.v1.json",
+      "classification": "excluded",
+      "count": 3,
+      "c026_case": "executor initialization, application-close flag, and Solidity condition matching remain owned and covered by tron-node::c025_cases_lifecycle_limits",
+      "source_sha256": "ec23a56fa415a21ad41d3607a0a8c029e88921e618f15daaea8c18003c3fba04"
+    }
+  ],
+  "review": {
+    "state": "pending",
+    "findings": []
+  },
+  "integration_cases": [
+    {
+      "id": "C026-CASE-CONFIG",
+      "owning_item": "C026.01",
+      "rust_dispatch": "tron-config::c026_solidity",
+      "covers": [
+        "trust-node-required",
+        "valid-host-ipv4-ipv6",
+        "non-solidity-unaffected"
+      ]
+    },
+    {
+      "id": "C026-CASE-RETRY",
+      "owning_item": "C026.02",
+      "rust_dispatch": "tron-node::c026_replica::retries_same_height_then_applies_exact_sequence_and_persists",
+      "covers": [
+        "multi-height",
+        "fetch-retry",
+        "exact-apply",
+        "solid-cursor"
+      ]
+    },
+    {
+      "id": "C026-CASE-RESTART",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::startup_reconciles_stale_marker_to_committed_head_before_fetching_next_height",
+      "covers": [
+        "cancel-during-apply",
+        "committed-apply",
+        "suppressed-publication",
+        "startup-marker-reconciliation",
+        "next-height-fetch",
+        "ahead-marker-failure"
+      ]
+    },
+    {
+      "id": "C026-CASE-MISMATCH",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::returned_height_mismatch_retries_without_apply_or_cursor_advance",
+      "covers": [
+        "returned-height-mismatch",
+        "retry",
+        "no-premature-apply-or-cursor"
+      ]
+    },
+    {
+      "id": "C026-CASE-CANCEL",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::service_shutdown_joins_publication_before_closing_database_client",
+      "covers": [
+        "normal-cancel",
+        "joined-worker",
+        "database-client-close",
+        "no-fatal-stop"
+      ]
+    },
+    {
+      "id": "C026-CASE-GRPC-EXPOSURE",
+      "owning_item": "C026.04",
+      "rust_dispatch": "tron-apis::c026_exposure",
+      "covers": [
+        "203-method-matrix",
+        "required-optional-forbidden-services"
+      ]
+    },
+    {
+      "id": "C026-CASE-HTTP-CURSOR",
+      "owning_item": "C026.04",
+      "rust_dispatch": "tron-apis::c026_exposure::standalone_solidity_http_routes_are_exact_and_executable",
+      "covers": [
+        "45-routes",
+        "SOLIDITY-cursor"
+      ]
+    },
+    {
+      "id": "C026-CASE-ENDPOINT-ABSENCE",
+      "owning_item": "C026.05",
+      "rust_dispatch": "tron-apis::c026_exposure::standalone_solidity_ports_and_absences_are_exact",
+      "covers": [
+        "required-primary-ports",
+        "secondary-full-pbft-p2p-jsonrpc-absence"
+      ]
+    },
+    {
+      "id": "C026-CASE-SUPERVISION",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::replica_worker_failure_revokes_readiness_and_requests_fatal_stop",
+      "covers": [
+        "worker-error",
+        "worker-panic",
+        "readiness-revocation",
+        "fatal-stop"
+      ]
+    },
+    {
+      "id": "C026-CASE-DURABLE-SOLIDITY-CURSOR-REMAINS-READABLE-AFTER-DATABASE-SOURCE-CLOSES",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::durable_solidity_cursor_remains_readable_after_database_source_closes",
+      "covers": [
+        "closed-database-source",
+        "durable-cursor-read"
+      ]
+    },
+    {
+      "id": "C026-CASE-INTERRUPT-CANCELS-INFLIGHT-REPLICA-READ-AND-CLOSES-DATABASE-SOURCE",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::interrupt_cancels_inflight_replica_read_and_closes_database_source",
+      "covers": [
+        "interrupt-cancellation",
+        "inflight-read-cancel",
+        "database-client-close",
+        "no-fatal-stop"
+      ]
+    },
+    {
+      "id": "C026-CASE-SOURCE-FETCH-ERROR-DURING-SHUTDOWN-STILL-CLOSES-DATABASE-SOURCE",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::source_fetch_error_during_shutdown_still_closes_database_source",
+      "covers": [
+        "source-fetch-error",
+        "shutdown-cancellation",
+        "database-client-close"
+      ]
+    },
+    {
+      "id": "C026-CASE-FATAL-REPLICA-BEFORE-READINESS-START-NEVER-BECOMES-HEALTHY-READY-OR-INGRESS-ENABLED",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::fatal_replica_before_readiness_start_never_becomes_healthy_ready_or_ingress_enabled",
+      "covers": [
+        "concrete-fatal-cause",
+        "in-graph-startup-unwind",
+        "readiness-refused",
+        "ingress-disabled",
+        "reverse-stop"
+      ]
+    },
+    {
+      "id": "C026-CASE-PRODUCTION-POST-GRAPH-FATAL-UNWIND",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::production_start_fatal_after_graph_readiness_unwinds_every_started_resource_exactly_once",
+      "covers": [
+        "concrete-fatal-after-graph-running",
+        "reverse-stop-and-join",
+        "graph-not-running",
+        "readiness-health-ingress-revoked",
+        "cleanup-exactly-once",
+        "startup-unwind-failure-preserves-root-cause"
+      ]
+    },
+    {
+      "id": "C026-CASE-PRODUCTION-FATAL-WITH-LATER-STARTUP-TIMEOUT",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::production_start_preserves_fatal_when_later_service_times_out",
+      "covers": [
+        "exact-fatal-service-and-message-remain-primary",
+        "later-service-startup-timeout-retained",
+        "successful-reverse-unwind",
+        "fatal-latch-consumed-only-after-aggregation"
+      ]
+    },
+    {
+      "id": "C026-CASE-STOP-CONTROLLER-FATAL-LATCH",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::stop_controller_fatal_latch_preserves_nonfatal_queue_and_every_fatal_cause",
+      "covers": [
+        "fatal-peek",
+        "fatal-consume-in-order",
+        "multiple-fatal-causes-preserved",
+        "operator-and-signal-stops-not-consumed"
+      ]
+    },
+    {
+      "id": "C026-CASE-TIMED-OUT-REPLICA-STOP-REMAINS-OWNED-AND-RETRY-JOINS",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::timed_out_replica_stop_remains_owned_and_retry_joins_source_shutdown",
+      "covers": [
+        "outer-timeout-retains-task-ownership",
+        "service-graph-remains-stopping",
+        "retry-joins-worker",
+        "database-client-close-exactly-once",
+        "no-detached-task-or-source"
+      ]
+    },
+    {
+      "id": "C026-CASE-REPLICA-WORKER-AND-DATABASE-SHUTDOWN-DUAL-FAILURE",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::replica_worker_and_database_shutdown_failures_preserve_both_exact_causes",
+      "covers": [
+        "exact-worker-failure",
+        "exact-database-shutdown-failure",
+        "stable-dual-error-aggregation"
+      ]
+    },
+    {
+      "id": "C026-CASE-PRODUCTION-OPERATOR-BEFORE-FATAL",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::production_operator_before_fatal_cannot_report_successful_shutdown",
+      "covers": ["shared-constructor-state", "operator-first", "queued-fatal-authoritative", "graph-shutdown-before-fatal-drain"]
+    },
+    {
+      "id": "C026-CASE-PRODUCTION-INTERRUPT-BEFORE-FATAL",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::production_interrupt_before_fatal_cannot_report_successful_shutdown",
+      "covers": ["interrupt-first", "queued-fatal-authoritative", "signal-path-shared-finalization"]
+    },
+    {
+      "id": "C026-CASE-PRODUCTION-FATAL-SHUTDOWN-AGGREGATION",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::production_fatal_and_graph_shutdown_error_are_structurally_aggregated",
+      "covers": ["fatal-authoritative", "graph-shutdown-error-retained", "structured-aggregation"]
+    },
+    {
+      "id": "C026-CASE-PRODUCTION-NONFATAL-SHUTDOWN",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::production_nonfatal_shutdown_remains_successful",
+      "covers": ["operator-stop", "successful-graph-shutdown", "nonfatal-success"]
+    }
+    ,{
+      "id": "C026-CASE-PRODUCTION-FACTORY-SHARED-CONTROL-STATE",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::production_factory_hooks_share_the_nodes_exact_status_and_stop_state",
+      "covers": ["factory-receives-canonical-status-and-stop", "fatal-publication-visible-through-node-status", "no-opaque-readiness-hook-construction"]
+    },
+    {
+      "id": "C026-CASE-PRODUCTION-FACTORY-PRECONSTRUCTION-CONFIG",
+      "owning_item": "C026.01",
+      "rust_dispatch": "tron-node::c026_replica::production_factory_validates_mode_config_before_factory_side_effects",
+      "covers": ["blank-trust-node-rejected-before-factory", "malformed-trust-node-rejected-before-factory", "zero-invalid-service-resource-construction", "valid-config-factory-once", "service-graph-defense-retained"]
+    },
+    {
+      "id": "C026-CASE-PUBLIC-PRODUCTION-PRECONSTRUCTION-CONFIG",
+      "owning_item": "C026.01",
+      "rust_dispatch": "tron-node::c026_replica::public_production_entrypoint_prevalidates_canonical_config_before_consuming_dependencies",
+      "covers": ["public-compose-production-node-entrypoint", "canonical-context-config-only", "blank-and-malformed-trust-node-prevalidation", "zero-invalid-owned-service-inspection", "one-valid-production-graph"]
+    },
+    {
+      "id": "C026-CASE-PRODUCTION-STARTUP-ALL-FATAL-DRAIN",
+      "owning_item": "C026.03",
+      "rust_dispatch": "tron-node::c026_replica::production_start_atomically_drains_every_concurrent_fatal_in_order",
+      "covers": ["multiple-concurrent-fatal-causes", "atomic-ordered-drain", "original-startup-timeout-retained", "no-fatal-cause-trapped"]
+    }
+  ]
+}

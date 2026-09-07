@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "chunk": "C026.01-C026.03",
+  "javaRevision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "javaSources": [
+    {
+      "path": "framework/src/main/java/org/tron/program/SolidityNode.java",
+      "sha256": "958ab5e5ca8d23f08f5db9d03200dbbedffd18b3768d65994e7430a3cfe888ff"
+    },
+    {
+      "path": "framework/src/main/java/org/tron/program/FullNode.java",
+      "sha256": "e251be7165edbe21708e45d303928bf5e404528ba9200f241cdb4eacf8398808"
+    },
+    {
+      "path": "framework/src/main/java/org/tron/common/client/DatabaseGrpcClient.java",
+      "sha256": "d0285ddb712f32b6287e091ec885adcd1ebcc58149d286281963422edec417db"
+    }
+  ],
+  "vectors": [
+    {
+      "id": "C026-CONFIG-001",
+      "input": {
+        "mode": "Solidity",
+        "trustNode": ""
+      },
+      "result": "reject-before-services"
+    },
+    {
+      "id": "C026-CONFIG-002",
+      "input": {
+        "mode": "Solidity",
+        "trustNode": "trust.example:50051"
+      },
+      "result": "accept-no-p2p"
+    },
+    {
+      "id": "C026-REPLICA-001",
+      "checkpoint": 0,
+      "remoteTip": 2,
+      "fetch": [
+        "1:error",
+        "1:ok",
+        "2:ok"
+      ],
+      "applied": [
+        1,
+        2
+      ],
+      "published": [
+        1,
+        2
+      ],
+      "solidCursor": 2
+    },
+    {
+      "id": "C026-REPLICA-002",
+      "checkpoint": 5,
+      "remoteTip": 6,
+      "fetch": [
+        "6:ok"
+      ],
+      "applied": [
+        6
+      ],
+      "published": [
+        6
+      ],
+      "solidCursor": 6
+    },
+    {
+      "id": "C026-REPLICA-003",
+      "checkpoint": 0,
+      "remoteTip": 1,
+      "fetch": [
+        "1:return-height-9",
+        "1:ok"
+      ],
+      "applied": [
+        1
+      ],
+      "published": [
+        1
+      ],
+      "solidCursor": 1
+    },
+    {
+      "id": "C026-REPLICA-004",
+      "persistedMarker": 3,
+      "committedHead": 10,
+      "startupPublished": [
+        10
+      ],
+      "remoteTip": 11,
+      "fetch": [
+        "11:ok"
+      ],
+      "applied": [
+        11
+      ],
+      "published": [],
+      "solidCursor": 10,
+      "cancel": "during-apply"
+    },
+    {
+      "id": "C026-CURSOR-001",
+      "dynamicProperty": "LATEST_SOLIDIFIED_BLOCK_NUM",
+      "databaseField": "lastSolidityBlockNum"
+    },
+    {
+      "id": "C026-ABSENCE-001",
+      "ports": [
+        50061,
+        8090,
+        8092,
+        50071,
+        18888,
+        8545
+      ],
+      "result": "absent"
+    },
+    {
+      "id": "C026-REPLICA-005",
+      "persistedMarker": 1,
+      "committedHead": 1,
+      "fetch": [
+        "2:ok"
+      ],
+      "applied": [
+        2
+      ],
+      "published": [],
+      "cancel": "during-apply",
+      "restart": {
+        "persistedMarker": 1,
+        "committedHead": 2,
+        "startupPublished": [
+          2
+        ],
+        "fetch": [
+          "3:ok"
+        ],
+        "applied": [
+          3
+        ],
+        "published": [],
+        "solidCursor": 2
+      }
+    }
+  ],
+  "constants": {
+    "queueCapacity": 100,
+    "caughtUpPollMillis": 3000,
+    "errorRetryMillis": 1000
+  },
+  "rustProofs": [
+    {
+      "command": "cargo test -p tron-config --test c026_solidity --locked",
+      "cases": 2
+    },
+    {
+      "command": "cargo test -p tron-node --test c026_replica --locked",
+      "cases": 22,
+      "names": [
+        "durable_solidity_cursor_remains_readable_after_database_source_closes",
+        "fatal_replica_before_readiness_start_never_becomes_healthy_ready_or_ingress_enabled",
+        "interrupt_cancels_inflight_replica_read_and_closes_database_source",
+        "production_factory_hooks_share_the_nodes_exact_status_and_stop_state",
+        "production_factory_validates_mode_config_before_factory_side_effects",
+        "production_fatal_and_graph_shutdown_error_are_structurally_aggregated",
+        "production_interrupt_before_fatal_cannot_report_successful_shutdown",
+        "production_nonfatal_shutdown_remains_successful",
+        "production_operator_before_fatal_cannot_report_successful_shutdown",
+        "production_start_atomically_drains_every_concurrent_fatal_in_order",
+        "production_start_fatal_after_graph_readiness_unwinds_every_started_resource_exactly_once",
+        "production_start_preserves_fatal_when_later_service_times_out",
+        "public_production_entrypoint_prevalidates_canonical_config_before_consuming_dependencies",
+        "replica_worker_and_database_shutdown_failures_preserve_both_exact_causes",
+        "replica_worker_failure_revokes_readiness_and_requests_fatal_stop",
+        "retries_same_height_then_applies_exact_sequence_and_persists",
+        "returned_height_mismatch_retries_without_apply_or_cursor_advance",
+        "service_shutdown_joins_publication_before_closing_database_client",
+        "source_fetch_error_during_shutdown_still_closes_database_source",
+        "startup_reconciles_stale_marker_to_committed_head_before_fetching_next_height",
+        "stop_controller_fatal_latch_preserves_nonfatal_queue_and_every_fatal_cause",
+        "timed_out_replica_stop_remains_owned_and_retry_joins_source_shutdown"
+      ]
+    },
+    {
+      "command": "cargo test -p tron-apis --test c026_exposure --locked",
+      "cases": 4
+    },
+    {
+      "command": "cargo test -p tron-apis --test c026_scenarios --locked -- --test-threads=1",
+      "cases": 3
+    }
+  ]
+}

@@ -107,6 +107,12 @@ impl Config {
         if let Some(v) = cli.history_balance_lookup { self.storage.balance.history.lookup = v; self.misc.history_balance_lookup = v; }
         if !cli.seed_nodes.is_empty() { self.misc.seed_node.addresses = cli.seed_nodes.clone(); }
     }
+    /// Validates mode-specific prerequisites after CLI overrides and before service construction.
+    pub fn validate_for_mode(&self, mode: NodeMode) -> Result<(), ConfigError> {
+        if mode == NodeMode::Solidity { validate_trust_node(&self.node.trust_node)?; }
+        Ok(())
+    }
+
 
     pub fn apply_event_stage(&mut self) {
         self.runtime_event_subscribe |= self.event.subscribe.enable;
@@ -136,6 +142,47 @@ impl Config {
         CompatibilityBridge { support_constant: self.vm.support_constant, max_energy_limit_for_constant: self.vm.max_energy_limit_for_constant, db_engine: self.storage.db.engine.clone(), db_sync: self.storage.db.sync, db_directory: self.storage.db.directory.clone(), transaction_history_switch: self.storage.trans_history.switch_value.clone(), allow_pbft: self.committee.allow_pbft, pbft_expire_num: self.committee.pbft_expire_num, event_subscribe: self.runtime_event_subscribe, metrics_enable: self.node.metrics_enable, prometheus: self.node.metrics.prometheus.clone(), seed_nodes: self.misc.seed_node.addresses.clone(), open_history_query_when_lite_fn: self.node.open_history_query_when_lite_fn }
     }
 
+}
+
+/// Parses the plaintext database endpoint authority accepted by Solidity mode.
+///
+/// The returned value is trimmed and safe to append to an `http://` URI.
+pub fn database_endpoint_authority(value: &str) -> Result<&str, ConfigError> {
+    use std::net::{Ipv4Addr, Ipv6Addr};
+
+    let value = value.trim();
+    if value.bytes().any(|byte| matches!(byte, b'@' | b'/' | b'?' | b'#' | b'\\')) {
+        return Err(ConfigError::Invalid("trust node must not contain a scheme, userinfo, path, query, or fragment".into()));
+    }
+    let authority = value.parse::<http::uri::Authority>()
+        .map_err(|_| ConfigError::Invalid("trust node must be a DNS/IPv4 host:port or [IPv6]:port authority".into()))?;
+    authority.port_u16()
+        .filter(|port| *port != 0)
+        .ok_or_else(|| ConfigError::Invalid("trust node port must be an integer in 1..=65535".into()))?;
+
+    let host = authority.host();
+    if host.starts_with('[') {
+        let address = host.strip_prefix('[').and_then(|host| host.strip_suffix(']'))
+            .ok_or_else(|| ConfigError::Invalid("trust node IPv6 address must be bracketed".into()))?;
+        address.parse::<Ipv6Addr>()
+            .map_err(|_| ConfigError::Invalid("trust node contains an invalid IPv6 address".into()))?;
+    } else if host.parse::<Ipv4Addr>().is_err() {
+        let valid_dns = !host.bytes().all(|byte| byte.is_ascii_digit() || byte == b'.')
+            && !host.is_empty() && host.len() <= 253 && host.split('.').all(|label| {
+            !label.is_empty() && label.len() <= 63
+                && !label.starts_with('-') && !label.ends_with('-')
+                && label.bytes().all(|byte| byte.is_ascii_alphanumeric() || byte == b'-')
+        });
+        if !valid_dns {
+            return Err(ConfigError::Invalid("trust node contains an invalid DNS or IPv4 host".into()));
+        }
+    }
+
+    Ok(value)
+}
+
+fn validate_trust_node(value: &str) -> Result<(), ConfigError> {
+    database_endpoint_authority(value).map(|_| ())
 }
 
 #[derive(Debug, Clone, Copy)]

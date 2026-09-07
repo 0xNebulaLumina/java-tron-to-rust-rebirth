@@ -65,6 +65,14 @@ impl CursorSet {
             pbft_offset: effective_offset,
         })
     }
+    /// Publishes the current durable/committed image as SOLIDITY at the latest block checkpoint.
+    /// This is used after standalone replication writes its solid marker after verified apply.
+    pub fn with_live_solidity(manager: &SessionManager, point: CursorPoint) -> Result<Self, CursorError> {
+        let mut cursors = Self::new(manager, point, Some(point), None, 0)?;
+        cursors.solidity = SolidityCursor { point, view: manager.read_view() };
+        Ok(cursors)
+    }
+
     #[must_use] pub fn head(&self) -> HeadCursor { self.head.clone() }
     #[must_use] pub fn solidity(&self) -> SolidityCursor { self.solidity.clone() }
     #[must_use] pub fn pbft(&self) -> PbftCursor { self.pbft.clone() }

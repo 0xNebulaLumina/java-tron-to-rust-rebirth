@@ -1,15 +1,18 @@
 //! C025 operational-service composition and process stop coordination.
 
-use std::{future::Future, pin::Pin, sync::{Arc, atomic::{AtomicBool, Ordering}}, time::Duration};
+use std::{collections::VecDeque, future::Future, pin::Pin, sync::Arc, time::Duration};
 
+use parking_lot::Mutex;
 use tokio::{io::{AsyncReadExt, AsyncWriteExt}, net::{TcpListener, TcpStream}, sync::{Semaphore, mpsc}, task::{JoinHandle, JoinSet}, time::Instant};
 use tokio_util::sync::CancellationToken as TokioCancellationToken;
-use tron_apis::{ApiContext, FilterManager, RpcApiServices, RpcDomainProvider};
+use tron_apis::{ApiContext, FilterManager, RpcApiServices, RpcDomainProvider, TonicDatabaseSource};
 use tron_config::NodeMode;
 use tron_events_metrics::{DbStatService, Delivery, DeliveryWorker, EventQueues, MetricsRegistry, MonitorMetrics, PluginConfig, ProcessPlugin, QueueClass, TransactionalEventSink, ZeroMqConfig, ZeroMqPublisher};
 use tron_protocol::protocol::NodeInfo;
+use tron_state::SessionManager;
 
-use crate::{LifecycleError, LifecycleFuture, NodeContext, NodeService, ServiceFailure, ServiceGraph, ServiceMode, ServiceSpec};
+use crate::{LifecycleError, LifecycleFuture, NodeContext, NodeService, ServiceFailure, ServiceGraph, ServiceGraphState, ServiceMode, ServiceSpec};
+use crate::solidity_replica::{SolidityReplica, StateReplicaCheckpoint, VerifiedBlockApplier};
 
 pub const NETWORK_SERVICE: &str = "network";
 pub const API_SERVICE: &str = "apis";
@@ -86,48 +89,103 @@ pub struct OperationsComponents {
     pub readiness: Box<dyn OperationalHooks>,
 }
 
-#[must_use]
-pub fn operational_service_graph(components: OperationsComponents) -> Vec<Box<dyn NodeService>> {
+fn operational_service_graph_with_roots(
+    components: OperationsComponents,
+    api_provider_dependencies: &'static [&'static str],
+    metrics_dependencies: &'static [&'static str],
+) -> Vec<Box<dyn NodeService>> {
     let all_modes = &[ServiceMode::Full, ServiceMode::Solidity][..0]; // enabled in either node mode
     vec![
-        Box::new(OperationalService::new(ServiceSpec::new(API_PROVIDER_SERVICE, &[NETWORK_SERVICE, API_SERVICE], all_modes), ShutdownPlan::CancelDrainFlushStop, components.api_provider)),
+        Box::new(OperationalService::new(ServiceSpec::new(API_PROVIDER_SERVICE, api_provider_dependencies, all_modes), ShutdownPlan::CancelDrainFlushStop, components.api_provider)),
         Box::new(OperationalService::new(ServiceSpec::new(EVENT_QUEUE_SERVICE, &[API_PROVIDER_SERVICE], all_modes), ShutdownPlan::CancelDrainFlushStop, components.queues)),
         Box::new(OperationalService::new(ServiceSpec::new(EVENT_PLUGIN_SERVICE, &[EVENT_QUEUE_SERVICE], all_modes), ShutdownPlan::DrainFlushStop, components.plugin)),
         Box::new(OperationalService::new(ServiceSpec::new(ZEROMQ_SERVICE, &[EVENT_QUEUE_SERVICE], all_modes), ShutdownPlan::DrainFlushStop, components.zeromq)),
-        Box::new(OperationalService::new(ServiceSpec::new(METRICS_SERVICE, &[NETWORK_SERVICE, API_SERVICE], all_modes), ShutdownPlan::FlushStop, components.metrics)),
+        Box::new(OperationalService::new(ServiceSpec::new(METRICS_SERVICE, metrics_dependencies, all_modes), ShutdownPlan::FlushStop, components.metrics)),
         Box::new(OperationalService::new(ServiceSpec::new(PROMETHEUS_SERVICE, &[METRICS_SERVICE], all_modes), ShutdownPlan::CancelDrainFlushStop, components.prometheus)),
         Box::new(OperationalService::new(ServiceSpec::new(DB_STATS_SERVICE, &[METRICS_SERVICE], all_modes), ShutdownPlan::Stop, components.db_stats)),
         Box::new(OperationalService::new(ServiceSpec::new(READINESS_SERVICE, &[EVENT_PLUGIN_SERVICE, ZEROMQ_SERVICE, PROMETHEUS_SERVICE, DB_STATS_SERVICE], all_modes), ShutdownPlan::CancelDrainFlushStop, components.readiness)),
     ]
 }
 
+#[must_use]
+pub fn operational_service_graph(components: OperationsComponents) -> Vec<Box<dyn NodeService>> {
+    operational_service_graph_with_roots(components, &[NETWORK_SERVICE, API_SERVICE], &[NETWORK_SERVICE, API_SERVICE])
+}
+
+#[derive(Default)]
+struct NodeStatusState {
+    ready: bool,
+    healthy: bool,
+    accepting_ingress: bool,
+    fatal: bool,
+    causes: VecDeque<ServiceFailure>,
+}
+
 #[derive(Clone, Default)]
 pub struct NodeStatus {
-    ready: Arc<AtomicBool>,
-    healthy: Arc<AtomicBool>,
-    accepting_ingress: Arc<AtomicBool>,
+    state: Arc<Mutex<NodeStatusState>>,
 }
 impl NodeStatus {
-    pub fn mark_running(&self) { self.healthy.store(true, Ordering::Release); self.accepting_ingress.store(true, Ordering::Release); self.ready.store(true, Ordering::Release); }
-    pub fn revoke_readiness(&self) { self.ready.store(false, Ordering::Release); self.accepting_ingress.store(false, Ordering::Release); }
-    pub fn mark_unhealthy(&self) { self.revoke_readiness(); self.healthy.store(false, Ordering::Release); }
-    #[must_use] pub fn is_ready(&self) -> bool { self.ready.load(Ordering::Acquire) }
-    #[must_use] pub fn is_healthy(&self) -> bool { self.healthy.load(Ordering::Acquire) }
-    #[must_use] pub fn accepts_ingress(&self) -> bool { self.accepting_ingress.load(Ordering::Acquire) }
+    pub fn mark_running(&self) -> bool {
+        let mut state = self.state.lock();
+        if state.fatal { return false; }
+        state.healthy = true;
+        state.accepting_ingress = true;
+        state.ready = true;
+        true
+    }
+    pub fn revoke_readiness(&self) { let mut state = self.state.lock(); state.ready = false; state.accepting_ingress = false; }
+    pub fn mark_unhealthy(&self) { let mut state = self.state.lock(); state.fatal = true; state.ready = false; state.accepting_ingress = false; state.healthy = false; }
+    #[must_use] pub fn is_ready(&self) -> bool { self.state.lock().ready }
+    #[must_use] pub fn is_healthy(&self) -> bool { self.state.lock().healthy }
+    #[must_use] pub fn accepts_ingress(&self) -> bool { self.state.lock().accepting_ingress }
+    #[must_use] pub fn is_fatal(&self) -> bool { self.state.lock().fatal }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum StopCondition { Interrupt, Terminate, Operator, Fatal(ServiceFailure) }
 
 #[derive(Clone)]
-pub struct StopHandle(mpsc::UnboundedSender<StopCondition>);
-pub struct StopController(mpsc::UnboundedReceiver<StopCondition>);
+pub struct StopHandle {
+    sender: mpsc::UnboundedSender<StopCondition>,
+    state: Arc<Mutex<NodeStatusState>>,
+}
+pub struct StopController {
+    receiver: mpsc::UnboundedReceiver<StopCondition>,
+    state: Arc<Mutex<NodeStatusState>>,
+}
 impl StopController {
-    #[must_use] pub fn new() -> (StopHandle, Self) { let (tx, rx) = mpsc::unbounded_channel(); (StopHandle(tx), Self(rx)) }
-    pub async fn wait(&mut self) -> StopCondition { self.0.recv().await.unwrap_or(StopCondition::Operator) }
+    #[must_use]
+    pub fn new() -> (StopHandle, Self) { Self::new_with_status(NodeStatus::default()) }
+    #[must_use]
+    pub fn new_with_status(status: NodeStatus) -> (StopHandle, Self) {
+        let (sender, receiver) = mpsc::unbounded_channel();
+        let state = status.state;
+        (StopHandle { sender, state: state.clone() }, Self { receiver, state })
+    }
+    pub async fn wait(&mut self) -> StopCondition { self.receiver.recv().await.unwrap_or(StopCondition::Operator) }
+    #[must_use] pub fn peek_fatal(&self) -> Option<ServiceFailure> { self.state.lock().causes.front().cloned() }
+    pub fn drain_all_fatal(&mut self) -> Vec<ServiceFailure> { self.state.lock().causes.drain(..).collect() }
+    fn shares_status(&self, status: &NodeStatus) -> bool { Arc::ptr_eq(&self.state, &status.state) }
 }
 impl StopHandle {
-    pub fn request(&self, condition: StopCondition) -> Result<(), StopCondition> { self.0.send(condition).map_err(|error| error.0) }
+    pub fn request(&self, condition: StopCondition) -> Result<(), StopCondition> {
+        if let StopCondition::Fatal(failure) = &condition {
+            let mut state = self.state.lock();
+            state.causes.push_back(failure.clone());
+            state.fatal = true;
+            state.ready = false;
+            state.accepting_ingress = false;
+            state.healthy = false;
+            if let Err(error) = self.sender.send(condition) {
+                state.causes.pop_back();
+                return Err(error.0);
+            }
+            Ok(())
+        } else {
+            self.sender.send(condition).map_err(|error| error.0)
+        }
+    }
 }
 
 #[must_use]
@@ -137,6 +195,27 @@ pub fn production_service_graph(mut core_services:Vec<Box<dyn NodeService>>,netw
     core_services.extend(operational_service_graph(operations));
     core_services
 }
+/// Solidity composition starts replication after the core state/execution prefix, then exposes
+/// standalone APIs and readiness. It deliberately excludes the network service: a Solidity node
+/// consumes its trust node over the database client and never owns a P2P server.
+#[must_use]
+pub fn solidity_production_service_graph(
+    mut core_services: Vec<Box<dyn NodeService>>,
+    replica: Box<dyn NodeService>,
+    _network: Box<dyn NodeService>,
+    apis: Box<dyn NodeService>,
+    operations: OperationsComponents,
+) -> Vec<Box<dyn NodeService>> {
+    core_services.push(replica);
+    core_services.push(apis);
+    core_services.extend(operational_service_graph_with_roots(
+        operations,
+        &[crate::solidity_replica::SOLIDITY_REPLICA_SERVICE, API_SERVICE],
+        &[crate::solidity_replica::SOLIDITY_REPLICA_SERVICE, API_SERVICE],
+    ));
+    core_services
+}
+
 
 #[derive(Clone)]
 pub struct ProductionOperationalBindings {
@@ -151,20 +230,25 @@ impl ProductionOperationalBindings {
     #[must_use] pub fn rpc_provider(&self)->RpcDomainProvider{self.provider.clone()}
     #[must_use] pub fn rpc_services(&self)->RpcApiServices{RpcApiServices::with_provider(self.api_context.clone(),self.provider.clone())}
     #[must_use] pub fn event_sink(&self)->TransactionalEventSink{self.queues.sink()}
+    #[must_use] pub fn api_context(&self)->ApiContext{self.api_context.clone()}
     #[must_use] pub fn filter_sink(&self)->tron_apis::ProductionFilterSink{self.filters.sink()}
     #[must_use] pub fn metrics(&self)->Arc<MonitorMetrics>{self.metrics.clone()}
 }
 
-/// Inputs owned by the production composition root. Core services are the C003 state,
-/// execution, and consensus prefix; network and API are the concrete C020-C024 boundary.
-pub struct ProductionNodeComponents {
+/// Neutral inputs for custom production composition. Fatal/readiness-aware hooks must be built
+/// by the factory from the supplied `NodeStatus` and `StopHandle` clones.
+pub struct ProductionNodeComposition {
     pub context: NodeContext,
     pub mode: NodeMode,
+    pub bindings: ProductionOperationalBindings,
+}
+
+pub struct ProductionNodeServices {
     pub core_services: Vec<Box<dyn NodeService>>,
     pub network: Box<dyn NodeService>,
     pub apis: Box<dyn NodeService>,
     pub operations: OperationsComponents,
-    pub bindings:ProductionOperationalBindings,
+    pub replica: Option<Box<dyn NodeService>>,
 }
 
 pub struct ProductionNode {
@@ -180,30 +264,82 @@ pub struct ProductionNode {
 }
 
 impl ProductionNode {
-    pub fn compose(parts: ProductionNodeComponents) -> Result<Self, LifecycleError> {
-        let provider=parts.bindings.rpc_provider();
-        let rpc_services=parts.bindings.rpc_services();
-        let event_sink=parts.bindings.event_sink();
-        let filter_sink=parts.bindings.filter_sink();
-        let metrics=parts.bindings.metrics();
-        let services=production_service_graph(parts.core_services,parts.network,parts.apis,parts.operations);
-        let graph=ServiceGraph::new(parts.context,parts.mode,services)?;
-        let (stop,controller)=StopController::new();
-        Ok(Self{graph,status:NodeStatus::default(),stop,controller,rpc_provider:provider,rpc_services,event_sink,filter_sink,metrics})
+    pub fn from_service_factory<F>(composition: ProductionNodeComposition, factory: F) -> Result<Self, LifecycleError>
+    where
+        F: FnOnce(NodeStatus, StopHandle) -> ProductionNodeServices,
+    {
+        composition.context.config().validate_for_mode(composition.mode).map_err(|error| LifecycleError::InvalidConfiguration(error.to_string()))?;
+        let status=NodeStatus::default();
+        let (stop,controller)=StopController::new_with_status(status.clone());
+        let parts=factory(status.clone(),stop.clone());
+        let provider=composition.bindings.rpc_provider();
+        let rpc_services=composition.bindings.rpc_services();
+        let event_sink=composition.bindings.event_sink();
+        let filter_sink=composition.bindings.filter_sink();
+        let metrics=composition.bindings.metrics();
+        let services=match (composition.mode, parts.replica) {
+            (NodeMode::Solidity, Some(replica)) => solidity_production_service_graph(parts.core_services, replica, parts.network, parts.apis, parts.operations),
+            (NodeMode::Solidity, None) => return Err(LifecycleError::InvalidConfiguration("Solidity mode requires a replica service".into())),
+            (_, Some(_)) => return Err(LifecycleError::InvalidConfiguration("replica service is only valid in Solidity mode".into())),
+            (_, None) => production_service_graph(parts.core_services, parts.network, parts.apis, parts.operations),
+        };
+        let graph=ServiceGraph::new(composition.context,composition.mode,services)?;
+        debug_assert!(controller.shares_status(&status));
+        Ok(Self{graph,status,stop,controller,rpc_provider:provider,rpc_services,event_sink,filter_sink,metrics})
     }
     #[must_use] pub fn status(&self)->NodeStatus{self.status.clone()}
     #[must_use] pub fn stop_handle(&self)->StopHandle{self.stop.clone()}
-    pub async fn start(&mut self,start_timeout:Duration,shutdown_timeout:Duration)->Result<(),LifecycleError>{self.graph.start(start_timeout,shutdown_timeout).await?;self.status.mark_running();Ok(())}
-    pub async fn wait_and_shutdown(&mut self,shutdown_timeout:Duration)->Result<StopCondition,LifecycleError>{let condition=self.controller.wait().await;self.status.revoke_readiness();self.graph.shutdown(shutdown_timeout).await?;Ok(condition)}
+    pub async fn start(&mut self,start_timeout:Duration,shutdown_timeout:Duration)->Result<(),LifecycleError>{
+        if let Err(error) = self.graph.start(start_timeout,shutdown_timeout).await {
+            return Err(self.startup_failure(error));
+        }
+        if self.status.mark_running(){return Ok(());}
+        self.status.revoke_readiness();
+        let original=LifecycleError::StartupFailure(ServiceFailure{service:READINESS_SERVICE,message:"node became fatally unhealthy during startup".into()});
+        let error=match self.graph.shutdown(shutdown_timeout).await {
+            Ok(())=>original,
+            Err(unwind)=>LifecycleError::StartupUnwindFailure{startup:Box::new(original),unwind:Box::new(unwind)},
+        };
+        Err(self.startup_failure(error))
+    }
+    fn startup_failure(&mut self, error: LifecycleError) -> LifecycleError {
+        let fatals=self.controller.drain_all_fatal();
+        match error {
+            LifecycleError::StartupUnwindFailure{startup,unwind}=>LifecycleError::StartupLifecycleFailure{
+                fatals,
+                startup,
+                unwind:Some(unwind),
+            },
+            LifecycleError::StartupLifecycleFailure{fatals:mut existing,startup,unwind}=>{
+                existing.extend(fatals);
+                LifecycleError::StartupLifecycleFailure{fatals:existing,startup,unwind}
+            }
+            startup=>LifecycleError::StartupLifecycleFailure{fatals,startup:Box::new(startup),unwind:None},
+        }
+    }
+    async fn finish_shutdown(&mut self, condition: StopCondition, shutdown_timeout: Duration) -> Result<StopCondition, LifecycleError> {
+        self.status.revoke_readiness();
+        let shutdown = self.graph.shutdown(shutdown_timeout).await.err();
+        let fatals = self.controller.drain_all_fatal();
+        if fatals.is_empty() {
+            return shutdown.map_or(Ok(condition), Err);
+        }
+        Err(LifecycleError::FatalShutdown { fatals, shutdown: shutdown.map(Box::new) })
+    }
+    pub async fn wait_and_shutdown(&mut self,shutdown_timeout:Duration)->Result<StopCondition,LifecycleError>{
+        let condition=self.controller.wait().await;
+        self.finish_shutdown(condition,shutdown_timeout).await
+    }
     #[cfg(unix)]
     pub async fn wait_for_signal_and_shutdown(&mut self,shutdown_timeout:Duration)->Result<StopCondition,LifecycleError>{
         use tokio::signal::unix::{SignalKind,signal};
         let mut interrupt=signal(SignalKind::interrupt()).expect("install SIGINT handler");
         let mut terminate=signal(SignalKind::terminate()).expect("install SIGTERM handler");
         let condition=tokio::select!{_ = interrupt.recv()=>StopCondition::Interrupt,_ = terminate.recv()=>StopCondition::Terminate,requested=self.controller.wait()=>requested};
-        self.status.revoke_readiness();self.graph.shutdown(shutdown_timeout).await?;Ok(condition)
+        self.finish_shutdown(condition,shutdown_timeout).await
     }
     #[must_use] pub fn started_services(&self)->impl Iterator<Item=&'static str>+'_ { self.graph.started_services() }
+    #[must_use] pub fn graph_state(&self)->ServiceGraphState{self.graph.state()}
 }
 
 pub struct EventQueueHooks { queues: Arc<EventQueues> }
@@ -294,12 +430,11 @@ impl OperationalHooks for EventDeliveryHooks {
             };
             if !cancel.is_cancelled() {
                 queues.close();
-                status.mark_unhealthy();
                 let failure = match &result {
                     Err(error) => error.service_failure(),
                     Ok(()) => ServiceFailure { service: EVENT_QUEUE_SERVICE, message: "event delivery worker exited unexpectedly".into() },
                 };
-                let _ = stop.request(StopCondition::Fatal(failure));
+                if stop.request(StopCondition::Fatal(failure)).is_ok() { status.mark_unhealthy(); }
             }
             result
         }));
@@ -469,7 +604,7 @@ impl OperationalHooks for SharedApiProviderHooks { fn start<'a>(&'a mut self, _:
 
 pub struct ReadinessHooks { status: NodeStatus }
 impl ReadinessHooks { #[must_use] pub fn new(status: NodeStatus) -> Self { Self { status } } }
-impl OperationalHooks for ReadinessHooks { fn start<'a>(&'a mut self, _: Duration) -> HookFuture<'a> { Box::pin(async move { self.status.mark_running(); Ok(()) }) } fn cancel_ingress<'a>(&'a mut self, _: Duration) -> HookFuture<'a> { Box::pin(async move { self.status.revoke_readiness(); Ok(()) }) } fn stop<'a>(&'a mut self, _: Duration) -> HookFuture<'a> { Box::pin(async move { self.status.mark_unhealthy(); Ok(()) }) } }
+impl OperationalHooks for ReadinessHooks { fn start<'a>(&'a mut self, _: Duration) -> HookFuture<'a> { Box::pin(async move { if self.status.mark_running() { Ok(()) } else { Err("node became fatally unhealthy during startup".into()) } }) } fn cancel_ingress<'a>(&'a mut self, _: Duration) -> HookFuture<'a> { Box::pin(async move { self.status.revoke_readiness(); Ok(()) }) } fn stop<'a>(&'a mut self, _: Duration) -> HookFuture<'a> { Box::pin(async move { self.status.mark_unhealthy(); Ok(()) }) } }
 
 #[derive(Clone, Default)]
 pub struct ProductionOperationsConfig { pub plugin: Option<PluginConfig>, pub zeromq: Option<ZeroMqConfig>, pub prometheus_address: Option<std::net::SocketAddr> }
@@ -481,6 +616,9 @@ pub struct ProductionNodeDependencies {
     pub network: Box<dyn NodeService>,
     pub apis: Box<dyn NodeService>,
     pub bindings: ProductionOperationalBindings,
+    pub sessions: SessionManager,
+    /// The concrete C019 block manager, type-erased through `VerifiedBlockApplier`.
+    pub verified_block_applier: Option<Box<dyn VerifiedBlockApplier>>,
     pub queues: Arc<EventQueues>,
     pub metrics: Arc<MonitorMetrics>,
     pub db_stats: DbStatService,
@@ -489,8 +627,10 @@ pub struct ProductionNodeDependencies {
 impl ProductionNode {
     pub fn from_dependencies(dependencies: ProductionNodeDependencies) -> Result<Self, LifecycleError> { Self::from_config(ProductionOperationsConfig::default(), dependencies) }
     pub fn from_config(config: ProductionOperationsConfig, dependencies: ProductionNodeDependencies) -> Result<Self, LifecycleError> {
+        dependencies.context.config().validate_for_mode(dependencies.mode).map_err(|error| LifecycleError::InvalidConfiguration(error.to_string()))?;
         let status = NodeStatus::default();
-        let (stop, controller) = StopController::new();
+        let (stop, controller) = StopController::new_with_status(status.clone());
+        assert!(controller.shares_status(&status), "production stop controller must share node status state");
         let delivery = EventDeliveryHooks::new(dependencies.queues, config.plugin, config.zeromq, status.clone(), stop.clone());
         let operations = OperationsComponents {
             api_provider: Box::new(SharedApiProviderHooks::new(dependencies.bindings.clone())),
@@ -502,7 +642,15 @@ impl ProductionNode {
             db_stats: Box::new(DbStatsHooks::new(dependencies.db_stats)),
             readiness: Box::new(ReadinessHooks::new(status.clone())),
         };
-        let services = production_service_graph(dependencies.core_services, dependencies.network, dependencies.apis, operations);
+        let services = if dependencies.mode == NodeMode::Solidity {
+            let source = TonicDatabaseSource::from_host_port(&dependencies.context.config().node.trust_node).map_err(LifecycleError::InvalidConfiguration)?;
+            let applier = dependencies.verified_block_applier.ok_or_else(|| LifecycleError::InvalidConfiguration("Solidity mode requires a C019 verified block applier".into()))?;
+            let checkpoint = Arc::new(StateReplicaCheckpoint::new(dependencies.sessions, dependencies.bindings.api_context()));
+            let replica = Box::new(SolidityReplica::supervised(Box::new(source), applier, checkpoint, status.clone(), stop.clone()));
+            solidity_production_service_graph(dependencies.core_services, replica, dependencies.network, dependencies.apis, operations)
+        } else {
+            production_service_graph(dependencies.core_services, dependencies.network, dependencies.apis, operations)
+        };
         let graph = ServiceGraph::new(dependencies.context, dependencies.mode, services)?;
         let bindings = dependencies.bindings;
         Ok(Self { graph, status, stop, controller, rpc_provider: bindings.rpc_provider(), rpc_services: bindings.rpc_services(), event_sink: bindings.event_sink(), filter_sink: bindings.filter_sink(), metrics: bindings.metrics() })

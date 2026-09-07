@@ -22,6 +22,8 @@ tron-storage = { path = "../tron-storage" }
 tron-tvm = { path = "../tron-tvm" }
 tokio = { version = "=1.53.1", features = ["io-util", "macros", "net", "rt", "signal", "sync", "time"] }
 tokio-util = { version = "=0.7.15", features = ["rt"] }
+prost.workspace = true
+tonic.workspace = true
 
 parking_lot = "=0.12.4"
 

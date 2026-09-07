@@ -24,6 +24,8 @@ pub enum ApiService {
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum ServerMode {
     Full,
+    /// Dedicated SolidityNode process: primary 50051 listener, no Full/PBFT services.
+    StandaloneSolidity,
     Solidity,
     Pbft,
 }
@@ -77,7 +79,7 @@ impl GrpcServerPlan {
         metrics: bool,
     ) -> Result<Self, ServerConfigError> {
         let (enabled, port) = match mode {
-            ServerMode::Full => (rpc.enable, rpc.port),
+            ServerMode::Full | ServerMode::StandaloneSolidity => (rpc.enable, rpc.port),
             ServerMode::Solidity => (rpc.solidity_enable, rpc.solidity_port),
             ServerMode::Pbft => (rpc.pbft_enable, rpc.pbft_port),
         };
@@ -137,6 +139,15 @@ impl GrpcServerPlan {
                     ApiService::Network,
                     ApiService::TronZksnark,
                 ]);
+                if wallet_extension {
+                    services.insert(ApiService::WalletExtension);
+                }
+                if metrics {
+                    services.insert(ApiService::Monitor);
+                }
+            }
+            ServerMode::StandaloneSolidity => {
+                services.insert(ApiService::WalletSolidity);
                 if wallet_extension {
                     services.insert(ApiService::WalletExtension);
                 }
@@ -268,6 +279,27 @@ where
                 .add_optional_service(monitor)
                 .add_service(network)
                 .add_service(zksnark)
+                .add_optional_service(reflection)
+                .serve_with_shutdown(plan.listen, shutdown)
+                .await
+        }
+        ServerMode::StandaloneSolidity => {
+            let solidity = solidity::wallet_solidity_server::WalletSolidityServer::new(services.clone())
+                .max_decoding_message_size(request_limit)
+                .max_encoding_message_size(response_limit);
+            let extension = configured(ApiService::WalletExtension).then(||
+                extension::wallet_extension_server::WalletExtensionServer::new(services.clone())
+                    .max_decoding_message_size(request_limit)
+                    .max_encoding_message_size(response_limit));
+            let monitor = configured(ApiService::Monitor).then(||
+                monitor::monitor_server::MonitorServer::new(services)
+                    .max_decoding_message_size(request_limit)
+                    .max_encoding_message_size(response_limit));
+            builder
+                .add_service(solidity)
+                .add_service(database)
+                .add_optional_service(extension)
+                .add_optional_service(monitor)
                 .add_optional_service(reflection)
                 .serve_with_shutdown(plan.listen, shutdown)
                 .await

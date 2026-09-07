@@ -1,0 +1,3924 @@
+{
+  "schema": "c026-solidity-exposure-v1",
+  "contract": "C026.04-C026.05/V",
+  "version": 1,
+  "mode": "standalone-solidity-node",
+  "sources": [
+    {
+      "path": "java-tron/protocol/src/main/protos/api/api.proto",
+      "sha256": "5dec5d12ee2e88fda559523e074e454ebda562415b908557ffcb422523224b81"
+    },
+    {
+      "path": "java-tron/framework/src/main/java/org/tron/core/services/RpcApiService.java",
+      "sha256": "620e14afca7dba3401ff53b1cbb6d4e3d87f8e3ff17ba487d934274bfb155dcb"
+    },
+    {
+      "path": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+      "sha256": "49807ae70e642a8658dae604114d10e0c7eabf376a370b3c7476352b5403dd64"
+    },
+    {
+      "path": "java-tron/common/src/main/java/org/tron/core/config/args/NodeConfig.java",
+      "sha256": "65dba7b3160881cdc6ec509edc92cc5c0a2d23213f2c84a3220ecf0e52531e68"
+    },
+    {
+      "path": "java-tron/common/src/main/resources/reference.conf",
+      "sha256": "e472ae5e41abde5271a0ec0e19460ef3008010a86657b414d6b33376ecc70c89"
+    },
+    {
+      "path": "docs/oracles/c023-routes.v1.json",
+      "sha256": "22c4e7ef37f139e841a913c0372d7c8c428a998e8dfd5564066801b9f8165521"
+    }
+  ],
+  "counts": {
+    "grpc_services": 6,
+    "grpc_methods": 203,
+    "http_routes": 45,
+    "ports": 8,
+    "total": 262
+  },
+  "invariants": {
+    "grpc_base_port": 50051,
+    "http_port": 8091,
+    "http_route_count": 45,
+    "required_grpc_services": [
+      "Database",
+      "WalletSolidity"
+    ],
+    "optional_grpc_services": [
+      "WalletExtension",
+      "Monitor"
+    ],
+    "forbidden_grpc_services": [
+      "Wallet"
+    ],
+    "not_applicable_grpc_services": [
+      "Network"
+    ],
+    "forbidden_surfaces": [
+      "P2P",
+      "JSON_RPC",
+      "FULL",
+      "PBFT",
+      "SOLIDITY_SECONDARY_50061"
+    ]
+  },
+  "rows": [
+    {
+      "id": "C026-GRPC-SERVICE-WALLET",
+      "kind": "grpc_service",
+      "service": "Wallet",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "composition": "java-tron/framework/src/main/java/org/tron/core/services/RpcApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_service_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETACCOUNT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetAccount",
+      "request": "Account",
+      "response": "Account",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETACCOUNTBYID",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetAccountById",
+      "request": "Account",
+      "response": "Account",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETACCOUNTBALANCE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetAccountBalance",
+      "request": "AccountBalanceRequest",
+      "response": "AccountBalanceResponse",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETBLOCKBALANCETRACE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetBlockBalanceTrace",
+      "request": "BlockBalanceTrace.BlockIdentifier",
+      "response": "BlockBalanceTrace",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATETRANSACTION",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateTransaction",
+      "request": "TransferContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATETRANSACTION2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateTransaction2",
+      "request": "TransferContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-BROADCASTTRANSACTION",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "BroadcastTransaction",
+      "request": "Transaction",
+      "response": "Return",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UPDATEACCOUNT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UpdateAccount",
+      "request": "AccountUpdateContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-SETACCOUNTID",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "SetAccountId",
+      "request": "SetAccountIdContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UPDATEACCOUNT2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UpdateAccount2",
+      "request": "AccountUpdateContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-VOTEWITNESSACCOUNT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "VoteWitnessAccount",
+      "request": "VoteWitnessContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UPDATESETTING",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UpdateSetting",
+      "request": "UpdateSettingContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UPDATEENERGYLIMIT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UpdateEnergyLimit",
+      "request": "UpdateEnergyLimitContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-VOTEWITNESSACCOUNT2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "VoteWitnessAccount2",
+      "request": "VoteWitnessContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATEASSETISSUE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateAssetIssue",
+      "request": "AssetIssueContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATEASSETISSUE2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateAssetIssue2",
+      "request": "AssetIssueContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UPDATEWITNESS",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UpdateWitness",
+      "request": "WitnessUpdateContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UPDATEWITNESS2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UpdateWitness2",
+      "request": "WitnessUpdateContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATEACCOUNT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateAccount",
+      "request": "AccountCreateContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATEACCOUNT2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateAccount2",
+      "request": "AccountCreateContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATEWITNESS",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateWitness",
+      "request": "WitnessCreateContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATEWITNESS2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateWitness2",
+      "request": "WitnessCreateContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-TRANSFERASSET",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "TransferAsset",
+      "request": "TransferAssetContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-TRANSFERASSET2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "TransferAsset2",
+      "request": "TransferAssetContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-PARTICIPATEASSETISSUE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ParticipateAssetIssue",
+      "request": "ParticipateAssetIssueContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-PARTICIPATEASSETISSUE2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ParticipateAssetIssue2",
+      "request": "ParticipateAssetIssueContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-FREEZEBALANCE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "FreezeBalance",
+      "request": "FreezeBalanceContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-FREEZEBALANCE2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "FreezeBalance2",
+      "request": "FreezeBalanceContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-FREEZEBALANCEV2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "FreezeBalanceV2",
+      "request": "FreezeBalanceV2Contract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UNFREEZEBALANCE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UnfreezeBalance",
+      "request": "UnfreezeBalanceContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UNFREEZEBALANCE2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UnfreezeBalance2",
+      "request": "UnfreezeBalanceContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UNFREEZEBALANCEV2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UnfreezeBalanceV2",
+      "request": "UnfreezeBalanceV2Contract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UNFREEZEASSET",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UnfreezeAsset",
+      "request": "UnfreezeAssetContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UNFREEZEASSET2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UnfreezeAsset2",
+      "request": "UnfreezeAssetContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-WITHDRAWBALANCE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "WithdrawBalance",
+      "request": "WithdrawBalanceContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-WITHDRAWBALANCE2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "WithdrawBalance2",
+      "request": "WithdrawBalanceContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-WITHDRAWEXPIREUNFREEZE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "WithdrawExpireUnfreeze",
+      "request": "WithdrawExpireUnfreezeContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-DELEGATERESOURCE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "DelegateResource",
+      "request": "DelegateResourceContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UNDELEGATERESOURCE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UnDelegateResource",
+      "request": "UnDelegateResourceContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CANCELALLUNFREEZEV2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CancelAllUnfreezeV2",
+      "request": "CancelAllUnfreezeV2Contract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UPDATEASSET",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UpdateAsset",
+      "request": "UpdateAssetContract",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UPDATEASSET2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UpdateAsset2",
+      "request": "UpdateAssetContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-PROPOSALCREATE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ProposalCreate",
+      "request": "ProposalCreateContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-PROPOSALAPPROVE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ProposalApprove",
+      "request": "ProposalApproveContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-PROPOSALDELETE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ProposalDelete",
+      "request": "ProposalDeleteContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-BUYSTORAGE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "BuyStorage",
+      "request": "BuyStorageContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-BUYSTORAGEBYTES",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "BuyStorageBytes",
+      "request": "BuyStorageBytesContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-SELLSTORAGE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "SellStorage",
+      "request": "SellStorageContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-EXCHANGECREATE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ExchangeCreate",
+      "request": "ExchangeCreateContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-EXCHANGEINJECT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ExchangeInject",
+      "request": "ExchangeInjectContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-EXCHANGEWITHDRAW",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ExchangeWithdraw",
+      "request": "ExchangeWithdrawContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-EXCHANGETRANSACTION",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ExchangeTransaction",
+      "request": "ExchangeTransactionContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-MARKETSELLASSET",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "MarketSellAsset",
+      "request": "MarketSellAssetContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-MARKETCANCELORDER",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "MarketCancelOrder",
+      "request": "MarketCancelOrderContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETMARKETORDERBYID",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetMarketOrderById",
+      "request": "BytesMessage",
+      "response": "MarketOrder",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETMARKETORDERBYACCOUNT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetMarketOrderByAccount",
+      "request": "BytesMessage",
+      "response": "MarketOrderList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETMARKETPRICEBYPAIR",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetMarketPriceByPair",
+      "request": "MarketOrderPair",
+      "response": "MarketPriceList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETMARKETORDERLISTBYPAIR",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetMarketOrderListByPair",
+      "request": "MarketOrderPair",
+      "response": "MarketOrderList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETMARKETPAIRLIST",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetMarketPairList",
+      "request": "EmptyMessage",
+      "response": "MarketOrderPairList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-LISTNODES",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ListNodes",
+      "request": "EmptyMessage",
+      "response": "NodeList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETASSETISSUEBYACCOUNT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetAssetIssueByAccount",
+      "request": "Account",
+      "response": "AssetIssueList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETACCOUNTNET",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetAccountNet",
+      "request": "Account",
+      "response": "AccountNetMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETACCOUNTRESOURCE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetAccountResource",
+      "request": "Account",
+      "response": "AccountResourceMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETASSETISSUEBYNAME",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetAssetIssueByName",
+      "request": "BytesMessage",
+      "response": "AssetIssueContract",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETASSETISSUELISTBYNAME",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetAssetIssueListByName",
+      "request": "BytesMessage",
+      "response": "AssetIssueList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETASSETISSUEBYID",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetAssetIssueById",
+      "request": "BytesMessage",
+      "response": "AssetIssueContract",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETNOWBLOCK",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetNowBlock",
+      "request": "EmptyMessage",
+      "response": "Block",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETNOWBLOCK2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetNowBlock2",
+      "request": "EmptyMessage",
+      "response": "BlockExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETBLOCKBYNUM",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetBlockByNum",
+      "request": "NumberMessage",
+      "response": "Block",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETBLOCKBYNUM2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetBlockByNum2",
+      "request": "NumberMessage",
+      "response": "BlockExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETTRANSACTIONCOUNTBYBLOCKNUM",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetTransactionCountByBlockNum",
+      "request": "NumberMessage",
+      "response": "NumberMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETBLOCKBYID",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetBlockById",
+      "request": "BytesMessage",
+      "response": "Block",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETBLOCKBYLIMITNEXT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetBlockByLimitNext",
+      "request": "BlockLimit",
+      "response": "BlockList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETBLOCKBYLIMITNEXT2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetBlockByLimitNext2",
+      "request": "BlockLimit",
+      "response": "BlockListExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETBLOCKBYLATESTNUM",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetBlockByLatestNum",
+      "request": "NumberMessage",
+      "response": "BlockList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETBLOCKBYLATESTNUM2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetBlockByLatestNum2",
+      "request": "NumberMessage",
+      "response": "BlockListExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETTRANSACTIONBYID",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetTransactionById",
+      "request": "BytesMessage",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-DEPLOYCONTRACT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "DeployContract",
+      "request": "CreateSmartContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETCONTRACT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetContract",
+      "request": "BytesMessage",
+      "response": "SmartContract",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETCONTRACTINFO",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetContractInfo",
+      "request": "BytesMessage",
+      "response": "SmartContractDataWrapper",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-TRIGGERCONTRACT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "TriggerContract",
+      "request": "TriggerSmartContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-TRIGGERCONSTANTCONTRACT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "TriggerConstantContract",
+      "request": "TriggerSmartContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-ESTIMATEENERGY",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "EstimateEnergy",
+      "request": "TriggerSmartContract",
+      "response": "EstimateEnergyMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CLEARCONTRACTABI",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ClearContractABI",
+      "request": "ClearABIContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-LISTWITNESSES",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ListWitnesses",
+      "request": "EmptyMessage",
+      "response": "WitnessList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETPAGINATEDNOWWITNESSLIST",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetPaginatedNowWitnessList",
+      "request": "PaginatedMessage",
+      "response": "WitnessList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETDELEGATEDRESOURCE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetDelegatedResource",
+      "request": "DelegatedResourceMessage",
+      "response": "DelegatedResourceList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETDELEGATEDRESOURCEV2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetDelegatedResourceV2",
+      "request": "DelegatedResourceMessage",
+      "response": "DelegatedResourceList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETDELEGATEDRESOURCEACCOUNTINDEX",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetDelegatedResourceAccountIndex",
+      "request": "BytesMessage",
+      "response": "DelegatedResourceAccountIndex",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETDELEGATEDRESOURCEACCOUNTINDEXV2",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetDelegatedResourceAccountIndexV2",
+      "request": "BytesMessage",
+      "response": "DelegatedResourceAccountIndex",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETCANDELEGATEDMAXSIZE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetCanDelegatedMaxSize",
+      "request": "CanDelegatedMaxSizeRequestMessage",
+      "response": "CanDelegatedMaxSizeResponseMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETAVAILABLEUNFREEZECOUNT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetAvailableUnfreezeCount",
+      "request": "GetAvailableUnfreezeCountRequestMessage",
+      "response": "GetAvailableUnfreezeCountResponseMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETCANWITHDRAWUNFREEZEAMOUNT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetCanWithdrawUnfreezeAmount",
+      "request": "CanWithdrawUnfreezeAmountRequestMessage",
+      "response": "CanWithdrawUnfreezeAmountResponseMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-LISTPROPOSALS",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ListProposals",
+      "request": "EmptyMessage",
+      "response": "ProposalList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETPAGINATEDPROPOSALLIST",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetPaginatedProposalList",
+      "request": "PaginatedMessage",
+      "response": "ProposalList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETPROPOSALBYID",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetProposalById",
+      "request": "BytesMessage",
+      "response": "Proposal",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-LISTEXCHANGES",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ListExchanges",
+      "request": "EmptyMessage",
+      "response": "ExchangeList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETPAGINATEDEXCHANGELIST",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetPaginatedExchangeList",
+      "request": "PaginatedMessage",
+      "response": "ExchangeList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETEXCHANGEBYID",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetExchangeById",
+      "request": "BytesMessage",
+      "response": "Exchange",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETCHAINPARAMETERS",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetChainParameters",
+      "request": "EmptyMessage",
+      "response": "ChainParameters",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETASSETISSUELIST",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetAssetIssueList",
+      "request": "EmptyMessage",
+      "response": "AssetIssueList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETPAGINATEDASSETISSUELIST",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetPaginatedAssetIssueList",
+      "request": "PaginatedMessage",
+      "response": "AssetIssueList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-TOTALTRANSACTION",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "TotalTransaction",
+      "request": "EmptyMessage",
+      "response": "NumberMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETNEXTMAINTENANCETIME",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetNextMaintenanceTime",
+      "request": "EmptyMessage",
+      "response": "NumberMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETTRANSACTIONINFOBYID",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetTransactionInfoById",
+      "request": "BytesMessage",
+      "response": "TransactionInfo",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-ACCOUNTPERMISSIONUPDATE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "AccountPermissionUpdate",
+      "request": "AccountPermissionUpdateContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETTRANSACTIONSIGNWEIGHT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetTransactionSignWeight",
+      "request": "Transaction",
+      "response": "TransactionSignWeight",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETTRANSACTIONAPPROVEDLIST",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetTransactionApprovedList",
+      "request": "Transaction",
+      "response": "TransactionApprovedList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETNODEINFO",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetNodeInfo",
+      "request": "EmptyMessage",
+      "response": "NodeInfo",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETREWARDINFO",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetRewardInfo",
+      "request": "BytesMessage",
+      "response": "NumberMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETBROKERAGEINFO",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetBrokerageInfo",
+      "request": "BytesMessage",
+      "response": "NumberMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-UPDATEBROKERAGE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "UpdateBrokerage",
+      "request": "UpdateBrokerageContract",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATESHIELDEDTRANSACTION",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateShieldedTransaction",
+      "request": "PrivateParameters",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETMERKLETREEVOUCHERINFO",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetMerkleTreeVoucherInfo",
+      "request": "OutputPointInfo",
+      "response": "IncrementalMerkleVoucherInfo",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-SCANNOTEBYIVK",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ScanNoteByIvk",
+      "request": "IvkDecryptParameters",
+      "response": "DecryptNotes",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-SCANANDMARKNOTEBYIVK",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ScanAndMarkNoteByIvk",
+      "request": "IvkDecryptAndMarkParameters",
+      "response": "DecryptNotesMarked",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-SCANNOTEBYOVK",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ScanNoteByOvk",
+      "request": "OvkDecryptParameters",
+      "response": "DecryptNotes",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETSPENDINGKEY",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetSpendingKey",
+      "request": "EmptyMessage",
+      "response": "BytesMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETEXPANDEDSPENDINGKEY",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetExpandedSpendingKey",
+      "request": "BytesMessage",
+      "response": "ExpandedSpendingKeyMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETAKFROMASK",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetAkFromAsk",
+      "request": "BytesMessage",
+      "response": "BytesMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETNKFROMNSK",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetNkFromNsk",
+      "request": "BytesMessage",
+      "response": "BytesMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETINCOMINGVIEWINGKEY",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetIncomingViewingKey",
+      "request": "ViewingKeyMessage",
+      "response": "IncomingViewingKeyMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETDIVERSIFIER",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetDiversifier",
+      "request": "EmptyMessage",
+      "response": "DiversifierMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETNEWSHIELDEDADDRESS",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetNewShieldedAddress",
+      "request": "EmptyMessage",
+      "response": "ShieldedAddressInfo",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETZENPAYMENTADDRESS",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetZenPaymentAddress",
+      "request": "IncomingViewingKeyDiversifierMessage",
+      "response": "PaymentAddressMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETRCM",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetRcm",
+      "request": "EmptyMessage",
+      "response": "BytesMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-ISSPEND",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "IsSpend",
+      "request": "NoteParameters",
+      "response": "SpendResult",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATESHIELDEDTRANSACTIONWITHOUTSPENDAUTHSIG",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateShieldedTransactionWithoutSpendAuthSig",
+      "request": "PrivateParametersWithoutAsk",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETSHIELDTRANSACTIONHASH",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetShieldTransactionHash",
+      "request": "Transaction",
+      "response": "BytesMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATESPENDAUTHSIG",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateSpendAuthSig",
+      "request": "SpendAuthSigParameters",
+      "response": "BytesMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATESHIELDNULLIFIER",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateShieldNullifier",
+      "request": "NfParameters",
+      "response": "BytesMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATESHIELDEDCONTRACTPARAMETERS",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateShieldedContractParameters",
+      "request": "PrivateShieldedTRC20Parameters",
+      "response": "ShieldedTRC20Parameters",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATESHIELDEDCONTRACTPARAMETERSWITHOUTASK",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateShieldedContractParametersWithoutAsk",
+      "request": "PrivateShieldedTRC20ParametersWithoutAsk",
+      "response": "ShieldedTRC20Parameters",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-SCANSHIELDEDTRC20NOTESBYIVK",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ScanShieldedTRC20NotesByIvk",
+      "request": "IvkDecryptTRC20Parameters",
+      "response": "DecryptNotesTRC20",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-SCANSHIELDEDTRC20NOTESBYOVK",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "ScanShieldedTRC20NotesByOvk",
+      "request": "OvkDecryptTRC20Parameters",
+      "response": "DecryptNotesTRC20",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-ISSHIELDEDTRC20CONTRACTNOTESPENT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "IsShieldedTRC20ContractNoteSpent",
+      "request": "NfTRC20Parameters",
+      "response": "NullifierResult",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETTRIGGERINPUTFORSHIELDEDTRC20CONTRACT",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetTriggerInputForShieldedTRC20Contract",
+      "request": "ShieldedTRC20TriggerContractParameters",
+      "response": "BytesMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-CREATECOMMONTRANSACTION",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "CreateCommonTransaction",
+      "request": "Transaction",
+      "response": "TransactionExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETTRANSACTIONINFOBYBLOCKNUM",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetTransactionInfoByBlockNum",
+      "request": "NumberMessage",
+      "response": "TransactionInfoList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETBURNTRX",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetBurnTrx",
+      "request": "EmptyMessage",
+      "response": "NumberMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETTRANSACTIONFROMPENDING",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetTransactionFromPending",
+      "request": "BytesMessage",
+      "response": "Transaction",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETTRANSACTIONLISTFROMPENDING",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetTransactionListFromPending",
+      "request": "EmptyMessage",
+      "response": "TransactionIdList",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETPENDINGSIZE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetPendingSize",
+      "request": "EmptyMessage",
+      "response": "NumberMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETBLOCK",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetBlock",
+      "request": "BlockReq",
+      "response": "BlockExtention",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETBANDWIDTHPRICES",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetBandwidthPrices",
+      "request": "EmptyMessage",
+      "response": "PricesResponseMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETENERGYPRICES",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetEnergyPrices",
+      "request": "EmptyMessage",
+      "response": "PricesResponseMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLET-GETMEMOFEE",
+      "kind": "grpc_method",
+      "service": "Wallet",
+      "method": "GetMemoFee",
+      "request": "EmptyMessage",
+      "response": "PricesResponseMessage",
+      "exposure": "forbidden",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-SERVICE-WALLETSOLIDITY",
+      "kind": "grpc_service",
+      "service": "WalletSolidity",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "composition": "java-tron/framework/src/main/java/org/tron/core/services/RpcApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_service_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETACCOUNT",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetAccount",
+      "request": "Account",
+      "response": "Account",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETACCOUNTBYID",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetAccountById",
+      "request": "Account",
+      "response": "Account",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-LISTWITNESSES",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "ListWitnesses",
+      "request": "EmptyMessage",
+      "response": "WitnessList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETPAGINATEDNOWWITNESSLIST",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetPaginatedNowWitnessList",
+      "request": "PaginatedMessage",
+      "response": "WitnessList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETASSETISSUELIST",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetAssetIssueList",
+      "request": "EmptyMessage",
+      "response": "AssetIssueList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETPAGINATEDASSETISSUELIST",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetPaginatedAssetIssueList",
+      "request": "PaginatedMessage",
+      "response": "AssetIssueList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETASSETISSUEBYNAME",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetAssetIssueByName",
+      "request": "BytesMessage",
+      "response": "AssetIssueContract",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETASSETISSUELISTBYNAME",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetAssetIssueListByName",
+      "request": "BytesMessage",
+      "response": "AssetIssueList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETASSETISSUEBYID",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetAssetIssueById",
+      "request": "BytesMessage",
+      "response": "AssetIssueContract",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETNOWBLOCK",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetNowBlock",
+      "request": "EmptyMessage",
+      "response": "Block",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETNOWBLOCK2",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetNowBlock2",
+      "request": "EmptyMessage",
+      "response": "BlockExtention",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETBLOCKBYNUM",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetBlockByNum",
+      "request": "NumberMessage",
+      "response": "Block",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETBLOCKBYNUM2",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetBlockByNum2",
+      "request": "NumberMessage",
+      "response": "BlockExtention",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETTRANSACTIONCOUNTBYBLOCKNUM",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetTransactionCountByBlockNum",
+      "request": "NumberMessage",
+      "response": "NumberMessage",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETDELEGATEDRESOURCE",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetDelegatedResource",
+      "request": "DelegatedResourceMessage",
+      "response": "DelegatedResourceList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETDELEGATEDRESOURCEV2",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetDelegatedResourceV2",
+      "request": "DelegatedResourceMessage",
+      "response": "DelegatedResourceList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETDELEGATEDRESOURCEACCOUNTINDEX",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetDelegatedResourceAccountIndex",
+      "request": "BytesMessage",
+      "response": "DelegatedResourceAccountIndex",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETDELEGATEDRESOURCEACCOUNTINDEXV2",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetDelegatedResourceAccountIndexV2",
+      "request": "BytesMessage",
+      "response": "DelegatedResourceAccountIndex",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETCANDELEGATEDMAXSIZE",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetCanDelegatedMaxSize",
+      "request": "CanDelegatedMaxSizeRequestMessage",
+      "response": "CanDelegatedMaxSizeResponseMessage",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETAVAILABLEUNFREEZECOUNT",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetAvailableUnfreezeCount",
+      "request": "GetAvailableUnfreezeCountRequestMessage",
+      "response": "GetAvailableUnfreezeCountResponseMessage",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETCANWITHDRAWUNFREEZEAMOUNT",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetCanWithdrawUnfreezeAmount",
+      "request": "CanWithdrawUnfreezeAmountRequestMessage",
+      "response": "CanWithdrawUnfreezeAmountResponseMessage",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETEXCHANGEBYID",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetExchangeById",
+      "request": "BytesMessage",
+      "response": "Exchange",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-LISTEXCHANGES",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "ListExchanges",
+      "request": "EmptyMessage",
+      "response": "ExchangeList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETTRANSACTIONBYID",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetTransactionById",
+      "request": "BytesMessage",
+      "response": "Transaction",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETTRANSACTIONINFOBYID",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetTransactionInfoById",
+      "request": "BytesMessage",
+      "response": "TransactionInfo",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETMERKLETREEVOUCHERINFO",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetMerkleTreeVoucherInfo",
+      "request": "OutputPointInfo",
+      "response": "IncrementalMerkleVoucherInfo",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-SCANNOTEBYIVK",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "ScanNoteByIvk",
+      "request": "IvkDecryptParameters",
+      "response": "DecryptNotes",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-SCANANDMARKNOTEBYIVK",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "ScanAndMarkNoteByIvk",
+      "request": "IvkDecryptAndMarkParameters",
+      "response": "DecryptNotesMarked",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-SCANNOTEBYOVK",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "ScanNoteByOvk",
+      "request": "OvkDecryptParameters",
+      "response": "DecryptNotes",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-ISSPEND",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "IsSpend",
+      "request": "NoteParameters",
+      "response": "SpendResult",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-SCANSHIELDEDTRC20NOTESBYIVK",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "ScanShieldedTRC20NotesByIvk",
+      "request": "IvkDecryptTRC20Parameters",
+      "response": "DecryptNotesTRC20",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-SCANSHIELDEDTRC20NOTESBYOVK",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "ScanShieldedTRC20NotesByOvk",
+      "request": "OvkDecryptTRC20Parameters",
+      "response": "DecryptNotesTRC20",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-ISSHIELDEDTRC20CONTRACTNOTESPENT",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "IsShieldedTRC20ContractNoteSpent",
+      "request": "NfTRC20Parameters",
+      "response": "NullifierResult",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETREWARDINFO",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetRewardInfo",
+      "request": "BytesMessage",
+      "response": "NumberMessage",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETBROKERAGEINFO",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetBrokerageInfo",
+      "request": "BytesMessage",
+      "response": "NumberMessage",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-TRIGGERCONSTANTCONTRACT",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "TriggerConstantContract",
+      "request": "TriggerSmartContract",
+      "response": "TransactionExtention",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-ESTIMATEENERGY",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "EstimateEnergy",
+      "request": "TriggerSmartContract",
+      "response": "EstimateEnergyMessage",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETTRANSACTIONINFOBYBLOCKNUM",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetTransactionInfoByBlockNum",
+      "request": "NumberMessage",
+      "response": "TransactionInfoList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETMARKETORDERBYID",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetMarketOrderById",
+      "request": "BytesMessage",
+      "response": "MarketOrder",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETMARKETORDERBYACCOUNT",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetMarketOrderByAccount",
+      "request": "BytesMessage",
+      "response": "MarketOrderList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETMARKETPRICEBYPAIR",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetMarketPriceByPair",
+      "request": "MarketOrderPair",
+      "response": "MarketPriceList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETMARKETORDERLISTBYPAIR",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetMarketOrderListByPair",
+      "request": "MarketOrderPair",
+      "response": "MarketOrderList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETMARKETPAIRLIST",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetMarketPairList",
+      "request": "EmptyMessage",
+      "response": "MarketOrderPairList",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETBURNTRX",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetBurnTrx",
+      "request": "EmptyMessage",
+      "response": "NumberMessage",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETBLOCK",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetBlock",
+      "request": "BlockReq",
+      "response": "BlockExtention",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETBANDWIDTHPRICES",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetBandwidthPrices",
+      "request": "EmptyMessage",
+      "response": "PricesResponseMessage",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETSOLIDITY-GETENERGYPRICES",
+      "kind": "grpc_method",
+      "service": "WalletSolidity",
+      "method": "GetEnergyPrices",
+      "request": "EmptyMessage",
+      "response": "PricesResponseMessage",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-SERVICE-WALLETEXTENSION",
+      "kind": "grpc_service",
+      "service": "WalletExtension",
+      "exposure": "optional",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "composition": "java-tron/framework/src/main/java/org/tron/core/services/RpcApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_service_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETEXTENSION-GETTRANSACTIONSFROMTHIS",
+      "kind": "grpc_method",
+      "service": "WalletExtension",
+      "method": "GetTransactionsFromThis",
+      "request": "AccountPaginated",
+      "response": "TransactionList",
+      "exposure": "optional",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETEXTENSION-GETTRANSACTIONSFROMTHIS2",
+      "kind": "grpc_method",
+      "service": "WalletExtension",
+      "method": "GetTransactionsFromThis2",
+      "request": "AccountPaginated",
+      "response": "TransactionListExtention",
+      "exposure": "optional",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETEXTENSION-GETTRANSACTIONSTOTHIS",
+      "kind": "grpc_method",
+      "service": "WalletExtension",
+      "method": "GetTransactionsToThis",
+      "request": "AccountPaginated",
+      "response": "TransactionList",
+      "exposure": "optional",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-WALLETEXTENSION-GETTRANSACTIONSTOTHIS2",
+      "kind": "grpc_method",
+      "service": "WalletExtension",
+      "method": "GetTransactionsToThis2",
+      "request": "AccountPaginated",
+      "response": "TransactionListExtention",
+      "exposure": "optional",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-SERVICE-DATABASE",
+      "kind": "grpc_service",
+      "service": "Database",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "composition": "java-tron/framework/src/main/java/org/tron/core/services/RpcApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_service_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-DATABASE-GETBLOCKREFERENCE",
+      "kind": "grpc_method",
+      "service": "Database",
+      "method": "getBlockReference",
+      "request": "EmptyMessage",
+      "response": "BlockReference",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-DATABASE-GETDYNAMICPROPERTIES",
+      "kind": "grpc_method",
+      "service": "Database",
+      "method": "GetDynamicProperties",
+      "request": "EmptyMessage",
+      "response": "DynamicProperties",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-DATABASE-GETNOWBLOCK",
+      "kind": "grpc_method",
+      "service": "Database",
+      "method": "GetNowBlock",
+      "request": "EmptyMessage",
+      "response": "Block",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-DATABASE-GETBLOCKBYNUM",
+      "kind": "grpc_method",
+      "service": "Database",
+      "method": "GetBlockByNum",
+      "request": "NumberMessage",
+      "response": "Block",
+      "exposure": "required",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-SERVICE-MONITOR",
+      "kind": "grpc_service",
+      "service": "Monitor",
+      "exposure": "optional",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "composition": "java-tron/framework/src/main/java/org/tron/core/services/RpcApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_service_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-METHOD-MONITOR-GETSTATSINFO",
+      "kind": "grpc_method",
+      "service": "Monitor",
+      "method": "GetStatsInfo",
+      "request": "EmptyMessage",
+      "response": "MetricsInfo",
+      "exposure": "optional",
+      "port": 50051,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_method_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-GRPC-SERVICE-NETWORK",
+      "kind": "grpc_service",
+      "service": "Network",
+      "exposure": "not_applicable",
+      "port": null,
+      "proof": {
+        "descriptor": "java-tron/protocol/src/main/protos/api/api.proto",
+        "composition": "java-tron/framework/src/main/java/org/tron/core/services/RpcApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_grpc_service_matrix_is_exact"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETACCOUNT",
+      "kind": "http_route",
+      "path": "/walletsolidity/getaccount",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_account",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-LISTWITNESSES",
+      "kind": "http_route",
+      "path": "/walletsolidity/listwitnesses",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "list_witnesses",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETPAGINATEDNOWWITNESSLIST",
+      "kind": "http_route",
+      "path": "/walletsolidity/getpaginatednowwitnesslist",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_paginated_now_witness_list",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETASSETISSUELIST",
+      "kind": "http_route",
+      "path": "/walletsolidity/getassetissuelist",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_asset_issue_list",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETPAGINATEDASSETISSUELIST",
+      "kind": "http_route",
+      "path": "/walletsolidity/getpaginatedassetissuelist",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_paginated_asset_issue_list",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETASSETISSUEBYNAME",
+      "kind": "http_route",
+      "path": "/walletsolidity/getassetissuebyname",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_asset_issue_by_name",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETASSETISSUEBYID",
+      "kind": "http_route",
+      "path": "/walletsolidity/getassetissuebyid",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_asset_issue_by_id",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETASSETISSUELISTBYNAME",
+      "kind": "http_route",
+      "path": "/walletsolidity/getassetissuelistbyname",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_asset_issue_list_by_name",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETNOWBLOCK",
+      "kind": "http_route",
+      "path": "/walletsolidity/getnowblock",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_now_block",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETBLOCKBYNUM",
+      "kind": "http_route",
+      "path": "/walletsolidity/getblockbynum",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_block_by_num",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETDELEGATEDRESOURCE",
+      "kind": "http_route",
+      "path": "/walletsolidity/getdelegatedresource",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_delegated_resource",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETDELEGATEDRESOURCEV2",
+      "kind": "http_route",
+      "path": "/walletsolidity/getdelegatedresourcev2",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_delegated_resource_v2",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETCANDELEGATEDMAXSIZE",
+      "kind": "http_route",
+      "path": "/walletsolidity/getcandelegatedmaxsize",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_can_delegated_max_size",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETAVAILABLEUNFREEZECOUNT",
+      "kind": "http_route",
+      "path": "/walletsolidity/getavailableunfreezecount",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_available_unfreeze_count",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETCANWITHDRAWUNFREEZEAMOUNT",
+      "kind": "http_route",
+      "path": "/walletsolidity/getcanwithdrawunfreezeamount",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_can_withdraw_unfreeze_amount",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETDELEGATEDRESOURCEACCOUNTINDEX",
+      "kind": "http_route",
+      "path": "/walletsolidity/getdelegatedresourceaccountindex",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_delegated_resource_account_index",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETDELEGATEDRESOURCEACCOUNTINDEXV2",
+      "kind": "http_route",
+      "path": "/walletsolidity/getdelegatedresourceaccountindexv2",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_delegated_resource_account_index_v2",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETEXCHANGEBYID",
+      "kind": "http_route",
+      "path": "/walletsolidity/getexchangebyid",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_exchange_by_id",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-LISTEXCHANGES",
+      "kind": "http_route",
+      "path": "/walletsolidity/listexchanges",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "list_exchanges",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETACCOUNTBYID",
+      "kind": "http_route",
+      "path": "/walletsolidity/getaccountbyid",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_account_by_id",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETBLOCKBYID",
+      "kind": "http_route",
+      "path": "/walletsolidity/getblockbyid",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_block_by_id",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETBLOCKBYLIMITNEXT",
+      "kind": "http_route",
+      "path": "/walletsolidity/getblockbylimitnext",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_block_by_limit_next",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETBLOCKBYLATESTNUM",
+      "kind": "http_route",
+      "path": "/walletsolidity/getblockbylatestnum",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_block_by_latest_num",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-SCANSHIELDEDTRC20NOTESBYIVK",
+      "kind": "http_route",
+      "path": "/walletsolidity/scanshieldedtrc20notesbyivk",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "scan_shielded_trc20_notes_by_ivk",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-SCANSHIELDEDTRC20NOTESBYOVK",
+      "kind": "http_route",
+      "path": "/walletsolidity/scanshieldedtrc20notesbyovk",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "scan_shielded_trc20_notes_by_ovk",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-ISSHIELDEDTRC20CONTRACTNOTESPENT",
+      "kind": "http_route",
+      "path": "/walletsolidity/isshieldedtrc20contractnotespent",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "is_shielded_trc20_contract_note_spent",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-TRIGGERCONSTANTCONTRACT",
+      "kind": "http_route",
+      "path": "/walletsolidity/triggerconstantcontract",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "trigger_constant_contract",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-ESTIMATEENERGY",
+      "kind": "http_route",
+      "path": "/walletsolidity/estimateenergy",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "estimate_energy",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETTRANSACTIONINFOBYBLOCKNUM",
+      "kind": "http_route",
+      "path": "/walletsolidity/gettransactioninfobyblocknum",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_transaction_info_by_block_num",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETMARKETORDERBYACCOUNT",
+      "kind": "http_route",
+      "path": "/walletsolidity/getmarketorderbyaccount",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_market_order_by_account",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETMARKETORDERBYID",
+      "kind": "http_route",
+      "path": "/walletsolidity/getmarketorderbyid",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_market_order_by_id",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETMARKETPRICEBYPAIR",
+      "kind": "http_route",
+      "path": "/walletsolidity/getmarketpricebypair",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_market_price_by_pair",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETMARKETORDERLISTBYPAIR",
+      "kind": "http_route",
+      "path": "/walletsolidity/getmarketorderlistbypair",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_market_order_list_by_pair",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETMARKETPAIRLIST",
+      "kind": "http_route",
+      "path": "/walletsolidity/getmarketpairlist",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_market_pair_list",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETTRANSACTIONBYID",
+      "kind": "http_route",
+      "path": "/walletsolidity/gettransactionbyid",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_transaction_by_id",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETTRANSACTIONINFOBYID",
+      "kind": "http_route",
+      "path": "/walletsolidity/gettransactioninfobyid",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_transaction_info_by_id",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETTRANSACTIONCOUNTBYBLOCKNUM",
+      "kind": "http_route",
+      "path": "/walletsolidity/gettransactioncountbyblocknum",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_transaction_count_by_block_num",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLET-GETNODEINFO",
+      "kind": "http_route",
+      "path": "/wallet/getnodeinfo",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_node_info",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETNODEINFO",
+      "kind": "http_route",
+      "path": "/walletsolidity/getnodeinfo",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_node_info",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETBROKERAGE",
+      "kind": "http_route",
+      "path": "/walletsolidity/getBrokerage",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_brokerage_info",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETREWARD",
+      "kind": "http_route",
+      "path": "/walletsolidity/getReward",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_reward_info",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETBURNTRX",
+      "kind": "http_route",
+      "path": "/walletsolidity/getburntrx",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_burn_trx",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETBANDWIDTHPRICES",
+      "kind": "http_route",
+      "path": "/walletsolidity/getbandwidthprices",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_bandwidth_prices",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETENERGYPRICES",
+      "kind": "http_route",
+      "path": "/walletsolidity/getenergyprices",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_energy_prices",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-HTTP-WALLETSOLIDITY-GETBLOCK",
+      "kind": "http_route",
+      "path": "/walletsolidity/getblock",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "rpc_api": "WalletSolidity",
+      "rpc_method": "get_block",
+      "cursor": "SOLIDITY",
+      "exposure": "required",
+      "port": 8091,
+      "proof": {
+        "source_manifest": "docs/oracles/c023-routes.v1.json",
+        "java_service": "java-tron/framework/src/main/java/org/tron/core/services/http/solidity/SolidityNodeHttpApiService.java",
+        "rust_case": "c026_exposure::standalone_solidity_http_routes_are_exact_and_executable"
+      }
+    },
+    {
+      "id": "C026-PORT-GRPC",
+      "kind": "port",
+      "name": "GRPC",
+      "port": 50051,
+      "exposure": "required",
+      "proof": {
+        "config": "java-tron/common/src/main/java/org/tron/core/config/args/NodeConfig.java",
+        "rust_case": "c026_exposure::standalone_solidity_ports_and_absences_are_exact"
+      }
+    },
+    {
+      "id": "C026-PORT-HTTP",
+      "kind": "port",
+      "name": "HTTP",
+      "port": 8091,
+      "exposure": "required",
+      "proof": {
+        "config": "java-tron/common/src/main/java/org/tron/core/config/args/NodeConfig.java",
+        "rust_case": "c026_exposure::standalone_solidity_ports_and_absences_are_exact"
+      }
+    },
+    {
+      "id": "C026-PORT-SOLIDITY_GRPC_SECONDARY",
+      "kind": "port",
+      "name": "SOLIDITY_GRPC_SECONDARY",
+      "port": 50061,
+      "exposure": "forbidden",
+      "proof": {
+        "config": "java-tron/common/src/main/java/org/tron/core/config/args/NodeConfig.java",
+        "rust_case": "c026_exposure::standalone_solidity_ports_and_absences_are_exact"
+      }
+    },
+    {
+      "id": "C026-PORT-FULL_HTTP",
+      "kind": "port",
+      "name": "FULL_HTTP",
+      "port": 8090,
+      "exposure": "forbidden",
+      "proof": {
+        "config": "java-tron/common/src/main/java/org/tron/core/config/args/NodeConfig.java",
+        "rust_case": "c026_exposure::standalone_solidity_ports_and_absences_are_exact"
+      }
+    },
+    {
+      "id": "C026-PORT-PBFT_HTTP",
+      "kind": "port",
+      "name": "PBFT_HTTP",
+      "port": 8092,
+      "exposure": "forbidden",
+      "proof": {
+        "config": "java-tron/common/src/main/java/org/tron/core/config/args/NodeConfig.java",
+        "rust_case": "c026_exposure::standalone_solidity_ports_and_absences_are_exact"
+      }
+    },
+    {
+      "id": "C026-PORT-PBFT_GRPC",
+      "kind": "port",
+      "name": "PBFT_GRPC",
+      "port": 50071,
+      "exposure": "forbidden",
+      "proof": {
+        "config": "java-tron/common/src/main/java/org/tron/core/config/args/NodeConfig.java",
+        "rust_case": "c026_exposure::standalone_solidity_ports_and_absences_are_exact"
+      }
+    },
+    {
+      "id": "C026-PORT-P2P",
+      "kind": "port",
+      "name": "P2P",
+      "port": 18888,
+      "exposure": "forbidden",
+      "proof": {
+        "config": "java-tron/common/src/main/java/org/tron/core/config/args/NodeConfig.java",
+        "rust_case": "c026_exposure::standalone_solidity_ports_and_absences_are_exact"
+      }
+    },
+    {
+      "id": "C026-PORT-JSON_RPC",
+      "kind": "port",
+      "name": "JSON_RPC",
+      "port": 8545,
+      "exposure": "forbidden",
+      "proof": {
+        "config": "java-tron/common/src/main/java/org/tron/core/config/args/NodeConfig.java",
+        "rust_case": "c026_exposure::standalone_solidity_ports_and_absences_are_exact"
+      }
+    }
+  ]
+}

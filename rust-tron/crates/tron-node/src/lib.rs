@@ -4,6 +4,7 @@
 //! composition root receives already-constructed services and owns their ordering and shutdown.
 pub mod operations;
 pub mod lifecycle_limits;
+pub mod solidity_replica;
 
 use std::{
     collections::{BTreeMap, BTreeSet},
@@ -122,14 +123,24 @@ pub enum LifecycleError {
         operation: LifecycleOperation,
         state: ServiceGraphState,
     },
+    InvalidConfiguration(String),
     StartupFailure(ServiceFailure),
     StartupTimeout { service: &'static str, timeout: Duration },
     StartupUnwindFailure {
         startup: Box<LifecycleError>,
         unwind: Box<LifecycleError>,
     },
+    StartupLifecycleFailure {
+        fatals: Vec<ServiceFailure>,
+        startup: Box<LifecycleError>,
+        unwind: Option<Box<LifecycleError>>,
+    },
     ShutdownFailures(Vec<ServiceFailure>),
     ShutdownTimeout { service: &'static str, timeout: Duration },
+    FatalShutdown {
+        fatals: Vec<ServiceFailure>,
+        shutdown: Option<Box<LifecycleError>>,
+    },
 }
 
 impl fmt::Display for LifecycleError {
@@ -141,13 +152,22 @@ impl fmt::Display for LifecycleError {
             Self::InvalidTransition { operation, state } => {
                 write!(f, "cannot {operation:?} service graph while it is {state:?}")
             }
+            Self::InvalidConfiguration(message) => write!(f, "invalid node configuration: {message}"),
             Self::StartupFailure(failure) => write!(f, "service {} failed to start: {}", failure.service, failure.message),
             Self::StartupTimeout { service, timeout } => write!(f, "service {service} exceeded startup timeout {timeout:?}"),
             Self::StartupUnwindFailure { startup, unwind } => {
                 write!(f, "{startup}; startup unwind also failed: {unwind}")
             }
+            Self::StartupLifecycleFailure { fatals, startup, unwind } => {
+                write!(f, "{startup}; {} fatal service failure(s) occurred during startup", fatals.len())?;
+                if let Some(unwind) = unwind { write!(f, "; startup unwind also failed: {unwind}") } else { Ok(()) }
+            }
             Self::ShutdownFailures(failures) => write!(f, "{} service(s) failed to stop", failures.len()),
             Self::ShutdownTimeout { service, timeout } => write!(f, "service {service} exceeded shutdown timeout {timeout:?}"),
+            Self::FatalShutdown { fatals, shutdown } => {
+                write!(f, "{} fatal service failure(s) during shutdown", fatals.len())?;
+                if let Some(shutdown) = shutdown { write!(f, "; graph shutdown also failed: {shutdown}") } else { Ok(()) }
+            }
         }
     }
 }
@@ -164,6 +184,7 @@ pub struct ServiceGraph {
 
 impl ServiceGraph {
     pub fn new(context: NodeContext, mode: NodeMode, services: Vec<Box<dyn NodeService>>) -> Result<Self, LifecycleError> {
+        context.config().validate_for_mode(mode).map_err(|error| LifecycleError::InvalidConfiguration(error.to_string()))?;
         let enabled = services.iter().map(|service| service_enabled(&service.spec(), mode, context.config())).collect::<Vec<_>>();
         let mut positions = BTreeMap::new();
         for (index, service) in services.iter().enumerate().filter(|(index, _)| enabled[*index]) {

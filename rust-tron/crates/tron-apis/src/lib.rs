@@ -3,6 +3,8 @@
 pub use tron_protocol::protocol::*;
 pub mod blocking;
 pub mod constant;
+pub mod database_source;
+
 pub mod context;
 pub mod cursors;
 pub mod error;
@@ -33,6 +35,7 @@ pub mod wallet_query;
 pub use blocking::{BlockingCancellation, BlockingExecutor};
 pub use constant::{ConstantOutcome, ConstantService, ReadOnlyVm};
 pub use context::{ApiContext, ApiCursor, TypedReadView};
+pub use database_source::{DatabaseSource, DatabaseFuture, TonicDatabaseSource};
 pub use cursors::{CursorRouter, PbftMethod};
 pub use error::ApiError;
 pub use extension_api::ExtensionApi;

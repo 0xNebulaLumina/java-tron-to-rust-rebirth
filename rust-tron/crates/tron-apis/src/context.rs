@@ -1,4 +1,5 @@
 use std::sync::{Arc, Mutex};
+use parking_lot::RwLock;
 
 use tron_execution::{PendingPool, RawWireTransaction, TransactionProcessor};
 use tron_crypto::CryptoEngine;
@@ -11,7 +12,7 @@ use crate::{NetworkSnapshot, ReadOnlyVm};
 #[derive(Clone)]
 pub struct ApiContext {
     crypto_engine: CryptoEngine,
-    cursors: CursorSet,
+    cursors: Arc<RwLock<CursorSet>>,
     processor: Arc<Mutex<TransactionProcessor>>,
     pending: Arc<Mutex<PendingPool<RawWireTransaction>>>,
     network: Arc<dyn NetworkSnapshot>,
@@ -52,7 +53,7 @@ impl ApiContext {
     ) -> Self {
         Self {
             crypto_engine,
-            cursors,
+            cursors: Arc::new(RwLock::new(cursors)),
             processor: Arc::new(Mutex::new(processor)),
             pending: Arc::new(Mutex::new(pending)),
             network,
@@ -68,19 +69,23 @@ impl ApiContext {
     }
     #[must_use]
     pub fn head(&self) -> HeadCursor {
-        self.cursors.head()
+        self.cursors.read().head()
     }
     #[must_use]
     pub fn solidity(&self) -> SolidityCursor {
-        self.cursors.solidity()
+        self.cursors.read().solidity()
     }
     #[must_use]
     pub fn pbft(&self) -> PbftCursor {
-        self.cursors.pbft()
+        self.cursors.read().pbft()
     }
     #[must_use]
-    pub fn cursors(&self) -> &CursorSet {
-        &self.cursors
+    pub fn cursors(&self) -> CursorSet {
+        self.cursors.read().clone()
+    }
+    /// Atomically publishes a newly validated cursor set to every API clone.
+    pub fn publish_cursors(&self, cursors: CursorSet) {
+        *self.cursors.write() = cursors;
     }
     #[must_use]
     pub fn processor(&self) -> Arc<Mutex<TransactionProcessor>> {

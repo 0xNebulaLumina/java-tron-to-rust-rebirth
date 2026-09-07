@@ -273,7 +273,7 @@ impl RpcDomainProvider {
     }
     pub fn shielded_transaction<M:Message>(&self,p:&M,type_name:&str)->Result<TransactionExtention,ApiError>{WalletMutation::new(self.context.clone()).create_extension(transaction::contract::ContractType::ShieldedTransferContract as i32,type_name,p.encode_to_vec())}
     pub fn get_block(&self,p:BlockReq,cursor:ApiCursor)->Result<BlockExtention,ApiError>{let query=self.query(cursor);if p.id_or_num.is_empty(){query.block_extension_by_num(self.dynamic(cursor,"LATEST_BLOCK_HEADER_NUMBER")?)}else if let Ok(n)=p.id_or_num.parse::<i64>(){query.block_extension_by_num(n)}else{query.block_extension_by_id(&decode_hex(&p.id_or_num)?)} }
-    pub fn dynamic_properties(&self)->Result<DynamicProperties,ApiError>{Ok(DynamicProperties{last_solidity_block_num:self.dynamic(ApiCursor::Solidity,"LATEST_BLOCK_HEADER_NUMBER")?})}
+    pub fn dynamic_properties(&self)->Result<DynamicProperties,ApiError>{Ok(DynamicProperties{last_solidity_block_num:self.dynamic(ApiCursor::Solidity,"LATEST_SOLIDIFIED_BLOCK_NUM")?})}
     pub fn node_info(&self)->NodeInfo {
         if let Some(source) = &self.node_info { return source(); }
         let head = self.context.head().point();
