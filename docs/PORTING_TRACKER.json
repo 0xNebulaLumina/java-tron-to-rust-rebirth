@@ -3506,71 +3506,268 @@
     {
       "id": "C027",
       "title": "Toolkit and data workflows",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-09-08",
       "resume": null,
       "items": [
         {
           "id": "C027.01",
           "description": "Generate the Java toolkit command/option/error inventory for `db convert/archive/cp/lite/mv/root` and related commands, bound to Java revision and architecture/backend restrictions.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "57 guarded Java sources and 204 production rows inventoried at the pinned revision."
         },
         {
           "id": "C027.02",
           "description": "Execute the pinned Java reference matrix on non-destructive fixtures; record command, expected/actual exit/stdout/stderr/filesystem hashes and retained results.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Twice-stable guarded corpus contains exactly 140 Java plugin rows with deterministic direct lite/archive closure."
         },
         {
           "id": "C027.03",
           "description": "Map each Java command to retained-reference-only behavior, Rust equivalent, or reviewed non-applicability under DR-001; no silent omission.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Reconciliation closes 126 Rust-equivalent, 11 retained-reference-only, and 3 reviewed non-applicable rows with zero unmapped."
         },
         {
           "id": "C027.04",
           "description": "Rust command tree/help/options and DB inspect/copy/move/root/checkpoint with path, lock, symlink and partial-failure safety.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "DB inspect/copy/move/root/checkpoint contracts pass, including 17 DB tests; root preclassifies missing/plain-empty paths read-only and Java Merkle vectors prove odd leaves are promoted unchanged."
         },
         {
           "id": "C027.05",
           "description": "Rust-format lite split/merge, archive, migration, backup and rollback commands.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Journal-v3 storage workflows bind artifact names and dev/inode identities; descriptor-bound cleanup and locked fingerprint-verified move/Replace recovery reject substitutions."
         },
         {
           "id": "C027.06",
           "description": "Explicit non-destructive Java-format rejection/resync guidance and keystore new/import/list/update CLI.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Exact 98-row keystore CLI and inode-bound tombstone overwrite recovery reject same-UID substitutions while retaining all recovery artifacts on refusal."
         },
         {
           "id": "C027.07",
           "description": "Architecture/backend capability reporting; no silent engine substitution.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Strict platform/backend capability reporting rejects Java backends and unsupported platforms without substitution."
         },
         {
           "id": "C027.08",
           "description": "Publish the command/drill manifest with platform/backend, fixture sizes, fault points, exact outputs, manifest/state hashes and filesystem/no-write assertions.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Central registry pins every C027 artifact and oracle source; the fresh canonical gate authenticates exact 57/204/140=126+11+3 accounting and all current Rust suites."
         }
       ],
       "gate": {
         "id": "C027.V",
         "description": "Java reference matrix and Rust command manifest both pass with per-command results; Rust workflows round-trip.",
-        "status": "unconfigured",
-        "commands": [],
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C027 guarded Java command matrix",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/toolkit/c027_oracle.py"
+            ],
+            "timeout_seconds": 1800
+          },
+          {
+            "name": "C027 source, command, fixture and reconciliation gate",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/toolkit/c027_gate.py",
+              "all"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C005 filesystem regression seam",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-crypto",
+              "--test",
+              "c005_vectors",
+              "filesystem_and_atomic_vectors",
+              "--locked"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C027 keystore reporting seam",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-crypto",
+              "--test",
+              "c027_keystore_seams",
+              "--locked"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C027 and C007 storage transaction contracts",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-storage",
+              "--test",
+              "backend_contract",
+              "--test",
+              "format_contract",
+              "--test",
+              "failure_contract",
+              "--test",
+              "c027_toolkit_transactions",
+              "--locked"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C027 and C003 configuration contracts",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-config",
+              "--test",
+              "c003_config_differentials",
+              "--test",
+              "c027_toolkit_config",
+              "--locked"
+            ],
+            "timeout_seconds": 600
+          },
+          {
+            "name": "C027 toolkit command suites",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "tron-toolkit",
+              "--test",
+              "c027_cli",
+              "--test",
+              "c027_db",
+              "--test",
+              "c027_lite",
+              "--test",
+              "c027_keystore",
+              "--locked"
+            ],
+            "timeout_seconds": 1200
+          },
+          {
+            "name": "C027 affected crates all-targets check",
+            "cwd": "rust-tron",
+            "argv": [
+              "cargo",
+              "check",
+              "-p",
+              "tron-toolkit",
+              "-p",
+              "tron-storage",
+              "-p",
+              "tron-crypto",
+              "-p",
+              "tron-config",
+              "--all-targets",
+              "--locked"
+            ],
+            "timeout_seconds": 1200
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 7,
+        "findings": [
+          {
+            "id": "C027-R2-01",
+            "summary": "Replace transaction crashes could leave ambiguous old/new generations.",
+            "status": "closed",
+            "resolution": "Phase- and mode-checked retained-lock recovery validates staged/new and old fingerprints; exact process-death matrix proves rollback/resume leaves one complete generation."
+          },
+          {
+            "id": "C027-R2-02",
+            "summary": "Keystore overwrite lacked durable crash recovery and tamper-safe journal validation.",
+            "status": "closed",
+            "resolution": "Checksummed replacement journals, fsynced transitions, strict identity/mode checks, and abrupt/tampered/symlinked recovery tests now pass."
+          },
+          {
+            "id": "C027-R2-03",
+            "summary": "Storage lock release and fresh-directory creation had race windows under canonical combined execution.",
+            "status": "closed",
+            "resolution": "KernelLock synchronously unlocks retained guards and directories are created atomically at mode 0700; repeated race and combined storage gates pass."
+          },
+          {
+            "id": "C027-R2-04",
+            "summary": "Parallel keystore recovery fixtures could collide on pid plus timestamp names.",
+            "status": "closed",
+            "resolution": "Fixture roots add a process-local atomic suffix and retry AlreadyExists; definitive canonical gate passes."
+          },
+          {
+            "id": "C027-R3-01",
+            "summary": "Storage and keystore rollback cleanup may delete recovery journals after an unchecked failed backup restore.",
+            "status": "closed",
+            "resolution": "Storage and keystore rollback now check identity-gated backup restoration, validate/fsync restored state, retain journals/artifacts on any failure, and pass rename/fsync/tamper/destination-interference tests."
+          },
+          {
+            "id": "C027-R3-02",
+            "summary": "Move publication releases the source lock before quarantine/removal and resume removes an unlocked, unverified source.",
+            "status": "closed",
+            "resolution": "Move retains the source lock through verification and quarantine; resume re-locks and verifies source/quarantine fingerprints before removal, with concurrent-writer and process-death coverage."
+          },
+          {
+            "id": "C027-R4-01",
+            "summary": "Storage recovery journal path handling permits arbitrary deletion and move cleanup has a remaining TOCTOU window.",
+            "status": "closed",
+            "resolution": "Journal v3 validates destination-scoped artifact names and dev/inode identities; descriptor-bound cleanup and locked move recovery reject arbitrary-sibling and same-UID substitutions."
+          },
+          {
+            "id": "C027-R4-02",
+            "summary": "Keystore overwrite/recovery has a remaining target replacement TOCTOU window.",
+            "status": "closed",
+            "resolution": "Keystore journals bind original/replacement inodes and validated retained tombstones; staged same-UID substitutions at every overwrite boundary are refused without unlinking data."
+          },
+          {
+            "id": "C027-R4-03",
+            "summary": "C027 evidence manifest and gate permit self-authentication or registry bypass.",
+            "status": "closed",
+            "resolution": "Central registry pins all artifacts and five oracle sources; gate recomputes independent ledgers/observations and rejects paired expected/actual, retained-hash, coordinated-drift, and central-digest bypass mutations."
+          },
+          {
+            "id": "C027-R5-01",
+            "summary": "DB root reports a zero hash for recognized namespaces with no physical rows instead of omitting them and returning 404 when none are present.",
+            "status": "closed",
+            "resolution": "Discarded as invalid: authenticated Java TCASE-E1CE182966F2CAE4 and TCASE-5112B56F3F6C0F81 return the zero root for an existing empty child DB. Rust C008 defines 45 fixed logical namespaces without per-namespace directories, so a known zero-row namespace maps to existing empty under DR-001; unknown names remain filtered and return 404. Duplicate requested names remain preserved by contract."
+          },
+          {
+            "id": "C027-R6-01",
+            "summary": "db root opens and initializes missing or plain-empty paths instead of returning Java-compatible 404 without writes.",
+            "status": "closed",
+            "resolution": "Closed by rust-tron/crates/tron-toolkit/tests/c027_db.rs::root_classifies_read_only_and_only_opens_valid_rust_storage: missing and plain-empty paths return 404 with byte-identical trees, while only a valid Rust store is opened."
+          },
+          {
+            "id": "C027-R6-02",
+            "summary": "DB root Merkle reduction required explicit parity proof that odd leaves are promoted unchanged rather than duplicated.",
+            "status": "closed",
+            "resolution": "Closed by rust-tron/crates/tron-toolkit/tests/c027_db.rs::root_matches_java_merkle_vectors_for_arbitrary_leaf_counts, which matches Java roots for 0, 1, 2, 3, 5, 6, 7, and 8 leaves and therefore covers odd promotion at multiple tree levels."
+          }
+        ]
       },
       "blocker": null
     },

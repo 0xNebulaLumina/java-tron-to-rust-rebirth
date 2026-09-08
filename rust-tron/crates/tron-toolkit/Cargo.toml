@@ -9,10 +9,24 @@ publish.workspace = true
 [dependencies]
 tron-config = { path = "../tron-config" }
 tron-crypto = { path = "../tron-crypto" }
+tron-execution = { path = "../tron-execution" }
 tron-primitives = { path = "../tron-primitives" }
 tron-protocol = { path = "../tron-protocol" }
 tron-state = { path = "../tron-state" }
 tron-storage = { path = "../tron-storage" }
+prost.workspace = true
+rand_core = { version = "=0.6.4", features = ["getrandom"] }
+rustix = { version = "=1.1.4", features = ["fs", "process", "termios"] }
+serde = { version = "=1.0.219", features = ["derive"] }
+serde_json = { version = "=1.0.143", features = ["preserve_order"] }
+sha2 = "=0.10.9"
+thiserror = "=2.0.12"
+time = { version = "=0.3.41", features = ["formatting", "std"] }
+zeroize = "=1.8.1"
+
+[[bin]]
+name = "tron-toolkit"
+path = "src/main.rs"
 
 [lints]
 workspace = true

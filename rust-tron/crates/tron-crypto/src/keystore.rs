@@ -414,6 +414,15 @@ pub fn read_update_password_file(path: impl AsRef<Path>) -> Result<(String, Stri
     Ok((old.to_string(), new.to_string()))
 }
 
+/// Reads a bounded private-key input without following symbolic links.
+///
+/// The returned buffer is zeroized on drop. Parsing and whitespace handling
+/// remain the caller's responsibility so CLI compatibility does not leak into
+/// the core keystore layer.
+pub fn read_private_key_file(path: impl AsRef<Path>) -> Result<Zeroizing<Vec<u8>>, PasswordFileError> {
+    read_bounded_nofollow(path.as_ref())
+}
+
 fn split_java_lines(content: &str) -> Vec<&str> {
     let bytes = content.as_bytes();
     let mut lines = Vec::new();

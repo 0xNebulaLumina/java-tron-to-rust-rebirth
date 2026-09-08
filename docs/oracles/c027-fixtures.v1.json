@@ -1,0 +1,170 @@
+{
+  "chunk": "C027",
+  "fault_phases": [
+    "preflight",
+    "sources_locked",
+    "staging_created",
+    "data_written",
+    "data_synced",
+    "verified",
+    "journal_synced",
+    "original_backed_up",
+    "destination_published",
+    "parents_synced",
+    "source_quarantined",
+    "source_removed",
+    "cleanup_synced"
+  ],
+  "format": "rustlog-v1-only",
+  "hash_encodings": {
+    "manifest": "C027MAN1 fingerprint contract from tron_storage::toolkit::fingerprint_store",
+    "state": "C027LOG1 || sorted u32be(store_len)||store||u64be(key_len)||key||u64be(value_len)||value",
+    "tree": "C027TREE1 || bytewise path records with kind/mode/content; timestamps excluded"
+  },
+  "java_rejection_fixture": {
+    "before_equals_after": true,
+    "expected": "reject_without_writes",
+    "id": "C027.F.JAVA.MARKERS",
+    "markers": [
+      "engine.properties",
+      "CURRENT",
+      "LOG",
+      "LOG.old",
+      "LOCK",
+      "MANIFEST-000001",
+      "OPTIONS-000001",
+      "000001.sst",
+      "000001.ldb",
+      "IDENTITY"
+    ]
+  },
+  "keystore_fixture": {
+    "file_modes": {
+      "directory": "0700",
+      "secret": "0600"
+    },
+    "id": "C027.F.KEYSTORE",
+    "max_secret_bytes": 1024,
+    "password_utf8": "testpassword",
+    "private_key_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+    "source": "docs/oracles/c005-keystore-fixture-manifest.v1.json",
+    "source_sha256": "10389a2757aca527c3ef7dc2655e0cd393640922b0f7d4111da7bcf7d5fb19e1"
+  },
+  "lite_fixture": {
+    "archive_stores": [
+      "block",
+      "block-index",
+      "trans",
+      "transactionRetStore",
+      "transactionHistoryStore"
+    ],
+    "block_range": [
+      0,
+      999
+    ],
+    "id": "C027.F.LITE",
+    "rows": [
+      {
+        "key_hex": "00",
+        "store": "block",
+        "value_hex": "010203"
+      },
+      {
+        "key_hex": "6865696768743a30",
+        "store": "block-index",
+        "value_hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      {
+        "key_hex": "74783a30",
+        "store": "trans",
+        "value_hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      {
+        "key_hex": "7265743a30",
+        "store": "transactionRetStore",
+        "value_hex": "00"
+      },
+      {
+        "key_hex": "686973746f72793a30",
+        "store": "transactionHistoryStore",
+        "value_hex": "01"
+      }
+    ],
+    "snapshot_descriptor_fields": [
+      "descriptor_version",
+      "kind",
+      "network",
+      "genesis",
+      "schema_version",
+      "backend_format",
+      "source_state_sha256",
+      "genesis_block_id",
+      "min_block",
+      "max_block",
+      "recent_blocks",
+      "excluded_stores",
+      "history_balance_compatible"
+    ],
+    "trace_stores": [
+      "balance-trace",
+      "account-trace"
+    ],
+    "transient_stores": [
+      "trans-cache",
+      "checkpoint",
+      "tmp"
+    ]
+  },
+  "schema": "c027-fixtures.v1",
+  "storage_fixture": {
+    "entries": [
+      {
+        "key_hex": "00",
+        "store": "block",
+        "value_hex": "010203"
+      },
+      {
+        "key_hex": "6865696768743a30",
+        "store": "block-index",
+        "value_hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      {
+        "key_hex": "74783a30",
+        "store": "trans",
+        "value_hex": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      {
+        "key_hex": "7265743a30",
+        "store": "transactionRetStore",
+        "value_hex": "00"
+      },
+      {
+        "key_hex": "686973746f72793a30",
+        "store": "transactionHistoryStore",
+        "value_hex": "01"
+      },
+      {
+        "key_hex": "616c696365",
+        "store": "account",
+        "value_hex": "00000000000003e8"
+      }
+    ],
+    "entry_count": 6,
+    "generator_contract": "StorageManager::open_store + physical namespace put + close + toolkit::fingerprint_store",
+    "id": "C027.F.RUSTLOG.SMALL",
+    "manifest_layout": {
+      "path": "tron-storage.manifest",
+      "sha256": "02e7695dd1d91d982453f83ad4d0e1c83ac8f0ff3ef7129753af9860ae6735c6",
+      "size": 232
+    },
+    "manifest_sha256": "02e7695dd1d91d982453f83ad4d0e1c83ac8f0ff3ef7129753af9860ae6735c6",
+    "physical_size": 499,
+    "state_sha256": "03f0acf55b913c2917dd7fd6482f4640604fbc9539355ad6f4c41ffc91b60ed8",
+    "tree_sha256": "326ae0d2cd201786fc580c0402999fdce7fd302976c71fe4697fac7fd92cc3bd",
+    "wal_layout": {
+      "path": "generation-0/rustlog-v1.wal",
+      "sha256": "f005e02fa29b630a2f13fd200baf6cff8449ce0bf979a16c371e6fab7cf4c90d",
+      "size": 267
+    }
+  }
+}

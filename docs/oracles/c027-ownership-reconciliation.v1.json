@@ -1,0 +1,4008 @@
+{
+  "accounting": {
+    "by_disposition": {
+      "retained_reference_only": 11,
+      "reviewed_non_applicable": 3,
+      "rust_equivalent": 126
+    },
+    "by_item": {
+      "C027.03": 11,
+      "C027.04": 21,
+      "C027.05": 10,
+      "C027.06": 98
+    },
+    "mapping_rule": "Every row's rust_case is its stable ledger ID; the named Rust family test must contain an exhaustive dispatch arm for that ID.",
+    "total": 140
+  },
+  "chunk": "C027",
+  "generic_count": 0,
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "mapped_count": 140,
+  "row_count": 140,
+  "rows": [
+    {
+      "backend": "leveldb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testRunForLevelDB",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testRunForLevelDB() throws RocksDBException, IOException {",
+        "line_count": 6,
+        "method_sha256": "8cd523682312d7a3f7a6c75ef2fc1544db8952dbeecf78f0e2db2d8397ef40dd",
+        "source_sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-D8023B46F51740FE",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 14,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbCopyTest.java",
+        "sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "stable_id": "TCASE-D8023B46F51740FE"
+    },
+    {
+      "backend": "rocksdb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testRunForRocksDB",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testRunForRocksDB() throws RocksDBException, IOException {",
+        "line_count": 6,
+        "method_sha256": "ed721c2ba40a9d65e7aef7b308bc0a887d6be119202deafb42c8164cce167a6b",
+        "source_sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-72AD8C775A803584",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 22,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbCopyTest.java",
+        "sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "stable_id": "TCASE-72AD8C775A803584"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testHelp",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testHelp() {",
+        "line_count": 5,
+        "method_sha256": "430cc4c8705f8db5470da9cdcfdca9332afdbf6db610d91759eadebdac6da6d0",
+        "source_sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-20E913055C0C358F",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 30,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbCopyTest.java",
+        "sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "stable_id": "TCASE-20E913055C0C358F"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testNotExist",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testNotExist() {",
+        "line_count": 5,
+        "method_sha256": "3d96e07326d52932ca7ee5b8e33cabc2629d3db8c0cd3fa48b0d5561951e0fdb",
+        "source_sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-3CCBEEDCE7BDD185",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 37,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbCopyTest.java",
+        "sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "stable_id": "TCASE-3CCBEEDCE7BDD185"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testEmpty",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testEmpty() throws IOException {",
+        "line_count": 5,
+        "method_sha256": "ca059334040a16a23c46d8b170d8f37b1cb69ff305d04036812e941ff739c6f9",
+        "source_sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-41967943A5A0F04E",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 44,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbCopyTest.java",
+        "sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "stable_id": "TCASE-41967943A5A0F04E"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testDestIsExist",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testDestIsExist() throws IOException {",
+        "line_count": 5,
+        "method_sha256": "421e0daa0ab27d121bad8fb26a9e4bc0e402b0565ef8744d4462aad934378991",
+        "source_sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-4D3FDCC8F851ED6D",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 51,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbCopyTest.java",
+        "sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "stable_id": "TCASE-4D3FDCC8F851ED6D"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testSrcIsFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testSrcIsFile() throws IOException {",
+        "line_count": 5,
+        "method_sha256": "0950e9ea0f6b94bfd5b2c1cb9d10053037d96fc5c840740ceafc84139a7d3746",
+        "source_sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-31F4297BFDC68B58",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 58,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbCopyTest.java",
+        "sha256": "ead5e4d9078fa2c9847223719df67bae405e29903e3018055b6e7eee09be31d2"
+      },
+      "stable_id": "TCASE-31F4297BFDC68B58"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testMvForLevelDB",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testMvForLevelDB() throws RocksDBException, IOException {",
+        "line_count": 10,
+        "method_sha256": "3b7caabef522d998e16390fe8ba147ef372e1e035d837bde156e7f30e8ad07a9",
+        "source_sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-0507AAD628CEDBD9",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 65,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbMoveTest.java",
+        "sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "stable_id": "TCASE-0507AAD628CEDBD9"
+    },
+    {
+      "backend": "rocksdb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testMvForRocksDB",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testMvForRocksDB() throws RocksDBException, IOException {",
+        "line_count": 10,
+        "method_sha256": "95f38f4b294945d114a406c8ba69552ac1bc144d28eaf8c047a7041d4c3ae3d5",
+        "source_sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-CEFF281A7734FC60",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 77,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbMoveTest.java",
+        "sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "stable_id": "TCASE-CEFF281A7734FC60"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "retained_reference_only",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testDuplicate",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testDuplicate() throws IOException {",
+        "line_count": 8,
+        "method_sha256": "f09171d20eb883ef59515e3bfd101803f7a235c13dd498678c9d193312b4e959",
+        "source_sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-15A9C47D3909C328",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 89,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbMoveTest.java",
+        "sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "stable_id": "TCASE-15A9C47D3909C328"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testHelp",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testHelp() {",
+        "line_count": 5,
+        "method_sha256": "7dae043d1e16bf31c7ad4864a55128a6ff4ee2cac1fac91594a6d2fee7fdb849",
+        "source_sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-5F086897FE87A346",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 99,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbMoveTest.java",
+        "sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "stable_id": "TCASE-5F086897FE87A346"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "retained_reference_only",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testDicNotExist",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testDicNotExist() {",
+        "line_count": 5,
+        "method_sha256": "6bace84b5d05cd6369a8b41429df3f98fe69dd942f14781ac53dbdec400c71dd",
+        "source_sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-5744ECADEAD03AD9",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 106,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbMoveTest.java",
+        "sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "stable_id": "TCASE-5744ECADEAD03AD9"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "retained_reference_only",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testConfNotExist",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testConfNotExist() throws IOException {",
+        "line_count": 8,
+        "method_sha256": "8bdfe0196e8e1269fe37d207fcd58d4558ecffddac61e28a9268b090fea8143c",
+        "source_sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-607C56A18571570B",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 113,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbMoveTest.java",
+        "sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "stable_id": "TCASE-607C56A18571570B"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "retained_reference_only",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testEmpty",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testEmpty() throws IOException {",
+        "line_count": 8,
+        "method_sha256": "ffc77b3d0d94dd82750c0c3a9b6a389002d8f9f1bcd90b7d4faf311bf9784654",
+        "source_sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-EA68B3936E9B4D10",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 123,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbMoveTest.java",
+        "sha256": "9c005b8965e6b729785728f61503e0a1216de1ff9a3a02b5166ab5e35901ffcb"
+      },
+      "stable_id": "TCASE-EA68B3936E9B4D10"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testRootForLevelDB",
+      "java_observation": {
+        "assertion_tokens": [],
+        "declaration": "public void testRootForLevelDB() throws RocksDBException, IOException {",
+        "line_count": 3,
+        "method_sha256": "738c72315a067f4feb722537fa2ec2fe88aa2b23520e6c6185f7113390269ebb",
+        "source_sha256": "69835d79023609148a8e757cb3f8d642caf4a41c99414030ea93bb0533c320b1"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-E1CE182966F2CAE4",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 30,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbRootTest.java",
+        "sha256": "69835d79023609148a8e757cb3f8d642caf4a41c99414030ea93bb0533c320b1"
+      },
+      "stable_id": "TCASE-E1CE182966F2CAE4"
+    },
+    {
+      "backend": "rocksdb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testRootForRocksDB",
+      "java_observation": {
+        "assertion_tokens": [],
+        "declaration": "public void testRootForRocksDB() throws RocksDBException, IOException {",
+        "line_count": 3,
+        "method_sha256": "183a662845b807e741e69f5f16c5224bf30ebb024827527077414e668554f75e",
+        "source_sha256": "69835d79023609148a8e757cb3f8d642caf4a41c99414030ea93bb0533c320b1"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-5112B56F3F6C0F81",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 35,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbRootTest.java",
+        "sha256": "69835d79023609148a8e757cb3f8d642caf4a41c99414030ea93bb0533c320b1"
+      },
+      "stable_id": "TCASE-5112B56F3F6C0F81"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testHelp",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testHelp() {",
+        "line_count": 4,
+        "method_sha256": "f6721341f517931a1f57450a5b05d6fffb58a6f1cf8965c263c1a3797836a84c",
+        "source_sha256": "69835d79023609148a8e757cb3f8d642caf4a41c99414030ea93bb0533c320b1"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-EB57BC242F8E01AC",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 75,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbRootTest.java",
+        "sha256": "69835d79023609148a8e757cb3f8d642caf4a41c99414030ea93bb0533c320b1"
+      },
+      "stable_id": "TCASE-EB57BC242F8E01AC"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "toolkit",
+      "java_case": "testEmpty",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testEmpty() throws IOException {",
+        "line_count": 8,
+        "method_sha256": "3854af51d84875ed116d5c38b1085d9bbd4d904319cfeb337ddeccfbaeb2a494",
+        "source_sha256": "69835d79023609148a8e757cb3f8d642caf4a41c99414030ea93bb0533c320b1"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-0A0889ADBE9E8BD3",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 81,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/DbRootTest.java",
+        "sha256": "69835d79023609148a8e757cb3f8d642caf4a41c99414030ea93bb0533c320b1"
+      },
+      "stable_id": "TCASE-0A0889ADBE9E8BD3"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testJsonMapEven",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testJsonMapEven() {",
+        "line_count": 6,
+        "method_sha256": "d50dd634fb700602a0594187b87caf99875b80fa0ed7baed6ba9bd90d7fc8bba",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-ADB8882FBF4FA939",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 27,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-ADB8882FBF4FA939"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testJsonMapPreservesOrder",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testJsonMapPreservesOrder() {",
+        "line_count": 8,
+        "method_sha256": "0f34b649ac1a79096ddba993b8aed77afc5ea9a8d67b0f5cc7154b62e9522223",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-C5135A2BD29D9DB6",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 35,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-C5135A2BD29D9DB6"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testJsonMapEmpty",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertTrue"
+        ],
+        "declaration": "public void testJsonMapEmpty() {",
+        "line_count": 4,
+        "method_sha256": "432c8b4ce9444e613e7f3dec011273219609817675a04efe4b1def5424a6824c",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-D05B439350A21DC9",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 45,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-D05B439350A21DC9"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testIsValidKeystoreFileValid",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertTrue"
+        ],
+        "declaration": "public void testIsValidKeystoreFileValid() {",
+        "line_count": 7,
+        "method_sha256": "cfa50cf0c66ad4a1836aa3b84f717039a47bcadf2fac36aa0cb70301b1c486a0",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-5CDF40FC1F4E5508",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 58,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-5CDF40FC1F4E5508"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testIsValidKeystoreFileNullAddress",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertFalse"
+        ],
+        "declaration": "public void testIsValidKeystoreFileNullAddress() {",
+        "line_count": 6,
+        "method_sha256": "2530f7593a53809c829188ceb9e4754913451adbb748b869e420b9751e82b488",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-719614D4561F204C",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 67,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-719614D4561F204C"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testIsValidKeystoreFileNullCrypto",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertFalse"
+        ],
+        "declaration": "public void testIsValidKeystoreFileNullCrypto() {",
+        "line_count": 6,
+        "method_sha256": "da6d17123bf3ff6c350e60ec2571aa97138db53558799bb4916941833f1f55de",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-986715533AC8CD45",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 75,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-986715533AC8CD45"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testIsValidKeystoreFileWrongVersion",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertFalse"
+        ],
+        "declaration": "public void testIsValidKeystoreFileWrongVersion() {",
+        "line_count": 7,
+        "method_sha256": "a24adcdd8df1c58cb4bb8f0028cb56f09b46f9bc5a0c7f0ff4d6a945cfd3a5dc",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-F12088B48CF2EB48",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 83,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-F12088B48CF2EB48"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testIsValidKeystoreFileRejectsEmptyCryptoStub",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertFalse"
+        ],
+        "declaration": "public void testIsValidKeystoreFileRejectsEmptyCryptoStub() {",
+        "line_count": 9,
+        "method_sha256": "19fe3fd6824be75effa575fead288297422e21cd5936d2c87242325ee13cb79b",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-D4CC9703428BA8A7",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 92,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-D4CC9703428BA8A7"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testIsValidKeystoreFileRejectsUnsupportedCipher",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertFalse"
+        ],
+        "declaration": "public void testIsValidKeystoreFileRejectsUnsupportedCipher() {",
+        "line_count": 10,
+        "method_sha256": "a52a2d92778a0ceb71be21a66cf604279ecdd08b5dfa854a1eb008aec7d1c4e8",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-D6FF847E4E21FE34",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 103,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-D6FF847E4E21FE34"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testIsValidKeystoreFileRejectsUnsupportedKdf",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertFalse"
+        ],
+        "declaration": "public void testIsValidKeystoreFileRejectsUnsupportedKdf() {",
+        "line_count": 10,
+        "method_sha256": "da290ccf274c911216c9300dbc663566b0f6a55eefe1ed7cf0452194dc23a3d9",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-EA4DA40CA382B55B",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 115,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-EA4DA40CA382B55B"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testIsValidKeystoreFileAcceptsPbkdf2Kdf",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertTrue"
+        ],
+        "declaration": "public void testIsValidKeystoreFileAcceptsPbkdf2Kdf() {",
+        "line_count": 11,
+        "method_sha256": "fb1f56b7d42114fc480427e52e1609d1738bff8e0582990afcbb5628b8387dfc",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-721CEF8DDDAA7CC8",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 127,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-721CEF8DDDAA7CC8"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testCheckFileExistsNull",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testCheckFileExistsNull() {",
+        "line_count": 6,
+        "method_sha256": "a0b9fe3ded88c8eaef18d827392835e0520027dc4976fd30c9494cfa1795732e",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-249A3A3DD8BF4C95",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 140,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-249A3A3DD8BF4C95"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testCheckFileExistsMissing",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertFalse",
+          "assertTrue"
+        ],
+        "declaration": "public void testCheckFileExistsMissing() {",
+        "line_count": 7,
+        "method_sha256": "b33472e80975131f3ca4881d76d071367b0d68eda97535657fba6496a46f4f05",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-259D3884E809C785",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 148,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-259D3884E809C785"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testCheckFileExistsPresent",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertTrue"
+        ],
+        "declaration": "public void testCheckFileExistsPresent() throws Exception {",
+        "line_count": 6,
+        "method_sha256": "3d3ed1349ed03692a9c3a0bc73194d9076e0214e0b7c8206851b439b8637d82a",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-7181D9DD193D0516",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 157,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-7181D9DD193D0516"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testReadPasswordFromFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testReadPasswordFromFile() throws Exception {",
+        "line_count": 7,
+        "method_sha256": "058aeab4380998dadfd41e69095a2acc7b19ecdce952ada3854059e2975a4e87",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-0EE84A4F944D7E14",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 165,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-0EE84A4F944D7E14"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testReadPasswordFromFileWithLineEndings",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testReadPasswordFromFileWithLineEndings() throws Exception {",
+        "line_count": 7,
+        "method_sha256": "f3ba6de474c3417e012b873396cdfcde96c7d017dbab44f0d6dfec062df6d5e2",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-DB5C2FC8BAD6B264",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 174,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-DB5C2FC8BAD6B264"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testReadPasswordFromFileWithBom",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testReadPasswordFromFileWithBom() throws Exception {",
+        "line_count": 8,
+        "method_sha256": "dcb35184bfbb4dc6c9f039c39a78d2f4e82e20c016e351ba41f0b5aa6a165bc7",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-2A79113E67F6039D",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 183,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-2A79113E67F6039D"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testReadPasswordFileTooLarge",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertNull",
+          "assertTrue"
+        ],
+        "declaration": "public void testReadPasswordFileTooLarge() throws Exception {",
+        "line_count": 10,
+        "method_sha256": "2b2f28765f763ac15649b0c29767336e66db83cce93d317dc49be8ed6ca75752",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-59F4AD82CC07E1C2",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 193,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-59F4AD82CC07E1C2"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testReadPasswordFileShort",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertNull",
+          "assertTrue"
+        ],
+        "declaration": "public void testReadPasswordFileShort() throws Exception {",
+        "line_count": 8,
+        "method_sha256": "93e7b60dddfb21205f6a28abd439604a2d2169ca4bf47185250510590671f785",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-C2999FC983F82DE2",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 205,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-C2999FC983F82DE2"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testReadPasswordFileNotFound",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertNull",
+          "assertTrue"
+        ],
+        "declaration": "public void testReadPasswordFileNotFound() throws Exception {",
+        "line_count": 7,
+        "method_sha256": "c6a69c58c5495c3aeb4d593a00de29151d53e1a02a40f3b80fc0f28682f826ff",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-E0D75C9147D9CCF3",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 215,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-E0D75C9147D9CCF3"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testEnsureDirectoryCreatesNested",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertFalse",
+          "assertTrue"
+        ],
+        "declaration": "public void testEnsureDirectoryCreatesNested() throws Exception {",
+        "line_count": 7,
+        "method_sha256": "3963d6543f3dff99b889a2465b7a6460cacf5dde9c5429bb57a0bc4ec273d0b6",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-1342F5698E1AC459",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 224,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-1342F5698E1AC459"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testEnsureDirectoryExisting",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertTrue"
+        ],
+        "declaration": "public void testEnsureDirectoryExisting() throws Exception {",
+        "line_count": 5,
+        "method_sha256": "94683e26a721a65869f74a617f68948818684a667e0efba6b6e07be96d094f0b",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-A1D9FD811CDE7915",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 233,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-A1D9FD811CDE7915"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testEnsureDirectoryPathIsFile",
+      "java_observation": {
+        "assertion_tokens": [],
+        "declaration": "public void testEnsureDirectoryPathIsFile() throws Exception {",
+        "line_count": 4,
+        "method_sha256": "224500ba6510f598cf74634292e1a7e6a1768e83981ef8d1364ddb69c594376c",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-ABCC8527E477B4A1",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 240,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-ABCC8527E477B4A1"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testPrintJsonValidOutput",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertTrue"
+        ],
+        "declaration": "public void testPrintJsonValidOutput() {",
+        "line_count": 9,
+        "method_sha256": "22d3b28fb657bc8e478059ec50edbafa0ff272be90bd329f2591f08ffc8b19a4",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-A5DDD5EC0530F0FD",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 246,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-A5DDD5EC0530F0FD"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testPrintSecurityTipsIncludesAddressAndFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertTrue"
+        ],
+        "declaration": "public void testPrintSecurityTipsIncludesAddressAndFile() {",
+        "line_count": 11,
+        "method_sha256": "fa803e2aedf93ef3cb0e88badb2e7743f45b885565df64982502507f680ed899",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-2178408F41385C11",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 257,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-2178408F41385C11"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testReadRegularFileSuccess",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull"
+        ],
+        "declaration": "public void testReadRegularFileSuccess() throws Exception {",
+        "line_count": 10,
+        "method_sha256": "964755372ddf3826e9fcaa12e4ee144adf414c0ac9316ac5be7e3b8022995dd5",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-871CEB0DB37CA962",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 270,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-871CEB0DB37CA962"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testReadRegularFileMissing",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertNull",
+          "assertTrue"
+        ],
+        "declaration": "public void testReadRegularFileMissing() throws Exception {",
+        "line_count": 10,
+        "method_sha256": "b49753de733d7b920aca857f590d96cd081f72ecf9720d4b7e3d91cfbab2d83b",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-4C7C895A35338F11",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 282,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-4C7C895A35338F11"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testReadRegularFileTooLarge",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertNull",
+          "assertTrue"
+        ],
+        "declaration": "public void testReadRegularFileTooLarge() throws Exception {",
+        "line_count": 13,
+        "method_sha256": "15b4a0b1bb9d728e6d9dc8926a410d3eb4a1b36e130fe1fd69e85a092e389be3",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-F36B1FDD93D0A082",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 294,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-F36B1FDD93D0A082"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testReadRegularFileRefusesSymlink",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertNull",
+          "assertTrue"
+        ],
+        "declaration": "public void testReadRegularFileRefusesSymlink() throws Exception {",
+        "line_count": 17,
+        "method_sha256": "9a7a8d05308c80ed9b26a93d7f6efa6c16de815980b00e76c83a687a4317ee3b",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-CCCE374144740CC6",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 309,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-CCCE374144740CC6"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testReadRegularFileRefusesDirectory",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertNull",
+          "assertTrue"
+        ],
+        "declaration": "public void testReadRegularFileRefusesDirectory() throws Exception {",
+        "line_count": 10,
+        "method_sha256": "32edc6e363ace416dd2d1bd192e8a0e18918ebf46fec96a9ddbb44aa83240cf1",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-B868341260CB8707",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 328,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-B868341260CB8707"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "direct_api",
+      "java_case": "testReadRegularFileEmptyFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull"
+        ],
+        "declaration": "public void testReadRegularFileEmptyFile() throws Exception {",
+        "line_count": 9,
+        "method_sha256": "6b0dd5884e5a9a6509010d1810f7c04d5a087a4db27c3df000e35eaba9a5f013",
+        "source_sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-2A511E920F1478DC",
+      "rust_test": "c027_keystore::java_keystore_cli_utils_rows",
+      "source": {
+        "line": 340,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreCliUtilsTest.java",
+        "sha256": "49858ba90b00981c2cdc3822f4ddeadfdfa42a4f33dfe4dcfc7b97ce0405a4d8"
+      },
+      "stable_id": "TCASE-2A511E920F1478DC"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportWithKeyFileAndPasswordFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertArrayEquals",
+          "assertEquals",
+          "assertNotNull"
+        ],
+        "declaration": "public void testImportWithKeyFileAndPasswordFile() throws Exception {",
+        "line_count": 33,
+        "method_sha256": "23020736b1322e355fe8971688dcfa29f729e1c20a2174fa79282c676fbaaf1d",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-2E8284D0DCA9673B",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 29,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-2E8284D0DCA9673B"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportInvalidKeyTooShort",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testImportInvalidKeyTooShort() throws Exception {",
+        "line_count": 16,
+        "method_sha256": "a472d7cf518f2ec62fcfe37edaed8ac09764a96160e826cf8e63ae4287b9193a",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-F497AA9185FB15E5",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 64,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-F497AA9185FB15E5"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportInvalidKeyNonHex",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testImportInvalidKeyNonHex() throws Exception {",
+        "line_count": 18,
+        "method_sha256": "b12bd502a140f88946f190b9447f9e7cc80db7ac374a8c9868fe38353b087b08",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-C5ED1C64D90A4E0F",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 82,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-C5ED1C64D90A4E0F"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportNoTtyNoKeyFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testImportNoTtyNoKeyFile() throws Exception {",
+        "line_count": 13,
+        "method_sha256": "1934cff9ea9a5f2f44a5d86fd527676054178a8da9209d61186fb9f65c6ca697",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-6EF43134C2A58882",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 102,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-6EF43134C2A58882"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportWithSm2",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertArrayEquals",
+          "assertEquals",
+          "assertNotNull"
+        ],
+        "declaration": "public void testImportWithSm2() throws Exception {",
+        "line_count": 29,
+        "method_sha256": "2ecdb469d2530bfa0b1bb925dff40359724340e71606ba01688a65a802e733e4",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-DAEB0D5525FC3B9F",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 117,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-DAEB0D5525FC3B9F"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportKeyFileWithWhitespace",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertArrayEquals",
+          "assertEquals",
+          "assertNotNull"
+        ],
+        "declaration": "public void testImportKeyFileWithWhitespace() throws Exception {",
+        "line_count": 28,
+        "method_sha256": "1339747df81cdb27035e0241ae1de1c3462fbf99a97e5270289ee5b6e21ffc28",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-3AEB7F6E12741582",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 148,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-3AEB7F6E12741582"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportDuplicateAddressBlocked",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull",
+          "assertTrue"
+        ],
+        "declaration": "public void testImportDuplicateAddressBlocked() throws Exception {",
+        "line_count": 34,
+        "method_sha256": "27450bde8541a9753efde348f7519771b3c6ea218e09f3637b94a9a9902aa7c9",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-7A166AC7741DC012",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 178,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-7A166AC7741DC012"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportDuplicateAddressWithForce",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull"
+        ],
+        "declaration": "public void testImportDuplicateAddressWithForce() throws Exception {",
+        "line_count": 30,
+        "method_sha256": "558a87af76f6b352a48ea6d013aa8c227760c7374e49a1d89e7eff585ec63cfa",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-E69F3107CF4F59BC",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 214,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-E69F3107CF4F59BC"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportKeyFileNotFound",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testImportKeyFileNotFound() throws Exception {",
+        "line_count": 13,
+        "method_sha256": "e1cb98859889618747a89188570b9ee38572393ebf254621ab871cccf18f43e6",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-2C380C3DC54E59C6",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 246,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-2C380C3DC54E59C6"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportWith0xPrefix",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull"
+        ],
+        "declaration": "public void testImportWith0xPrefix() throws Exception {",
+        "line_count": 26,
+        "method_sha256": "b4ba430eeabff6b59d5f51cce3dbbfe7b2ff880e37b86a9337a530c9403286a1",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-DE142D3ABED72E4E",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 261,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-DE142D3ABED72E4E"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportWith0XUppercasePrefix",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testImportWith0XUppercasePrefix() throws Exception {",
+        "line_count": 20,
+        "method_sha256": "f8a3badc3d6ec09d4ebe80f0af46e1d7d0493cc3aa1ff2376d1c9b060c087882",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-74396E19F97E2234",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 289,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-74396E19F97E2234"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportWarnsOnCorruptedFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull",
+          "assertTrue"
+        ],
+        "declaration": "public void testImportWarnsOnCorruptedFile() throws Exception {",
+        "line_count": 227,
+        "method_sha256": "0b979bb640e19488a8147648b2862a98c0a78ef4305901269a1406e3e3e3cf6f",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-778D09E8DAF00628",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 311,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-778D09E8DAF00628"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportKeystoreFilePermissions",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull"
+        ],
+        "declaration": "public void testImportKeystoreFilePermissions() throws Exception {",
+        "line_count": 34,
+        "method_sha256": "794b76ac80bca0dfc7e58bea554b823db4bc69850a53d9d298989cc925c73aa1",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-49EB0A84D157E4F6",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 343,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-49EB0A84D157E4F6"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportRefusesSymlinkKeyFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testImportRefusesSymlinkKeyFile() throws Exception {",
+        "line_count": 30,
+        "method_sha256": "cc8d51b896231e7141ad3f8b1abd220fd83f6eb3c20bdcd3e00479ceef98a395",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-C987EDE0E1FA050B",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 379,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-C987EDE0E1FA050B"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportRefusesSymlinkPasswordFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testImportRefusesSymlinkPasswordFile() throws Exception {",
+        "line_count": 28,
+        "method_sha256": "f2d4ff055e7f24da36af937b28bfe18fc5e5a5df72b2239a4c95c8cb87b51762",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-2246CB112D64C8BC",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 411,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-2246CB112D64C8BC"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportDuplicateCheckSkipsInvalidVersion",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testImportDuplicateCheckSkipsInvalidVersion() throws Exception {",
+        "line_count": 27,
+        "method_sha256": "6af72382b50173fe3097427263ffff5e0a18f0218f31b4864c6a6650ad02e254",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-338A1E6DC7FE8025",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 441,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-338A1E6DC7FE8025"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportDuplicateScanSkipsSymlinkedEntry",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testImportDuplicateScanSkipsSymlinkedEntry() throws Exception {",
+        "line_count": 35,
+        "method_sha256": "8da10f3d7ef58db8a4d980ff0a692deb204f73922215b3f8b1efafa904c00f67",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-397136F7F89ADA62",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 470,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-397136F7F89ADA62"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testImportRejectsMultiLinePasswordFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testImportRejectsMultiLinePasswordFile() throws Exception {",
+        "line_count": 30,
+        "method_sha256": "c9b42bbd8937688441f8e9bc09643e009173ffd59df1ac34a07439b9f5b93452",
+        "source_sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-1C807F76B44577D7",
+      "rust_test": "c027_keystore::java_keystore_import_rows",
+      "source": {
+        "line": 507,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreImportTest.java",
+        "sha256": "7602253b89bf17e955beb939a852d35851aa15414807242a734ce2302d2fb291"
+      },
+      "stable_id": "TCASE-1C807F76B44577D7"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testListMultipleKeystores",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testListMultipleKeystores() throws Exception {",
+        "line_count": 33,
+        "method_sha256": "e45efe2ed7a5e4edaaaa9d9e8638db83ae05cbbbdaf38be6797ad2b2aa4a150d",
+        "source_sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-CFC3F4258D0BA3FF",
+      "rust_test": "c027_keystore::java_keystore_list_rows",
+      "source": {
+        "line": 27,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreListTest.java",
+        "sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "stable_id": "TCASE-CFC3F4258D0BA3FF"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testListEmptyDirectory",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testListEmptyDirectory() throws Exception {",
+        "line_count": 13,
+        "method_sha256": "2defa65ecf5606e08870f9a91e12fe8af62ab5203c45751c5047e584cfee51bb",
+        "source_sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-C89E0BFCA28D71B4",
+      "rust_test": "c027_keystore::java_keystore_list_rows",
+      "source": {
+        "line": 62,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreListTest.java",
+        "sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "stable_id": "TCASE-C89E0BFCA28D71B4"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testListNonExistentDirectory",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testListNonExistentDirectory() throws Exception {",
+        "line_count": 13,
+        "method_sha256": "4abb956672aa498b32629a6e80d0e018f18e694b04adde963991bc77590626e3",
+        "source_sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-A10407EEE330F837",
+      "rust_test": "c027_keystore::java_keystore_list_rows",
+      "source": {
+        "line": 77,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreListTest.java",
+        "sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "stable_id": "TCASE-A10407EEE330F837"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testListEmptyDirectoryJsonOutput",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testListEmptyDirectoryJsonOutput() throws Exception {",
+        "line_count": 14,
+        "method_sha256": "49ca53292d720a5c2367086fea13bfd1de969fd4a122065fdbf2faf075f10b34",
+        "source_sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-BA8CD76A679FCBDA",
+      "rust_test": "c027_keystore::java_keystore_list_rows",
+      "source": {
+        "line": 92,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreListTest.java",
+        "sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "stable_id": "TCASE-BA8CD76A679FCBDA"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testListNonExistentDirectoryJsonOutput",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testListNonExistentDirectoryJsonOutput() throws Exception {",
+        "line_count": 14,
+        "method_sha256": "8ae1f12cdf78dfb8f10bdcd81734562b53d49a6b52c54b30d45e46e20272aec8",
+        "source_sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-E3B485C81288CB5B",
+      "rust_test": "c027_keystore::java_keystore_list_rows",
+      "source": {
+        "line": 108,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreListTest.java",
+        "sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "stable_id": "TCASE-E3B485C81288CB5B"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testListJsonOutput",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testListJsonOutput() throws Exception {",
+        "line_count": 22,
+        "method_sha256": "127d41ebfc3291c886e0397be8158fd9ffb5e4dfb84a784ef16dacfc2a1a9779",
+        "source_sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-DB0F306F0D2DD80A",
+      "rust_test": "c027_keystore::java_keystore_list_rows",
+      "source": {
+        "line": 124,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreListTest.java",
+        "sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "stable_id": "TCASE-DB0F306F0D2DD80A"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testListSkipsNonKeystoreFiles",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testListSkipsNonKeystoreFiles() throws Exception {",
+        "line_count": 30,
+        "method_sha256": "43b1a6ab12ee326266ff2970406d573540351bc6dab87a0c1d8ea661b8d9304b",
+        "source_sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-1F6413B639E4D477",
+      "rust_test": "c027_keystore::java_keystore_list_rows",
+      "source": {
+        "line": 148,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreListTest.java",
+        "sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "stable_id": "TCASE-1F6413B639E4D477"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testListWarnsOnCorruptedJsonFiles",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testListWarnsOnCorruptedJsonFiles() throws Exception {",
+        "line_count": 104,
+        "method_sha256": "1f968a42889566c8d857553c30a65c4ef54e2428d67865abefc9b9ce8a0ada9f",
+        "source_sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-8989819B58DD1045",
+      "rust_test": "c027_keystore::java_keystore_list_rows",
+      "source": {
+        "line": 180,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreListTest.java",
+        "sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "stable_id": "TCASE-8989819B58DD1045"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testListSkipsInvalidVersionKeystores",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testListSkipsInvalidVersionKeystores() throws Exception {",
+        "line_count": 32,
+        "method_sha256": "14984f6f228351974c69ab1f416e3cd2e50cfe2533a0bce8de9a138e9dfc6600",
+        "source_sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-02B8DD39B7D690EC",
+      "rust_test": "c027_keystore::java_keystore_list_rows",
+      "source": {
+        "line": 212,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreListTest.java",
+        "sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "stable_id": "TCASE-02B8DD39B7D690EC"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testListSkipsSymlinkedKeystoreFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testListSkipsSymlinkedKeystoreFile() throws Exception {",
+        "line_count": 37,
+        "method_sha256": "478d51d32d28194776b0c3bc1c5b989be647f5d1b2c54a270339ebacd95ee69a",
+        "source_sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-E3822362BFE70AE7",
+      "rust_test": "c027_keystore::java_keystore_list_rows",
+      "source": {
+        "line": 246,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreListTest.java",
+        "sha256": "32ac3c310cadc120da1d8c991ba710ccaf266570d58fcffd67ace1160ae5228d"
+      },
+      "stable_id": "TCASE-E3822362BFE70AE7"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystoreWithPasswordFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull",
+          "assertTrue"
+        ],
+        "declaration": "public void testNewKeystoreWithPasswordFile() throws Exception {",
+        "line_count": 26,
+        "method_sha256": "bd107f96390c4ca6c1f29988f95f4074e321c42f54dbf1f62ac88c5d8e8a0c7c",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-86B2CC34FB6FEE4F",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 26,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-86B2CC34FB6FEE4F"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystoreJsonOutput",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testNewKeystoreJsonOutput() throws Exception {",
+        "line_count": 22,
+        "method_sha256": "6accfc1516e90ec0ea9c95f0e2a624b15afeebf1de4703064508de4c31b4beba",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-F0A217C5DAA61B68",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 54,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-F0A217C5DAA61B68"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystoreInvalidPassword",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testNewKeystoreInvalidPassword() throws Exception {",
+        "line_count": 16,
+        "method_sha256": "2cac99ce96e896408e0f84441db8acb4c7582d40cf7061dd473d43a196138634",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-66708F182B38B352",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 78,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-66708F182B38B352"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystoreCustomDir",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull",
+          "assertTrue"
+        ],
+        "declaration": "public void testNewKeystoreCustomDir() throws Exception {",
+        "line_count": 16,
+        "method_sha256": "44a85da9ab2984932dc4b1d0dce79e35beb730bc7312077cdcb286a5341b78a2",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-3FFDD210428BA0E9",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 96,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-3FFDD210428BA0E9"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystoreNoTtyNoPasswordFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testNewKeystoreNoTtyNoPasswordFile() throws Exception {",
+        "line_count": 11,
+        "method_sha256": "ea11dc40b268ef1a6f923f4d0c44387673bd68f73b45fbfd1dfa461e69910e24",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-8E9FB2E1E96275C6",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 114,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-8E9FB2E1E96275C6"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystoreEmptyPassword",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testNewKeystoreEmptyPassword() throws Exception {",
+        "line_count": 16,
+        "method_sha256": "887c9d788d71983e36e7a56a236df5c6d0681cac89ca23a8b476aa408bb285e3",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-0B303D5220A6B58E",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 127,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-0B303D5220A6B58E"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystoreWithSm2",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull"
+        ],
+        "declaration": "public void testNewKeystoreWithSm2() throws Exception {",
+        "line_count": 21,
+        "method_sha256": "035ac7571089efb41694d75b2432ef1a1ce467d130286dea7c2de469d4d0598b",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-EDBBB764CE40453B",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 145,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-EDBBB764CE40453B"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystoreSpecialCharPassword",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull"
+        ],
+        "declaration": "public void testNewKeystoreSpecialCharPassword() throws Exception {",
+        "line_count": 20,
+        "method_sha256": "ff6782d7c8b4862a29166a63d1d34db6de1e3a81f6ede99b3093a6af865cbe6b",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-4605EECC752CFF3A",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 168,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-4605EECC752CFF3A"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystorePasswordFileNotFound",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testNewKeystorePasswordFileNotFound() throws Exception {",
+        "line_count": 10,
+        "method_sha256": "a917d997d580c0cfd22b7d4990e39cf94f5d99bd3d7ed672287873c901d588d1",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-B1AD37895037CF60",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 190,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-B1AD37895037CF60"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystoreDirIsFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testNewKeystoreDirIsFile() throws Exception {",
+        "line_count": 12,
+        "method_sha256": "9c6cac1dea4252a198537437844daa69851b86eef90d6ad9ac6a47ad635a548f",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-8634A6F287A5C331",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 202,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-8634A6F287A5C331"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystorePasswordFileTooLarge",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testNewKeystorePasswordFileTooLarge() throws Exception {",
+        "line_count": 18,
+        "method_sha256": "69efd4884d9fd6a5dabbda17804b456bbb8775493cd31d7ec3946afae8603070",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-F47073590223C675",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 216,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-F47073590223C675"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystorePasswordFileWithBom",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull"
+        ],
+        "declaration": "public void testNewKeystorePasswordFileWithBom() throws Exception {",
+        "line_count": 16,
+        "method_sha256": "10908055655afa4df54b18626ba876dda418884d9f833d74690e23438dbc84dd",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-685C635E71B00A4D",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 236,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-685C635E71B00A4D"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystoreFilePermissions",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertNotNull"
+        ],
+        "declaration": "public void testNewKeystoreFilePermissions() throws Exception {",
+        "line_count": 27,
+        "method_sha256": "ef6c0f743aa48474760c1570eaf44c2ce3e0bf8a9805df9dc9225da9a258e9c2",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-8F8CBD81D26B3F5B",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 254,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-8F8CBD81D26B3F5B"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testNewKeystoreRejectsMultiLinePasswordFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testNewKeystoreRejectsMultiLinePasswordFile() throws Exception {",
+        "line_count": 25,
+        "method_sha256": "d4d874f2d7ceae5ef1fe174a8b13ffbe2e2f2f7a40c3df274e1de45ae6ef2c4d",
+        "source_sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-ED23370F05B19C5B",
+      "rust_test": "c027_keystore::java_keystore_new_rows",
+      "source": {
+        "line": 283,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreNewTest.java",
+        "sha256": "da8cd123b3a1703234d78fe075eafe33e8d41ec6e87736b0701395f41eccd015"
+      },
+      "stable_id": "TCASE-ED23370F05B19C5B"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdatePassword",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertArrayEquals",
+          "assertEquals"
+        ],
+        "declaration": "public void testUpdatePassword() throws Exception {",
+        "line_count": 36,
+        "method_sha256": "606d6453b89ece568421854cd236d9dc0c04363cc6181a1d14860ab78445df7f",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-6EB621D47E9C9D3D",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 34,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-6EB621D47E9C9D3D"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateWrongOldPassword",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateWrongOldPassword() throws Exception {",
+        "line_count": 32,
+        "method_sha256": "b72a51df877f1d45e033dbd2b23b6b3293c35d741687c3d26a9874e815fd2091",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-2700E815968AECC0",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 72,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-2700E815968AECC0"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateNonExistentAddress",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateNonExistentAddress() throws Exception {",
+        "line_count": 23,
+        "method_sha256": "72037d374d0fbec4dc2617be21206e309cad08fee1e6be1227c5fc759aa13cd5",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-D58DB0F093426029",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 106,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-D58DB0F093426029"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateNewPasswordTooShort",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateNewPasswordTooShort() throws Exception {",
+        "line_count": 26,
+        "method_sha256": "30f9cdd2bac3f85581dedb0ed12858a519197ef6198d99f9808867bb1fc93553",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-970A921E3F09612F",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 131,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-970A921E3F09612F"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateWithWindowsLineEndings",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertArrayEquals",
+          "assertEquals"
+        ],
+        "declaration": "public void testUpdateWithWindowsLineEndings() throws Exception {",
+        "line_count": 28,
+        "method_sha256": "5c3ccf6d8a8d86aad274f6a1265ec33695273a6bc68ff72874c93350800f8c65",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-ED0EB2C4EFFC5696",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 159,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-ED0EB2C4EFFC5696"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateJsonOutput",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateJsonOutput() throws Exception {",
+        "line_count": 34,
+        "method_sha256": "dc5d2983f3d9af1ee4adeaf37c00691a91a20c27d54a23b428fe72cb61ac68cc",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-44439CCF0D819478",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 189,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-44439CCF0D819478"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateWarnsOnCorruptedFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertArrayEquals",
+          "assertEquals",
+          "assertFalse",
+          "assertTrue",
+          "verify"
+        ],
+        "declaration": "public void testUpdateWarnsOnCorruptedFile() throws Exception {",
+        "line_count": 599,
+        "method_sha256": "f7c281a5033d88f07459bae7961c2423c6aaee0c8e0e4785cad0494da1360f12",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-DC70C5903FF7A2B7",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 225,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-DC70C5903FF7A2B7"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdatePasswordFileOnlyOneLine",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdatePasswordFileOnlyOneLine() throws Exception {",
+        "line_count": 25,
+        "method_sha256": "404c86afe26bb101f81dd1b10b2b38d22f33ef56e92735d5fc3b40d542aee9c9",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-D253F0BD9C0A156E",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 257,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-D253F0BD9C0A156E"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdatePasswordFileThreeLines",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertArrayEquals",
+          "assertEquals",
+          "assertTrue",
+          "verify"
+        ],
+        "declaration": "public void testUpdatePasswordFileThreeLines() throws Exception {",
+        "line_count": 44,
+        "method_sha256": "1887a76d1b4e9e49c1ee24812292a31274c6289cdf434b7518f2c42fec63d251",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-80CE6C5179B3C735",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 284,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-80CE6C5179B3C735"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateNoTtyNoPasswordFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateNoTtyNoPasswordFile() throws Exception {",
+        "line_count": 20,
+        "method_sha256": "39b73977d2c61d6b165d1a4a214033ac78a3c29435769d3fc1264f38bea0c3e8",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-396C8E2B8A64FD8E",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 330,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-396C8E2B8A64FD8E"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdatePasswordFileNotFound",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdatePasswordFileNotFound() throws Exception {",
+        "line_count": 21,
+        "method_sha256": "a583e61dca57184ff9f30066455094209dade8debd2596595050a93b0ee5746d",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-2CC90ED90BE30E3E",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 352,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-2CC90ED90BE30E3E"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateSm2Keystore",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertArrayEquals",
+          "assertEquals"
+        ],
+        "declaration": "public void testUpdateSm2Keystore() throws Exception {",
+        "line_count": 29,
+        "method_sha256": "1787ce74578c9befd176c0e22aba6fb2998fc6f78b240228c3249e9dbd3b99a9",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-D7902CE4A9A9F5C4",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 375,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-D7902CE4A9A9F5C4"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateMultipleKeystoresSameAddress",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateMultipleKeystoresSameAddress() throws Exception {",
+        "line_count": 31,
+        "method_sha256": "5494375f0f174ad77566945b13a32da3e55c89787361dc6395f429bc57e83dcb",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-7925DADC55372170",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 406,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-7925DADC55372170"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdatePasswordFileTooLarge",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdatePasswordFileTooLarge() throws Exception {",
+        "line_count": 27,
+        "method_sha256": "aad2ec5f166a121cc65853b0773a11b6a2ba37f3dc4cfa5e14ae4c3bc3aa9a22",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-E057ECEC9E1FD29A",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 439,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-E057ECEC9E1FD29A"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdatePasswordFileWithBom",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertArrayEquals",
+          "assertEquals"
+        ],
+        "declaration": "public void testUpdatePasswordFileWithBom() throws Exception {",
+        "line_count": 29,
+        "method_sha256": "2932c466724f993d71d224467de7360777577d3fa0e5fbdf990123499456aa4c",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-AB04B42FB1605C46",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 468,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-AB04B42FB1605C46"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateNonExistentKeystoreDir",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateNonExistentKeystoreDir() throws Exception {",
+        "line_count": 18,
+        "method_sha256": "5b1e44f14d2c41010e1c2d69dab111704af64feb06bd3763e7c8cfe08d7817a0",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-D32447956E5B73FC",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 499,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-D32447956E5B73FC"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateKeystoreDirIsFile",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateKeystoreDirIsFile() throws Exception {",
+        "line_count": 18,
+        "method_sha256": "2adf5bd20c22ad2e5b2bb71548d9491ebbb4191cd118a19f0ea6cffd87567667",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-DE5AEB8A09C043B6",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 519,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-DE5AEB8A09C043B6"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateWithOldMacLineEndings",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertArrayEquals",
+          "assertEquals"
+        ],
+        "declaration": "public void testUpdateWithOldMacLineEndings() throws Exception {",
+        "line_count": 29,
+        "method_sha256": "e5447ba0311881e1121d746426c672255a371f5ac904e1b2783df91c6f9d1251",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-4FF51D2992AE9F83",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 539,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-4FF51D2992AE9F83"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateSkipsInvalidVersionKeystores",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateSkipsInvalidVersionKeystores() throws Exception {",
+        "line_count": 29,
+        "method_sha256": "d651ece3a4fe7ca0baaefad725f8999f3c642ad3046155eedd3b42a4c562770d",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-CF5C4155D49D572D",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 570,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-CF5C4155D49D572D"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateRejectsTamperedAddressKeystore",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateRejectsTamperedAddressKeystore() throws Exception {",
+        "line_count": 38,
+        "method_sha256": "215d3147b6719a03ef30219a59c087b5d5c1454ac1a1fbc7004e688f4467b7e4",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-2E187D127668AEF4",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 601,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-2E187D127668AEF4"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdatePreservesCorrectDerivedAddress",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testUpdatePreservesCorrectDerivedAddress() throws Exception {",
+        "line_count": 32,
+        "method_sha256": "c62027ab1470f5a96f0fea1a4b8bbc05f5fa8d348ca58900cda529992c5fb8ce",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-608A442B52AA061C",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 641,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-608A442B52AA061C"
+    },
+    {
+      "backend": "none",
+      "decision": "C005 secure-filesystem contract rejects pre-existing 0644 instead of reading then narrowing",
+      "disposition": "reviewed_non_applicable",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateNarrowsLoosePermissionsTo0600",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "verify"
+        ],
+        "declaration": "public void testUpdateNarrowsLoosePermissionsTo0600() throws Exception {",
+        "line_count": 47,
+        "method_sha256": "e700f7138aaed6cacd5522398c14e712b6c52c2854bcad43a42f913b4068035b",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-73FBF8004E007F93",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 675,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-73FBF8004E007F93"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateLegacyTipFiresWhenPasswordHasWhitespace",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateLegacyTipFiresWhenPasswordHasWhitespace() throws Exception {",
+        "line_count": 30,
+        "method_sha256": "c3f4654a0009f396cdaf687d3fbd5dc947379639896320fb33cc2a3881168ffc",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-A236F26A0D1CE3D9",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 724,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-A236F26A0D1CE3D9"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateLegacyTipSuppressedWhenPasswordHasNoWhitespace",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertFalse",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateLegacyTipSuppressedWhenPasswordHasNoWhitespace() throws Exception {",
+        "line_count": 30,
+        "method_sha256": "ae84268e39abe855e8499241c2296512a21c1d86a0a5425653459681397acfbb",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-32D43571C3734081",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 756,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-32D43571C3734081"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "keystore",
+      "implementation_item": "C027.06",
+      "invocation_kind": "toolkit",
+      "java_case": "testUpdateScanSkipsSymlinkedEntry",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals",
+          "assertTrue"
+        ],
+        "declaration": "public void testUpdateScanSkipsSymlinkedEntry() throws Exception {",
+        "line_count": 35,
+        "method_sha256": "5628a499bb143e589953565f5591cd0ca23310c6c72c705b9f27b1f4248c6144",
+        "source_sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-3653C680C51FC0CB",
+      "rust_test": "c027_keystore::java_keystore_update_rows",
+      "source": {
+        "line": 788,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/KeystoreUpdateTest.java",
+        "sha256": "b4c4a7f2c9dfb41be484d5c9cb2410d1bca0cbcab0e46a12ded3c6b6bbaf62ca"
+      },
+      "stable_id": "TCASE-3653C680C51FC0CB"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "retained_reference_only",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.03",
+      "invocation_kind": "archive_manifest",
+      "java_case": "testRun",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testRun() {",
+        "line_count": 4,
+        "method_sha256": "235c4e3ab81d8eb4fdbd6d694d85c34865ce6962658b262fe47f96fe42f25243",
+        "source_sha256": "a8ef0948ee2573418e5668e5d8d112bb455173ee939c856cda4618b11945e85b"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-33EEDFFAB5FC8144",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 44,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/ArchiveManifestTest.java",
+        "sha256": "a8ef0948ee2573418e5668e5d8d112bb455173ee939c856cda4618b11945e85b"
+      },
+      "stable_id": "TCASE-33EEDFFAB5FC8144"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "retained_reference_only",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.03",
+      "invocation_kind": "archive_manifest",
+      "java_case": "testHelp",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testHelp() {",
+        "line_count": 4,
+        "method_sha256": "74eee113575d74b3e3d57fc66476ab6a58d9d09f3b1f70aee757cf2f1a519335",
+        "source_sha256": "a8ef0948ee2573418e5668e5d8d112bb455173ee939c856cda4618b11945e85b"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-D4165B20F5BBC217",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 50,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/ArchiveManifestTest.java",
+        "sha256": "a8ef0948ee2573418e5668e5d8d112bb455173ee939c856cda4618b11945e85b"
+      },
+      "stable_id": "TCASE-D4165B20F5BBC217"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "retained_reference_only",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.03",
+      "invocation_kind": "archive_manifest",
+      "java_case": "testMaxManifest",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testMaxManifest() {",
+        "line_count": 4,
+        "method_sha256": "186ea851fa26055d3b48549d691ac11fcd332f6e16e4944b04b795acf6a72d91",
+        "source_sha256": "a8ef0948ee2573418e5668e5d8d112bb455173ee939c856cda4618b11945e85b"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-892F022C31111AF5",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 56,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/ArchiveManifestTest.java",
+        "sha256": "a8ef0948ee2573418e5668e5d8d112bb455173ee939c856cda4618b11945e85b"
+      },
+      "stable_id": "TCASE-892F022C31111AF5"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "retained_reference_only",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.03",
+      "invocation_kind": "archive_manifest",
+      "java_case": "testNotExist",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testNotExist() {",
+        "line_count": 4,
+        "method_sha256": "c9968ae62a151a1127ebdb4ea0d868839eff407ea05f2f7486d12b6963d88e28",
+        "source_sha256": "a8ef0948ee2573418e5668e5d8d112bb455173ee939c856cda4618b11945e85b"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-B532B3C191E369CE",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 62,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/ArchiveManifestTest.java",
+        "sha256": "a8ef0948ee2573418e5668e5d8d112bb455173ee939c856cda4618b11945e85b"
+      },
+      "stable_id": "TCASE-B532B3C191E369CE"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "retained_reference_only",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.03",
+      "invocation_kind": "archive_manifest",
+      "java_case": "testEmpty",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testEmpty() {",
+        "line_count": 7,
+        "method_sha256": "16b0a2cebd0cf02c82c57629bdd8fb25a11e8c2f47021f402d77e07aea0f4ac7",
+        "source_sha256": "a8ef0948ee2573418e5668e5d8d112bb455173ee939c856cda4618b11945e85b"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-3A01FB6DB1A5BBF4",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 68,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/ArchiveManifestTest.java",
+        "sha256": "a8ef0948ee2573418e5668e5d8d112bb455173ee939c856cda4618b11945e85b"
+      },
+      "stable_id": "TCASE-3A01FB6DB1A5BBF4"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.05",
+      "invocation_kind": "toolkit",
+      "java_case": "testRun",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testRun() {",
+        "line_count": 5,
+        "method_sha256": "a8d3ef5ad852d3612e5773e9019890eec79a5d4ba0b81be66e8ec7093455eb6d",
+        "source_sha256": "a4045cebce612a595149941c2fe05310344e19caf542ccadcab032765f450916"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-383C2B80F66DB9F7",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 44,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/DbArchiveTest.java",
+        "sha256": "a4045cebce612a595149941c2fe05310344e19caf542ccadcab032765f450916"
+      },
+      "stable_id": "TCASE-383C2B80F66DB9F7"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.05",
+      "invocation_kind": "toolkit",
+      "java_case": "testHelp",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testHelp() {",
+        "line_count": 5,
+        "method_sha256": "a844faccd2ce6f467415260a97f9a63f65296600aa47ff8b0e4f8e33174625ef",
+        "source_sha256": "a4045cebce612a595149941c2fe05310344e19caf542ccadcab032765f450916"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-AD54D4A6DCF4213B",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 51,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/DbArchiveTest.java",
+        "sha256": "a4045cebce612a595149941c2fe05310344e19caf542ccadcab032765f450916"
+      },
+      "stable_id": "TCASE-AD54D4A6DCF4213B"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.05",
+      "invocation_kind": "toolkit",
+      "java_case": "testMaxManifest",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testMaxManifest() {",
+        "line_count": 5,
+        "method_sha256": "ba767cab0d67172ff524a26870d789ce55be672a2d5988dd570d67da082dde74",
+        "source_sha256": "a4045cebce612a595149941c2fe05310344e19caf542ccadcab032765f450916"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-192ACD8D077B5743",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 58,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/DbArchiveTest.java",
+        "sha256": "a4045cebce612a595149941c2fe05310344e19caf542ccadcab032765f450916"
+      },
+      "stable_id": "TCASE-192ACD8D077B5743"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.05",
+      "invocation_kind": "toolkit",
+      "java_case": "testNotExist",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testNotExist() {",
+        "line_count": 6,
+        "method_sha256": "91561d24f199e5378ffe59d33265ab0685abed2ae962d56988290e5abb4f7bcc",
+        "source_sha256": "a4045cebce612a595149941c2fe05310344e19caf542ccadcab032765f450916"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-14BCC78F75EA5FB8",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 65,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/DbArchiveTest.java",
+        "sha256": "a4045cebce612a595149941c2fe05310344e19caf542ccadcab032765f450916"
+      },
+      "stable_id": "TCASE-14BCC78F75EA5FB8"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.05",
+      "invocation_kind": "toolkit",
+      "java_case": "testEmpty",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testEmpty() {",
+        "line_count": 8,
+        "method_sha256": "50c5eaffd1502c54dd217f83f9f8e652b56ccf2ae437c55deb3c2eefdb98fe40",
+        "source_sha256": "a4045cebce612a595149941c2fe05310344e19caf542ccadcab032765f450916"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-6B5CB0A372F3CC1E",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 73,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/DbArchiveTest.java",
+        "sha256": "a4045cebce612a595149941c2fe05310344e19caf542ccadcab032765f450916"
+      },
+      "stable_id": "TCASE-6B5CB0A372F3CC1E"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "DR-001 forbids Java physical conversion/import",
+      "disposition": "reviewed_non_applicable",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.03",
+      "invocation_kind": "toolkit",
+      "java_case": "testRun",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testRun() throws IOException, RocksDBException {",
+        "line_count": 6,
+        "method_sha256": "a0760106aa86e450feb56a9859fde467b0510f10265b90cf55a7168dc268b293",
+        "source_sha256": "0b26ea02b80e15f0e935b9220881d9516a14eef27cee6365104cf6a15142194c"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-510476AC7F2AED95",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 16,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/DbConvertTest.java",
+        "sha256": "0b26ea02b80e15f0e935b9220881d9516a14eef27cee6365104cf6a15142194c"
+      },
+      "stable_id": "TCASE-510476AC7F2AED95"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.03",
+      "invocation_kind": "toolkit",
+      "java_case": "testHelp",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testHelp() {",
+        "line_count": 5,
+        "method_sha256": "97208fafb43405ae9f9721f52be3764c13801c18929ab6e61c73d9d8ccfb5104",
+        "source_sha256": "0b26ea02b80e15f0e935b9220881d9516a14eef27cee6365104cf6a15142194c"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-153E13ED6FD54BE0",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 24,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/DbConvertTest.java",
+        "sha256": "0b26ea02b80e15f0e935b9220881d9516a14eef27cee6365104cf6a15142194c"
+      },
+      "stable_id": "TCASE-153E13ED6FD54BE0"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.03",
+      "invocation_kind": "toolkit",
+      "java_case": "testNotExist",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testNotExist() {",
+        "line_count": 5,
+        "method_sha256": "f927ed9e17c3b187c7fc9018dd4e44913143af0caab527a3fca5ce99acc43ff8",
+        "source_sha256": "0b26ea02b80e15f0e935b9220881d9516a14eef27cee6365104cf6a15142194c"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-52454E9969EBFA99",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 31,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/DbConvertTest.java",
+        "sha256": "0b26ea02b80e15f0e935b9220881d9516a14eef27cee6365104cf6a15142194c"
+      },
+      "stable_id": "TCASE-52454E9969EBFA99"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "DR-001 forbids Java physical conversion/import",
+      "disposition": "reviewed_non_applicable",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.03",
+      "invocation_kind": "toolkit",
+      "java_case": "testEmpty",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testEmpty() throws IOException {",
+        "line_count": 5,
+        "method_sha256": "6cc78358beb281c1664fdff2729f7e2e969f081c589dcea07d4208c9ab4b4643",
+        "source_sha256": "0b26ea02b80e15f0e935b9220881d9516a14eef27cee6365104cf6a15142194c"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-AC356E224FC38B0F",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 38,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/DbConvertTest.java",
+        "sha256": "0b26ea02b80e15f0e935b9220881d9516a14eef27cee6365104cf6a15142194c"
+      },
+      "stable_id": "TCASE-AC356E224FC38B0F"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "lite",
+      "implementation_item": "C027.05",
+      "invocation_kind": "toolkit",
+      "java_case": "testToolsWithLevelDB",
+      "java_observation": {
+        "assertion_tokens": [],
+        "declaration": "public void testToolsWithLevelDB() throws InterruptedException, IOException {",
+        "line_count": 3,
+        "method_sha256": "3f40359ccaee957a7ddfbeae6dddb6e2308acae84b8991743045cf05d4c92382",
+        "source_sha256": "eca9d8c458dbfa6b5a04bccd229db48a3068ec9d6ff2e986576a8c70025652c7"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-07830A292D3A80E9",
+      "rust_test": "c027_lite::java_db_lite_rows",
+      "source": {
+        "line": 11,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/DbLiteLevelDbTest.java",
+        "sha256": "eca9d8c458dbfa6b5a04bccd229db48a3068ec9d6ff2e986576a8c70025652c7"
+      },
+      "stable_id": "TCASE-07830A292D3A80E9"
+    },
+    {
+      "backend": "leveldb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "lite",
+      "implementation_item": "C027.05",
+      "invocation_kind": "toolkit",
+      "java_case": "testToolsWithLevelDBV2",
+      "java_observation": {
+        "assertion_tokens": [],
+        "declaration": "public void testToolsWithLevelDBV2() throws InterruptedException, IOException {",
+        "line_count": 3,
+        "method_sha256": "7c5f9b71ae0e827959b92d0e8a039f4c33c8df8434c110b06439cfc5e405fc69",
+        "source_sha256": "27463bf55f3eb73962aac5c1d8b09f23606447c1da2e805f5b5ede28dc49657b"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-CA377A3F0CCDED17",
+      "rust_test": "c027_lite::java_db_lite_rows",
+      "source": {
+        "line": 10,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/leveldb/DbLiteLevelDbV2Test.java",
+        "sha256": "27463bf55f3eb73962aac5c1d8b09f23606447c1da2e805f5b5ede28dc49657b"
+      },
+      "stable_id": "TCASE-CA377A3F0CCDED17"
+    },
+    {
+      "backend": "rocksdb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "lite",
+      "implementation_item": "C027.05",
+      "invocation_kind": "toolkit",
+      "java_case": "testToolsWithExcludeHistoricalBalance",
+      "java_observation": {
+        "assertion_tokens": [],
+        "declaration": "public void testToolsWithExcludeHistoricalBalance() throws InterruptedException, IOException {",
+        "line_count": 3,
+        "method_sha256": "3cb36a6cae674d19bbefa6fca6ebb7ca3fab90c7bfda72828bcb9994fcc28bdc",
+        "source_sha256": "122d9b68698784f9011ac717b4c4f8249c05dd3c97dff1b0aa59acea35e10702"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-3B94179296286BCD",
+      "rust_test": "c027_lite::java_db_lite_rows",
+      "source": {
+        "line": 10,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/rocksdb/DbLiteExcludeHistoricalBalanceRocksDbTest.java",
+        "sha256": "122d9b68698784f9011ac717b4c4f8249c05dd3c97dff1b0aa59acea35e10702"
+      },
+      "stable_id": "TCASE-3B94179296286BCD"
+    },
+    {
+      "backend": "rocksdb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "lite",
+      "implementation_item": "C027.05",
+      "invocation_kind": "toolkit",
+      "java_case": "testToolsWithRocksDB",
+      "java_observation": {
+        "assertion_tokens": [],
+        "declaration": "public void testToolsWithRocksDB() throws InterruptedException, IOException {",
+        "line_count": 3,
+        "method_sha256": "b611daa32a50394f0673e29d797feae211721343d42c57318d3931bde3e41fc9",
+        "source_sha256": "0158806078eb3b1e6fcf4842fdaaadc873941c3e2879b9cd3f8a57f3c4fb8344"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-73568EC3033FC84A",
+      "rust_test": "c027_lite::java_db_lite_rows",
+      "source": {
+        "line": 10,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/rocksdb/DbLiteRocksDbTest.java",
+        "sha256": "0158806078eb3b1e6fcf4842fdaaadc873941c3e2879b9cd3f8a57f3c4fb8344"
+      },
+      "stable_id": "TCASE-73568EC3033FC84A"
+    },
+    {
+      "backend": "rocksdb",
+      "decision": "DR-001 physical-format substitution only; logical/CLI observation retained",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "lite",
+      "implementation_item": "C027.05",
+      "invocation_kind": "toolkit",
+      "java_case": "testToolsWithRocksDbV2",
+      "java_observation": {
+        "assertion_tokens": [],
+        "declaration": "public void testToolsWithRocksDbV2() throws InterruptedException, IOException {",
+        "line_count": 3,
+        "method_sha256": "2c4355180adfcd442f6300ce7f1cd1bfd52ca59edffff70025d09295564ed0ed",
+        "source_sha256": "8addc79ead35a9f1a8b07e4e7ff71daadee8fa77b1d4ede72bec59a4ca3a48b5"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-1FDB8C6B77896021",
+      "rust_test": "c027_lite::java_db_lite_rows",
+      "source": {
+        "line": 10,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/rocksdb/DbLiteRocksDbV2Test.java",
+        "sha256": "8addc79ead35a9f1a8b07e4e7ff71daadee8fa77b1d4ede72bec59a4ca3a48b5"
+      },
+      "stable_id": "TCASE-1FDB8C6B77896021"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "direct_api",
+      "java_case": "testToStrToInt",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testToStrToInt() {",
+        "line_count": 8,
+        "method_sha256": "d13add8201b94accba87f0dec4b7b698b30e7b372965e2024c73c858e4e4a84f",
+        "source_sha256": "a913a7f8e2e9cb9629c7783951341f8aad2666aeeb22f72ef084cf94adb3e5ae"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-C95F909F23EEC229",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 11,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/utils/ByteArrayTest.java",
+        "sha256": "a913a7f8e2e9cb9629c7783951341f8aad2666aeeb22f72ef084cf94adb3e5ae"
+      },
+      "stable_id": "TCASE-C95F909F23EEC229"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "direct_api",
+      "java_case": "testFromHexString",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertArrayEquals"
+        ],
+        "declaration": "public void testFromHexString() {",
+        "line_count": 7,
+        "method_sha256": "ff69c3bcaed200aa7475cadfc9219f01fe1199b28d0d830d6e01bc073d86406e",
+        "source_sha256": "a913a7f8e2e9cb9629c7783951341f8aad2666aeeb22f72ef084cf94adb3e5ae"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-591A751653B7ED6F",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 21,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/utils/ByteArrayTest.java",
+        "sha256": "a913a7f8e2e9cb9629c7783951341f8aad2666aeeb22f72ef084cf94adb3e5ae"
+      },
+      "stable_id": "TCASE-591A751653B7ED6F"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "rust_equivalent",
+      "evidence_mode": "guarded_execution",
+      "family": "db",
+      "implementation_item": "C027.04",
+      "invocation_kind": "direct_api",
+      "java_case": "testCompareUnsigned",
+      "java_observation": {
+        "assertion_tokens": [
+          "assertEquals"
+        ],
+        "declaration": "public void testCompareUnsigned() {",
+        "line_count": 14,
+        "method_sha256": "0f7dd794a079b0036163b0ccf087e1809f32468b75987940226e3b5fc8b212cb",
+        "source_sha256": "a913a7f8e2e9cb9629c7783951341f8aad2666aeeb22f72ef084cf94adb3e5ae"
+      },
+      "kind": "java_test_case",
+      "rust_case": "TCASE-E28FFD91CC85D10E",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 30,
+        "path": "java-tron/plugins/src/test/java/org/tron/plugins/utils/ByteArrayTest.java",
+        "sha256": "a913a7f8e2e9cb9629c7783951341f8aad2666aeeb22f72ef084cf94adb3e5ae"
+      },
+      "stable_id": "TCASE-E28FFD91CC85D10E"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "retained_reference_only",
+      "evidence_mode": "guarded_resource_hash",
+      "family": "resources",
+      "implementation_item": "C027.03",
+      "invocation_kind": "resource_hash",
+      "java_case": "java-tron/plugins/src/test/resources/config-duplicate.conf",
+      "java_observation": {
+        "assertion_tokens": [],
+        "declaration": "storage {",
+        "line_count": 17,
+        "method_sha256": "e09ff3d003a2c95457cd7265d336df085ee9ad5617d9e4eaee3cba091aff2f08",
+        "source_sha256": "d05a8ab9613f52f0d22480334ffc8e52f394f3bfa51546974cce321d07de8ea7"
+      },
+      "kind": "test_resource",
+      "rust_case": "TRES-9539EB868E1C216B",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 1,
+        "path": "java-tron/plugins/src/test/resources/config-duplicate.conf",
+        "sha256": "d05a8ab9613f52f0d22480334ffc8e52f394f3bfa51546974cce321d07de8ea7"
+      },
+      "stable_id": "TRES-9539EB868E1C216B"
+    },
+    {
+      "backend": "none",
+      "decision": "Exact pinned-Java observable is assigned to the named Rust family case.",
+      "disposition": "retained_reference_only",
+      "evidence_mode": "guarded_resource_hash",
+      "family": "resources",
+      "implementation_item": "C027.03",
+      "invocation_kind": "resource_hash",
+      "java_case": "java-tron/plugins/src/test/resources/config.conf",
+      "java_observation": {
+        "assertion_tokens": [],
+        "declaration": "storage {",
+        "line_count": 12,
+        "method_sha256": "e838c4286a4f211a49306be15b54e1ad7800f7f2f5079857ea3345ff33741b49",
+        "source_sha256": "834fbf5bee8a979fd39c991cb8c253b067eec0f3dc5fd2f0f22cd1412c786f5b"
+      },
+      "kind": "test_resource",
+      "rust_case": "TRES-50CC0DC428092A7A",
+      "rust_test": "c027_db::java_db_rows_are_exhaustively_dispatched",
+      "source": {
+        "line": 1,
+        "path": "java-tron/plugins/src/test/resources/config.conf",
+        "sha256": "834fbf5bee8a979fd39c991cb8c253b067eec0f3dc5fd2f0f22cd1412c786f5b"
+      },
+      "stable_id": "TRES-50CC0DC428092A7A"
+    }
+  ],
+  "schema": "c027-ownership-reconciliation.v1",
+  "unmapped_count": 0
+}

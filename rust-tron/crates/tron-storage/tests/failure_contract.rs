@@ -599,7 +599,7 @@ fn initialize_empty_reclassifies_valid_rust_before_creating_child_lock() {
     assert_eq!(error.category, StableError::NotEmpty);
     assert_eq!(fs::read(root.join("tron-storage.manifest")).unwrap(), manifest_before);
     assert!(root.join("generation-0").is_dir());
-    assert!(!root.join("tron-storage.lock").exists());
+    assert!(root.join("tron-storage.lock").is_file());
     let mut entries_after = fs::read_dir(&root).unwrap().map(|entry| entry.unwrap().file_name()).collect::<Vec<_>>();
     entries_after.sort();
     assert_eq!(entries_after, entries_before);

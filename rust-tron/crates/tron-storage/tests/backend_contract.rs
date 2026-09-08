@@ -165,6 +165,26 @@ fn flush_checkpoint_reopen_and_exclusive_lock() {
 }
 
 #[test]
+fn three_openers_rendezvous_on_one_persistent_lock_inode() {
+    let path = temporary_directory("three-opener-lock-race");
+    let first = manager().open_store(&path).unwrap();
+    let lock_path=path.join("tron-storage.lock");
+    let waiter=OpenOptions::new().read(true).write(true).open(&lock_path).unwrap();
+    let inode_before=fs::metadata(&lock_path).unwrap();
+
+    drop(first);
+    rustix::fs::flock(&waiter,rustix::fs::FlockOperation::NonBlockingLockExclusive).unwrap();
+    let inode_after=fs::metadata(&lock_path).unwrap();
+    use std::os::unix::fs::MetadataExt;
+    assert_eq!((inode_before.dev(),inode_before.ino()),(inode_after.dev(),inode_after.ino()));
+    assert!(matches!(manager().open_store(&path),Err(StorageError::Locked{..}|StorageError::ConcurrentOpen{..})));
+
+    rustix::fs::flock(&waiter,rustix::fs::FlockOperation::Unlock).unwrap();
+    let third=manager().open_store(&path).unwrap();drop(third);
+    fs::remove_dir_all(path).unwrap();
+}
+
+#[test]
 fn concurrent_fresh_initialization_has_one_locked_loser_and_complete_generation() {
     let path = temporary_directory("concurrent-fresh-initialization");
     let start = Arc::new(Barrier::new(2));

@@ -258,21 +258,23 @@ fn fs_import_duplicate() { let f = Fixture::new(); let wallet = sample_wallet();
 fn fs_import_overwrite() {
     let f = Fixture::new();
     let target = f.path("target.json");
-    fs::write(&target, b"{}").unwrap();
-    set_0600(&target);
+    write_wallet(&target, &sample_wallet());
+    let mut key_bytes = [0u8; 32];
+    key_bytes[31] = 2;
+    let imported_key = PrivateKey::from_bytes(CryptoEngine::Secp256k1, &key_bytes).unwrap();
 
-    let error = import_keystore(&f.0, &target, PASSWORD, &deterministic_key(CryptoEngine::Secp256k1), CryptoEngine::Secp256k1, false, false, &mut ZeroRng).unwrap_err();
+    let error = import_keystore(&f.0, &target, PASSWORD, &imported_key, CryptoEngine::Secp256k1, false, false, &mut ZeroRng).unwrap_err();
     assert!(matches!(error, StoreError::TargetExists(path) if path == target));
 
-    let overwritten = import_keystore(&f.0, &target, PASSWORD, &deterministic_key(CryptoEngine::Secp256k1), CryptoEngine::Secp256k1, false, true, &mut ZeroRng).unwrap();
+    let overwritten = import_keystore(&f.0, &target, PASSWORD, &imported_key, CryptoEngine::Secp256k1, false, true, &mut ZeroRng).unwrap();
     assert_eq!(load_keystore_direct(&target).unwrap().wallet, overwritten);
 
     let fresh = f.path("fresh.json");
-    let duplicate = import_keystore(&f.0, &fresh, PASSWORD, &deterministic_key(CryptoEngine::Secp256k1), CryptoEngine::Secp256k1, false, true, &mut ZeroRng).unwrap_err();
+    let duplicate = import_keystore(&f.0, &fresh, PASSWORD, &imported_key, CryptoEngine::Secp256k1, false, true, &mut ZeroRng).unwrap_err();
     assert!(matches!(duplicate, StoreError::DuplicateAddress { .. }));
     assert!(!fresh.exists());
 
-    let forced = import_keystore(&f.0, &fresh, PASSWORD, &deterministic_key(CryptoEngine::Secp256k1), CryptoEngine::Secp256k1, true, false, &mut ZeroRng).unwrap();
+    let forced = import_keystore(&f.0, &fresh, PASSWORD, &imported_key, CryptoEngine::Secp256k1, true, false, &mut ZeroRng).unwrap();
     assert_eq!(load_keystore_direct(&fresh).unwrap().wallet, forced);
 }
 fn fs_list_invalid(bytes: &[u8]) { let f = Fixture::new(); let path = f.path("bad.json"); fs::write(&path, bytes).unwrap(); set_0600(&path); let report = list_keystores(&f.0).unwrap(); assert!(report.keystores.is_empty()); assert_eq!(report.warnings, vec![StoreWarning::SkippedInvalidJson { path }]); }
@@ -315,13 +317,14 @@ fn fs_write_cleanup() {
 
     let f = Fixture::new();
     let destination = f.path("target.json");
-    fs::write(&destination, b"original destination").unwrap();
+    let original_wallet = sample_wallet();
+    let original = original_wallet.to_json().unwrap();
+    fs::write(&destination, &original).unwrap();
     set_0600(&destination);
-    let wallet = sample_wallet();
-    let original = b"original destination";
+    let wallet = deterministic_pbkdf2_wallet(CryptoEngine::Secp256k1);
     let error = atomic_write_wallet_with_failure(&wallet, &destination, true, &mut ZeroRng, AtomicWriteStage::DirectoryFsync).unwrap_err();
     assert!(matches!(error, StoreError::AtomicWriteFailure(AtomicWriteStage::DirectoryFsync)));
-    assert_eq!(fs::read(&destination).unwrap(), original);
+    assert_eq!(fs::read_to_string(&destination).unwrap(), original);
     assert!(!f.path(".keystore-0000000000000000.tmp").exists());
     assert!(!f.path(".keystore-0000000000000000.backup").exists());
     fs_write_symlinked_parent();

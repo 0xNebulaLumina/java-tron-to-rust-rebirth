@@ -4,6 +4,8 @@
 //! source, pass explicitly assigned command-line values, then run the documented event,
 //! platform, and witness stages.
 
+pub mod toolkit;
+
 use std::{collections::{BTreeMap, BTreeSet}, path::{Path, PathBuf}};
 
 use hocon::{Hocon, HoconLoader};

@@ -1,0 +1,1283 @@
+{
+  "chunk": "C027",
+  "command_tree": [
+    "toolkit",
+    "db: mv|archive|convert|lite|cp|root",
+    "keystore: new|import|list|update"
+  ],
+  "commands": [
+    {
+      "class": "Toolkit",
+      "command_names": [],
+      "error_and_status_literals": [],
+      "logical_return_codes": [
+        0
+      ],
+      "options": [],
+      "sha256": "7f6a36e3b0fe60c7228a310126b2183cf3d2cc646149d259bcbcdbcb69760db6",
+      "source": "java-tron/plugins/src/main/java/common/org/tron/plugins/Toolkit.java"
+    },
+    {
+      "class": "Db",
+      "command_names": [],
+      "error_and_status_literals": [],
+      "logical_return_codes": [],
+      "options": [],
+      "sha256": "d097eb5498c49d11a5cb793d127e967f3bd0c0d93d59683baaa5aad080cef1e9",
+      "source": "java-tron/plugins/src/main/java/common/org/tron/plugins/Db.java"
+    },
+    {
+      "class": "DbCopy",
+      "command_names": [],
+      "error_and_status_literals": [
+        " {} does not exist.",
+        " {} exist, please delete it first.",
+        " {} is not a directory.",
+        "%s does not exist.",
+        "%s exist, please delete it first.",
+        "%s is not a directory.",
+        "n:Internal error: exception occurred,please check toolkit.log"
+      ],
+      "logical_return_codes": [
+        0,
+        402,
+        403,
+        404
+      ],
+      "options": [
+        "--help",
+        "-h"
+      ],
+      "sha256": "41553caa2058d77b2e86bf47e9c9a54224d1a9c91ee2d4ba2524acb2baa68c9e",
+      "source": "java-tron/plugins/src/main/java/common/org/tron/plugins/DbCopy.java"
+    },
+    {
+      "class": "DbMove",
+      "command_names": [
+        "move",
+        "mv"
+      ],
+      "error_and_status_literals": [
+        " already exist!",
+        " not exist!",
+        "%s already exist,skip.",
+        "%s create failed.",
+        "--database-directory",
+        "There is no database to be moved, exist.",
+        "] not exist!",
+        "database directory path. Default: ${DEFAULT-VALUE}",
+        "output-directory",
+        "storage.db.directory"
+      ],
+      "logical_return_codes": [
+        0
+      ],
+      "options": [
+        "--config",
+        "--database-directory",
+        "--help",
+        "-c",
+        "-d",
+        "-h"
+      ],
+      "sha256": "3ae967bd00ba83bea21554c13087b543c95c17acb57a285e2b2b5344c23a69f6",
+      "source": "java-tron/plugins/src/main/java/common/org/tron/plugins/DbMove.java"
+    },
+    {
+      "class": "DbRoot",
+      "command_names": [],
+      "error_and_status_literals": [
+        " {} does not exist.",
+        "%s does not exist.",
+        "There are some errors, please check toolkit.log for detail.",
+        "n:query failed,please check toolkit.log"
+      ],
+      "logical_return_codes": [
+        0,
+        1,
+        404
+      ],
+      "options": [
+        "--db",
+        "--help",
+        "-h"
+      ],
+      "sha256": "dbac01c3222854bf960d1ba816e1b0a40daaa60357edb6e7f05831f06d17913c",
+      "source": "java-tron/plugins/src/main/java/common/org/tron/plugins/DbRoot.java"
+    },
+    {
+      "class": "DbConvert",
+      "command_names": [],
+      "error_and_status_literals": [
+        " {} begin to clear exist database directory",
+        " {} clear exist database directory done.",
+        " {} does not exist.",
+        "%s does not exist.",
+        "This command is not supported on %s architecture.",
+        "n:Internal error: exception occurred,please check toolkit.log"
+      ],
+      "logical_return_codes": [
+        0,
+        404
+      ],
+      "options": [
+        "--help",
+        "-h"
+      ],
+      "sha256": "9993517b062c3d0423fcf9eb940f386b06dfea725d5b06a43609ba0c35e34023",
+      "source": "java-tron/plugins/src/main/java/common/org/tron/plugins/DbConvert.java"
+    },
+    {
+      "class": "DbLite",
+      "command_names": [],
+      "error_and_status_literals": [
+        "1:Internal error: exception occurred,please check toolkit.log",
+        "Create history failed, {}.",
+        "Create properties file failed.",
+        "Create snapshot failed, {}.",
+        "Merge history data to database failed, {}.",
+        "Write properties file failed.",
+        "create bak dir %s failed",
+        "destDir: %s create failed, please check",
+        "destDir: %s is already exist, please remove it first",
+        "sourceDir: %s must be a directory "
+      ],
+      "logical_return_codes": [
+        0,
+        1
+      ],
+      "options": [
+        "--dataset-path",
+        "--exclude-historical-balance",
+        "--fn-data-path",
+        "--help",
+        "--operate",
+        "--type",
+        "-ds",
+        "-fn",
+        "-h",
+        "-o",
+        "-t"
+      ],
+      "sha256": "9e8ca974328e7366f8353af7a3c5e90b947e32d028f7b9d6fa82a1282e4066af",
+      "source": "java-tron/plugins/src/main/java/common/org/tron/plugins/DbLite.java"
+    },
+    {
+      "class": "Keystore",
+      "command_names": [
+        "keystore"
+      ],
+      "error_and_status_literals": [],
+      "logical_return_codes": [],
+      "options": [],
+      "sha256": "bbe84162b08c3b94c061074cc282af3a9a13b998cbeda4c46439d038aaa68913",
+      "source": "java-tron/plugins/src/main/java/common/org/tron/plugins/Keystore.java"
+    },
+    {
+      "class": "KeystoreNew",
+      "command_names": [
+        "new"
+      ],
+      "error_and_status_literals": [
+        "--password-file",
+        "Encryption error: ",
+        "Error: ",
+        "Keystore directory (default: ./Wallet)",
+        "Read password from file instead of interactive prompt"
+      ],
+      "logical_return_codes": [
+        0,
+        1
+      ],
+      "options": [
+        "--json",
+        "--keystore-dir",
+        "--password-file",
+        "--sm2"
+      ],
+      "sha256": "b070698c8a0d33e590b38a7e2faa0d744e41118972c7129cc2ac358385f13b03",
+      "source": "java-tron/plugins/src/main/java/common/org/tron/plugins/KeystoreNew.java"
+    },
+    {
+      "class": "KeystoreImport",
+      "command_names": [
+        "import"
+      ],
+      "error_and_status_literals": [
+        " already exists: ",
+        "--password-file",
+        "Allow import even if address already exists",
+        "Encryption error: ",
+        "Error: ",
+        "Invalid private key: must be 64 hex characters.",
+        "Invalid private key: not a valid key",
+        "Keystore directory (default: ./Wallet)",
+        "Read password from file instead of interactive prompt"
+      ],
+      "logical_return_codes": [
+        0,
+        1
+      ],
+      "options": [
+        "--force",
+        "--json",
+        "--key-file",
+        "--keystore-dir",
+        "--password-file",
+        "--sm2"
+      ],
+      "sha256": "7e861500214334957503bd51d82502a366109257504d8cac73704a0c653f531b",
+      "source": "java-tron/plugins/src/main/java/common/org/tron/plugins/KeystoreImport.java"
+    },
+    {
+      "class": "KeystoreList",
+      "command_names": [
+        "list"
+      ],
+      "error_and_status_literals": [
+        "Error writing JSON output",
+        "Keystore directory (default: ./Wallet)",
+        "List all keystore files in a directory."
+      ],
+      "logical_return_codes": [
+        0,
+        1
+      ],
+      "options": [
+        "--json",
+        "--keystore-dir"
+      ],
+      "sha256": "98b0c602042536bb2d78154784e6b6265e2c7253c30e2441ca9dc6c079546ba8",
+      "source": "java-tron/plugins/src/main/java/common/org/tron/plugins/KeystoreList.java"
+    },
+    {
+      "class": "KeystoreUpdate",
+      "command_names": [
+        "update"
+      ],
+      "error_and_status_literals": [
+        "--password-file",
+        "Change the password of a keystore file.",
+        "Confirm new password: ",
+        "Decryption failed: ",
+        "Enter current password: ",
+        "Enter new password: ",
+        "Error: ",
+        "Invalid new password: must be at least 6 characters.",
+        "Keystore directory (default: ./Wallet)",
+        "New passwords do not match.",
+        "Password file",
+        "Password file must contain exactly two lines: ",
+        "Password input cancelled.",
+        "Password updated for: ",
+        "Read old and new passwords from file (one per line)",
+        "Use --password-file to provide passwords.",
+        "choose the full phrase as the new password.",
+        "code truncated the password at the first whitespace. ",
+        "current password on the first line and new password ",
+        "of your passphrase as the current password; you can then ",
+        "wrong password"
+      ],
+      "logical_return_codes": [
+        0,
+        1
+      ],
+      "options": [
+        "--json",
+        "--keystore-dir",
+        "--password-file",
+        "--sm2"
+      ],
+      "sha256": "8cd132553047ecbcd5ed808967e2cb8fb37cf7c8ca44fd9e5d7d8d976684af38",
+      "source": "java-tron/plugins/src/main/java/common/org/tron/plugins/KeystoreUpdate.java"
+    }
+  ],
+  "dependency_review": {
+    "direct_additions": [
+      {
+        "features": [],
+        "name": "prost",
+        "source": "workspace",
+        "version": "0.13.5"
+      },
+      {
+        "features": [
+          "getrandom"
+        ],
+        "name": "rand_core",
+        "version": "0.6.4"
+      },
+      {
+        "features": [
+          "fs",
+          "process",
+          "termios"
+        ],
+        "name": "rustix",
+        "version": "1.1.4"
+      },
+      {
+        "features": [
+          "derive"
+        ],
+        "name": "serde",
+        "version": "1.0.219"
+      },
+      {
+        "features": [
+          "preserve_order"
+        ],
+        "name": "serde_json",
+        "version": "1.0.143"
+      },
+      {
+        "features": [],
+        "name": "sha2",
+        "version": "0.10.9"
+      },
+      {
+        "features": [],
+        "name": "thiserror",
+        "version": "2.0.12"
+      },
+      {
+        "features": [
+          "formatting",
+          "std"
+        ],
+        "name": "time",
+        "version": "0.3.41"
+      },
+      {
+        "features": [],
+        "name": "zeroize",
+        "version": "1.8.1"
+      }
+    ],
+    "edge": "tron-toolkit -> tron-execution",
+    "forbidden_dependency": "tron-node",
+    "layering": "L9 -> L5 acyclic",
+    "licenses": [
+      "LGPL-3.0-only"
+    ],
+    "lockfile": "rust-tron/Cargo.lock pinned",
+    "no_clap_decision": "Explicit hand parser preserves Picocli-compatible bytes and existing Rust CLI convention; clap is prohibited.",
+    "resolved_license_review": "All direct workspace/path code remains LGPL-3.0-only; third-party resolved license metadata is pinned by Cargo.lock and final C031 qualification.",
+    "reuses": [
+      "RawBlock",
+      "RawWireTransaction",
+      "BlockLimits"
+    ]
+  },
+  "java_help_fixtures": [
+    {
+      "adapter_process_exit": 0,
+      "argv": [],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.ROOT",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Usage: tron-toolkit [COMMAND]\nCommands:\n  help      Displays help information about the specified command\n  db        An rich command set that provides high-level operations  for dbs.\n  keystore  Manage keystore files for account keys.\n",
+      "stdout_sha256": "59f2647fcf1ec9e2bb855bf7598076d13fe081c47df03f2d7815735d70248ec1"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "db",
+        "--help"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.DB",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "db",
+        "--version"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.DB_VERSION",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "db",
+        "cp",
+        "--help"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.DB_CP",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Usage: tron-toolkit db cp [-h] <src> <dest>\nQuick copy leveldb or rocksdb data.\n      <src>    Input path. Default: output-directory/database\n      <dest>   Output path. Default: output-directory-cp/database\n  -h, --help\nExit Codes:\n  0   Successful\n  n   Internal error: exception occurred,please check toolkit.log\n",
+      "stdout_sha256": "8ce7942981fa1b03ddc1b4dcb50bb471a6b27bc66a35c87d63406885febef3c4"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "db",
+        "mv",
+        "--help"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.DB_MV",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Usage: tron-toolkit db mv [-h] [-c=<config>] [-d=<database>]\nMove db to pre-set new path . For example HDD,reduce storage expenses.\n  -c, --config=<config>    config file. Default: config.conf\n  -d, --database-directory=<database>\n                          database directory path. Default: output-directory\n  -h, --help\n",
+      "stdout_sha256": "1aa70524caa621c546dc6f5fcd4ede3f4f994eb232afc44d40a0f802fd98fe88"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "db",
+        "root",
+        "--help"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.DB_ROOT",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Usage: tron-toolkit db root [-h] [--db=<dbs>]... <db>\ncompute merkle root for tiny db. NOTE: large db may GC overhead limit exceeded.\n      <db>         Input path. Default: output-directory/database\n      --db=<dbs>   db name for show root\n  -h, --help       display a help message\nExit Codes:\n  0   Successful\n  n   query failed,please check toolkit.log\n",
+      "stdout_sha256": "c3fc94088140e5a04284b606f8c521124156c70979fa654e32b610665add60ec"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "db",
+        "archive",
+        "--help"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.DB_ARCHIVE",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Usage: tron-toolkit db archive [-h] [-b=<maxBatchSize>]\n                               [-d=<databaseDirectory>] [-m=<maxManifestSize>]\nA helper to rewrite leveldb manifest.\n  -b, --batch-size=<maxBatchSize>\n               deal manifest batch size. Default: 80000\n  -d, --database-directory=<databaseDirectory>\n               java-tron database directory. Default: output-directory/database\n  -h, --help\n  -m, --manifest-size=<maxManifestSize>\n               manifest min size(M) to archive. Default: 0\n",
+      "stdout_sha256": "eacf13a2c1dab4133b550a88365cda66be4f3b9a5dfc2290eef6206211d397b3"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "db",
+        "convert",
+        "--help"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.DB_CONVERT",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Usage: tron-toolkit db convert [-h] <src> <dest>\nCovert leveldb to rocksdb.\n      <src>     Input path for leveldb. Default: output-directory/database\n      <dest>   Output path for rocksdb. Default: output-directory-dst/database\n  -h, --help\nExit Codes:\n  0   Successful\n  n   Internal error: exception occurred,please check toolkit.log\n",
+      "stdout_sha256": "7047160597c9d834e5a22f92dcbaf062278519769e0165352ca1975861518119"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "db",
+        "lite",
+        "--help"
+      ],
+      "expected_toolkit_process_exit": 2,
+      "id": "C027.JAVA.HELP.LITE",
+      "logical_exit": 2,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "Missing required options: '--fn-data-path=<fnDataPath>', '--dataset-path=<datasetPath>'\nUsage: tron-toolkit db lite [-h] [--exclude-historical-balance]\n                            -ds=<datasetPath> -fn=<fnDataPath> [-o=<operate>]\n                            [-t=<type>]\nSplit lite data for java-tron.\n      -ds, --dataset-path=<datasetPath>\n                            when operation is `split`,`dataset-path` is the\n                              path that store the `snapshot` or `history`,when\n                              operation is `split`,`dataset-path` is the\n                              `history` data path.\n      --exclude-historical-balance\n                            only used with `operate=split -t snapshot`: when\n                              true, balance-trace and account-trace are\n                              excluded from the lite snapshot. Default: false\n                              (legacy behavior; trace stores stay in the\n                              snapshot). This flag only has a functional impact\n                              when the source full node ran with\n                              `historyBalanceLookup=true` (off by default; most\n                              operators are unaffected). WARNING: when\n                              historyBalanceLookup was enabled, this loss is\n                              permanent: a lite node booted from such a\n                              snapshot cannot safely serve historical balance\n                              lookups (getBlockBalance may fail, and\n                              getAccountBalance may return balance=0 when\n                              account-trace data is missing). Running merge\n                              afterwards will NOT restore the feature. If you\n                              need to keep historyBalanceLookup working on the\n                              resulting lite node, do NOT enable this flag.\n                              `split -t history` and `merge` ignore this flag.\n      -fn, --fn-data-path=<fnDataPath>\n                            the database path to be split or merged.\n  -h, --help\n  -o, --operate=<operate>   operate: [ split, merge ]. Default: split\n  -t, --type=<type>         only used with operate=split: [ snapshot, history\n                              ]. Default: snapshot\nExit Codes:\n  0   Successful\n  1   Internal error: exception occurred,please check toolkit.log\n",
+      "stderr_sha256": "c80f23c43f211ab6162ed3efe88044709b582d908a7916dd8c979f86478ab423",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "keystore",
+        "--help"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.KEYSTORE",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "keystore",
+        "--version"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.KEYSTORE_VERSION",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "keystore",
+        "new",
+        "--help"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.KEYSTORE_NEW",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "keystore",
+        "import",
+        "--help"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.KEYSTORE_IMPORT",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "keystore",
+        "list",
+        "--help"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.KEYSTORE_LIST",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "adapter_process_exit": 0,
+      "argv": [
+        "keystore",
+        "update",
+        "--help"
+      ],
+      "expected_toolkit_process_exit": 0,
+      "id": "C027.JAVA.HELP.KEYSTORE_UPDATE",
+      "logical_exit": 0,
+      "normalization": {
+        "from": "<main class>",
+        "to": "tron-toolkit"
+      },
+      "process_exit_verification": "logical_code_mod_256_contract",
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "java_help_identity": {
+    "byte_buddy_jar": "byte-buddy-1.12.19.jar",
+    "byte_buddy_sha256": "030704139e46f32c38d27060edee9e0676b0a0fff8a8be53461515154ba8a7be",
+    "command_agent_jar": "/tmp/c027-help-ebrkmdh6/c027-command-agent.jar",
+    "command_agent_jar_sha256": "af608458894990cec8ab1c3ff7560e98008e84d1740ce8e9a6a81a53f66ac969",
+    "command_agent_source_sha256": "2ad0b9c31106882c13ccef42fb9178f7172648fce6a2d1bca1aac8e15c4d39d7",
+    "git_tree_sha256": "7a5fd86ce6ef5da22da68f165e7ea905918a01afbe3f2dff97baaea851b44d03",
+    "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+    "jdk_home": "/usr/lib/jvm/java-8-openjdk-amd64",
+    "source_tree_sha256": "b1e9c41d42e459b5273f96b076e716bfece6476890a4fed6cdf9be2cf774d3b8"
+  },
+  "java_marker_contract": [
+    "engine.properties",
+    "CURRENT",
+    "LOG",
+    "LOG.old",
+    "LOCK",
+    "MANIFEST-000001",
+    "OPTIONS-000001",
+    "000001.sst",
+    "000001.ldb",
+    "IDENTITY"
+  ],
+  "java_marker_patterns": [
+    "engine.properties",
+    "CURRENT",
+    "LOG",
+    "LOG.old",
+    "LOCK",
+    "MANIFEST-*",
+    "OPTIONS-*",
+    "*.sst",
+    "*.ldb",
+    "IDENTITY*"
+  ],
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "no_write_contract": "Java LevelDB/RocksDB marker trees are detected and rejected before any filesystem mutation.",
+  "picocli_model": {
+    "Db": {
+      "name": "db",
+      "options": [
+        "-h",
+        "--help",
+        "-V",
+        "--version"
+      ],
+      "subcommands": [
+        "help",
+        "mv",
+        "archive",
+        "convert",
+        "lite",
+        "cp",
+        "root"
+      ]
+    },
+    "DbArchive": {
+      "arm_sha256": "f26664a5f7ef7fd3a39c20cb4dd0113062ac0e993cc37c787d400a863e693087",
+      "arm_source": "java-tron/plugins/src/main/java/arm/org/tron/plugins/DbArchive.java",
+      "defaults": {
+        "--batch-size": "80000",
+        "--database-directory": "output-directory/database",
+        "--manifest-size": "0"
+      },
+      "name": "archive",
+      "options": [
+        "-d",
+        "--database-directory",
+        "-b",
+        "--batch-size",
+        "-m",
+        "--manifest-size",
+        "-h",
+        "--help"
+      ],
+      "x86_sha256": "0fcc61635653b00e828c3ddc688e14537902549811c7f928ebfa1cbf3098a4b7",
+      "x86_source": "java-tron/plugins/src/main/java/x86/org/tron/plugins/DbArchive.java"
+    },
+    "DbConvert": {
+      "name": "convert",
+      "options": [
+        "-h",
+        "--help"
+      ],
+      "parameters": [
+        {
+          "default": "output-directory/database",
+          "index": 0
+        },
+        {
+          "default": "output-directory-dst/database",
+          "index": 1
+        }
+      ]
+    },
+    "DbCopy": {
+      "aliases": [
+        "copy"
+      ],
+      "name": "cp",
+      "options": [
+        "-h",
+        "--help"
+      ],
+      "parameters": [
+        {
+          "default": "output-directory/database",
+          "index": 0
+        },
+        {
+          "default": "output-directory-cp/database",
+          "index": 1
+        }
+      ]
+    },
+    "DbLite": {
+      "defaults": {
+        "--exclude-historical-balance": "false",
+        "--operate": "split",
+        "--type": "snapshot"
+      },
+      "name": "lite",
+      "options": [
+        "--operate",
+        "-o",
+        "--type",
+        "-t",
+        "--fn-data-path",
+        "-fn",
+        "--dataset-path",
+        "-ds",
+        "--exclude-historical-balance",
+        "--help",
+        "-h"
+      ]
+    },
+    "DbMove": {
+      "aliases": [
+        "move"
+      ],
+      "defaults": {
+        "--config": "config.conf",
+        "--database-directory": "output-directory"
+      },
+      "name": "mv",
+      "options": [
+        "-d",
+        "--database-directory",
+        "-c",
+        "--config",
+        "-h",
+        "--help"
+      ]
+    },
+    "DbRoot": {
+      "name": "root",
+      "options": [
+        "--db",
+        "-h",
+        "--help"
+      ],
+      "parameters": [
+        {
+          "default": "output-directory/database",
+          "index": 0
+        }
+      ]
+    },
+    "Keystore": {
+      "name": "keystore",
+      "options": [
+        "-h",
+        "--help",
+        "-V",
+        "--version"
+      ],
+      "subcommands": [
+        "help",
+        "new",
+        "import",
+        "list",
+        "update"
+      ]
+    },
+    "KeystoreImport": {
+      "defaults": {
+        "--keystore-dir": "Wallet"
+      },
+      "name": "import",
+      "options": [
+        "-h",
+        "--help",
+        "-V",
+        "--version",
+        "--keystore-dir",
+        "--json",
+        "--key-file",
+        "--password-file",
+        "--sm2",
+        "--force"
+      ]
+    },
+    "KeystoreList": {
+      "defaults": {
+        "--keystore-dir": "Wallet"
+      },
+      "name": "list",
+      "options": [
+        "-h",
+        "--help",
+        "-V",
+        "--version",
+        "--keystore-dir",
+        "--json"
+      ]
+    },
+    "KeystoreNew": {
+      "defaults": {
+        "--keystore-dir": "Wallet"
+      },
+      "name": "new",
+      "options": [
+        "-h",
+        "--help",
+        "-V",
+        "--version",
+        "--keystore-dir",
+        "--json",
+        "--password-file",
+        "--sm2"
+      ]
+    },
+    "KeystoreUpdate": {
+      "defaults": {
+        "--keystore-dir": "Wallet"
+      },
+      "name": "update",
+      "options": [
+        "-h",
+        "--help",
+        "-V",
+        "--version",
+        "--keystore-dir",
+        "--json",
+        "--password-file",
+        "--sm2"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "required": true
+        }
+      ]
+    },
+    "Toolkit": {
+      "name": "toolkit",
+      "options": [],
+      "subcommands": [
+        "help",
+        "db",
+        "keystore"
+      ]
+    }
+  },
+  "platform_rows": [
+    {
+      "id": "P-LINUX-X64",
+      "java_backend": [
+        "LEVELDB",
+        "ROCKSDB"
+      ],
+      "rust_backend": [
+        "RUSTLOG_V1"
+      ],
+      "status": "supported_physical_substitution"
+    },
+    {
+      "id": "P-LINUX-ARM64",
+      "java_backend": [
+        "ROCKSDB"
+      ],
+      "rust_backend": [
+        "RUSTLOG_V1"
+      ],
+      "status": "future_rust_packaging"
+    },
+    {
+      "id": "P-JAVA-DB",
+      "marker_patterns": [
+        "engine.properties",
+        "CURRENT",
+        "LOG",
+        "LOG.old",
+        "LOCK",
+        "MANIFEST-*",
+        "OPTIONS-*",
+        "*.sst",
+        "*.ldb",
+        "IDENTITY*"
+      ],
+      "markers": [
+        "engine.properties",
+        "CURRENT",
+        "LOG",
+        "LOG.old",
+        "LOCK",
+        "MANIFEST-000001",
+        "OPTIONS-000001",
+        "000001.sst",
+        "000001.ldb",
+        "IDENTITY"
+      ],
+      "status": "reject_without_writes"
+    }
+  ],
+  "result_artifact": "docs/oracles/c027-java-reference-results.v1.json",
+  "result_contract": {
+    "captures": [
+      "stdout",
+      "stderr",
+      "filesystem_before",
+      "filesystem_after",
+      "mutation_set",
+      "logical_root",
+      "fault_phase"
+    ],
+    "logical_codes": [
+      0,
+      1,
+      2,
+      402,
+      403,
+      404,
+      405
+    ]
+  },
+  "result_ids": [
+    "TCASE-D8023B46F51740FE",
+    "TCASE-72AD8C775A803584",
+    "TCASE-20E913055C0C358F",
+    "TCASE-3CCBEEDCE7BDD185",
+    "TCASE-41967943A5A0F04E",
+    "TCASE-4D3FDCC8F851ED6D",
+    "TCASE-31F4297BFDC68B58",
+    "TCASE-0507AAD628CEDBD9",
+    "TCASE-CEFF281A7734FC60",
+    "TCASE-15A9C47D3909C328",
+    "TCASE-5F086897FE87A346",
+    "TCASE-5744ECADEAD03AD9",
+    "TCASE-607C56A18571570B",
+    "TCASE-EA68B3936E9B4D10",
+    "TCASE-E1CE182966F2CAE4",
+    "TCASE-5112B56F3F6C0F81",
+    "TCASE-EB57BC242F8E01AC",
+    "TCASE-0A0889ADBE9E8BD3",
+    "TCASE-ADB8882FBF4FA939",
+    "TCASE-C5135A2BD29D9DB6",
+    "TCASE-D05B439350A21DC9",
+    "TCASE-5CDF40FC1F4E5508",
+    "TCASE-719614D4561F204C",
+    "TCASE-986715533AC8CD45",
+    "TCASE-F12088B48CF2EB48",
+    "TCASE-D4CC9703428BA8A7",
+    "TCASE-D6FF847E4E21FE34",
+    "TCASE-EA4DA40CA382B55B",
+    "TCASE-721CEF8DDDAA7CC8",
+    "TCASE-249A3A3DD8BF4C95",
+    "TCASE-259D3884E809C785",
+    "TCASE-7181D9DD193D0516",
+    "TCASE-0EE84A4F944D7E14",
+    "TCASE-DB5C2FC8BAD6B264",
+    "TCASE-2A79113E67F6039D",
+    "TCASE-59F4AD82CC07E1C2",
+    "TCASE-C2999FC983F82DE2",
+    "TCASE-E0D75C9147D9CCF3",
+    "TCASE-1342F5698E1AC459",
+    "TCASE-A1D9FD811CDE7915",
+    "TCASE-ABCC8527E477B4A1",
+    "TCASE-A5DDD5EC0530F0FD",
+    "TCASE-2178408F41385C11",
+    "TCASE-871CEB0DB37CA962",
+    "TCASE-4C7C895A35338F11",
+    "TCASE-F36B1FDD93D0A082",
+    "TCASE-CCCE374144740CC6",
+    "TCASE-B868341260CB8707",
+    "TCASE-2A511E920F1478DC",
+    "TCASE-2E8284D0DCA9673B",
+    "TCASE-F497AA9185FB15E5",
+    "TCASE-C5ED1C64D90A4E0F",
+    "TCASE-6EF43134C2A58882",
+    "TCASE-DAEB0D5525FC3B9F",
+    "TCASE-3AEB7F6E12741582",
+    "TCASE-7A166AC7741DC012",
+    "TCASE-E69F3107CF4F59BC",
+    "TCASE-2C380C3DC54E59C6",
+    "TCASE-DE142D3ABED72E4E",
+    "TCASE-74396E19F97E2234",
+    "TCASE-778D09E8DAF00628",
+    "TCASE-49EB0A84D157E4F6",
+    "TCASE-C987EDE0E1FA050B",
+    "TCASE-2246CB112D64C8BC",
+    "TCASE-338A1E6DC7FE8025",
+    "TCASE-397136F7F89ADA62",
+    "TCASE-1C807F76B44577D7",
+    "TCASE-CFC3F4258D0BA3FF",
+    "TCASE-C89E0BFCA28D71B4",
+    "TCASE-A10407EEE330F837",
+    "TCASE-BA8CD76A679FCBDA",
+    "TCASE-E3B485C81288CB5B",
+    "TCASE-DB0F306F0D2DD80A",
+    "TCASE-1F6413B639E4D477",
+    "TCASE-8989819B58DD1045",
+    "TCASE-02B8DD39B7D690EC",
+    "TCASE-E3822362BFE70AE7",
+    "TCASE-86B2CC34FB6FEE4F",
+    "TCASE-F0A217C5DAA61B68",
+    "TCASE-66708F182B38B352",
+    "TCASE-3FFDD210428BA0E9",
+    "TCASE-8E9FB2E1E96275C6",
+    "TCASE-0B303D5220A6B58E",
+    "TCASE-EDBBB764CE40453B",
+    "TCASE-4605EECC752CFF3A",
+    "TCASE-B1AD37895037CF60",
+    "TCASE-8634A6F287A5C331",
+    "TCASE-F47073590223C675",
+    "TCASE-685C635E71B00A4D",
+    "TCASE-8F8CBD81D26B3F5B",
+    "TCASE-ED23370F05B19C5B",
+    "TCASE-6EB621D47E9C9D3D",
+    "TCASE-2700E815968AECC0",
+    "TCASE-D58DB0F093426029",
+    "TCASE-970A921E3F09612F",
+    "TCASE-ED0EB2C4EFFC5696",
+    "TCASE-44439CCF0D819478",
+    "TCASE-DC70C5903FF7A2B7",
+    "TCASE-D253F0BD9C0A156E",
+    "TCASE-80CE6C5179B3C735",
+    "TCASE-396C8E2B8A64FD8E",
+    "TCASE-2CC90ED90BE30E3E",
+    "TCASE-D7902CE4A9A9F5C4",
+    "TCASE-7925DADC55372170",
+    "TCASE-E057ECEC9E1FD29A",
+    "TCASE-AB04B42FB1605C46",
+    "TCASE-D32447956E5B73FC",
+    "TCASE-DE5AEB8A09C043B6",
+    "TCASE-4FF51D2992AE9F83",
+    "TCASE-CF5C4155D49D572D",
+    "TCASE-2E187D127668AEF4",
+    "TCASE-608A442B52AA061C",
+    "TCASE-73FBF8004E007F93",
+    "TCASE-A236F26A0D1CE3D9",
+    "TCASE-32D43571C3734081",
+    "TCASE-3653C680C51FC0CB",
+    "TCASE-33EEDFFAB5FC8144",
+    "TCASE-D4165B20F5BBC217",
+    "TCASE-892F022C31111AF5",
+    "TCASE-B532B3C191E369CE",
+    "TCASE-3A01FB6DB1A5BBF4",
+    "TCASE-383C2B80F66DB9F7",
+    "TCASE-AD54D4A6DCF4213B",
+    "TCASE-192ACD8D077B5743",
+    "TCASE-14BCC78F75EA5FB8",
+    "TCASE-6B5CB0A372F3CC1E",
+    "TCASE-510476AC7F2AED95",
+    "TCASE-153E13ED6FD54BE0",
+    "TCASE-52454E9969EBFA99",
+    "TCASE-AC356E224FC38B0F",
+    "TCASE-07830A292D3A80E9",
+    "TCASE-CA377A3F0CCDED17",
+    "TCASE-3B94179296286BCD",
+    "TCASE-73568EC3033FC84A",
+    "TCASE-1FDB8C6B77896021",
+    "TCASE-C95F909F23EEC229",
+    "TCASE-591A751653B7ED6F",
+    "TCASE-E28FFD91CC85D10E",
+    "TRES-9539EB868E1C216B",
+    "TRES-50CC0DC428092A7A"
+  ],
+  "rust_command_result_count": 4,
+  "rust_command_results": [
+    {
+      "argv": [
+        "cargo",
+        "run",
+        "-q",
+        "-p",
+        "tron-toolkit",
+        "--"
+      ],
+      "cwd": "rust-tron",
+      "evidence": "background job bg_10",
+      "id": "C027.RUST.ROOT_HELP",
+      "mutation": "none",
+      "process_exit": 0,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Usage: tron-toolkit [help [COMMAND...]] <db|keystore> ...\n",
+      "stdout_sha256": "abda02f834776160a5ce430e78cf27dde21f710b48662221a8dd702f0f829f08"
+    },
+    {
+      "argv": [
+        "cargo",
+        "run",
+        "-q",
+        "-p",
+        "tron-toolkit",
+        "--",
+        "db",
+        "--version"
+      ],
+      "cwd": "rust-tron",
+      "evidence": "background job bg_16",
+      "id": "C027.RUST.DB_VERSION",
+      "mutation": "none",
+      "process_exit": 0,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "db command 1.0\n",
+      "stdout_sha256": "6fc70c1c1ae23d651f7f25864d7ab17a5f31231cb3e95e4262b438eb7346a9f6"
+    },
+    {
+      "argv": [
+        "cargo",
+        "run",
+        "-q",
+        "-p",
+        "tron-toolkit",
+        "--",
+        "keystore",
+        "list",
+        "--keystore-dir",
+        "/tmp/c027-no-wallet",
+        "--json"
+      ],
+      "cwd": "rust-tron",
+      "evidence": "background job bg_14",
+      "id": "C027.RUST.KEYSTORE_EMPTY_LIST_JSON",
+      "mutation": "none",
+      "process_exit": 0,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"keystores\":[]}\n",
+      "stdout_sha256": "8e2e9407bad3a579281488ae71fc731ac0bda1f2c30dd7702dfbe21fb348069f"
+    },
+    {
+      "argv_template": [
+        "cargo",
+        "run",
+        "-q",
+        "-p",
+        "tron-toolkit",
+        "--",
+        "keystore",
+        "new",
+        "--keystore-dir",
+        "SANDBOX/Wallet"
+      ],
+      "cwd": "rust-tron",
+      "id": "C027.RUST.KEYSTORE_NEW_PTY",
+      "input_events": [
+        "secret123",
+        "secret123"
+      ],
+      "mutation": "one Wallet directory and one V3 keystore file created",
+      "note": "Sandbox was removed after observation. Recapture if exact filesystem fingerprints are required.",
+      "observed_dynamic_address": "TTFF7uiA6aaaPDRdenXqsGiZLZPCsh9EXR",
+      "observed_utc_filename": "UTC--2026-09-07T17-46-52.987714289Z--TTFF7uiA6aaaPDRdenXqsGiZLZPCsh9EXR",
+      "process": "hub supervised process c027-pty",
+      "process_exit": 0,
+      "pty": true,
+      "security_assertions": {
+        "confirmation_secret_absent_from_output": true,
+        "secret_absent_from_output": true,
+        "terminal_echo_disabled_during_reads": true,
+        "terminal_echo_restored_by_RAII": true
+      },
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "cf1f2f61f6097b2d27aac04b2d092efba21f889dd1dacacd03872e387e19dddc",
+      "stdout_template": "Enter password: \nConfirm password: \nYour new key was generated\n\nPublic address of the key:   DYNAMIC_ADDRESS\nPath of the secret key file: SANDBOX/Wallet/UTC_FILENAME.json\n\n- You can share your public address with anyone. Others need it to interact with you.\n- You must NEVER share the secret key with anyone! The key controls access to your funds!\n- You must BACKUP your key file! Without the key, it's impossible to access account funds!\n- You must REMEMBER your password! Without the password, it's impossible to decrypt the key!\n"
+    }
+  ],
+  "rust_smoke_artifacts": {
+    "affected_all_targets": "artifact://9296",
+    "cli_parser": "artifact://9265",
+    "storage_final_report": "artifact://9323",
+    "storage_gate": "artifact://9298",
+    "toolkit_four_suites": "artifact://9309"
+  },
+  "rust_smoke_limitations": [
+    "This records only commands actually exercised by IntegrationOwner.",
+    "It does not claim unobserved DB mutation fingerprints, fault injection, or Java oracle results.",
+    "Rows marked for recapture changed after their observation and must not be treated as current exact output fixtures."
+  ],
+  "schema": "c027-command-manifest.v1",
+  "standalone_archive_manifest": {
+    "arm_sha256": "e267c68630483956b8a7d731ad94fca34035e9765278ae0911e9454d3c12a4f3",
+    "arm_source": "java-tron/plugins/src/main/java/arm/org/tron/plugins/ArchiveManifest.java",
+    "defaults": {
+      "--batch-size": "80000",
+      "--database-directory": "output-directory/database",
+      "--manifest-size": "0"
+    },
+    "main_class": "org.tron.plugins.ArchiveManifest",
+    "options": [
+      "-d",
+      "--database-directory",
+      "-b",
+      "--batch-size",
+      "-m",
+      "--manifest-size",
+      "-h",
+      "--help"
+    ],
+    "x86_sha256": "82904721c829c01daec5d7e7e33fc1ead9ea399196ffab3165fdbb777fd75378",
+    "x86_source": "java-tron/plugins/src/main/java/x86/org/tron/plugins/ArchiveManifest.java"
+  }
+}

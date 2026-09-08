@@ -23,6 +23,10 @@ L9  tron-node       tron-toolkit
 
 Allowed edges are declared in each crate manifest. Adding an edge requires updating this map, retaining the layer order, pinning the dependency in the applicable manifests and lockfiles, and passing the consuming item's review and gate.
 
+### C027 toolkit execution edge
+
+`tron-toolkit` (L9) depends directly on `tron-execution` (L5) to reuse the preserved-wire `RawBlock`, `RawWireTransaction`, and `BlockLimits` parsing and validation used by lite database workflows. This is an acyclic L9 → L5 edge; it introduces no dependency on `tron-node` and does not move execution ownership into the toolkit. The dependency is a workspace path dependency pinned by the workspace lockfile. Both crates inherit the workspace `LGPL-3.0-only` license, so the edge adds no third-party license obligation.
+
 ## Owning crate and acceptance gate
 
 | Crate | Owns | Primary implementation chunks | Acceptance gates |

@@ -156,7 +156,7 @@ fn legitimate_abrupt_initialization_phases_recover_deterministically() {
         assert_eq!(inspect_read_only(&path).unwrap(), DirectoryClassification::InitializingEmpty);
         let recovered = initialize_empty(&path, &requirements(1)).unwrap();
         assert_eq!(recovered, Manifest::new(&requirements(1)));
-        assert_eq!(tree(&path), vec![("generation-0/".into(), Vec::new()), ("tron-storage.manifest".into(), recovered.encode())]);
+        assert_eq!(tree(&path), vec![("generation-0/".into(), Vec::new()), ("tron-storage.lock".into(), b"tron-storage-lock-v1\n".to_vec()), ("tron-storage.manifest".into(), recovered.encode())]);
         fs::remove_dir_all(path).unwrap();
     }
 }
@@ -196,7 +196,7 @@ fn clean_resync_marker_requires_matching_rust_identity_and_exclusive_open_releas
     assert_eq!(write_clean_resync_marker(&path, &requirements(1).identity, "while-open").unwrap_err().category, StableError::ConcurrentOpen);
     assert!(!path.join("tron-storage.clean-resync").exists());
     drop(store);
-    assert!(!path.join("tron-storage.lock").exists());
+    assert!(path.join("tron-storage.lock").is_file());
 
     write_clean_resync_marker(&path, &requirements(1).identity, "trusted-checkpoint").unwrap();
     let marker = fs::read_to_string(path.join("tron-storage.clean-resync")).unwrap();

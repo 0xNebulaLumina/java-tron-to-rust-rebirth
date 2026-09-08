@@ -5,6 +5,7 @@
 //! and periodically replaces it with an atomically installed compact snapshot.
 
 pub mod format;
+pub mod toolkit;
 #[cfg(unix)]
 mod fs;
 pub use format::*;
@@ -109,6 +110,7 @@ pub enum StorageError {
     InvalidCheckpoint { path: PathBuf },
     MarketKey { actual: usize },
     Format(FormatError),
+    RewriteRejected { category: &'static str, detail: String },
     Poisoned,
 }
 
@@ -127,6 +129,7 @@ impl fmt::Display for StorageError {
             }
             Self::Format(error) => write!(f, "storage format error: {error}"),
             Self::Poisoned => write!(f, "storage handle is poisoned after WAL rollback failure"),
+            Self::RewriteRejected { category, detail } => write!(f, "rewrite rejected [{category}]: {detail}"),
             Self::MarketKey { actual } => write!(f, "market key is shorter than 54 bytes: {actual}"),
         }
     }
@@ -398,6 +401,28 @@ impl StorageManager {
         RustLog::open_generation(generation, self.options.clone(), lock, self.requirements.clone())
     }
 
+    pub(crate) fn open_retained_store(&self, root: SecureDir, path: &Path) -> Result<RustLog> {
+        let root_lock = root.lock_root_exclusive().map_err(|error| {
+            if error.kind() == io::ErrorKind::WouldBlock { StorageError::Locked { path: path.join(LOCK_NAME) } }
+            else { StorageError::from(error) }
+        })?;
+        root.validate_path_identity().map_err(|_| StorageError::ConcurrentOpen { path: Some(path.to_path_buf()) })?;
+        root.reject_symlink_entries().map_err(StorageError::from)?;
+        let classification = format::classify_at(&root, path)?;
+        let lock = root.finish_exclusive_lock(root_lock, LOCK_NAME.as_ref()).map_err(StorageError::from)?;
+        let manifest = match classification {
+            DirectoryClassification::Empty | DirectoryClassification::InitializingEmpty => format::initialize_empty_at(&root, path, &self.requirements)?,
+            DirectoryClassification::Rust(manifest) => { manifest.validate(&self.requirements, path)?; manifest },
+            DirectoryClassification::Java { marker } => return Err(FormatError::new(StableError::JavaFormat, path, marker).into()),
+            DirectoryClassification::Missing => return Err(StorageError::InvalidCheckpoint { path: path.to_path_buf() }),
+        };
+        root.validate_path_identity().map_err(|_| StorageError::ConcurrentOpen { path: Some(path.to_path_buf()) })?;
+        let generation_name = format!("generation-{}", manifest.generation);
+        let generation = root.open_child(generation_name.as_ref()).map_err(StorageError::from)?;
+        generation.reject_symlink_entries().map_err(StorageError::from)?;
+        RustLog::open_generation(generation, self.options.clone(), lock, self.requirements.clone())
+    }
+
     pub fn close(&self, store: RustLog) -> Result<()> { store.close() }
 }
 
@@ -525,6 +550,10 @@ impl RustLog {
         self.wal.sync_data()?;
         Ok(())
     }
+    pub fn wal_len(&self) -> Result<u64> {
+        self.ensure_usable()?;
+        Ok(self.wal.metadata()?.len())
+    }
 
     fn ensure_usable(&self) -> Result<()> {
         if self.poisoned { Err(StorageError::Poisoned) } else { Ok(()) }
@@ -537,6 +566,17 @@ impl RustLog {
     pub fn maintenance_error(&self) -> Option<&StorageError> { self.maintenance_error.as_ref() }
 
     pub fn take_maintenance_error(&mut self) -> Option<StorageError> { self.maintenance_error.take() }
+    /// Visits every physical key/value pair in bytewise key order without cloning entries.
+    pub fn visit_entries<E>(
+        &self,
+        mut visitor: impl FnMut(&[u8], &[u8]) -> std::result::Result<(), E>,
+    ) -> std::result::Result<(), E> {
+        for (key, value) in &self.entries {
+            visitor(key, value)?;
+        }
+        Ok(())
+    }
+
 
     #[must_use]
     pub fn iterator(&self) -> OrderedIterator {
@@ -607,6 +647,7 @@ impl RustLog {
         self.ensure_usable()?;
         self.sync_for_shutdown(faults)?;
         self.closed = true;
+        drop(self.lock.take());
         Ok(())
     }
 
@@ -855,6 +896,7 @@ impl Drop for RustLog {
         if !self.closed {
             let _ = self.sync_for_shutdown(&NoShutdownFaults);
         }
+        drop(self.lock.take());
     }
 }
 
