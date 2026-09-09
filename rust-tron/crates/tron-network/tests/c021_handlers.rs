@@ -13,3 +13,17 @@ struct Sink{processed:usize,broadcast:usize} impl TransactionSink for Sink{fn kn
 #[test]fn duplicate_transaction_is_rejected_by_raw_data_identity(){let first=tx(65);let mut second=first.clone();second.signature=vec![vec![8;68]];let id=txid(&first);let mut p=peer();p.adv_requests.insert(InventoryItem{hash:id,kind:0},1);let payload=Transactions{transactions:vec![first,second]}.encode_to_vec();let mut handler=TransactionHandler::new(2);assert!(matches!(handler.receive(&mut p,&payload,2),Err(HandlerError::DuplicateTransaction(found)) if found==id));assert_eq!(handler.queued(),0);}
 #[test]fn java_advert_id_hashes_exact_preserved_raw_data_bytes(){let raw=[0x12,0x00,0xa8,0x06,0x01];let mut transaction=vec![0x0a,raw.len() as u8];transaction.extend_from_slice(&raw);transaction.extend_from_slice(&[0x12,0x01,0x07]);assert_eq!(transaction_id_from_wire(&transaction).unwrap(),[0x94,0xf0,0x8c,0xd5,0x7d,0xa9,0x97,0xc2,0x1a,0xa1,0xac,0x85,0x50,0xfb,0x99,0x22,0x39,0xc0,0xf4,0x55,0xf2,0x2e,0xeb,0xf9,0x72,0x16,0xb4,0x8e,0xa7,0x19,0x35,0xb4]);}
 #[test]fn block_time_rejects_exact_three_seconds_but_accepts_one_second(){assert!(validate_block_time(4_000,1_000).is_err());assert!(validate_block_time(2_000,1_000).is_ok());}
+
+#[test]
+fn production_sync_and_inventory_codecs_are_exact_and_reject_wrong_shapes() {
+    use tron_network::{gossip::InventoryType, production::{decode_chain_inventory, decode_inventory, decode_sync_block_chain, encode_chain_inventory, encode_inventory, encode_sync_block_chain}, sync::{ChainInventory, SyncBlockChain, SyncBlockId}};
+    let id = SyncBlockId::new([7; 32], 42);
+    let request = SyncBlockChain { ids: vec![id.clone()] };
+    assert_eq!(decode_sync_block_chain(&encode_sync_block_chain(&request)).unwrap(), request);
+    let response = ChainInventory { ids: vec![id], remain: 9 };
+    assert_eq!(decode_chain_inventory(&encode_chain_inventory(&response)).unwrap(), response);
+    let encoded = encode_inventory(InventoryType::Block, &[[3; 32], [4; 32]]);
+    assert_eq!(decode_inventory(&encoded).unwrap(), (InventoryType::Block, vec![[3; 32], [4; 32]]));
+    let malformed = tron_protocol::protocol::Inventory { r#type: tron_protocol::protocol::inventory::InventoryType::Trx as i32, ids: vec![vec![0; 31]] }.encode_to_vec();
+    assert!(decode_inventory(&malformed).is_err());
+}

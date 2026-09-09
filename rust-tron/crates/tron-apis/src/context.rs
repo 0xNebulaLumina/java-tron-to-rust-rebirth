@@ -1,20 +1,20 @@
 use std::sync::{Arc, Mutex};
 use parking_lot::RwLock;
 
-use tron_execution::{PendingPool, RawWireTransaction, TransactionProcessor};
 use tron_crypto::CryptoEngine;
+use tron_execution::ActuatorRegistry;
 use tron_state::{CursorSet, CursorView, HeadCursor, PbftCursor, SolidityCursor};
 
-use crate::{NetworkSnapshot, ReadOnlyVm};
+use crate::{ExecutionProvider, NetworkSnapshot, ReadOnlyVm};
 
-/// Shared C022 composition boundary. Cursor reads are immutable snapshots while
-/// processor and pending admission are serialized because both mutate canonical state.
+/// Shared API composition boundary. Cursor reads are immutable snapshots and all
+/// canonical mutations are delegated to the single execution actor.
 #[derive(Clone)]
 pub struct ApiContext {
     crypto_engine: CryptoEngine,
     cursors: Arc<RwLock<CursorSet>>,
-    processor: Arc<Mutex<TransactionProcessor>>,
-    pending: Arc<Mutex<PendingPool<RawWireTransaction>>>,
+    execution: Option<Arc<dyn ExecutionProvider>>,
+    actuators: Arc<ActuatorRegistry>,
     network: Arc<dyn NetworkSnapshot>,
     runtime: Option<Arc<dyn ReadOnlyVm>>,
     parameters: Arc<tron_shielded::TronParameters>,
@@ -25,15 +25,15 @@ impl ApiContext {
     #[must_use]
     pub fn new(
         cursors: CursorSet,
-        processor: TransactionProcessor,
-        pending: PendingPool<RawWireTransaction>,
+        execution: Option<Arc<dyn ExecutionProvider>>,
+        actuators: Arc<ActuatorRegistry>,
         parameters: Arc<tron_shielded::TronParameters>,
         crypto_engine: CryptoEngine,
     ) -> Self {
         Self::with_providers(
             cursors,
-            processor,
-            pending,
+            execution,
+            actuators,
             Arc::new(crate::DisconnectedNetworkSnapshot::default()),
             None,
             parameters,
@@ -44,8 +44,8 @@ impl ApiContext {
     #[must_use]
     pub fn with_providers(
         cursors: CursorSet,
-        processor: TransactionProcessor,
-        pending: PendingPool<RawWireTransaction>,
+        execution: Option<Arc<dyn ExecutionProvider>>,
+        actuators: Arc<ActuatorRegistry>,
         network: Arc<dyn NetworkSnapshot>,
         runtime: Option<Arc<dyn ReadOnlyVm>>,
         parameters: Arc<tron_shielded::TronParameters>,
@@ -54,8 +54,8 @@ impl ApiContext {
         Self {
             crypto_engine,
             cursors: Arc::new(RwLock::new(cursors)),
-            processor: Arc::new(Mutex::new(processor)),
-            pending: Arc::new(Mutex::new(pending)),
+            execution,
+            actuators,
             network,
             runtime,
             parameters,
@@ -88,12 +88,12 @@ impl ApiContext {
         *self.cursors.write() = cursors;
     }
     #[must_use]
-    pub fn processor(&self) -> Arc<Mutex<TransactionProcessor>> {
-        Arc::clone(&self.processor)
+    pub fn execution(&self) -> Option<&Arc<dyn ExecutionProvider>> {
+        self.execution.as_ref()
     }
     #[must_use]
-    pub fn pending(&self) -> Arc<Mutex<PendingPool<RawWireTransaction>>> {
-        Arc::clone(&self.pending)
+    pub fn actuators(&self) -> &Arc<ActuatorRegistry> {
+        &self.actuators
     }
     #[must_use]
     pub fn network(&self) -> &dyn NetworkSnapshot {

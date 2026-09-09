@@ -1,4 +1,4 @@
-use std::{net::TcpListener, time::Duration};
+use std::{net::{IpAddr, Ipv4Addr, TcpListener}, time::Duration};
 
 use tron_events_metrics::{ZeroMqConfig, ZeroMqError, ZeroMqPublisher, DEFAULT_SEND_HWM};
 use zeromq::{Socket, SocketRecv, SubSocket};
@@ -8,7 +8,7 @@ async fn live_subscriber_receives_topic_then_json_frames() {
     let listener = TcpListener::bind("127.0.0.1:0").unwrap();
     let port = listener.local_addr().unwrap().port();
     drop(listener);
-    let mut publisher = ZeroMqPublisher::bind(ZeroMqConfig { bind_port: port, send_hwm: DEFAULT_SEND_HWM }).await.unwrap();
+    let mut publisher = ZeroMqPublisher::bind(ZeroMqConfig { bind_ip: IpAddr::V4(Ipv4Addr::LOCALHOST), bind_port: port, send_hwm: DEFAULT_SEND_HWM }).await.unwrap();
     assert_eq!(publisher.config().send_hwm, 1000);
 
     let mut subscriber = SubSocket::new();
@@ -25,10 +25,10 @@ async fn live_subscriber_receives_topic_then_json_frames() {
 
 #[test]
 fn zero_port_and_zero_hwm_normalize_to_java_defaults() {
-    let config = ZeroMqConfig { bind_port: 0, send_hwm: 0 }.normalized();
+    let config = ZeroMqConfig { bind_ip: IpAddr::V4(Ipv4Addr::UNSPECIFIED), bind_port: 0, send_hwm: 0 }.normalized();
     assert_eq!(config.bind_port, 5555);
     assert_eq!(config.send_hwm, 1000);
-    assert_eq!(config.bind_address(), "tcp://*:5555");
+    assert_eq!(config.bind_address(), "tcp://0.0.0.0:5555");
 }
 
 #[tokio::test]
@@ -36,7 +36,7 @@ async fn full_queue_rejects_without_blocking_and_shutdown_is_bounded() {
     let listener = TcpListener::bind("127.0.0.1:0").unwrap();
     let port = listener.local_addr().unwrap().port();
     drop(listener);
-    let mut publisher = ZeroMqPublisher::bind(ZeroMqConfig { bind_port: port, send_hwm: 1 }).await.unwrap();
+    let mut publisher = ZeroMqPublisher::bind(ZeroMqConfig { bind_ip: IpAddr::V4(Ipv4Addr::LOCALHOST), bind_port: port, send_hwm: 1 }).await.unwrap();
     let payload = "x".repeat(64 * 1024);
     let started = std::time::Instant::now();
     let mut full = false;

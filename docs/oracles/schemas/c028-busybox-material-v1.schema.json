@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tron.invalid/schemas/c028-busybox-material-v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "source", "material", "elf"],
+  "properties": {
+    "schema": {"const": "c028-busybox-material-v1"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "sha256", "member"],
+      "properties": {
+        "url": {"type": "string", "pattern": "^https://archive\\.ubuntu\\.com/ubuntu/"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "member": {"const": "bin/busybox"}
+      }
+    },
+    "material": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256", "version", "version_marker", "license", "provenance"],
+      "properties": {
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "version_marker": {"type": "string", "pattern": "^BusyBox v[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "license": {"const": "GPL-2.0-only"},
+        "provenance": {"type": "string", "pattern": "^pkg:deb/ubuntu/busybox-static@"}
+      }
+    },
+    "elf": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["class", "endianness", "machine", "static"],
+      "properties": {
+        "class": {"const": 64},
+        "endianness": {"const": "little"},
+        "machine": {"const": "x86_64"},
+        "static": {"const": true}
+      }
+    }
+  }
+}

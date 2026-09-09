@@ -108,6 +108,8 @@ impl StateStore {
         InternalStore { state: self.clone(), namespace: CHECKPOINT_INTERNAL_NAMESPACE }
     }
     pub fn flush(&self) -> tron_storage::Result<()> { self.lock().flush() }
+    /// Idempotently closes the shared backend even while cloned state capabilities remain.
+    pub fn close(&self) -> tron_storage::Result<()> { self.lock().close_in_place() }
     #[must_use] pub fn batch(&self) -> StateWriteBatch { StateWriteBatch { state: self.clone(), batch: WriteBatch::new() } }
     fn lock(&self) -> MutexGuard<'_, RustLog> { self.log.lock().unwrap_or_else(std::sync::PoisonError::into_inner) }
     pub(crate) fn snapshot_names(&self, names: &[StoreName]) -> std::collections::BTreeMap<StoreName, std::collections::BTreeMap<Vec<u8>, Vec<u8>>> {

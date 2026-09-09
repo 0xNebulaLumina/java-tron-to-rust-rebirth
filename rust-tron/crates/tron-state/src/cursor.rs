@@ -65,6 +65,36 @@ impl CursorSet {
             pbft_offset: effective_offset,
         })
     }
+    /// Reconstructs HEAD, SOLIDITY, and PBFT exclusively from durable markers and checkpoint
+    /// history. Missing or malformed markers are errors; no synthetic genesis fallback is used.
+    pub fn reconstruct(manager: &SessionManager) -> Result<Self, CursorError> {
+        let dynamic = manager.durable_store(StoreKind::DynamicProperties);
+        let common = manager.durable_store(StoreKind::Common);
+        let number = marker_i64(dynamic.get(crate::dynamic::key("LATEST_BLOCK_HEADER_NUMBER").expect("known key")))?;
+        let head_block = u64::try_from(number).map_err(|_| CursorError::IdentityMismatch)?;
+        let head_hash = dynamic.get(crate::dynamic::key("LATEST_BLOCK_HEADER_HASH").expect("known key")).ok_or(CursorError::MissingCheckpoint)?;
+        let head_identity = CheckpointIdentity::new(head_hash.as_slice().try_into().map_err(|_| CursorError::IdentityMismatch)?);
+        let history = manager.checkpoint_points();
+        let head = unique_point(&history, head_block)?.ok_or(CursorError::MissingCheckpoint)?;
+        if head.identity != head_identity { return Err(CursorError::IdentityMismatch); }
+
+        let solidity_block = u64::try_from(marker_i64(dynamic.get(crate::dynamic::key("LATEST_SOLIDIFIED_BLOCK_NUM").expect("known key")))?)
+            .map_err(|_| CursorError::IdentityMismatch)?;
+        let solidity = unique_point(&history, solidity_block)?.ok_or(CursorError::MissingCheckpoint)?;
+        let pbft = match common.get(b"LATEST_PBFT_BLOCK_NUM") {
+            None => None,
+            Some(bytes) => {
+                let block = u64::try_from(marker_i64(Some(bytes))?).map_err(|_| CursorError::IdentityMismatch)?;
+                Some(unique_point(&history, block)?.ok_or(CursorError::MissingCheckpoint)?)
+            }
+        };
+        let pbft_offset = pbft.map_or(0, |point| {
+            let head_index = history.iter().position(|candidate| *candidate == head).expect("resolved head");
+            let pbft_index = history.iter().position(|candidate| *candidate == point).expect("resolved PBFT");
+            head_index.saturating_sub(pbft_index) as i64
+        });
+        Self::new(manager, head, Some(solidity), pbft, pbft_offset)
+    }
     /// Publishes the current durable/committed image as SOLIDITY at the latest block checkpoint.
     /// This is used after standalone replication writes its solid marker after verified apply.
     pub fn with_live_solidity(manager: &SessionManager, point: CursorPoint) -> Result<Self, CursorError> {
@@ -110,3 +140,15 @@ fn is_ancestor(history: &[crate::session::CommittedCheckpoint], ancestor: Checkp
     }
 }
 
+
+fn marker_i64(value: Option<Vec<u8>>) -> Result<i64, CursorError> {
+    let bytes = value.ok_or(CursorError::MissingCheckpoint)?;
+    Ok(i64::from_be_bytes(bytes.as_slice().try_into().map_err(|_| CursorError::IdentityMismatch)?))
+}
+
+fn unique_point(history: &[CursorPoint], block: u64) -> Result<Option<CursorPoint>, CursorError> {
+    let mut matching = history.iter().copied().filter(|point| point.block == block);
+    let first = matching.next();
+    if matching.next().is_some() { return Err(CursorError::IdentityMismatch); }
+    Ok(first)
+}

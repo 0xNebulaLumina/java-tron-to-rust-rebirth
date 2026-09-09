@@ -24,9 +24,17 @@ thiserror = "=2.0.12"
 time = { version = "=0.3.41", features = ["formatting", "std"] }
 zeroize = "=1.8.1"
 
+[dev-dependencies]
+base64 = "=0.22.1"
+ed25519-dalek = { version = "=2.1.1", default-features = false, features = ["std"] }
+
 [[bin]]
 name = "tron-toolkit"
 path = "src/main.rs"
+
+[[bin]]
+name = "tron-release-verify"
+path = "src/bin/tron-release-verify.rs"
 
 [lints]
 workspace = true

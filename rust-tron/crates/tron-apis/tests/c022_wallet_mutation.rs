@@ -1,13 +1,12 @@
 use prost::Message;
-use std::time::{Duration, SystemTime, UNIX_EPOCH};
+use std::{sync::Arc, time::{Duration, SystemTime, UNIX_EPOCH}};
+use parking_lot::Mutex;
 
 use tonic::Code;
-use tron_apis::{ApiContext, BlockingExecutor, RpcApiServices, interceptors::PreservedRawGrpcMessage, wallet::wallet_server::Wallet};
+use tron_apis::{ApiContext, ApiError, BlockingExecutor, ExecutionProvider, RpcApiServices, interceptors::PreservedRawGrpcMessage, wallet::wallet_server::Wallet};
 use tron_crypto::CryptoEngine;
-use tron_execution::{
-    ActuatorRegistry, CacheConfig, ExecutionConfig, PendingLimits, PendingPool,
-    StateTransactionPipeline, TransactionCache, TransactionProcessor,
-};
+use tron_execution::ActuatorRegistry;
+use tron_primitives::Hash32;
 use tron_state::{dynamic, CheckpointIdentity, CursorPoint, CursorSet, SessionManager, StateStore, StoreKind};
 use tron_storage::{OpenRequirements, StorageIdentity, StorageManager};
 
@@ -59,7 +58,19 @@ fn shielded_scan_limits_are_bounded() {
     assert!(ShieldedWallet::validate_scan_range(2, 1).is_err());
 }
 
-fn rpc_context() -> (std::path::PathBuf, ApiContext) {
+#[derive(Default)]
+struct BlockingProvider { gate: Mutex<()> }
+impl ExecutionProvider for BlockingProvider {
+    fn broadcast_raw(&self, _: Vec<u8>, _: i64, _: bool) -> tron_apis::Return {
+        let _guard = self.gate.lock();
+        tron_apis::error::failure_return(ResponseCode::ContractValidateError, b"rejected".to_vec())
+    }
+    fn pending_size(&self) -> Result<usize, ApiError> { Ok(0) }
+    fn pending_ids(&self) -> Result<Vec<Hash32>, ApiError> { Ok(Vec::new()) }
+    fn pending_transaction(&self, _: Hash32) -> Result<Option<tron_apis::Transaction>, ApiError> { Ok(None) }
+}
+
+fn rpc_context() -> (std::path::PathBuf, ApiContext, Arc<BlockingProvider>) {
     let path = std::env::temp_dir().join(format!(
         "c022-broadcast-blocking-{}-{}",
         std::process::id(),
@@ -84,28 +95,21 @@ fn rpc_context() -> (std::path::PathBuf, ApiContext) {
     let point = CursorPoint { block: 0, identity: CheckpointIdentity::new([0; 32]) };
     manager.record_checkpoint(point).unwrap();
     let cursors = CursorSet::new(&manager, point, None, None, 0).unwrap();
-    let processor = TransactionProcessor {
-        sessions: manager.clone(),
-        cache: TransactionCache::new(CacheConfig::default()).unwrap(),
-        pipeline: StateTransactionPipeline::new(
-            Default::default(), ActuatorRegistry::empty(), ExecutionConfig::default(),
-        ).unwrap(),
-    };
-    let pending = PendingPool::new(manager, PendingLimits::default()).unwrap();
+    let actuators = Arc::new(ActuatorRegistry::empty());
+    let provider = Arc::new(BlockingProvider::default());
     let parameter_root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("../../../java-tron/framework/src/main/resources/params");
     let parameters = tron_shielded::load_tron_parameters(
         parameter_root.join("sapling-spend.params"),
         parameter_root.join("sapling-output.params"),
     ).unwrap();
-    (path, ApiContext::new(cursors, processor, pending, parameters, CryptoEngine::Secp256k1))
+    (path, ApiContext::new(cursors, Some(provider.clone()), actuators, parameters, CryptoEngine::Secp256k1), provider)
 }
 
 #[tokio::test]
 async fn broadcast_waits_for_blocking_permit_and_releases_it_after_timeout() {
-    let (path, context) = rpc_context();
-    let processor = context.processor();
-    let held = processor.lock().unwrap();
+    let (path, context, provider) = rpc_context();
+    let held = provider.gate.lock();
     let service = RpcApiServices::with_blocking_executor(
         context,
         BlockingExecutor::new(1, Duration::from_millis(20)).unwrap(),

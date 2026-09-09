@@ -1,4 +1,4 @@
-use std::time::{Duration, Instant};
+use std::{sync::Arc, time::{Duration, Instant}};
 
 use prost::Message;
 use tron_crypto::{keccak256, top_level_contract_address};
@@ -11,12 +11,12 @@ use tron_protocol::protocol::{
 use tron_state::{dynamic, Session, StoreKind};
 use tron_tvm::{
     DeadlineLimiter, EnergyMeter, ExecutionOutcome, FrameContext, Interpreter, Memory,
-    MonotonicClock, NoTrace, OperationRegistry, Program, Repository, Stack1024, TvmRules, Word,
+    MonotonicClock, NoTrace, Program, Repository, Stack1024, TvmRules, Word,
 };
 
 use crate::{
-    receipt::EnergyExecutionPlan, ActuatorRegistry, ActuatorResult, BuiltinContract,
-    ExecutionConfig, RegistryError,
+    receipt::EnergyExecutionPlan, ActuatorResult, BuiltinContract, ExecutionRuntimeConfig,
+    RegistryError,
 };
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -69,9 +69,7 @@ struct CanonicalVmInvocation {
 }
 
 pub struct Runtime<'a> {
-    pub actuator_registry: &'a ActuatorRegistry,
-    pub operation_registry: &'a OperationRegistry,
-    pub execution_config: ExecutionConfig,
+    pub config: &'a ExecutionRuntimeConfig,
 }
 impl<'a> Runtime<'a> {
     pub fn kind(contract: &Contract) -> Result<RuntimeKind, RuntimeError> {
@@ -96,11 +94,12 @@ impl<'a> Runtime<'a> {
     pub fn trigger_is_constant_abi(
         contract: &Contract,
         session: &Session,
+        config: &ExecutionRuntimeConfig,
     ) -> Result<bool, RuntimeError> {
         if Self::kind(contract)? != RuntimeKind::Trigger {
             return Ok(false);
         }
-        let decoded = ActuatorRegistry::empty().decode(contract)?;
+        let decoded = config.actuator_registry.decode(contract)?;
         let crate::DecodedContract::BuiltIn(BuiltinContract::TriggerSmartContract(trigger)) = decoded else {
             return Err(RuntimeError::WrongState("VM contract envelope"));
         };
@@ -109,7 +108,8 @@ impl<'a> Runtime<'a> {
         }
         let address = TronAddress21::validate_mainnet(&trigger.contract_address)
             .map_err(|_| RuntimeError::WrongState("trigger contract address"))?;
-        let repository = Repository::from_session(session);
+        let mut repository = Repository::from_session(session);
+        repository.set_blackhole_address(Self::blackhole(config)?);
         let Some(abi) = repository.abi(&address).map_err(|error| RuntimeError::Vm(error.to_string()))? else {
             return Ok(false);
         };
@@ -145,11 +145,11 @@ impl<'a> Runtime<'a> {
     ) -> Result<RuntimeResult, RuntimeError> {
         match Self::kind(contract)? {
             RuntimeKind::NonVm => {
-                self.actuator_registry.execute(
+                self.config.actuator_registry.execute(
                     contract,
                     session,
                     Some(actuator_result),
-                    self.execution_config.clone(),
+                    self.config.execution_config.clone(),
                 )?;
                 Ok(RuntimeResult::from_actuator(actuator_result.clone()))
             }
@@ -175,8 +175,9 @@ impl<'a> Runtime<'a> {
         energy_plan: &EnergyExecutionPlan,
         retry: bool,
     ) -> Result<CanonicalVmInvocation, RuntimeError> {
-        let decoded = self.actuator_registry.decode(envelope)?;
-        let repository = Repository::from_session(session);
+        let decoded = self.config.actuator_registry.decode(envelope)?;
+        let mut repository = Repository::from_session(session);
+        repository.set_blackhole_address(Self::blackhole(self.config)?);
         let energy_height = repository
             .dynamic_i64("ENERGY_LIMIT_HARD_FORK")
             .map_err(|error| RuntimeError::Vm(error.to_string()))?
@@ -322,6 +323,7 @@ impl<'a> Runtime<'a> {
         invocation: CanonicalVmInvocation,
     ) -> Result<RuntimeResult, RuntimeError> {
         let mut repository = Repository::from_session(session);
+        repository.set_blackhole_address(Self::blackhole(self.config)?);
         if let Some(contract) = invocation.create_contract.as_ref() {
             repository.put_account(&Account {
                 address: contract.contract_address.clone(),
@@ -331,7 +333,8 @@ impl<'a> Runtime<'a> {
             repository.put_contract(contract.clone());
         }
         self.transfer_root_value(&mut repository, &invocation.frame)?;
-        let interpreter = Interpreter::new(self.operation_registry, &invocation.rules);
+        let interpreter = Interpreter::new(&self.config.operation_registry, &invocation.rules)
+            .with_shielded_parameters(Arc::clone(&self.config.shielded_parameters));
         let mut program = Program::new(invocation.code);
         let mut stack = Stack1024::default();
         let mut memory = Memory::default();
@@ -383,6 +386,11 @@ impl<'a> Runtime<'a> {
             repository.set_token_balance(&frame.context_address, token, credited).map_err(|error| RuntimeError::Vm(error.to_string()))?;
         }
         Ok(())
+    }
+
+    fn blackhole(config: &ExecutionRuntimeConfig) -> Result<TronAddress21, RuntimeError> {
+        TronAddress21::validate_mainnet(&config.execution_config.blackhole_address)
+            .map_err(|_| RuntimeError::WrongState("blackhole address"))
     }
 }
 

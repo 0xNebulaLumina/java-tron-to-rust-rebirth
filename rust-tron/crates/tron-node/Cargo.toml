@@ -25,7 +25,26 @@ tokio-util = { version = "=0.7.15", features = ["rt"] }
 prost.workspace = true
 tonic.workspace = true
 
+serde = { version = "=1.0.219", features = ["derive"] }
+serde_json = "=1.0.143"
+rustix = { version = "=1.1.4", features = ["fs", "process"] }
+sha2 = "=0.10.9"
+time = { version = "=0.3.41", features = ["parsing", "std"] }
+tracing = "=0.1.41"
+tracing-subscriber = { version = "=0.3.19", features = ["env-filter", "fmt", "json"] }
 parking_lot = "=0.12.4"
+
+[dev-dependencies]
+base64 = "=0.22.1"
+ed25519-dalek = "=2.1.1"
+
+[[bin]]
+name = "tron-fullnode"
+path = "src/bin/tron-fullnode.rs"
+
+[[bin]]
+name = "tron-solidity"
+path = "src/bin/tron-solidity.rs"
 
 [lints]
 workspace = true

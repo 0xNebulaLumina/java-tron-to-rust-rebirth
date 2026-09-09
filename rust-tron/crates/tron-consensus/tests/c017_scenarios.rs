@@ -73,3 +73,27 @@ fn pinned_java_rows_execute_real_c017_session_and_roots(){
     assert!(sessions.pop().unwrap());assert_eq!(logical_rows(&sessions.read_view()),capture.rollback_rows);assert_eq!(full_root(&sessions.read_view()),capture.rollback_root);assert_eq!(capture.rollback_rows,capture.initial_rows);assert_eq!(capture.rollback_root,capture.initial_root);
     assert_eq!((schedule.len(),produced.len(),maintenance_outcome.applied,reward.brokerage,reward.voter_reward,proposal_scan.examined.len(),solidity.position,fork_update.activated),(27,1,true,2,8,0,8,false));drop(sessions);drop(root);fs::remove_dir_all(directory).unwrap();
 }
+
+#[test]
+fn production_constructor_uses_canonical_tables_and_live_schedule() {
+    use tron_consensus::{canonical_fork_schedule, canonical_parameter_rules, BackupRole, BackupRoleHandle, ProductionBlockConsensus, ProductionBlockHooks};
+    use tron_crypto::CryptoEngine;
+    use tron_execution::BlockConsensus;
+    use tron_state::{value, GenesisConfig};
+
+    let directory=temporary();let root=StateStore::new(storage().open_store(&directory).unwrap());
+    root.store(StoreKind::WitnessSchedule).put(value::ACTIVE_WITNESSES_KEY,&[address(1),address(2)].concat()).unwrap();
+    root.store(StoreKind::DynamicProperties).put(tron_state::dynamic::key("STATE_FLAG").unwrap(),&0_i32.to_be_bytes()).unwrap();
+    root.store(StoreKind::DynamicProperties).put(tron_state::dynamic::key("ALLOW_MULTI_SIGN").unwrap(),&0_i64.to_be_bytes()).unwrap();
+    let sessions=SessionManager::new(root.clone());
+    let consensus=ProductionBlockConsensus::new(sessions,CryptoEngine::Secp256k1,0).unwrap();
+    assert_eq!(consensus.scheduled_witness(0,0,3_000).unwrap(),address(2));
+
+    let rules=canonical_parameter_rules();
+    assert_eq!(rules.len(),77);assert_eq!(rules[&0].dynamic,"MAINTENANCE_TIME_INTERVAL");assert!(rules[&20].one_shot);assert!(!rules.contains_key(&27));
+    let forks=canonical_fork_schedule();
+    assert_eq!((forks.len(),forks.first().unwrap().version,forks.last().unwrap().version),(26,5,36));assert_eq!((forks[22].version,forks[22].rate_percent),(33,70));
+    let hooks=ProductionBlockHooks::from_config(&tron_config::Config::default(),&GenesisConfig { timestamp_raw:"0".into(),parent_hash_raw:"0".into(),assets:vec![],witnesses:vec![] },BackupRoleHandle::new(BackupRole::Master)).unwrap();
+    assert_eq!(hooks.parameter_rules(),&rules);assert_eq!(hooks.fork_schedule(),forks.as_slice());assert!(!hooks.pbft_handle().is_enabled());assert_eq!(hooks.backup_role_handle().role(),BackupRole::Master);
+    drop(root);fs::remove_dir_all(directory).unwrap();
+}

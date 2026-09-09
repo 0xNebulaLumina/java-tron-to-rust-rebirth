@@ -16,6 +16,32 @@ pub trait ReadOnlyVm: Send + Sync {
         energy_limit: i64,
     ) -> Result<ConstantOutcome, ApiError>;
 }
+pub type ReadOnlyVmExecutor = dyn Fn(
+    &TypedReadView,
+    &TriggerSmartContract,
+    i64,
+) -> Result<ConstantOutcome, ApiError> + Send + Sync;
+
+#[derive(Clone)]
+pub struct ProductionReadOnlyVm {
+    execute: std::sync::Arc<ReadOnlyVmExecutor>,
+}
+
+impl ProductionReadOnlyVm {
+    #[must_use]
+    pub fn new(execute: std::sync::Arc<ReadOnlyVmExecutor>) -> Self { Self { execute } }
+}
+
+impl ReadOnlyVm for ProductionReadOnlyVm {
+    fn execute(
+        &self,
+        view: &TypedReadView,
+        request: &TriggerSmartContract,
+        energy_limit: i64,
+    ) -> Result<ConstantOutcome, ApiError> {
+        (self.execute)(view, request, energy_limit)
+    }
+}
 
 /// C014/C015 adapter: the executor receives only an immutable cursor snapshot. No revoking
 /// session or durable store is exposed, so constant calls and energy probes cannot commit state.

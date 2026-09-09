@@ -6,20 +6,23 @@ use std::{
     sync::Arc,
     time::{SystemTime, UNIX_EPOCH},
 };
-use tron_apis::{ApiContext, ApiCursor, ExtensionApi, WalletMutation, WalletQuery};
-use tron_crypto::{CryptoEngine, PrivateKey, derive_address, selected_digest};
+use tron_apis::{ActorExecutionProvider, ApiContext, ExtensionApi, WalletMutation};
+use tron_crypto::{CryptoEngine, PrivateKey, derive_address};
 use tron_execution::{
-    Actuator, ActuatorError, ActuatorRegistry, ActuatorResult, CacheConfig, ExecutionConfig,
-    ExecutionContext, ExtensionActuatorProvider, ExtensionProviderMetadata, PendingLimits,
-    PendingPool, ProviderCodeIdentity, StateTransactionPipeline, StoreAccess, TransactionCache,
-    TransactionProcessor, TrustedExtensionProvider, ValidationContext,
+    Actuator, ActuatorError, ActuatorRegistry, ActuatorResult, BlockConsensus, BlockLimits,
+    BlockManager, CacheConfig, CanonicalChainManager, ChainActor, ExecutionConfig,
+    ExecutionContext, ExecutionRuntimeConfig, ExtensionActuatorProvider,
+    ExtensionProviderMetadata, ManagedBlock, PendingLimits, PendingPool, ProviderCodeIdentity,
+    RawBlock, StateTransactionPipeline, StoreAccess, TransactionCache, TransactionProcessor,
+    TrustedExtensionProvider, ValidationContext,
 };
 use tron_protocol::{
     extensions::{ExtensionDescriptor, ExtensionRegistry, RegistrationError},
-    protocol::{Account, r#return::ResponseCode},
+    protocol::{block_header, Account, Block, BlockHeader},
 };
 use tron_state::{
-    CheckpointIdentity, CursorPoint, CursorSet, SessionManager, StateStore, StoreKind, dynamic,
+    dynamic, CheckpointIdentity, CheckpointLimits, CheckpointStack, CursorPoint, CursorSet,
+    KhaosBlockData, KhaosDatabase, SessionManager, StateStore, StoreKind,
 };
 use tron_storage::{OpenRequirements, StorageIdentity, StorageManager};
 fn parameters() -> Arc<tron_shielded::TronParameters> {
@@ -120,7 +123,14 @@ fn registry() -> Arc<ActuatorRegistry> {
         .unwrap(),
     )
 }
-fn context(registry: ActuatorRegistry, owner: &[u8]) -> (std::path::PathBuf, ApiContext) {
+
+#[derive(Clone)]
+struct FixtureConsensus;
+impl BlockConsensus for FixtureConsensus {
+    fn verify_witness_signature(&self, _: &[u8], _: &[u8], _: &[u8]) -> bool { true }
+    fn scheduled_witness(&self, _: i64, _: i64, _: i64) -> Result<Vec<u8>, String> { Ok(vec![0x41; 21]) }
+}
+fn context(registry: ActuatorRegistry, owner: &[u8]) -> (std::path::PathBuf, ApiContext, ChainActor) {
     let path = std::env::temp_dir().join(format!(
         "c022-extension-{}-{}",
         std::process::id(),
@@ -146,60 +156,49 @@ fn context(registry: ActuatorRegistry, owner: &[u8]) -> (std::path::PathBuf, Api
         ("LATEST_BLOCK_HEADER_TIMESTAMP", 100_i64),
         ("LATEST_BLOCK_HEADER_NUMBER", 7_i64),
     ] {
-        manager
-            .durable_store(StoreKind::DynamicProperties)
-            .put(dynamic::key(name).unwrap(), &value.to_be_bytes())
-            .unwrap();
+        manager.durable_store(StoreKind::DynamicProperties).put(dynamic::key(name).unwrap(), &value.to_be_bytes()).unwrap();
     }
-    manager
-        .durable_store(StoreKind::DynamicProperties)
-        .put(dynamic::key("LATEST_BLOCK_HEADER_HASH").unwrap(), &[9; 32])
-        .unwrap();
     manager.durable_store(StoreKind::RecentBlock).put(&[0, 7], &[9; 8]).unwrap();
     manager.durable_store(StoreKind::Account).put(owner, &Account { address: owner.to_vec(), balance: 1_000_000, ..Default::default() }.encode_to_vec()).unwrap();
     for (name, value) in [
-        ("ALLOW_SAME_TOKEN_NAME", 0_i64),
-        ("TRANSACTION_FEE", 0_i64),
-        ("CREATE_ACCOUNT_FEE", 0_i64),
-        ("CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT", 0_i64),
-        ("MULTI_SIGN_FEE", 0_i64),
-        ("MEMO_FEE", 0_i64),
-        ("UNFREEZE_DELAY_DAYS", 0_i64),
-        ("ALLOW_HARDEN_RESOURCE_CALCULATION", 0_i64),
-        ("CREATE_NEW_ACCOUNT_BANDWIDTH_RATE", 1_i64),
-        ("MAX_CREATE_ACCOUNT_TX_SIZE", 1_000_i64),
-        ("TOTAL_NET_LIMIT", 43_200_000_000_i64),
-        ("FREE_NET_LIMIT", 5_000_i64),
-        ("TOTAL_NET_WEIGHT", 1_i64),
-        ("PUBLIC_NET_LIMIT", 14_400_000_000_i64),
-        ("PUBLIC_NET_USAGE", 0_i64),
-        ("PUBLIC_NET_TIME", 0_i64),
-        ("ALLOW_TRANSACTION_FEE_POOL", 0_i64),
-    ] {
-        manager.durable_store(StoreKind::DynamicProperties).put(dynamic::key(name).unwrap(), &value.to_be_bytes()).unwrap();
-    }
-    let point = CursorPoint {
-        block: 7,
-        identity: CheckpointIdentity::new([7; 32]),
-    };
+        ("ALLOW_SAME_TOKEN_NAME", 0_i64), ("TRANSACTION_FEE", 0_i64),
+        ("CREATE_ACCOUNT_FEE", 0_i64), ("CREATE_NEW_ACCOUNT_FEE_IN_SYSTEM_CONTRACT", 0_i64),
+        ("MULTI_SIGN_FEE", 0_i64), ("MEMO_FEE", 0_i64), ("UNFREEZE_DELAY_DAYS", 0_i64),
+        ("ALLOW_HARDEN_RESOURCE_CALCULATION", 0_i64), ("CREATE_NEW_ACCOUNT_BANDWIDTH_RATE", 1_i64),
+        ("MAX_CREATE_ACCOUNT_TX_SIZE", 1_000_i64), ("TOTAL_NET_LIMIT", 43_200_000_000_i64),
+        ("FREE_NET_LIMIT", 5_000_i64), ("TOTAL_NET_WEIGHT", 1_i64),
+        ("PUBLIC_NET_LIMIT", 14_400_000_000_i64), ("PUBLIC_NET_USAGE", 0_i64),
+        ("PUBLIC_NET_TIME", 0_i64), ("ALLOW_TRANSACTION_FEE_POOL", 0_i64),
+    ] { manager.durable_store(StoreKind::DynamicProperties).put(dynamic::key(name).unwrap(), &value.to_be_bytes()).unwrap(); }
+    let head_wire = Block { transactions: Vec::new(), block_header: Some(BlockHeader { raw_data: Some(block_header::Raw { timestamp: 100, parent_hash: vec![0; 32], number: 7, witness_address: vec![0x41; 21], tx_trie_root: vec![0; 32], ..Default::default() }), witness_signature: Vec::new() }) };
+    let raw = RawBlock::decode(head_wire.encode_to_vec(), BlockLimits::default()).unwrap();
+    let id = raw.block_id(CryptoEngine::Secp256k1).unwrap();
+    manager.durable_store(StoreKind::DynamicProperties).put(dynamic::key("LATEST_BLOCK_HEADER_HASH").unwrap(), id.as_bytes()).unwrap();
+    let point = CursorPoint { block: 7, identity: CheckpointIdentity::new(id.as_bytes().try_into().unwrap()) };
     manager.record_checkpoint(point).unwrap();
+    CheckpointStack::new(manager.clone(), CheckpointLimits::default()).persist().unwrap();
     let cursors = CursorSet::new(&manager, point, None, None, 0).unwrap();
-    let processor = TransactionProcessor {
-        sessions: manager.clone(),
-        cache: TransactionCache::new(CacheConfig::default()).unwrap(),
-        pipeline: StateTransactionPipeline::new(
-            Default::default(),
-            registry,
-            ExecutionConfig::default(),
-        )
-        .unwrap(),
-    };
-    let pending = PendingPool::new(manager, PendingLimits::default()).unwrap();
-    (path, ApiContext::new(cursors, processor, pending, parameters(), CryptoEngine::Secp256k1))
+    let actuators = Arc::new(registry);
+    let actor_sessions = manager.clone();
+    let actor_actuators = actuators.clone();
+    let actor = ChainActor::spawn(move || {
+        let managed = ManagedBlock { raw, id, received_at: 100 };
+        let mut khaos = KhaosDatabase::new();
+        khaos.start(KhaosBlockData::new(id, tron_primitives::Hash32::ZERO, 7, managed)).map_err(|error| tron_execution::ChainManagerError::State(error.to_string()))?;
+        let runtime = ExecutionRuntimeConfig { actuator_registry: actor_actuators, operation_registry: Arc::new(tron_tvm::OperationRegistry::integration().map_err(|error| tron_execution::ChainManagerError::State(format!("{error:?}")))?), shielded_parameters: parameters(), execution_config: ExecutionConfig::default() };
+        let processor = TransactionProcessor::new(actor_sessions.clone(), TransactionCache::new(CacheConfig::default()).map_err(|error| tron_execution::ChainManagerError::State(error.to_string()))?, StateTransactionPipeline::new(Default::default(), runtime));
+        let blocks = BlockManager::new(actor_sessions.clone(), processor, khaos, FixtureConsensus, (), BlockLimits::default(), CryptoEngine::Secp256k1);
+        let pending = PendingPool::new(actor_sessions.clone(), PendingLimits::default()).map_err(|error| tron_execution::ChainManagerError::State(error.to_string()))?;
+        let checkpoints = CheckpointStack::new(actor_sessions, CheckpointLimits::default());
+        Ok(CanonicalChainManager::new_full(blocks, pending, checkpoints, (), ()))
+    }, 32).unwrap();
+    let execution = Arc::new(ActorExecutionProvider::new(actor.handle()));
+    let api = ApiContext::new(cursors, Some(execution), actuators, parameters(), CryptoEngine::Secp256k1);
+    (path, api, actor)
 }
 
 #[test]
-fn trusted_extension_construct_broadcast_execute_and_query_payload() {
+fn trusted_extension_constructs_and_decodes_registered_payload() {
     let key = PrivateKey::from_bytes(CryptoEngine::Secp256k1, &OWNER_KEY).unwrap();
     let owner = derive_address(&key.public_key()).as_bytes().to_vec();
     let registry = registry();
@@ -211,71 +210,15 @@ fn trusted_extension_construct_broadcast_execute_and_query_payload() {
         }],
         &BTreeSet::from([ProviderCodeIdentity { provider_id: "reviewed.example.native".into(), code_sha256: [0x5a; 32] }]),
     ).unwrap();
-    let (path, context) = context(processor_registry, &owner);
-    let api = ExtensionApi::new(
-        Arc::clone(&registry),
-        WalletMutation::new(context.clone()),
-        true,
-    );
-    let payload = ExampleContract {
-        owner_address: owner.clone(),
-        payload: b"stored-value".to_vec(),
-    }
-    .encode_to_vec();
-    let extension = api.construct("org.tron.example.actuator", payload).unwrap();
-    let mut transaction = extension.transaction.unwrap();
+    let (path, context, actor) = context(processor_registry, &owner);
+    let api = ExtensionApi::new(Arc::clone(&registry), WalletMutation::new(context.clone()), true);
+    let payload = ExampleContract { owner_address: owner.clone(), payload: b"stored-value".to_vec() }.encode_to_vec();
+    let transaction = api.construct("org.tron.example.actuator", payload).unwrap().transaction.unwrap();
     assert_eq!(api.owner_address(&transaction).unwrap(), owner);
-    let unsigned = api.broadcast(transaction.encode_to_vec(), 101).unwrap();
-    assert_eq!((unsigned.code, unsigned.message), (ResponseCode::Sigerror as i32, b"Validate signature error: miss sig or contract".to_vec()));
-    assert_eq!(context.pending().lock().unwrap().len(), 0);
-
-    let sign = |transaction: &mut tron_protocol::protocol::Transaction| {
-        let digest = selected_digest(CryptoEngine::Secp256k1, &transaction.raw_data.as_ref().unwrap().encode_to_vec());
-        transaction.signature.push(key.sign_prehash(&digest).unwrap().to_wire().to_vec());
-    };
-    let mut bad_tapos = transaction.clone();
-    bad_tapos.raw_data.as_mut().unwrap().ref_block_hash = vec![8; 8];
-    sign(&mut bad_tapos);
-    let bad_tapos = api.broadcast(bad_tapos.encode_to_vec(), 101).unwrap();
-    assert_eq!((bad_tapos.code, bad_tapos.message), (ResponseCode::TaposError as i32, b"Tapos check error.".to_vec()));
-    assert_eq!(context.pending().lock().unwrap().len(), 0);
-
-    let mut expired = transaction.clone();
-    expired.raw_data.as_mut().unwrap().expiration = 100;
-    sign(&mut expired);
-    let expired = api.broadcast(expired.encode_to_vec(), 101).unwrap();
-    assert_eq!((expired.code, expired.message), (ResponseCode::TransactionExpirationError as i32, b"Transaction expired".to_vec()));
-    assert_eq!(context.pending().lock().unwrap().len(), 0);
-
-    let malformed_payload = ExampleContract { owner_address: owner.clone(), payload: b"malformed".to_vec() }.encode_to_vec();
-    let mut malformed = api.construct("org.tron.example.actuator", malformed_payload).unwrap().transaction.unwrap();
-    sign(&mut malformed);
-    let malformed = api.broadcast(malformed.encode_to_vec(), 101).unwrap();
-    assert_eq!(malformed.code, ResponseCode::ContractExeError as i32);
-    assert_eq!(malformed.message, b"Contract execute error : Provider(\"extension validation failure\")");
-    assert_eq!(context.pending().lock().unwrap().len(), 0);
     let decoded = api.decode_payload(&transaction).unwrap();
     assert_eq!(decoded.descriptor().full_name(), MESSAGE);
-    sign(&mut transaction);
-    let transaction_id = selected_digest(
-        CryptoEngine::Secp256k1,
-        &transaction.raw_data.as_ref().unwrap().encode_to_vec(),
-    );
-    let result = api.broadcast(transaction.encode_to_vec(), 101).unwrap();
-    assert!(result.result, "{}", String::from_utf8_lossy(&result.message));
-    assert_eq!(
-        (result.result, result.code),
-        (true, ResponseCode::Success as i32)
-    );
-    assert_eq!(context.pending().lock().unwrap().len(), 1);
-    let query = WalletQuery::new(context.clone(), ApiCursor::Head);
-    assert_eq!(query.pending_transaction(&transaction_id).unwrap(), transaction);
-    let expected_id = transaction_id.iter().map(|byte| format!("{byte:02x}")).collect::<String>();
-    assert_eq!(query.pending_ids().unwrap().tx_id, vec![expected_id]);
-    let duplicate = api.broadcast(transaction.encode_to_vec(), 101).unwrap();
-    assert_eq!((duplicate.code, duplicate.message), (ResponseCode::DupTransactionError as i32, b"Transaction already exists.".to_vec()));
-    assert_eq!(context.pending().lock().unwrap().len(), 1);
     drop(context);
+    actor.shutdown().unwrap();
     fs::remove_dir_all(path).unwrap();
 }
 

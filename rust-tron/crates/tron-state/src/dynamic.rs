@@ -263,6 +263,12 @@ pub const AVAILABLE_CONTRACT_TYPES: [u8; 32] = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ];
 
+/// Canonical Java active permission operation bitmap.
+pub const ACTIVE_DEFAULT_OPERATIONS: [u8; 32] = [
+    0x7f, 0xff, 0x1f, 0xc0, 0x03, 0x3e, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+];
+
 /// Values supplied by Java's `CommonParameter` singleton to the constructor.
 #[derive(Clone, Debug, Default, Eq, PartialEq)]
 pub struct DynamicPropertyConfig {
@@ -303,6 +309,52 @@ pub struct DynamicPropertyConfig {
     pub dynamic_energy_threshold: i64,
     pub dynamic_energy_increase_factor: i64,
     pub dynamic_energy_max_factor: i64,
+}
+
+impl From<&tron_config::Config> for DynamicPropertyConfig {
+    fn from(config: &tron_config::Config) -> Self {
+        let committee = &config.committee;
+        let late = |name: &str| committee.remaining.get(name).copied().unwrap_or(0);
+        Self {
+            allow_multi_sign: committee.allow_multi_sign,
+            maintenance_time_interval: config.block.maintenance_time_interval,
+            allow_adaptive_energy: committee.allow_adaptive_energy,
+            allow_market_transaction: committee.allow_market_transaction,
+            allow_transaction_fee_pool: committee.allow_transaction_fee_pool,
+            allow_delegate_resource: committee.allow_delegate_resource,
+            allow_tvm_transfer_trc10: committee.allow_tvm_transfer_trc10,
+            allow_tvm_constantinople: committee.allow_tvm_constantinople,
+            allow_tvm_solidity_059: committee.allow_tvm_solidity059,
+            forbid_transfer_to_contract: committee.forbid_transfer_to_contract,
+            allow_same_token_name: committee.allow_same_token_name,
+            allow_creation_of_contracts: committee.allow_creation_of_contracts,
+            allow_shielded_trc20_transaction: committee.allow_shielded_trc20_transaction,
+            allow_tvm_istanbul: committee.allow_tvm_istanbul,
+            allow_account_state_root: committee.allow_account_state_root,
+            allow_proto_filter_num: committee.allow_proto_filter_num,
+            changed_delegation: committee.changed_delegation,
+            allow_pbft: committee.allow_pbft,
+            allow_blackhole_optimization: committee.allow_black_hole_optimization,
+            allow_new_resource_model: committee.allow_new_resource_model,
+            allow_tvm_freeze: late("allowTvmFreeze"),
+            allow_tvm_vote: late("allowTvmVote"),
+            allow_tvm_london: late("allowTvmLondon"),
+            allow_tvm_compatible_evm: late("allowTvmCompatibleEvm"),
+            allow_asset_optimization: late("allowAssetOptimization"),
+            allow_account_asset_optimization: late("allowAccountAssetOptimization"),
+            allow_higher_limit_for_max_cpu_time_of_one_tx: late("allowHigherLimitForMaxCpuTimeOfOneTx"),
+            allow_new_reward_algorithm: late("allowNewRewardAlgorithm"),
+            allow_new_reward: late("allowNewReward"),
+            memo_fee: late("memoFee"),
+            allow_delegate_optimization: late("allowDelegateOptimization"),
+            unfreeze_delay_days: late("unfreezeDelayDays"),
+            allow_optimized_return_value_of_chain_id: late("allowOptimizedReturnValueOfChainId"),
+            allow_dynamic_energy: late("allowDynamicEnergy"),
+            dynamic_energy_threshold: late("dynamicEnergyThreshold"),
+            dynamic_energy_increase_factor: late("dynamicEnergyIncreaseFactor"),
+            dynamic_energy_max_factor: late("dynamicEnergyMaxFactor"),
+        }
+    }
 }
 
 fn property_key(symbol: &str) -> &'static [u8] {

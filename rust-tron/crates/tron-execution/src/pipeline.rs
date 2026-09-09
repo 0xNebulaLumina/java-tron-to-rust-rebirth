@@ -1,6 +1,9 @@
+use std::sync::Arc;
+
 use prost::Message;
 use tron_primitives::Hash32;
 use tron_protocol::protocol::{permission::PermissionType, transaction::{contract::ContractType, Result as TransactionResult}, Account, CreateSmartContract, Permission, SmartContract, Transaction, TransactionInfo, TransferAssetContract, TransferContract, TriggerSmartContract};
+use tron_shielded::TronParameters;
 use tron_state::{dynamic, GlobalResource, ResourceWindow, Session, SessionError, SessionManager, StoreKind, global_limit};
 use tron_tvm::{ContractResult, OperationRegistry};
 
@@ -34,29 +37,38 @@ pub struct ProcessOutput {
     pub retried: bool,
 }
 
-/// The production transaction path. It owns all execution registries and resolves
-/// authorization exclusively from the same C009 session used for execution.
+/// Immutable execution objects shared by mutable, pending, block, and read-only paths.
+#[derive(Clone)]
+pub struct ExecutionRuntimeConfig {
+    pub actuator_registry: Arc<ActuatorRegistry>,
+    pub operation_registry: Arc<OperationRegistry>,
+    pub shielded_parameters: Arc<TronParameters>,
+    pub execution_config: ExecutionConfig,
+}
+
+/// The production transaction path. Authorization and execution use one shared
+/// registry bundle and the same C009 session.
 pub struct StateTransactionPipeline {
     pub admission_policy: AdmissionPolicy,
-    pub actuator_registry: ActuatorRegistry,
-    pub operation_registry: OperationRegistry,
-    pub execution_config: ExecutionConfig,
+    pub runtime: ExecutionRuntimeConfig,
     pub bandwidth_policy: BandwidthPolicy,
     pub energy_billing_policy: EnergyBillingPolicy,
 }
 impl StateTransactionPipeline {
-    pub fn new(admission_policy: AdmissionPolicy, actuator_registry: ActuatorRegistry, execution_config: ExecutionConfig) -> Result<Self, String> {
+    pub fn with_runtime_config(admission_policy: AdmissionPolicy, runtime: ExecutionRuntimeConfig) -> Self {
         let mut energy_billing_policy = EnergyBillingPolicy::default();
-        // Networks supply the live price through dynamic properties; zero is the
-        // safe embedded default for callers that have not installed that policy.
         energy_billing_policy.energy_price = 0;
         energy_billing_policy.allow_constantinople = true;
-        Ok(Self { admission_policy, actuator_registry, operation_registry: OperationRegistry::integration().map_err(|error| format!("{error:?}"))?, execution_config, bandwidth_policy: BandwidthPolicy::default(), energy_billing_policy })
+        Self { admission_policy, runtime, bandwidth_policy: BandwidthPolicy::default(), energy_billing_policy }
+    }
+
+    pub fn new(admission_policy: AdmissionPolicy, runtime: ExecutionRuntimeConfig) -> Self {
+        Self::with_runtime_config(admission_policy, runtime)
     }
 
     fn authorization(&self, tx: &RawWireTransaction, session: &Session) -> Result<(Option<Permission>, bool), AdmissionError> {
         let contract = tx.message().raw_data.as_ref().and_then(|raw| raw.contract.first()).ok_or(AdmissionError::MissingContract)?;
-        let owner = self.actuator_registry.owner_address(contract).map_err(|error| AdmissionError::MalformedTransaction(format!("{error:?}")))?;
+        let owner = self.runtime.actuator_registry.owner_address(contract).map_err(|error| AdmissionError::MalformedTransaction(format!("{error:?}")))?;
         let shielded = ContractType::try_from(contract.r#type).ok() == Some(ContractType::ShieldedTransferContract);
         let ownerless_shielded = shielded && owner.is_empty();
         if ownerless_shielded {
@@ -135,7 +147,7 @@ impl StateTransactionPipeline {
 
     fn owner_address(&self, tx: &RawWireTransaction) -> Result<Vec<u8>, ProcessError> {
         let contract = tx.message().raw_data.as_ref().and_then(|raw| raw.contract.first()).ok_or_else(|| stage(PipelineStage::Billing, "missing contract".into()))?;
-        self.actuator_registry.owner_address(contract).map_err(|error| stage(PipelineStage::Billing, format!("{error:?}")))
+        self.runtime.actuator_registry.owner_address(contract).map_err(|error| stage(PipelineStage::Billing, format!("{error:?}")))
     }
 
     fn creates_account(&self, tx: &RawWireTransaction, session: &Session) -> Result<bool, ProcessError> {
@@ -187,7 +199,7 @@ impl StateTransactionPipeline {
             let burned = Self::dynamic_long(session, "BURN_TRX_AMOUNT")?.checked_add(fee).ok_or_else(|| stage(PipelineStage::Billing, "burn total overflow".into()))?;
             return Self::put_dynamic_long(session, "BURN_TRX_AMOUNT", burned);
         }
-        let address = &self.execution_config.blackhole_address;
+        let address = &self.runtime.execution_config.blackhole_address;
         let bytes = session.store(StoreKind::Account).get(address).ok_or_else(|| stage(PipelineStage::Billing, "blackhole account is missing".into()))?;
         let mut account = Account::decode(bytes.as_slice()).map_err(|error| stage(PipelineStage::Billing, error.to_string()))?;
         account.balance = account.balance.checked_add(fee).ok_or_else(|| stage(PipelineStage::Billing, "blackhole balance overflow".into()))?;
@@ -248,14 +260,14 @@ impl StateTransactionPipeline {
         account.balance=caller.balance;{let resource=account.account_resource.get_or_insert_default();resource.energy_usage=caller.energy_usage;resource.latest_consume_time_for_energy=caller.latest_consume_slot;resource.energy_window_size=caller.energy_window;resource.energy_window_optimized=caller.energy_window_optimized;}account.latest_opration_time=context.block_timestamp;session.store(StoreKind::Account).put(&caller_address,&account.encode_to_vec()).map_err(|error|stage(PipelineStage::Billing,error.to_string()))?;
         if let EnergyOrigin::Distinct(charged)=origin{let origin_address=charged.address.clone();let bytes=session.store(StoreKind::Account).get(&origin_address).ok_or_else(||stage(PipelineStage::Billing,"origin account is missing".into()))?;let mut account=Account::decode(bytes.as_slice()).map_err(|error|stage(PipelineStage::Billing,error.to_string()))?;let resource=account.account_resource.get_or_insert_default();resource.energy_usage=charged.energy_usage;resource.latest_consume_time_for_energy=charged.latest_consume_slot;resource.energy_window_size=charged.energy_window;resource.energy_window_optimized=charged.energy_window_optimized;account.latest_opration_time=context.block_timestamp;session.store(StoreKind::Account).put(&origin_address,&account.encode_to_vec()).map_err(|error|stage(PipelineStage::Billing,error.to_string()))?;}
         for(name,delta)in[("TRANSACTION_FEE_POOL",totals.transaction_fee_pool),("BURN_TRX_AMOUNT",totals.burned),("BLOCK_ENERGY_USAGE",totals.adaptive_block_energy)]{if delta!=0{Self::put_dynamic_long(session,name,Self::dynamic_long(session,name)?.checked_add(delta).ok_or_else(||stage(PipelineStage::Billing,"billing total overflow".into()))?)?;}}
-        if totals.blackhole!=0{let address=&self.execution_config.blackhole_address;let bytes=session.store(StoreKind::Account).get(address).ok_or_else(||stage(PipelineStage::Billing,"blackhole account is missing".into()))?;let mut account=Account::decode(bytes.as_slice()).map_err(|error|stage(PipelineStage::Billing,error.to_string()))?;account.balance=account.balance.checked_add(totals.blackhole).ok_or_else(||stage(PipelineStage::Billing,"blackhole balance overflow".into()))?;session.store(StoreKind::Account).put(address,&account.encode_to_vec()).map_err(|error|stage(PipelineStage::Billing,error.to_string()))?;}
+        if totals.blackhole!=0{let address=&self.runtime.execution_config.blackhole_address;let bytes=session.store(StoreKind::Account).get(address).ok_or_else(||stage(PipelineStage::Billing,"blackhole account is missing".into()))?;let mut account=Account::decode(bytes.as_slice()).map_err(|error|stage(PipelineStage::Billing,error.to_string()))?;account.balance=account.balance.checked_add(totals.blackhole).ok_or_else(||stage(PipelineStage::Billing,"blackhole balance overflow".into()))?;session.store(StoreKind::Account).put(address,&account.encode_to_vec()).map_err(|error|stage(PipelineStage::Billing,error.to_string()))?;}
         Ok(())
     }
 
     fn execute(&self,tx:&RawWireTransaction,transaction_id:Hash32,session:&Session,plan:Option<&EnergyExecutionPlan>,retry:bool)->Result<crate::RuntimeResult,ProcessError>{
         let raw=tx.message().raw_data.as_ref().ok_or_else(||stage(PipelineStage::Runtime,"missing raw data".into()))?;
         let contract=raw.contract.first().ok_or_else(||stage(PipelineStage::Runtime,"missing contract".into()))?;
-        let runtime=Runtime{actuator_registry:&self.actuator_registry,operation_registry:&self.operation_registry,execution_config:self.execution_config.clone()};
+        let runtime=Runtime{config:&self.runtime};
         let mut actuator=ActuatorResult::default();
         runtime.execute_transaction(contract,session,&mut actuator,transaction_id,plan,retry).map_err(|error|stage(if retry{PipelineStage::Retry}else{PipelineStage::Runtime},error.to_string()))
     }
@@ -267,6 +279,9 @@ pub struct TransactionProcessor {
     pub pipeline: StateTransactionPipeline,
 }
 impl TransactionProcessor {
+    pub fn new(sessions: SessionManager, cache: TransactionCache, pipeline: StateTransactionPipeline) -> Self {
+        Self { sessions, cache, pipeline }
+    }
     pub fn process_transaction(&mut self, mut tx: RawWireTransaction, context: ProcessContext) -> Result<ProcessOutput, ProcessError> {
         let mut session = self.sessions.build_session_enabled()?;
         let cache_before = self.cache.clone();
@@ -315,7 +330,7 @@ impl TransactionProcessor {
         let energy_plan = match runtime_kind {
             RuntimeKind::NonVm => None,
             RuntimeKind::Create | RuntimeKind::Trigger => {
-                let is_constant_abi = Runtime::trigger_is_constant_abi(contract, session).map_err(|error| stage(PipelineStage::Trace, error.to_string()))?;
+                let is_constant_abi = Runtime::trigger_is_constant_abi(contract, session, &self.pipeline.runtime).map_err(|error| stage(PipelineStage::Trace, error.to_string()))?;
                 Runtime::enforce_constant_policy(runtime_kind, self.pipeline.energy_policy(session)?.allow_constantinople, is_constant_abi).map_err(|error| stage(PipelineStage::Trace, error.to_string()))?;
                 Some(self.pipeline.energy_execution_plan(tx,session,context)?)
             }

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tron.invalid/schemas/c028-production-reconciliation-v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "production_rows", "java_test_rows", "rows"],
+  "properties": {
+    "schema": {"const": "c028-production-reconciliation-v1"},
+    "production_rows": {"const": 62},
+    "java_test_rows": {"const": 0},
+    "rows": {
+      "type": "array",
+      "minItems": 62,
+      "maxItems": 62,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["production_id", "owning_item", "java_symbol", "source", "result", "reason", "proof"],
+        "properties": {
+          "production_id": {"type": "string", "pattern": "^PROD-[0-9A-F]{16}$"},
+          "owning_item": {"type": "string", "pattern": "^C028\\.[0-9]{2}$"},
+          "java_symbol": {"type": "string", "minLength": 1},
+          "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "line", "sha256"],
+            "properties": {
+              "path": {"type": "string", "pattern": "^java-tron/"},
+              "line": {"type": "integer", "minimum": 1},
+              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            }
+          },
+          "result": {"enum": ["rust_equivalent", "retained_reference_only", "reviewed_non_applicable"]},
+          "reason": {"type": "string", "minLength": 40},
+          "proof": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "symbol"],
+            "properties": {"path": {"type": "string", "minLength": 1}, "symbol": {"type": "string", "minLength": 1}}
+          }
+        }
+      }
+    }
+  }
+}

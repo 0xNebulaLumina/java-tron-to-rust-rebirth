@@ -3,7 +3,7 @@ use prost::Message;
 use std::{collections::HashSet, net::SocketAddr, time::Duration};
 use tokio::io::duplex;
 use tokio_util::sync::CancellationToken;
-use tron_network::{compression, connection::{Direction,PoolConfig}, handshake::{AdmissionConfig,Control,DisconnectReason,Endpoint,HelloMessage,KeepAliveMessage,StatusMessage}, session::{session_event_channel,SessionConfig,SessionError,SessionEvent,SessionRegistry,SessionState,TransportSession}, tcp::FramedIo};
+use tron_network::{compression, connection::{Direction,PoolConfig}, handshake::{AdmissionConfig,Control,DisconnectReason,Endpoint,HelloMessage,KeepAliveMessage,StatusMessage}, session::{session_command_channel,session_event_channel,SessionCommand,SessionConfig,SessionError,SessionEvent,SessionRegistry,SessionState,TransportSession}, tcp::FramedIo};
 
 fn endpoint(id:u8)->Endpoint{Endpoint{address:b"127.0.0.1".to_vec(),port:18888,node_id:vec![id;64],address_ipv6:vec![]}}
 fn hello(id:u8,network:i32,version:i32)->HelloMessage{HelloMessage{from:Some(endpoint(id)),network_id:network,code:0,timestamp:9,version}}
@@ -206,4 +206,25 @@ async fn trusted_bad_protocol_is_closed_without_ip_ban() {
     assert!(matches!(task.await.unwrap(), Err(SessionError::Rejected(DisconnectReason::BadProtocol))));
     let admitted = registry.admission.lock().unwrap().admit(&hello(3, 7, 2), address.ip(), &vec![1; 64], &cfg.admission, std::time::Instant::now());
     assert_eq!(admitted, Ok(()));
+}
+
+#[tokio::test]
+async fn bounded_outbound_commands_send_application_bytes_and_reasoned_disconnect() {
+    let (rust, peer) = duplex(1 << 20);
+    let (commands, command_rx) = session_command_channel(2, 4, Duration::from_millis(20));
+    assert!(matches!(commands.send(SessionCommand::Send(vec![0; 5])).await, Err(SessionError::Backpressure)));
+    let task = tokio::spawn(TransportSession::new(FramedIo::new(rust, Duration::from_secs(1)), SocketAddr::from(([127,0,0,1], 6000)), config(Direction::Passive), SessionRegistry::default()).with_commands(command_rx).run(CancellationToken::new()));
+    let mut io = FramedIo::new(peer, Duration::from_secs(1));
+    control(&mut io, Control::HandshakeHello, &hello(2,7,2)).await;
+    assert_eq!(io.read_frame().await.unwrap()[0], Control::HandshakeHello.byte());
+    assert_eq!(io.read_frame().await.unwrap()[0], Control::Status.byte());
+    control(&mut io, Control::Status, &StatusMessage{from:Some(endpoint(2)),version:2,network_id:7,max_connections:4,current_connections:0,timestamp:10}).await;
+    assert_eq!(&io.read_frame().await.unwrap()[..], &[0xfa,1]);
+    io.write_frame(Bytes::from_static(&[0xfa,0])).await.unwrap();
+    commands.send(SessionCommand::Send(vec![0x22, 0xc0])).await.unwrap();
+    assert_eq!(&io.read_frame().await.unwrap()[..], &[0x22,0xc0]);
+    commands.send(SessionCommand::Disconnect(DisconnectReason::PeerQuiting)).await.unwrap();
+    let disconnect = io.read_frame().await.unwrap();
+    assert_eq!(disconnect[0], Control::Disconnect.byte());
+    assert!(task.await.unwrap().is_ok());
 }

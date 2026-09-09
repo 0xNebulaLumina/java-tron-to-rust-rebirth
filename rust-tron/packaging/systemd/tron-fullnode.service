@@ -1,0 +1,49 @@
+[Unit]
+Description=TRON Rust Full Node
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tron
+Group=tron
+UMask=0077
+ExecStartPre=/opt/tron/current/bin/tron-fullnode preflight --deployment-config /etc/tron/current/fullnode.deployment.json --json
+ExecStart=/opt/tron/current/bin/tron-fullnode --deployment-config /etc/tron/current/fullnode.deployment.json
+ExecStartPost=/bin/sh -ec 'n=0; until /opt/tron/current/bin/tron-fullnode probe --deployment-config /etc/tron/current/fullnode.deployment.json --kind ready; do n=$$((n+1)); test $$n -lt 120; sleep 1; done'
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGTERM
+TimeoutStartSec=120
+TimeoutStopSec=120
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+LimitCORE=0
+TasksMax=4096
+CPUQuota=800%
+MemoryHigh=12G
+MemoryMax=16G
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+SystemCallArchitectures=native
+ReadWritePaths=/var/lib/tron
+ConfigurationDirectory=tron
+StateDirectory=tron
+RuntimeDirectory=tron
+
+[Install]
+WantedBy=multi-user.target

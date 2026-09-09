@@ -1,11 +1,11 @@
 use std::{collections::VecDeque, sync::{Arc, atomic::{AtomicU64, AtomicUsize, Ordering}}, time::{Duration, SystemTime, UNIX_EPOCH}};
 use parking_lot::Mutex;
 
-use tron_apis::{ApiContext, DatabaseFuture, DatabaseSource, FilterLimits, FilterManager};
+use tron_apis::{ApiContext, DatabaseFuture, DatabaseSource, FilterLimits, FilterManager, NodeInfoSnapshot};
 use tron_config::Config;
 use tron_crypto::CryptoEngine;
 use tron_execution::{ActuatorRegistry, CacheConfig, ExecutionConfig, PendingLimits, PendingPool, StateTransactionPipeline, TransactionCache, TransactionProcessor};
-use tron_node::{CancellationToken, LifecycleError, MonotonicClock, NodeContext, NodeService, ServiceFailure, ServiceGraph, ServiceGraphState, ServiceMode, ServiceSpec, operations::{compose_production_node, NodeStatus, OperationalHooks, OperationalService, OperationsComponents, ProductionNode, ProductionNodeComposition, ProductionNodeDependencies, ProductionNodeServices, ProductionOperationsConfig, ProductionOperationalBindings, ShutdownPlan, StopCondition, StopController, StopHandle, API_SERVICE, NETWORK_SERVICE}, solidity_replica::{CAUGHT_UP_POLL, ERROR_RETRY, REPLICA_QUEUE_CAPACITY, ReplicaCheckpoint, SolidityReplica, StateReplicaCheckpoint, VerifiedBlockApplier, SOLIDITY_REPLICA_SERVICE}};
+use tron_node::{CancellationToken, LifecycleError, MonotonicClock, NodeContext, NodeService, ServiceFailure, ServiceGraph, ServiceGraphState, ServiceMode, ServiceSpec, operations::{NodeStatus, OperationalHooks, OperationalService, ProductionCoreServices, ProductionNode, ProductionNodeDependencies, ProductionOperationsConfig, ProductionOperationalBindings, ShutdownPlan, StopCondition, StopController, StopHandle, API_SERVICE, NETWORK_SERVICE}, solidity_replica::{CAUGHT_UP_POLL, ERROR_RETRY, REPLICA_QUEUE_CAPACITY, ReplicaCheckpoint, SolidityReplica, StateReplicaCheckpoint, VerifiedBlockApplier, SOLIDITY_REPLICA_SERVICE}};
 use tron_protocol::protocol::{block_header, Block, BlockHeader, DynamicProperties, NodeInfo};
 use tron_state::{dynamic, CheckpointIdentity, CursorPoint, CursorSet, SessionManager, StateStore, StoreKind};
 use tron_storage::{OpenRequirements, StorageIdentity, StorageManager};
@@ -24,11 +24,9 @@ fn production_checkpoint(committed_height: u64, marker_height: i64) -> (std::pat
     let marker = dynamic::key("LATEST_SOLIDIFIED_BLOCK_NUM").unwrap();
     sessions.store(StoreKind::DynamicProperties).put(marker, &marker_height.to_be_bytes()).unwrap();
     let cursors = CursorSet::new(&sessions, committed, Some(genesis), None, 0).unwrap();
-    let processor = TransactionProcessor { sessions: sessions.clone(), cache: TransactionCache::new(CacheConfig::default()).unwrap(), pipeline: StateTransactionPipeline::new(Default::default(), ActuatorRegistry::empty(), ExecutionConfig::default()).unwrap() };
-    let pending = PendingPool::new(sessions.clone(), PendingLimits::default()).unwrap();
     let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../java-tron/framework/src/main/resources/params");
     let parameters = tron_shielded::load_tron_parameters(root.join("sapling-spend.params"), root.join("sapling-output.params")).unwrap();
-    let api = ApiContext::new(cursors, processor, pending, parameters, CryptoEngine::Secp256k1);
+    let api = ApiContext::new(cursors, None, Arc::new(ActuatorRegistry::new([],[],&std::collections::BTreeSet::new()).unwrap()), parameters, CryptoEngine::Secp256k1);
     let checkpoint = Arc::new(StateReplicaCheckpoint::new(sessions.clone(), api.clone()));
     (path, sessions, api, checkpoint)
 }
@@ -64,10 +62,12 @@ impl DatabaseSource for Source {
 
 struct Applier { applied: Arc<Mutex<Vec<i64>>> }
 impl VerifiedBlockApplier for Applier {
-    fn apply_verified(&mut self, block: Block) -> Result<i64, String> {
-        let number = block.block_header.unwrap().raw_data.unwrap().number;
-        self.applied.lock().push(number);
-        Ok(number)
+    fn apply_verified<'a>(&'a mut self, block: Block) -> tron_node::solidity_replica::ReplicaFuture<'a, i64> {
+        Box::pin(async move {
+            let number = block.block_header.unwrap().raw_data.unwrap().number;
+            self.applied.lock().push(number);
+            Ok(number)
+        })
     }
 }
 
@@ -111,14 +111,16 @@ struct RestartApplier {
     cancellation: CancellationToken,
 }
 impl VerifiedBlockApplier for RestartApplier {
-    fn apply_verified(&mut self, block: Block) -> Result<i64, String> {
-        let number = block.block_header.unwrap().raw_data.unwrap().number;
-        self.attempts.lock().push(number);
-        let marker = dynamic::key("LATEST_SOLIDIFIED_BLOCK_NUM").unwrap();
-        let persisted = self.sessions.read_view().store(StoreKind::DynamicProperties).get(marker).unwrap();
-        self.observed_markers.lock().push(i64::from_be_bytes(persisted.as_slice().try_into().unwrap()));
-        self.cancellation.cancel();
-        Ok(number)
+    fn apply_verified<'a>(&'a mut self, block: Block) -> tron_node::solidity_replica::ReplicaFuture<'a, i64> {
+        Box::pin(async move {
+            let number = block.block_header.unwrap().raw_data.unwrap().number;
+            self.attempts.lock().push(number);
+            let marker = dynamic::key("LATEST_SOLIDIFIED_BLOCK_NUM").unwrap();
+            let persisted = self.sessions.read_view().store(StoreKind::DynamicProperties).get(marker).unwrap();
+            self.observed_markers.lock().push(i64::from_be_bytes(persisted.as_slice().try_into().unwrap()));
+            self.cancellation.cancel();
+            Ok(number)
+        })
     }
 }
 
@@ -351,7 +353,8 @@ async fn timed_out_replica_stop_remains_owned_and_retry_joins_source_shutdown() 
     let mut config=Config::default(); config.node.trust_node="127.0.0.1:50051".into();
     let context=NodeContext::new(Arc::new(config),cancellation,Arc::new(Clock));
     let replica=SolidityReplica::new(Box::new(BlockingShutdownSource{entered:entered.clone(),release:release.clone(),events:events.clone()}),Box::new(Applier{applied:Arc::new(Mutex::new(Vec::new()))}),Arc::new(Checkpoint{initial:0,published:Arc::new(Mutex::new(Vec::new())),cancel:CancellationToken::default(),stop_at:1}));
-    let mut graph=ServiceGraph::new(context,tron_config::NodeMode::Solidity,vec![Box::new(replica)]).unwrap();
+    let execution=ObservedProductionService { spec: ServiceSpec::new(tron_node::EXECUTION_SERVICE, &[], &[]), inspections: Arc::new(AtomicUsize::new(0)) };
+    let mut graph=ServiceGraph::new(context,tron_config::NodeMode::Solidity,vec![Box::new(execution),Box::new(replica)]).unwrap();
     graph.start(Duration::from_secs(1),Duration::from_secs(1)).await.unwrap();
     assert_eq!(graph.shutdown(Duration::from_millis(20)).await.unwrap_err(),LifecycleError::ShutdownTimeout{service:SOLIDITY_REPLICA_SERVICE,timeout:Duration::from_millis(20)});
     assert_eq!(graph.state(),ServiceGraphState::Stopping);
@@ -400,18 +403,18 @@ impl OperationalHooks for FailingReadiness {
 }
 
 fn production_node<F>(readiness: F, network: Box<dyn NodeService>) -> (std::path::PathBuf, SessionManager, Arc<StateReplicaCheckpoint>, ProductionNode)
-where F: FnOnce(NodeStatus,StopHandle)->Box<dyn OperationalHooks> {
+where F: FnOnce(NodeStatus,StopHandle)->Box<dyn OperationalHooks> + Send + 'static {
     let (path,sessions,api,checkpoint)=production_checkpoint(1,1);
     let queues=EventQueues::shared(QueueLimits::default());
     let metrics=Arc::new(MonitorMetrics::new(true));
     let filters=FilterManager::shared(FilterLimits::default());
-    let bindings=ProductionOperationalBindings::new(api,Arc::new(NodeInfo::default),queues,filters,metrics);
+    let bindings=ProductionOperationalBindings::new(api,Arc::new(||NodeInfoSnapshot::default().into_proto()),queues.clone(),filters,metrics.clone());
     let context=NodeContext::new(Arc::new(Config::default()),CancellationToken::default(),Arc::new(Clock));
-    let composition=ProductionNodeComposition{context,mode:tron_config::NodeMode::Full,bindings};
-    let node=ProductionNode::from_service_factory(composition,move|status,stop|{
-        let operations=OperationsComponents{api_provider:Box::new(IdleHooks),queues:Box::new(IdleHooks),plugin:Box::new(IdleHooks),zeromq:Box::new(IdleHooks),metrics:Box::new(IdleHooks),prometheus:Box::new(IdleHooks),db_stats:Box::new(IdleHooks),readiness:readiness(status,stop)};
-        ProductionNodeServices{core_services:Vec::new(),network,apis:Box::new(OperationalService::new(ServiceSpec::new(API_SERVICE,&[NETWORK_SERVICE],&[ServiceMode::Full]),ShutdownPlan::Stop,Box::new(IdleHooks))),operations,replica:None}
-    }).unwrap();
+    let sessions_for_factory=sessions.clone();
+    let node=ProductionNode::from_config(ProductionOperationsConfig::default(),ProductionNodeDependencies{context,mode:tron_config::NodeMode::Full,core_factory:Box::new(move|status,stop|{
+        let apis=Box::new(OperationalService::new(ServiceSpec::new(API_SERVICE,&[NETWORK_SERVICE],&[ServiceMode::Full]),ShutdownPlan::Stop,Box::new(IdleHooks)));
+        Ok(ProductionCoreServices{bindings,core_services:Vec::new(),network,apis,sessions:sessions_for_factory,verified_block_applier:None,queues,metrics:metrics.clone(),db_stats:DbStatService::new(metrics.prometheus().clone()),readiness:Some(readiness(status,stop))})
+    })}).unwrap();
     (path,sessions,checkpoint,node)
 }
 
@@ -421,23 +424,18 @@ fn production_factory_validates_mode_config_before_factory_side_effects() {
         "", "trust.example", "::1:50051", "host:1:50051", "host/path:50051",
         "http://host:50051", "user@host:50051", "host:50051?query", "host:50051#fragment",
     ] {
-        let (path, sessions, api, checkpoint) = production_checkpoint(1, 1);
-        let queues = EventQueues::shared(QueueLimits::default());
-        let metrics = Arc::new(MonitorMetrics::new(true));
-        let filters = FilterManager::shared(FilterLimits::default());
-        let bindings = ProductionOperationalBindings::new(api, Arc::new(NodeInfo::default), queues, filters, metrics);
+        let (path, sessions, _, checkpoint) = production_checkpoint(1, 1);
         let mut config = Config::default();
         config.node.trust_node = trust_node.into();
         let context = NodeContext::new(Arc::new(config), CancellationToken::default(), Arc::new(Clock));
         let factory_calls = Arc::new(AtomicUsize::new(0));
         let observed_calls = factory_calls.clone();
-        let error = ProductionNode::from_service_factory(
-            ProductionNodeComposition { context, mode: tron_config::NodeMode::Solidity, bindings },
-            move |_, _| {
+        let error = ProductionNode::from_config(ProductionOperationsConfig::default(),ProductionNodeDependencies{
+            context,mode:tron_config::NodeMode::Solidity,core_factory:Box::new(move|_,_|{
                 observed_calls.fetch_add(1, Ordering::SeqCst);
                 panic!("invalid configuration invoked the service/resource factory")
-            },
-        ).err().expect("invalid Solidity configuration must fail");
+            })
+        }).err().expect("invalid Solidity configuration must fail");
         assert!(matches!(error, LifecycleError::InvalidConfiguration(_)));
         assert_eq!(factory_calls.load(Ordering::SeqCst), 0);
         drop(checkpoint);
@@ -487,23 +485,18 @@ fn observed_production_dependencies(
     let queues = EventQueues::shared(QueueLimits::default());
     let metrics = Arc::new(MonitorMetrics::new(true));
     let filters = FilterManager::shared(FilterLimits::default());
-    let bindings = ProductionOperationalBindings::new(api, Arc::new(NodeInfo::default), queues.clone(), filters, metrics.clone());
+    let bindings = ProductionOperationalBindings::new(api, Arc::new(||NodeInfoSnapshot::default().into_proto()), queues.clone(), filters, metrics.clone());
     let mut config = Config::default();
     config.node.trust_node = trust_node.into();
     let context = NodeContext::new(Arc::new(config), CancellationToken::default(), Arc::new(Clock));
-    let service = |spec| Box::new(ObservedProductionService { spec, inspections: inspections.clone() }) as Box<dyn NodeService>;
+    let sessions_for_factory=sessions.clone();
     let dependencies = ProductionNodeDependencies {
         context,
         mode: tron_config::NodeMode::Solidity,
-        core_services: Vec::new(),
-        network: service(ServiceSpec::new(NETWORK_SERVICE, &[], &[ServiceMode::Full])),
-        apis: service(ServiceSpec::new(API_SERVICE, &[], &[ServiceMode::Solidity])),
-        bindings,
-        sessions: sessions.clone(),
-        verified_block_applier: Some(Box::new(Applier { applied: Arc::new(Mutex::new(Vec::new())) })),
-        queues,
-        metrics,
-        db_stats: DbStatService::new(MetricsRegistry::new(false)),
+        core_factory:Box::new(move|_,_|{
+            let service = |spec| Box::new(ObservedProductionService { spec, inspections: inspections.clone() }) as Box<dyn NodeService>;
+            Ok(ProductionCoreServices{bindings,core_services:vec![service(ServiceSpec::new(tron_node::EXECUTION_SERVICE,&[],&[]))],network:service(ServiceSpec::new(NETWORK_SERVICE,&[],&[ServiceMode::Full])),apis:service(ServiceSpec::new(API_SERVICE,&[],&[ServiceMode::Solidity])),sessions:sessions_for_factory,verified_block_applier:Some(Box::new(Applier{applied:Arc::new(Mutex::new(Vec::new()))})),queues,metrics,db_stats:DbStatService::new(MetricsRegistry::new(false)),readiness:None})
+        }),
     };
     (path, sessions, dependencies)
 }
@@ -516,7 +509,7 @@ async fn public_production_entrypoint_prevalidates_canonical_config_before_consu
     ] {
         let inspections = Arc::new(AtomicUsize::new(0));
         let (path, sessions, dependencies) = observed_production_dependencies(trust_node, inspections.clone());
-        let error = compose_production_node(ProductionOperationsConfig::default(), dependencies)
+        let error = ProductionNode::from_config(ProductionOperationsConfig::default(), dependencies)
             .err().expect("invalid canonical context config must fail");
         assert!(matches!(error, LifecycleError::InvalidConfiguration(_)));
         assert_eq!(inspections.load(Ordering::SeqCst), 0, "invalid config consumed an owned service");
@@ -526,9 +519,9 @@ async fn public_production_entrypoint_prevalidates_canonical_config_before_consu
 
     let inspections = Arc::new(AtomicUsize::new(0));
     let (path, sessions, dependencies) = observed_production_dependencies("127.0.0.1:50051", inspections.clone());
-    let node = compose_production_node(ProductionOperationsConfig::default(), dependencies)
+    let node = ProductionNode::from_config(ProductionOperationsConfig::default(), dependencies)
         .expect("valid canonical context config must compose");
-    assert_eq!(inspections.load(Ordering::SeqCst), 3, "valid composition must build exactly one validated production graph");
+    assert_eq!(inspections.load(Ordering::SeqCst), 6, "valid composition must inspect each enabled production service during graph validation");
     drop(node);
     drop(sessions);
     std::fs::remove_dir_all(path).unwrap();

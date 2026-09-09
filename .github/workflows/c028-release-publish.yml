@@ -1,0 +1,252 @@
+name: C028 authenticated publish
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_run_id:
+        description: Exact unsigned candidate workflow run ID authenticated by the signer
+        required: true
+      signing_run_id:
+        description: Exact protected signing workflow run ID
+        required: true
+      artifact_name:
+        description: Immutable digest-bound candidate artifact name
+        required: true
+      candidate_sha256:
+        description: Independently approved SHA-256 of c028-candidate.tar.gz
+        required: true
+      expected_release_id:
+        description: Independently approved authenticated release ID
+        required: true
+      expected_channel:
+        description: Independently approved authenticated channel
+        required: true
+        type: choice
+        options: [stable, beta]
+      release_tag:
+        description: Exact GitHub release tag; must equal authenticated release ID
+        required: true
+permissions:
+  actions: read
+  contents: write
+jobs:
+  validate-release-inputs:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Validate untrusted dispatch inputs before privileged operations
+        env:
+          EXPECTED_RELEASE_ID: ${{ inputs.expected_release_id }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+          SIGNING_RUN_ID: ${{ inputs.signing_run_id }}
+          CANDIDATE_RUN_ID: ${{ inputs.candidate_run_id }}
+          ARTIFACT_NAME: ${{ inputs.artifact_name }}
+          EXPECTED_SHA256: ${{ inputs.candidate_sha256 }}
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_RELEASE_ID" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$ ]]
+          test "$RELEASE_TAG" = "$EXPECTED_RELEASE_ID"
+          [[ "$SIGNING_RUN_ID" =~ ^[0-9]+$ ]]
+          [[ "$CANDIDATE_RUN_ID" =~ ^[0-9]+$ ]]
+          [[ "$EXPECTED_SHA256" =~ ^[0-9a-f]{64}$ ]]
+          test "$ARTIFACT_NAME" = "c028-candidate-$EXPECTED_RELEASE_ID-$EXPECTED_SHA256"
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - name: Fetch and check out authenticated release tag
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          test -n "$RELEASE_TAG"
+          git check-ref-format "refs/tags/$RELEASE_TAG"
+          git fetch --force --no-tags origin "refs/tags/$RELEASE_TAG:refs/tags/$RELEASE_TAG"
+          git checkout --detach "refs/tags/$RELEASE_TAG^{commit}"
+      - name: Install exact repository Rust toolchain
+        run: |
+          rustup toolchain install 1.85.1 --profile minimal --component cargo --target x86_64-unknown-linux-gnu
+          rustup override set 1.85.1 rust-tron
+          test "$(cd rust-tron && rustc --version)" = "rustc 1.85.1 (4eb161250 2025-03-15)"
+      - name: Guard pinned java-tron submodule
+        run: python3 tools/reference-runner/java_reference_guard.py --phase publish-gate-workflow
+      - name: Provision repository-pinned BusyBox for the gate without secrets
+        run: |
+          python3 - <<'PY' >> "$GITHUB_ENV"
+          import json
+          policy=json.load(open('docs/oracles/c028-busybox-material.v1.json'))
+          print('BUSYBOX_URL='+policy['source']['url'])
+          print('BUSYBOX_PACKAGE_SHA256='+policy['source']['sha256'])
+          print('TRON_BUSYBOX_SHA256='+policy['material']['sha256'])
+          print('TRON_BUSYBOX_VERSION='+policy['material']['version'])
+          print('TRON_BUSYBOX_LICENSE='+policy['material']['license'])
+          print('TRON_BUSYBOX_PROVENANCE='+policy['material']['provenance'])
+          PY
+          install -d -m 0700 "$RUNNER_TEMP/c028-inputs/package" "$RUNNER_TEMP/c028-inputs/root"
+          curl --fail --location --proto '=https' --tlsv1.2 --output "$RUNNER_TEMP/c028-inputs/package/busybox.deb" "$BUSYBOX_URL"
+          printf '%s  %s\n' "$BUSYBOX_PACKAGE_SHA256" "$RUNNER_TEMP/c028-inputs/package/busybox.deb" | sha256sum --check --strict
+          dpkg-deb --extract "$RUNNER_TEMP/c028-inputs/package/busybox.deb" "$RUNNER_TEMP/c028-inputs/root"
+          install -m 0500 "$RUNNER_TEMP/c028-inputs/root/bin/busybox" "$RUNNER_TEMP/c028-inputs/busybox"
+          printf '%s  %s\n' "$TRON_BUSYBOX_SHA256" "$RUNNER_TEMP/c028-inputs/busybox" | sha256sum --check --strict
+          echo "TRON_BUSYBOX=$RUNNER_TEMP/c028-inputs/busybox" >> "$GITHUB_ENV"
+      - name: Run canonical C028 gate before entering release environment
+        run: python3 tools/tracker/validate.py --gate C028
+  publish:
+    runs-on: ubuntu-24.04
+    needs: validate-release-inputs
+    environment: release
+    steps:
+      - name: Validate untrusted dispatch inputs before privileged operations
+        env:
+          EXPECTED_RELEASE_ID: ${{ inputs.expected_release_id }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+          SIGNING_RUN_ID: ${{ inputs.signing_run_id }}
+          CANDIDATE_RUN_ID: ${{ inputs.candidate_run_id }}
+          ARTIFACT_NAME: ${{ inputs.artifact_name }}
+          EXPECTED_SHA256: ${{ inputs.candidate_sha256 }}
+        run: |
+          set -euo pipefail
+          [[ "$EXPECTED_RELEASE_ID" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$ ]]
+          test "$RELEASE_TAG" = "$EXPECTED_RELEASE_ID"
+          [[ "$SIGNING_RUN_ID" =~ ^[0-9]+$ ]]
+          [[ "$CANDIDATE_RUN_ID" =~ ^[0-9]+$ ]]
+          [[ "$EXPECTED_SHA256" =~ ^[0-9a-f]{64}$ ]]
+          test "$ARTIFACT_NAME" = "c028-candidate-$EXPECTED_RELEASE_ID-$EXPECTED_SHA256"
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - name: Install exact repository Rust toolchain
+        run: |
+          rustup toolchain install 1.85.1 --profile minimal --component cargo --target x86_64-unknown-linux-gnu
+          rustup override set 1.85.1 rust-tron
+          test "$(cd rust-tron && rustc --version)" = "rustc 1.85.1 (4eb161250 2025-03-15)"
+      - name: Fetch and check out exact release tag commit
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          test -n "$RELEASE_TAG"
+          git check-ref-format "refs/tags/$RELEASE_TAG"
+          git fetch --force --no-tags origin "refs/tags/$RELEASE_TAG:refs/tags/$RELEASE_TAG"
+          TAG_COMMIT=$(git rev-parse --verify "refs/tags/$RELEASE_TAG^{commit}")
+          case "$TAG_COMMIT" in *[!0-9a-f]*|'') exit 2;; esac
+          test "${#TAG_COMMIT}" = 40
+          git checkout --detach "$TAG_COMMIT"
+          test "$(git rev-parse --verify HEAD^{commit})" = "$TAG_COMMIT"
+      - name: Guard pinned java-tron submodule
+        run: python3 tools/reference-runner/java_reference_guard.py --phase publish-workflow
+      - name: Verify protected signing run and exact artifact identity
+        id: signing-run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          SIGNING_RUN_ID: ${{ inputs.signing_run_id }}
+          ARTIFACT_NAME: ${{ inputs.artifact_name }}
+        run: |
+          set -euo pipefail
+          RUN_JSON=$(gh api "repos/$REPOSITORY/actions/runs/$SIGNING_RUN_ID")
+          test "$(jq -r .id <<<"$RUN_JSON")" = "$SIGNING_RUN_ID"
+          test "$(jq -r .name <<<"$RUN_JSON")" = "C028 protected release signing"
+          test "$(jq -r .path <<<"$RUN_JSON")" = ".github/workflows/c028-release-sign.yml"
+          test "$(jq -r .event <<<"$RUN_JSON")" = "workflow_run"
+          test "$(jq -r .status <<<"$RUN_JSON")" = "completed"
+          test "$(jq -r .conclusion <<<"$RUN_JSON")" = "success"
+          test "$(jq -r .repository.full_name <<<"$RUN_JSON")" = "$REPOSITORY"
+          test "$(jq -r .head_repository.full_name <<<"$RUN_JSON")" = "$REPOSITORY"
+          WORKFLOW_SHA=$(jq -r .head_sha <<<"$RUN_JSON")
+          [[ "$WORKFLOW_SHA" =~ ^[0-9a-f]{40}$ ]]
+          ARTIFACTS=$(gh api "repos/$REPOSITORY/actions/runs/$SIGNING_RUN_ID/artifacts?per_page=100")
+          test "$(jq -r .total_count <<<"$ARTIFACTS")" -le 100
+          test "$(jq --arg name "$ARTIFACT_NAME" '[.artifacts[] | select(.expired == false and .name == $name)] | length' <<<"$ARTIFACTS")" = 1
+          echo "workflow_sha=$WORKFLOW_SHA" >> "$GITHUB_OUTPUT"
+      - name: Download exact immutable candidate artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ inputs.signing_run_id }}
+          name: ${{ inputs.artifact_name }}
+          path: ${{ runner.temp }}/download
+      - name: Verify independently supplied artifact digest and extract privately
+        env:
+          EXPECTED_SHA256: ${{ inputs.candidate_sha256 }}
+          EXPECTED_RELEASE_ID: ${{ inputs.expected_release_id }}
+          ARTIFACT_NAME: ${{ inputs.artifact_name }}
+          SIGNING_RUN_ID: ${{ inputs.signing_run_id }}
+          EXPECTED_REPOSITORY: ${{ github.repository }}
+          EXPECTED_WORKFLOW_SHA: ${{ steps.signing-run.outputs.workflow_sha }}
+        run: |
+          set -euo pipefail
+          case "$EXPECTED_SHA256" in *[!0-9a-f]*|'') exit 2;; esac
+          test "${#EXPECTED_SHA256}" = 64
+          test "$ARTIFACT_NAME" = "c028-candidate-$EXPECTED_RELEASE_ID-$EXPECTED_SHA256"
+          printf '%s  %s\n' "$EXPECTED_SHA256" "$RUNNER_TEMP/download/c028-candidate.tar.gz" | sha256sum --check --strict
+          test "$(jq -r .schema "$RUNNER_TEMP/download/workflow-metadata.json")" = "c028-workflow-metadata-v1"
+          test "$(jq -r .repository "$RUNNER_TEMP/download/workflow-metadata.json")" = "$EXPECTED_REPOSITORY"
+          test "$(jq -r .signing_run_id "$RUNNER_TEMP/download/workflow-metadata.json")" = "$SIGNING_RUN_ID"
+          test "$(jq -r .signing_workflow "$RUNNER_TEMP/download/workflow-metadata.json")" = ".github/workflows/c028-release-sign.yml"
+          test "$(jq -r .signing_workflow_sha "$RUNNER_TEMP/download/workflow-metadata.json")" = "$EXPECTED_WORKFLOW_SHA"
+          test "$(jq -r .signed_artifact_name "$RUNNER_TEMP/download/workflow-metadata.json")" = "$ARTIFACT_NAME"
+          test "$(jq -r .candidate_sha256 "$RUNNER_TEMP/download/workflow-metadata.json")" = "$EXPECTED_SHA256"
+          CANDIDATE="$RUNNER_TEMP/c028-candidate"; install -d -m 0700 "$CANDIDATE"
+          tar --extract --gzip --file "$RUNNER_TEMP/download/c028-candidate.tar.gz" --directory "$CANDIDATE" \
+            --no-same-owner --no-same-permissions --delay-directory-restore
+          test -f "$CANDIDATE/candidate-inventory.json"
+          echo "CANDIDATE=$CANDIDATE" >> "$GITHUB_ENV"
+      - name: Build verifier from locked offline sources
+        working-directory: rust-tron
+        run: cargo build --release --locked --offline --package tron-toolkit --bin tron-release-verify
+      - name: Provision external release trust root
+        env:
+          RELEASE_TRUST_ROOT_B64: ${{ secrets.C028_RELEASE_TRUST_ROOT_B64 }}
+          RELEASE_TRUST_ROOT_SHA256: ${{ secrets.C028_RELEASE_TRUST_ROOT_SHA256 }}
+        run: |
+          test -n "$RELEASE_TRUST_ROOT_B64" && test -n "$RELEASE_TRUST_ROOT_SHA256"
+          TRUST_DIR="$RUNNER_TEMP/c028-release-trust"; install -d -m 0700 "$TRUST_DIR"
+          printf '%s' "$RELEASE_TRUST_ROOT_B64" | base64 --decode > "$TRUST_DIR/current.json"
+          printf '%s  %s\n' "$RELEASE_TRUST_ROOT_SHA256" "$TRUST_DIR/current.json" | sha256sum --check --strict
+          chmod 0400 "$TRUST_DIR/current.json"
+          echo "TRUST_STORE=$TRUST_DIR/current.json" >> "$GITHUB_ENV"
+          echo "VERIFICATION_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+      - name: Verify and stage immutable publication snapshot
+        env:
+          EXPECTED_CHANNEL: ${{ inputs.expected_channel }}
+        run: |
+          STAGING="$RUNNER_TEMP/c028-publication"
+          rust-tron/target/release/tron-release-verify stage-publish --trust-store "$TRUST_STORE" \
+            --candidate "$CANDIDATE" --staging "$STAGING" --platform P-LINUX-X64 --channel "$EXPECTED_CHANNEL" \
+            --minimum-sequence 1 --verification-time "$VERIFICATION_TIME"
+          test "$(stat -c '%a' "$STAGING")" = 700
+          echo "PUBLICATION_STAGING=$STAGING" >> "$GITHUB_ENV"
+      - name: Bind authenticated release identity to approved destination
+        env:
+          EXPECTED_RELEASE_ID: ${{ inputs.expected_release_id }}
+          EXPECTED_CHANNEL: ${{ inputs.expected_channel }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+          ARTIFACT_NAME: ${{ inputs.artifact_name }}
+          EXPECTED_SHA256: ${{ inputs.candidate_sha256 }}
+          CANDIDATE_RUN_ID: ${{ inputs.candidate_run_id }}
+          EXPECTED_REPOSITORY: ${{ github.repository }}
+          SIGNING_RUN_ID: ${{ inputs.signing_run_id }}
+          EXPECTED_WORKFLOW_SHA: ${{ steps.signing-run.outputs.workflow_sha }}
+        run: |
+          python3 tools/release/c028_release.py validate-publish-identity \
+            --inventory "$PUBLICATION_STAGING/publication-inventory.json" --workflow-metadata "$RUNNER_TEMP/download/workflow-metadata.json" --artifact-name "$ARTIFACT_NAME" \
+            --candidate-sha256 "$EXPECTED_SHA256" --expected-release-id "$EXPECTED_RELEASE_ID" \
+            --expected-channel "$EXPECTED_CHANNEL" --release-tag "$RELEASE_TAG" --repo "$GITHUB_WORKSPACE" \
+            --expected-repository "$EXPECTED_REPOSITORY" --expected-candidate-run-id "$CANDIDATE_RUN_ID" --expected-signing-run-id "$SIGNING_RUN_ID" \
+            --expected-signing-workflow-sha "$EXPECTED_WORKFLOW_SHA"
+          echo "AUTHENTICATED_RELEASE_ID=$EXPECTED_RELEASE_ID" >> "$GITHUB_ENV"
+      - name: Publish exact staged bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          test -d "$PUBLICATION_STAGING"
+          gh release view "$AUTHENTICATED_RELEASE_ID" >/dev/null 2>&1 || \
+            gh release create "$AUTHENTICATED_RELEASE_ID" --verify-tag --title "$AUTHENTICATED_RELEASE_ID"
+          python3 - "$PUBLICATION_STAGING/publication-inventory.json" "$PUBLICATION_STAGING" <<'PY'
+          import json, os, subprocess, sys
+          inventory=json.load(open(sys.argv[1])); root=sys.argv[2]
+          for obj in inventory["objects"]:
+              path=os.path.join(root,obj["path"])
+              subprocess.run(["gh","release","upload",inventory["release_id"],path,"--clobber=false"],check=True)
+          PY

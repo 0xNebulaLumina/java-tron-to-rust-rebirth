@@ -1,4 +1,4 @@
-use std::{future::Future, pin::Pin, sync::Arc, time::{Duration, SystemTime, UNIX_EPOCH}};
+use std::{future::Future, pin::Pin, sync::Arc, time::Duration};
 
 use prost::Message;
 use tron_apis::{ApiContext, DatabaseSource};
@@ -17,7 +17,7 @@ pub const ERROR_RETRY: Duration = Duration::from_secs(1);
 pub type ReplicaFuture<'a, T> = Pin<Box<dyn Future<Output = Result<T, String>> + Send + 'a>>;
 
 pub trait VerifiedBlockApplier: Send {
-    fn apply_verified(&mut self, block: Block) -> Result<i64, String>;
+    fn apply_verified<'a>(&'a mut self, block: Block) -> ReplicaFuture<'a, i64>;
 }
 
 
@@ -27,11 +27,9 @@ pub trait ReplicaCheckpoint: Send + Sync {
 }
 
 /// Invokes the verified C019 canonical block path without duplicating validation or execution.
-pub fn apply_with_c019<C: BlockConsensus, H: BlockApplyHooks>(manager: &mut BlockManager<C, H>, block: Block) -> Result<i64, String> {
+pub fn apply_with_c019<C: BlockConsensus, H: BlockApplyHooks>(manager: &mut BlockManager<C, H>, block: Block, now_millis: i64) -> Result<i64, String> {
     let raw = RawBlock::decode(block.encode_to_vec(), manager.limits).map_err(|error| error.to_string())?;
-    let now = SystemTime::now().duration_since(UNIX_EPOCH).map_err(|error| error.to_string())?.as_millis();
-    let now = i64::try_from(now).map_err(|_| "system time exceeds i64".to_owned())?;
-    manager.apply_block(raw, now).map(|id| id.height()).map_err(|error| error.to_string())
+    manager.apply_block(raw, now_millis).map(|id| id.height()).map_err(|error| error.to_string())
 }
 
 /// Publishes the durable solid marker and refreshes the live API Solidity cursor.
@@ -130,13 +128,14 @@ impl ReplicaRunner {
             // Java lets the current pushVerifiedBlock finish, but shutdown/hit-down visibility
             // suppresses marker publication. The next startup reconciles that stale marker to the
             // durable local checkpoint before asking the trust node for the following height.
-            match self.applier.apply_verified(block) {
-                Ok(applied) if applied == next => {
+            match interrupt(cancellation, self.applier.apply_verified(block)).await {
+                Interrupted::Cancelled => return Ok(()),
+                Interrupted::Ready(Ok(applied)) if applied == next => {
                     if cancellation.is_cancelled() { return Ok(()); }
                     self.checkpoint.publish(next)?;
                     next = next.checked_add(1).ok_or_else(|| "solidified height overflow".to_owned())?;
                 }
-                Ok(_) | Err(_) => {
+                Interrupted::Ready(Ok(_) | Err(_)) => {
                     if cancellation.is_cancelled() { return Ok(()); }
                     if sleep_or_cancel(cancellation, ERROR_RETRY).await { return Ok(()); }
                 }
@@ -154,7 +153,7 @@ async fn sleep_or_cancel(cancellation: &CancellationToken, duration: Duration) -
 }
 
 impl NodeService for SolidityReplica {
-    fn spec(&self) -> ServiceSpec { ServiceSpec::new(SOLIDITY_REPLICA_SERVICE, &[], &[ServiceMode::Solidity]) }
+    fn spec(&self) -> ServiceSpec { ServiceSpec::new(SOLIDITY_REPLICA_SERVICE, crate::SOLIDITY_REPLICA_DEPS, &[ServiceMode::Solidity]) }
     fn start<'a>(&'a mut self, context: &'a NodeContext, _deadline: Duration) -> LifecycleFuture<'a> {
         Box::pin(async move {
             let mut runner = self.runner.take().ok_or_else(|| ServiceFailure { service: SOLIDITY_REPLICA_SERVICE, message: "replica already started".into() })?;

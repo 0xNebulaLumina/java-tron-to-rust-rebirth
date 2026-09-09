@@ -466,7 +466,7 @@
         },
         {
           "id": "C003.04",
-          "description": "Implement precedence: CLI parse \u2192 config \u2192 CLI override \u2192 event \u2192 platform \u2192 witness post-processing.",
+          "description": "Implement precedence: CLI parse → config → CLI override → event → platform → witness post-processing.",
           "status": "done",
           "note": "The fixed config, assigned CLI, event, platform, and witness precedence pipeline is implemented."
         },
@@ -2453,7 +2453,7 @@
         },
         {
           "id": "C018.06",
-          "description": "Extend consensus manifests with PBFT quorum\u22121/at/+1, expiry, dedup, invalid signatures, backup election and timeout scenarios.",
+          "description": "Extend consensus manifests with PBFT quorum−1/at/+1, expiry, dedup, invalid signatures, backup election and timeout scenarios.",
           "status": "done",
           "note": "Four authenticated family manifests prove every retained row exactly once: PBFT 51, persistence/cursor 15, backup wire/DNS/lifecycle 60, backup election 10. Declarations use exact source-hash/type/constant assertions; methods invoke their Rust API with pinned Java capture input/output/error. Shared observations require an identical-observation digest. C019 owns role consumption and C021 authenticated transport/dispatch; neither takes canonical C018 evidence rows."
         }
@@ -2707,7 +2707,7 @@
       ],
       "gate": {
         "id": "C020.V",
-        "description": "Captured and live Java\u2194Rust bidirectional TCP, compression, malformed, UDP, DNS and ban tests pass; UDP ambiguity is results-resolved.",
+        "description": "Captured and live Java↔Rust bidirectional TCP, compression, malformed, UDP, DNS and ban tests pass; UDP ambiguity is results-resolved.",
         "status": "passed",
         "commands": [
           {
@@ -3395,7 +3395,7 @@
       ],
       "gate": {
         "id": "C026.V",
-        "description": "Cross-language full\u2192Solidity replication and API-state parity pass; standalone exposure manifest has zero difference and every required/forbidden/cursor row has passing results.",
+        "description": "Cross-language full→Solidity replication and API-state parity pass; standalone exposure manifest has zero difference and every required/forbidden/cursor row has passing results.",
         "status": "passed",
         "commands": [
           {
@@ -3774,83 +3774,457 @@
     {
       "id": "C028",
       "title": "Packaging, deployment, and resync",
-      "status": "todo",
+      "status": "done",
       "owner": null,
-      "updated": null,
+      "updated": "2026-09-09",
       "resume": null,
       "items": [
         {
           "id": "C028.01",
           "description": "Reproducible FullNode/Solidity/Toolkit binaries and config packaging; Sapling parameters are never packaged and are operator-provisioned with exact size/BLAKE2b-512 preflight.",
-          "status": "todo",
+          "status": "done",
           "note": "C006 seam: reject any crate, package, binary, container, bundle, or release containing sapling-spend.params or sapling-output.params; package only expected hashes and provisioning policy, not parameter bytes."
         },
         {
           "id": "C028.02",
           "description": "Consume C000.14 supported OS/architecture/backend/feature matrix and startup preflight; no undeclared platform row.",
-          "status": "todo",
+          "status": "done",
           "note": null
         },
         {
           "id": "C028.03",
           "description": "Service/container examples, health/readiness, logs, signals and numeric resource limits.",
-          "status": "todo",
+          "status": "done",
           "note": null
         },
         {
           "id": "C028.04",
           "description": "Plaintext API/P2P/event/ZK exposure and key-management security guidance.",
-          "status": "todo",
+          "status": "done",
           "note": null
         },
         {
           "id": "C028.05",
           "description": "End-to-end upgrade/rollback matrix: retained binaries/tools/config, preflight, quiescence, point of no return, downgrade eligibility after writes, network safety and clean-resync fallback.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Installation journal transitions now reconcile actual retained filesystem state before advancing phases, so process death after mutation but before phase persistence deterministically resumes or rolls back without ambiguous current, receipt, or slot state."
         },
         {
           "id": "C028.06",
           "description": "Snapshot format and trust-store policy: out-of-band anchor provisioning; signer scope; rotation/revocation; signature algorithm/version agility; offline verification; network checkpoint and operator-selected minimum acceptable height independent of snapshot metadata; clock/freshness failures; authenticated provenance; network/genesis/version/height and trusted block/state-root binding; completeness/replay/anti-rollback; atomic staging, cleanup and resync fallback.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Snapshot verification now requires the exact canonical snapshot:<network> TrustRole.scope before import mutation; matching role names with wrong scope and signed cross-network roles are rejected by executable integration tests."
         },
         {
           "id": "C028.07",
           "description": "Genesis resync, snapshot, disk-full, corruption, wrong identity, newer format and partial migration drills at declared fault points, including revoked key, rotated key, stale-but-valid signature, rollback height, compromised metadata and offline verification cases.",
-          "status": "todo",
+          "status": "done",
           "note": null
         },
         {
           "id": "C028.08",
           "description": "Package every HTTP/gRPC/JSON-RPC/event/metric integration and prove advertised endpoints/ports/configs from a clean install.",
-          "status": "todo",
+          "status": "done",
           "note": null
         },
         {
           "id": "C028.09",
           "description": "Publish the release-artifact trust contract and signed release manifest binding the release identity/version to every binary, container image digest, configuration bundle and approved native library/resource digest; attach SBOM and build-provenance attestations; define out-of-band trust-anchor provisioning, signer scope, threshold if used, rotation/revocation, algorithm/version agility and offline verification. For C006 Sapling parameters, bind only the operator-provisioning policy and expected size/digest, never parameter bytes or a parameter-package claim absent explicit redistribution approval.",
-          "status": "todo",
-          "note": "C006 provenance seam requires package-inventory exclusion checks and records the java-tron and zksnark-java-sdk origins as content-pinned but signer-unverified/unsigned risk."
+          "status": "done",
+          "note": "Signer and publisher now share the exact strict c028-workflow-metadata-v1 document and Draft 2020-12 schema, binding repository, candidate/signing run identities, protected workflow identity and SHA, unsigned/signed artifact identities, release identity, channel, and source revision end to end."
         },
         {
           "id": "C028.10",
           "description": "Execute clean-install artifact-authentication drills on every supported C000.14 platform row: accept the authentic signed manifest and exact artifacts; reject missing, malformed, mismatched, unknown-key, expired-policy and revoked-key signatures, substituted mirror bytes, detached SBOM/provenance, and mixed-release bundles before execution or installation mutation.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Container restart now re-verifies the signed release manifest and candidate bundle against the externally provisioned trust store, channel, verification time, and sequence floor before reconciling the receipt and installed tree; matching receipt/file substitutions are rejected."
         }
       ],
       "gate": {
         "id": "C028.V",
         "description": "Command/drill manifest passes on every C000.14 supported matrix row with artifact/run hashes, final roots, rollback target, snapshot trust-store/signature/freshness/anti-rollback and resync assertions, plus release-manifest signature, artifact digest, SBOM/provenance and clean-install authentication results.",
-        "status": "unconfigured",
-        "commands": [],
+        "status": "passed",
+        "commands": [
+          {
+            "name": "C006 compatibility seam",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/tracker/validate.py",
+              "--gate",
+              "C006"
+            ],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C007 compatibility seam",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/tracker/validate.py",
+              "--gate",
+              "C007"
+            ],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C022 compatibility seam",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/tracker/validate.py",
+              "--gate",
+              "C022"
+            ],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C023 compatibility seam",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/tracker/validate.py",
+              "--gate",
+              "C023"
+            ],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C024 compatibility seam",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/tracker/validate.py",
+              "--gate",
+              "C024"
+            ],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C025 compatibility seam",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/tracker/validate.py",
+              "--gate",
+              "C025"
+            ],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C026 compatibility seam",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/tracker/validate.py",
+              "--gate",
+              "C026"
+            ],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C027 compatibility seam",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/tracker/validate.py",
+              "--gate",
+              "C027"
+            ],
+            "timeout_seconds": 3600
+          },
+          {
+            "name": "C028 authenticated metadata",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/release/c028_gate.py",
+              "metadata"
+            ],
+            "timeout_seconds": 120
+          },
+          {
+            "name": "C028 native release and runtime drills",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/release/c028_gate.py",
+              "all"
+            ],
+            "timeout_seconds": 3600
+          }
+        ],
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "approved",
+        "round": 17,
+        "findings": [
+          {
+            "id": "C028-R1-001",
+            "summary": "Production node binaries must compose the real Full/Solidity service graph rather than a placeholder runtime.",
+            "status": "closed",
+            "resolution": "Replaced canned runtime with canonical ProductionNode composition and live Full/Solidity endpoint proofs."
+          },
+          {
+            "id": "C028-R1-002",
+            "summary": "Snapshot recovery must use the authenticated durable journal path and preserve atomic fault recovery.",
+            "status": "closed",
+            "resolution": "Bound snapshot recovery to the authenticated durable journal and independent operator checkpoint path."
+          },
+          {
+            "id": "C028-R1-003",
+            "summary": "Release installation must publish the receipt and current slot atomically with crash-safe ordering.",
+            "status": "closed",
+            "resolution": "Implemented crash-safe install journaling with durable receipt publication before atomic current-slot switch."
+          },
+          {
+            "id": "C028-R1-004",
+            "summary": "Release signature authorization must enforce the manifest channel scope.",
+            "status": "closed",
+            "resolution": "Enforced exact canonical release:<channel> authorization for release manifests."
+          },
+          {
+            "id": "C028-R1-005",
+            "summary": "Publish workflow must provision and use an external out-of-band release trust anchor.",
+            "status": "closed",
+            "resolution": "Publish workflow now provisions a protected-environment external trust anchor with pinned digest and optional authenticated rotation."
+          },
+          {
+            "id": "C028-R1-006",
+            "summary": "Bundle verification and installation must close the verified-member TOCTOU window.",
+            "status": "closed",
+            "resolution": "Verification retains member descriptors and revalidates inode, digest, and mode at the installation boundary."
+          },
+          {
+            "id": "C028-R1-007",
+            "summary": "Snapshot checkpoint trust must be independent of snapshot-supplied metadata.",
+            "status": "closed",
+            "resolution": "Snapshot acceptance now requires an independently provisioned trusted checkpoint rather than snapshot-supplied trust metadata."
+          },
+          {
+            "id": "C028-R2-001",
+            "summary": "Production runtime still constructs a placeholder service graph instead of the complete canonical node graph.",
+            "status": "closed",
+            "resolution": "Canonical runtime phases now compose state, execution, consensus, production P2P/discovery/PBFT, APIs, operations, and Solidity replication; semantic transaction, sync, block, reopen, and Solidity drills pass."
+          },
+          {
+            "id": "C028-R2-002",
+            "summary": "Publish workflow retains a path-based TOCTOU window after offline verification and before upload.",
+            "status": "closed",
+            "resolution": "Publishing now uploads only the immutable staged snapshot retained by stage-publish after offline verification, closing candidate-path substitution."
+          },
+          {
+            "id": "C028-R2-003",
+            "summary": "Snapshot verification permits a higher snapshot-supplied checkpoint to bypass the independently trusted checkpoint.",
+            "status": "closed",
+            "resolution": "Snapshot verification requires the exact independently provisioned checkpoint tuple; a higher unrelated signer checkpoint cannot bypass it."
+          },
+          {
+            "id": "C028-R3-001",
+            "summary": "Production backup role is not authenticated end to end and can enter MASTER unconditionally.",
+            "status": "closed",
+            "resolution": "Production BackupService now requires authenticated election input, starts in Backup, and cannot enter Master unconditionally; focused backup/runtime proofs pass."
+          },
+          {
+            "id": "C028-R3-002",
+            "summary": "Snapshot trust inputs permit symlink/path substitution instead of requiring stable authenticated file identity.",
+            "status": "closed",
+            "resolution": "Snapshot trust store, descriptor, and watermark inputs use descriptor-safe non-symlink file identity and exact independent checkpoint validation."
+          },
+          {
+            "id": "C028-R3-003",
+            "summary": "The 44-drill and 62-production-row evidence permits generic proof substitution instead of exact row-specific observable evidence.",
+            "status": "closed",
+            "resolution": "All 44 drills now have unique exact condition/observation runners and all 62 production rows have row-specific evidence; substitution mutation guards pass."
+          },
+          {
+            "id": "C028-R3-004",
+            "summary": "Packaging advertises a Solidity JSON-RPC surface that C026 does not support and must not publish.",
+            "status": "closed",
+            "resolution": "Removed unsupported Solidity JSON-RPC packaging advertisement and verified the exact C026 Solidity surface and forbidden ports."
+          },
+          {
+            "id": "C028-R4-001",
+            "summary": "Install receipt validation derives a current path that can disagree with the configured installation root.",
+            "status": "closed",
+            "resolution": "Signed manifest and receipt now bind canonical install_prefix/current_target/config_root/receipt_path; install, recovery, verify-install, and node preflight reject mismatches and relocations."
+          },
+          {
+            "id": "C028-R4-002",
+            "summary": "The 44-drill manifest still permits semantic substitutions where a row-specific condition is not proved by its dispatched behavior.",
+            "status": "closed",
+            "resolution": "All 44 rows dispatch distinct registered semantic functions with exact condition/observation/result evidence; five mutation guards reject runner, proof, condition, observation, and omission substitutions."
+          },
+          {
+            "id": "C028-R4-003",
+            "summary": "Clean-install authentication uses a one-of-one signing threshold instead of exercising the release threshold contract.",
+            "status": "closed",
+            "resolution": "Clean-install trust uses three independent Ed25519 keys, threshold two, and two signatures; missing or corrupted second signatures reject."
+          },
+          {
+            "id": "C028-R4-004",
+            "summary": "Release candidate and publish workflows are disconnected and do not bind the published bytes to one immutable release identity.",
+            "status": "closed",
+            "resolution": "Candidate inventory and publish transfer are bound to one immutable release identity, channel, tag, candidate digest, and authenticated publication inventory."
+          },
+          {
+            "id": "C028-R4-005",
+            "summary": "The shipped container layout lacks required packaged configuration and externally provisioned trust, keyring, receipt, and data path wiring.",
+            "status": "closed",
+            "resolution": "Release and container layouts now install bin/config trees and require external candidate, release/snapshot trust, backup keyring, Sapling, receipt, config, and data mounts with mandatory offline install/verify/preflight."
+          },
+          {
+            "id": "C028-R5-001",
+            "summary": "The installer verifies signed configuration artifacts but never materializes them into the signed config root.",
+            "status": "closed",
+            "resolution": "Artifact-only installation now uses the packaged verifier and proves all four signed configuration files are materialized under the signed current config selector."
+          },
+          {
+            "id": "C028-R5-002",
+            "summary": "The OCI image configuration names an entrypoint path that is absent from the produced root filesystem.",
+            "status": "closed",
+            "resolution": "The emitted OCI rootfs contains and executes /usr/local/bin/entrypoint.sh as the declared nonroot entrypoint."
+          },
+          {
+            "id": "C028-R5-003",
+            "summary": "The OCI config records the compressed layer hash as diff_id instead of the uncompressed layer digest.",
+            "status": "closed",
+            "resolution": "OCI validation and mutation guards bind diff_ids to the normalized uncompressed rootfs tar digest rather than the compressed layer digest."
+          },
+          {
+            "id": "C028-R5-004",
+            "summary": "The 44 drill rows dispatch synthetic run_probe labels rather than executing their exact recovery and authentication behaviors.",
+            "status": "closed",
+            "resolution": "The synthetic probe was removed; the manifest dispatches the exact 44-key union from six family CASES registries, executes all 44 artifact-backed cases, and rejects seven substitution, omission, and duplication mutations."
+          },
+          {
+            "id": "C028-R6-001",
+            "summary": "Compose does not provide TRON_VERIFICATION_TIME or the complete material set required by the OCI entrypoint.",
+            "status": "closed",
+            "resolution": "Compose and the emitted OCI entrypoint now bind trusted RFC3339 verification time and the complete externally mounted candidate, trust, keyring, Sapling, receipt, config, and data material set; live container rejection and conformance probes pass."
+          },
+          {
+            "id": "C028-R6-002",
+            "summary": "The signed OCI build uses unpinned apt BusyBox input and permits PATH fallback instead of exact shipped executable paths.",
+            "status": "closed",
+            "resolution": "Release assembly now requires an explicit absolute BusyBox executable plus exact digest, version, license, and immutable provenance, rejects PATH discovery, records the material in SBOM/provenance, and the canonical gate performs two actual locked/offline clean builds."
+          },
+          {
+            "id": "C028-R6-003",
+            "summary": "Release workflows disable submodules, so canonical Java guards and prerequisite gates cannot execute on the checked-out tree.",
+            "status": "closed",
+            "resolution": "Both release workflows initialize recursive submodules and run the immutable java-tron guard before the C028 gate while retaining locked/offline release controls."
+          },
+          {
+            "id": "C028-R7-001",
+            "summary": "Publication inventory and release tag are not bound to the signed release source_revision, permitting publication identity to diverge from authenticated source identity.",
+            "status": "closed",
+            "resolution": "The signed manifest source_revision is now a canonical lowercase 40-hex Git SHA-1 carried into candidate and publication inventories and workflow metadata. Publish fetches only refs/tags/<release-id>, peels annotated or lightweight tags to a commit, checks out that exact commit, and rejects any tag, checkout, metadata, artifact, or authenticated inventory revision mismatch before release creation or upload."
+          },
+          {
+            "id": "C028-R7-002",
+            "summary": "The candidate job executes externally downloaded BusyBox before signing secrets are used on the same runner, so untrusted executable input shares the signing-secret boundary.",
+            "status": "closed",
+            "resolution": "Candidate assembly and downloaded BusyBox inspection run without signing secrets; a fresh isolated signing job downloads only the immutable unsigned candidate, signs metadata without executing candidate content, scrubs keys and workspace, and seals the digest-bound signed candidate for publication."
+          },
+          {
+            "id": "C028-R8-001",
+            "summary": "The isolated signing job self-authorizes signer identity and candidate digest from the candidate checkout instead of an independently trusted workflow boundary.",
+            "status": "closed",
+            "resolution": "Production signing is now a job-level call to the exact commit-pinned protected external reusable workflow. The candidate repository cannot select signer bytes or digest, access authority secrets, execute the signer, or replace the authority workflow; targeted static and mutation tests plus the complete canonical gate pass."
+          },
+          {
+            "id": "C028-R9-001",
+            "summary": "Snapshot verification accepts threshold signatures without enforcing the exact TrustRole.scope, allowing a mismatched authorized role to satisfy the snapshot threshold.",
+            "status": "closed",
+            "resolution": "Snapshot verification now calls scoped DSSE verification with the exact canonical snapshot:<network> scope derived from the authenticated import network before any mutation. Dedicated wrong-scope and cross-network signed-role integration tests pass, and C028-D14 executes the real integration-test path."
+          },
+          {
+            "id": "C028-R9-002",
+            "summary": "The commit-pinned external reusable signing workflow is unreachable from the public candidate caller, so the production signing handoff is not operationally usable.",
+            "status": "closed",
+            "resolution": "Production signing moved to an accessible same-repository workflow_run authority whose definition is taken from the protected default branch. It rejects fork runs, failed or stale candidate runs, workflow name/path spoofing, candidate checkouts, caller-supplied signer authority, digest or bytes, and unsigned artifact-name/release mismatches; targeted mutations and the complete handoff policy pass."
+          },
+          {
+            "id": "C028-R10-001",
+            "summary": "Release installation has a crash window after filesystem mutation but before the durable journal phase records the mutation, permitting incomplete or ambiguous recovery.",
+            "status": "closed",
+            "resolution": "Installer recovery now reconciles the durable journal against retained filesystem effects before phase advancement. Targeted 14-case release verification and five Python drill tests cover mutation-before-phase process death and prove deterministic completion or rollback without ambiguous publication state."
+          },
+          {
+            "id": "C028-R10-002",
+            "summary": "C028 schema validation can be bypassed, and not every C028 schema is authenticated through the central registry and mutation coverage.",
+            "status": "closed",
+            "resolution": "The gate now validates all five C028 documents with authenticated Draft 2020-12 schemas, registers every schema plus the schema regression suite in the central manifest, rejects unknown fields and coordinated schema/document drift, and executes 30 mutation guards."
+          },
+          {
+            "id": "C028-R10-003",
+            "summary": "The publish workflow interpolates expected_release_id into shell commands without first rejecting shell metacharacters, permitting command injection through workflow input.",
+            "status": "closed",
+            "resolution": "The publish workflow validates the release identifier against the strict canonical character policy before privileged steps or shell interpolation, removes untrusted expressions from shell source, and rejects malicious metacharacter inputs in targeted signing-authority tests."
+          },
+          {
+            "id": "C028-R11-001",
+            "summary": "The signer emits c028-workflow-metadata-v1 while the publish validator requires obsolete c028-workflow-candidate-v1, so the authenticated production handoff cannot validate its own output.",
+            "status": "closed",
+            "resolution": "The signer and publisher now produce and validate one exact c028-workflow-metadata-v1 schema with candidate/signing run and protected workflow bindings. All 22 metadata/schema/authority tests and the complete ten-command C028 gate pass."
+          },
+          {
+            "id": "C028-R11-002",
+            "summary": "Container restart verify-install trusts a mutable unsigned receipt and installed-file state without re-authenticating them against the signed release manifest and externally provisioned trust root.",
+            "status": "closed",
+            "resolution": "Restart verification now re-authenticates the signed manifest and candidate bundle under the externally provisioned trust store, channel, verification time, and sequence floor before checking receipt and installed bytes. Release-verifier tests, the live materialized container restart drill, and the complete ten-command C028 gate pass."
+          },
+          {
+            "id": "C028-R12-001",
+            "summary": "The Solidity Compose profile also starts the unprofiled FullNode and collides on host ports; the canonical container drill masks the production failure by explicitly selecting only the Solidity service.",
+            "status": "closed",
+            "resolution": "Assigned both FullNode and Solidity services to explicit mutually exclusive Compose profiles, removed the implicit default node, and changed the canonical R21 container case to inspect the complete profile-selected service set. Full selects only FullNode, solidity selects only Solidity, no profile selects no node, six focused container tests pass, and the complete ten-command C028 gate passes."
+          },
+          {
+            "id": "C028-R13-001",
+            "summary": "Bootstrap ignores snapshot_policy.max_payload_bytes and enforces only the broader runtime payload cap, allowing an authenticated snapshot to exceed its configured snapshot-specific limit.",
+            "status": "closed",
+            "resolution": "Bootstrap now computes one validated effective snapshot payload cap as the stricter nonzero minimum of runtime_limits.max_snapshot_bytes and snapshot_policy.max_payload_bytes, rejects limits that cannot fit the platform size type, and passes that cap to SnapshotSource before authentication or import. Three focused limit tests, two bootstrap tests, nine deployment tests, and the complete ten-command C028 gate pass."
+          },
+          {
+            "id": "C028-R14-001",
+            "summary": "Compose accepts simultaneous Full and Solidity profiles instead of rejecting the conflicting dual-node host-port configuration.",
+            "status": "closed",
+            "resolution": "Added a single-mode Compose launcher that requires exactly one of full or solidity before invoking Docker Compose; dual-mode, empty-mode, and direct ambiguous profile selections are rejected, with focused container regressions and the complete ten-command C028 gate passing."
+          },
+          {
+            "id": "C028-R14-002",
+            "summary": "The release-candidate workflow runs the canonical gate and builds without explicitly provisioning the pinned Rust 1.85.1 toolchain.",
+            "status": "closed",
+            "resolution": "The candidate workflow now installs, overrides, and verifies the exact pinned Rust 1.85.1 toolchain on the fresh runner before the canonical gate and release build; workflow regressions and the complete ten-command C028 gate pass."
+          },
+          {
+            "id": "C028-R14-003",
+            "summary": "The publish workflow reruns the complete C028 gate without provisioning the authenticated pinned BusyBox material required by native release assembly.",
+            "status": "closed",
+            "resolution": "The publish pre-secret validation job now provisions authenticated pinned BusyBox package and material inputs for the complete gate rerun, while the privileged publish job receives no BusyBox executable; workflow regressions and the complete ten-command C028 gate pass."
+          },
+          {
+            "id": "C028-R14-004",
+            "summary": "Snapshot descriptor loading calls fs::read before checking max_manifest_bytes, allowing unbounded allocation from an oversized descriptor.",
+            "status": "closed",
+            "resolution": "Snapshot descriptors are now opened with retained no-follow descriptors, validated as bounded regular single-link owner-only files before allocation, read through a max-plus-one bounded loop, and revalidated against descriptor and pathname identity; sparse-oversize and substitution regressions plus the complete ten-command C028 gate pass."
+          },
+          {
+            "id": "C028-R15-001",
+            "summary": "Candidate and signer workflow release-ID validation lacks the 128-character upper bound enforced by the authenticated schema and publish workflow, permitting inconsistent release identity acceptance across trust boundaries.",
+            "status": "closed",
+            "resolution": "Candidate, signer, and publish workflows now enforce the exact schema-aligned 1..128 canonical release-ID regex before artifact assembly, secret provisioning, or privileged operations. Exact 1/128 acceptance and empty/129/noncanonical rejection regressions pass, the central gate hash is synchronized, and the complete ten-command C028 gate passes."
+          },
+          {
+            "id": "C028-R16-001",
+            "summary": "The offline release verifier accepts an arbitrary manifest release_id and uses it as a filesystem path component, bypassing the canonical 1..128 release identity contract and permitting unsafe path construction.",
+            "status": "closed",
+            "resolution": "The offline verifier now validates the manifest release_id through the canonical schema-aligned 1..128 release identity type before deriving any installation path. Exact traversal, empty, 129-character, noncanonical, and 1/128 boundary regressions pass; the release drill hash is synchronized and the complete ten-command C028 gate passes."
+          }
+        ]
       },
       "blocker": null
     },

@@ -1,0 +1,44 @@
+[Unit]
+Description=TRON Rust Solidity Node
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tron-solidity
+Group=tron
+UMask=0077
+ExecStartPre=/opt/tron/current/bin/tron-solidity preflight --deployment-config /etc/tron/current/solidity.deployment.json --json
+ExecStart=/opt/tron/current/bin/tron-solidity --deployment-config /etc/tron/current/solidity.deployment.json
+ExecStartPost=/bin/sh -ec 'n=0; until /opt/tron/current/bin/tron-solidity probe --deployment-config /etc/tron/current/solidity.deployment.json --kind ready; do n=$$((n+1)); test $$n -lt 120; sleep 1; done'
+KillSignal=SIGTERM
+TimeoutStartSec=120
+TimeoutStopSec=120
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+LimitCORE=0
+TasksMax=4096
+CPUQuota=800%
+MemoryHigh=12G
+MemoryMax=16G
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+ReadWritePaths=/var/lib/tron-solidity
+ConfigurationDirectory=tron
+StateDirectory=tron-solidity
+RuntimeDirectory=tron-solidity
+
+[Install]
+WantedBy=multi-user.target

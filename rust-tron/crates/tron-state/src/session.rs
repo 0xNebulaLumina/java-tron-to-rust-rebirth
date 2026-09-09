@@ -97,6 +97,7 @@ struct ManagerState {
     active: usize,
     next_id: u64,
     pending_outer: Option<u64>,
+    shutdown_complete: bool,
 }
 
 #[derive(Clone)]
@@ -107,7 +108,7 @@ pub struct SessionManager {
 impl SessionManager {
     #[must_use]
     pub fn new(root: StateStore) -> Self {
-        Self { state: Arc::new(Mutex::new(ManagerState { root, layers: Vec::new(), checkpoints: Vec::new(), enabled: true, active: 0, next_id: 1, pending_outer: None })) }
+        Self { state: Arc::new(Mutex::new(ManagerState { root, layers: Vec::new(), checkpoints: Vec::new(), enabled: true, active: 0, next_id: 1, pending_outer: None, shutdown_complete: false })) }
     }
 
     #[must_use]
@@ -394,30 +395,7 @@ impl SessionManager {
     pub fn fast_pop(&self) -> Result<bool, SessionError> { self.pop() }
 
     pub fn flush_committed(&self) -> Result<usize, SessionError> {
-        let mut state = self.lock();
-        if state.active != 0 { return Err(SessionError::ActiveSessions(state.active)); }
-        if state.layers.iter().any(|layer| !layer.committed) { return Err(SessionError::InvalidSession); }
-        let mut merged: BTreeMap<StoreName, BTreeMap<Vec<u8>, OverlayValue>> = BTreeMap::new();
-        for layer in &state.layers {
-            for (store, entries) in &layer.values {
-                merged.entry(store.clone()).or_default().extend(entries.clone());
-            }
-        }
-        let count = state.layers.len();
-        if !merged.is_empty() {
-            let mut batch = state.root.batch();
-            for (store, entries) in merged {
-                for (key, value) in entries {
-                    match value {
-                        OverlayValue::Put(value) => { batch.put(&store, &key, &value); }
-                        OverlayValue::Delete => { batch.delete(&store, &key); }
-                    }
-                }
-            }
-            batch.commit()?;
-        }
-        state.layers.clear();
-        Ok(count)
+        flush_committed_locked(&mut self.lock())
     }
 
     pub fn destroy(&self) -> Result<(), SessionError> {
@@ -428,17 +406,27 @@ impl SessionManager {
     }
 
     pub fn shutdown(&self, flush_committed: bool) -> Result<(), SessionError> {
-        if self.active_sessions() != 0 { return Err(SessionError::ActiveSessions(self.active_sessions())); }
-        if flush_committed { self.flush_committed()?; } else { self.destroy()?; }
-        self.root().flush()?;
-        Ok(())
+        self.shutdown_aggregated(flush_committed).map_err(|errors| SessionError::Storage(errors.to_string()))
     }
-    /// Attempts overlay disposition and durable flush independently, preserving every failure.
+    /// Disposes overlays before touching durable storage, then aggregates durable shutdown errors.
     pub fn shutdown_aggregated(&self, flush_committed: bool) -> Result<(), ShutdownErrors> {
+        let mut state = self.lock();
+        if state.shutdown_complete { return Ok(()); }
+
+        let disposition = if flush_committed {
+            flush_committed_locked(&mut state).map(|_| ())
+        } else if state.active != 0 {
+            Err(SessionError::ActiveSessions(state.active))
+        } else {
+            state.layers.clear();
+            Ok(())
+        };
+        if let Err(error) = disposition { return Err(ShutdownErrors(vec![error.to_string()])); }
+
         let mut errors = Vec::new();
-        let disposition = if flush_committed { self.flush_committed().map(|_| ()) } else { self.destroy() };
-        if let Err(error) = disposition { errors.push(error.to_string()); }
-        if let Err(error) = self.root().flush() { errors.push(error.to_string()); }
+        if let Err(error) = state.root.flush() { errors.push(error.to_string()); }
+        if let Err(error) = state.root.close() { errors.push(error.to_string()); }
+        state.shutdown_complete = true;
         if errors.is_empty() { Ok(()) } else { Err(ShutdownErrors(errors)) }
     }
 
@@ -446,6 +434,31 @@ impl SessionManager {
     fn lock(&self) -> MutexGuard<'_, ManagerState> {
         self.state.lock().unwrap_or_else(std::sync::PoisonError::into_inner)
     }
+}
+fn flush_committed_locked(state: &mut ManagerState) -> Result<usize, SessionError> {
+    if state.active != 0 { return Err(SessionError::ActiveSessions(state.active)); }
+    if state.layers.iter().any(|layer| !layer.committed) { return Err(SessionError::InvalidSession); }
+    let mut merged: BTreeMap<StoreName, BTreeMap<Vec<u8>, OverlayValue>> = BTreeMap::new();
+    for layer in &state.layers {
+        for (store, entries) in &layer.values {
+            merged.entry(store.clone()).or_default().extend(entries.clone());
+        }
+    }
+    let count = state.layers.len();
+    if !merged.is_empty() {
+        let mut batch = state.root.batch();
+        for (store, entries) in merged {
+            for (key, value) in entries {
+                match value {
+                    OverlayValue::Put(value) => { batch.put(&store, &key, &value); }
+                    OverlayValue::Delete => { batch.delete(&store, &key); }
+                }
+            }
+        }
+        batch.commit()?;
+    }
+    state.layers.clear();
+    Ok(count)
 }
 fn checkpoint_state(state: &ManagerState) -> Result<CheckpointState, SessionError> {
     if state.active != 0 { return Err(SessionError::ActiveSessions(state.active)); }

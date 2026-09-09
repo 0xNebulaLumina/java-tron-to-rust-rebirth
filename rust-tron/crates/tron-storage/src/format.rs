@@ -5,6 +5,7 @@ use std::io::{self, Read, Write};
 use std::os::unix::fs::{MetadataExt, OpenOptionsExt};
 use std::path::{Path, PathBuf};
 use crate::fs::{sync_tree_dir, KernelLock, SecureDir};
+use sha2::{Digest, Sha256};
 
 pub const MANIFEST_FILE: &str = "tron-storage.manifest";
 pub const RESYNC_FILE: &str = "tron-storage.clean-resync";
@@ -121,7 +122,7 @@ pub struct FormatError {
 }
 
 impl FormatError {
-    pub(crate) fn new(category: StableError, path: impl Into<PathBuf>, detail: impl Into<String>) -> Self {
+    pub fn new(category: StableError, path: impl Into<PathBuf>, detail: impl Into<String>) -> Self {
         Self { category, path: path.into(), detail: detail.into() }
     }
 }
@@ -555,7 +556,17 @@ pub fn write_clean_resync_marker(path: impl AsRef<Path>, identity: &StorageIdent
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct SnapshotDescriptor { pub identity: StorageIdentity, pub schema_version:u32, pub backend:String, pub backend_format:String, pub state_root:String, pub signature:Vec<u8> }
+pub struct SnapshotDescriptor {
+    pub identity: StorageIdentity,
+    pub schema_version: u32,
+    pub backend: String,
+    pub backend_format: String,
+    pub generation: u64,
+    pub state_root: String,
+    pub payload_sha256: String,
+    pub payload_size: u64,
+    pub authentication_envelope: Vec<u8>,
+}
 
 /// Immutable bytes read from one no-follow snapshot descriptor. The original pathname identity
 /// is retained only so import can reject replacement before any destination state is published.
@@ -568,6 +579,9 @@ pub struct SnapshotSource {
 
 impl SnapshotSource {
     pub fn bytes(&self) -> &[u8] { &self.bytes }
+    #[must_use] pub fn len(&self) -> usize { self.bytes.len() }
+    #[must_use] pub fn is_empty(&self) -> bool { self.bytes.is_empty() }
+    #[must_use] pub fn sha256(&self) -> String { Sha256::digest(&self.bytes).iter().map(|byte| format!("{byte:02x}")).collect() }
 
     pub fn open(path: &Path, max_source_bytes: usize) -> FormatResult<Self> {
         const O_NOFOLLOW: i32 = 0o400000;
@@ -607,8 +621,11 @@ pub fn import_snapshot(path: impl AsRef<Path>, requirements:&OpenRequirements, s
 
 pub fn import_snapshot_with_faults(path: impl AsRef<Path>, requirements:&OpenRequirements, snapshot:&Path, max_source_bytes:usize, descriptor:&SnapshotDescriptor, verifier:&dyn SnapshotVerifier, materializer:&dyn SnapshotMaterializer, faults:&dyn FaultInjector) -> FormatResult<Manifest> {
     let path=path.as_ref();
-    if descriptor.identity != requirements.identity || descriptor.schema_version != requirements.schema_version || descriptor.backend != requirements.backend || descriptor.backend_format != requirements.backend_format || descriptor.state_root.is_empty() { return Err(FormatError::new(StableError::SnapshotIncompatible,snapshot,"snapshot identity, root, or format mismatch")); }
+    if descriptor.identity != requirements.identity || descriptor.schema_version != requirements.schema_version || descriptor.backend != requirements.backend || descriptor.backend_format != requirements.backend_format || descriptor.generation != 0 || descriptor.state_root.is_empty() { return Err(FormatError::new(StableError::SnapshotIncompatible,snapshot,"snapshot identity, root, generation, or format mismatch")); }
     let snapshot=SnapshotSource::open(snapshot,max_source_bytes)?;
+    if descriptor.payload_size != snapshot.len() as u64 || descriptor.payload_sha256 != snapshot.sha256() {
+        return Err(FormatError::new(StableError::Integrity, snapshot.path.clone(), "snapshot payload size or SHA-256 mismatch"));
+    }
     verifier.verify(descriptor,&snapshot)?;
     snapshot.validate_path_identity()?;
     match inspect_read_only(path) { Ok(DirectoryClassification::Missing|DirectoryClassification::Empty)=>{}, Err(error) if error.category==StableError::PartialMigration=>{}, Ok(DirectoryClassification::Java{marker})=>return Err(FormatError::new(StableError::JavaFormat,path,marker)), Ok(DirectoryClassification::Rust(manifest)) if snapshot_manifest_matches(&manifest,descriptor,requirements)=>return Ok(manifest), Ok(_)=>return Err(FormatError::new(StableError::NotEmpty,path,"snapshot import requires empty destination")), Err(error)=>return Err(error) }

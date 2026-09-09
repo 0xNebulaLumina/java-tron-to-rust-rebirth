@@ -5,6 +5,7 @@
 //! prehashes; keystore format and cryptographic compatibility live in [`keystore`].
 
 mod address;
+pub mod artifact_auth;
 mod contract_address;
 mod digest;
 mod engine;

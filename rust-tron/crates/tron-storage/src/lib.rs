@@ -5,6 +5,7 @@
 //! and periodically replaces it with an atomically installed compact snapshot.
 
 pub mod format;
+pub mod snapshot_bundle;
 pub mod toolkit;
 #[cfg(unix)]
 mod fs;
@@ -111,6 +112,7 @@ pub enum StorageError {
     MarketKey { actual: usize },
     Format(FormatError),
     RewriteRejected { category: &'static str, detail: String },
+    Closed,
     Poisoned,
 }
 
@@ -128,6 +130,7 @@ impl fmt::Display for StorageError {
                 write!(f, "checkpoint destination is not empty: {}", path.display())
             }
             Self::Format(error) => write!(f, "storage format error: {error}"),
+            Self::Closed => f.write_str("storage handle is closed"),
             Self::Poisoned => write!(f, "storage handle is poisoned after WAL rollback failure"),
             Self::RewriteRejected { category, detail } => write!(f, "rewrite rejected [{category}]: {detail}"),
             Self::MarketKey { actual } => write!(f, "market key is shorter than 54 bytes: {actual}"),
@@ -556,7 +559,9 @@ impl RustLog {
     }
 
     fn ensure_usable(&self) -> Result<()> {
-        if self.poisoned { Err(StorageError::Poisoned) } else { Ok(()) }
+        if self.closed { Err(StorageError::Closed) }
+        else if self.poisoned { Err(StorageError::Poisoned) }
+        else { Ok(()) }
     }
 
     #[must_use]
@@ -640,15 +645,25 @@ impl RustLog {
     }
 
     pub fn close(self) -> Result<()> {
-        self.close_with_faults(&NoShutdownFaults)
+        let mut store = self;
+        store.close_in_place()
     }
 
     pub fn close_with_faults(mut self, faults: &dyn ShutdownFaultInjector) -> Result<()> {
-        self.ensure_usable()?;
-        self.sync_for_shutdown(faults)?;
+        self.close_in_place_with_faults(faults)
+    }
+
+    /// Durably closes a shared handle and releases its process lock exactly once.
+    pub fn close_in_place(&mut self) -> Result<()> {
+        self.close_in_place_with_faults(&NoShutdownFaults)
+    }
+
+    pub fn close_in_place_with_faults(&mut self, faults: &dyn ShutdownFaultInjector) -> Result<()> {
+        if self.closed { return Ok(()); }
+        let result = self.ensure_usable().and_then(|()| self.sync_for_shutdown(faults));
         self.closed = true;
         drop(self.lock.take());
-        Ok(())
+        result
     }
 
     fn sync_for_shutdown(&mut self, faults: &dyn ShutdownFaultInjector) -> Result<()> {
@@ -1147,7 +1162,7 @@ fn install_snapshot(directory: &SecureDir, entries: &BTreeMap<Vec<u8>, Vec<u8>>,
     write_result
 }
 
-fn encode_snapshot(entries: &BTreeMap<Vec<u8>, Vec<u8>>, options: &RustLogOptions) -> Result<Vec<u8>> {
+pub(crate) fn encode_snapshot(entries: &BTreeMap<Vec<u8>, Vec<u8>>, options: &RustLogOptions) -> Result<Vec<u8>> {
     check_limit(entries.len() as u64, options.max_snapshot_entries, |actual, maximum| {
         Corruption::TooManySnapshotEntries { actual, maximum }
     })?;
@@ -1166,7 +1181,7 @@ fn encode_snapshot(entries: &BTreeMap<Vec<u8>, Vec<u8>>, options: &RustLogOption
     Ok(payload)
 }
 
-fn decode_snapshot(payload: &[u8], options: &RustLogOptions) -> Result<BTreeMap<Vec<u8>, Vec<u8>>> {
+pub(crate) fn decode_snapshot(payload: &[u8], options: &RustLogOptions) -> Result<BTreeMap<Vec<u8>, Vec<u8>>> {
     let mut cursor = SliceCursor::new(payload);
     let count = cursor.u32()? as usize;
     check_limit(count as u64, options.max_snapshot_entries, |actual, maximum| {
@@ -1176,7 +1191,9 @@ fn decode_snapshot(payload: &[u8], options: &RustLogOptions) -> Result<BTreeMap<
     for _ in 0..count {
         let key = cursor.bytes(options.max_key_bytes, true)?;
         let value = cursor.bytes(options.max_value_bytes, false)?;
-        entries.insert(key, value);
+        if entries.insert(key, value).is_some() {
+            return Err(StorageError::Corruption(Corruption::InvalidEncoding));
+        }
     }
     if !cursor.is_finished() {
         return Err(StorageError::Corruption(Corruption::InvalidEncoding));

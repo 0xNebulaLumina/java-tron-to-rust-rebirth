@@ -1,12 +1,12 @@
-use std::{cell::Cell, path::PathBuf, rc::Rc, sync::atomic::{AtomicU64, Ordering}, time::{SystemTime, UNIX_EPOCH}};
+use std::{cell::Cell, path::PathBuf, rc::Rc, sync::{Arc, LazyLock, atomic::{AtomicU64, Ordering}}, time::{SystemTime, UNIX_EPOCH}};
 
 use prost::Message;
 use tron_crypto::CryptoEngine;
 use tron_execution::{
     ActuatorRegistry, BlockApplyError, BlockApplyHooks, BlockConsensus, BlockEvent, BlockLimits,
-    BlockManager, CacheConfig, ContractEvent, EventSink, ExecutionConfig, FilterEvent, FilterSink,
-    ForkManager, ForkSwitchError, ManagedBlock, PendingLimits, PendingPool, RawBlock,
-    StateTransactionPipeline, TransactionCache, TransactionProcessor,
+    BlockManager, CacheConfig, ContractEvent, EventSink, ExecutionConfig, ExecutionRuntimeConfig,
+    FilterEvent, FilterSink, ForkManager, ForkSwitchError, ManagedBlock, PendingLimits, PendingPool,
+    RawBlock, StateTransactionPipeline, TransactionCache, TransactionProcessor,
 };
 use tron_primitives::{BlockId, Hash32};
 use tron_protocol::protocol::{block_header, Block, BlockHeader};
@@ -81,12 +81,20 @@ fn store() -> StateStore {
     StateStore::new(StorageManager::new(requirements).open_store(&path).unwrap())
 }
 
+fn runtime_config() -> ExecutionRuntimeConfig {
+    static PARAMETERS: LazyLock<Arc<tron_shielded::TronParameters>> = LazyLock::new(|| {
+        let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../java-tron/framework/src/main/resources/params");
+        tron_shielded::load_tron_parameters(root.join("sapling-spend.params"), root.join("sapling-output.params")).unwrap()
+    });
+    ExecutionRuntimeConfig { actuator_registry: Arc::new(ActuatorRegistry::empty()), operation_registry: Arc::new(tron_tvm::OperationRegistry::integration().unwrap()), shielded_parameters: Arc::clone(&PARAMETERS), execution_config: ExecutionConfig::default() }
+}
+
 
 fn fixture(invalid_new_tip: bool) -> Fixture {
     let sessions = SessionManager::new(store());
     let engine = CryptoEngine::Secp256k1;
-    let pipeline = StateTransactionPipeline::new(Default::default(), ActuatorRegistry::empty(), ExecutionConfig::default()).unwrap();
-    let processor = TransactionProcessor { sessions: sessions.clone(), cache: TransactionCache::new(CacheConfig::default()).unwrap(), pipeline };
+    let pipeline = StateTransactionPipeline::new(Default::default(), runtime_config());
+    let processor = TransactionProcessor::new(sessions.clone(), TransactionCache::new(CacheConfig::default()).unwrap(), pipeline);
     let genesis_raw = raw(BlockId::from_overlaid_hash(Hash32::ZERO), 0, 1_000, true);
     let genesis = managed(genesis_raw, engine, 1_000);
     let mut khaos = KhaosDatabase::new();

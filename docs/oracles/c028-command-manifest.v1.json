@@ -1,0 +1,1414 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D01-GENESIS-CLEAN"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "accept",
+      "id": "C028-D01-GENESIS-CLEAN",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/storage.py",
+        "symbol": "case_c028_d01_genesis_clean"
+      },
+      "scenario": {
+        "function": "case_c028_d01_genesis_clean",
+        "id": "C028-D01-GENESIS-CLEAN",
+        "module": "storage"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D02-JAVA-DIR-REJECT"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D02-JAVA-DIR-REJECT",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/storage.py",
+        "symbol": "case_c028_d02_java_dir_reject"
+      },
+      "scenario": {
+        "function": "case_c028_d02_java_dir_reject",
+        "id": "C028-D02-JAVA-DIR-REJECT",
+        "module": "storage"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D03-SNAPSHOT-AUTHENTIC"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "accept",
+      "id": "C028-D03-SNAPSHOT-AUTHENTIC",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d03_snapshot_authentic"
+      },
+      "scenario": {
+        "function": "case_c028_d03_snapshot_authentic",
+        "id": "C028-D03-SNAPSHOT-AUTHENTIC",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D04-SNAPSHOT-MISSING-SIGNATURE"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D04-SNAPSHOT-MISSING-SIGNATURE",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d04_snapshot_missing_signature"
+      },
+      "scenario": {
+        "function": "case_c028_d04_snapshot_missing_signature",
+        "id": "C028-D04-SNAPSHOT-MISSING-SIGNATURE",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D05-SNAPSHOT-MALFORMED"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D05-SNAPSHOT-MALFORMED",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d05_snapshot_malformed"
+      },
+      "scenario": {
+        "function": "case_c028_d05_snapshot_malformed",
+        "id": "C028-D05-SNAPSHOT-MALFORMED",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D06-SNAPSHOT-UNKNOWN-KEY"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D06-SNAPSHOT-UNKNOWN-KEY",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d06_snapshot_unknown_key"
+      },
+      "scenario": {
+        "function": "case_c028_d06_snapshot_unknown_key",
+        "id": "C028-D06-SNAPSHOT-UNKNOWN-KEY",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D07-SNAPSHOT-REVOKED-KEY"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D07-SNAPSHOT-REVOKED-KEY",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d07_snapshot_revoked_key"
+      },
+      "scenario": {
+        "function": "case_c028_d07_snapshot_revoked_key",
+        "id": "C028-D07-SNAPSHOT-REVOKED-KEY",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D08-SNAPSHOT-ROTATION"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D08-SNAPSHOT-ROTATION",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d08_snapshot_rotation"
+      },
+      "scenario": {
+        "function": "case_c028_d08_snapshot_rotation",
+        "id": "C028-D08-SNAPSHOT-ROTATION",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D09-SNAPSHOT-STALE-VALID"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D09-SNAPSHOT-STALE-VALID",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d09_snapshot_stale_valid"
+      },
+      "scenario": {
+        "function": "case_c028_d09_snapshot_stale_valid",
+        "id": "C028-D09-SNAPSHOT-STALE-VALID",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D10-SNAPSHOT-CLOCK"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D10-SNAPSHOT-CLOCK",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d10_snapshot_clock"
+      },
+      "scenario": {
+        "function": "case_c028_d10_snapshot_clock",
+        "id": "C028-D10-SNAPSHOT-CLOCK",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D11-SNAPSHOT-ROLLBACK-HEIGHT"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D11-SNAPSHOT-ROLLBACK-HEIGHT",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d11_snapshot_rollback_height"
+      },
+      "scenario": {
+        "function": "case_c028_d11_snapshot_rollback_height",
+        "id": "C028-D11-SNAPSHOT-ROLLBACK-HEIGHT",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D12-SNAPSHOT-CHECKPOINT"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D12-SNAPSHOT-CHECKPOINT",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d12_snapshot_checkpoint"
+      },
+      "scenario": {
+        "function": "case_c028_d12_snapshot_checkpoint",
+        "id": "C028-D12-SNAPSHOT-CHECKPOINT",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D13-SNAPSHOT-COMPROMISED-METADATA"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D13-SNAPSHOT-COMPROMISED-METADATA",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d13_snapshot_compromised_metadata"
+      },
+      "scenario": {
+        "function": "case_c028_d13_snapshot_compromised_metadata",
+        "id": "C028-D13-SNAPSHOT-COMPROMISED-METADATA",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D14-SNAPSHOT-WRONG-IDENTITY"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D14-SNAPSHOT-WRONG-IDENTITY",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d14_snapshot_wrong_identity"
+      },
+      "scenario": {
+        "function": "case_c028_d14_snapshot_wrong_identity",
+        "id": "C028-D14-SNAPSHOT-WRONG-IDENTITY",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D15-SNAPSHOT-NEWER-FORMAT"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D15-SNAPSHOT-NEWER-FORMAT",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/storage.py",
+        "symbol": "case_c028_d15_snapshot_newer_format"
+      },
+      "scenario": {
+        "function": "case_c028_d15_snapshot_newer_format",
+        "id": "C028-D15-SNAPSHOT-NEWER-FORMAT",
+        "module": "storage"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D16-SNAPSHOT-PARTIAL-CORRUPT"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D16-SNAPSHOT-PARTIAL-CORRUPT",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/storage.py",
+        "symbol": "case_c028_d16_snapshot_partial_corrupt"
+      },
+      "scenario": {
+        "function": "case_c028_d16_snapshot_partial_corrupt",
+        "id": "C028-D16-SNAPSHOT-PARTIAL-CORRUPT",
+        "module": "storage"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D17-SNAPSHOT-DURABLE-FAULTS"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D17-SNAPSHOT-DURABLE-FAULTS",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/storage.py",
+        "symbol": "case_c028_d17_snapshot_durable_faults"
+      },
+      "scenario": {
+        "function": "case_c028_d17_snapshot_durable_faults",
+        "id": "C028-D17-SNAPSHOT-DURABLE-FAULTS",
+        "module": "storage"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D18-MIGRATION-DURABLE-FAULTS"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "accept",
+      "id": "C028-D18-MIGRATION-DURABLE-FAULTS",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/storage.py",
+        "symbol": "case_c028_d18_migration_durable_faults"
+      },
+      "scenario": {
+        "function": "case_c028_d18_migration_durable_faults",
+        "id": "C028-D18-MIGRATION-DURABLE-FAULTS",
+        "module": "storage"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D19-MIGRATION-WRONG-IDENTITY"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D19-MIGRATION-WRONG-IDENTITY",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/storage.py",
+        "symbol": "case_c028_d19_migration_wrong_identity"
+      },
+      "scenario": {
+        "function": "case_c028_d19_migration_wrong_identity",
+        "id": "C028-D19-MIGRATION-WRONG-IDENTITY",
+        "module": "storage"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D20-UPGRADE-ROLLBACK-MATRIX"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D20-UPGRADE-ROLLBACK-MATRIX",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/storage.py",
+        "symbol": "case_c028_d20_upgrade_rollback_matrix"
+      },
+      "scenario": {
+        "function": "case_c028_d20_upgrade_rollback_matrix",
+        "id": "C028-D20-UPGRADE-ROLLBACK-MATRIX",
+        "module": "storage"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D21-CORRUPTION"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-D21-CORRUPTION",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/storage.py",
+        "symbol": "case_c028_d21_corruption"
+      },
+      "scenario": {
+        "function": "case_c028_d21_corruption",
+        "id": "C028-D21-CORRUPTION",
+        "module": "storage"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D22-RESYNC-FALLBACK"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "accept",
+      "id": "C028-D22-RESYNC-FALLBACK",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/storage.py",
+        "symbol": "case_c028_d22_resync_fallback"
+      },
+      "scenario": {
+        "function": "case_c028_d22_resync_fallback",
+        "id": "C028-D22-RESYNC-FALLBACK",
+        "module": "storage"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-D23-OFFLINE-SNAPSHOT"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "accept",
+      "id": "C028-D23-OFFLINE-SNAPSHOT",
+      "owning_item": "C028.07",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/snapshot.py",
+        "symbol": "case_c028_d23_offline_snapshot"
+      },
+      "scenario": {
+        "function": "case_c028_d23_offline_snapshot",
+        "id": "C028-D23-OFFLINE-SNAPSHOT",
+        "module": "snapshot"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R01-AUTHENTIC-BUNDLE"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "accept",
+      "id": "C028-R01-AUTHENTIC-BUNDLE",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r01_authentic_bundle"
+      },
+      "scenario": {
+        "function": "case_c028_r01_authentic_bundle",
+        "id": "C028-R01-AUTHENTIC-BUNDLE",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R02-MISSING-MANIFEST"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R02-MISSING-MANIFEST",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r02_missing_manifest"
+      },
+      "scenario": {
+        "function": "case_c028_r02_missing_manifest",
+        "id": "C028-R02-MISSING-MANIFEST",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R03-MALFORMED-SIGNATURE"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R03-MALFORMED-SIGNATURE",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r03_malformed_signature"
+      },
+      "scenario": {
+        "function": "case_c028_r03_malformed_signature",
+        "id": "C028-R03-MALFORMED-SIGNATURE",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R04-MISMATCHED-MANIFEST"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R04-MISMATCHED-MANIFEST",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r04_mismatched_manifest"
+      },
+      "scenario": {
+        "function": "case_c028_r04_mismatched_manifest",
+        "id": "C028-R04-MISMATCHED-MANIFEST",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R05-UNKNOWN-KEY"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R05-UNKNOWN-KEY",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r05_unknown_key"
+      },
+      "scenario": {
+        "function": "case_c028_r05_unknown_key",
+        "id": "C028-R05-UNKNOWN-KEY",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R06-EXPIRED-POLICY"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R06-EXPIRED-POLICY",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r06_expired_policy"
+      },
+      "scenario": {
+        "function": "case_c028_r06_expired_policy",
+        "id": "C028-R06-EXPIRED-POLICY",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R07-REVOKED-KEY"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R07-REVOKED-KEY",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r07_revoked_key"
+      },
+      "scenario": {
+        "function": "case_c028_r07_revoked_key",
+        "id": "C028-R07-REVOKED-KEY",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R08-THRESHOLD"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R08-THRESHOLD",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r08_threshold"
+      },
+      "scenario": {
+        "function": "case_c028_r08_threshold",
+        "id": "C028-R08-THRESHOLD",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R09-MISSING-EXTRA-ARTIFACT"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R09-MISSING-EXTRA-ARTIFACT",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r09_missing_extra_artifact"
+      },
+      "scenario": {
+        "function": "case_c028_r09_missing_extra_artifact",
+        "id": "C028-R09-MISSING-EXTRA-ARTIFACT",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R10-SUBSTITUTED-MIRROR-BYTES"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R10-SUBSTITUTED-MIRROR-BYTES",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r10_substituted_mirror_bytes"
+      },
+      "scenario": {
+        "function": "case_c028_r10_substituted_mirror_bytes",
+        "id": "C028-R10-SUBSTITUTED-MIRROR-BYTES",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R11-DETACHED-SBOM"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R11-DETACHED-SBOM",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r11_detached_sbom"
+      },
+      "scenario": {
+        "function": "case_c028_r11_detached_sbom",
+        "id": "C028-R11-DETACHED-SBOM",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R12-DETACHED-PROVENANCE"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R12-DETACHED-PROVENANCE",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r12_detached_provenance"
+      },
+      "scenario": {
+        "function": "case_c028_r12_detached_provenance",
+        "id": "C028-R12-DETACHED-PROVENANCE",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R13-MIXED-RELEASE"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R13-MIXED-RELEASE",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r13_mixed_release"
+      },
+      "scenario": {
+        "function": "case_c028_r13_mixed_release",
+        "id": "C028-R13-MIXED-RELEASE",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R14-PLATFORM"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R14-PLATFORM",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/platform.py",
+        "symbol": "platform_policy"
+      },
+      "scenario": {
+        "function": "platform_policy",
+        "id": "C028-R14-PLATFORM",
+        "module": "platform"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R15-SAPLING-EXCLUSION"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R15-SAPLING-EXCLUSION",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/platform.py",
+        "symbol": "sapling_exclusion"
+      },
+      "scenario": {
+        "function": "sapling_exclusion",
+        "id": "C028-R15-SAPLING-EXCLUSION",
+        "module": "platform"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R16-TRUST-ROTATION"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R16-TRUST-ROTATION",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r16_trust_rotation"
+      },
+      "scenario": {
+        "function": "case_c028_r16_trust_rotation",
+        "id": "C028-R16-TRUST-ROTATION",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R17-OFFLINE-RELEASE"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R17-OFFLINE-RELEASE",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/platform.py",
+        "symbol": "offline_release"
+      },
+      "scenario": {
+        "function": "offline_release",
+        "id": "C028-R17-OFFLINE-RELEASE",
+        "module": "platform"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R18-PREINSTALL-NO-MUTATION"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "reject_before_mutation",
+      "id": "C028-R18-PREINSTALL-NO-MUTATION",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/release.py",
+        "symbol": "case_c028_r18_preinstall_no_mutation"
+      },
+      "scenario": {
+        "function": "case_c028_r18_preinstall_no_mutation",
+        "id": "C028-R18-PREINSTALL-NO-MUTATION",
+        "module": "release"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R19-CLEAN-ENDPOINTS-FULL"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "accept",
+      "id": "C028-R19-CLEAN-ENDPOINTS-FULL",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/runtime.py",
+        "symbol": "clean_endpoints_full"
+      },
+      "scenario": {
+        "function": "clean_endpoints_full",
+        "id": "C028-R19-CLEAN-ENDPOINTS-FULL",
+        "module": "runtime"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R20-CLEAN-ENDPOINTS-SOLIDITY"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "accept",
+      "id": "C028-R20-CLEAN-ENDPOINTS-SOLIDITY",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/runtime.py",
+        "symbol": "clean_endpoints_solidity"
+      },
+      "scenario": {
+        "function": "clean_endpoints_solidity",
+        "id": "C028-R20-CLEAN-ENDPOINTS-SOLIDITY",
+        "module": "runtime"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/release/c028_drills.py",
+        "scenario",
+        "--command-manifest",
+        "docs/oracles/c028-command-manifest.v1.json",
+        "--id",
+        "C028-R21-CONTAINER-SERVICE"
+      ],
+      "assertions": [
+        "exact_case_identity",
+        "actual_command_or_api",
+        "authenticated_observation",
+        "protected_tree_invariant"
+      ],
+      "expected_exit": 0,
+      "expected_result": "accept",
+      "id": "C028-R21-CONTAINER-SERVICE",
+      "owning_item": "C028.10",
+      "platform_id": "P-LINUX-X64",
+      "proof": {
+        "path": "tools/release/c028_cases/container.py",
+        "symbol": "container_service"
+      },
+      "scenario": {
+        "function": "container_service",
+        "id": "C028-R21-CONTAINER-SERVICE",
+        "module": "container"
+      },
+      "timeout_seconds": 300
+    }
+  ],
+  "platform_id": "P-LINUX-X64",
+  "schema": "c028-command-manifest-v1"
+}

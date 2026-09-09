@@ -235,21 +235,21 @@ impl ProductionOperationalBindings {
     #[must_use] pub fn metrics(&self)->Arc<MonitorMetrics>{self.metrics.clone()}
 }
 
-/// Neutral inputs for custom production composition. Fatal/readiness-aware hooks must be built
-/// by the factory from the supplied `NodeStatus` and `StopHandle` clones.
-pub struct ProductionNodeComposition {
-    pub context: NodeContext,
-    pub mode: NodeMode,
+/// Concrete resources created only after the canonical node context has been validated.
+pub struct ProductionCoreServices {
     pub bindings: ProductionOperationalBindings,
-}
-
-pub struct ProductionNodeServices {
     pub core_services: Vec<Box<dyn NodeService>>,
     pub network: Box<dyn NodeService>,
     pub apis: Box<dyn NodeService>,
-    pub operations: OperationsComponents,
-    pub replica: Option<Box<dyn NodeService>>,
+    pub sessions: SessionManager,
+    pub verified_block_applier: Option<Box<dyn VerifiedBlockApplier>>,
+    pub queues: Arc<EventQueues>,
+    pub metrics: Arc<MonitorMetrics>,
+    pub readiness: Option<Box<dyn OperationalHooks>>,
+    pub db_stats: DbStatService,
 }
+
+pub type ProductionCoreFactory = Box<dyn FnOnce(NodeStatus, StopHandle) -> Result<ProductionCoreServices, LifecycleError> + Send>;
 
 pub struct ProductionNode {
     graph: ServiceGraph,
@@ -264,29 +264,6 @@ pub struct ProductionNode {
 }
 
 impl ProductionNode {
-    pub fn from_service_factory<F>(composition: ProductionNodeComposition, factory: F) -> Result<Self, LifecycleError>
-    where
-        F: FnOnce(NodeStatus, StopHandle) -> ProductionNodeServices,
-    {
-        composition.context.config().validate_for_mode(composition.mode).map_err(|error| LifecycleError::InvalidConfiguration(error.to_string()))?;
-        let status=NodeStatus::default();
-        let (stop,controller)=StopController::new_with_status(status.clone());
-        let parts=factory(status.clone(),stop.clone());
-        let provider=composition.bindings.rpc_provider();
-        let rpc_services=composition.bindings.rpc_services();
-        let event_sink=composition.bindings.event_sink();
-        let filter_sink=composition.bindings.filter_sink();
-        let metrics=composition.bindings.metrics();
-        let services=match (composition.mode, parts.replica) {
-            (NodeMode::Solidity, Some(replica)) => solidity_production_service_graph(parts.core_services, replica, parts.network, parts.apis, parts.operations),
-            (NodeMode::Solidity, None) => return Err(LifecycleError::InvalidConfiguration("Solidity mode requires a replica service".into())),
-            (_, Some(_)) => return Err(LifecycleError::InvalidConfiguration("replica service is only valid in Solidity mode".into())),
-            (_, None) => production_service_graph(parts.core_services, parts.network, parts.apis, parts.operations),
-        };
-        let graph=ServiceGraph::new(composition.context,composition.mode,services)?;
-        debug_assert!(controller.shares_status(&status));
-        Ok(Self{graph,status,stop,controller,rpc_provider:provider,rpc_services,event_sink,filter_sink,metrics})
-    }
     #[must_use] pub fn status(&self)->NodeStatus{self.status.clone()}
     #[must_use] pub fn stop_handle(&self)->StopHandle{self.stop.clone()}
     pub async fn start(&mut self,start_timeout:Duration,shutdown_timeout:Duration)->Result<(),LifecycleError>{
@@ -612,16 +589,7 @@ pub struct ProductionOperationsConfig { pub plugin: Option<PluginConfig>, pub ze
 pub struct ProductionNodeDependencies {
     pub context: NodeContext,
     pub mode: NodeMode,
-    pub core_services: Vec<Box<dyn NodeService>>,
-    pub network: Box<dyn NodeService>,
-    pub apis: Box<dyn NodeService>,
-    pub bindings: ProductionOperationalBindings,
-    pub sessions: SessionManager,
-    /// The concrete C019 block manager, type-erased through `VerifiedBlockApplier`.
-    pub verified_block_applier: Option<Box<dyn VerifiedBlockApplier>>,
-    pub queues: Arc<EventQueues>,
-    pub metrics: Arc<MonitorMetrics>,
-    pub db_stats: DbStatService,
+    pub core_factory: ProductionCoreFactory,
 }
 
 impl ProductionNode {
@@ -631,30 +599,30 @@ impl ProductionNode {
         let status = NodeStatus::default();
         let (stop, controller) = StopController::new_with_status(status.clone());
         assert!(controller.shares_status(&status), "production stop controller must share node status state");
-        let delivery = EventDeliveryHooks::new(dependencies.queues, config.plugin, config.zeromq, status.clone(), stop.clone());
+        let core = (dependencies.core_factory)(status.clone(), stop.clone())?;
+        let delivery = EventDeliveryHooks::new(core.queues, config.plugin, config.zeromq, status.clone(), stop.clone());
         let operations = OperationsComponents {
-            api_provider: Box::new(SharedApiProviderHooks::new(dependencies.bindings.clone())),
+            api_provider: Box::new(SharedApiProviderHooks::new(core.bindings.clone())),
             queues: Box::new(delivery),
             plugin: Box::new(NoopHooks),
             zeromq: Box::new(NoopHooks),
-            metrics: Box::new(MetricsHooks::new(dependencies.metrics.clone())),
-            prometheus: Box::new(PrometheusHttpHooks::new(config.prometheus_address, dependencies.metrics.prometheus().clone())),
-            db_stats: Box::new(DbStatsHooks::new(dependencies.db_stats)),
-            readiness: Box::new(ReadinessHooks::new(status.clone())),
+            metrics: Box::new(MetricsHooks::new(core.metrics.clone())),
+            prometheus: Box::new(PrometheusHttpHooks::new(config.prometheus_address, core.metrics.prometheus().clone())),
+            db_stats: Box::new(DbStatsHooks::new(core.db_stats)),
+            readiness: core.readiness.unwrap_or_else(||Box::new(ReadinessHooks::new(status.clone()))),
         };
         let services = if dependencies.mode == NodeMode::Solidity {
             let source = TonicDatabaseSource::from_host_port(&dependencies.context.config().node.trust_node).map_err(LifecycleError::InvalidConfiguration)?;
-            let applier = dependencies.verified_block_applier.ok_or_else(|| LifecycleError::InvalidConfiguration("Solidity mode requires a C019 verified block applier".into()))?;
-            let checkpoint = Arc::new(StateReplicaCheckpoint::new(dependencies.sessions, dependencies.bindings.api_context()));
+            let applier = core.verified_block_applier.ok_or_else(|| LifecycleError::InvalidConfiguration("Solidity mode requires a C019 verified block applier".into()))?;
+            let checkpoint = Arc::new(StateReplicaCheckpoint::new(core.sessions, core.bindings.api_context()));
             let replica = Box::new(SolidityReplica::supervised(Box::new(source), applier, checkpoint, status.clone(), stop.clone()));
-            solidity_production_service_graph(dependencies.core_services, replica, dependencies.network, dependencies.apis, operations)
+            solidity_production_service_graph(core.core_services, replica, core.network, core.apis, operations)
         } else {
-            production_service_graph(dependencies.core_services, dependencies.network, dependencies.apis, operations)
+            if core.verified_block_applier.is_some() { return Err(LifecycleError::InvalidConfiguration("verified block applier is only valid in Solidity mode".into())); }
+            production_service_graph(core.core_services, core.network, core.apis, operations)
         };
+        let bindings = core.bindings;
         let graph = ServiceGraph::new(dependencies.context, dependencies.mode, services)?;
-        let bindings = dependencies.bindings;
         Ok(Self { graph, status, stop, controller, rpc_provider: bindings.rpc_provider(), rpc_services: bindings.rpc_services(), event_sink: bindings.event_sink(), filter_sink: bindings.filter_sink(), metrics: bindings.metrics() })
     }
 }
-
-pub fn compose_production_node(config: ProductionOperationsConfig, dependencies: ProductionNodeDependencies) -> Result<ProductionNode, LifecycleError> { ProductionNode::from_config(config, dependencies) }

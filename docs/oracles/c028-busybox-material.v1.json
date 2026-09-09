@@ -1,0 +1,21 @@
+{
+  "schema": "c028-busybox-material-v1",
+  "source": {
+    "url": "https://archive.ubuntu.com/ubuntu/pool/main/b/busybox/busybox-static_1.36.1-6ubuntu3.1_amd64.deb",
+    "sha256": "944b2728f53ceb3916cec2c962873c9951e612408099601751db2a0a5d81e0ed",
+    "member": "bin/busybox"
+  },
+  "material": {
+    "sha256": "dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14",
+    "version": "1.36.1",
+    "version_marker": "BusyBox v1.36.1",
+    "license": "GPL-2.0-only",
+    "provenance": "pkg:deb/ubuntu/busybox-static@1%3A1.36.1-6ubuntu3.1?arch=amd64&repository_url=https://archive.ubuntu.com/ubuntu"
+  },
+  "elf": {
+    "class": 64,
+    "endianness": "little",
+    "machine": "x86_64",
+    "static": true
+  }
+}

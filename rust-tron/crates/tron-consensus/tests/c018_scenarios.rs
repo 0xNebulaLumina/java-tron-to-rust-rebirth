@@ -82,3 +82,19 @@ fn auxiliary_pbft_and_localhost_backup_run_together_without_block_authority() {
     // Neither API accepts or returns a DPoS schedule, fork choice, or selected block.
     assert_eq!(saved.latest_pbft_block,Some(123));
 }
+
+#[test]
+fn production_pbft_handle_is_constructed_without_starting_and_sm2_is_rejected() {
+    use tron_consensus::{BackupRole, BackupRoleHandle, ProductionBlockHooks, ProductionConsensusError};
+    use tron_state::GenesisConfig;
+    let genesis=GenesisConfig { timestamp_raw:"0".into(),parent_hash_raw:"0".into(),assets:vec![],witnesses:vec![] };
+    let role=BackupRoleHandle::new(BackupRole::Backup);
+    let mut config=tron_config::Config::default();
+    config.committee.allow_pbft=1;
+    let hooks=ProductionBlockHooks::from_config(&config,&genesis,role.clone()).unwrap();
+    assert!(hooks.pbft_handle().is_enabled());assert_eq!(role.role(),BackupRole::Backup);
+    role.set_role(BackupRole::Master).unwrap();assert_eq!(hooks.backup_role_handle().role(),BackupRole::Master);
+
+    config.misc.crypto_engine="SM2".into();
+    assert!(matches!(ProductionBlockHooks::from_config(&config,&genesis,role),Err(ProductionConsensusError::UnsupportedSm2Pbft)));
+}

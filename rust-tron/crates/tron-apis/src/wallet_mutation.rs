@@ -1,6 +1,5 @@
 use prost::Message;
 use tron_crypto::selected_digest;
-use tron_execution::{AdmissionClock, AdmissionOrigin, BroadcastResult, PendingTransaction, PipelineStage, ProcessContext, ProcessError, RawWireTransaction};
 use tron_protocol::{
     google::protobuf::Any,
     protocol::{
@@ -12,7 +11,7 @@ use tron_state::{CursorView, StoreKind, dynamic};
 
 use crate::{
     ApiContext, ApiError, BlockingCancellation,
-    error::{failure_return, pending_return, process_return, success_return},
+    error::{failure_return, success_return},
 };
 
 pub const DEFAULT_TRANSACTION_EXPIRATION_MILLIS: i64 = 60_000;
@@ -161,119 +160,19 @@ impl WalletMutation {
         smart: bool,
         cancellation: Option<&BlockingCancellation>,
     ) -> tron_protocol::protocol::Return {
-        let wire = match RawWireTransaction::decode(raw_transaction) {
-            Ok(v) => v,
-            Err(e) => {
-                return failure_return(
-                    tron_protocol::protocol::r#return::ResponseCode::ContractValidateError,
-                    e.to_string().into_bytes(),
-                );
-            }
-        };
-        let id = wire.transaction_id(self.context.crypto_engine());
-        let shielded = wire.message().raw_data.as_ref().is_some_and(|r| {
-            r.contract
-                .iter()
-                .any(|c| c.r#type == ContractType::ShieldedTransferContract as i32)
-        });
-        let item = PendingTransaction {
-            id,
-            transaction: wire,
-            received_at,
-            shielded,
-            smart,
-        };
-        let timestamp = match read_i64(&self.context.head(), "LATEST_BLOCK_HEADER_TIMESTAMP") {
-            Ok(value) => value,
-            Err(error) => return failure_return(tron_protocol::protocol::r#return::ResponseCode::OtherError, error.to_string().into_bytes()),
-        };
-        let number = match read_i64(&self.context.head(), "LATEST_BLOCK_HEADER_NUMBER") {
-            Ok(value) => value,
-            Err(error) => return failure_return(tron_protocol::protocol::r#return::ResponseCode::OtherError, error.to_string().into_bytes()),
-        };
-        let process_context = ProcessContext {
-            origin: AdmissionOrigin::Network,
-            clock: AdmissionClock {
-                head_block_time: timestamp,
-                next_block_slot_time: timestamp,
-                now: received_at,
-                block_number: number,
-                head_slot: number,
-            },
-            expected_result: None,
-            block_timestamp: timestamp,
-        };
-        let processor_handle = self.context.processor();
-        let pending_handle = self.context.pending();
-        let mut processor = match lock_cancellable(&processor_handle, cancellation) {
-            Ok(processor) => processor,
-            Err(result) => return result,
-        };
-        let mut pending = match lock_cancellable(&pending_handle, cancellation) {
-            Ok(pending) => pending,
-            Err(result) => return result,
-        };
         if cancellation.is_some_and(BlockingCancellation::is_cancelled) {
-            return cancelled_return();
+            return failure_return(
+                tron_protocol::protocol::r#return::ResponseCode::OtherError,
+                b"broadcast cancelled".to_vec(),
+            );
         }
-        let cache_before = processor.cache.clone();
-        let result: Result<BroadcastResult, ProcessError> = pending.admit(item, received_at, |pending, session| {
-            if cancellation.is_some_and(BlockingCancellation::is_cancelled) {
-                return Err(ProcessError::Stage {
-                    stage: PipelineStage::Admission,
-                    message: "broadcast cancelled".into(),
-                });
-            }
-            processor
-                .process_pending(session, pending.transaction.clone(), &process_context)?;
-            if cancellation.is_some_and(BlockingCancellation::is_cancelled) {
-                return Err(ProcessError::Stage {
-                    stage: PipelineStage::Finalization,
-                    message: "broadcast cancelled".into(),
-                });
-            }
-            Ok(())
-        });
-        match result {
-            Ok(BroadcastResult::Accepted { .. }) => success_return(),
-            Ok(BroadcastResult::Rejected { reason, .. }) => {
-                processor.cache = cache_before;
-                pending_return(&reason)
-            }
-            Err(error) => {
-                processor.cache = cache_before;
-                process_return(&error)
-            }
-        }
-    }
-}
-fn cancelled_return() -> tron_protocol::protocol::Return {
-    failure_return(
-        tron_protocol::protocol::r#return::ResponseCode::OtherError,
-        b"broadcast cancelled".to_vec(),
-    )
-}
-
-fn lock_cancellable<'a, T>(
-    mutex: &'a std::sync::Mutex<T>,
-    cancellation: Option<&BlockingCancellation>,
-) -> Result<std::sync::MutexGuard<'a, T>, tron_protocol::protocol::Return> {
-    loop {
-        match mutex.try_lock() {
-            Ok(guard) => return Ok(guard),
-            Err(std::sync::TryLockError::Poisoned(_)) => {
-                return Err(failure_return(
-                    tron_protocol::protocol::r#return::ResponseCode::OtherError,
-                    b"broadcast state mutex poisoned".to_vec(),
-                ));
-            }
-            Err(std::sync::TryLockError::WouldBlock) => {
-                if cancellation.is_some_and(BlockingCancellation::is_cancelled) {
-                    return Err(cancelled_return());
-                }
-                std::thread::yield_now();
-            }
-        }
+        let Some(provider) = self.context.execution() else {
+            return failure_return(
+                tron_protocol::protocol::r#return::ResponseCode::OtherError,
+                b"transaction mutation is unavailable on this node".to_vec(),
+            );
+        };
+        provider.broadcast_raw(raw_transaction, received_at, smart)
     }
 }
 fn read_i64(view: &tron_state::HeadCursor, name: &str) -> Result<i64, ApiError> {

@@ -1,0 +1,138 @@
+x-tron-service: &tron-service
+  image: "tron@sha256:${TRON_IMAGE_DIGEST:?set_exact_oci_manifest_digest}"
+  user: "65532:65532"
+  read_only: true
+  init: true
+  stop_grace_period: 120s
+  pids_limit: 4096
+  cpus: 8
+  mem_limit: 16g
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  ulimits: {nofile: {soft: 65535, hard: 65535}}
+  tmpfs: ["/tmp:size=256m,mode=1777,noexec,nosuid,nodev"]
+  environment:
+    TRON_RELEASE_CANDIDATE: /run/tron/candidate
+    TRON_RELEASE_TRUST_STORE: /run/tron/release-trust-store.json
+    TRON_INSTALL_PREFIX: /opt/tron
+    TRON_INSTALL_RECEIPT: /var/lib/tron/install-receipt.json
+    TRON_MINIMUM_RELEASE_SEQUENCE: "${TRON_MINIMUM_RELEASE_SEQUENCE:-1}"
+    TRON_RELEASE_CHANNEL: "${TRON_RELEASE_CHANNEL:-stable}"
+    TRON_VERIFICATION_TIME: "${TRON_VERIFICATION_TIME:?set_trusted_RFC3339_UTC_verification_time}"
+    TRON_COMPOSE_PROFILES: "${COMPOSE_PROFILES:-}"
+  volumes: &mandatory-mounts
+    - type: bind
+      source: ./candidate
+      target: /run/tron/candidate
+      read_only: true
+    - type: bind
+      source: ./trust/release-trust-store.json
+      target: /run/tron/release-trust-store.json
+      read_only: true
+    - type: bind
+      source: ./trust/snapshot-trust-store.json
+      target: /etc/tron/snapshot-trust-store.json
+      read_only: true
+    - type: bind
+      source: ./trust/backup-keyring.txt
+      target: /etc/tron/backup-keyring.txt
+      read_only: true
+    - type: bind
+      source: ./parameters/sapling-spend.params
+      target: /var/lib/tron/parameters/sapling-spend.params
+      read_only: true
+    - type: bind
+      source: ./parameters/sapling-output.params
+      target: /var/lib/tron/parameters/sapling-output.params
+      read_only: true
+
+services:
+  fullnode:
+    <<: *tron-service
+    profiles: [full]
+    command: ["fullnode"]
+    volumes:
+      - type: bind
+        source: ./candidate
+        target: /run/tron/candidate
+        read_only: true
+      - type: bind
+        source: ./trust/release-trust-store.json
+        target: /run/tron/release-trust-store.json
+        read_only: true
+      - type: bind
+        source: ./trust/snapshot-trust-store.json
+        target: /etc/tron/snapshot-trust-store.json
+        read_only: true
+      - type: bind
+        source: ./trust/backup-keyring.txt
+        target: /etc/tron/backup-keyring.txt
+        read_only: true
+      - type: bind
+        source: ./parameters/sapling-spend.params
+        target: /var/lib/tron/parameters/sapling-spend.params
+        read_only: true
+      - type: bind
+        source: ./parameters/sapling-output.params
+        target: /var/lib/tron/parameters/sapling-output.params
+        read_only: true
+      - tron-install:/opt/tron
+      - tron-config:/etc/tron
+      - tron-data:/var/lib/tron
+    ports:
+      - "18888:18888/tcp"
+      - "18888:18888/udp"
+      - "10001:10001/udp"
+      - "127.0.0.1:8090:8090"
+      - "127.0.0.1:50051:50051"
+      - "127.0.0.1:8545:8545"
+      - "127.0.0.1:5555:5555"
+      - "127.0.0.1:9527:9527"
+      - "127.0.0.1:9080:9080"
+
+  solidity:
+    <<: *tron-service
+    command: ["solidity"]
+    profiles: [solidity]
+    volumes:
+      - type: bind
+        source: ./candidate
+        target: /run/tron/candidate
+        read_only: true
+      - type: bind
+        source: ./trust/release-trust-store.json
+        target: /run/tron/release-trust-store.json
+        read_only: true
+      - type: bind
+        source: ./trust/snapshot-trust-store.json
+        target: /etc/tron/snapshot-trust-store.json
+        read_only: true
+      - type: bind
+        source: ./trust/backup-keyring.txt
+        target: /etc/tron/backup-keyring.txt
+        read_only: true
+      - type: bind
+        source: ./parameters/sapling-spend.params
+        target: /var/lib/tron/parameters/sapling-spend.params
+        read_only: true
+      - type: bind
+        source: ./parameters/sapling-output.params
+        target: /var/lib/tron/parameters/sapling-output.params
+        read_only: true
+      - tron-solidity-install:/opt/tron
+      - tron-solidity-config:/etc/tron
+      - tron-solidity-data:/var/lib/tron
+    ports:
+      - "127.0.0.1:8091:8091"
+      - "127.0.0.1:50061:50061"
+      - "127.0.0.1:5555:5555"
+      - "127.0.0.1:9527:9527"
+      - "127.0.0.1:9080:9080"
+
+volumes:
+  tron-install: {}
+  tron-config: {}
+  tron-data: {}
+  tron-solidity-install: {}
+  tron-solidity-config: {}
+  tron-solidity-data: {}

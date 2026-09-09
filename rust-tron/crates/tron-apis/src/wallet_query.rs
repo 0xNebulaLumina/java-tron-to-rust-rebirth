@@ -251,42 +251,17 @@ impl WalletQuery {
         })
     }
     pub fn pending_size(&self) -> Result<NumberMessage, ApiError> {
-        let pending = self.context.pending();
-        let guard = pending
-            .lock()
-            .map_err(|_| ApiError::Internal("pending pool lock poisoned".into()))?;
-        Ok(NumberMessage {
-            num: i64::try_from(guard.len()).unwrap_or(i64::MAX),
-        })
+        let provider = self.context.execution().ok_or_else(|| ApiError::FailedPrecondition("pending transactions are unavailable on this node".into()))?;
+        Ok(NumberMessage { num: i64::try_from(provider.pending_size()?).unwrap_or(i64::MAX) })
     }
     pub fn pending_ids(&self) -> Result<TransactionIdList, ApiError> {
-        let pending = self.context.pending();
-        let guard = pending
-            .lock()
-            .map_err(|_| ApiError::Internal("pending pool lock poisoned".into()))?;
-        Ok(TransactionIdList {
-            tx_id: guard
-                .pending_ids()
-                .into_iter()
-                .map(|id| hex(id.as_bytes()))
-                .collect(),
-        })
+        let provider = self.context.execution().ok_or_else(|| ApiError::FailedPrecondition("pending transactions are unavailable on this node".into()))?;
+        Ok(TransactionIdList { tx_id: provider.pending_ids()?.into_iter().map(|id| hex(id.as_bytes())).collect() })
     }
     pub fn pending_transaction(&self, id: &[u8]) -> Result<Transaction, ApiError> {
-        let id: [u8; 32] = id.try_into().map_err(|_| {
-            ApiError::InvalidArgument("pending transaction id must be 32 bytes".into())
-        })?;
-        let pending = self.context.pending();
-        let guard = pending
-            .lock()
-            .map_err(|_| ApiError::Internal("pending pool lock poisoned".into()))?;
-        guard
-            .pending_transaction(&id.into())
-            .map(|item| item.transaction.message().clone())
-            .ok_or_else(|| ApiError::NotFound(format!(
-                "pending transaction {} is unavailable",
-                hex(&id)
-            )))
+        let id: [u8; 32] = id.try_into().map_err(|_| ApiError::InvalidArgument("pending transaction id must be 32 bytes".into()))?;
+        let provider = self.context.execution().ok_or_else(|| ApiError::FailedPrecondition("pending transactions are unavailable on this node".into()))?;
+        provider.pending_transaction(id.into())?.ok_or_else(|| ApiError::NotFound(format!("pending transaction {} is unavailable", hex(&id))))
     }
 
     pub fn block_by_num(&self, number: i64) -> Result<Block, ApiError> {

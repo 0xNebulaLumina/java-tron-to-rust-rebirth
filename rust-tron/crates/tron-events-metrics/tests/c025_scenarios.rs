@@ -8,7 +8,7 @@ fn free_port() -> u16 { let listener=TcpListener::bind("127.0.0.1:0").unwrap(); 
 
 #[tokio::test]
 async fn live_zeromq_subscriber_receives_topic_and_json_frames() {
-    let port=free_port(); let mut publisher=ZeroMqPublisher::bind(ZeroMqConfig{bind_port:port,send_hwm:8}).await.unwrap();
+    let port=free_port(); let mut publisher=ZeroMqPublisher::bind(ZeroMqConfig{bind_ip:"127.0.0.1".parse().unwrap(),bind_port:port,send_hwm:8}).await.unwrap();
         let mut subscriber=SubSocket::new(); subscriber.subscribe("blockTrigger").await.unwrap(); subscriber.connect(&format!("tcp://127.0.0.1:{port}")).await.unwrap();
         tokio::time::sleep(Duration::from_millis(150)).await;
         publisher.publish("blockTrigger",r#"{"blockNumber":7}"#).unwrap();

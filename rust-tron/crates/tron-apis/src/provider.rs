@@ -3,13 +3,55 @@ use tron_crypto::{
     DuplicateSignerPolicy, PermissionError, PermissionKey, keccak256,
     recover_permission_weight, selected_digest,
 };
-use tron_execution::{ActuatorRegistry, default_active_permission, default_owner_permission};
-use tron_primitives::TronAddress21;
+use tron_execution::{BroadcastResult, ChainActorHandle, default_active_permission, default_owner_permission};
+use tron_primitives::{Hash32, TronAddress21};
 use tron_protocol::protocol::*;
 use tron_state::{CursorView, StoreKind};
 use zeroize::Zeroize;
 
-use crate::{ApiContext, ApiCursor, ApiError, MonitorSource, ShieldedWallet, WalletMutation, WalletQuery};
+use crate::{ApiContext, ApiCursor, ApiError, MonitorSource, ShieldedWallet, WalletMutation, WalletQuery, error::{failure_return, pending_return, success_return}};
+
+pub trait ExecutionProvider: Send + Sync {
+    fn broadcast_raw(&self, raw: Vec<u8>, received_at: i64, smart: bool) -> Return;
+    fn pending_size(&self) -> Result<usize, ApiError>;
+    fn pending_ids(&self) -> Result<Vec<Hash32>, ApiError>;
+    fn pending_transaction(&self, id: Hash32) -> Result<Option<Transaction>, ApiError>;
+}
+
+#[derive(Clone)]
+pub struct ActorExecutionProvider {
+    actor: ChainActorHandle,
+}
+
+impl ActorExecutionProvider {
+    #[must_use]
+    pub const fn new(actor: ChainActorHandle) -> Self { Self { actor } }
+}
+
+impl ExecutionProvider for ActorExecutionProvider {
+    fn broadcast_raw(&self, raw: Vec<u8>, received_at: i64, smart: bool) -> Return {
+        match self.actor.broadcast_raw(raw, received_at, smart) {
+            Ok(BroadcastResult::Accepted { .. }) => success_return(),
+            Ok(BroadcastResult::Rejected { reason, .. }) => pending_return(&reason),
+            Err(error) => failure_return(r#return::ResponseCode::OtherError, error.to_string().into_bytes()),
+        }
+    }
+    fn pending_size(&self) -> Result<usize, ApiError> {
+        self.actor.pending_size().map_err(execution_error)
+    }
+    fn pending_ids(&self) -> Result<Vec<Hash32>, ApiError> {
+        self.actor.pending_ids().map_err(execution_error)
+    }
+    fn pending_transaction(&self, id: Hash32) -> Result<Option<Transaction>, ApiError> {
+        self.actor.pending_transaction(id).map_err(execution_error)?
+            .map(|raw| tron_execution::RawWireTransaction::decode(raw).map(|wire| wire.message().clone()).map_err(|error| ApiError::Internal(error.to_string())))
+            .transpose()
+    }
+}
+
+fn execution_error(error: tron_execution::ChainManagerError) -> ApiError {
+    ApiError::Internal(error.to_string())
+}
 
 #[derive(Clone)]
 pub struct RpcDomainProvider {
@@ -285,7 +327,7 @@ impl RpcDomainProvider {
         let head=self.context.head().point();
         let block=self.query(ApiCursor::Head).now_block().ok();
         let timestamp=block.as_ref().and_then(|b|b.block_header.as_ref()).and_then(|h|h.raw_data.as_ref()).map_or(0,|h|h.timestamp);
-        MetricsInfo { interval:0,node:Some(metrics_info::NodeInfo{ip:String::new(),node_type:0,version:env!("CARGO_PKG_VERSION").into(),backup_status:0}),blockchain:Some(metrics_info::BlockChainInfo{head_block_num:head.block as i64,head_block_timestamp:timestamp,head_block_hash:hex(&head.identity.bytes()),fork_count:0,fail_fork_count:0,block_process_time:None,tps:None,transaction_cache_size:self.context.pending().lock().map(|p|p.len() as i32).unwrap_or(0),missed_transaction:None,witnesses:Vec::new(),fail_process_block_num:0,fail_process_block_reason:String::new(),dup_witness:Vec::new()}),net:None }
+        MetricsInfo { interval:0,node:Some(metrics_info::NodeInfo{ip:String::new(),node_type:0,version:env!("CARGO_PKG_VERSION").into(),backup_status:0}),blockchain:Some(metrics_info::BlockChainInfo{head_block_num:head.block as i64,head_block_timestamp:timestamp,head_block_hash:hex(&head.identity.bytes()),fork_count:0,fail_fork_count:0,block_process_time:None,tps:None,transaction_cache_size:self.context.execution().and_then(|provider|provider.pending_size().ok()).and_then(|size|i32::try_from(size).ok()).unwrap_or(0),missed_transaction:None,witnesses:Vec::new(),dup_witness:Vec::new(),fail_process_block_num:0,fail_process_block_reason:String::new()}),net:Some(metrics_info::NetInfo::default()) }
     }
     fn scan_notes<F>(&self,start:i64,end:i64,cursor:ApiCursor,mut decrypt:F)->Result<Vec<decrypt_notes::NoteTx>,ApiError>
     where F:FnMut(&tron_shielded::EncryptedNote)->tron_shielded::Result<Option<tron_shielded::DecryptedNote>> {
@@ -322,7 +364,7 @@ impl RpcDomainProvider {
         let raw = tx.raw_data.as_ref().ok_or_else(|| ApiError::InvalidArgument("transaction raw_data is required".into()))?;
         let contract = raw.contract.first().ok_or_else(|| ApiError::InvalidArgument("transaction contract is required".into()))?;
         if raw.contract.len() != 1 { return Err(ApiError::InvalidArgument("transaction must contain exactly one contract".into())); }
-        let owner = ActuatorRegistry::empty().owner_address(contract).map_err(|error| ApiError::InvalidArgument(format!("{error:?}")))?;
+        let owner = self.context.actuators().owner_address(contract).map_err(|error| ApiError::InvalidArgument(format!("{error:?}")))?;
         let account = self.query(cursor).account(&owner)?;
         let permission = match contract.permission_id {
             0 => account.owner_permission.unwrap_or_else(|| default_owner_permission(&owner)),

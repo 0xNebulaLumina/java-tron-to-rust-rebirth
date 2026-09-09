@@ -1,3 +1,4 @@
+use std::sync::Arc;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 use prost::Message;
@@ -5,7 +6,7 @@ use serde_json::json;
 use tron_apis::{ApiContext, ApiCursor, ContextJsonRpcBackend, FilterLimits, FilterManager, TronJsonRpcConfig, TronJsonRpcMethods};
 use tron_apis::jsonrpc_filters::{FilterView,RpcLog};
 use tron_crypto::CryptoEngine;
-use tron_execution::{ActuatorRegistry, CacheConfig, ExecutionConfig, PendingLimits, PendingPool, StateTransactionPipeline, TransactionCache, TransactionProcessor};
+use tron_execution::ActuatorRegistry;
 use tron_protocol::protocol::{block_header, Block, BlockHeader};
 use tron_state::{dynamic, CheckpointIdentity, CursorPoint, CursorSet, SessionManager, StateStore, StoreKind};
 use tron_primitives::Hash32;
@@ -43,15 +44,9 @@ fn cursor_context() -> (std::path::PathBuf, ApiContext) {
     let solidity = checkpoint(11, 9, 11);
     let head = checkpoint(15, 11, 15);
     let cursors = CursorSet::new(&manager, head, Some(solidity), Some(pbft), 2).unwrap();
-    let processor = TransactionProcessor {
-        sessions: manager.clone(),
-        cache: TransactionCache::new(CacheConfig::default()).unwrap(),
-        pipeline: StateTransactionPipeline::new(Default::default(), ActuatorRegistry::empty(), ExecutionConfig::default()).unwrap(),
-    };
-    let pending = PendingPool::new(manager, PendingLimits::default()).unwrap();
     let params = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../java-tron/framework/src/main/resources/params");
     let parameters = tron_shielded::load_tron_parameters(params.join("sapling-spend.params"), params.join("sapling-output.params")).unwrap();
-    (path, ApiContext::new(cursors, processor, pending, parameters, CryptoEngine::Secp256k1))
+    (path, ApiContext::new(cursors, None, Arc::new(ActuatorRegistry::empty()), parameters, CryptoEngine::Secp256k1))
 }
 fn rpc_log(block:u64)->RpcLog{RpcLog{address:vec![2;21],topics:vec![],data:vec![],block_hash:Hash32::from_array([block as u8;32]),block_number:block,transaction_hash:Hash32::from_array([block as u8+32;32]),transaction_index:0,log_index:0,removed:false}}
 

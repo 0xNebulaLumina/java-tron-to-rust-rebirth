@@ -2,6 +2,7 @@ use core::fmt;
 use std::collections::{BTreeMap, BTreeSet, HashSet};
 
 use tron_crypto::{selected_digest, CryptoEngine};
+use tron_storage::WriteBatch;
 
 use crate::session::{CheckpointHistory, CheckpointLayer, CheckpointState};
 use crate::{CursorError, CursorPoint, OverlayValue, SessionError, SessionManager, StoreName};
@@ -72,13 +73,60 @@ impl CheckpointStack {
         self.manager.checkpoint_operation(|root| recover_store(&root, self.limits))
     }
 
-    pub fn relink(&self) -> Result<usize, CheckpointError> {
-        self.manager.replace_checkpoint_state_from(|root| {
+    /// Recovers an interrupted publication and restores the in-memory checkpoint graph.
+    /// `None` is returned only for a store that has never published checkpoint metadata.
+    pub fn recover_and_relink(&self) -> Result<Option<usize>, CheckpointError> {
+        let present = self.manager.checkpoint_operation(|root| {
             recover_store(&root, self.limits)?;
-            let store = root.checkpoint_metadata();
-            let encoded = store.get(CURRENT_KEY).ok_or(CheckpointError::Corrupt("missing current checkpoint"))?;
+            Ok::<_, CheckpointError>(root.checkpoint_metadata().get(CURRENT_KEY).is_some())
+        })?;
+        if !present { return Ok(None); }
+        self.manager.replace_checkpoint_state_from(|root| {
+            let encoded = root.checkpoint_metadata().get(CURRENT_KEY)
+                .ok_or(CheckpointError::Corrupt("missing current checkpoint"))?;
             decode(&encoded, self.limits)
-        })
+        }).map(Some)
+    }
+
+    pub fn relink(&self) -> Result<usize, CheckpointError> {
+        self.recover_and_relink()?.ok_or(CheckpointError::Corrupt("missing current checkpoint"))
+    }
+
+    /// Materializes state through `anchor` and publishes the retained rewind history in the
+    /// same RustLog WAL transaction. The anchor remains the oldest reconstructible checkpoint.
+    pub fn compact_finalized(&self, anchor: CursorPoint) -> Result<usize, CheckpointError> {
+        let removed = self.manager.checkpoint_state_with(|current, root| {
+            let anchor_index = current.history.iter().position(|entry| entry.point == anchor)
+                .ok_or(CheckpointError::Cursor(CursorError::UnrelatedCheckpoint))?;
+            let remove_layers = anchor_index.min(current.layers.len());
+            let mut retained = CheckpointState {
+                layers: current.layers.iter().skip(remove_layers).cloned().collect(),
+                history: current.history.iter().skip(anchor_index).cloned().collect(),
+            };
+            let Some(first) = retained.history.first_mut() else { return Err(CheckpointError::Corrupt("missing finalized anchor")); };
+            first.parent = None;
+            let encoded = encode(&retained, self.limits)?;
+            let mut batch = WriteBatch::new();
+            for layer in current.layers.iter().take(remove_layers) {
+                for (store, entries) in &layer.values {
+                    for (key, value) in entries {
+                        let physical = crate::physical_key(store, key);
+                        match value {
+                            OverlayValue::Put(value) => { batch.put(physical, value.clone()); }
+                            OverlayValue::Delete => { batch.delete(physical); }
+                        }
+                    }
+                }
+            }
+            let internal = |key: &[u8]| { let mut out = Vec::with_capacity(key.len() + 2); out.extend_from_slice(&[2, 1]); out.extend_from_slice(key); out };
+            batch.put(internal(CURRENT_KEY), encoded);
+            batch.delete(internal(STAGED_KEY));
+            batch.delete(internal(JOURNAL_KEY));
+            root.shared_log().lock().unwrap_or_else(std::sync::PoisonError::into_inner).write(batch)?;
+            Ok(remove_layers)
+        })?;
+        self.relink()?;
+        Ok(removed)
     }
 
     pub fn retreat(&self, count: usize) -> Result<usize, CheckpointError> { self.retreat_with(count, &NoCheckpointCrash) }

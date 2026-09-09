@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tron.invalid/schemas/c028-command-manifest-v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "platform_id", "commands"],
+  "properties": {
+    "schema": {"const": "c028-command-manifest-v1"},
+    "platform_id": {"const": "P-LINUX-X64"},
+    "commands": {
+      "type": "array",
+      "minItems": 44,
+      "maxItems": 44,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "platform_id", "owning_item", "argv", "expected_exit", "expected_result", "assertions", "proof", "timeout_seconds", "scenario"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^C028-[DR][0-9]{2}-[A-Z0-9-]+$"},
+          "platform_id": {"const": "P-LINUX-X64"},
+          "owning_item": {"enum": ["C028.07", "C028.10"]},
+          "argv": {
+            "type": "array",
+            "prefixItems": [
+              {"const": "python3"},
+              {"const": "tools/release/c028_drills.py"},
+              {"const": "scenario"},
+              {"const": "--command-manifest"},
+              {"const": "docs/oracles/c028-command-manifest.v1.json"},
+              {"const": "--id"},
+              {"type": "string", "pattern": "^C028-[DR][0-9]{2}-[A-Z0-9-]+$"}
+            ],
+            "items": false,
+            "minItems": 7,
+            "maxItems": 7
+          },
+          "expected_exit": {"const": 0},
+          "expected_result": {"enum": ["accept", "reject_before_mutation"]},
+          "assertions": {"const": ["exact_case_identity", "actual_command_or_api", "authenticated_observation", "protected_tree_invariant"]},
+          "proof": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "symbol"],
+            "properties": {
+              "path": {"type": "string", "pattern": "^tools/release/c028_cases/(storage|snapshot|release|platform|runtime|container)\\.py$"},
+              "symbol": {"type": "string", "pattern": "^[a-z_][a-z0-9_]*$"}
+            }
+          },
+          "timeout_seconds": {"const": 300},
+          "scenario": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "module", "function"],
+            "properties": {
+              "id": {"type": "string"},
+              "module": {"enum": ["storage", "snapshot", "release", "platform", "runtime", "container"]},
+              "function": {"type": "string", "pattern": "^[a-z_][a-z0-9_]*$"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

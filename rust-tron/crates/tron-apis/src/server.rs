@@ -9,6 +9,8 @@ use crate::{
     interceptors::{IngressLayer, RawUnaryCaptureLayer}, monitor, network, solidity, wallet, zksnark,
 };
 use tron_config::RpcConfig;
+use tokio::net::TcpListener;
+use tokio_stream::wrappers::TcpListenerStream;
 
 #[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub enum ApiService {
@@ -225,17 +227,25 @@ impl GrpcServerPlan {
     }
 }
 /// Binds and gracefully drains a production gRPC server with mandatory ingress controls.
-/// Generated services are selected exclusively from the validated plan and all share the
-/// plan's decoding and encoding limits.
-pub async fn serve_grpc<F>(
+pub async fn serve_grpc<F>(plan: GrpcServerPlan, controls: IngressLayer, services: RpcApiServices, shutdown: F) -> std::io::Result<()>
+where F: Future<Output = ()> + Send + 'static {
+    let listener=TcpListener::bind(plan.listen).await?;
+    serve_grpc_with_listener(plan,listener,controls,services,shutdown).await
+}
+
+/// Starts a gRPC plan from an already-bound listener. Binding can therefore be completed
+/// transactionally across every API surface before runtime readiness is reported.
+pub async fn serve_grpc_with_listener<F>(
     plan: GrpcServerPlan,
+    listener: TcpListener,
     controls: IngressLayer,
     services: RpcApiServices,
     shutdown: F,
-) -> Result<(), tonic::transport::Error>
+) -> std::io::Result<()>
 where
     F: Future<Output = ()> + Send + 'static,
 {
+    let actual=listener.local_addr()?;if actual.ip()!=plan.listen.ip() || (plan.listen.port()!=0 && actual.port()!=plan.listen.port()){return Err(std::io::Error::new(std::io::ErrorKind::InvalidInput,"prebound gRPC listener does not match server plan"));}
     let request_limit = plan.limits.max_request_bytes;
     let response_limit = plan.limits.max_response_bytes;
     let configured = |service| plan.services.contains(&service);
@@ -280,8 +290,8 @@ where
                 .add_service(network)
                 .add_service(zksnark)
                 .add_optional_service(reflection)
-                .serve_with_shutdown(plan.listen, shutdown)
-                .await
+                .serve_with_incoming_shutdown(TcpListenerStream::new(listener), shutdown)
+                .await.map_err(std::io::Error::other)
         }
         ServerMode::StandaloneSolidity => {
             let solidity = solidity::wallet_solidity_server::WalletSolidityServer::new(services.clone())
@@ -301,8 +311,8 @@ where
                 .add_optional_service(extension)
                 .add_optional_service(monitor)
                 .add_optional_service(reflection)
-                .serve_with_shutdown(plan.listen, shutdown)
-                .await
+                .serve_with_incoming_shutdown(TcpListenerStream::new(listener), shutdown)
+                .await.map_err(std::io::Error::other)
         }
         ServerMode::Solidity | ServerMode::Pbft => {
             let solidity = solidity::wallet_solidity_server::WalletSolidityServer::new(services)
@@ -312,8 +322,8 @@ where
                 .add_service(solidity)
                 .add_service(database)
                 .add_optional_service(reflection)
-                .serve_with_shutdown(plan.listen, shutdown)
-                .await
+                .serve_with_incoming_shutdown(TcpListenerStream::new(listener), shutdown)
+                .await.map_err(std::io::Error::other)
         }
     }
 }

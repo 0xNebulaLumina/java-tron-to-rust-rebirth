@@ -1,4 +1,4 @@
-use std::time::Duration;
+use std::{net::{IpAddr, Ipv4Addr}, time::Duration};
 
 use bytes::Bytes;
 use tokio::{sync::{mpsc::{self, error::TrySendError, Sender}, watch}, task::JoinHandle};
@@ -11,11 +11,12 @@ pub const SEND_TIMEOUT: Duration = Duration::from_secs(2);
 pub const SHUTDOWN_TIMEOUT: Duration = Duration::from_secs(3);
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
-pub struct ZeroMqConfig { pub bind_port: u16, pub send_hwm: usize }
-impl Default for ZeroMqConfig { fn default() -> Self { Self { bind_port: DEFAULT_BIND_PORT, send_hwm: DEFAULT_SEND_HWM } } }
+pub struct ZeroMqConfig { pub bind_ip: IpAddr, pub bind_port: u16, pub send_hwm: usize }
+impl Default for ZeroMqConfig { fn default() -> Self { Self { bind_ip: IpAddr::V4(Ipv4Addr::UNSPECIFIED), bind_port: DEFAULT_BIND_PORT, send_hwm: DEFAULT_SEND_HWM } } }
 impl ZeroMqConfig {
-    pub fn normalized(self) -> Self { Self { bind_port: if self.bind_port == 0 { DEFAULT_BIND_PORT } else { self.bind_port }, send_hwm: if self.send_hwm == 0 { DEFAULT_SEND_HWM } else { self.send_hwm } } }
-    pub fn bind_address(self) -> String { format!("tcp://*:{}", self.normalized().bind_port) }
+    pub fn normalized(self) -> Self { Self { bind_ip: self.bind_ip, bind_port: if self.bind_port == 0 { DEFAULT_BIND_PORT } else { self.bind_port }, send_hwm: if self.send_hwm == 0 { DEFAULT_SEND_HWM } else { self.send_hwm } } }
+    pub fn bind_address(self) -> String { let config=self.normalized(); match config.bind_ip { IpAddr::V4(ip)=>format!("tcp://{ip}:{}",config.bind_port),IpAddr::V6(ip)=>format!("tcp://[{ip}]:{}",config.bind_port) } }
+    pub fn java_wildcard(bind_port:u16,send_hwm:usize)->Self{Self{bind_ip:IpAddr::V4(Ipv4Addr::UNSPECIFIED),bind_port,send_hwm}}
 }
 
 #[derive(Debug, thiserror::Error)]

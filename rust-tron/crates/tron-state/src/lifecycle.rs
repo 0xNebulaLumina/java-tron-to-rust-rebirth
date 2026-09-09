@@ -34,8 +34,17 @@ impl StateLifecycle {
     /// Recovers an interrupted checkpoint publication before any pending execution begins.
     pub fn recover(&self) -> Result<bool, crate::CheckpointError> { self.checkpoints.recover() }
 
+    /// Recovers interrupted publication and restores the durable checkpoint graph when present.
+    pub fn recover_and_relink(&self) -> Result<Option<usize>, crate::CheckpointError> {
+        self.checkpoints.recover_and_relink()
+    }
+
     /// Flushes committed overlays according to policy and always attempts the backend flush.
     pub fn shutdown(&self, flush_committed: bool) -> Result<(), ShutdownErrors> {
+        let active = self.sessions.active_sessions();
+        if active != 0 {
+            return Err(ShutdownErrors(vec![crate::SessionError::ActiveSessions(active).to_string()]));
+        }
         self.sessions.shutdown_aggregated(flush_committed)
     }
 }

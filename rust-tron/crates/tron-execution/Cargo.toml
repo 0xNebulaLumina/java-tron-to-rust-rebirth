@@ -14,6 +14,8 @@ tron-primitives = { path = "../tron-primitives" }
 tron-protocol = { path = "../tron-protocol" }
 tron-state = { path = "../tron-state" }
 tron-storage = { path = "../tron-storage" }
+tron-shielded = { path = "../tron-shielded" }
+tokio = { version = "=1.53.1", features = ["rt", "sync"] }
 tron-tvm = { path = "../tron-tvm" }
 
 [dev-dependencies]

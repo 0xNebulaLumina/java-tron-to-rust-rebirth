@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tron.invalid/schemas/c028-workflow-metadata-v1.schema.json",
+  "title": "C028 authenticated workflow metadata v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "repository", "candidate_run_id", "signing_run_id", "signing_workflow", "signing_workflow_sha", "unsigned_artifact_name", "unsigned_artifact_sha256", "signed_artifact_name", "signed_archive_name", "candidate_sha256", "release_id", "channel", "source_revision"],
+  "properties": {
+    "schema": {"const": "c028-workflow-metadata-v1"},
+    "repository": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"},
+    "candidate_run_id": {"type": "integer", "minimum": 1},
+    "signing_run_id": {"type": "integer", "minimum": 1},
+    "signing_workflow": {"const": ".github/workflows/c028-release-sign.yml"},
+    "signing_workflow_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "unsigned_artifact_name": {"type": "string", "pattern": "^c028-unsigned-[A-Za-z0-9][A-Za-z0-9._-]{0,127}-[0-9a-f]{64}$"},
+    "unsigned_artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "signed_artifact_name": {"type": "string", "pattern": "^c028-candidate-[A-Za-z0-9][A-Za-z0-9._-]{0,127}-[0-9a-f]{64}$"},
+    "signed_archive_name": {"const": "c028-candidate.tar.gz"},
+    "candidate_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "release_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+    "channel": {"enum": ["stable", "beta"]},
+    "source_revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+  }
+}

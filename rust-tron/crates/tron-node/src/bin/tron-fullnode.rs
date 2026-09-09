@@ -1,0 +1,2 @@
+use tron_node::{bootstrap::{BootstrapArgs,run_fixed_mode},deployment::DeploymentMode};
+fn main()->std::process::ExitCode{let args=match BootstrapArgs::parse(std::env::args()){Ok(v)=>v,Err(e)=>{eprintln!("{}",serde_json::json!({"schema":"tron-node-error-v1","category":"arguments","message":e}));return std::process::ExitCode::from(2)}};let runtime=match tokio::runtime::Builder::new_current_thread().enable_all().build(){Ok(v)=>v,Err(e)=>{eprintln!("runtime: {e}");return std::process::ExitCode::from(2)}};runtime.block_on(run_fixed_mode(DeploymentMode::Full,args))}

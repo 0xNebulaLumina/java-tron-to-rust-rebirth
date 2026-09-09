@@ -9,10 +9,7 @@ use tron_apis::{
     solidity, wallet, zksnark,
 };
 use tron_config::RpcConfig;
-use tron_execution::{
-    ActuatorRegistry, CacheConfig, ExecutionConfig, PendingLimits, PendingPool,
-    StateTransactionPipeline, TransactionCache, TransactionProcessor,
-};
+use tron_execution::ActuatorRegistry;
 use tron_state::{CheckpointIdentity, CursorPoint, CursorSet, SessionManager, StateStore};
 use tron_storage::{OpenRequirements, StorageIdentity, StorageManager};
 use prost::Message;
@@ -42,15 +39,7 @@ fn context_with_engine(engine: CryptoEngine) -> (std::path::PathBuf, ApiContext)
     let point = CursorPoint { block: 0, identity: CheckpointIdentity::new([0; 32]) };
     manager.record_checkpoint(point).unwrap();
     let cursors = CursorSet::new(&manager, point, None, None, 0).unwrap();
-    let processor = TransactionProcessor {
-        sessions: manager.clone(),
-        cache: TransactionCache::new(CacheConfig::default()).unwrap(),
-        pipeline: StateTransactionPipeline::new(
-            Default::default(), ActuatorRegistry::empty(), ExecutionConfig::default(),
-        ).unwrap(),
-    };
-    let pending = PendingPool::new(manager, PendingLimits::default()).unwrap();
-    (path, ApiContext::new(cursors, processor, pending, parameters(), engine))
+    (path, ApiContext::new(cursors, None, Arc::new(ActuatorRegistry::empty()), parameters(), engine))
 }
 fn context() -> (std::path::PathBuf, ApiContext) {
     context_with_engine(CryptoEngine::Secp256k1)

@@ -1,0 +1,118 @@
+{
+  "binaries": [
+    "tron-fullnode",
+    "tron-solidity",
+    "tron-toolkit",
+    "tron-release-verify"
+  ],
+  "immutable_inputs": {
+    "busybox": {
+      "policy": "docs/oracles/c028-busybox-material.v1.json",
+      "path": "TRON_BUSYBOX absolute path",
+      "validation": ["repository-pinned source package digest", "repository-pinned material digest", "static ELF64 x86-64 inspection", "embedded version marker"],
+      "execution_during_assembly": false
+    },
+    "cargo": "rust-tron/Cargo.lock",
+    "network_downloads": false,
+    "source_date_epoch": "source commit timestamp",
+    "source_revision": "canonical lowercase 40-hex Git SHA-1 of the authenticated candidate commit",
+    "toolchain": "rust-tron/rust-toolchain.toml"
+  },
+  "install_topology": {
+    "config_root": "/etc/tron",
+    "config_current_target": "/etc/tron/current",
+    "config_slots": "/etc/tron/releases/<release-id>",
+    "current_target": "/opt/tron/current",
+    "binary_slots": "/opt/tron/releases/<release-id>",
+    "immutable_layout": ["binary-slot", "config-slot"],
+    "install_prefix": "/opt/tron",
+    "receipt_path": "/var/lib/tron/install-receipt.json"
+  },
+  "oci": {
+    "diff_id": "sha256(normalized uncompressed rootfs tar bytes)",
+    "entrypoint": "/usr/local/bin/entrypoint.sh",
+    "layer_digest": "sha256(deterministic gzip layer bytes)",
+    "runtime_source": "emitted OCI layout"
+  },
+  "platforms": [
+    {
+      "architecture": "x86_64",
+      "backend": "rustlog",
+      "backend_format": "rustlog-v1",
+      "features": ["rustlog-v1"],
+      "os": "linux",
+      "platform_id": "P-LINUX-X64",
+      "target": "x86_64-unknown-linux-gnu"
+    }
+  ],
+  "release_authentication": {
+    "algorithm": "ed25519",
+    "artifact_binding": ["sha256", "size", "mode", "release_id", "platform_id", "source_revision"],
+    "offline_verification": true,
+    "payload_type": "application/vnd.tron.release-manifest.v1+json",
+    "rotation": "sequential trust-store version signed by old and new root thresholds",
+    "scope": "release:<channel>",
+    "threshold": 2,
+    "trusted_keys": 3
+  },
+  "restart_authentication": {
+    "external_inputs": ["release trust store", "signed manifest envelope", "immutable candidate bundle", "platform", "channel", "minimum release sequence", "trusted verification time"],
+    "receipt_binding": ["manifest_sha256", "release_id", "release_sequence", "platform_id", "install topology", "binary inventory", "configuration inventory"],
+    "receipt_only_restart": false,
+    "verification_order": ["verify signed candidate under external trust", "compare authenticated release identity and inventories to receipt", "verify installed bytes"]
+  },
+
+  "workflow_transfer": {
+    "candidate_authentication_threshold": 2,
+    "immutable_artifact_binding": ["repository", "candidate_run_id", "signing_run_id", "signing_workflow", "signing_workflow_sha", "unsigned_artifact_name", "unsigned_artifact_sha256", "signed_artifact_name", "signed_archive_name", "candidate_sha256", "release_id", "channel", "source_revision"],
+    "publish_identity_source": "verified publication-inventory.json and protected signing workflow metadata including signed source_revision",
+    "publish_staging": "private runner-owned",
+    "release_destination_binding": ["release_id", "channel", "tag", "peeled_tag_commit", "checkout_commit", "source_revision"],
+    "tag_resolution": "exact refs/tags/<release-id>^{commit}; branch names are not release tags",
+    "runner_isolation": "unsigned candidate code runs without secrets; workflow_run signing executes protected default-branch code in an approval-gated environment",
+    "signer_authority": {
+      "candidate_repository_signer_authoritative": false,
+      "provisioning": "protected c028-release-signing environment secrets supply base64 signer bytes and independently recorded SHA-256 digests",
+      "signing_workflow": ".github/workflows/c028-release-sign.yml",
+      "signing_workflow_source": "GitHub workflow_run definition from the protected default branch; trusted checkout is exactly github.workflow_sha",
+      "signer_digest_source": "protected signing environment; never workflow input, candidate artifact, or candidate source",
+      "signer_execution": "hash-verified trusted signer only; candidate archive is inert data and is never executed",
+      "trigger_policy": ["successful C028 release candidate workflow_dispatch", "same repository and head repository", "protected default branch", "head SHA equals current default-branch SHA", "exact candidate workflow path"],
+      "scrub": ["signer", "signing keys", "extracted unsigned candidate"]
+    },
+    "signing_job_candidate_checkout": false,
+    "signing_job_candidate_execution": false,
+    "signing_key_scrub": true
+  },
+  "reproducibility": {
+    "independent_builds": 2,
+    "outputs": ["native-archive", "config-archive", "oci-layout"]
+  },
+  "sapling": {
+    "operator_inputs": [
+      {
+        "blake2b_512": "25fd9a0d1c1be0526c14662947ae95b758fe9f3d7fb7f55e9b4437830dcc6215a7ce3ea465914b157715b7a4d681389ea4aa84438190e185d5e4c93574d3a19a",
+        "kind": "sapling-spend",
+        "size": 48013340
+      },
+      {
+        "blake2b_512": "a1cb23b93256adce5bce2cb09cefbc96a1d16572675ceb691e9a3626ec15b5b546926ff1c536cfe3a9df07d796b32fdfc3e5d99d65567257bf286cd2858d71a6",
+        "kind": "sapling-output",
+        "size": 3647804
+      }
+    ],
+    "packaged_bytes": false,
+    "redistribution_rights": "not_asserted"
+  },
+  "schema": "c028-release-contract-v1",
+  "snapshot_authentication": {
+    "algorithm": "ed25519",
+    "anti_rollback": ["trust-store version", "operator minimum height", "exact independent checkpoint height/block ID/state root", "release sequence"],
+    "freshness_seconds": 604800,
+    "future_skew_seconds": 300,
+    "offline_verification": true,
+    "scope": "snapshot:<network>",
+    "scope_enforcement": "exact canonical snapshot:<network> trust-role scope is verified before import mutation; role-name match alone is insufficient",
+    "threshold": 2
+  }
+}

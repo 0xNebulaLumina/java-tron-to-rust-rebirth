@@ -30,6 +30,9 @@ impl HttpServerConfig {
             controls: HttpControls::default(),
         }
     }
+
+    #[must_use]
+    pub fn bind_address(&self) -> SocketAddr { self.bind }
 }
 
 pub struct HttpServerPlan {
@@ -59,9 +62,18 @@ impl HttpServerPlan {
             .layer(TimeoutLayer::new(deadline)))
     }
 
-    pub async fn serve(self, mut cancellation: watch::Receiver<bool>) -> io::Result<()> {
+    pub async fn serve(self, cancellation: watch::Receiver<bool>) -> io::Result<()> {
         let listener = TcpListener::bind(self.config.bind).await?;
+        self.serve_listener(listener, cancellation).await
+    }
+
+    pub async fn serve_listener(self, listener: TcpListener, mut cancellation: watch::Receiver<bool>) -> io::Result<()> {
+        let actual=listener.local_addr()?;
+        if actual.ip()!=self.config.bind.ip() || (self.config.bind.port()!=0 && actual.port()!=self.config.bind.port()) {
+            return Err(io::Error::new(io::ErrorKind::InvalidInput, "prebound HTTP listener does not match server plan"));
+        }
         let router = self.configured_router();
+        let mut connections = tokio::task::JoinSet::new();
         loop {
             tokio::select! {
                 changed = cancellation.changed() => { if changed.is_err() || *cancellation.borrow() { break; } },
@@ -73,7 +85,7 @@ impl HttpServerPlan {
                     let idle_timeout = self.config.connection_idle_timeout;
                     let max_age = self.config.connection_max_age;
                     let mut connection_cancellation = cancellation.clone();
-                    tokio::spawn(async move {
+                    connections.spawn(async move {
                         let _permit = permit;
                         let (first_tx, mut first_rx) = watch::channel(false);
                         let service = service_fn(move |request: Request<Incoming>| {
@@ -102,11 +114,17 @@ impl HttpServerPlan {
                 }
             }
         }
+        while let Some(result) = connections.join_next().await {
+            result.map_err(io::Error::other)?;
+        }
         Ok(())
     }
 
     #[must_use]
     pub fn connection_cap(&self) -> ConnectionCap { self.connection_cap.clone() }
+
+    #[must_use]
+    pub fn bind_address(&self) -> SocketAddr { self.config.bind }
 }
 
 struct TimeoutIo {

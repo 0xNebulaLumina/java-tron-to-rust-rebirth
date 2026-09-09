@@ -75,7 +75,7 @@ impl TransactionHandler {
         for (item,bytes) in encoded { peer.adv_requests.remove(&item); self.queue.push_back((bytes,now)); }
         Ok(self.queue.len())
     }
-    pub fn drain<S:TransactionSink>(&mut self,peer:&PeerConnection,sink:&mut S,maximum:usize)->usize{
+    pub fn drain<S:TransactionSink + ?Sized>(&mut self,peer:&PeerConnection,sink:&mut S,maximum:usize)->usize{
         let mut done=0; while done<maximum { let Some((bytes,at))=self.queue.pop_front()else{break}; let Ok(id)=transaction_id_from_wire(&bytes)else{done+=1;continue}; if !sink.known_transaction(&id)&&sink.process_transaction(bytes.clone(),at).is_ok(){sink.broadcast_transaction(&bytes,peer)} done+=1; } done
     }
 }
@@ -109,12 +109,15 @@ pub trait BlockSink {
     fn start_sync(&mut self,peer:&PeerConnection);
 }
 #[derive(Clone,Copy,Debug,Eq,PartialEq)] pub enum BlockDisposition{Sync,IgnoredLow,BroadcastAndProcessed}
-pub fn handle_block<S:BlockSink>(peer:&mut PeerConnection,payload:&[u8],now:i64,fast_forward:bool,sink:&mut S)->Result<BlockDisposition,HandlerError>{
+pub fn handle_block<S:BlockSink + ?Sized>(peer:&mut PeerConnection,payload:&[u8],now:i64,fast_forward:bool,sink:&mut S)->Result<BlockDisposition,HandlerError>{
+    handle_block_with_engine(peer, payload, now, fast_forward, tron_crypto::CryptoEngine::Secp256k1, sink)
+}
+pub fn handle_block_with_engine<S:BlockSink + ?Sized>(peer:&mut PeerConnection,payload:&[u8],now:i64,fast_forward:bool,engine:tron_crypto::CryptoEngine,sink:&mut S)->Result<BlockDisposition,HandlerError>{
     if payload.len()>MAX_NETWORK_BLOCK_BYTES{return Err(HandlerError::BlockTooLarge{size:payload.len(),max:MAX_NETWORK_BLOCK_BYTES})}
     let mut raw=RawBlock::decode(payload,BlockLimits{max_block_bytes:MAX_NETWORK_BLOCK_BYTES,..BlockLimits::default()}).map_err(map_block)?;
     let header=raw.message.block_header.as_ref().and_then(|h|h.raw_data.as_ref()).ok_or(HandlerError::Malformed("block header"))?;
     validate_block_time(header.timestamp,now)?;
-    let id=raw.block_id(tron_crypto::CryptoEngine::Secp256k1).map_err(map_block)?; let key=BlockKey{hash:id.as_bytes().to_vec(),number:id.height()}; let inv=InventoryItem{hash:id.hash().as_bytes().try_into().expect("Hash32 is 32 bytes"),kind:1};
+    let id=raw.block_id(engine).map_err(map_block)?; let key=BlockKey{hash:id.as_bytes().to_vec(),number:id.height()}; let inv=InventoryItem{hash:id.hash().as_bytes().try_into().expect("Hash32 is 32 bytes"),kind:1};
     let sync=peer.sync_requested.contains_key(&key); if !fast_forward&&!peer.relay_peer&&!sync&&!peer.adv_requests.contains_key(&inv){return Err(HandlerError::UnrequestedBlock(key))}
     let sanitized=raw.message.encode_to_vec(); raw=RawBlock::decode(&sanitized,BlockLimits{max_block_bytes:MAX_NETWORK_BLOCK_BYTES,..BlockLimits::default()}).map_err(map_block)?;
     if sync {peer.sync_requested.remove(&key);peer.sync_in_process.insert(key);sink.process_block(raw,now).map_err(HandlerError::InvalidBlock)?;return Ok(BlockDisposition::Sync)}
@@ -123,15 +126,16 @@ pub fn handle_block<S:BlockSink>(peer:&mut PeerConnection,payload:&[u8],now:i64,
     sink.broadcast_block(&sanitized,peer); sink.process_block(raw,now).map_err(HandlerError::InvalidBlock)?; peer.block_received_ms=now; Ok(BlockDisposition::BroadcastAndProcessed)
 }
 fn map_block(error:BlockApplyError)->HandlerError{HandlerError::InvalidBlock(error.to_string())}
-pub struct PbftHandler { seen:VecDeque<[u8;32]>, sidecar:PbftSidecar }
+pub struct PbftHandler { seen:VecDeque<[u8;32]>, sidecar:std::sync::Arc<std::sync::Mutex<PbftSidecar>> }
 impl PbftHandler {
-    pub fn new(sidecar:PbftSidecar)->Self{Self{seen:VecDeque::new(),sidecar}}
+    pub fn new(sidecar:PbftSidecar)->Self{Self::from_shared(std::sync::Arc::new(std::sync::Mutex::new(sidecar)))}
+    pub fn from_shared(sidecar:std::sync::Arc<std::sync::Mutex<PbftSidecar>>)->Self{Self{seen:VecDeque::new(),sidecar}}
     pub fn handle_wire(&mut self,payload:&[u8],context:PbftContext,head:i64,expire_blocks:i64,next_maintenance:i64,maintenance_interval:i64)->Result<Vec<PbftEffect>,HandlerError>{
         let message=SignedMessage::decode(payload).map_err(pbft)?;
         if message.raw.data_type==tron_consensus::pbft::DataType::Block&&head.saturating_sub(message.raw.view_n)>expire_blocks{return Ok(vec![])}
         if message.raw.data_type==tron_consensus::pbft::DataType::Srl&&next_maintenance.saturating_sub(message.raw.epoch)>maintenance_interval.saturating_mul(2){return Ok(vec![])}
         let id:[u8;32]=Sha256::digest(payload).into(); if self.seen.contains(&id){return Ok(vec![])}
-        let effects=self.sidecar.handle(message,context).map_err(pbft)?; self.seen.push_back(id); while self.seen.len()>PBFT_DEDUP_LIMIT{self.seen.pop_front();} Ok(effects)
+        let effects=self.sidecar.lock().map_err(|_|HandlerError::Pbft("sidecar lock poisoned".into()))?.handle(message,context).map_err(pbft)?; self.seen.push_back(id); while self.seen.len()>PBFT_DEDUP_LIMIT{self.seen.pop_front();} Ok(effects)
     }
     pub fn decode_commit(payload:&[u8])->Result<PbftCommitResult,HandlerError>{PbftCommitResult::decode(payload).map_err(|_|HandlerError::Malformed("pbft commit"))}
 }

@@ -1,0 +1,87 @@
+{
+  "expected_release": {
+    "minimum_release_sequence": 0,
+    "release_id": "development"
+  },
+  "listeners": {
+    "admin": {
+      "bind": "127.0.0.1:9080",
+      "public": false,
+      "security": "plaintext-loopback"
+    },
+    "grpc": {
+      "bind": "127.0.0.1:50051",
+      "public": false,
+      "security": "plaintext-loopback"
+    },
+    "http": {
+      "bind": "127.0.0.1:8091",
+      "public": false,
+      "security": "plaintext-loopback"
+    },
+    "prometheus": {
+      "bind": "127.0.0.1:9527",
+      "public": false,
+      "security": "plaintext-loopback"
+    },
+    "zeromq": {
+      "bind": "127.0.0.1:5555",
+      "public": false,
+      "security": "plaintext-loopback"
+    }
+  },
+  "logging": {
+    "destination": "stdout/stderr only",
+    "format": "json",
+    "level": "info"
+  },
+  "mode": "solidity",
+  "paths": {
+    "chain_config": "/etc/tron/current/solidity.conf",
+    "data_directory": "/var/lib/tron/data",
+    "install_receipt": "/var/lib/tron/install-receipt.json",
+    "keystore_directory": "/var/lib/tron/keystore",
+    "sapling_output": "/var/lib/tron/parameters/sapling-output.params",
+    "sapling_spend": "/var/lib/tron/parameters/sapling-spend.params",
+    "snapshot_trust_store": "/etc/tron/snapshot-trust-store.json",
+    "snapshot_watermark": "/var/lib/tron/snapshot-acceptance/tron-storage.snapshot-watermark.json"
+  },
+  "platform": {
+    "architecture": "x86_64",
+    "backend": "rustlog",
+    "backend_format": "rustlog-v1",
+    "features": [
+      "rustlog-v1"
+    ],
+    "id": "P-LINUX-X64",
+    "os": "linux",
+    "schema_version": 1,
+    "target": "x86_64-unknown-linux-gnu"
+  },
+  "production_security": {
+    "allow_cli_witness_password": false,
+    "allow_inline_witness_private_key": false,
+    "allow_public_plaintext_api": false,
+    "require_authenticated_backup_for_witness": true,
+    "require_verified_install_receipt": true
+  },
+  "runtime_limits": {
+    "max_release_artifacts": 4096,
+    "max_release_manifest_bytes": 1048576,
+    "max_snapshot_bytes": 4398046511104,
+    "max_trust_store_bytes": 1048576,
+    "shutdown_timeout_seconds": 120,
+    "startup_timeout_seconds": 120
+  },
+  "schema": "tron-deployment-v1",
+  "snapshot_policy": {
+    "future_clock_skew_seconds": 300,
+    "max_age_seconds": 604800,
+    "max_manifest_bytes": 1048576,
+    "max_payload_bytes": 4398046511104,
+    "minimum_acceptable_height": 1,
+    "required_trust_store_version": 1,
+    "trusted_checkpoint": { "height": 1, "block_id": "0000000000000000000000000000000000000000000000000000000000000001", "state_root": "0000000000000000000000000000000000000000000000000000000000000002" },
+    "required_stores": ["account","accountid-index","account-index","account-asset","asset-issue","asset-issue-v2","block","block-index","trans","trans-cache","transactionRetStore","transactionHistoryStore","recent-block","recent-transaction","contract","abi","code","contract-state","storage-row","witness","witness_schedule","votes","proposal","exchange","exchange-v2","market_account","market_order","market_pair_to_price","market_pair_price_to_order","DelegatedResource","DelegatedResourceAccountIndex","properties","IncrementalMerkleTree","nullifier","zkProof","tree-block-index","section-bloom","account-trace","balance-trace","delegation","pbft-sign-data","reward-vi","common","checkpoint","tmp"]
+  }
+}

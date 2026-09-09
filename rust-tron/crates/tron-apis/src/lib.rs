@@ -33,7 +33,7 @@ pub mod wallet_mutation;
 pub mod wallet_query;
 
 pub use blocking::{BlockingCancellation, BlockingExecutor};
-pub use constant::{ConstantOutcome, ConstantService, ReadOnlyVm};
+pub use constant::{ConstantOutcome, ConstantService, ProductionReadOnlyVm, ReadOnlyVm, ReadOnlyVmExecutor};
 pub use context::{ApiContext, ApiCursor, TypedReadView};
 pub use database_source::{DatabaseSource, DatabaseFuture, TonicDatabaseSource};
 pub use cursors::{CursorRouter, PbftMethod};
@@ -42,9 +42,10 @@ pub use extension_api::ExtensionApi;
 pub use interceptors::ApiInterceptors;
 pub use node_info::{
     DisconnectedNetworkSnapshot, NetworkSnapshot, NodeInfoService, NodeInfoSnapshot, NodeInfoSource,
+    ProductionNetworkSnapshot,
 };
 pub use rate_limit::ApiRateLimiter;
-pub use provider::RpcDomainProvider;
+pub use provider::{ActorExecutionProvider, ExecutionProvider, RpcDomainProvider};
 pub use jsonrpc::{JsonRpcHttpResponse, JsonRpcLimits, JsonRpcProcessor};
 pub use jsonrpc_methods::{JsonRpcBackend, RejectingBackend, TronJsonRpcConfig, TronJsonRpcMethods, TRON_JSON_RPC_METHODS};
 pub use jsonrpc_types::{BlockTag, BuildArguments, CallArguments, JsonRpcError, JsonRpcId};

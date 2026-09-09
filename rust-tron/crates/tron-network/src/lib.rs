@@ -1,6 +1,7 @@
 //! External and application P2P ownership boundary.
 //! Legacy discovery remains separate from authenticated backup datagrams.
 pub mod discovery;
+pub mod backup_auth;
 pub mod dns;
 pub mod persistence;
 
@@ -20,3 +21,4 @@ pub mod sync;
 pub mod watchdog;
 pub mod service;
 pub mod gossip;
+pub mod production;

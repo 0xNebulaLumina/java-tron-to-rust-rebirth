@@ -37,6 +37,26 @@ pub trait NetworkSnapshot: Send + Sync {
     fn nodes(&self) -> NodeList;
     fn node_info(&self, head_block: u64, solidity_block: u64) -> NodeInfoSnapshot;
 }
+#[derive(Clone)]
+pub struct ProductionNetworkSnapshot {
+    nodes: std::sync::Arc<dyn Fn() -> NodeList + Send + Sync>,
+    info: std::sync::Arc<dyn Fn(u64, u64) -> NodeInfoSnapshot + Send + Sync>,
+}
+
+impl ProductionNetworkSnapshot {
+    #[must_use]
+    pub fn new(
+        nodes: std::sync::Arc<dyn Fn() -> NodeList + Send + Sync>,
+        info: std::sync::Arc<dyn Fn(u64, u64) -> NodeInfoSnapshot + Send + Sync>,
+    ) -> Self { Self { nodes, info } }
+}
+
+impl NetworkSnapshot for ProductionNetworkSnapshot {
+    fn nodes(&self) -> NodeList { (self.nodes)() }
+    fn node_info(&self, head_block: u64, solidity_block: u64) -> NodeInfoSnapshot {
+        (self.info)(head_block, solidity_block)
+    }
+}
 
 #[derive(Clone, Debug)]
 pub struct DisconnectedNetworkSnapshot {

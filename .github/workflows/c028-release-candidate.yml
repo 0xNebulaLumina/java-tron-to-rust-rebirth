@@ -1,0 +1,123 @@
+name: C028 release candidate
+on:
+  workflow_dispatch:
+    inputs:
+      release_id:
+        description: Authenticated release identifier (must equal publish tag)
+        required: true
+      version:
+        description: Release version
+        required: true
+      release_sequence:
+        description: Monotonic release sequence
+        required: true
+        type: number
+      channel:
+        description: Canonical release channel
+        required: true
+        type: choice
+        options: [stable, beta]
+permissions:
+  contents: read
+jobs:
+  build-candidate:
+    runs-on: ubuntu-24.04
+    outputs:
+      artifact_name: ${{ steps.seal.outputs.artifact_name }}
+      artifact_sha256: ${{ steps.seal.outputs.artifact_sha256 }}
+      source_revision: ${{ steps.source.outputs.source_revision }}
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - name: Install exact repository Rust toolchain
+        run: |
+          rustup toolchain install 1.85.1 --profile minimal --component cargo --target x86_64-unknown-linux-gnu
+          rustup override set 1.85.1 rust-tron
+          test "$(cd rust-tron && rustc --version)" = "rustc 1.85.1 (4eb161250 2025-03-15)"
+      - name: Guard pinned java-tron submodule
+        run: python3 tools/reference-runner/java_reference_guard.py --phase candidate-workflow
+      - name: Resolve canonical candidate source revision
+        id: source
+        run: |
+          SOURCE_REVISION=$(git rev-parse --verify 'HEAD^{commit}')
+          case "$SOURCE_REVISION" in *[!0-9a-f]*|'') exit 2;; esac
+          test "${#SOURCE_REVISION}" = 40
+          echo "source_revision=$SOURCE_REVISION" >> "$GITHUB_OUTPUT"
+      - name: Install OCI conformance runtime
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends skopeo umoci
+      - name: Provision repository-pinned BusyBox without executing it
+        run: |
+          python3 - <<'PY' >> "$GITHUB_ENV"
+          import json
+          policy=json.load(open('docs/oracles/c028-busybox-material.v1.json'))
+          print('BUSYBOX_URL='+policy['source']['url'])
+          print('BUSYBOX_PACKAGE_SHA256='+policy['source']['sha256'])
+          print('TRON_BUSYBOX_SHA256='+policy['material']['sha256'])
+          print('TRON_BUSYBOX_VERSION='+policy['material']['version'])
+          print('TRON_BUSYBOX_LICENSE='+policy['material']['license'])
+          print('TRON_BUSYBOX_PROVENANCE='+policy['material']['provenance'])
+          PY
+          install -d -m 0700 "$RUNNER_TEMP/c028-inputs/package" "$RUNNER_TEMP/c028-inputs/root"
+          curl --fail --location --proto '=https' --tlsv1.2 --output "$RUNNER_TEMP/c028-inputs/package/busybox.deb" "$BUSYBOX_URL"
+          printf '%s  %s\n' "$BUSYBOX_PACKAGE_SHA256" "$RUNNER_TEMP/c028-inputs/package/busybox.deb" | sha256sum --check --strict
+          dpkg-deb --extract "$RUNNER_TEMP/c028-inputs/package/busybox.deb" "$RUNNER_TEMP/c028-inputs/root"
+          install -m 0500 "$RUNNER_TEMP/c028-inputs/root/bin/busybox" "$RUNNER_TEMP/c028-inputs/busybox"
+          printf '%s  %s\n' "$TRON_BUSYBOX_SHA256" "$RUNNER_TEMP/c028-inputs/busybox" | sha256sum --check --strict
+          echo "TRON_BUSYBOX=$RUNNER_TEMP/c028-inputs/busybox" >> "$GITHUB_ENV"
+      - name: Verify pinned offline inputs
+        run: |
+          test "$(cd rust-tron && rustc --version)" = "rustc 1.85.1 (4eb161250 2025-03-15)"
+          cargo metadata --locked --offline --manifest-path rust-tron/Cargo.toml --no-deps >/dev/null
+      - name: Run canonical C028 gate
+        run: python3 tools/tracker/validate.py --gate C028
+      - name: Assemble reproducible unsigned candidate
+        env:
+          RELEASE_ID: ${{ inputs.release_id }}
+          VERSION: ${{ inputs.version }}
+          RELEASE_SEQUENCE: ${{ inputs.release_sequence }}
+          CHANNEL: ${{ inputs.channel }}
+          SOURCE_REVISION: ${{ steps.source.outputs.source_revision }}
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_ID" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$ ]]
+          SOURCE_DATE_EPOCH=$(git show -s --format=%ct "$SOURCE_REVISION")
+          python3 tools/release/c028_release.py build --out "$RUNNER_TEMP/candidate" \
+            --release-id "$RELEASE_ID" --version "$VERSION" --release-sequence "$RELEASE_SEQUENCE" \
+            --channel "$CHANNEL" --source-revision "$SOURCE_REVISION" --source-date-epoch "$SOURCE_DATE_EPOCH"
+          test -x "$RUNNER_TEMP/candidate/bundle/bin/tron-release-verify"
+      - name: Run all executable and emitted-OCI checks before signing
+        env:
+          TRON_VERIFICATION_TIME: 2026-09-08T12:00:00Z
+        run: |
+          python3 - "$RUNNER_TEMP/candidate/bundle" <<'PY'
+          import importlib.util, pathlib, sys
+          spec=importlib.util.spec_from_file_location('release', 'tools/release/c028_release.py')
+          release=importlib.util.module_from_spec(spec); spec.loader.exec_module(release)
+          print(release.validate_oci_layout(pathlib.Path(sys.argv[1])))
+          PY
+          python3 tools/release/c028_drills.py scenario \
+            --command-manifest docs/oracles/c028-command-manifest.v1.json \
+            --id C028-R21-CONTAINER-SERVICE --candidate-dir "$RUNNER_TEMP/candidate"
+      - name: Seal digest-bound unsigned candidate
+        id: seal
+        env:
+          RELEASE_ID: ${{ inputs.release_id }}
+        run: |
+          tar --sort=name --mtime='@0' --owner=0 --group=0 --numeric-owner --format=ustar \
+            -C "$RUNNER_TEMP/candidate" -czf "$RUNNER_TEMP/c028-unsigned-candidate.tar.gz" .
+          DIGEST=$(sha256sum "$RUNNER_TEMP/c028-unsigned-candidate.tar.gz" | cut -d' ' -f1)
+          echo "artifact_name=c028-unsigned-$RELEASE_ID-$DIGEST" >> "$GITHUB_OUTPUT"
+          echo "artifact_sha256=$DIGEST" >> "$GITHUB_OUTPUT"
+      - name: Upload immutable unsigned candidate
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ${{ steps.seal.outputs.artifact_name }}
+          path: ${{ runner.temp }}/c028-unsigned-candidate.tar.gz
+          if-no-files-found: error
+          overwrite: false
+          retention-days: 7
+

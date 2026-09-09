@@ -13,7 +13,7 @@ use tron_apis::{
 };
 use tron_config::{Config, RpcConfig};
 use tron_crypto::CryptoEngine;
-use tron_execution::{ActuatorRegistry, CacheConfig, ExecutionConfig, PendingLimits, PendingPool, StateTransactionPipeline, TransactionCache, TransactionProcessor};
+use tron_execution::ActuatorRegistry;
 use tron_state::{CheckpointIdentity, CursorPoint, CursorSet, SessionManager, StateStore};
 use tron_storage::{OpenRequirements, StorageIdentity, StorageManager};
 
@@ -26,11 +26,9 @@ fn context() -> (std::path::PathBuf, ApiContext) {
     let point = CursorPoint { block: 0, identity: CheckpointIdentity::new([0; 32]) };
     manager.record_checkpoint(point).unwrap();
     let cursors = CursorSet::new(&manager, point, None, None, 0).unwrap();
-    let processor = TransactionProcessor { sessions: manager.clone(), cache: TransactionCache::new(CacheConfig::default()).unwrap(), pipeline: StateTransactionPipeline::new(Default::default(), ActuatorRegistry::empty(), ExecutionConfig::default()).unwrap() };
-    let pending = PendingPool::new(manager, PendingLimits::default()).unwrap();
     let params = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../java-tron/framework/src/main/resources/params");
     let parameters = tron_shielded::load_tron_parameters(params.join("sapling-spend.params"), params.join("sapling-output.params")).unwrap();
-    (path, ApiContext::new(cursors, processor, pending, parameters, CryptoEngine::Secp256k1))
+    (path, ApiContext::new(cursors, None, Arc::new(ActuatorRegistry::empty()), parameters, CryptoEngine::Secp256k1))
 }
 
 async fn free_address() -> std::net::SocketAddr {

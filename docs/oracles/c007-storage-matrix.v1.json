@@ -36,7 +36,7 @@
     }
   ],
   "migration_phases": ["Preflight","StagingCreated","DataWritten","DataSynced","JournalSynced","BackupSynced","GenerationPublished","ManifestSwitched","DirectorySynced","CleanupSynced"],
-  "storage_error_categories": ["Io","DiskFull","Permission","ConcurrentOpen","Locked","Corruption","InvalidOptions","InvalidCheckpoint","MarketKey","Format","Poisoned"],
+  "storage_error_categories": ["Io","DiskFull","Permission","ConcurrentOpen","Locked","Corruption","InvalidOptions","InvalidCheckpoint","MarketKey","Format","RewriteRejected","Closed","Poisoned"],
   "write_phases": ["Append","Flush","Sync","Truncate","RollbackSync","Metadata","Compaction"],
   "corruption_categories": ["InvalidWalHeader","InvalidSnapshotHeader","WalChecksum","SnapshotChecksum","FrameTooLarge","KeyTooLarge","ValueTooLarge","TooManyOperations","TooManySnapshotEntries","InvalidOperation","InvalidEncoding","TrailingSnapshotBytes"],
   "scenarios": [

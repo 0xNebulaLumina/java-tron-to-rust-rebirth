@@ -203,6 +203,13 @@ impl<'a> ExecutionContext<'a> {
         if let Some(callback) = callback { callback.withdraw_reward(self, address)?; }
         Ok(())
     }
+    /// Runs consensus-owned reward accounting against this actuator's revoking session.
+    ///
+    /// The callback receives no execution configuration or registry access; all writes still
+    /// participate in the actuator's enclosing child session and are revoked on failure.
+    pub fn with_reward_session<T>(&mut self, apply: impl FnOnce(&Session) -> Result<T, ActuatorError>) -> Result<T, ActuatorError> {
+        apply(self.session)
+    }
     pub fn put(&mut self, kind: StoreKind, key: &[u8], value: &[u8]) -> Result<(), ActuatorError> {
         self.ensure_writable(kind)?;
         let touched_key = (kind, key.to_vec());

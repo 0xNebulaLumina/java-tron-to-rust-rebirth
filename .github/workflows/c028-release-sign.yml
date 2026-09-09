@@ -1,0 +1,176 @@
+name: C028 protected release signing
+on:
+  workflow_run:
+    workflows: [C028 release candidate]
+    types: [completed]
+permissions:
+  actions: read
+  contents: read
+jobs:
+  sign-candidate:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'workflow_dispatch' &&
+      github.event.workflow_run.repository.full_name == github.repository &&
+      github.event.workflow_run.head_repository.full_name == github.repository &&
+      github.event.workflow_run.head_branch == github.event.repository.default_branch
+    runs-on: ubuntu-24.04
+    environment: c028-release-signing
+    steps:
+      - name: Verify trusted trigger identity and protected head policy
+        id: trigger
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          RUN_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          case "$RUN_ID" in *[!0-9]*|'') exit 2;; esac
+          case "$RUN_HEAD_SHA" in *[!0-9a-f]*|'') exit 2;; esac
+          test "${#RUN_HEAD_SHA}" = 40
+          RUN_JSON=$(gh api "repos/$REPOSITORY/actions/runs/$RUN_ID")
+          test "$(jq -r .name <<<"$RUN_JSON")" = "C028 release candidate"
+          test "$(jq -r .path <<<"$RUN_JSON")" = ".github/workflows/c028-release-candidate.yml"
+          test "$(jq -r .event <<<"$RUN_JSON")" = "workflow_dispatch"
+          test "$(jq -r .status <<<"$RUN_JSON")" = "completed"
+          test "$(jq -r .conclusion <<<"$RUN_JSON")" = "success"
+          test "$(jq -r .head_repository.full_name <<<"$RUN_JSON")" = "$REPOSITORY"
+          test "$(jq -r .head_branch <<<"$RUN_JSON")" = "$DEFAULT_BRANCH"
+          test "$(jq -r .head_sha <<<"$RUN_JSON")" = "$RUN_HEAD_SHA"
+          DEFAULT_SHA=$(gh api "repos/$REPOSITORY/commits/$DEFAULT_BRANCH" --jq .sha)
+          test "$DEFAULT_SHA" = "$RUN_HEAD_SHA"
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "head_sha=$RUN_HEAD_SHA" >> "$GITHUB_OUTPUT"
+      - name: Check out trusted default-branch workflow revision only
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        with:
+          ref: ${{ github.workflow_sha }}
+          submodules: false
+          persist-credentials: false
+      - name: Verify protected signer source
+        env:
+          SIGNER_SOURCE_SHA256: ${{ secrets.C028_SIGNER_SOURCE_SHA256 }}
+        run: |
+          set -euo pipefail
+          case "$SIGNER_SOURCE_SHA256" in *[!0-9a-f]*|'') exit 2;; esac
+          test "${#SIGNER_SOURCE_SHA256}" = 64
+          printf '%s  %s\n' "$SIGNER_SOURCE_SHA256" tools/release/c028_sign_candidate.py | sha256sum --check --strict
+      - name: Resolve exact triggering-run artifact
+        id: artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ steps.trigger.outputs.run_id }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          RESPONSE=$(gh api "repos/$REPOSITORY/actions/runs/$RUN_ID/artifacts?per_page=100")
+          test "$(jq -r .total_count <<<"$RESPONSE")" -le 100
+          ARTIFACTS=$(jq '[.artifacts[] | select(.expired == false and (.name | startswith("c028-unsigned-")))]' <<<"$RESPONSE")
+          test "$(jq length <<<"$ARTIFACTS")" = 1
+          NAME=$(jq -r '.[0].name' <<<"$ARTIFACTS")
+          DIGEST=${NAME##*-}
+          case "$DIGEST" in *[!0-9a-f]*|'') exit 2;; esac
+          test "${#DIGEST}" = 64
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+          echo "sha256=$DIGEST" >> "$GITHUB_OUTPUT"
+      - name: Download exact triggering-run artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.trigger.outputs.run_id }}
+          name: ${{ steps.artifact.outputs.name }}
+          path: ${{ runner.temp }}/unsigned
+      - name: Verify digest, source metadata, and extract as inert data
+        env:
+          EXPECTED_SHA256: ${{ steps.artifact.outputs.sha256 }}
+          EXPECTED_SOURCE_REVISION: ${{ steps.trigger.outputs.head_sha }}
+          EXPECTED_ARTIFACT_NAME: ${{ steps.artifact.outputs.name }}
+        run: |
+          set -euo pipefail
+          ARCHIVE="$RUNNER_TEMP/unsigned/c028-unsigned-candidate.tar.gz"
+          printf '%s  %s\n' "$EXPECTED_SHA256" "$ARCHIVE" | sha256sum --check --strict
+          CANDIDATE="$RUNNER_TEMP/c028-candidate"
+          install -d -m 0700 "$CANDIDATE"
+          python3 - "$ARCHIVE" "$CANDIDATE" <<'PY'
+          import pathlib, tarfile, sys
+          archive, destination = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
+          with tarfile.open(archive, "r:gz") as source:
+              for member in source.getmembers():
+                  path = pathlib.PurePosixPath(member.name)
+                  if path.is_absolute() or ".." in path.parts or member.issym() or member.islnk() or member.isdev():
+                      raise SystemExit("unsafe candidate archive member")
+              source.extractall(destination, filter="data")
+          PY
+          SOURCE_REVISION=$(jq -r .source_revision "$CANDIDATE/release-manifest.json")
+          test "$SOURCE_REVISION" = "$EXPECTED_SOURCE_REVISION"
+          RELEASE_ID=$(jq -r .release_id "$CANDIDATE/release-manifest.json")
+          CHANNEL=$(jq -r .channel "$CANDIDATE/release-manifest.json")
+          [[ "$RELEASE_ID" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$ ]]
+          case "$CHANNEL" in stable|beta) ;; *) exit 2;; esac
+          test "$EXPECTED_ARTIFACT_NAME" = "c028-unsigned-$RELEASE_ID-$EXPECTED_SHA256"
+          echo "CANDIDATE=$CANDIDATE" >> "$GITHUB_ENV"
+          echo "RELEASE_ID=$RELEASE_ID" >> "$GITHUB_ENV"
+          echo "CHANNEL=$CHANNEL" >> "$GITHUB_ENV"
+      - name: Provision independently authenticated signing keys
+        env:
+          SIGNING_KEY_1_B64: ${{ secrets.C028_RELEASE_SIGNING_KEY_1_B64 }}
+          SIGNING_KEY_1_SHA256: ${{ secrets.C028_RELEASE_SIGNING_KEY_1_SHA256 }}
+          SIGNING_KEY_2_B64: ${{ secrets.C028_RELEASE_SIGNING_KEY_2_B64 }}
+          SIGNING_KEY_2_SHA256: ${{ secrets.C028_RELEASE_SIGNING_KEY_2_SHA256 }}
+        run: |
+          set -euo pipefail
+          KEY_DIR="$RUNNER_TEMP/c028-signing-keys"
+          install -d -m 0700 "$KEY_DIR"
+          for N in 1 2; do
+            eval "KEY_B64=\$SIGNING_KEY_${N}_B64"
+            eval "KEY_SHA256=\$SIGNING_KEY_${N}_SHA256"
+            test -n "$KEY_B64"
+            case "$KEY_SHA256" in *[!0-9a-f]*|'') exit 2;; esac
+            test "${#KEY_SHA256}" = 64
+            printf '%s' "$KEY_B64" | base64 --decode > "$KEY_DIR/key-$N.pem"
+            printf '%s  %s\n' "$KEY_SHA256" "$KEY_DIR/key-$N.pem" | sha256sum --check --strict
+            chmod 0400 "$KEY_DIR/key-$N.pem"
+          done
+          echo "KEY_DIR=$KEY_DIR" >> "$GITHUB_ENV"
+      - name: Sign with trusted default-branch code
+        run: |
+          set -euo pipefail
+          python3 tools/release/c028_sign_candidate.py --candidate "$CANDIDATE" \
+            --signing-key "$KEY_DIR/key-1.pem" --signing-key "$KEY_DIR/key-2.pem"
+      - name: Seal authenticated candidate and workflow metadata
+        id: seal
+        env:
+          CANDIDATE_RUN_ID: ${{ steps.trigger.outputs.run_id }}
+          SOURCE_REVISION: ${{ steps.trigger.outputs.head_sha }}
+          UNSIGNED_ARTIFACT_NAME: ${{ steps.artifact.outputs.name }}
+          UNSIGNED_SHA256: ${{ steps.artifact.outputs.sha256 }}
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/signed"
+          install -d -m 0700 "$OUT"
+          tar --sort=name --mtime='@0' --owner=0 --group=0 --numeric-owner --format=ustar \
+            -C "$CANDIDATE" -czf "$OUT/c028-candidate.tar.gz" .
+          DIGEST=$(sha256sum "$OUT/c028-candidate.tar.gz" | cut -d' ' -f1)
+          SIGNED_ARTIFACT_NAME="c028-candidate-$RELEASE_ID-$DIGEST"
+          jq -n --arg repository "$GITHUB_REPOSITORY" --argjson candidate_run_id "$CANDIDATE_RUN_ID" \
+            --argjson signing_run_id "$GITHUB_RUN_ID" --arg signing_workflow_sha "$GITHUB_WORKFLOW_SHA" \
+            --arg source_revision "$SOURCE_REVISION" --arg unsigned_artifact_name "$UNSIGNED_ARTIFACT_NAME" \
+            --arg unsigned_artifact_sha256 "$UNSIGNED_SHA256" --arg signed_artifact_name "$SIGNED_ARTIFACT_NAME" \
+            --arg candidate_sha256 "$DIGEST" --arg release_id "$RELEASE_ID" --arg channel "$CHANNEL" \
+            '{schema:"c028-workflow-metadata-v1",repository:$repository,candidate_run_id:$candidate_run_id,signing_run_id:$signing_run_id,signing_workflow:".github/workflows/c028-release-sign.yml",signing_workflow_sha:$signing_workflow_sha,unsigned_artifact_name:$unsigned_artifact_name,unsigned_artifact_sha256:$unsigned_artifact_sha256,signed_artifact_name:$signed_artifact_name,signed_archive_name:"c028-candidate.tar.gz",candidate_sha256:$candidate_sha256,release_id:$release_id,channel:$channel,source_revision:$source_revision}' \
+            > "$OUT/workflow-metadata.json"
+          echo "name=$SIGNED_ARTIFACT_NAME" >> "$GITHUB_OUTPUT"
+      - name: Upload authenticated candidate
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ${{ steps.seal.outputs.name }}
+          path: ${{ runner.temp }}/signed
+          if-no-files-found: error
+          overwrite: false
+          retention-days: 30
+      - name: Scrub signing material
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/c028-signing-keys" "$RUNNER_TEMP/c028-candidate"

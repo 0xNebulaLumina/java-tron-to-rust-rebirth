@@ -517,6 +517,41 @@ fn lifecycle_shutdown_flushes_committed_and_aggregates_disposition_errors() {
     fs::remove_dir_all(directory).unwrap();
 }
 
+#[test]
+fn session_shutdown_retries_after_active_parent_and_closes_concurrently_once() {
+    let (directory, lifecycle) = lifecycle("shutdown-retry-concurrent-close", CheckpointLimits::default());
+    let manager = lifecycle.sessions();
+    let mut parent = manager.build_session_enabled().unwrap();
+    parent.store(StoreKind::Account).put(b"retry-close", b"durable").unwrap();
+    let mut child = parent.child().unwrap();
+    child.store(StoreKind::Account).put(b"retry-close", b"final").unwrap();
+    child.commit().unwrap();
+
+    let errors = manager.shutdown_aggregated(true).unwrap_err();
+    assert_eq!(errors.0.len(), 1);
+    assert!(errors.0[0].contains("active sessions"));
+    assert_eq!(manager.depth(), 2);
+    parent.commit().unwrap();
+
+    let barrier = Arc::new(Barrier::new(3));
+    let shutdowns = [manager.clone(), manager.clone()].map(|manager| {
+        let barrier = Arc::clone(&barrier);
+        thread::spawn(move || {
+            barrier.wait();
+            manager.shutdown_aggregated(true)
+        })
+    });
+    barrier.wait();
+    for shutdown in shutdowns { shutdown.join().unwrap().unwrap(); }
+
+    drop(lifecycle);
+    let reopened = reopen_lifecycle(&directory, CheckpointLimits::default());
+    assert_eq!(reopened.sessions().durable_store(StoreKind::Account).get(b"retry-close"), Some(b"final".to_vec()));
+    reopened.shutdown(true).unwrap();
+    drop(reopened);
+    fs::remove_dir_all(directory).unwrap();
+}
+
 struct CrashAt(CheckpointCrashPhase);
 impl CheckpointCrashInjector for CrashAt {
     fn after(&self, phase: CheckpointCrashPhase) -> Result<(), CheckpointError> {
@@ -639,6 +674,75 @@ fn checkpoint_restart_history_and_retreat_publication_are_atomic() {
     fs::remove_dir_all(directory).unwrap();
 }
 
+#[test]
+fn recover_reconstruct_and_finalized_compaction_preserve_exact_identities() {
+    let limits = CheckpointLimits::default();
+    let (directory, lifecycle) = lifecycle("checkpoint-durable-reconstruction", limits);
+    assert_eq!(lifecycle.recover_and_relink().unwrap(), None);
+    let manager = lifecycle.sessions();
+    let points = [
+        CursorPoint { block: 10, identity: CheckpointIdentity::new([10; 32]) },
+        CursorPoint { block: 11, identity: CheckpointIdentity::new([11; 32]) },
+        CursorPoint { block: 12, identity: CheckpointIdentity::new([12; 32]) },
+    ];
+    for (index, point) in points.into_iter().enumerate() {
+        let mut session = manager.build_session_enabled().unwrap();
+        session.store(StoreKind::Account).put(b"durable", &[index as u8]).unwrap();
+        session.commit().unwrap();
+        lifecycle.checkpoints().record(point).unwrap();
+    }
+    lifecycle.checkpoints().persist().unwrap();
+    let dynamic = manager.durable_store(StoreKind::DynamicProperties);
+    dynamic.put(tron_state::dynamic::key("LATEST_BLOCK_HEADER_NUMBER").unwrap(), &12_i64.to_be_bytes()).unwrap();
+    dynamic.put(tron_state::dynamic::key("LATEST_BLOCK_HEADER_HASH").unwrap(), &[12; 32]).unwrap();
+    dynamic.put(tron_state::dynamic::key("LATEST_SOLIDIFIED_BLOCK_NUM").unwrap(), &11_i64.to_be_bytes()).unwrap();
+    manager.durable_store(StoreKind::Common).put(b"LATEST_PBFT_BLOCK_NUM", &10_i64.to_be_bytes()).unwrap();
+    let cursors = CursorSet::reconstruct(&manager).unwrap();
+    assert_eq!(cursors.head().point(), points[2]);
+    assert_eq!(cursors.solidity().point(), points[1]);
+    assert_eq!(cursors.pbft().point(), points[0]);
+    assert_eq!(cursors.pbft_offset(), 2);
+    assert_eq!(lifecycle.checkpoints().compact_finalized(points[1]).unwrap(), 1);
+    assert_eq!(manager.checkpoint_points(), vec![points[1], points[2]]);
+    drop(dynamic); drop(cursors); drop(manager); drop(lifecycle);
+
+    let reopened = reopen_lifecycle(&directory, limits);
+    assert_eq!(reopened.recover_and_relink().unwrap(), Some(2));
+    let reopened_manager = reopened.sessions();
+    assert_eq!(reopened_manager.checkpoint_points(), vec![points[1], points[2]]);
+    assert_eq!(reopened_manager.session_view().store(StoreKind::Account).get(b"durable"), Some(vec![2]));
+    assert_eq!(reopened.checkpoints().retreat(1).unwrap(), 1);
+    assert_eq!(reopened_manager.session_view().store(StoreKind::Account).get(b"durable"), Some(vec![1]));
+    drop(reopened_manager); drop(reopened);
+    fs::remove_dir_all(directory).unwrap();
+}
+
+
+#[test]
+fn dynamic_projection_includes_exact_active_operations_and_late_flags() {
+    let mut config = tron_config::Config::default();
+    config.block.maintenance_time_interval = 1234;
+    config.committee.allow_multi_sign = 1;
+    for (name, value) in [
+        ("allowTvmFreeze", 1), ("allowTvmVote", 2), ("allowTvmLondon", 3),
+        ("allowTvmCompatibleEvm", 4), ("allowAssetOptimization", 5),
+        ("allowAccountAssetOptimization", 6), ("allowHigherLimitForMaxCpuTimeOfOneTx", 7),
+        ("allowNewRewardAlgorithm", 8), ("allowNewReward", 9), ("memoFee", 10),
+        ("allowDelegateOptimization", 11), ("unfreezeDelayDays", 12),
+        ("allowOptimizedReturnValueOfChainId", 13), ("allowDynamicEnergy", 14),
+        ("dynamicEnergyThreshold", 15), ("dynamicEnergyIncreaseFactor", 16),
+        ("dynamicEnergyMaxFactor", 17),
+    ] { config.committee.remaining.insert(name.into(), value); }
+    let projected = tron_state::dynamic::DynamicPropertyConfig::from(&config);
+    assert_eq!(projected.maintenance_time_interval, 1234);
+    assert_eq!(projected.allow_multi_sign, 1);
+    assert_eq!((projected.allow_tvm_freeze, projected.allow_tvm_vote, projected.allow_tvm_london), (1, 2, 3));
+    assert_eq!((projected.allow_dynamic_energy, projected.dynamic_energy_threshold, projected.dynamic_energy_increase_factor, projected.dynamic_energy_max_factor), (14, 15, 16, 17));
+    assert_eq!(tron_state::dynamic::ACTIVE_DEFAULT_OPERATIONS, [
+        0x7f, 0xff, 0x1f, 0xc0, 0x03, 0x3e, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ]);
+}
 
 #[test]
 fn pending_child_merge_reset_commit_close_and_drop_are_atomic() {

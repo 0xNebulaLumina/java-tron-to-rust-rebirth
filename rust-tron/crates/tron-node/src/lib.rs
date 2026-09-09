@@ -2,6 +2,13 @@
 //!
 //! This crate deliberately implements no storage, API, transport, or consensus behavior. The
 //! composition root receives already-constructed services and owns their ordering and shutdown.
+pub mod admin_http;
+pub mod bootstrap;
+pub mod build_info;
+pub mod deployment;
+pub mod logging;
+pub mod runtime;
+pub mod snapshot_trust;
 pub mod operations;
 pub mod lifecycle_limits;
 pub mod solidity_replica;
@@ -70,6 +77,21 @@ impl NodeContext {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum ServiceMode { Full, Solidity, Pbft, Witness, P2p }
+
+/// An empty mode set means the service is required in every node mode that owns services.
+pub const ALL_NODE_MODES: &[ServiceMode] = &[];
+
+pub const STATE_SERVICE: &str = "state";
+pub const EXECUTION_SERVICE: &str = "execution";
+pub const CONSENSUS_SERVICE: &str = "consensus";
+
+pub const STATE_DEPS: &[&str] = &[admin_http::ADMIN_SERVICE];
+pub const EXECUTION_DEPS: &[&str] = &[STATE_SERVICE];
+pub const CONSENSUS_DEPS: &[&str] = &[EXECUTION_SERVICE];
+pub const NETWORK_DEPS: &[&str] = &[CONSENSUS_SERVICE];
+pub const FULL_API_DEPS: &[&str] = &[operations::NETWORK_SERVICE];
+pub const SOLIDITY_REPLICA_DEPS: &[&str] = &[EXECUTION_SERVICE];
+pub const SOLIDITY_API_DEPS: &[&str] = &[solidity_replica::SOLIDITY_REPLICA_SERVICE];
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ServiceSpec {
@@ -162,7 +184,11 @@ impl fmt::Display for LifecycleError {
                 write!(f, "{startup}; {} fatal service failure(s) occurred during startup", fatals.len())?;
                 if let Some(unwind) = unwind { write!(f, "; startup unwind also failed: {unwind}") } else { Ok(()) }
             }
-            Self::ShutdownFailures(failures) => write!(f, "{} service(s) failed to stop", failures.len()),
+            Self::ShutdownFailures(failures) => {
+                write!(f, "{} service(s) failed to stop", failures.len())?;
+                for failure in failures { write!(f, "; {}: {}", failure.service, failure.message)?; }
+                Ok(())
+            }
             Self::ShutdownTimeout { service, timeout } => write!(f, "service {service} exceeded shutdown timeout {timeout:?}"),
             Self::FatalShutdown { fatals, shutdown } => {
                 write!(f, "{} fatal service failure(s) during shutdown", fatals.len())?;

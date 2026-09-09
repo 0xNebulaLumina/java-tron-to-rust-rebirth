@@ -9,6 +9,7 @@ pub mod error;
 mod help;
 pub mod io;
 pub mod keystore;
+pub mod release;
 
 use std::ffi::OsString;
 use std::path::Path;

@@ -119,6 +119,85 @@ pub struct BlockManager<C, H = ()> {
 }
 
 impl<C: BlockConsensus, H: BlockApplyHooks> BlockManager<C, H> {
+    pub fn new(
+        sessions: SessionManager,
+        processor: TransactionProcessor,
+        khaos: KhaosDatabase<ManagedBlock>,
+        consensus: C,
+        hooks: H,
+        limits: BlockLimits,
+        engine: CryptoEngine,
+    ) -> Self {
+        Self { sessions, processor, khaos, consensus, hooks, limits, engine }
+    }
+
+    pub fn reopen(
+        sessions: SessionManager,
+        processor: TransactionProcessor,
+        consensus: C,
+        hooks: H,
+        limits: BlockLimits,
+        engine: CryptoEngine,
+        retained_depth: usize,
+    ) -> Result<Self, BlockApplyError> {
+        if retained_depth == 0 { return Err(BlockApplyError::Graph("retained depth must be positive".into())); }
+        let points = sessions.checkpoint_points();
+        let start = points.len().saturating_sub(retained_depth);
+        let view = sessions.read_view();
+        let mut khaos = KhaosDatabase::new();
+        khaos.set_limits(limits.khaos_limits(i64::try_from(retained_depth).unwrap_or(i64::MAX), 2));
+        for point in &points[start..] {
+            let id = BlockId::from_overlaid_hash(Hash32::from_array(point.identity.bytes()));
+            let bytes = view.store(StoreKind::Block).get(id.as_bytes()).ok_or_else(|| BlockApplyError::State("retained checkpoint block is missing".into()))?;
+            let raw = RawBlock::decode(bytes, limits)?;
+            if raw.block_id(engine)? != id || u64::try_from(id.height()).ok() != Some(point.block) { return Err(BlockApplyError::State("retained checkpoint block identity mismatch".into())); }
+            let header = raw.message.block_header.as_ref().and_then(|header| header.raw_data.as_ref()).ok_or(BlockApplyError::MissingRawHeader)?;
+            let parent = Hash32::try_from(header.parent_hash.as_slice()).map_err(|_| BlockApplyError::ParentMismatch)?;
+            let metadata = view.store(StoreKind::Common).get(id.as_bytes());
+            let received_at = match metadata { Some(bytes) if bytes.len() >= 8 => i64::from_be_bytes(bytes[..8].try_into().expect("length checked")), None if point.block == 0 => header.timestamp, _ => return Err(BlockApplyError::State("retained block receipt metadata is missing".into())) };
+            let data = KhaosBlockData::new(id, parent, id.height(), ManagedBlock { raw, id, received_at });
+            if khaos.has_data() { khaos.push(data).map_err(|error| BlockApplyError::Graph(error.to_string()))?; } else { khaos.start(data).map_err(|error| BlockApplyError::Graph(error.to_string()))?; }
+        }
+        let head = points.last().ok_or_else(|| BlockApplyError::State("checkpoint history is empty".into()))?;
+        let number = dynamic_long(&view, "LATEST_BLOCK_HEADER_NUMBER")?;
+        let hash = dynamic_bytes(&view, "LATEST_BLOCK_HEADER_HASH")?;
+        if u64::try_from(number).ok() != Some(head.block) || hash.as_slice() != head.identity.bytes() { return Err(BlockApplyError::State("durable head does not match checkpoint history".into())); }
+        Ok(Self::new(sessions, processor, khaos, consensus, hooks, limits, engine))
+    }
+
+    pub fn validate_block(&mut self, block: &mut RawBlock, now: i64) -> Result<BlockId, BlockApplyError> {
+        let cache = self.processor.cache.clone();
+        let mut session = self.sessions.build_session_enabled().map_err(|error| BlockApplyError::State(error.to_string()))?;
+        let result = self.validate_and_execute_in(&session, block, now);
+        self.processor.cache = cache;
+        session.revoke().map_err(|error| BlockApplyError::State(error.to_string()))?;
+        result
+    }
+
+    pub fn retain_competing_block(&mut self, block: RawBlock, received_at: i64) -> Result<BlockId, BlockApplyError> {
+        let id = block.block_id(self.engine)?;
+        if self.khaos.contain_block(&id) { return Err(BlockApplyError::Duplicate(id)); }
+        let raw = block.message.block_header.as_ref().and_then(|header| header.raw_data.as_ref()).ok_or(BlockApplyError::MissingRawHeader)?;
+        let parent = Hash32::try_from(raw.parent_hash.as_slice()).map_err(|_| BlockApplyError::ParentMismatch)?;
+        self.khaos.push(KhaosBlockData::new(id, parent, raw.number, ManagedBlock { raw: block, id, received_at })).map_err(|error| BlockApplyError::Graph(error.to_string()))?;
+        Ok(id)
+    }
+
+    fn validate_and_execute_in(&mut self, session: &Session, block: &mut RawBlock, now: i64) -> Result<BlockId, BlockApplyError> {
+        let header = block.message.block_header.as_ref().ok_or(BlockApplyError::MissingHeader)?;
+        let raw = header.raw_data.as_ref().ok_or(BlockApplyError::MissingRawHeader)?.clone();
+        if raw.encode_to_vec().as_slice() != block.raw_header_bytes() { return Err(BlockApplyError::RawHeaderMismatch); }
+        let id = block.block_id(self.engine)?;
+        let head = self.khaos.get_head().ok_or(BlockApplyError::ParentMismatch)?;
+        if raw.parent_hash.as_slice() != head.id.as_bytes() { return Err(BlockApplyError::ParentMismatch); }
+        if raw.number != head.number.checked_add(1).ok_or(BlockApplyError::Arithmetic)? { return Err(BlockApplyError::HeightMismatch); }
+        let parent_timestamp = head.value.raw.message.block_header.as_ref().and_then(|h| h.raw_data.as_ref()).ok_or(BlockApplyError::MissingRawHeader)?.timestamp;
+        if raw.timestamp <= parent_timestamp || raw.timestamp > now.checked_add(self.limits.max_future_millis).ok_or(BlockApplyError::Arithmetic)? { return Err(BlockApplyError::Timestamp); }
+        if header.witness_signature.is_empty() || !self.consensus.verify_witness_signature(block.raw_header_bytes(), &header.witness_signature, &raw.witness_address) { return Err(BlockApplyError::InvalidSignature); }
+        if self.consensus.scheduled_witness(head.number, parent_timestamp, raw.timestamp).map_err(BlockApplyError::Hook)? != raw.witness_address { return Err(BlockApplyError::WrongWitness); }
+        self.apply_in(session, block, id, now, &raw)?;
+        Ok(id)
+    }
     pub fn apply_block(&mut self, block: RawBlock, now: i64) -> Result<BlockId, BlockApplyError> {
         self.apply_block_mode(block, now, false)
     }
@@ -227,6 +306,16 @@ fn persist_block(session: &Session, block: &RawBlock, id: BlockId, raw: &block_h
     let mut metadata = Vec::with_capacity(48); metadata.extend_from_slice(&now.to_be_bytes()); metadata.extend_from_slice(&raw.timestamp.to_be_bytes()); metadata.extend_from_slice(id.as_bytes());
     session.store(StoreKind::Common).put(id.as_bytes(), &metadata).map_err(|e| BlockApplyError::State(e.to_string()))?;
     Ok(())
+}
+
+fn dynamic_bytes(view: &tron_state::ReadView, name: &'static str) -> Result<Vec<u8>, BlockApplyError> {
+    let key = dynamic::key(name).ok_or_else(|| BlockApplyError::State(format!("unknown dynamic property {name}")))?;
+    view.store(StoreKind::DynamicProperties).get(key).ok_or_else(|| BlockApplyError::State(format!("missing dynamic property {name}")))
+}
+
+fn dynamic_long(view: &tron_state::ReadView, name: &'static str) -> Result<i64, BlockApplyError> {
+    let bytes = dynamic_bytes(view, name)?;
+    bytes.as_slice().try_into().map(i64::from_be_bytes).map_err(|_| BlockApplyError::State(format!("invalid dynamic property {name}")))
 }
 
 fn merkle(engine: CryptoEngine, mut level: Vec<Hash32>) -> Vec<u8> { if level.is_empty() { return vec![0; 32]; } while level.len() > 1 { let mut next = Vec::with_capacity((level.len()+1)/2); for pair in level.chunks(2) { if pair.len()==1 { next.push(pair[0]); } else { let mut bytes=[0;64]; bytes[..32].copy_from_slice(pair[0].as_bytes()); bytes[32..].copy_from_slice(pair[1].as_bytes()); next.push(Hash32::from_array(selected_digest(engine,&bytes))); } } level=next; } level[0].as_bytes().to_vec() }

@@ -319,7 +319,19 @@ impl FaultInjector for AbruptAt {
 }
 
 fn snapshot_descriptor()->SnapshotDescriptor {
-    SnapshotDescriptor { identity:requirements(1).identity, schema_version:1, backend:"rustlog".into(), backend_format:"rustlog-v1".into(), state_root:"snapshot-root".into(), signature:vec![1] }
+    use sha2::{Digest, Sha256};
+    let payload = b"authenticated";
+    SnapshotDescriptor {
+        identity: requirements(1).identity,
+        schema_version: 1,
+        backend: "rustlog".into(),
+        backend_format: "rustlog-v1".into(),
+        generation: 0,
+        state_root: "snapshot-root".into(),
+        payload_sha256: Sha256::digest(payload).iter().map(|byte| format!("{byte:02x}")).collect(),
+        payload_size: payload.len() as u64,
+        authentication_envelope: vec![1],
+    }
 }
 
 #[test]
@@ -438,7 +450,7 @@ fn migration_crash_rollback_resume_and_snapshot_resync_matrix() {
 
     let snapshot = temporary_directory("snapshot-file"); fs::write(&snapshot, b"authenticated").unwrap();
     let destination = temporary_directory("snapshot-destination");
-    let descriptor = SnapshotDescriptor { identity: requirements(1).identity.clone(), schema_version: 1, backend: "rustlog".into(), backend_format: "rustlog-v1".into(), state_root: "snapshot-root".into(), signature: vec![1] };
+    let descriptor = snapshot_descriptor();
     let imported = import_snapshot(&destination, &requirements(1), &snapshot, 1024, &descriptor, &Accept, &Accept).unwrap();
     assert_eq!(imported.state_root, "snapshot-root");
     assert_eq!(fs::read(destination.join("generation-0/nested/state")).unwrap(), b"snapshot");

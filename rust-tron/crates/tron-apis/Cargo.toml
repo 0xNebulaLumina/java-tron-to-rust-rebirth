@@ -30,13 +30,14 @@ tron-execution = { path = "../tron-execution" }
 tron-primitives = { path = "../tron-primitives" }
 tron-protocol = { path = "../tron-protocol" }
 tokio = { version = "1", features = ["net", "rt", "sync", "time"] }
+tokio-stream = { version = "=0.1.19", features = ["net"] }
 tron-state = { path = "../tron-state" }
 zeroize = "=1.8.1"
 
 [dev-dependencies]
 tron-storage = { path = "../tron-storage" }
+tron-tvm = { path = "../tron-tvm" }
 tokio = { version = "1", features = ["macros", "rt-multi-thread", "net", "time"] }
-tokio-stream = { version = "0.1", features = ["net"] }
 
 [lints]
 workspace = true

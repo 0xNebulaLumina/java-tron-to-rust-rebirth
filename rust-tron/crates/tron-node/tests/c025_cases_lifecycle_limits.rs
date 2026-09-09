@@ -92,11 +92,9 @@ fn api_context() -> (std::path::PathBuf, ApiContext) {
     let path=std::env::temp_dir().join(format!("c025-h2-{}-{}",std::process::id(),SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_nanos()));
     let manager=SessionManager::new(StateStore::new(StorageManager::new(OpenRequirements{identity:StorageIdentity{network:"c025".into(),genesis:"00".into()},schema_version:1,backend:"rustlog".into(),backend_format:"rustlog-v1".into(),supported_features:vec!["rustlog-v1".into()]}).open_store(&path).unwrap()));
     let point=CursorPoint{block:0,identity:CheckpointIdentity::new([0;32])}; manager.record_checkpoint(point).unwrap(); let cursors=CursorSet::new(&manager,point,None,None,0).unwrap();
-    let processor=TransactionProcessor{sessions:manager.clone(),cache:TransactionCache::new(CacheConfig::default()).unwrap(),pipeline:StateTransactionPipeline::new(Default::default(),ActuatorRegistry::empty(),ExecutionConfig::default()).unwrap()};
-    let pending=PendingPool::new(manager,PendingLimits::default()).unwrap();
     let root=std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../java-tron/framework/src/main/resources/params");
     let parameters=tron_shielded::load_tron_parameters(root.join("sapling-spend.params"),root.join("sapling-output.params")).unwrap();
-    (path,ApiContext::new(cursors,processor,pending,parameters,CryptoEngine::Secp256k1))
+    (path,ApiContext::new(cursors, None, Arc::new(ActuatorRegistry::new([],[],&std::collections::BTreeSet::new()).unwrap()), parameters, CryptoEngine::Secp256k1))
 }
 fn frame(kind:u8,flags:u8,stream:u32,payload:&[u8])->Vec<u8>{let mut out=Vec::with_capacity(9+payload.len());let n=payload.len();out.extend_from_slice(&[((n>>16)&255)as u8,((n>>8)&255)as u8,(n&255)as u8,kind,flags]);out.extend_from_slice(&(stream&0x7fff_ffff).to_be_bytes());out.extend_from_slice(payload);out}
 fn headers(stream:u32)->Vec<u8>{let path=b"/protocol.Database/GetDynamicProperties";let mut h=vec![0x83,0x86,0x41,9];h.extend_from_slice(b"localhost");h.push(0x44);h.push(path.len() as u8);h.extend_from_slice(path);h.extend_from_slice(&[0x5f,16]);h.extend_from_slice(b"application/grpc");h.extend_from_slice(&[0x40,2,b't',b'e',8]);h.extend_from_slice(b"trailers");frame(1,4,stream,&h)}
