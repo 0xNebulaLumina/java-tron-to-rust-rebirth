@@ -104,7 +104,6 @@ CLASSIFICATION_POLICY = {
 }
 ROW_BOUND_DEFECT_STABLE_IDS = {
     "C013-R3-001": ("TCASE-E6F1B8CAC044DEB5",),
-    "C016-R1-001": ("TCASE-DA2F8C8CFD8D2262",),
     "C027-R6-01": ("TCASE-0A0889ADBE9E8BD3", "TCASE-E1CE182966F2CAE4"),
 }
 
@@ -290,6 +289,13 @@ def validate_external_defect(defect: dict[str, Any]) -> bool:
             "command_ids": ["C029-PROOF-6440FA156F92136A", "C029-PROOF-891ED00195920695"],
             "result_links": ["C029-PROOF-6440FA156F92136A|recurrence:version 35 uses exact persisted raw-stat bytes and denominator without current-version shortcut", "C029-PROOF-891ED00195920695|recurrence:malformed active-witness schedule cannot replace canonical fork-state precedence"],
         },
+        "C016-R1-001": {
+            "behavior_claim_ids": ["non-VM actuators bypass VM-only fee-limit, dynamic-energy, planning, and settlement policy while preserving energy state"],
+            "fixture_ids": ["rust-tron/crates/tron-execution/tests/c016_pipeline.rs#non_vm_actuators_ignore_vm_energy_policy_and_preserve_energy_state"],
+            "rust_test_ids": ["rust-tron/crates/tron-execution/tests/c016_pipeline.rs::non_vm_actuators_ignore_vm_energy_policy_and_preserve_energy_state"],
+            "command_ids": ["C029-PROOF-A20BCDCB8DF8CF2D"],
+            "result_links": ["C029-PROOF-A20BCDCB8DF8CF2D|recurrence:non-VM transfer, account-create, and asset-transfer actuators execute without VM energy dynamics or settlement and preserve account and block energy state"],
+        },
         "C023-R1-001": {
             "behavior_claim_ids": ["Full, Solidity, and PBFT duplicate HTTP route registrations remain distinct by surface and path"],
             "fixture_ids": ["rust-tron/crates/tron-apis/src/http_routes.rs#HTTP_ROUTES"],
@@ -318,6 +324,8 @@ def validate_external_defect(defect: dict[str, Any]) -> bool:
         fixture = next(row for row in load(ROOT / "docs/oracles/c014-execution-oracle.v1.json")["vectors"] if row.get("id") == "C014-E2E-027")
         fail(fixture.get("family") == "canonical_fork_state_loader", "C014-R2-001: canonical fork-state fixture binding mismatch")
         source_asserts("rust-tron/crates/tron-tvm/tests/c014_runtime.rs", ("production_rules_load_uses_persisted_version_35_fork_state", "vec![1;19]", "vec![1;18]", "vec![1;27]", "VERSION_NUMBER", "ACTIVE_WITNESSES_KEY", "malformed.push(2)", "production_rules_load_rejects_malformed_fork_state_and_preserves_precedence_flags"), finding_id)
+    elif finding_id == "C016-R1-001":
+        source_asserts("rust-tron/crates/tron-execution/tests/c016_pipeline.rs", ("fn non_vm_actuators_ignore_vm_energy_policy_and_preserve_energy_state", "for case in [\"transfer\", \"account\", \"asset\"]", "sign_with_fee(contract, &key, i64::MAX)", "remove_vm_energy_dynamics(&manager)", "assert_no_energy_billing(&manager, &owner, &output)"), finding_id)
     elif finding_id == "C023-R1-001":
         source_asserts("rust-tron/crates/tron-apis/src/http_routes.rs", ("HTTP_ROUTES", "HttpSurface::Full", "HttpSurface::Solidity", "HttpSurface::Pbft"), finding_id)
         source_asserts("rust-tron/crates/tron-apis/tests/c023_routes.rs", ("servlet_inventory_is_exact_and_excludes_commented_registrations", "HttpSurface::Full", "HttpSurface::Solidity", "HttpSurface::Pbft", "123", "45", "47"), finding_id)

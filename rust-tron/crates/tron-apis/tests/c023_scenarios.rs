@@ -92,6 +92,21 @@ struct RowOutcome {
     terminal: &'static str,
     result_key: String,
 }
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+enum RowOperation { RouteResponse, FilterControl, CustomValidation, UtilConversion, VisibleJson, Wrapper, Cached }
+
+fn stable_operation(stable_id: &str) -> RowOperation {
+    match stable_id {
+        "TCASE-9A69D3CE612EAD6C" | "TCASE-0F27CAD607D7E474" | "TCASE-84C7ED9057990943" | "TCASE-C5E2A2AF39725C22" | "TCASE-80AAA4C453D311B1" | "TCASE-95C36594836AFF1C" | "TCASE-53E44AEF43F5BBEA" | "TCASE-F97566A6C60F0EB0" | "TCASE-61ACA80A8A5A782A" | "TCASE-86A70E66E3612E61" | "TCASE-88D3F30C6AEF301C" | "TCASE-CD289A4A75B5331E" | "TCASE-00618F240E444A23" | "TCASE-8395262A16980016" | "TCASE-D2043171D684DD01" | "TCASE-6D99D14164D53EFD" | "TCASE-5C1739A9E6EA0D2D" | "TCASE-166AD4ED83327C82" | "TCASE-A205535696B1BE23" | "TCASE-899F0B6EA3504D6A" | "TCASE-D3D76865679F8D27" | "TCASE-3866492434EC6A65" | "TCASE-957C425CB3228A75" | "TCASE-43CE7AC195F655E7" | "TCASE-2685EB46959F4372" | "TCASE-E753938864C99914" | "TCASE-72E582D22C44E2D3" | "TCASE-71A7D11C714048FF" | "TCASE-9A6BE37546229C69" | "TCASE-9802B7182A4EEBEA" | "TCASE-295FEAE8518C0911" | "TCASE-9BBFE6D4115D579F" | "TCASE-AAF0FCD1DBB3CC5B" | "TCASE-0AB91F2F820E07AB" | "TCASE-EE9452DA33707258" | "TCASE-7B43756AFA9406AD" | "TCASE-710E5D22879192F8" | "TCASE-0804ADB132403CCA" | "TCASE-4E694FC9797532E9" | "TCASE-8033D8DF0557EB08" | "TCASE-63F30EAA46130E1C" | "TCASE-1BE4B4E7EA4A8C86" | "TCASE-4D7B3A6C6E27B5FB" | "TCASE-ABB81579F3EFA7AF" | "TCASE-C134EFBA79A0F632" | "TCASE-DD56D0874ABCE6C1" | "TCASE-152293FB89646DF0" | "TCASE-E2CF8EEB3A1C19B1" | "TCASE-C08DC75A4A19FFC9" | "TCASE-6AB3B5877BC2A1DF" | "TCASE-8CAC5A91DA4FC22D" | "TCASE-F93FAFAE622F3FEC" | "TCASE-9322757BEB5863C5" | "TCASE-573B849EF6D1C682" | "TCASE-15631359AA085D00" | "TCASE-C18DEE620EC24C5E" | "TCASE-5F029654A576C1C2" | "TCASE-29A5C644B7B9E0B9" | "TCASE-2B3782BCCA43B2E9" | "TCASE-F786B18AE380EC7C" | "TCASE-D37178FC305B8A42" | "TCASE-5CA6BADB45D93A8F" | "TCASE-CAB3A5B4D5C0C303" | "TCASE-019559D5C7219D38" | "TCASE-E650ECDEFE4BFC07" | "TCASE-17385ED0E10D74C9" | "TCASE-B0537CF9F066874D" | "TCASE-34947862E0274A5D" | "TCASE-10A7D132B2477D48" | "TCASE-FE177D7EEEB5CCF3" | "TCASE-62765546059B2D66" | "TCASE-A6C2CCA992FD719B" | "TCASE-A6F6761B145F9E76" | "TCASE-B625BBBCBB1A9354" | "TCASE-D48D45AF8504C087" | "TCASE-310C026AD184EB40" | "TCASE-1AE5A305E3282CA4" | "TCASE-9D3D4C4C46821146" | "TCASE-21B7C93B1958BD36" | "TCASE-8387569F29BDB1EB" | "TCASE-A1CF5D6B0E12E245" | "TCASE-5DDD4B32D6FAFB47" | "TCASE-26212E85697AC25C" | "TCASE-C855A5E630549C6E" | "TCASE-B7272FC2B9889A84" | "TCASE-1F23059B0AE321D1" | "TCASE-4D28CF3F5978E997" | "TCASE-C4790E4AE5794443" | "TCASE-49855AD0B337285F" | "TCASE-57148A2AA549E6E9" | "TCASE-E8ADEFDFCBEC1A0E" | "TCASE-C173B0594EF56F9A" | "TCASE-9D72E690007CB755" | "TCASE-6F3BB7299773F156" | "TCASE-89860B73E09F3A27" | "TCASE-244A91DD55F15817" | "TCASE-95092DCCAA39B16E" | "TCASE-8D5B4B55055D0874" | "TCASE-A3F2B6000FAB12C1" | "TCASE-D80B6311D1BC1F92" | "TCASE-0C3AA5DF5D5E1DAB" | "TCASE-1E621C4C378F2BBE" | "TCASE-841D86F27FA1C1EE" | "TCASE-E449A15CE9B91F57" | "TCASE-49D5E6563BF960C4" | "TCASE-722F95B7E723D0BB" | "TCASE-59571C2F889A11F9" | "TCASE-27C2C5CBE0B82F67" | "TCASE-9D15894DE235B8B7" | "TCASE-5E439BE044947F3C" | "TCASE-0F379875D3BFE720" | "TCASE-7BD344F825BFF313" | "TCASE-FB2BAFCD939F552D" | "TCASE-D759B83419D1F166" | "TCASE-B4E63AEF419E6CD0" | "TCASE-33ED81265D7B7A18" | "TCASE-2C3E20F01BE860F7" | "TCASE-D7F7ED4AE91F72B0" | "TCASE-4AC1A59083774C61" | "TCASE-1D136FDA3A2EBF8E" | "TCASE-AE46A191EDF840D6" | "TCASE-C95C4030F02B8898" | "TCASE-A2DAF66EA10063AB" | "TCASE-704DA96D901966C6" | "TCASE-5BDF50263A260946" | "TCASE-C935A1DC6E6BA735" | "TCASE-3C0DE087DF25A0A6" | "TCASE-763B987BEFCF4894" | "TCASE-7BA9E2D67EE75C38" | "TCASE-4E6DA074E3346AF0" | "TCASE-3CF82C0493CF1C68" | "TCASE-EB1EF3D6F3F40336" | "TCASE-811B1AB18E81C1F0" => RowOperation::RouteResponse,
+        "TCASE-45C2C387CA68BA44" | "TCASE-F034B0A72B5741F0" | "TCASE-218B7D40722AEEBC" | "TCASE-650059671FFDB730" | "TCASE-2022C773FC2BCD8F" | "TCASE-E4458B80C97935F1" | "TCASE-C61B1B219D2C3745" | "TCASE-E7220679BA1C61AF" | "TCASE-29C39693D1258F87" | "TCASE-F3B5EB8DE6DFBAEE" | "TCASE-CE7D51AE0D7CD750" | "TCASE-9C08C49CAF1CC102" | "TCASE-14E792B7BF2B1237" | "TCASE-BCD7BC55311C9005" | "TCASE-FF9434413CDEB3D3" | "TCASE-59D6BE8F77F93FC6" | "TCASE-52EA3D85EA3581BF" | "TCASE-665E96C819D47438" | "TCASE-8096C94A65EF5040" | "TCASE-52150DE3B0EA4AC9" | "TCASE-9820A8B6AEAB6B3E" | "TCASE-BACC5FBE4F5E07CD" | "TCASE-9A60CB3F407F2EA6" | "TCASE-CE70A0B5EBD07BB4" | "TCASE-A1DEBA2489A85A46" | "TCASE-602B786DA91E234C" | "TCASE-EAD022AD2BEDBD2A" | "TCASE-055C8258BCBF5D26" | "TCASE-3517B13C7C7519CE" | "TCASE-38939A2333549382" | "TCASE-C862F71E8116FE82" | "TCASE-313B6B6E753BFD57" | "TCASE-7F5FACD1F55A26E1" | "TCASE-73EF7059ED8A15C9" | "TCASE-7A8F697733567B5E" | "TCASE-60A99C1FFC76E10D" => RowOperation::FilterControl,
+        "TCASE-19362BF9537CF613" | "TCASE-91088A8E7A00A0F6" | "TCASE-CC3DF0CCBC539BF7" | "TCASE-A8CF222142B6E9E7" | "TCASE-E4089A78E1633C3D" | "TCASE-AE092E6B2CA865A6" | "TCASE-AF3876701A35AC49" | "TCASE-D0176121CB642F7B" | "TCASE-5AF29B3FCD2F9939" | "TCASE-DF1426357EEE78F7" | "TCASE-4C7A1D4FCFD999CD" | "TCASE-BA6A94AA0B6B348D" | "TCASE-ECB205764EED4414" | "TCASE-EEF5F1BB28854DE0" | "TCASE-5BEA2A28492FCA3F" | "TCASE-3641461D83AB2A7D" | "TCASE-A994D65685916703" | "TCASE-15C88C867869ED24" | "TCASE-3B15DB63B3991D11" | "TCASE-CCA49C329711FFAC" | "TCASE-1F8D1B73E4943F92" | "TCASE-B69D1A1FB437074E" | "TCASE-74ED9B60B83FFB81" | "TCASE-AFAFB34536D61076" | "TCASE-90B2452A6825A4D1" | "TCASE-7E0CCBED31B16024" | "TCASE-EE19F267EF5B98CC" | "TCASE-06F77FC0E93A5BE8" | "TCASE-4250C694CBC1952C" => RowOperation::Wrapper,
+        "TCASE-9C296D17388C6CB0" | "TCASE-EA45C68F70BD93C3" | "TCASE-F69007E9F21C2FA0" | "TCASE-803C86F9F969BDF8" | "TCASE-A8F58466F02A2286" | "TCASE-CF83F0D6083B6855" | "TCASE-33A7DE2A9EADDCDB" | "TCASE-09E5DFE855E1EB01" | "TCASE-D6D0710214986DD3" | "TCASE-298C0410FA3E61C6" => RowOperation::Cached,
+        "TCASE-E31CF01F227CEA6A" | "TCASE-2E53B269661F34B1" | "TCASE-D81A761B65CE5D7F" | "TCASE-ABFCB2EFBAA505B3" | "TCASE-28E62CFF391EC6D7" | "TCASE-07D09FC55B292288" | "TCASE-9CEDD058BDED8414" | "TCASE-FCECD722C456CD51" | "TCASE-D48BB75FFC0499A5" | "TCASE-E58989785B6924CB" | "TCASE-80B02D2E208E073C" | "TCASE-A736568C8161B178" | "TCASE-AE525DCBAC3A2F76" | "TCASE-9ED0E635DFEF0774" | "TCASE-70770DA71B111C10" | "TCASE-3C930CDE22B36C3F" | "TCASE-F53EAC390692F098" | "TCASE-D5C5BF038012CC68" | "TCASE-039858D99696F0CB" | "TCASE-35B13C5DA53BCC9C" | "TCASE-D915CB3D445453C8" | "TCASE-CD2B60962A186BC8" | "TCASE-E5926D18277FA158" | "TCASE-2F5E87F4A588D0EE" | "TCASE-74A96A14EADA775A" | "TCASE-0C5ACF41D4B49CD5" | "TCASE-74A6C980D319122C" | "TCASE-3952569456AB5BF4" | "TCASE-BCEEF850F6B57E28" | "TCASE-86ED3D9FAC09E15C" | "TCASE-8558E125E0BC08E5" | "TCASE-6CB92967597F3806" | "TCASE-4C382AEE7B763975" | "TCASE-9391591F27B85776" | "TCASE-27CD7D72A80EB921" | "TCASE-BB040F5D8BAF94C3" | "TCASE-4441FADD0518AAEF" | "TCASE-4579598D5F310546" | "TCASE-8BDB02D697994B41" | "TCASE-02DA9289E2E18918" | "TCASE-5A48B976587B64A0" | "TCASE-EED90538C9F8AD5B" | "TCASE-B32CE269F1273717" | "TCASE-F9C9D4446C7F6DA4" | "TCASE-99DF17942B4DF13D" | "TCASE-EF09811CA8718B0E" | "TCASE-5116F851A3DA4330" | "TCASE-634A8F85B772252D" | "TCASE-2065707B85C8069C" | "TCASE-5FE40B37B2048FA6" | "TCASE-47A47CFC0E56BC98" | "TCASE-D87643E87A4F1A75" | "TCASE-F46651F68C55A891" | "TCASE-A1530097F5034885" | "TCASE-B95A428FD734B93A" | "TCASE-1F651D17FBFA0FCE" | "TCASE-8361172A216843D9" | "TCASE-25C18A3B8D7CE315" | "TCASE-FD4B86A249C7C70C" | "TCASE-B953AD91CF184781" | "TCASE-5B87188D04DC4B6D" | "TCASE-C679E6AD0B07F0E8" | "TCASE-715A1AE53E7E9DDD" | "TCASE-A8C8F3DEB3B9B6C3" | "TCASE-C5B25C41A2F61731" | "TCASE-63A4943BB82F632B" | "TCASE-B8FCFE8EC0B13A5B" | "TCASE-1A877C8B6766B4C7" | "TCASE-94015C0E2E3EEF18" | "TCASE-A037C952A7B966C2" | "TCASE-66361C13405383AA" | "TCASE-0FCD6FE6295B449F" | "TCASE-FC15342AA62E8EA9" | "TCASE-B2E6737D25EE29F2" | "TCASE-472B63ACF325D391" | "TCASE-8E83BB067871C5CE" | "TCASE-F108150B92E2E4C2" | "TCASE-7D3FDEFFA3A0FC06" | "TCASE-F356A8E31D690479" | "TCASE-AF621E9BF2958287" | "TCASE-D6B09B724CD58ADB" | "TCASE-7B1E77B5A4C86C9B" | "TCASE-D74CD0C3D71E3EE1" | "TCASE-DC30646E55837DA3" | "TCASE-223065D0EFE1B3C8" | "TCASE-3572AF8F04F21A38" | "TCASE-0CBB41AE4F8EB047" | "TCASE-8FEEC76C6847B84E" | "TCASE-45ED0DEB9D2E0AC2" | "TCASE-7CA5E9E1161A5FA4" | "TCASE-3B4CDC03F7D73516" | "TCASE-F3E02C68F3562FC2" | "TCASE-A996988C81839BB2" | "TCASE-01E495A39E52F3DF" | "TCASE-EB9B652B5EAAF9CF" | "TCASE-E8678FD65A4DEC5A" => RowOperation::VisibleJson,
+        "TCASE-AEE96464F7CADAB4" | "TCASE-5D732240B5E5CD57" | "TCASE-E32C3A9C6818F075" | "TCASE-8176A30B16805E04" | "TCASE-10AEEE2034BFD0D3" | "TCASE-54441AF41BA3BDE4" | "TCASE-7DBE7F7D6FBC95D0" | "TCASE-38F091B54441DEC3" | "TCASE-8C5FA856AA025094" | "TCASE-4BDD2FA21A0CA22F" | "TCASE-A27E0A3C9FAC46DF" | "TCASE-680DE6575E0381C1" | "TCASE-B22EDB50EF278AC7" | "TCASE-E99E9146F04A7273" | "TCASE-D489DAADB5614145" | "TCASE-1F8EB6E5CCF68007" | "TCASE-BC1487AA2388D54A" | "TCASE-337C90CE85C513EE" | "TCASE-5167B353ECA6B18D" | "TCASE-ED6ADE5A88988C5D" | "TCASE-997FFC5B6B5FCD66" | "TCASE-1573D31FD94D91A9" | "TCASE-55358C4EA560287B" | "TCASE-65EC69B3E101CF5F" | "TCASE-4FF248825716CE7F" | "TCASE-1B815DE903969D1B" => RowOperation::UtilConversion,
+        "TCASE-88C6E94E2E6FEBC0" | "TCASE-FB99347F9BE7079C" | "TCASE-DE723B15339EBFFA" => RowOperation::CustomValidation,
+        unknown => panic!("unknown C023 stable-ID dispatch {unknown}"),
+    }
+}
 
 fn behavior_surface(surface: &str) -> HttpSurface {
     match surface {
@@ -215,6 +230,29 @@ async fn execute_size_limit_behavior(stable_id: &str, row: &serde_json::Value) -
             stop(tx, task, path).await;
             Some(outcome(row))
         }
+        "TCASE-9A69D3CE612EAD6C" => {
+            let (address, tx, task, path) = start(controls(1024), false, 1, HttpSurface::Full).await;
+            let wire = b"GET / HTTP/1.1\r\nHost: localhost\r\nContent-Length: +450\r\nConnection: close\r\n\r\n";
+            let (status, _, response) = raw_request(address, wire).await;
+            assert_eq!(status, 400);
+            assert!(!String::from_utf8_lossy(&response).contains("Payload Too Large"));
+            stop(tx, task, path).await;
+            Some(outcome(row))
+        }
+        "TCASE-665E96C819D47438" => {
+            let route = "/wallet/getblockbynum";
+            let (lite, tx1, task1, path1) = start(HttpControls::default(), true, 1, HttpSurface::Full).await;
+            let (full, tx2, task2, path2) = start(HttpControls::default(), false, 1, HttpSurface::Full).await;
+            let lite_body = request(lite, "GET", &format!("{route}?num=0"), "application/x-www-form-urlencoded", b"").await;
+            let full_body = request(full, "GET", &format!("{route}?num=0"), "application/x-www-form-urlencoded", b"").await;
+            assert_eq!(lite_body.0, 200);
+            assert_eq!(String::from_utf8(lite_body.2).unwrap(), tron_apis::http_filters::LITE_DISABLED_TEXT);
+            assert_eq!(full_body.0, 200);
+            assert_ne!(String::from_utf8_lossy(&full_body.2), tron_apis::http_filters::LITE_DISABLED_TEXT);
+            stop(tx1, task1, path1).await;
+            stop(tx2, task2, path2).await;
+            Some(outcome(row))
+        }
         _ => None,
     }
 }
@@ -279,40 +317,87 @@ fn assert_cached_body_reader_stream_state(symbol:&str){let data=if symbol.contai
  "getInputStream_emptyBody_isFinishedImmediately"=>assert!(w.stream().unwrap().is_empty()),
  x=>panic!("unimplemented CachedBodyRequestWrapper observation {x}")}}
 
-fn assert_util_conversion_printing(symbol: &str) {
-    match symbol {
-        "testGetHexAddress" => {
-            let address = tron_crypto::decode_base58check(CryptoEngine::Secp256k1, "TBxSocpujP6UGKV5ydXNVTDQz7fAgdmoaB");
-            assert!(address.is_ok());
-            let absent: Option<Vec<u8>> = None;
-            assert!(absent.is_none());
+fn assert_util_conversion_printing(stable_id: &str) {
+    let codec = ProtobufJson::default();
+    match stable_id {
+        "TCASE-E99E9146F04A7273" => assert_eq!(tron_crypto::decode_base58check(CryptoEngine::Secp256k1, "TBxSocpujP6UGKV5ydXNVTDQz7fAgdmoaB").unwrap().len(), 21),
+        "TCASE-997FFC5B6B5FCD66" => assert!(tron_apis::http_json::decode_broadcast_hex("zz").is_err()),
+        "TCASE-A27E0A3C9FAC46DF" | "TCASE-337C90CE85C513EE" => {
+            let address = tron_crypto::decode_base58check(CryptoEngine::Secp256k1, "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb").unwrap();
+            assert_eq!(address.len(), 21);
+            assert_eq!(address[0], 0x41);
         }
-        name if name.contains("Invalid") => assert!(tron_apis::http_json::decode_broadcast_hex("zz").is_err()),
-        name if name.to_ascii_lowercase().contains("json") || name.to_ascii_lowercase().contains("print") => {
-            let value=serde_json::json!({"result":true,"value":"1"});
-            assert!(matches!(serde_json::to_string(&value), Ok(text) if text == "{\"result\":true,\"value\":\"1\"}"));
+        "TCASE-D489DAADB5614145" | "TCASE-1F8EB6E5CCF68007" | "TCASE-55358C4EA560287B" | "TCASE-65EC69B3E101CF5F" => {
+            let transaction = codec.parse_transaction(r#"{"Permission_id":7,"extra_data":"test","raw_data":{"contract":[{"type":"TransferContract","parameter":{"value":{"owner_address":"T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb","to_address":"T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb","amount":1}}}]}}"#, true);
+            assert!(transaction.is_ok(), "exact production transaction conversion failed: {transaction:?}");
+            let transaction = transaction.unwrap();
+            let printed: serde_json::Value = serde_json::from_str(&codec.print(&transaction, true).unwrap()).unwrap();
+            assert_eq!(printed["raw_data"]["data"], "74657374");
+            assert_eq!(printed["raw_data"]["contract"][0]["Permission_id"], 7);
         }
-        _ => {}
+        "TCASE-AEE96464F7CADAB4" | "TCASE-5D732240B5E5CD57" | "TCASE-E32C3A9C6818F075" | "TCASE-8176A30B16805E04" | "TCASE-10AEEE2034BFD0D3" | "TCASE-54441AF41BA3BDE4" | "TCASE-7DBE7F7D6FBC95D0" | "TCASE-38F091B54441DEC3" | "TCASE-8C5FA856AA025094" | "TCASE-4BDD2FA21A0CA22F" | "TCASE-680DE6575E0381C1" | "TCASE-B22EDB50EF278AC7" | "TCASE-BC1487AA2388D54A" | "TCASE-5167B353ECA6B18D" | "TCASE-ED6ADE5A88988C5D" | "TCASE-1573D31FD94D91A9" | "TCASE-4FF248825716CE7F" | "TCASE-1B815DE903969D1B" => {
+            let message = codec.parse("protocol.HelloMessage", r#"{"address":"61646472657373"}"#, false).unwrap();
+            let printed: serde_json::Value = serde_json::from_str(&codec.print(&message, false).unwrap()).unwrap();
+            assert_eq!(printed["address"], "61646472657373");
+        }
+        unknown => panic!("unimplemented exact util production operation {unknown}"),
     }
 }
 
-fn assert_visible_int64_enum_field_json(symbol: &str) {
-    let value = serde_json::json!({"visible":true,"number":"9223372036854775807","enum":"SUCCESS","field_name":"value"});
-    assert_eq!(value["number"], i64::MAX.to_string());
-    assert_eq!(value["visible"], true);
-    if symbol.to_ascii_lowercase().contains("enum") { assert_eq!(value["enum"], "SUCCESS"); }
+fn assert_visible_int64_enum_field_json(stable_id: &str) {
+    assert_eq!(stable_operation(stable_id), RowOperation::VisibleJson);
+    let codec = ProtobufJson::default();
+    let message = codec.parse("protocol.TransferContract", r#"{"owner_address":"410000000000000000000000000000000000000000","to_address":"410000000000000000000000000000000000000000","amount":9223372036854775807}"#, false).unwrap();
+    let printed: serde_json::Value = serde_json::from_str(&codec.print(&message, false).unwrap()).unwrap();
+    assert_eq!(printed["owner_address"], "410000000000000000000000000000000000000000");
+    assert_eq!(printed["amount"], i64::MAX);
+    tron_apis::http_json::with_get_int64_as_string("GET", true, || {
+        let quoted: serde_json::Value = serde_json::from_str(&codec.print(&message, false).unwrap()).unwrap();
+        assert_eq!(quoted["amount"], i64::MAX.to_string());
+    });
 }
 
 fn assert_behavior_slice(stable_id: &str, row: &serde_json::Value) {
     assert_guarded_observation(stable_id, row);
     let symbol = row["symbol"].as_str().unwrap();
-    match row["behavior"]["behavior_slice"].as_str().unwrap() {
-        "wrapper-commit-overflow-header" => assert_wrapper_commit_overflow_header(symbol),
-        "cached-body-reader-stream-state" => assert_cached_body_reader_stream_state(symbol),
-        "util-conversion-printing" => assert_util_conversion_printing(symbol),
-        "visible-int64-enum-field-json" => assert_visible_int64_enum_field_json(symbol),
-        "route-specific-response-fields" | "filters-controls" | "custom-validation" => {},
-        slice => panic!("unimplemented exact C023 behavior slice {slice} for {stable_id}"),
+    let slice = row["behavior"]["behavior_slice"].as_str().unwrap();
+    match stable_operation(stable_id) {
+        RowOperation::Wrapper => { assert_eq!(slice, "wrapper-commit-overflow-header"); assert_wrapper_commit_overflow_header(symbol); }
+        RowOperation::Cached => { assert_eq!(slice, "cached-body-reader-stream-state"); assert_cached_body_reader_stream_state(symbol); }
+        RowOperation::UtilConversion => { assert_eq!(slice, "util-conversion-printing"); assert_util_conversion_printing(stable_id); }
+        RowOperation::VisibleJson => { assert_eq!(slice, "visible-int64-enum-field-json"); assert_visible_int64_enum_field_json(stable_id); }
+        RowOperation::RouteResponse => { assert_eq!(slice, "route-specific-response-fields"); assert!(matches!(row["behavior"]["kind"].as_str(), Some("route" | "control"))); assert!(row["behavior"]["route"].as_str().is_some_and(|route| route.starts_with('/'))); }
+        RowOperation::FilterControl => { assert_eq!(slice, "filters-controls"); assert!(matches!(row["behavior"]["kind"].as_str(), Some("control" | "route"))); assert!(!row["behavior"]["expected_status"].as_array().unwrap().is_empty()); }
+        RowOperation::CustomValidation => { assert_eq!(slice, "custom-validation"); assert_eq!(row["behavior"]["route"], "/wallet/validateaddress"); }
+    }
+}
+fn assert_route_response_fields(stable_id: &str, row: &serde_json::Value, body: &serde_json::Value) {
+    let object = body.as_object().unwrap_or_else(|| panic!("{stable_id} exact route response is not an object"));
+    if object.is_empty() {
+        assert_eq!(body, &serde_json::json!({}), "{stable_id} empty production response wrapper drift");
+        return;
+    }
+    let mut required_fields = BTreeSet::new();
+    let mut absent_fields = BTreeSet::new();
+    for observable in row["behavior"]["expected_observables"].as_array().unwrap() {
+        let text = observable.as_str().unwrap();
+        for marker in ["containsKey(\"", ".get(\""] {
+            let mut rest = text;
+            while let Some(start) = rest.find(marker) {
+                rest = &rest[start + marker.len()..];
+                if let Some(end) = rest.find('\"') {
+                    let field = rest[..end].to_owned();
+                    if text.contains("assertNull") { absent_fields.insert(field); } else { required_fields.insert(field); }
+                    rest = &rest[end + 1..];
+                } else { break; }
+            }
+        }
+    }
+    if object.contains_key("Error") {
+        assert!(object["Error"].is_string(), "{stable_id} production Error wrapper is not textual: {body}");
+    } else {
+        for field in required_fields { assert!(object.contains_key(&field), "{stable_id} exact route response omitted authenticated field {field}: {body}"); }
+        for field in absent_fields { assert!(!object.contains_key(&field), "{stable_id} exact route response unexpectedly included authenticated-null field {field}: {body}"); }
     }
 }
 
@@ -354,7 +439,6 @@ async fn execute_row_behavior(stable_id: &str, row: &serde_json::Value) -> RowOu
             }
             other => panic!("unknown C023 parser result {other}"),
         }
-        assert_visible_int64_enum_field_json(row["symbol"].as_str().unwrap());
         assert_eq!(behavior["assertion"], format!("{}#{}:{parser_result}", std::path::Path::new(source_path).file_stem().unwrap().to_string_lossy(), row["symbol"].as_str().unwrap()));
         return RowOutcome { terminal: "mapped", result_key: row["result_key"].as_str().unwrap().to_owned() };
     }
@@ -377,7 +461,7 @@ async fn execute_row_behavior(stable_id: &str, row: &serde_json::Value) -> RowOu
     assert!(!response.is_empty() || route == "/wallet/validateaddress", "{stable_id} response body semantics were not observable");
     if matches!(kind, "route" | "custom") && status == 200 {
         let body: serde_json::Value = serde_json::from_slice(&response).unwrap_or_else(|error| panic!("{stable_id} route returned non-JSON body: {error}"));
-        assert!(body.is_object(), "{stable_id} route response must be a JSON object, got {body}");
+        assert_route_response_fields(stable_id, row, &body);
     }
     stop(tx, task, path).await;
     RowOutcome { terminal: if kind == "deferred" { "deferred" } else { "mapped" }, result_key: row["result_key"].as_str().unwrap().to_owned() }
@@ -401,7 +485,7 @@ macro_rules! c023_row_proof {
     };
 }
 
-c023_row_proof!(c023_tcase_9a69d3ce612ead6c, "TCASE-9A69D3CE612EAD6C", "TCASE-9A69D3CE612EAD6C|java-tron/framework/src/test/java/org/tron/common/jetty/JettyServerTest.java:55::testGet|terminal=deferred|result=JettyServerTest#testGet|family=c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states", "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states");
+c023_row_proof!(c023_tcase_9a69d3ce612ead6c, "TCASE-9A69D3CE612EAD6C", "TCASE-9A69D3CE612EAD6C|java-tron/framework/src/test/java/org/tron/common/jetty/JettyServerTest.java:55::testGet|terminal=mapped|result=JettyServerTest#testGet|family=c023_http_controls::body_connection_and_rate_limits_release_permits", "c023_http_controls::body_connection_and_rate_limits_release_permits");
 c023_row_proof!(c023_tcase_45c2c387ca68ba44, "TCASE-45C2C387CA68BA44", "TCASE-45C2C387CA68BA44|java-tron/framework/src/test/java/org/tron/common/jetty/SizeLimitHandlerTest.java:155::testHttpBodyWithinLimit|terminal=mapped|result=SizeLimitHandlerTest#testHttpBodyWithinLimit|family=c023_http_controls::body_connection_and_rate_limits_release_permits", "c023_http_controls::body_connection_and_rate_limits_release_permits");
 c023_row_proof!(c023_tcase_f034b0a72b5741f0, "TCASE-F034B0A72B5741F0", "TCASE-F034B0A72B5741F0|java-tron/framework/src/test/java/org/tron/common/jetty/SizeLimitHandlerTest.java:166::testHttpBodyExceedsLimit|terminal=mapped|result=SizeLimitHandlerTest#testHttpBodyExceedsLimit|family=c023_http_controls::body_connection_and_rate_limits_release_permits", "c023_http_controls::body_connection_and_rate_limits_release_permits");
 c023_row_proof!(c023_tcase_218b7d40722aeebc, "TCASE-218B7D40722AEEBC", "TCASE-218B7D40722AEEBC|java-tron/framework/src/test/java/org/tron/common/jetty/SizeLimitHandlerTest.java:194::testBadContentLengthReturnsDefault400|terminal=mapped|result=SizeLimitHandlerTest#testBadContentLengthReturnsDefault400|family=c023_http_controls::body_connection_and_rate_limits_release_permits", "c023_http_controls::body_connection_and_rate_limits_release_permits");
@@ -458,7 +542,7 @@ c023_row_proof!(c023_tcase_bcd7bc55311c9005, "TCASE-BCD7BC55311C9005", "TCASE-BC
 c023_row_proof!(c023_tcase_ff9434413cdeb3d3, "TCASE-FF9434413CDEB3D3", "TCASE-FF9434413CDEB3D3|java-tron/framework/src/test/java/org/tron/core/services/filter/HttpApiAccessFilterTest.java:128::testIsDisabled|terminal=mapped|result=HttpApiAccessFilterTest#testIsDisabled|family=c023_http_controls::body_connection_and_rate_limits_release_permits", "c023_http_controls::body_connection_and_rate_limits_release_permits");
 c023_row_proof!(c023_tcase_59d6be8f77f93fc6, "TCASE-59D6BE8F77F93FC6", "TCASE-59D6BE8F77F93FC6|java-tron/framework/src/test/java/org/tron/core/services/filter/HttpInterceptorTest.java:18::testOversizedBadMessagePropagates|terminal=mapped|result=HttpInterceptorTest#testOversizedBadMessagePropagates|family=c023_http_controls::body_connection_and_rate_limits_release_permits", "c023_http_controls::body_connection_and_rate_limits_release_permits");
 c023_row_proof!(c023_tcase_52ea3d85ea3581bf, "TCASE-52EA3D85EA3581BF", "TCASE-52EA3D85EA3581BF|java-tron/framework/src/test/java/org/tron/core/services/filter/HttpInterceptorTest.java:34::testNonOversizedExceptionIsStillSwallowed|terminal=mapped|result=HttpInterceptorTest#testNonOversizedExceptionIsStillSwallowed|family=c023_http_controls::body_connection_and_rate_limits_release_permits", "c023_http_controls::body_connection_and_rate_limits_release_permits");
-c023_row_proof!(c023_tcase_665e96c819d47438, "TCASE-665E96C819D47438", "TCASE-665E96C819D47438|java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryHttpFilterTest.java:59::testHttpFilter|terminal=deferred|result=LiteFnQueryHttpFilterTest#testHttpFilter|family=c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states", "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states");
+c023_row_proof!(c023_tcase_665e96c819d47438, "TCASE-665E96C819D47438", "TCASE-665E96C819D47438|java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryHttpFilterTest.java:59::testHttpFilter|terminal=mapped|result=LiteFnQueryHttpFilterTest#testHttpFilter|family=c023_http_controls::body_connection_and_rate_limits_release_permits", "c023_http_controls::body_connection_and_rate_limits_release_permits");
 c023_row_proof!(c023_tcase_0f27cad607d7e474, "TCASE-0F27CAD607D7E474", "TCASE-0F27CAD607D7E474|java-tron/framework/src/test/java/org/tron/core/services/http/AccountPermissionUpdateServletTest.java:34::testAccountPermissionUpdate|terminal=mapped|result=AccountPermissionUpdateServletTest#testAccountPermissionUpdate|family=c023_scenarios::all_215_inventory_rows_execute_through_real_localhost_http", "c023_scenarios::all_215_inventory_rows_execute_through_real_localhost_http");
 c023_row_proof!(c023_tcase_84c7ed9057990943, "TCASE-84C7ED9057990943", "TCASE-84C7ED9057990943|java-tron/framework/src/test/java/org/tron/core/services/http/BroadcastServletTest.java:90::doPostTest|terminal=mapped|result=BroadcastServletTest#doPostTest|family=c023_scenarios::all_215_inventory_rows_execute_through_real_localhost_http", "c023_scenarios::all_215_inventory_rows_execute_through_real_localhost_http");
 c023_row_proof!(c023_tcase_c5e2a2af39725c22, "TCASE-C5E2A2AF39725C22", "TCASE-C5E2A2AF39725C22|java-tron/framework/src/test/java/org/tron/core/services/http/CancelAllUnfreezeV2ServletTest.java:34::testCancelAllUnfreezeV2|terminal=mapped|result=CancelAllUnfreezeV2ServletTest#testCancelAllUnfreezeV2|family=c023_scenarios::all_215_inventory_rows_execute_through_real_localhost_http", "c023_scenarios::all_215_inventory_rows_execute_through_real_localhost_http");

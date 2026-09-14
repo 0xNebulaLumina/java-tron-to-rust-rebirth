@@ -31001,7 +31001,7 @@
   },
   "gate_source": {
     "path": "tools/regression/c029_gate.py",
-    "sha256": "fd2669ed85d0421d6c2fe97c5dc9ec460d3f2b67b97aabc0d616177d1ac0f976"
+    "sha256": "887651f8c8de2998823d3bfdb062937e8680229cf8d14a1c1158a979adfe9dab"
   },
   "accounting": {
     "mapped": 3443,
@@ -43236,6 +43236,47 @@
       "owning_item": "C029.06"
     },
     {
+      "id": "C029-PROOF-A20BCDCB8DF8CF2D",
+      "cwd": "rust-tron",
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "tron-execution",
+        "--test",
+        "c016_pipeline",
+        "--",
+        "non_vm_actuators_ignore_vm_energy_policy_and_preserve_energy_state",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 1800,
+      "environment": {
+        "HOME": "${RUN_HOME}",
+        "TMPDIR": "${RUN_TMP}",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "TZ": "UTC",
+        "RUST_TEST_THREADS": "1",
+        "CARGO_NET_OFFLINE": "true"
+      },
+      "result_contract": {
+        "expected_exit": 0,
+        "minimum_executed_tests": 1,
+        "forbid_ignored": true,
+        "forbid_skipped": true,
+        "observable_projection": [
+          "stable_id",
+          "fixture_selector",
+          "expected_result",
+          "rust_test"
+        ]
+      },
+      "owning_item": "C029.06"
+    },
+    {
       "id": "C029-PROOF-A20DA8EE92963ECF",
       "cwd": "rust-tron",
       "argv": [
@@ -50616,23 +50657,21 @@
         "docs/PORTING_TRACKER.json#C016-R1-001"
       ],
       "rationale": "Tracker records a cross-language execution-policy defect: non-VM actuators could inherit VM-only fee, planning, and settlement requirements; the resolution classifies runtime kind before VM policy.",
-      "affected_stable_ids": [
-        "TCASE-DA2F8C8CFD8D2262"
-      ],
+      "affected_stable_ids": [],
       "behavior_claim_ids": [
-        "testCreateActuator preserves the Java row observable contract through its dedicated Rust case."
+        "non-VM actuators bypass VM-only fee-limit, dynamic-energy, planning, and settlement policy while preserving energy state"
       ],
       "fixture_ids": [
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-DA2F8C8CFD8D2262:testCreateActuator"
+        "rust-tron/crates/tron-execution/tests/c016_pipeline.rs#non_vm_actuators_ignore_vm_energy_policy_and_preserve_energy_state"
       ],
       "rust_test_ids": [
-        "rust-tron/crates/tron-execution/tests/c016_pipeline.rs::c016_tcase_da2f8c8cfd8d2262"
+        "rust-tron/crates/tron-execution/tests/c016_pipeline.rs::non_vm_actuators_ignore_vm_energy_policy_and_preserve_energy_state"
       ],
       "command_ids": [
-        "C029-PROOF-74ADCB97139938F5"
+        "C029-PROOF-A20BCDCB8DF8CF2D"
       ],
       "result_links": [
-        "TCASE-DA2F8C8CFD8D2262|observable:testCreateActuator"
+        "C029-PROOF-A20BCDCB8DF8CF2D|recurrence:non-VM transfer, account-create, and asset-transfer actuators execute without VM energy dynamics or settlement and preserve account and block energy state"
       ]
     },
     {
@@ -66095,7 +66134,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "execute Java HTTP behavior JettyServerTest#testGet on GET /wallet/getnowblock with deterministic input c023_case=TCASE-9A69D3CE612EAD6C&java_behavior=testget and assert status [200] plus response body semantics"
+        "execute Java malformed Content-Length behavior JettyServerTest#testGet on GET / with Content-Length +450 and assert default HTTP 400"
       ],
       "applicability": {
         "type": "covered",
@@ -66116,7 +66155,7 @@
         }
       ],
       "proof_command_id": "C029-PROOF-B2A57442A70CAFDD",
-      "observable_result": "TCASE-9A69D3CE612EAD6C|java-tron/framework/src/test/java/org/tron/common/jetty/JettyServerTest.java:55::testGet|terminal=deferred|result=JettyServerTest#testGet|family=c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "observable_result": "TCASE-9A69D3CE612EAD6C|java-tron/framework/src/test/java/org/tron/common/jetty/JettyServerTest.java:55::testGet|terminal=mapped|result=JettyServerTest#testGet|family=c023_http_controls::body_connection_and_rate_limits_release_permits",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "http_api",
@@ -210945,7 +210984,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "execute Java HTTP behavior LiteFnQueryHttpFilterTest#testHttpFilter on GET /wallet/getnowblock with deterministic input c023_case=TCASE-665E96C819D47438&java_behavior=testhttpfilter and assert status [200] plus response body semantics"
+        "execute Java lite-history admission behavior LiteFnQueryHttpFilterTest#testHttpFilter on GET /wallet/getblockbynum across lite-closed and full-node states and assert only lite-closed returns the closure text"
       ],
       "applicability": {
         "type": "covered",
@@ -210966,7 +211005,7 @@
         }
       ],
       "proof_command_id": "C029-PROOF-46058F9A416B4945",
-      "observable_result": "TCASE-665E96C819D47438|java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryHttpFilterTest.java:59::testHttpFilter|terminal=deferred|result=LiteFnQueryHttpFilterTest#testHttpFilter|family=c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "observable_result": "TCASE-665E96C819D47438|java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryHttpFilterTest.java:59::testHttpFilter|terminal=mapped|result=LiteFnQueryHttpFilterTest#testHttpFilter|family=c023_http_controls::body_connection_and_rate_limits_release_permits",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "http_api",

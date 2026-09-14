@@ -195,6 +195,14 @@ def metadata():
         }
         if stable_id in exact_size_cases and (behavior["input"], behavior["expected_status"]) != exact_size_cases[stable_id]:
             raise SystemExit("C023 exact SizeLimitHandler transport/result drift: " + stable_id)
+        exact_owned_seams = {
+            "TCASE-9A69D3CE612EAD6C": ("control", "/", "GET", "@raw-malformed-content-length", [400]),
+            "TCASE-665E96C819D47438": ("control", "/wallet/getblockbynum", "GET", "num=0", [200]),
+        }
+        if stable_id in exact_owned_seams:
+            actual = (behavior["kind"], behavior["route"], behavior["method"], behavior["input"], behavior["expected_status"])
+            if actual != exact_owned_seams[stable_id] or row.get("disposition") != "executed" or row.get("terminal_state") != "mapped" or "deferral" in row:
+                raise SystemExit("C023 owned C022/C023 seam is still deferred or fabricated: " + stable_id)
         if behavior["kind"] == "route":
             class_name = pathlib.Path(source["path"]).stem.removesuffix("Test").removesuffix("Servlet").lower()
             route_name = re.sub(r"[^a-z0-9]", "", behavior["route"].rsplit("/", 1)[-1].lower())
@@ -208,6 +216,33 @@ def metadata():
             raise SystemExit("C023 scenario/reconciliation behavior mapping drift: " + stable_id)
     if len(behavior_contracts) != 333 or "selector_index" in rust_source or "execute_row_behavior(stable_id, family" in rust_source:
         raise SystemExit("C023 hash/generic Java-row behavior dispatch rejected")
+    dispatch_match = re.search(r"fn stable_operation\(stable_id: &str\) -> RowOperation \{(?P<body>.*?)\n\}", rust_source, re.S)
+    if not dispatch_match:
+        raise SystemExit("C023 stable-ID production-operation dispatch missing")
+    dispatch_body = dispatch_match.group("body")
+    dispatched_ids = re.findall(r'"(TCASE-[0-9A-F]{16})"', dispatch_body)
+    expected_ids = [row["stable_id"] for row in jrows]
+    if len(dispatched_ids) != 333 or set(dispatched_ids) != set(expected_ids) or len(set(dispatched_ids)) != 333:
+        raise SystemExit("C023 stable-ID production-operation dispatch is not exact 333/333")
+    forbidden_noops = [
+        r"=>\s*\{\s*\}",
+        r'"route-specific-response-fields"\s*\|\s*"filters-controls"',
+        r"_\s*=>\s*\{\s*\}",
+        r'json!\(\{\s*"visible"\s*:\s*true,\s*"number"',
+    ]
+    if any(re.search(pattern, rust_source, re.S) for pattern in forbidden_noops):
+        raise SystemExit("C023 empty/generic/fabricated production observation branch rejected")
+    required_dispatch_calls = {
+        "RowOperation::RouteResponse": 'Some("route" | "control")',
+        "RowOperation::FilterControl": 'row["behavior"]["expected_status"]',
+        "RowOperation::CustomValidation": '"/wallet/validateaddress"',
+        "RowOperation::UtilConversion": "assert_util_conversion_printing(stable_id)",
+        "RowOperation::VisibleJson": "assert_visible_int64_enum_field_json(stable_id)",
+        "RowOperation::Wrapper": "assert_wrapper_commit_overflow_header(symbol)",
+        "RowOperation::Cached": "assert_cached_body_reader_stream_state(symbol)",
+    }
+    if any(variant not in rust_source or operation not in rust_source for variant, operation in required_dispatch_calls.items()):
+        raise SystemExit("C023 category dispatch lacks a nonempty production-backed exact observation")
     executable_families = {
         "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
         "c023_http_controls::body_connection_and_rate_limits_release_permits",

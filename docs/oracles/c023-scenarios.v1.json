@@ -1,6 +1,6 @@
 {
   "contract": "C023.03-C023.06",
-  "version": 5,
+  "version": 6,
   "scenarios": [
     {
       "id": "C023-S-001",
@@ -175,28 +175,28 @@
         "case": "testGet"
       },
       "fixture_selector": "TCASE-9A69D3CE612EAD6C",
-      "expected_result": "TCASE-9A69D3CE612EAD6C|java-tron/framework/src/test/java/org/tron/common/jetty/JettyServerTest.java:55::testGet|terminal=deferred|result=JettyServerTest#testGet|family=c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "expected_result": "TCASE-9A69D3CE612EAD6C|java-tron/framework/src/test/java/org/tron/common/jetty/JettyServerTest.java:55::testGet|terminal=mapped|result=JettyServerTest#testGet|family=c023_http_controls::body_connection_and_rate_limits_release_permits",
       "rust_symbol": "c023_scenarios::c023_tcase_9a69d3ce612ead6c",
       "rust_test": "c023_scenarios::c023_tcase_9a69d3ce612ead6c",
-      "rust_family_test": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "rust_family_test": "c023_http_controls::body_connection_and_rate_limits_release_permits",
       "command": "cargo test -p tron-apis --test c023_scenarios --locked -- c023_tcase_9a69d3ce612ead6c --exact",
-      "terminal_state": "deferred",
+      "terminal_state": "mapped",
       "result_key": "JettyServerTest#testGet",
-      "java_behavior": "execute Java HTTP behavior JettyServerTest#testGet on GET /wallet/getnowblock with deterministic input c023_case=TCASE-9A69D3CE612EAD6C&java_behavior=testget and assert status [200] plus response body semantics",
+      "java_behavior": "execute Java malformed Content-Length behavior JettyServerTest#testGet on GET / with Content-Length +450 and assert default HTTP 400",
       "proof_kind": "executable_behavior",
       "behavior_selector": "TCASE-9A69D3CE612EAD6C",
-      "behavior_family": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "behavior_family": "c023_http_controls::body_connection_and_rate_limits_release_permits",
       "behavior": {
         "key": "TCASE-9A69D3CE612EAD6C|java-tron/framework/src/test/java/org/tron/common/jetty/JettyServerTest.java:55::testGet",
-        "kind": "deferred",
-        "route": "/wallet/getnowblock",
+        "kind": "control",
+        "route": "/",
         "method": "GET",
         "surface": "FULL",
-        "input": "c023_case=TCASE-9A69D3CE612EAD6C&java_behavior=testget",
+        "input": "@raw-malformed-content-length",
         "expected_status": [
-          200
+          400
         ],
-        "assertion": "JettyServerTest#testGet:status=200:response-body",
+        "assertion": "JettyServerTest#testGet:status=400:response-body",
         "behavior_slice": "route-specific-response-fields",
         "observation_digest": "472ec755994282d6797a6bfaced91db60b03f6bc43a6980105e59e1562477d96",
         "expected_observables": [
@@ -2906,28 +2906,28 @@
         "case": "testHttpFilter"
       },
       "fixture_selector": "TCASE-665E96C819D47438",
-      "expected_result": "TCASE-665E96C819D47438|java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryHttpFilterTest.java:59::testHttpFilter|terminal=deferred|result=LiteFnQueryHttpFilterTest#testHttpFilter|family=c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "expected_result": "TCASE-665E96C819D47438|java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryHttpFilterTest.java:59::testHttpFilter|terminal=mapped|result=LiteFnQueryHttpFilterTest#testHttpFilter|family=c023_http_controls::body_connection_and_rate_limits_release_permits",
       "rust_symbol": "c023_scenarios::c023_tcase_665e96c819d47438",
       "rust_test": "c023_scenarios::c023_tcase_665e96c819d47438",
-      "rust_family_test": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "rust_family_test": "c023_http_controls::body_connection_and_rate_limits_release_permits",
       "command": "cargo test -p tron-apis --test c023_scenarios --locked -- c023_tcase_665e96c819d47438 --exact",
-      "terminal_state": "deferred",
+      "terminal_state": "mapped",
       "result_key": "LiteFnQueryHttpFilterTest#testHttpFilter",
-      "java_behavior": "execute Java HTTP behavior LiteFnQueryHttpFilterTest#testHttpFilter on GET /wallet/getnowblock with deterministic input c023_case=TCASE-665E96C819D47438&java_behavior=testhttpfilter and assert status [200] plus response body semantics",
+      "java_behavior": "execute Java lite-history admission behavior LiteFnQueryHttpFilterTest#testHttpFilter on GET /wallet/getblockbynum across lite-closed and full-node states and assert only lite-closed returns the closure text",
       "proof_kind": "executable_behavior",
       "behavior_selector": "TCASE-665E96C819D47438",
-      "behavior_family": "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+      "behavior_family": "c023_http_controls::body_connection_and_rate_limits_release_permits",
       "behavior": {
         "key": "TCASE-665E96C819D47438|java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryHttpFilterTest.java:59::testHttpFilter",
-        "kind": "deferred",
-        "route": "/wallet/getnowblock",
+        "kind": "control",
+        "route": "/wallet/getblockbynum",
         "method": "GET",
         "surface": "FULL",
-        "input": "c023_case=TCASE-665E96C819D47438&java_behavior=testhttpfilter",
+        "input": "num=0",
         "expected_status": [
           200
         ],
-        "assertion": "LiteFnQueryHttpFilterTest#testHttpFilter:status=200:response-body",
+        "assertion": "LiteFnQueryHttpFilterTest#testHttpFilter:status=200:lite/full-transition",
         "behavior_slice": "filters-controls",
         "observation_digest": "a4a168c0a5ba9b2cc83265d801ee44e5f0e9fb0549dd897479763cddb0ce84ed",
         "expected_observables": [
