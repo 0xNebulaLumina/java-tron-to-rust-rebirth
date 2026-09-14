@@ -4234,19 +4234,19 @@
       "status": "review",
       "owner": "review-agent",
       "updated": "2026-09-14",
-      "resume": "Independently re-review the final open C029-R1-005 and C029-R1-010 findings and verify the passed-gate accounting of 3,443 rows, 477 proof commands, seven historical compatibility defects, and artifact SHA-256 1727a52de395ef28abd0cc0e1ca7d1cd0c4d4f77bd501ef84320c96742cd0bdc.",
+      "resume": "Independently re-review closure of C029-R1-005 and C029-R1-010 and verify the passed-gate accounting of 3,443 rows, 438 proof commands, seven historical compatibility defects, and artifact SHA-256 0903d4cb3e0bb332b22a5647fe5691670bbcd851a55e6459eae507dae0fa7d3e.",
       "items": [
         {
           "id": "C029.01",
           "description": "Regenerate the C000 case-level Java test/resource ledger at the release revision and reject source/count drift.",
           "status": "done",
-          "note": "Pinned ledger regeneration passed with all 3,443 stable rows preserved; the complete reconciliation artifact SHA-256 is 1727a52de395ef28abd0cc0e1ca7d1cd0c4d4f77bd501ef84320c96742cd0bdc."
+          "note": "Pinned ledger regeneration passed with all 3,443 stable rows preserved; the complete reconciliation artifact SHA-256 is 0903d4cb3e0bb332b22a5647fe5691670bbcd851a55e6459eae507dae0fa7d3e."
         },
         {
           "id": "C029.02",
           "description": "Reconcile each stable case ID to behavior claim, applicability decision, Rust test/fixture IDs and execution results; many-to-one mappings require explicit behavior decomposition.",
           "status": "done",
-          "note": "All 3,443 stable case rows are present in the reconciliation with 477 proof commands, including 333 executable C023 rows, and zero current mapping gaps."
+          "note": "All 3,443 stable case rows are present in the reconciliation with 438 proof commands, including 294 executable C023 rows and 39 reviewed non-applicable C023 rows, and zero current mapping gaps."
         },
         {
           "id": "C029.03",
@@ -4264,18 +4264,18 @@
           "id": "C029.05",
           "description": "Add minimal fixture for every compatibility defect found during porting.",
           "status": "done",
-          "note": "The reconciliation records 78 historical review findings and seven historical compatibility defects with zero unexplained current compatibility gaps; final independent review remains open for defect classification and recurrence-proof evidence."
+          "note": "The reconciliation records 78 historical review findings and seven historical compatibility defects with zero unexplained current compatibility gaps; closure of C029-R1-005 and C029-R1-010 remains under independent re-review."
         },
         {
           "id": "C029.06",
           "description": "Enforce determinism/isolation and remove flaky sleeps/fixed ports/mutable images.",
           "status": "done",
-          "note": "The reconciliation contains 477 proof commands, including 333 executable C023 rows; the full C029 gate passed with invocation-private execution, repository-pinned provenance, and all-exit shared-input integrity checks."
+          "note": "The reconciliation contains 438 proof commands, including 294 executable C023 rows and 39 reviewed non-applicable C023 rows; the full C029 gate passed with invocation-private execution, repository-pinned provenance, and all-exit shared-input integrity checks."
         }
       ],
       "gate": {
         "id": "C029.V",
-        "description": "Passed with 3,443 rows, 477 proof commands, 78 historical review findings, seven historical compatibility defects, zero current mapping gaps, and complete reconciliation artifact SHA-256 1727a52de395ef28abd0cc0e1ca7d1cd0c4d4f77bd501ef84320c96742cd0bdc.",
+        "description": "Passed with 3,443 rows, 438 proof commands, 78 historical review findings, seven historical compatibility defects, zero current mapping gaps, and complete reconciliation artifact SHA-256 0903d4cb3e0bb332b22a5647fe5691670bbcd851a55e6459eae507dae0fa7d3e.",
         "status": "passed",
         "commands": [
           {

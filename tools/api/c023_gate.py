@@ -68,8 +68,8 @@ def rust_cases_exist(rows):
             file_name, symbol = case.split("::", 1)
             if file_name not in files or not re.search(r"\b(?:async\s+)?fn\s+" + re.escape(symbol) + r"\b", files[file_name]):
                 raise SystemExit("C023 nonexistent concrete Rust case: " + row["id"])
-        elif not (row.get("terminal_state") == "deferred" and row.get("deferral", {}).get("reason") and row.get("deferral", {}).get("owner")):
-            raise SystemExit("C023 row lacks concrete Rust case or exact deferral: " + row["id"])
+        elif not (row.get("terminal_state") == "non_applicable" and row.get("proof_kind") == "non_applicable_source_review" and row.get("applicability", {}).get("reason")):
+            raise SystemExit("C023 row lacks concrete Rust case or reviewed non-applicability: " + row["id"])
 
 def metadata():
     inventory = load(ROUTES); rows = inventory.get("routes", [])
@@ -106,11 +106,12 @@ def metadata():
         behavior = row.get("behavior")
         source = row["source"]
         exact_key = f"{stable_id}|{source['path']}:{source['line']}::{row['symbol']}"
-        if not isinstance(behavior, dict) or behavior.get("key") != exact_key:
+        non_applicable = row.get("disposition") == "reviewed_non_applicable"
+        if not non_applicable and (not isinstance(behavior, dict) or behavior.get("key") != exact_key):
             raise SystemExit("C023 exact stable-ID/source behavior mapping drift: " + stable_id)
         source_class = pathlib.Path(source["path"]).stem
         expected_assertion_prefix = f"{source_class}#{row['symbol']}:"
-        if not isinstance(behavior.get("assertion"), str) or not behavior["assertion"].startswith(expected_assertion_prefix):
+        if not non_applicable and (not isinstance(behavior.get("assertion"), str) or not behavior["assertion"].startswith(expected_assertion_prefix)):
             raise SystemExit("C023 behavior assertion is not bound to its source method: " + stable_id)
         observation = row.get("java_observation")
         if not isinstance(observation, dict) or set(observation) != {"slice","source_method_sha256","assertions","assertion_count","digest"}:
@@ -126,6 +127,16 @@ def metadata():
         guarded_assertions = [text.strip() for text in guarded_method.splitlines() if re.search(r"\b(assert|verify|expect|fail\s*\()", text, re.I)]
         if observation["source_method_sha256"] != hashlib.sha256(guarded_body.encode()).hexdigest() or observation["assertions"] != guarded_assertions:
             raise SystemExit("C023 guarded Java source assertions drift: " + stable_id)
+        if non_applicable:
+            applicability = row.get("applicability", {})
+            forbidden_credit = {"rust_case","fixture_selector","expected_result","rust_symbol","rust_test","rust_family_test","command","behavior_selector","behavior_family","behavior"}
+            if row.get("terminal_state") != "non_applicable" or row.get("proof_kind") != "non_applicable_source_review" or applicability.get("state") != "reviewed_non_applicable" or "servlet" not in applicability.get("java_surface", "").lower() or "Hyper/Axum" not in applicability.get("rust_surface", "") or any(key in row for key in forbidden_credit):
+                raise SystemExit("C023 Java-only wrapper row received executable credit: " + stable_id)
+            proof = proof_by_id.get(stable_id)
+            expected_proof = {key: row[key] for key in ("stable_id","source_identity","terminal_state","result_key","java_behavior","proof_kind","applicability","java_observation")}
+            if proof != expected_proof:
+                raise SystemExit("C023 reviewed non-applicable proof drift: " + stable_id)
+            continue
         observation_fields = {"behavior_slice","observation_digest","expected_observables","operation"}
         if behavior.get("behavior_slice") != observation["slice"] or behavior.get("observation_digest") != observation["digest"] or behavior.get("expected_observables") != (observation["assertions"] or [behavior.get("assertion")]) or behavior.get("operation") != row["symbol"]:
             raise SystemExit("C023 Rust behavior is not bound to the guarded Java operation/observation: " + stable_id)
@@ -214,21 +225,22 @@ def metadata():
                 raise SystemExit("C023 route row does not call its own route: " + stable_id)
         if proof_by_id[stable_id].get("behavior") != behavior:
             raise SystemExit("C023 scenario/reconciliation behavior mapping drift: " + stable_id)
-    if len(behavior_contracts) != 333 or "selector_index" in rust_source or "execute_row_behavior(stable_id, family" in rust_source:
-        raise SystemExit("C023 hash/generic Java-row behavior dispatch rejected")
+    if len(behavior_contracts) != 294 or "selector_index" in rust_source or "execute_row_behavior(stable_id, family" in rust_source:
+        raise SystemExit("C023 exact 294 executable behavior dispatch rejected")
     dispatch_match = re.search(r"fn stable_operation\(stable_id: &str\) -> RowOperation \{(?P<body>.*?)\n\}", rust_source, re.S)
     if not dispatch_match:
         raise SystemExit("C023 stable-ID production-operation dispatch missing")
     dispatch_body = dispatch_match.group("body")
     dispatched_ids = re.findall(r'"(TCASE-[0-9A-F]{16})"', dispatch_body)
-    expected_ids = [row["stable_id"] for row in jrows]
-    if len(dispatched_ids) != 333 or set(dispatched_ids) != set(expected_ids) or len(set(dispatched_ids)) != 333:
-        raise SystemExit("C023 stable-ID production-operation dispatch is not exact 333/333")
+    expected_ids = [row["stable_id"] for row in jrows if row.get("disposition") != "reviewed_non_applicable"]
+    if len(dispatched_ids) != 294 or set(dispatched_ids) != set(expected_ids) or len(set(dispatched_ids)) != 294:
+        raise SystemExit("C023 stable-ID production-operation dispatch is not exact 294/294 applicable rows")
     forbidden_noops = [
         r"=>\s*\{\s*\}",
         r'"route-specific-response-fields"\s*\|\s*"filters-controls"',
         r"_\s*=>\s*\{\s*\}",
         r'json!\(\{\s*"visible"\s*:\s*true,\s*"number"',
+        r"BufferedProbe|CachedBodyProbe|assert_wrapper_commit_overflow_header|assert_cached_body_reader_stream_state",
     ]
     if any(re.search(pattern, rust_source, re.S) for pattern in forbidden_noops):
         raise SystemExit("C023 empty/generic/fabricated production observation branch rejected")
@@ -238,8 +250,6 @@ def metadata():
         "RowOperation::CustomValidation": '"/wallet/validateaddress"',
         "RowOperation::UtilConversion": "assert_util_conversion_printing(stable_id)",
         "RowOperation::VisibleJson": "assert_visible_int64_enum_field_json(stable_id)",
-        "RowOperation::Wrapper": "assert_wrapper_commit_overflow_header(symbol)",
-        "RowOperation::Cached": "assert_cached_body_reader_stream_state(symbol)",
     }
     if any(variant not in rust_source or operation not in rust_source for variant, operation in required_dispatch_calls.items()):
         raise SystemExit("C023 category dispatch lacks a nonempty production-backed exact observation")
@@ -254,6 +264,10 @@ def metadata():
         raise SystemExit("C023 row proofs are not executable behavior tests")
     for row in jrows:
         stable_id = row["stable_id"]; proof = proof_by_id.get(stable_id); symbol = "c023_" + stable_id.lower().replace("-", "_")
+        if row.get("disposition") == "reviewed_non_applicable":
+            if re.search(r"\bc023_row_proof!\(" + re.escape(symbol) + r"\s*,\s*\"" + re.escape(stable_id) + r"\"", rust_source):
+                raise SystemExit("C023 reviewed non-applicable row still has executable macro credit: " + stable_id)
+            continue
         family = row.get("rust_case") or "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states"
         expected = f"{stable_id}|{row['source']['path']}:{row['source']['line']}::{row['symbol']}|terminal={row['terminal_state']}|result={row['result_key']}|family={family}"
         command = f"cargo test -p tron-apis --test c023_scenarios --locked -- {symbol} --exact"

@@ -83,6 +83,8 @@ PINNED_RUST_TOOLCHAIN = {
 C016_EXECUTABLE_ROWS = 37
 C016_NON_APPLICABLE_ROWS = 8
 C023_JAVA_CONTRACTS = 333
+C023_EXECUTABLE_ROWS = 294
+C023_NON_APPLICABLE_ROWS = 39
 CLASSIFICATION_POLICY = {
     "algorithm": "c029-tracker-semantics-v1",
     "observable_mismatch_markers": (
@@ -1708,18 +1710,49 @@ def validate_c016_synthesis(refreshed: dict[str, Any], commands_by_argv: dict[tu
         "C016-production-deadline",
     )
 
+def c023_non_applicable_result(candidate: dict[str, Any]) -> dict[str, str]:
+    applicability = candidate["applicability"]
+    observation = candidate["java_observation"]
+    return {
+        "terminal_state": "non_applicable",
+        "source_method_sha256": observation["source_method_sha256"],
+        "reason": applicability["reason"],
+        "java_surface": applicability["java_surface"],
+        "rust_surface": applicability["rust_surface"],
+    }
+
+
 def validate_c023_synthesis(refreshed: dict[str, Any], commands_by_argv: dict[tuple[str, ...], dict[str, Any]]) -> None:
-    """Require all 333 Java rows to preserve their exact source-specific behavior contracts."""
+    """Require 294 executable and 39 source-reviewed non-applicable C023 Java rows."""
     owner = load(C023_OWNERSHIP)
     fail(owner.get("canonical_counts") == {"production_routes": 215, "java_tests": C023_JAVA_CONTRACTS, "total": 548}, "C023 owner artifact: canonical counts drift")
     candidates = [candidate for candidate in owner.get("rows", []) if candidate.get("kind") == "java_test"]
     fail(len(candidates) == C023_JAVA_CONTRACTS, f"C023 owner artifact: exact {C023_JAVA_CONTRACTS} Java contracts required")
+    executable = [candidate for candidate in candidates if candidate.get("disposition") == "executed"]
+    non_applicable = [candidate for candidate in candidates if candidate.get("disposition") == "reviewed_non_applicable"]
+    fail(len(executable) == C023_EXECUTABLE_ROWS and len(non_applicable) == C023_NON_APPLICABLE_ROWS, f"C023 owner artifact: expected {C023_EXECUTABLE_ROWS} executable and {C023_NON_APPLICABLE_ROWS} reviewed-non-applicable Java rows")
     stable_ids = [candidate.get("stable_id") for candidate in candidates]
     fail(all(isinstance(stable_id, str) and ID_RE.fullmatch(stable_id) for stable_id in stable_ids) and len(set(stable_ids)) == C023_JAVA_CONTRACTS, "C023 owner artifact: Java stable IDs must be exact and unique")
-    behavior_keys = [candidate.get("behavior", {}).get("key") for candidate in candidates]
-    fail(all(isinstance(key, str) and key for key in behavior_keys) and len(set(behavior_keys)) == C023_JAVA_CONTRACTS, "C023 owner artifact: source-specific behavior keys must be exact and unique")
+    behavior_keys = [candidate.get("behavior", {}).get("key") for candidate in executable]
+    fail(all(isinstance(key, str) and key for key in behavior_keys) and len(set(behavior_keys)) == C023_EXECUTABLE_ROWS, "C023 owner artifact: executable source-specific behavior keys must be exact and unique")
     refreshed_by_id = {row["stable_id"]: row for row in refreshed["rows"]}
-    for candidate in candidates:
+    for candidate in non_applicable:
+        stable_id = candidate["stable_id"]
+        row = refreshed_by_id.get(stable_id)
+        applicability = candidate.get("applicability")
+        fail(row is not None and candidate.get("terminal_state") == "non_applicable" and candidate.get("proof_kind") == "non_applicable_source_review", f"{stable_id}: invalid C023 reviewed-non-applicable evidence")
+        fail(isinstance(applicability, dict) and applicability.get("state") == "reviewed_non_applicable", f"{stable_id}: C023 source-review applicability is absent")
+        reason = applicability.get("reason")
+        fail(isinstance(reason, str) and len(reason.split()) >= 12, f"{stable_id}: concrete C023 source-review rationale required")
+        fail(all(isinstance(applicability.get(field), str) and applicability[field] for field in ("java_surface", "rust_surface")), f"{stable_id}: C023 Java/Rust surface rationale is incomplete")
+        observation = candidate.get("java_observation")
+        fail(isinstance(observation, dict) and re.fullmatch(r"[0-9a-f]{64}", observation.get("source_method_sha256", "")) is not None, f"{stable_id}: C023 source-method digest is absent")
+        result = c023_non_applicable_result(candidate)
+        fail(row["behavior_claims"] == [reason] and row["rust_proofs"] == [] and row["proof_command_id"] is None and row["observable_result"] == result, f"{stable_id}: C023 reviewed-non-applicable row must retain exact source-review evidence without execution credit")
+        fail(row["applicability"] == {"type": "non_applicable", "rationale": reason}, f"{stable_id}: synthesized C023 non-applicable rationale differs from source review")
+        owner_link = f"docs/oracles/c023-ownership-reconciliation.v1.json#{stable_id}"
+        fail(owner_link in row["fixture_links"] and all(link == owner_link or link.partition("#")[0] == "docs/oracles/java-test-ownership.v1.json" for link in row["fixture_links"]), f"{stable_id}: C023 non-applicable fixtures must retain only ledger identity and source-review evidence")
+    for candidate in executable:
         stable_id = candidate["stable_id"]
         row = refreshed_by_id.get(stable_id)
         fail(row is not None, f"{stable_id}: C023 authoritative Java contract is absent from C029 reconciliation")
@@ -1776,6 +1809,12 @@ def synthesize_reconciliation(document: dict[str, Any]) -> dict[str, Any]:
         if not defect.get("affected_stable_ids")
         for command_id in defect.get("command_ids", [])
     }
+    c023_owner = load(C023_OWNERSHIP)
+    c023_non_applicable = {
+        candidate["stable_id"]: candidate
+        for candidate in c023_owner.get("rows", [])
+        if candidate.get("kind") == "java_test" and candidate.get("disposition") == "reviewed_non_applicable"
+    }
     for command in refreshed["proof_commands"]:
         if command["id"] in external_seed_ids:
             commands_by_argv[tuple(command["argv"])] = command
@@ -1789,6 +1828,18 @@ def synthesize_reconciliation(document: dict[str, Any]) -> dict[str, Any]:
             row["rust_proofs"] = []
             row["proof_command_id"] = None
             row["observable_result"] = None
+            continue
+        c023_exclusion = c023_non_applicable.get(row["stable_id"])
+        if c023_exclusion is not None:
+            reason = c023_exclusion["applicability"]["reason"]
+            row["behavior_claims"] = [reason]
+            row["applicability"] = {"type": "non_applicable", "rationale": reason}
+            row["rust_proofs"] = []
+            row["proof_command_id"] = None
+            row["observable_result"] = c023_non_applicable_result(c023_exclusion)
+            owner_link = f"docs/oracles/c023-ownership-reconciliation.v1.json#{row['stable_id']}"
+            ledger_links = [link for link in row["fixture_links"] if link.partition("#")[0] == "docs/oracles/java-test-ownership.v1.json"]
+            row["fixture_links"] = list(dict.fromkeys([*ledger_links, owner_link]))
             continue
         if row["applicability"]["type"] == "non_applicable" and row["stable_id"] not in c016_executable:
             continue
