@@ -59,6 +59,9 @@ async fn execute(State(state): State<HttpRouteState>, request: Request<Body>, ro
     if state.lite_node && state.controls.is_lite_history_path(route.path) { return state.controls.lite_response(); }
     let method = request.method().clone();
     let content_type = request.headers().get(axum::http::header::CONTENT_TYPE).and_then(|v| v.to_str().ok()).map(str::to_owned);
+    let chunked = request.headers().get(axum::http::header::TRANSFER_ENCODING)
+        .and_then(|value| value.to_str().ok())
+        .is_some_and(|value| value.split(',').any(|coding| coding.trim().eq_ignore_ascii_case("chunked")));
     let body_limit = if content_type.as_deref().is_some_and(is_form_content_type) {
         state.controls.max_body_bytes.min(state.controls.max_form_bytes)
     } else {
@@ -80,7 +83,11 @@ async fn execute(State(state): State<HttpRouteState>, request: Request<Body>, ro
         Err(status) => return rate_limit_response(&status),
     };
     let body = if method == Method::GET { query.into() } else {
-        match collect_limited_body(request.into_body(), body_limit).await { Ok(body) => body, Err(response) => return response }
+        match collect_limited_body(request.into_body(), body_limit).await {
+            Ok(body) => body,
+            Err(_) if chunked => return process_error("org.eclipse.jetty.http.BadMessageException", "request body exceeds configured limit"),
+            Err(response) => return response,
+        }
     };
     let parsed = if method == Method::GET {
         parse_post_body(&body, Some("application/x-www-form-urlencoded"))

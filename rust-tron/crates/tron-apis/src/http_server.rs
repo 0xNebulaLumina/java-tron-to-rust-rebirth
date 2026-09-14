@@ -89,8 +89,14 @@ impl HttpServerPlan {
                         let _permit = permit;
                         let (first_tx, mut first_rx) = watch::channel(false);
                         let service = service_fn(move |request: Request<Incoming>| {
+                            let service = service.clone();
                             let _ = first_tx.send(true);
-                            hyper::service::Service::call(&service, request)
+                            async move {
+                                if request.uri().path_and_query().is_some_and(|target| target.as_str().len() > 8 * 1024) {
+                                    return Ok(StatusCode::URI_TOO_LONG.into_response());
+                                }
+                                hyper::service::Service::call(&service, request).await
+                            }
                         });
                         let connection = http1::Builder::new().serve_connection(TokioIo::new(TimeoutIo::new(stream, idle_timeout)), service);
                         tokio::pin!(connection);

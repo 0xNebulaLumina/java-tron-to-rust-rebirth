@@ -14,6 +14,9 @@ COVERAGE = ORACLES / "c008-state-coverage.v1.json"
 DYNAMIC = ORACLES / "c008-dynamic-properties.v1.json"
 TRACKER = ROOT / "docs/PORTING_TRACKER.json"
 OWNERSHIP = ORACLES / "java-test-ownership.v1.json"
+C008_TEST_IDENTITY_SHA256 = "0db78910ec46d6d66e718c915b3188833e8942d097d6de7a3478f0ea5cfe580b"
+C008_OWNERSHIP_TRANSITIONS_SHA256 = "f62bfce68df6ba34b83f0014d8896b040dd9be2bd7fa08baae08e8091d69cf7a"
+
 TEST = "rust-tron/crates/tron-state/tests/logical_contract.rs"
 INTEGRATION_TEST = "rust-tron/crates/tron-state/tests/integration_contract.rs"
 JAVA = ROOT / "tools/state/C008Oracle.java"
@@ -86,6 +89,15 @@ JAVA_ROOT = ROOT / "java-tron/chainbase/src/main/java/org/tron/core"
 
 def sha(path: Path) -> str: return hashlib.sha256(path.read_bytes()).hexdigest()
 def dump(value: object) -> bytes: return (json.dumps(value, indent=2, sort_keys=True, ensure_ascii=False)+"\n").encode()
+def canonical_sha256(value: object) -> str:
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+def test_identity_rows(rows: list[dict]) -> list[list[object]]:
+    return [[row["id"], row["source"]["path"], row["source"]["line"], row["case"]] for row in rows]
+
+def ownership_transition_rows(rows: list[dict]) -> list[list[object]]:
+    return [[row["stable_id"], row["disposition"], row["owner"], row.get("final_owner"), row.get("destination_artifact"), row.get("destination_selector")] for row in rows]
+
 def dispatch_variant(row: dict) -> str:
     prefix={"store":"Store","capsule":"Capsule","dynamic_key":"DynamicKey","dynamic_default":"DynamicDefault"}[row["row_kind"]]
     if row["row_kind"] in {"dynamic_key","dynamic_default"}: return prefix
@@ -146,6 +158,8 @@ def c008_ledger_rows() -> list[dict]:
     paths={row["source"]["path"] for row in rows}
     if len(rows)!=189 or len({row["id"] for row in rows})!=189 or paths!=C008_TEST_SOURCES:
         raise RuntimeError(f"C008 immutable Java-test inventory drift: rows={len(rows)} missing_sources={sorted(C008_TEST_SOURCES-paths)} extra_sources={sorted(paths-C008_TEST_SOURCES)}")
+    if canonical_sha256(test_identity_rows(rows)) != C008_TEST_IDENTITY_SHA256:
+        raise RuntimeError("C008 pinned ordered stable-ID/source identity digest drift")
     return rows
 
 def c008_source_inventory(rows: list[dict]) -> dict:
@@ -210,7 +224,10 @@ def documents() -> dict[Path,dict]:
         existing_fixture=json.loads(FIXTURES.read_text())
         if "market_price_logical_order" in existing_fixture: fixture["market_price_logical_order"]=existing_fixture["market_price_logical_order"]
     java_test_rows=c008_ledger_rows()
-    coverage={"schema_version":3,"java_revision":REVISION,"source_inventory":c008_source_inventory(java_test_rows),"java_test_reconciliation":reconcile_java_tests(fixture,java_test_rows),"inventory_rows":[{"id":r["id"],"proof":proof_symbol(TEST,"java_codec_artifact_dispatches_every_row"),"case_id":r["id"],"dispatch_variant":dispatch[r["id"]]["enum_variant"]} for r in rows],"state_cases":[
+    reconciliation=reconcile_java_tests(fixture,java_test_rows)
+    if canonical_sha256(ownership_transition_rows(reconciliation)) != C008_OWNERSHIP_TRANSITIONS_SHA256:
+        raise RuntimeError("C008 pinned reviewed ownership-transition digest drift")
+    coverage={"schema_version":3,"java_revision":REVISION,"pinned_test_inventory":{"row_count":189,"ordered_identity_sha256":C008_TEST_IDENTITY_SHA256,"ordered_ownership_transitions_sha256":C008_OWNERSHIP_TRANSITIONS_SHA256},"source_inventory":c008_source_inventory(java_test_rows),"java_test_reconciliation":reconciliation,"inventory_rows":[{"id":r["id"],"proof":proof_symbol(TEST,"java_codec_artifact_dispatches_every_row"),"case_id":r["id"],"dispatch_variant":dispatch[r["id"]]["enum_variant"]} for r in rows],"state_cases":[
       {"id":"cross-store-atomic-batch","proof":f"{INTEGRATION_TEST}::cross_store_batch_is_atomic_and_reopens"},
       {"id":"all-c007-precommit-phases","proof":f"{INTEGRATION_TEST}::c007_precommit_crash_matrix_keeps_cross_store_batch_atomic"},
       {"id":"market-linked-atomicity","proof":f"{INTEGRATION_TEST}::market_linked_updates_are_atomic_across_crashes"},
@@ -244,6 +261,10 @@ def verify(errors:list[str], expected:dict[Path,dict])->None:
     stable_ids=[row["stable_id"] for row in reconciliation]
     if len(reconciliation)!=189 or len(set(stable_ids))!=189 or set(stable_ids)!=set(ledger_by_id): errors.append("C008.V reconciliation must preserve exactly the immutable 189-row Java-test inventory")
     if expected[COVERAGE].get("source_inventory")!=c008_source_inventory(ledger_rows): errors.append("C008 Java-test source identity inventory drift")
+    pinned=expected[COVERAGE].get("pinned_test_inventory",{})
+    if pinned != {"row_count":189,"ordered_identity_sha256":C008_TEST_IDENTITY_SHA256,"ordered_ownership_transitions_sha256":C008_OWNERSHIP_TRANSITIONS_SHA256}: errors.append("C008 pinned Java-test inventory metadata drift")
+    if canonical_sha256(test_identity_rows(ledger_rows)) != C008_TEST_IDENTITY_SHA256: errors.append("C008 ordered stable-ID/source identity digest drift")
+    if canonical_sha256(ownership_transition_rows(reconciliation)) != C008_OWNERSHIP_TRANSITIONS_SHA256: errors.append("C008 ordered ownership-transition digest drift")
     for row in reconciliation:
         source=ledger_by_id.get(row["stable_id"],{}).get("source",{})
         common_valid=(row.get("case_id")==row["stable_id"] and row.get("fixture_selector")==row["stable_id"] and row.get("final_owner")==row.get("owner") and bool(row.get("expected_result")) and row.get("java_source")==source.get("path") and row.get("java_line")==source.get("line") and row.get("java_case")==ledger_by_id.get(row["stable_id"],{}).get("case") and row.get("source_identity")=={"id":row["stable_id"],"path":source.get("path"),"line":source.get("line"),"case":ledger_by_id.get(row["stable_id"],{}).get("case"),"kind":ledger_by_id.get(row["stable_id"],{}).get("kind")})

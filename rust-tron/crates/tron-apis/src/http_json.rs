@@ -74,7 +74,10 @@ impl ProtobufJson {
     fn parse_field(&self, field: &FieldDescriptor, json: &Value, visible: bool) -> Result<ProtoValue, JsonError> {
         if field.is_list() {
             let values = json.as_array().ok_or_else(|| JsonError(format!("Expected array for {}.", field.full_name())))?;
-            return values.iter().filter(|v| !v.is_null()).map(|v| self.parse_scalar(field, v, visible)).collect::<Result<Vec<_>, _>>().map(ProtoValue::List);
+            return values.iter().filter_map(|value| {
+                if value.is_null() && !matches!(field.kind(), Kind::Message(_)) { None }
+                else { Some(self.parse_scalar(field, value, visible)) }
+            }).collect::<Result<Vec<_>, _>>().map(ProtoValue::List);
         }
         if field.is_map() {
             let object = json.as_object().ok_or_else(|| JsonError(format!("Expected object for {}.", field.full_name())))?;
@@ -249,7 +252,70 @@ fn normalize_transaction_json(value: &mut Value, visible: bool) {
     }
 }
 
-fn parse_lenient_json(input: &str) -> Result<Value, JsonError> { serde_json::from_str(&strip_trailing_commas(input)).map_err(|e| JsonError(e.to_string())) }
+
+const MAX_PROTOBUF_JSON_NESTING: usize = 20;
+const MAX_PROTOBUF_JSON_TOKENS: usize = 100_000;
+
+fn parse_lenient_json(input: &str) -> Result<Value, JsonError> {
+    validate_json_admission(input)?;
+    serde_json::from_str(&strip_trailing_commas(input)).map_err(|e| JsonError(e.to_string()))
+}
+
+fn validate_json_admission(input: &str) -> Result<(), JsonError> {
+    let mut depth = 0usize;
+    let mut saw_root = false;
+    let mut tokens = 0usize;
+    let mut string = false;
+    let mut escaped = false;
+    let mut scalar = false;
+    let mut line = 1usize;
+    let mut column = 0usize;
+
+    for byte in input.bytes() {
+        if byte == b'\n' { line += 1; column = 0; } else { column += 1; }
+        if string {
+            if escaped { escaped = false; }
+            else if byte == b'\\' { escaped = true; }
+            else if byte == b'"' { string = false; }
+            continue;
+        }
+
+        let starts_token = match byte {
+            b'"' => { string = true; scalar = false; true }
+            b'{' | b'[' => {
+                scalar = false;
+                if saw_root {
+                    if depth >= MAX_PROTOBUF_JSON_NESTING {
+                        return Err(JsonError(format!("{line}:{column}: Hit recursion limit.")));
+                    }
+                    depth += 1;
+                } else {
+                    saw_root = true;
+                }
+                true
+            }
+            b'}' | b']' => {
+                scalar = false;
+                if depth > 0 { depth -= 1; }
+                true
+            }
+            b',' | b':' => { scalar = false; false }
+            byte if byte.is_ascii_whitespace() => { scalar = false; false }
+            _ if !scalar => { scalar = true; true }
+            _ => false,
+        };
+        if starts_token {
+            tokens += 1;
+            if tokens > MAX_PROTOBUF_JSON_TOKENS {
+                return Err(JsonError(format!(
+                    "{line}:{column}: Token count ({tokens}) exceeds the maximum allowed ({MAX_PROTOBUF_JSON_TOKENS})."
+                )));
+            }
+        }
+    }
+    Ok(())
+}
+
 fn strip_trailing_commas(input: &str) -> String { let mut out=String::with_capacity(input.len()); let mut chars=input.chars().peekable(); let mut string=false; let mut escaped=false; while let Some(c)=chars.next(){ if string { out.push(c); if escaped {escaped=false}else if c=='\\'{escaped=true}else if c=='"'{string=false} } else if c=='"'{string=true;out.push(c)} else if c==',' { let mut look=chars.clone(); while matches!(look.peek(),Some(c) if c.is_whitespace()){look.next();} if !matches!(look.peek(),Some(']')|Some('}')){out.push(c)} } else {out.push(c)} } out }
 fn integer(v:&Value)->Option<i64>{v.as_i64().or_else(||v.as_str()?.parse().ok())} fn unsigned(v:&Value)->Option<u64>{v.as_u64().or_else(||v.as_str()?.parse().ok())} fn float(v:&Value)->Option<f64>{v.as_f64().or_else(||v.as_str()?.parse().ok())}
 fn int64_json(text:String,value:i64)->Value{if int64_as_string(){Value::String(text)}else{Value::Number(value.into())}} fn uint64_json(text:String,value:u64)->Value{if int64_as_string(){Value::String(text)}else{Value::Number(value.into())}}

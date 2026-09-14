@@ -42,4 +42,102 @@ fn form_null_repeated_trailing_and_errors(){
     assert!(codec.parse("protocol.TransferContract",r#"{"owner_address":"xyz"}"#,false).is_err());
 }
 
+#[test]
+fn json_format_unknown_fields_repeated_shapes_and_trailing_commas() {
+    let codec = ProtobufJson::default();
+
+    let hello = codec.parse(
+        "protocol.HelloMessage",
+        r#"{"zzz":{"a":1,"b":[true,false,null,{"c":"d"}],"e":{"f":2}},"address":"61646472657373"}"#,
+        false,
+    ).unwrap();
+    let hello: Value = serde_json::from_str(&codec.print(&hello, false).unwrap()).unwrap();
+    assert_eq!(hello["address"], "61646472657373");
+
+    let proposal = codec.parse("protocol.Proposal", r#"{"approvals":["00","01",]}"#, false).unwrap();
+    let proposal: Value = serde_json::from_str(&codec.print(&proposal, false).unwrap()).unwrap();
+    assert_eq!(proposal["approvals"], serde_json::json!(["00", "01"]));
+    assert!(codec.parse("protocol.Proposal", r#"{"approvals":[["00"]]}"#, false).is_err());
+    assert!(codec.parse("protocol.Block", r#"{"transactions":[[]]}"#, false).is_err());
+    assert!(codec.parse("protocol.Entry", r#"{"outputs":[null]}"#, false).is_err());
+
+    let parsed = codec.parse(
+        "protocol.HelloMessage",
+        r#"{"genesisBlockId":{"hash":"00","number":1,},"address":"61646472657373",}"#,
+        false,
+    ).unwrap();
+    let parsed: Value = serde_json::from_str(&codec.print(&parsed, false).unwrap()).unwrap();
+    assert_eq!(parsed["genesisBlockId"]["number"], 1);
+}
+
+#[test]
+fn json_format_raw_nesting_limit_precedes_unknown_field_skipping() {
+    let codec = ProtobufJson::default();
+    assert!(codec.parse("protocol.HelloMessage", &unknown_nested_object(10), false).is_ok());
+
+    for input in [unknown_nested_object(21), unknown_nested_array(21)] {
+        let error = codec.parse("protocol.HelloMessage", &input, false).unwrap_err();
+        assert!(error.0.contains("Hit recursion limit."), "{error}");
+    }
+
+    for input in [unknown_nested_object(100_000), unknown_nested_array(100_000)] {
+        let error = codec.parse("protocol.HelloMessage", &input, false).unwrap_err();
+        assert!(error.0.contains("Hit recursion limit."), "{error}");
+    }
+}
+
+#[test]
+fn json_mapper_raw_token_limit_is_enforced_before_unknown_field_skip() {
+    let codec = ProtobufJson::default();
+
+    // Jackson counts START_OBJECT, FIELD_NAME, START_ARRAY, END_ARRAY, and END_OBJECT,
+    // leaving 99,995 scalar slots at its inclusive 100,000-token boundary.
+    assert!(codec.parse("protocol.HelloMessage", &unknown_array_values(99_995), false).is_ok());
+
+    let boundary_error = codec.parse(
+        "protocol.HelloMessage",
+        &unknown_array_values(99_996),
+        false,
+    ).unwrap_err();
+    assert!(boundary_error.0.contains("Token count (100001) exceeds the maximum allowed (100000)."));
+
+    let oversized_error = codec.parse(
+        "protocol.HelloMessage",
+        &unknown_array_values(100_500),
+        false,
+    ).unwrap_err();
+    assert!(oversized_error.0.contains("exceeds the maximum allowed (100000)."));
+}
+
+fn unknown_nested_object(depth: usize) -> String {
+    let mut json = String::with_capacity(depth * 8 + 16);
+    json.push('{');
+    for _ in 0..depth { json.push_str("\"zzz\":{"); }
+    json.push_str("\"leaf\":1");
+    for _ in 0..depth { json.push('}'); }
+    json.push('}');
+    json
+}
+
+fn unknown_nested_array(depth: usize) -> String {
+    let mut json = String::with_capacity(depth * 2 + 16);
+    json.push_str("{\"zzz\":");
+    json.extend(std::iter::repeat_n('[', depth));
+    json.push('1');
+    json.extend(std::iter::repeat_n(']', depth));
+    json.push('}');
+    json
+}
+
+fn unknown_array_values(values: usize) -> String {
+    let mut json = String::with_capacity(values * 2 + 12);
+    json.push_str("{\"zzz\":[");
+    for index in 0..values {
+        if index != 0 { json.push(','); }
+        json.push('0');
+    }
+    json.push_str("]}");
+    json
+}
+
 fn hex(bytes:&[u8])->String{bytes.iter().map(|v|format!("{v:02x}")).collect()}

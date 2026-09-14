@@ -15,6 +15,7 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
+import pwd
 import tomllib
 from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "reference-runner"))
@@ -26,6 +27,13 @@ LEDGER = ORACLES / "java-test-ownership.v1.json"
 ARTIFACT = ORACLES / "c029-java-surface-reconciliation.v1.json"
 C016_OWNERSHIP = ORACLES / "c016-ownership-reconciliation.v1.json"
 MANIFEST = ORACLES / "manifest.v1.json"
+C008_COVERAGE = ORACLES / "c008-state-coverage.v1.json"
+C009_RECONCILIATION = ORACLES / "c009-java-test-reconciliation.v1.json"
+C023_OWNERSHIP = ORACLES / "c023-ownership-reconciliation.v1.json"
+PINNED_TEST_INVENTORIES = {
+    C008_COVERAGE: (189, "0db78910ec46d6d66e718c915b3188833e8942d097d6de7a3478f0ea5cfe580b", "f62bfce68df6ba34b83f0014d8896b040dd9be2bd7fa08baae08e8091d69cf7a"),
+    C009_RECONCILIATION: (155, "07be6fef6ca4b312b4373b2a460bfa3e923888accff366e04644d3f1b758c8f6", "4f95dc0cd8305c08241f3ba0adac1d0865b0e2e2db09866ba12f10e476ca60bc"),
+}
 TRACKER = ROOT / "docs/PORTING_TRACKER.json"
 PIN = "4a21592f95e37908b21bc3f611c6e7a1a67f09f3"
 ARTIFACT_KEY = "c029_java_surface_reconciliation"
@@ -35,6 +43,37 @@ PROOF_ID_RE = re.compile(r"^C029-PROOF-[0-9A-Z][0-9A-Z._-]*$")
 ITEMS = {f"C029.{number:02d}" for number in range(1, 7)}
 SEMANTIC_DOMAINS = {"protocol", "crypto", "chainbase", "consensus"}
 GENERIC = re.compile(r"\b(?:generic|same as java|equivalent|covered|ported|parity|works|n/?a|not applicable)\b", re.I)
+HISTORICAL_COMPATIBILITY_DEFECTS = {
+    "C001-R1-001",
+    "C013-R3-001",
+    "C014-R2-001",
+    "C016-R1-001",
+    "C023-R1-001",
+    "C027-R6-01",
+    "C028-R3-004",
+}
+EXTERNAL_DEFECT_EVIDENCE = {
+    "behavior_claim_ids": {"protocol-fixtures.requirements.java_constructed_maps"},
+    "fixture_ids": {"docs/oracles/protocol-fixtures.v1.json#requirements.java_constructed_maps"},
+    "rust_test_ids": {"rust-tron/crates/tron-protocol/tests/protocol_surface.rs::ordered_map_encoder_matches_java_in_both_insertion_orders_for_every_map_field"},
+    "result_links": {"all 15 canonical descriptor map fields match protobuf-java forward and reverse insertion bytes"},
+}
+
+
+def is_vm_source(path: str) -> bool:
+    """Recognize every explicit VM path/class family in the pinned ledger."""
+    lowered = path.lower()
+    basename = Path(lowered).name
+    return (
+        "/runtime/vm/" in lowered
+        or "/actuator/vm/" in lowered
+        or "/core/vm/repository/" in lowered
+        or basename.startswith("vmactuator")
+        or basename.startswith("vmconfig")
+        or basename.startswith("historyblockhashvm")
+    )
+
+
 
 
 class GateError(RuntimeError):
@@ -55,6 +94,14 @@ def load(path: Path) -> dict[str, Any]:
     return value
 
 
+def validate_vm_ledger(rows: list[dict[str, Any]]) -> None:
+    explicit_non_runtime = {
+        row["id"] for row in rows
+        if is_vm_source(row["source"]["path"]) and "/runtime/vm/" not in row["source"]["path"].lower()
+    }
+    fail(len(explicit_non_runtime) == 44, f"pinned ledger explicit non-runtime VM set drift: expected 44, found {len(explicit_non_runtime)}")
+
+
 def canonical(value: Any) -> bytes:
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()
 
@@ -65,6 +112,18 @@ def sha256_bytes(value: bytes) -> str:
 
 def sha256_path(path: Path) -> str:
     return sha256_bytes(path.read_bytes())
+def validate_pinned_owner_inventories() -> None:
+    """Keep C008/C009 row identity and ownership-transition inputs review-pinned."""
+    for path, (row_count, identity_digest, transition_digest) in PINNED_TEST_INVENTORIES.items():
+        inventory = load(path).get("pinned_test_inventory")
+        fail(isinstance(inventory, dict), f"{path.relative_to(ROOT)}: pinned_test_inventory object required")
+        fail(inventory == {
+            "ordered_identity_sha256": identity_digest,
+            "ordered_ownership_transitions_sha256": transition_digest,
+            "row_count": row_count,
+        }, f"{path.relative_to(ROOT)}: pinned test inventory digest/count drift")
+
+
 
 
 def exact_keys(value: dict[str, Any], required: set[str], where: str) -> None:
@@ -92,7 +151,7 @@ def source_treatment(source: dict[str, Any]) -> dict[str, str]:
     classified = {
         "ignored": bool(source.get("ignored")),
         "shielded": any(token in path for token in ("shield", "zksnark", "sapling", "/zen/note/", "burncipher")),
-        "vm": "/runtime/vm/" in path,
+        "vm": is_vm_source(path),
         "benchmark": "benchmark" in basename,
         "resource": source["kind"] == "test_resource",
         "assumption_gated": bool(source.get("assumption_gated")),
@@ -155,10 +214,19 @@ def validate_historical_findings(document: dict[str, Any], ledger_ids: set[str],
         fail(isinstance(rationale, str) and len(rationale.split()) >= 5 and not GENERIC.search(rationale), f"{finding_id}.rationale: concrete source-bound rationale required")
         by_id[finding_id] = finding
     expected = historical_finding_ids()
+    fail(
+        {finding_id for finding_id, finding in by_id.items() if finding["classification"] == "compatibility_defect"}
+        == HISTORICAL_COMPATIBILITY_DEFECTS,
+        "artifact.review_findings: compatibility classifications must match the tracker-derived historical defect set",
+    )
     fixture_tokens = {token for row in document["rows"] for link in row["fixture_links"] for token in (link, link.partition("#")[2]) if token}
     rust_tokens = {token for row in document["rows"] for proof in row["rust_proofs"] for token in (proof["target"], proof["target"].rsplit("::", 1)[-1])}
     claim_tokens = {token for row in document["rows"] for claim in row["behavior_claims"] for token in string_tokens(claim)}
     result_tokens = {token for row in document["rows"] for token in string_tokens(row["observable_result"])}
+    fixture_tokens.update(EXTERNAL_DEFECT_EVIDENCE["fixture_ids"])
+    rust_tokens.update(EXTERNAL_DEFECT_EVIDENCE["rust_test_ids"])
+    claim_tokens.update(EXTERNAL_DEFECT_EVIDENCE["behavior_claim_ids"])
+    result_tokens.update(EXTERNAL_DEFECT_EVIDENCE["result_links"])
     for command in document["proof_commands"]:
         result_tokens.update(command["result_contract"]["observable_projection"])
     fail(set(by_id) == expected, f"artifact.review_findings: historical finding join mismatch; missing={sorted(expected-set(by_id))}, orphan={sorted(set(by_id)-expected)}")
@@ -557,6 +625,7 @@ def validate_artifact(
     command_ids = [command["id"] for command in commands]
     fail(len(command_ids) == len(set(command_ids)), "artifact.proof_commands: duplicate proof command ID")
     by_command = {command["id"]: command for command in commands}
+    validate_vm_ledger(ledger["rows"])
 
     rows = document["rows"]
     fail(isinstance(rows, list) and len(rows) == len(ledger["rows"]) == 3443, "artifact.rows: exact 3443-row ledger coverage required")
@@ -564,6 +633,10 @@ def validate_artifact(
     fail([row.get("stable_id") for row in rows] == source_ids, "artifact.rows: exact ledger stable-ID order mismatch")
     counts = {"mapped": 0, "unmapped": 0, "generic": 0, "applicable": 0, "non_applicable": 0, "ignored": 0, "resources": 0, "assumption_gated": 0, "bounded_dynamic": 0, "semantic_rehomes": 0, "compatibility_defects": len(document["compatibility_defects"]), "review_findings": len(document["review_findings"])}
     unmapped_by_owner: dict[str, list[dict[str, Any]]] = {}
+    c016_non_applicable = {
+        candidate["stable_id"]: candidate
+        for candidate in load(C016_OWNERSHIP).get("non_applicable_java_test_rows", [])
+    }
     for index, (row, source) in enumerate(zip(rows, ledger["rows"], strict=True)):
         sid = source["id"]; where = f"rows[{index}]({sid})"
         exact_keys(row, {"stable_id", "source_identity", "behavior_claims", "applicability", "owning_item", "fixture_links", "rust_proofs", "proof_command_id", "observable_result", "behavior_slices", "semantic_rehome", "treatment", "determinism_isolation", "defect_refs"}, where)
@@ -584,7 +657,13 @@ def validate_artifact(
             fail(proofs and row["observable_result"] is not None, f"{sid}: covered row requires proofs and observable result")
             counts["mapped"] += 1; counts["applicable"] += 1; counts["semantic_rehomes"] += 1
         elif disposition == "non_applicable":
-            fail(claims and row["observable_result"] is not None, f"{sid}: non-applicable row requires retained authoritative evidence")
+            c016_exclusion = c016_non_applicable.get(sid)
+            if c016_exclusion is None:
+                fail(claims and row["observable_result"] is not None, f"{sid}: non-applicable row requires retained authoritative evidence")
+            else:
+                constraint = c016_exclusion.get("constraint")
+                fail(c016_exclusion.get("decision") == "not_applicable" and claims == [constraint] and applicability["rationale"] == constraint, f"{sid}: C016 non-applicable evidence differs from authoritative owner decision")
+                fail(not proofs and row["proof_command_id"] is None and row["observable_result"] is None, f"{sid}: C016 non-applicable row must not receive executable credit")
             counts["mapped"] += 1; counts["non_applicable"] += 1; counts["semantic_rehomes"] += 1
         else:
             fail(not claims and not proofs and row["proof_command_id"] is None and row["observable_result"] is None, f"{sid}: unmapped row must not claim executable credit")
@@ -675,15 +754,18 @@ def is_exact_c016_generated_test(relative: Path, source_text: str, symbol: str, 
     )
     return invocation.search(source_text) is not None
 
-def is_exact_c023_generated_test(relative: Path, source_text: str, symbol: str, stable_id: str) -> bool:
-    """Recognize only C023's reviewed per-stable-ID row-proof invocation."""
+def is_exact_c023_generated_test(relative: Path, source_text: str, symbol: str, row: dict[str, Any]) -> bool:
+    """Recognize only C023 row proofs whose macro literals match the exact row behavior contract."""
     if relative != Path("rust-tron/crates/tron-apis/tests/c023_scenarios.rs"):
         return False
+    stable_id = row["stable_id"]
     expected_symbol = f"c023_tcase_{stable_id.removeprefix('TCASE-').lower()}"
-    if symbol != expected_symbol or ID_RE.fullmatch(stable_id) is None:
+    expected = row.get("observable_result")
+    if symbol != expected_symbol or ID_RE.fullmatch(stable_id) is None or not isinstance(expected, str) or "|family=" not in expected:
         return False
+    family = expected.rsplit("|family=", 1)[1]
     invocation = re.compile(
-        rf"(?m)^\s*c023_row_proof!\(\s*{re.escape(symbol)}\s*,\s*{re.escape(json.dumps(stable_id))}\s*,"
+        rf"(?m)^\s*c023_row_proof!\(\s*{re.escape(symbol)}\s*,\s*{re.escape(json.dumps(stable_id))}\s*,\s*{re.escape(json.dumps(expected))}\s*,\s*{re.escape(json.dumps(family))}\s*\);"
     )
     return invocation.search(source_text) is not None
 
@@ -747,7 +829,7 @@ def referenced_targets(tree: Path, document: dict[str, Any]) -> dict[tuple[str, 
             test_definition = re.compile(rf"#\[(?:[A-Za-z_][\w:]*::)?test(?:\([^]]*\))?\]\s*(?:#\[[^]]+\]\s*)*(?:async\s+)?fn\s+{re.escape(symbol)}\b")
             direct_test = test_definition.search(source_text) is not None
             generated_c016_test = is_exact_c016_generated_test(relative, source_text, symbol, row["stable_id"])
-            generated_c023_test = is_exact_c023_generated_test(relative, source_text, symbol, row["stable_id"])
+            generated_c023_test = is_exact_c023_generated_test(relative, source_text, symbol, row)
             fail(direct_test or generated_c016_test or generated_c023_test, f"Rust proof symbol is not a test in its mapped source: {relative}::{symbol}")
             if inside.parts[0] == "src":
                 selector, target_name = "lib", manifest_data.get("lib", {}).get("name", package.replace("-", "_"))
@@ -770,31 +852,114 @@ def existing_target_names(target: Path) -> set[str]:
     return names
 
 
-def resolve_rust_tools() -> tuple[Path, Path, Path, Path, Path, str]:
-    """Resolve the pinned, already-installed toolchain before entering isolation."""
-    cargo_home = Path(os.environ.get("CARGO_HOME", str(Path.home() / ".cargo"))).resolve()
-    rustup_home = Path(os.environ.get("RUSTUP_HOME", str(Path.home() / ".rustup"))).resolve()
-    fail(cargo_home.is_dir(), f"existing CARGO_HOME is unavailable: {cargo_home}")
-    fail(rustup_home.is_dir(), f"existing RUSTUP_HOME is unavailable: {rustup_home}")
-    rustup = (cargo_home / "bin" / "rustup").resolve()
-    fail(rustup.is_file() and os.access(rustup, os.X_OK), f"existing rustup executable is unavailable: {rustup}")
+def cache_state(roots: list[Path]) -> dict[str, tuple[int, int, int]]:
+    state: dict[str, tuple[int, int, int]] = {}
+    for root in roots:
+        if not root.exists():
+            continue
+        for path in sorted(root.rglob("*")):
+            stat = path.lstat()
+            state[str(path)] = (stat.st_mode, stat.st_size, stat.st_mtime_ns)
+    return state
+def authenticate_unpacked_crate(path: Path, checksum: str, filename: str) -> None:
+    """Validate Cargo's unpacked registry checksum manifest and every listed file."""
+    manifest_path = path / ".cargo-checksum.json"
+    fail(manifest_path.is_file(), f"authenticated Cargo source lacks .cargo-checksum.json: {path}")
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise GateError(f"{manifest_path}: invalid checksum manifest: {error}") from error
+    fail(isinstance(manifest, dict) and manifest.get("package") == checksum and isinstance(manifest.get("files"), dict), f"Cargo source package checksum mismatch for {filename}")
+    expected = manifest["files"]
+    actual: dict[str, str] = {}
+    for candidate in sorted(path.rglob("*")):
+        fail(not candidate.is_symlink(), f"authenticated Cargo source contains a symlink: {candidate}")
+        if candidate.is_file() and candidate != manifest_path:
+            relative = candidate.relative_to(path).as_posix()
+            actual[relative] = sha256_path(candidate)
+    fail(all(isinstance(name, str) and isinstance(digest, str) and re.fullmatch(r"[0-9a-f]{64}", digest) for name, digest in expected.items()), f"Cargo source file checksum map is invalid for {filename}")
+    fail(actual == expected, f"Cargo source contents/checksums mismatch for {filename}")
+
+
+def make_read_only(path: Path) -> None:
+    """Remove write permission from copied authenticated cache material."""
+    for candidate in [path, *sorted(path.rglob("*"))]:
+        candidate.chmod(candidate.stat().st_mode & ~0o222)
+
+
+
+
+def resolve_rust_tools(scratch: Path) -> dict[str, Any]:
+    """Authenticate repository-pinned Rust inputs and expose them through private homes."""
+    policy_home = Path(pwd.getpwuid(os.getuid()).pw_dir).resolve()
+    source_cargo_home = (policy_home / ".cargo").resolve()
+    source_rustup_home = (policy_home / ".rustup").resolve()
+    fail(source_cargo_home.is_dir(), f"repository-policy Cargo cache is unavailable: {source_cargo_home}")
+    fail(source_rustup_home.is_dir(), f"repository-policy Rust toolchain cache is unavailable: {source_rustup_home}")
     config = tomllib.loads((ROOT / "rust-tron" / "rust-toolchain.toml").read_text(encoding="utf-8"))
     channel = config.get("toolchain", {}).get("channel")
-    fail(isinstance(channel, str) and channel and channel != "stable", "rust-tron toolchain must pin an explicit installed channel")
+    fail(isinstance(channel, str) and re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", channel) is not None, "rust-tron toolchain must pin an exact semantic version")
     candidates: list[tuple[Path, Path]] = []
-    for toolchain in sorted((rustup_home / "toolchains").glob(f"{channel}-*")):
-        cargo = toolchain / "bin" / "cargo"
-        rustc = toolchain / "bin" / "rustc"
+    for toolchain in sorted((source_rustup_home / "toolchains").glob(f"{channel}-*")):
+        cargo = toolchain / "bin" / "cargo"; rustc = toolchain / "bin" / "rustc"
         if cargo.is_file() and rustc.is_file() and os.access(cargo, os.X_OK) and os.access(rustc, os.X_OK):
             candidates.append((cargo.resolve(), rustc.resolve()))
-    fail(len(candidates) == 1, f"pinned Rust toolchain {channel}: expected one installed executable pair, found {len(candidates)}")
+    fail(len(candidates) == 1, f"pinned Rust toolchain {channel}: expected one policy-installed executable pair, found {len(candidates)}")
     cargo, rustc = candidates[0]
-    authentication_env = {"PATH": os.pathsep.join((str(cargo.parent), "/usr/bin", "/bin")), "HOME": str(cargo_home), "CARGO_HOME": str(cargo_home), "RUSTUP_HOME": str(rustup_home), "RUSTUP_TOOLCHAIN": channel, "RUSTUP_AUTO_INSTALL": "0", "CARGO_NET_OFFLINE": "true", "LANG": "C", "LC_ALL": "C", "TZ": "UTC"}
-    rustc_version = subprocess.run([str(rustc), "--version"], env=authentication_env, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
-    cargo_version = subprocess.run([str(cargo), "--version"], env=authentication_env, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
+    lock = tomllib.loads((ROOT / "rust-tron" / "Cargo.lock").read_text(encoding="utf-8"))
+    cargo_home = scratch / "cargo-home"; rustup_home = scratch / "rustup-home"
+    cargo_home.mkdir(); rustup_home.mkdir()
+    source_registry = source_cargo_home / "registry"
+    private_registry = cargo_home / "registry"
+    private_registry.mkdir()
+    source_index = source_registry / "index"
+    if source_index.exists():
+        shutil.copytree(source_index, private_registry / "index", symlinks=False)
+        make_read_only(private_registry / "index")
+    crate_inputs: dict[Path, str] = {}
+    for package in lock.get("package", []):
+        source = package.get("source", ""); checksum = package.get("checksum")
+        if not source.startswith("registry+"):
+            fail(not source.startswith("git+"), f"Cargo.lock git input is not supported by the authenticated offline cache: {source}")
+            continue
+        fail(isinstance(checksum, str) and re.fullmatch(r"[0-9a-f]{64}", checksum), f"Cargo.lock lacks a registry checksum for {package.get('name')}")
+        stem = f"{package['name']}-{package['version']}"
+        filename = f"{stem}.crate"
+        archives = sorted((source_registry / "cache").glob(f"*/{filename}"))
+        fail(len(archives) <= 1, f"authenticated Cargo cache has ambiguous {filename} archives: {len(archives)}")
+        if archives:
+            fail(sha256_path(archives[0]) == checksum, f"Cargo cache checksum mismatch for {filename}")
+            destination = private_registry / "cache" / archives[0].parent.name / filename
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(archives[0], destination)
+            make_read_only(destination)
+            crate_inputs[destination] = checksum
+            continue
+        sources = sorted(path for path in (source_registry / "src").glob(f"*/{stem}") if path.is_dir())
+        fail(len(sources) == 1, f"authenticated Cargo cache requires exactly one {filename} archive or unpacked {stem} source tree, found {len(sources)} sources")
+        authenticate_unpacked_crate(sources[0], checksum, filename)
+        destination = private_registry / "src" / sources[0].parent.name / stem
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(sources[0], destination, symlinks=False)
+        make_read_only(destination)
+        for copied in sorted(destination.rglob("*")):
+            if copied.is_file():
+                crate_inputs[copied] = sha256_path(copied)
+    (rustup_home / "toolchains").symlink_to(source_rustup_home / "toolchains", target_is_directory=True)
+    tool_hashes = {cargo: sha256_path(cargo), rustc: sha256_path(rustc)}
+    guarded_roots = [source_cargo_home / name for name in ("registry", "git") if (source_cargo_home / name).exists()]
+    auth_env = {"PATH": os.pathsep.join((str(cargo.parent), "/usr/bin", "/bin")), "HOME": str(scratch), "CARGO_HOME": str(cargo_home), "RUSTUP_HOME": str(rustup_home), "RUSTUP_TOOLCHAIN": channel, "RUSTUP_AUTO_INSTALL": "0", "CARGO_NET_OFFLINE": "true", "LANG": "C", "LC_ALL": "C", "TZ": "UTC"}
+    rustc_version = subprocess.run([str(rustc), "--version"], env=auth_env, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
+    cargo_version = subprocess.run([str(cargo), "--version"], env=auth_env, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
     fail(rustc_version.returncode == 0 and rustc_version.stdout.startswith(f"rustc {channel} "), f"pinned rustc authentication failed: {rustc_version.stderr.strip() or rustc_version.stdout.strip()}")
     fail(cargo_version.returncode == 0 and cargo_version.stdout.startswith(f"cargo {channel} "), f"pinned cargo authentication failed: {cargo_version.stderr.strip() or cargo_version.stdout.strip()}")
-    return cargo, rustc, rustup, cargo_home, rustup_home, channel
+    return {"cargo": cargo, "rustc": rustc, "cargo_home": cargo_home, "rustup_home": rustup_home, "channel": channel, "tool_hashes": tool_hashes, "crate_inputs": crate_inputs, "guarded_roots": guarded_roots, "cache_state": cache_state(guarded_roots)}
+
+
+def verify_rust_inputs_unchanged(tools: dict[str, Any]) -> None:
+    fail(all(path.is_file() and sha256_path(path) == digest for path, digest in tools["tool_hashes"].items()), "authenticated Rust toolchain changed during gate execution")
+    fail(all(path.is_file() and sha256_path(path) == digest for path, digest in tools["crate_inputs"].items()), "authenticated Cargo cache changed during gate execution")
+    fail(cache_state(tools["guarded_roots"]) == tools["cache_state"], "shared Cargo cache metadata changed during gate execution")
 
 
 def compilation_budget(target: Path, plans: dict[tuple[str, str, str], set[str]]) -> tuple[int, int]:
@@ -805,11 +970,12 @@ def compilation_budget(target: Path, plans: dict[tuple[str, str, str], set[str]]
     return missing, 256 * 1024**2 + missing * 128 * 1024**2
 
 
-def build_referenced_tests(tree: Path, scratch: Path, target: Path, plans: dict[tuple[str, str, str], set[str]], tools: tuple[Path, Path, Path, Path, Path, str]) -> dict[Path, tuple[tuple[str, str, str], set[str]]]:
+def build_referenced_tests(tree: Path, scratch: Path, target: Path, plans: dict[tuple[str, str, str], set[str]], tools: dict[str, Any]) -> dict[Path, tuple[tuple[str, str, str], set[str]]]:
     build_home = scratch / "build-home"; build_tmp = scratch / "build-tmp"
     build_home.mkdir(); build_tmp.mkdir()
-    cargo, rustc, rustup, cargo_home, rustup_home, channel = tools
-    tool_path = os.pathsep.join((str(cargo.parent), str(rustup.parent), "/usr/bin", "/bin"))
+    cargo = tools["cargo"]; rustc = tools["rustc"]
+    cargo_home = tools["cargo_home"]; rustup_home = tools["rustup_home"]; channel = tools["channel"]
+    tool_path = os.pathsep.join((str(cargo.parent), "/usr/bin", "/bin"))
     env = {"PATH": tool_path, "HOME": str(build_home), "TMPDIR": str(build_tmp), "CARGO_HOME": str(cargo_home), "RUSTUP_HOME": str(rustup_home), "RUSTUP_TOOLCHAIN": channel, "RUSTUP_AUTO_INSTALL": "0", "RUSTC": str(rustc), "RUSTC_WRAPPER": "", "RUSTC_WORKSPACE_WRAPPER": "", "CARGO_BUILD_RUSTC_WRAPPER": "", "CARGO_NET_OFFLINE": "true", "CARGO_TARGET_DIR": str(target), "CARGO_INCREMENTAL": "0", "CARGO_BUILD_JOBS": "2", "LANG": "C", "LC_ALL": "C", "TZ": "UTC"}
     executables: dict[Path, tuple[tuple[str, str, str], set[str]]] = {}
     for package, selector, target_name in sorted(plans):
@@ -878,13 +1044,14 @@ def validate_table_dispatcher(tree: Path, target: str, entries: list[tuple[str, 
     return True
 
 
-def run_proofs(tree: Path, scratch: Path, target: Path, plans: dict[tuple[str, str, str], set[str]], commands: dict[str, Any], document: dict[str, Any], tools: tuple[Path, Path, Path, Path, Path, str]) -> None:
+def run_proofs(tree: Path, scratch: Path, target: Path, plans: dict[tuple[str, str, str], set[str]], commands: dict[str, Any], document: dict[str, Any], tools: dict[str, Any]) -> None:
     executables = build_referenced_tests(tree, scratch, target, plans, tools)
     discovery_home = scratch / "discovery-home"; discovery_tmp = scratch / "discovery-tmp"
     discovery_home.mkdir(); discovery_tmp.mkdir()
     runtime_cwd = tree / "rust-tron"
-    cargo, rustc, rustup, cargo_home, rustup_home, channel = tools
-    tool_path = os.pathsep.join((str(cargo.parent), str(rustup.parent), "/usr/bin", "/bin"))
+    cargo = tools["cargo"]; rustc = tools["rustc"]
+    cargo_home = tools["cargo_home"]; rustup_home = tools["rustup_home"]; channel = tools["channel"]
+    tool_path = os.pathsep.join((str(cargo.parent), "/usr/bin", "/bin"))
     rustc_env = {"PATH": tool_path, "HOME": str(discovery_home), "TMPDIR": str(discovery_tmp), "CARGO_HOME": str(cargo_home), "RUSTUP_HOME": str(rustup_home), "RUSTUP_TOOLCHAIN": channel, "LANG": "C", "LC_ALL": "C", "TZ": "UTC", "RUSTUP_AUTO_INSTALL": "0", "CARGO_NET_OFFLINE": "true"}
     rust_lib = subprocess.run([rustc, "--print", "target-libdir"], cwd=runtime_cwd, env=rustc_env, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=30)
     fail(rust_lib.returncode == 0, f"rustc target library discovery failed (exit {rust_lib.returncode}): {rust_lib.stderr[-2000:]}")
@@ -1121,14 +1288,27 @@ def canonical_proof_argv(candidate: dict[str, Any], target: str) -> list[str] | 
 
 
 def validate_c016_synthesis(refreshed: dict[str, Any], commands_by_argv: dict[tuple[str, ...], dict[str, Any]]) -> None:
-    """Require every authoritative C016 Java row to retain its exact executable proof plan."""
+    """Require all executable and explicitly non-applicable C016 Java rows to retain exact evidence."""
     owner = load(C016_OWNERSHIP)
     owner_rows = owner.get("java_test_rows")
     owner_ids = owner.get("java_test_ids")
-    fail(isinstance(owner_rows, list) and len(owner_rows) == 45, "C016 owner artifact: exact 45 java_test_rows required")
-    fail(isinstance(owner_ids, list) and len(owner_ids) == 45, "C016 owner artifact: exact 45 java_test_ids required")
+    excluded = owner.get("non_applicable_java_test_rows")
+    fail(isinstance(owner_rows, list) and len(owner_rows) == 41, "C016 owner artifact: exact 41 executable java_test_rows required")
+    fail(isinstance(owner_ids, list) and len(owner_ids) == 41, "C016 owner artifact: exact 41 executable java_test_ids required")
+    fail(isinstance(excluded, list) and len(excluded) == owner.get("non_applicable_java_test_row_count") == 4, "C016 owner artifact: exact four non-applicable Java rows required")
     fail([candidate.get("stable_id") for candidate in owner_rows] == owner_ids, "C016 owner artifact: Java row stable-ID order mismatch")
     refreshed_by_id = {row["stable_id"]: row for row in refreshed["rows"]}
+    excluded_ids: set[str] = set()
+    for candidate in excluded:
+        stable_id = candidate.get("stable_id")
+        fail(isinstance(stable_id, str) and stable_id not in excluded_ids and stable_id not in owner_ids, "C016 owner artifact: non-applicable stable IDs must be unique and disjoint")
+        excluded_ids.add(stable_id)
+        row = refreshed_by_id.get(stable_id)
+        constraint = candidate.get("constraint")
+        fail(row is not None and candidate.get("decision") == "not_applicable", f"{stable_id}: invalid C016 non-applicable evidence")
+        fail(isinstance(constraint, str) and len(constraint.split()) >= 8, f"{stable_id}: concrete C016 non-applicable constraint required")
+        fail(row["applicability"] == {"type": "non_applicable", "rationale": constraint}, f"{stable_id}: synthesized C016 non-applicable decision differs from owner")
+        fail(row["behavior_claims"] == [constraint] and row["rust_proofs"] == [] and row["proof_command_id"] is None and row["observable_result"] is None, f"{stable_id}: non-applicable C016 row received execution credit")
     for candidate in owner_rows:
         stable_id = candidate["stable_id"]
         row = refreshed_by_id.get(stable_id)
@@ -1180,8 +1360,22 @@ def normalize_c025_proofs(rows: list[dict[str, Any]]) -> int:
 def synthesize_reconciliation(document: dict[str, Any]) -> dict[str, Any]:
     """Merge exact enriched owner evidence into the fixed 3443-row reconciliation."""
     refreshed = copy.deepcopy(document)
+    validate_pinned_owner_inventories()
+    c016_owner = load(C016_OWNERSHIP)
+    c016_non_applicable = {candidate["stable_id"]: candidate for candidate in c016_owner.get("non_applicable_java_test_rows", [])}
+    ledger_by_id = {source["id"]: source for source in load(LEDGER)["rows"]}
     commands_by_argv: dict[tuple[str, ...], dict[str, Any]] = {}
     for row in refreshed["rows"]:
+        row["treatment"] = source_treatment(ledger_by_id[row["stable_id"]])
+        c016_exclusion = c016_non_applicable.get(row["stable_id"])
+        if c016_exclusion is not None:
+            constraint = c016_exclusion["constraint"]
+            row["behavior_claims"] = [constraint]
+            row["applicability"] = {"type": "non_applicable", "rationale": constraint}
+            row["rust_proofs"] = []
+            row["proof_command_id"] = None
+            row["observable_result"] = None
+            continue
         if row["applicability"]["type"] == "non_applicable":
             continue
         selected: tuple[str, str, str, str, list[str], str] | None = None
@@ -1267,6 +1461,14 @@ def synthesize_reconciliation(document: dict[str, Any]) -> dict[str, Any]:
     referenced_command_ids = {row["proof_command_id"] for row in refreshed["rows"] if row["proof_command_id"] is not None}
     refreshed["proof_commands"] = [command for command in refreshed["proof_commands"] if command["id"] in referenced_command_ids]
     fail({command["id"] for command in refreshed["proof_commands"]} == referenced_command_ids, "synthesis proof commands differ from exact referenced row command set")
+    rows_by_id = {row["stable_id"]: row for row in refreshed["rows"]}
+    for defect in refreshed["compatibility_defects"]:
+        defect["command_ids"] = sorted({
+            rows_by_id[stable_id]["proof_command_id"]
+            for stable_id in defect["affected_stable_ids"]
+            if stable_id in rows_by_id and rows_by_id[stable_id]["proof_command_id"] is not None
+        })
+        fail(defect["command_ids"], f"{defect['finding_id']}: affected stable IDs resolve to no executable proof commands")
     validate_c016_synthesis(refreshed, commands_by_argv)
     refreshed["unsupported_by_owning_artifact_repair"] = {}
     counts = dict(refreshed["accounting"])
@@ -1329,7 +1531,7 @@ def main() -> int:
         require_disk(Path(tempfile.gettempdir()), 512 * 1024**2, "disposable current-tree and isolated runtime state")
         commands = {command["id"]: command for command in document["proof_commands"]}
         plans = referenced_targets(ROOT, document) if commands else {}
-        rust_tools = resolve_rust_tools() if commands else None
+        rust_tools = None
         if commands:
             missing_targets, required_bytes = compilation_budget(Path("/nonexistent-c029-private-target"), plans)
             require_disk(Path(tempfile.gettempdir()), required_bytes, f"{missing_targets} isolated Rust test target(s)")
@@ -1338,12 +1540,14 @@ def main() -> int:
         tree = temporary_root / "repo"; tree.mkdir()
         scratch = temporary_root / "scratch"; scratch.mkdir()
         target = scratch / "cargo-target"; target.mkdir()
+        rust_tools = resolve_rust_tools(scratch) if commands else None
         copy_current_tree(tree, baseline)
         materialize_java_reference(tree / "java-tron")
         seed = tree_snapshot(tree)
         if commands:
             assert rust_tools is not None
             run_proofs(tree, scratch, target, plans, commands, document, rust_tools)
+            verify_rust_inputs_unchanged(rust_tools)
         java_head = subprocess.run(["git", "-C", str(tree / "java-tron"), "rev-parse", "HEAD"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False)
         java_status = subprocess.run(["git", "-C", str(tree / "java-tron"), "status", "--porcelain=v1", "--untracked-files=all"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False)
         fail(java_head.returncode == 0 and java_head.stdout.strip() == PIN, "disposable Java identity changed during proof execution")

@@ -23,6 +23,9 @@ TRACKER = ROOT / "docs/PORTING_TRACKER.json"
 POLICY = ROOT / "docs/architecture/security-threat-policy.md"
 LIFECYCLE = ORACLES / "c009-state-lifecycle.v1.json"
 LIFECYCLE_PAYLOAD_SHA256 = "6379b5e35b6958fc1c25d25a776313bb3cbc04fe171cd761a45554dcd0785ed1"
+C009_TEST_IDENTITY_SHA256 = "07be6fef6ca4b312b4373b2a460bfa3e923888accff366e04644d3f1b758c8f6"
+C009_OWNERSHIP_TRANSITIONS_SHA256 = "4f95dc0cd8305c08241f3ba0adac1d0865b0e2e2db09866ba12f10e476ca60bc"
+
 POLICY_MARKERS = (
     "capture the same immutable logical HEAD: the durable root plus every",
     "committed, non-abandoned overlay, while excluding all active speculative overlays",
@@ -153,6 +156,15 @@ def sha(path: Path) -> str:
 
 def dump(value: object) -> bytes:
     return (json.dumps(value, indent=2, sort_keys=True) + "\n").encode()
+def canonical_sha256(value: object) -> str:
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+def test_identity_rows(rows: list[dict]) -> list[list[object]]:
+    return [[row["id"], row["source"]["path"], row["source"]["line"], row["case"]] for row in rows]
+
+def ownership_transition_rows(rows: list[dict]) -> list[list[object]]:
+    return [[row["stable_id"], row["disposition"], row["owner"], row.get("owning_item"), row.get("acceptance_gate")] for row in rows]
+
 
 def ledger_rows() -> list[dict]:
     ledger = json.loads(OWNERSHIP.read_text())
@@ -163,6 +175,8 @@ def ledger_rows() -> list[dict]:
     paths = {row["source"]["path"] for row in rows}
     if len(rows) != 155 or len({row["id"] for row in rows}) != 155 or paths != C009_TEST_SOURCES:
         raise ValueError(f"C009 immutable Java-test inventory drift: rows={len(rows)} missing_sources={sorted(C009_TEST_SOURCES-paths)} extra_sources={sorted(paths-C009_TEST_SOURCES)}")
+    if canonical_sha256(test_identity_rows(rows)) != C009_TEST_IDENTITY_SHA256:
+        raise ValueError("C009 pinned ordered stable-ID/source identity digest drift")
     return rows
 
 def c009_production_rows(ledger: dict) -> list[dict]:
@@ -313,6 +327,8 @@ def documents() -> dict[Path, dict]:
             case_id = f"reassigned::{row['id']}"
             symbol = reassigned_rust_symbol(target, row)
             reconciliation.append(base | {"disposition": "reassigned", "owner": target, "owning_item": owning_item, "acceptance_gate": acceptance_gate, "rationale": rationale, "rust_case_id": case_id} | reconciliation_proof(base, case_id=case_id, rust_symbol=symbol))
+    if canonical_sha256(ownership_transition_rows(reconciliation)) != C009_OWNERSHIP_TRANSITIONS_SHA256:
+        raise ValueError("C009 pinned reviewed ownership-transition digest drift")
     stores = [match.group(1) for match in re.finditer(r"Self::([A-Za-z0-9]+)", (ROOT / "rust-tron/crates/tron-state/src/store.rs").read_text().split("pub const ALL", 1)[1].split("];", 1)[0])]
     transitions = ["root_put", "outer_put", "child_put", "child_merge", "outer_revoke", "root_restored"]
     direct_case_ids = [row["rust_case_id"] for row in reconciliation if row["disposition"] == "rust"]
@@ -361,7 +377,7 @@ def documents() -> dict[Path, dict]:
     production = json.loads(PRODUCTION.read_text())
     return {
         INVENTORY: inventory,
-        RECONCILIATION: {"schema_version": 1, "java_revision": REVISION, "source_inventory": {"path": INVENTORY.relative_to(ROOT).as_posix(), "sha256": hashlib.sha256(dump(inventory)).hexdigest(), "row_count": len(rows)}, "rows": reconciliation},
+        RECONCILIATION: {"schema_version": 1, "java_revision": REVISION, "pinned_test_inventory": {"row_count": 155, "ordered_identity_sha256": C009_TEST_IDENTITY_SHA256, "ordered_ownership_transitions_sha256": C009_OWNERSHIP_TRANSITIONS_SHA256}, "source_inventory": {"path": INVENTORY.relative_to(ROOT).as_posix(), "sha256": hashlib.sha256(dump(inventory)).hexdigest(), "row_count": len(rows)}, "rows": reconciliation},
         PRODUCTION_RECONCILIATION: production_reconciliation(production),
         FIXTURES: fixtures,
     }
@@ -400,6 +416,13 @@ def verify(errors: list[str], expected: dict[Path, dict]) -> None:
     inventory_metadata = expected[RECONCILIATION].get("source_inventory", {})
     if inventory_metadata.get("row_count") != 155 or inventory_metadata.get("sha256") != hashlib.sha256(dump(expected[INVENTORY])).hexdigest():
         errors.append("C009 reconciliation source-inventory identity drift")
+    pinned = expected[RECONCILIATION].get("pinned_test_inventory", {})
+    if pinned != {"row_count": 155, "ordered_identity_sha256": C009_TEST_IDENTITY_SHA256, "ordered_ownership_transitions_sha256": C009_OWNERSHIP_TRANSITIONS_SHA256}:
+        errors.append("C009 pinned Java-test inventory metadata drift")
+    if canonical_sha256(test_identity_rows(authoritative_rows)) != C009_TEST_IDENTITY_SHA256:
+        errors.append("C009 ordered stable-ID/source identity digest drift")
+    if canonical_sha256(ownership_transition_rows(reconciliation)) != C009_OWNERSHIP_TRANSITIONS_SHA256:
+        errors.append("C009 ordered ownership-transition digest drift")
     direct = [row for row in reconciliation if row["disposition"] == "rust"]
     direct_ids = [row.get("rust_case_id") for row in direct]
     if len(direct) != 23 or any(row["owner"] != "C009" or row.get("dispatch_kind") != "parameterized_case" for row in direct):

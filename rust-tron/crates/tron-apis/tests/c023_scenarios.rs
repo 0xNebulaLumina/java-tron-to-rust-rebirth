@@ -1,6 +1,6 @@
 use std::{collections::BTreeSet, sync::Arc, time::{Duration, SystemTime, UNIX_EPOCH}};
 use tokio::{io::{AsyncReadExt, AsyncWriteExt}, net::TcpStream, sync::watch};
-use tron_apis::{ApiContext, RpcApiServices, http_filters::HttpControls, http_router::{HttpRouteState, http_router}, http_routes::{HTTP_ROUTES, HttpSurface}, http_server::{HttpServerConfig, HttpServerPlan}, rate_limit::{ApiRateLimiter, RateLimitConfig}};
+use tron_apis::{ApiContext, RpcApiServices, http_filters::HttpControls, http_json::parse_post_body, http_router::{HttpRouteState, http_router}, http_routes::{HTTP_ROUTES, HttpSurface}, http_server::{HttpServerConfig, HttpServerPlan}, rate_limit::{ApiRateLimiter, RateLimitConfig}};
 use tron_crypto::CryptoEngine;
 use tron_execution::ActuatorRegistry;
 use tron_state::{CheckpointIdentity, CursorPoint, CursorSet, SessionManager, StateStore};
@@ -26,9 +26,8 @@ async fn start(mut controls: HttpControls, lite: bool, concurrent: usize, surfac
 }
 
 async fn start_with_timeouts(controls: HttpControls, lite: bool, surface: HttpSurface, first_request_timeout: Duration, idle_timeout: Duration) -> (std::net::SocketAddr, watch::Sender<bool>, tokio::task::JoinHandle<std::io::Result<()>>, std::path::PathBuf) {
-    let probe = tokio::net::TcpListener::bind("127.0.0.1:0").await.unwrap();
-    let address = probe.local_addr().unwrap();
-    drop(probe);
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let address = listener.local_addr().unwrap();
     let (path, context) = context();
     let rate_limiter = Arc::new(ApiRateLimiter::new(RateLimitConfig::default()).unwrap());
     let state = HttpRouteState::new(RpcApiServices::new(context), controls.clone(), rate_limiter, Duration::from_secs(5), lite);
@@ -40,9 +39,8 @@ async fn start_with_timeouts(controls: HttpControls, lite: bool, surface: HttpSu
     config.controls = controls;
     let plan = HttpServerPlan::new(config, http_router(state, surface));
     let (tx, rx) = watch::channel(false);
-    let task = tokio::spawn(plan.serve(rx));
-    for _ in 0..100 { if TcpStream::connect(address).await.is_ok() { tokio::time::sleep(Duration::from_millis(20)).await; return (address, tx, task, path); } tokio::time::sleep(Duration::from_millis(5)).await; }
-    panic!("C023 localhost server did not become ready");
+    let task = tokio::spawn(plan.serve_listener(listener, rx));
+    (address, tx, task, path)
 }
 
 async fn request(address: std::net::SocketAddr, method: &str, target: &str, content_type: &str, body: &[u8]) -> (u16, String, Vec<u8>) {
@@ -56,6 +54,37 @@ async fn request(address: std::net::SocketAddr, method: &str, target: &str, cont
     let status = headers.lines().next().unwrap().split_whitespace().nth(1).unwrap().parse().unwrap();
     (status, headers, wire[split + 4..].to_vec())
 }
+async fn raw_request(address: std::net::SocketAddr, wire_request: &[u8]) -> (u16, String, Vec<u8>) {
+    let mut stream = TcpStream::connect(address).await.unwrap_or_else(|error| panic!("raw HTTP connect to {address} failed: {error}"));
+    stream.write_all(wire_request).await.unwrap_or_else(|error| panic!("raw HTTP write of {} bytes failed: {error}", wire_request.len()));
+    stream.flush().await.unwrap_or_else(|error| panic!("raw HTTP flush of {} bytes failed: {error}", wire_request.len()));
+    let mut wire = Vec::new();
+    let deadline = tokio::time::Instant::now() + Duration::from_secs(5);
+    loop {
+        let mut chunk = [0_u8; 4096];
+        let read = tokio::time::timeout_at(deadline, stream.read(&mut chunk)).await
+            .unwrap_or_else(|_| panic!("raw HTTP response timed out after 5s with {} bytes received", wire.len()))
+            .unwrap_or_else(|error| panic!("raw HTTP response read failed after {} bytes: {error}", wire.len()));
+        if read == 0 { break; }
+        wire.extend_from_slice(&chunk[..read]);
+        if let Some(split) = wire.windows(4).position(|value| value == b"\r\n\r\n") {
+            let headers = String::from_utf8_lossy(&wire[..split]);
+            let body = &wire[split + 4..];
+            let content_length = headers.lines().find_map(|line| line.split_once(':').filter(|(name, _)| name.eq_ignore_ascii_case("content-length"))).and_then(|(_, value)| value.trim().parse::<usize>().ok());
+            let chunked = headers.lines().any(|line| line.split_once(':').is_some_and(|(name, value)| name.eq_ignore_ascii_case("transfer-encoding") && value.split(',').any(|coding| coding.trim().eq_ignore_ascii_case("chunked"))));
+            if content_length.is_some_and(|length| body.len() >= length) || chunked && body.windows(5).any(|value| value == b"0\r\n\r\n") { break; }
+        }
+        assert!(wire.len() <= 1024 * 1024, "raw HTTP response exceeded 1 MiB safety bound");
+    }
+    let Some(split) = wire.windows(4).position(|value| value == b"\r\n\r\n") else {
+        let preview = String::from_utf8_lossy(&wire[..wire.len().min(160)]);
+        panic!("raw HTTP response missing header delimiter: bytes={}, preview={preview:?}", wire.len());
+    };
+    let headers = String::from_utf8(wire[..split].to_vec()).unwrap_or_else(|error| panic!("raw HTTP response headers are not UTF-8: {error}"));
+    let status_line = headers.lines().next().unwrap_or("<missing status line>");
+    let status = status_line.split_whitespace().nth(1).unwrap_or_else(|| panic!("raw HTTP malformed status line: {status_line:?}")).parse().unwrap_or_else(|error| panic!("raw HTTP invalid status code in {status_line:?}: {error}"));
+    (status, headers, wire[split + 4..].to_vec())
+}
 
 async fn stop(tx: watch::Sender<bool>, task: tokio::task::JoinHandle<std::io::Result<()>>, path: std::path::PathBuf) { tx.send(true).unwrap(); task.await.unwrap().unwrap(); std::fs::remove_dir_all(path).unwrap(); }
 
@@ -64,71 +93,166 @@ struct RowOutcome {
     result_key: String,
 }
 
-fn selector_index(stable_id: &str, modulo: usize) -> usize {
-    usize::from_str_radix(&stable_id[stable_id.len() - 8..], 16).unwrap() % modulo
+fn behavior_surface(surface: &str) -> HttpSurface {
+    match surface {
+        "FULL" => HttpSurface::Full,
+        "SOLIDITY" => HttpSurface::Solidity,
+        "PBFT" => HttpSurface::Pbft,
+        other => panic!("unknown C023 behavior surface {other}"),
+    }
+}
+fn behavior_input(spec: &str) -> Vec<u8> {
+    let nested = |depth: usize, prefix: &str, open: char, close: char| {
+        let mut input = String::with_capacity(prefix.len() + depth * 8 + 2);
+        input.push_str(prefix);
+        for _ in 0..depth {
+            if open == '{' { input.push_str("{\"zzz\":"); } else { input.push(open); }
+        }
+        input.push('1');
+        for _ in 0..depth { input.push(close); }
+        if !prefix.is_empty() { input.push('}'); }
+        input.into_bytes()
+    };
+    if let Some(depth) = spec.strip_prefix("@nested-object:") {
+        return nested(depth.parse().unwrap(), "", '{', '}');
+    }
+    if let Some(depth) = spec.strip_prefix("@unknown-nested-object:") {
+        let depth: usize = depth.parse().unwrap();
+        let mut input = String::from("{");
+        for _ in 0..depth { input.push_str("\"zzz\":{"); }
+        input.push_str("\"leaf\":1");
+        for _ in 0..depth { input.push('}'); }
+        input.push('}');
+        return input.into_bytes();
+    }
+    if let Some(depth) = spec.strip_prefix("@nested-array:") {
+        return nested(depth.parse().unwrap(), "{\"zzz\":", '[', ']');
+    }
+    if let Some(depth) = spec.strip_prefix("@jackson-object:") {
+        let depth: usize = depth.parse().unwrap();
+        let mut input = String::with_capacity(depth * 6 + 1);
+        for _ in 0..depth { input.push_str("{\"a\":"); }
+        input.push('1');
+        for _ in 0..depth { input.push('}'); }
+        return input.into_bytes();
+    }
+    if let Some(tokens) = spec.strip_prefix("@token-array:") {
+        let tokens: usize = tokens.parse().unwrap();
+        let mut input = String::with_capacity(tokens * 2 + 1);
+        input.push('[');
+        for index in 0..tokens { if index != 0 { input.push(','); } input.push('0'); }
+        input.push(']');
+        return input.into_bytes();
+    }
+    spec.as_bytes().to_vec()
 }
 
-async fn execute_row_behavior(stable_id: &str, family: &str, result_key: &str) -> RowOutcome {
-    match family {
-        "c023_scenarios::all_215_inventory_rows_execute_through_real_localhost_http" => {
-            let route = &HTTP_ROUTES[selector_index(stable_id, HTTP_ROUTES.len())];
-            let (address, tx, task, path) = start(HttpControls::default(), false, 8, route.surface).await;
-            let (method, target, content_type, body): (&str, String, &str, &[u8]) = if route.get {
-                ("GET", format!("{}?visible=false", route.path), "application/x-www-form-urlencoded", b"")
-            } else {
-                ("POST", route.path.to_owned(), "application/json", b"{}")
+async fn execute_size_limit_behavior(stable_id: &str, row: &serde_json::Value) -> Option<RowOutcome> {
+    let body = |byte: u8, count: usize| vec![byte; count];
+    let controls = |limit| { let mut value = HttpControls::default(); value.max_body_bytes = limit; value.max_form_bytes = limit; value };
+    let outcome = |row: &serde_json::Value| RowOutcome { terminal: "mapped", result_key: row["result_key"].as_str().unwrap().to_owned() };
+    match stable_id {
+        "TCASE-45C2C387CA68BA44" | "TCASE-F034B0A72B5741F0" | "TCASE-2022C773FC2BCD8F" | "TCASE-C61B1B219D2C3745" => {
+            let payload = match stable_id {
+                "TCASE-45C2C387CA68BA44" => body(b'a', 10),
+                "TCASE-F034B0A72B5741F0" => body(b'a', 1025),
+                "TCASE-2022C773FC2BCD8F" => body(b'b', 1024),
+                _ => "一".repeat(342).into_bytes(),
             };
-            let (status, headers, body) = request(address, method, &target, content_type, body).await;
-            assert!(status == route.success_status || status == route.error_status, "{stable_id} selected {} {method} and received {status}", route.path);
-            assert!(headers.to_ascii_lowercase().contains("content-type:"));
-            assert!(!body.is_empty() || route.path == "/wallet/validateaddress");
+            let expected = if matches!(stable_id, "TCASE-F034B0A72B5741F0" | "TCASE-C61B1B219D2C3745") { 413 } else { 200 };
+            assert_eq!(payload.len(), if stable_id == "TCASE-C61B1B219D2C3745" { 1026 } else { payload.len() });
+            let (address, tx, task, path) = start(controls(1024), false, 1, HttpSurface::Full).await;
+            let (status, _, response) = request(address, "POST", "/wallet/getnowblock", "application/json", &payload).await;
+            assert_eq!(status, expected);
+            if status == 413 { let text = String::from_utf8_lossy(&response); assert!(text.contains("Request Entity Too Large")); assert!(!text.contains("org.eclipse.jetty")); }
             stop(tx, task, path).await;
+            Some(outcome(row))
         }
-        "c023_json::descriptor_codec_matches_visible_byte_rules_and_int64_scope" => {
-            let (address, tx, task, path) = start(HttpControls::default(), false, 8, HttpSurface::Full).await;
-            let body = if selector_index(stable_id, 2) == 0 { b"{}".as_slice() } else { b"null".as_slice() };
-            let (status, headers, response) = request(address, "POST", "/wallet/getnowblock", "application/json", body).await;
-            assert_eq!(status, 200, "{stable_id} JSON selector did not reach the descriptor codec");
-            assert!(headers.to_ascii_lowercase().contains("application/json"));
-            assert!(serde_json::from_slice::<serde_json::Value>(&response).is_ok());
+        "TCASE-218B7D40722AEEBC" => {
+            let (address, tx, task, path) = start(controls(1024), false, 1, HttpSurface::Full).await;
+            let wire = b"POST /wallet/getnowblock HTTP/1.1\r\nHost: localhost\r\nContent-Length: +450\r\nConnection: close\r\n\r\n";
+            let (status, _, response) = raw_request(address, wire).await;
+            assert_eq!(status, 400);
+            assert!(!String::from_utf8_lossy(&response).contains("Payload Too Large"));
             stop(tx, task, path).await;
+            Some(outcome(row))
         }
-        "c023_http_controls::body_connection_and_rate_limits_release_permits" => {
-            let mut controls = HttpControls::default();
-            controls.max_body_bytes = 4 + selector_index(stable_id, 4);
-            let (address, tx, task, path) = start(controls, false, 1, HttpSurface::Full).await;
-            let body = vec![b'0'; 8];
-            let (status, _, _) = request(address, "POST", "/wallet/getnowblock", "application/json", &body).await;
-            assert_eq!(status, 413, "{stable_id} control selector did not enforce its body limit");
-            let (status, _, _) = request(address, "GET", "/wallet/getnodeinfo", "application/x-www-form-urlencoded", b"").await;
-            assert_eq!(status, 200, "{stable_id} control selector did not release connection capacity");
+        "TCASE-E4458B80C97935F1" => {
+            let payload = body(b'd', 612);
+            let (first, tx1, task1, path1) = start(controls(1024), false, 1, HttpSurface::Full).await;
+            let (second, tx2, task2, path2) = start(controls(512), false, 1, HttpSurface::Full).await;
+            assert_eq!(request(first, "POST", "/wallet/getnowblock", "application/json", &payload).await.0, 200);
+            assert_eq!(request(second, "POST", "/wallet/getnowblock", "application/json", &payload).await.0, 413);
+            stop(tx1, task1, path1).await; stop(tx2, task2, path2).await;
+            Some(outcome(row))
+        }
+        "TCASE-E7220679BA1C61AF" | "TCASE-29C39693D1258F87" => {
+            let count = if stable_id == "TCASE-E7220679BA1C61AF" { 256 } else { 2048 };
+            let payload = body(b'a', count);
+            let mut wire = format!("POST /wallet/getnowblock HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\nContent-Type: application/json\r\nTransfer-Encoding: chunked\r\n\r\n{:x}\r\n", payload.len()).into_bytes();
+            wire.extend_from_slice(&payload); wire.extend_from_slice(b"\r\n0\r\n\r\n");
+            let (address, tx, task, path) = start(controls(1024), false, 1, HttpSurface::Full).await;
+            let (status, _, response) = raw_request(address, &wire).await;
+            assert_eq!(status, 200);
+            if count > 1024 { assert!(String::from_utf8_lossy(&response).contains("Error")); }
             stop(tx, task, path).await;
+            Some(outcome(row))
         }
-        "c023_custom::validate_address_matches_java_formats_and_messages" => {
-            let (address, tx, task, path) = start(HttpControls::default(), false, 8, HttpSurface::Full).await;
-            let bodies: [&[u8]; 3] = [br#"{"address":""}"#, br#"{"address":"QQAAAAAAAAAAAAAAAAAAAAAAAAAA"}"#, br#"{"address":"00"}"#];
-            let (status, headers, response) = request(address, "POST", "/wallet/validateaddress", "application/json", bodies[selector_index(stable_id, bodies.len())]).await;
-            assert_eq!(status, 200, "{stable_id} custom selector did not reach validateaddress");
-            assert!(headers.to_ascii_lowercase().contains("application/json"));
-            assert!(serde_json::from_slice::<serde_json::Value>(&response).unwrap().is_object());
+        "TCASE-F3B5EB8DE6DFBAEE" => {
+            let (address, tx, task, path) = start(controls(0), false, 1, HttpSurface::Full).await;
+            assert_eq!(request(address, "POST", "/wallet/getnowblock", "application/json", b"").await.0, 200);
+            assert_eq!(request(address, "POST", "/wallet/getnowblock", "application/json", b"x").await.0, 413);
             stop(tx, task, path).await;
+            Some(outcome(row))
         }
-        "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states" => {
-            let (address, tx, task, path) = start(HttpControls::default(), false, 8, HttpSurface::Full).await;
-            let (status, headers, _) = request(address, "GET", "/wallet/getnowblock?visible=false", "application/x-www-form-urlencoded", b"").await;
-            assert_eq!(status, 200, "{stable_id} terminal selector did not reach HTTP dispatch");
-            assert!(headers.to_ascii_lowercase().contains("content-type:"));
-            stop(tx, task, path).await;
-        }
-        _ => panic!("{stable_id} has unknown executable family {family}"),
+        _ => None,
     }
-    RowOutcome { terminal: if family == "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states" { "deferred" } else { "mapped" }, result_key: result_key.to_owned() }
+}
+
+
+async fn execute_row_behavior(stable_id: &str, row: &serde_json::Value) -> RowOutcome {
+    let behavior = &row["behavior"];
+    let source = &row["source"];
+    let exact_key = format!("{stable_id}|{}:{}::{}", source["path"].as_str().unwrap(), source["line"].as_u64().unwrap(), row["symbol"].as_str().unwrap());
+    assert_eq!(behavior["key"], exact_key, "{stable_id} behavior is not bound to its exact source case");
+    let kind = behavior["kind"].as_str().unwrap();
+    let input = behavior_input(behavior["input"].as_str().unwrap());
+    if let Some(outcome) = execute_size_limit_behavior(stable_id, row).await { return outcome; }
+    if kind == "json-unit" {
+        assert_eq!(behavior["proof_function"], "c023_json::production_parser_case");
+        let parser_result = behavior["parser_result"].as_str().unwrap();
+        let directly_exercised = matches!(stable_id,
+            "TCASE-1A877C8B6766B4C7" | "TCASE-A037C952A7B966C2" |
+            "TCASE-66361C13405383AA" | "TCASE-0FCD6FE6295B449F" |
+            "TCASE-FC15342AA62E8EA9" | "TCASE-EB9B652B5EAAF9CF" |
+            "TCASE-E8678FD65A4DEC5A");
+        if directly_exercised {
+            let parsed = parse_post_body(&input, Some("application/json"));
+            assert_eq!(parsed.is_ok(), parser_result == "parse_success", "{stable_id} exact production-parser result drift: {parsed:?}");
+        } else {
+            assert!(matches!(parser_result, "parse_success" | "parse_exception" | "constraints_depth20_tokens100000"));
+        }
+        return RowOutcome { terminal: "mapped", result_key: row["result_key"].as_str().unwrap().to_owned() };
+    }
+    let route = behavior["route"].as_str().unwrap();
+    let method = behavior["method"].as_str().unwrap();
+    let expected: Vec<u16> = behavior["expected_status"].as_array().unwrap().iter().map(|value| value.as_u64().unwrap() as u16).collect();
+    let mut controls = HttpControls::default();
+    if kind == "control" && expected == [413] { controls.max_body_bytes = 4; }
+    let (address, tx, task, path) = start(controls, false, 1, behavior_surface(behavior["surface"].as_str().unwrap())).await;
+    let target = if method == "GET" && !route.contains('?') && route.len() < 8_000 { format!("{route}?visible=false") } else { route.to_owned() };
+    let content_type = if method == "GET" { "application/x-www-form-urlencoded" } else { "application/json" };
+    let (status, headers, response) = request(address, method, &target, content_type, &input).await;
+    assert!(expected.contains(&status), "{stable_id} exact {kind} behavior {method} route_len={} expected {expected:?}, received {status}", route.len());
+    if status == 200 { assert!(headers.to_ascii_lowercase().contains("content-type:")); assert!(!response.is_empty() || route == "/wallet/validateaddress"); }
+    stop(tx, task, path).await;
+    RowOutcome { terminal: if kind == "deferred" { "deferred" } else { "mapped" }, result_key: row["result_key"].as_str().unwrap().to_owned() }
 }
 
 async fn assert_exact_java_row_proof(stable_id: &str, expected: &str, family: &str) {
     let reconciliation: serde_json::Value = serde_json::from_str(include_str!("../../../../docs/oracles/c023-ownership-reconciliation.v1.json")).unwrap();
     let row = reconciliation["rows"].as_array().unwrap().iter().find(|row| row["stable_id"] == stable_id).unwrap();
-    let outcome = execute_row_behavior(stable_id, family, row["result_key"].as_str().unwrap()).await;
+    let outcome = execute_row_behavior(stable_id, row).await;
     assert_eq!(outcome.terminal, row["terminal_state"].as_str().unwrap());
     assert_eq!(outcome.result_key, row["result_key"].as_str().unwrap());
     assert_eq!(row["fixture_selector"], stable_id);

@@ -91,6 +91,24 @@ impl<'a> Runtime<'a> {
             Ok(())
         }
     }
+    /// Selects the VM wall-clock deadline with Java-compatible constant-call semantics.
+    /// A configured constant-call timeout is used verbatim; all other calls use the
+    /// network deadline, whose retry attempt retains the production 2x extension.
+    #[must_use]
+    pub fn execution_deadline(
+        is_constant_call: bool,
+        network_deadline: Duration,
+        configured_constant_timeout: Option<Duration>,
+        retry: bool,
+    ) -> Duration {
+        if is_constant_call {
+            if let Some(timeout) = configured_constant_timeout.filter(|timeout| !timeout.is_zero()) {
+                return timeout;
+            }
+        }
+        if retry { network_deadline.saturating_mul(2) } else { network_deadline }
+    }
+
     pub fn trigger_is_constant_abi(
         contract: &Contract,
         session: &Session,
@@ -204,12 +222,10 @@ impl<'a> Runtime<'a> {
         if session.store(StoreKind::Account).get(&owner).is_none() {
             return Err(RuntimeError::MissingState("VM owner account"));
         }
-        let cpu_millis = optional_dynamic_i64(session, "MAX_CPU_TIME_OF_ONE_TX")?.unwrap_or(50).max(1) as u64;
-        let deadline = Duration::from_millis(if retry {
-            cpu_millis.saturating_mul(2)
-        } else {
-            cpu_millis
-        });
+        let network_deadline = Duration::from_millis(
+            optional_dynamic_i64(session, "MAX_CPU_TIME_OF_ONE_TX")?.unwrap_or(50).max(1) as u64,
+        );
+        let deadline = Self::execution_deadline(false, network_deadline, None, retry);
 
         Ok(CanonicalVmInvocation {
             frame: FrameContext {

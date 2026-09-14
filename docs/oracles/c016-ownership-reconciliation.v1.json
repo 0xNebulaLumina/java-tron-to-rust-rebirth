@@ -407,7 +407,6 @@
     "TCASE-2AD25CA6B699B4B3",
     "TCASE-2DE8E53DB9931DF6",
     "TCASE-2F92219FA24D2E46",
-    "TCASE-35A21A2DCDC70150",
     "TCASE-3F768CF5572AEBEA",
     "TCASE-4804C751442550AC",
     "TCASE-495B54882A138C09",
@@ -420,13 +419,10 @@
     "TCASE-5EE7BE8B2946C5A4",
     "TCASE-62BBCA2F0EB74AAE",
     "TCASE-6C8EB179A234D836",
-    "TCASE-6F7BB0115BC978B7",
     "TCASE-83352044E600158C",
     "TCASE-8ED5E9F04524D95C",
     "TCASE-91C2AE602E0BF52D",
     "TCASE-93435F1B9F1B2134",
-    "TCASE-98FA38D6F908E7F8",
-    "TCASE-99B436DC5B35D049",
     "TCASE-A0EBFED0698F85CC",
     "TCASE-A8EF33F0E4D922A0",
     "TCASE-AA6B5949F4393D6E",
@@ -446,8 +442,8 @@
     "TCASE-F3CAC4AB70F91556",
     "TCASE-F8BCF349EEED6C70"
   ],
-  "java_test_ids_sha256": "c8f94904f784284efa70b5fe91b37cd5da834979e50703a3561b93d3c203a86d",
-  "java_test_row_count": 45,
+  "java_test_ids_sha256": "b0f760a655db1e77cc72d9bcd16ec7391710f525eefe6857f33b26a8c5373066",
+  "java_test_row_count": 41,
   "java_test_rows": [
     {
       "acceptance_gate": "C016.V",
@@ -728,46 +724,6 @@
       },
       "stable_id": "TCASE-2F92219FA24D2E46",
       "target_family": "trace"
-    },
-    {
-      "acceptance_gate": "C016.V",
-      "behavior_claim": "blockVersionCheck preserves the Java row observable contract through its dedicated Rust case.",
-      "case_id": "TCASE-35A21A2DCDC70150",
-      "command": "cargo test -p tron-execution --test c016_admission c016_tcase_35a21a2dcdc70150 --locked -- --exact",
-      "dispatcher_evidence": {
-        "expected_result_sha256": "fb74d7ce7c3ad1b7ce1edd893206ef000dceaa1cd3bf75e82f6b2f05a3d0e4ee",
-        "observable_result": "TCASE-35A21A2DCDC70150|observable:blockVersionCheck",
-        "rust_symbol": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_35a21a2dcdc70150",
-        "selector": "TCASE-35A21A2DCDC70150:blockVersionCheck",
-        "source_case": "blockVersionCheck",
-        "stable_id": "TCASE-35A21A2DCDC70150"
-      },
-      "expected_result": "TCASE-35A21A2DCDC70150|observable:blockVersionCheck",
-      "expected_result_sha256": "fb74d7ce7c3ad1b7ce1edd893206ef000dceaa1cd3bf75e82f6b2f05a3d0e4ee",
-      "fixture_selector": "TCASE-35A21A2DCDC70150:blockVersionCheck",
-      "id": "TCASE-35A21A2DCDC70150",
-      "ledger": "java-test-ownership.v1.json",
-      "observable_result": "TCASE-35A21A2DCDC70150|observable:blockVersionCheck",
-      "owner": "C016",
-      "owning_item": "C016.06",
-      "rationale": "row-specific transaction processing/admission/resource/utility parity; C014 interpreter and C015 precompile seams remain excluded",
-      "rust_symbol": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_35a21a2dcdc70150",
-      "rust_test": "c016_admission::c016_tcase_35a21a2dcdc70150",
-      "scenario_selector": {
-        "case": "blockVersionCheck",
-        "line": 793,
-        "path": "java-tron/framework/src/test/java/org/tron/core/actuator/utils/ProposalUtilTest.java",
-        "stable_id": "TCASE-35A21A2DCDC70150",
-        "observable": "blockVersionCheck"
-      },
-      "source": "java-tron/framework/src/test/java/org/tron/core/actuator/utils/ProposalUtilTest.java",
-      "source_identity": {
-        "case": "blockVersionCheck",
-        "line": 793,
-        "path": "java-tron/framework/src/test/java/org/tron/core/actuator/utils/ProposalUtilTest.java"
-      },
-      "stable_id": "TCASE-35A21A2DCDC70150",
-      "target_family": "admission"
     },
     {
       "acceptance_gate": "C016.V",
@@ -1251,46 +1207,6 @@
     },
     {
       "acceptance_gate": "C016.V",
-      "behavior_claim": "testConcurrentToString preserves the Java row observable contract through its dedicated Rust case.",
-      "case_id": "TCASE-6F7BB0115BC978B7",
-      "command": "cargo test -p tron-execution --test c016_admission c016_tcase_6f7bb0115bc978b7 --locked -- --exact",
-      "dispatcher_evidence": {
-        "expected_result_sha256": "0c224fef1f802225b79e6580dbfdad69aa7dcd747ae189761dba5b41be845443",
-        "observable_result": "TCASE-6F7BB0115BC978B7|observable:testConcurrentToString",
-        "rust_symbol": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_6f7bb0115bc978b7",
-        "selector": "TCASE-6F7BB0115BC978B7:testConcurrentToString",
-        "source_case": "testConcurrentToString",
-        "stable_id": "TCASE-6F7BB0115BC978B7"
-      },
-      "expected_result": "TCASE-6F7BB0115BC978B7|observable:testConcurrentToString",
-      "expected_result_sha256": "0c224fef1f802225b79e6580dbfdad69aa7dcd747ae189761dba5b41be845443",
-      "fixture_selector": "TCASE-6F7BB0115BC978B7:testConcurrentToString",
-      "id": "TCASE-6F7BB0115BC978B7",
-      "ledger": "java-test-ownership.v1.json",
-      "observable_result": "TCASE-6F7BB0115BC978B7|observable:testConcurrentToString",
-      "owner": "C016",
-      "owning_item": "C016.06",
-      "rationale": "row-specific transaction processing/admission/resource/utility parity; C014 interpreter and C015 precompile seams remain excluded",
-      "rust_symbol": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_6f7bb0115bc978b7",
-      "rust_test": "c016_admission::c016_tcase_6f7bb0115bc978b7",
-      "scenario_selector": {
-        "case": "testConcurrentToString",
-        "line": 449,
-        "path": "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java",
-        "stable_id": "TCASE-6F7BB0115BC978B7",
-        "observable": "testConcurrentToString"
-      },
-      "source": "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java",
-      "source_identity": {
-        "case": "testConcurrentToString",
-        "line": 449,
-        "path": "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java"
-      },
-      "stable_id": "TCASE-6F7BB0115BC978B7",
-      "target_family": "admission"
-    },
-    {
-      "acceptance_gate": "C016.V",
       "behavior_claim": "testNewTxInput preserves the Java row observable contract through its dedicated Rust case.",
       "case_id": "TCASE-83352044E600158C",
       "command": "cargo test -p tron-execution --test c016_admission c016_tcase_83352044e600158c --locked -- --exact",
@@ -1447,86 +1363,6 @@
         "path": "java-tron/framework/src/test/java/org/tron/core/TxInputUtilTest.java"
       },
       "stable_id": "TCASE-93435F1B9F1B2134",
-      "target_family": "admission"
-    },
-    {
-      "acceptance_gate": "C016.V",
-      "behavior_claim": "variableCheck preserves the Java row observable contract through its dedicated Rust case.",
-      "case_id": "TCASE-98FA38D6F908E7F8",
-      "command": "cargo test -p tron-execution --test c016_pipeline c016_tcase_98fa38d6f908e7f8 --locked -- --exact",
-      "dispatcher_evidence": {
-        "expected_result_sha256": "952cc93fadcfe4d257d31ef9ca214e744095be80e85c008837bdd967ff5771ec",
-        "observable_result": "TCASE-98FA38D6F908E7F8|observable:variableCheck",
-        "rust_symbol": "rust-tron/crates/tron-execution/tests/c016_pipeline.rs::c016_tcase_98fa38d6f908e7f8",
-        "selector": "TCASE-98FA38D6F908E7F8:variableCheck",
-        "source_case": "variableCheck",
-        "stable_id": "TCASE-98FA38D6F908E7F8"
-      },
-      "expected_result": "TCASE-98FA38D6F908E7F8|observable:variableCheck",
-      "expected_result_sha256": "952cc93fadcfe4d257d31ef9ca214e744095be80e85c008837bdd967ff5771ec",
-      "fixture_selector": "TCASE-98FA38D6F908E7F8:variableCheck",
-      "id": "TCASE-98FA38D6F908E7F8",
-      "ledger": "java-test-ownership.v1.json",
-      "observable_result": "TCASE-98FA38D6F908E7F8|observable:variableCheck",
-      "owner": "C016",
-      "owning_item": "C016.06",
-      "rationale": "row-specific transaction processing/admission/resource/utility parity; C014 interpreter and C015 precompile seams remain excluded",
-      "rust_symbol": "rust-tron/crates/tron-execution/tests/c016_pipeline.rs::c016_tcase_98fa38d6f908e7f8",
-      "rust_test": "c016_pipeline::c016_tcase_98fa38d6f908e7f8",
-      "scenario_selector": {
-        "case": "variableCheck",
-        "line": 24,
-        "path": "java-tron/framework/src/test/java/org/tron/core/actuator/ActuatorConstantTest.java",
-        "stable_id": "TCASE-98FA38D6F908E7F8",
-        "observable": "variableCheck"
-      },
-      "source": "java-tron/framework/src/test/java/org/tron/core/actuator/ActuatorConstantTest.java",
-      "source_identity": {
-        "case": "variableCheck",
-        "line": 24,
-        "path": "java-tron/framework/src/test/java/org/tron/core/actuator/ActuatorConstantTest.java"
-      },
-      "stable_id": "TCASE-98FA38D6F908E7F8",
-      "target_family": "pipeline"
-    },
-    {
-      "acceptance_gate": "C016.V",
-      "behavior_claim": "variableCheck preserves the Java row observable contract through its dedicated Rust case.",
-      "case_id": "TCASE-99B436DC5B35D049",
-      "command": "cargo test -p tron-execution --test c016_admission c016_tcase_99b436dc5b35d049 --locked -- --exact",
-      "dispatcher_evidence": {
-        "expected_result_sha256": "d5e423422dc5ac5698077456b980f8b9d6002d356019ce135bf7e55772afcdc0",
-        "observable_result": "TCASE-99B436DC5B35D049|observable:variableCheck",
-        "rust_symbol": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_99b436dc5b35d049",
-        "selector": "TCASE-99B436DC5B35D049:variableCheck",
-        "source_case": "variableCheck",
-        "stable_id": "TCASE-99B436DC5B35D049"
-      },
-      "expected_result": "TCASE-99B436DC5B35D049|observable:variableCheck",
-      "expected_result_sha256": "d5e423422dc5ac5698077456b980f8b9d6002d356019ce135bf7e55772afcdc0",
-      "fixture_selector": "TCASE-99B436DC5B35D049:variableCheck",
-      "id": "TCASE-99B436DC5B35D049",
-      "ledger": "java-test-ownership.v1.json",
-      "observable_result": "TCASE-99B436DC5B35D049|observable:variableCheck",
-      "owner": "C016",
-      "owning_item": "C016.06",
-      "rationale": "row-specific transaction processing/admission/resource/utility parity; C014 interpreter and C015 precompile seams remain excluded",
-      "rust_symbol": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_99b436dc5b35d049",
-      "rust_test": "c016_admission::c016_tcase_99b436dc5b35d049",
-      "scenario_selector": {
-        "case": "variableCheck",
-        "line": 15,
-        "path": "java-tron/framework/src/test/java/org/tron/core/actuator/utils/ZenChainParamsTest.java",
-        "stable_id": "TCASE-99B436DC5B35D049",
-        "observable": "variableCheck"
-      },
-      "source": "java-tron/framework/src/test/java/org/tron/core/actuator/utils/ZenChainParamsTest.java",
-      "source_identity": {
-        "case": "variableCheck",
-        "line": 15,
-        "path": "java-tron/framework/src/test/java/org/tron/core/actuator/utils/ZenChainParamsTest.java"
-      },
-      "stable_id": "TCASE-99B436DC5B35D049",
       "target_family": "admission"
     },
     {
@@ -3982,5 +3818,52 @@
   ],
   "source_ledger": "docs/oracles/production-ownership.v1.json",
   "source_ledger_sha256": "d3053c0603776b7a67c49adc7faf53725c2544ceb593ec14e1a565d19e3bb82d",
-  "total_authoritative_row_count": 111
+  "total_authoritative_row_count": 111,
+  "non_applicable_java_test_rows": [
+    {
+      "stable_id": "TCASE-35A21A2DCDC70150",
+      "source_identity": {
+        "case": "blockVersionCheck",
+        "line": 793,
+        "path": "java-tron/framework/src/test/java/org/tron/core/actuator/utils/ProposalUtilTest.java"
+      },
+      "owning_item": "C016.06",
+      "decision": "not_applicable",
+      "constraint": "Java ProposalUtil fork-version enumeration has no Rust production equivalent; retaining a copied local version list would be tautological."
+    },
+    {
+      "stable_id": "TCASE-6F7BB0115BC978B7",
+      "source_identity": {
+        "case": "testConcurrentToString",
+        "line": 449,
+        "path": "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java"
+      },
+      "owning_item": "C016.06",
+      "decision": "not_applicable",
+      "constraint": "Java protobuf TransactionCapsule.toString formatting has no Rust compatibility contract; comparing Rust Debug output with itself is tautological."
+    },
+    {
+      "stable_id": "TCASE-98FA38D6F908E7F8",
+      "source_identity": {
+        "case": "variableCheck",
+        "line": 24,
+        "path": "java-tron/framework/src/test/java/org/tron/core/actuator/ActuatorConstantTest.java"
+      },
+      "owning_item": "C016.06",
+      "decision": "not_applicable",
+      "constraint": "Java-only ActuatorConstant exception-string constants have no Rust production equivalent; retaining copied literals would not prove behavior."
+    },
+    {
+      "stable_id": "TCASE-99B436DC5B35D049",
+      "source_identity": {
+        "case": "variableCheck",
+        "line": 15,
+        "path": "java-tron/framework/src/test/java/org/tron/core/actuator/utils/ZenChainParamsTest.java"
+      },
+      "owning_item": "C016.06",
+      "decision": "not_applicable",
+      "constraint": "Java ZenChainParams constants have no Rust shielded production equivalent exposed by this crate; copied local constants would be tautological."
+    }
+  ],
+  "non_applicable_java_test_row_count": 4
 }

@@ -4234,7 +4234,7 @@
       "status": "review",
       "owner": "review-agent",
       "updated": "2026-09-14",
-      "resume": "Independently re-review all C029-R1-001 through C029-R1-010 fixes and verify complete task accounting against the passing 3,443-row, 479-proof, zero-defect C029 gate artifact (SHA-256 2aa41f2625a93de46144bdce7994568b8d0f9daa23239dfa9fdd5d18579f7bdc); keep round 1 changes requested and findings open until that review is complete.",
+      "resume": "Independently re-review surviving round-2 findings C029-R1-003, C029-R1-004, C029-R1-005, C029-R1-006, C029-R1-007, C029-R1-009, and C029-R1-010, including exact task accounting. The full C029 gate passed with rows=3443, proofs=475, defects=7, and artifact SHA-256 f40f65a04e0b2ca108fcf4dfd702636f6556a3671fa53f2a327a4774a8a41e8d.",
       "items": [
         {
           "id": "C029.01",
@@ -4275,7 +4275,7 @@
       ],
       "gate": {
         "id": "C029.V",
-        "description": "Regeneration is clean and the case-level mapping has zero unexplained or without a passing result rows.",
+        "description": "Passed: the full C029 reconciliation gate reports rows=3443, proofs=475, defects=7, with artifact SHA-256 f40f65a04e0b2ca108fcf4dfd702636f6556a3671fa53f2a327a4774a8a41e8d.",
         "status": "passed",
         "commands": [
           {
@@ -4303,65 +4303,65 @@
       },
       "review": {
         "state": "changes_requested",
-        "round": 1,
+        "round": 2,
         "findings": [
           {
             "id": "C029-R1-001",
-            "summary": "Cargo checks use a shared target directory instead of a private isolated target.",
-            "status": "open",
-            "resolution": null
+            "summary": "Cargo build artifacts now use an invocation-private target directory.",
+            "status": "closed",
+            "resolution": "The gate creates a unique TemporaryDirectory, places cargo-target inside it, and passes it as CARGO_TARGET_DIR to all proof builds, preventing concurrent artifact sharing."
           },
           {
             "id": "C029-R1-002",
-            "summary": "Temporary-directory cleanup deletes entries by age without proving C029 ownership.",
-            "status": "open",
-            "resolution": null
+            "summary": "Temporary cleanup is restricted to the current invocation's owned directory.",
+            "status": "closed",
+            "resolution": "The age-based /tmp scan was removed; final cleanup acts only on the TemporaryDirectory created by this gate invocation."
           },
           {
             "id": "C029-R1-003",
-            "summary": "Build proofs inherit an ambient environment instead of a controlled build environment.",
+            "summary": "Cargo and Rustup still use caller-selected shared homes instead of invocation-private authenticated homes.",
             "status": "open",
             "resolution": null
           },
           {
             "id": "C029-R1-004",
-            "summary": "C016 rows contain behavior mappings that do not establish the claimed source behavior.",
+            "summary": "Production constant-call deadline compatibility is unproved, and several C016 proofs remain test-local tautologies.",
             "status": "open",
             "resolution": null
           },
           {
             "id": "C029-R1-005",
-            "summary": "C023 artifact-only checks are recorded as behavioral tests without executable behavior proof.",
+            "summary": "C023 proofs collapse 333 rows into generic families instead of executing each row's exact source behavior.",
             "status": "open",
             "resolution": null
           },
           {
             "id": "C029-R1-006",
-            "summary": "C008 reconciliation authorizes its ownership subset from the same evidence being validated.",
+            "summary": "C008 lacks an independently pinned stable-ID/source/case digest that rejects ledger-row omission or substitution.",
             "status": "open",
             "resolution": null
           },
           {
             "id": "C029-R1-007",
-            "summary": "C009 reconciliation can fall back to a self-authorizing inventory.",
+            "summary": "C009 lacks an independently pinned stable-ID/source/case digest that rejects ledger-row omission or substitution.",
             "status": "open",
             "resolution": null
           },
           {
             "id": "C029-R1-008",
-            "summary": "C014 production rows are seeded by the reconciliation instead of derived independently from source.",
-            "status": "open",
-            "resolution": null
+            "summary": "C014 production rows are independently derived and authenticated against a pinned inventory digest.",
+            "status": "closed",
+            "resolution": "The C014 gate derives 1,149 rows from the production ledger using fixed source ownership rules and authenticates their ordered identities with an independent SHA-256 digest."
           },
           {
             "id": "C029-R1-009",
-            "summary": "Special-case treatment values are accepted without validation against their source evidence.",
+            "summary": "VM treatment classification is incomplete because explicit VM paths outside /runtime/vm/ are marked not_applicable.",
             "status": "open",
             "resolution": null
           },
           {
             "id": "C029-R1-010",
-            "summary": "Historical review findings are not exhaustively classified in the reconciliation.",
+            "summary": "Historical finding IDs are complete, but compatibility-defect classifications and fixture evidence are not independently derived.",
             "status": "open",
             "resolution": null
           }

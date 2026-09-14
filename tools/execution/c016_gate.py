@@ -55,28 +55,29 @@ def metadata():
  if any(row.get('case_dispatch')!=row.get('rust_dispatch') or row.get('case_dispatch') not in symbols for row in rows):raise SystemExit('C016 behavior case dispatch missing actual Rust test')
  if any(case['rust_dispatch'] not in symbols for case in case_table):raise SystemExit('C016 case table dispatch missing actual Rust test')
  test_rows=recon.get('java_test_rows',[]);test_ids=recon.get('java_test_ids',[])
- expected_test_ids_sha256='c8f94904f784284efa70b5fe91b37cd5da834979e50703a3561b93d3c203a86d'
+ non_applicable=recon.get('non_applicable_java_test_rows',[])
+ expected_test_ids_sha256='b0f760a655db1e77cc72d9bcd16ec7391710f525eefe6857f33b26a8c5373066'
  if len(rows)!=66 or recon.get('row_count')!=66:raise SystemExit('C016 production ownership row count drift')
- if len(test_rows)!=45 or recon.get('java_test_row_count')!=45 or recon.get('total_authoritative_row_count')!=111:raise SystemExit('C016 exact production/test authoritative union count drift')
+ if len(test_rows)!=41 or recon.get('java_test_row_count')!=41 or len(non_applicable)!=4 or recon.get('non_applicable_java_test_row_count')!=4 or recon.get('total_authoritative_row_count')!=111:raise SystemExit('C016 exact production/test authoritative union count drift')
  actual_test_ids=sorted(row.get('stable_id') for row in test_rows)
- if test_ids!=actual_test_ids or len(set(actual_test_ids))!=45 or hashlib.sha256('\n'.join(actual_test_ids).encode()).hexdigest()!=expected_test_ids_sha256 or recon.get('java_test_ids_sha256')!=expected_test_ids_sha256:raise SystemExit('C016 exact 45-row Java test identity union drift')
+ if test_ids!=actual_test_ids or len(set(actual_test_ids))!=41 or hashlib.sha256('\n'.join(actual_test_ids).encode()).hexdigest()!=expected_test_ids_sha256 or recon.get('java_test_ids_sha256')!=expected_test_ids_sha256:raise SystemExit('C016 exact 41-row executable Java test identity union drift')
  if set(actual_test_ids)&{row['id'] for row in rows}:raise SystemExit('C016 production and Java test authoritative rows overlap')
  java_rows={row['id']:row for row in json.loads(JAVA_TEST_LEDGER.read_text()).get('rows',[])}
+ expected_non_applicable={'TCASE-98FA38D6F908E7F8','TCASE-35A21A2DCDC70150','TCASE-6F7BB0115BC978B7','TCASE-99B436DC5B35D049'}
+ if {row.get('stable_id') for row in non_applicable}!=expected_non_applicable or any(row.get('decision')!='not_applicable' or row.get('owning_item')!='C016.06' or not row.get('constraint') or row.get('stable_id') not in java_rows for row in non_applicable):raise SystemExit('C016 constrained non-applicable Java row decisions drift')
  test_evidence={'stable_id','source_identity','behavior_claim','fixture_selector','scenario_selector','expected_result','expected_result_sha256','observable_result','rust_symbol','rust_test','target_family','command'}
  for row in test_rows:
   stable_id=row.get('stable_id');source=row.get('source_identity',{});ledger_row=java_rows.get(stable_id);family=row.get('target_family');suffix=stable_id.removeprefix('TCASE-').lower() if isinstance(stable_id,str) else ''
-  selector=f'{stable_id}:{source.get("case")}'
-  expected_test=f'c016_{family}::c016_tcase_{suffix}';expected_symbol=f'rust-tron/crates/tron-execution/tests/c016_{family}.rs::c016_tcase_{suffix}';expected_command=f'cargo test -p tron-execution --test c016_{family} c016_tcase_{suffix} --locked -- --exact';expected_result=f'{stable_id}|observable:{source.get("case")}'
+  selector=f'{stable_id}:{source.get("case")}';expected_test=f'c016_{family}::c016_tcase_{suffix}';expected_symbol=f'rust-tron/crates/tron-execution/tests/c016_{family}.rs::c016_tcase_{suffix}';expected_command=f'cargo test -p tron-execution --test c016_{family} c016_tcase_{suffix} --locked -- --exact';expected_result=f'{stable_id}|observable:{source.get("case")}'
   if test_evidence-row.keys() or row.get('id')!=stable_id or row.get('case_id')!=stable_id or row.get('fixture_selector')!=selector or row.get('owner')!='C016' or row.get('owning_item')!='C016.06' or row.get('acceptance_gate')!='C016.V':raise SystemExit(f'C016 incomplete authoritative Java test row: {stable_id}')
   expected_scenario={'case':source.get('case'),'line':source.get('line'),'path':source.get('path'),'stable_id':stable_id,'observable':source.get('case')}
   if not ledger_row or ledger_row.get('owning_item')!='C016.06' or source!={'case':ledger_row.get('case'),'line':ledger_row.get('source',{}).get('line'),'path':ledger_row.get('source',{}).get('path')} or row.get('scenario_selector')!=expected_scenario or row.get('behavior_claim')!=f'{source.get("case")} preserves the Java row observable contract through its dedicated Rust case.':raise SystemExit(f'C016 Java source identity mismatch: {stable_id}')
   if family not in COMMANDS or family=='pending' or row.get('rust_test')!=expected_test or row.get('rust_symbol')!=expected_symbol or row.get('command')!=expected_command:raise SystemExit(f'C016 deterministic per-ID Rust linkage drift: {stable_id}')
-  digest=hashlib.sha256(expected_result.encode()).hexdigest()
-  evidence=row.get('dispatcher_evidence',{})
+  digest=hashlib.sha256(expected_result.encode()).hexdigest();evidence=row.get('dispatcher_evidence',{})
   if row.get('expected_result')!=expected_result or row.get('observable_result')!=expected_result or row.get('expected_result_sha256')!=digest or evidence.get('observable_result')!=expected_result or evidence.get('expected_result_sha256')!=digest or evidence.get('rust_symbol')!=expected_symbol or evidence.get('selector')!=selector:raise SystemExit(f'C016 per-ID observable result linkage drift: {stable_id}')
   if expected_test not in symbols:raise SystemExit(f'C016 per-ID executable Rust test missing: {expected_test}')
  c015=json.loads(C015_RECON.read_text());seam=c015.get('c016_06_seam_preservation',{});seam_ids=seam.get('stable_ids',[])
- if seam.get('row_count')!=27 or len(seam.get('rows',[]))!=27 or len(seam_ids)!=27 or len(set(seam_ids))!=27 or set(seam_ids)&set(actual_test_ids) or seam.get('stable_ids_sha256')!=hashlib.sha256('\n'.join(seam_ids).encode()).hexdigest():raise SystemExit('C016/C015 exact disjoint seam ownership drift')
+ if seam.get('row_count')!=27 or len(seam.get('rows',[]))!=27 or len(seam_ids)!=27 or len(set(seam_ids))!=27 or set(seam_ids)&(set(actual_test_ids)|expected_non_applicable) or seam.get('stable_ids_sha256')!=hashlib.sha256('\n'.join(seam_ids).encode()).hexdigest():raise SystemExit('C016/C015 exact disjoint seam ownership drift')
  if any(entry.get('stable_id')!=stable_id or entry.get('owner')!='C016' or entry.get('owning_item')!='C016.06' for stable_id,entry in zip(seam_ids,seam.get('rows',[]))):raise SystemExit('C016/C015 retained seam row drift')
  runtime=(RUST/'crates/tron-execution/src/runtime.rs').read_text()
  pipeline=(RUST/'crates/tron-execution/src/pipeline.rs').read_text()
@@ -84,6 +85,9 @@ def metadata():
  forbidden=('pub struct VmInvocation','pub enum VmTimeLimit','vm_invocation','retry_vm_invocation')
  if any(token in runtime or token in pipeline or token in public for token in forbidden):raise SystemExit('C016 caller-controlled VM invocation surface returned')
  if 'pub(crate) fn execute_transaction' not in runtime or 'struct CanonicalVmInvocation' not in runtime:raise SystemExit('C016 canonical VM invocation boundary missing')
+ if 'pub fn execution_deadline' not in runtime or 'Self::execution_deadline(false, network_deadline, None, retry)' not in runtime:raise SystemExit('C016 production VM deadline policy missing')
+ for proof in ('c016_tcase_278a08c04434dd3c','c016_tcase_5ee7be8b2946c5a4','c016_tcase_e2b2e810b8609151'):
+  if f'c016_pipeline::{proof}' not in symbols:raise SystemExit(f'C016 production deadline proof missing: {proof}')
  if 'c016_pipeline::transaction_data_cannot_substitute_runtime_code_frame_rules_or_energy' not in symbols:raise SystemExit('C016 adversarial canonical VM proof missing')
  for proof in ('network_vm_success_without_expected_result_skips_witness_comparison','network_out_of_time_executes_once','block_without_expected_result_retries_but_skips_witness_comparison','signed_block_witness_match_and_mismatch_are_enforced'):
   if f'c016_trace::{proof}' not in symbols:raise SystemExit(f'C016 origin-gating proof missing: {proof}')

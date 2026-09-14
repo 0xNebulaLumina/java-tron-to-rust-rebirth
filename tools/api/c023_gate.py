@@ -88,6 +88,77 @@ def metadata():
     if len(proofs) != 333 or scenario.get("row_proof_count") != 333 or len({p.get("stable_id") for p in proofs}) != 333: raise SystemExit("C023 exact 333 row-proof identity drift")
     proof_by_id = {p["stable_id"]: p for p in proofs}
     rust_source = (RUST / "crates/tron-apis/tests/c023_scenarios.rs").read_text()
+    behavior_contracts = {}
+    for row in jrows:
+        stable_id = row["stable_id"]
+        behavior = row.get("behavior")
+        source = row["source"]
+        exact_key = f"{stable_id}|{source['path']}:{source['line']}::{row['symbol']}"
+        if not isinstance(behavior, dict) or behavior.get("key") != exact_key:
+            raise SystemExit("C023 exact stable-ID/source behavior mapping drift: " + stable_id)
+        if behavior.get("kind") == "json-unit":
+            required_behavior_fields = {"key","kind","route","method","surface","input","proof_function","parser_result"}
+            if set(behavior) != required_behavior_fields or behavior["route"] != "" or behavior["method"] != "UNIT" or behavior["surface"] != "PARSER" or behavior["proof_function"] != "c023_json::production_parser_case":
+                raise SystemExit("C023 parser-unit row substituted an HTTP proof: " + stable_id)
+            if behavior["parser_result"] not in {"parse_success","parse_exception","constraints_depth20_tokens100000"}:
+                raise SystemExit("C023 invalid exact parser result: " + stable_id)
+            contract = (behavior["kind"], behavior["proof_function"], behavior["input"], behavior["parser_result"])
+        else:
+            required_behavior_fields = {"key","kind","route","method","surface","input","expected_status"}
+            if set(behavior) != required_behavior_fields or behavior["method"] not in ("GET","POST") or behavior["surface"] not in ("FULL","SOLIDITY","PBFT"):
+                raise SystemExit("C023 invalid exact HTTP behavior contract: " + stable_id)
+            contract = (behavior["kind"], behavior["route"], behavior["method"], behavior["surface"], behavior["input"], tuple(behavior["expected_status"]))
+        if stable_id in behavior_contracts:
+            raise SystemExit("C023 duplicate exact behavior contract: " + stable_id)
+        behavior_contracts[stable_id] = contract
+        case = row["symbol"].lower()
+        exact_parser_cases = {
+            "TCASE-B953AD91CF184781": ('{"zzz":{"a":1,"b":[true,false,null,{"c":"d"}],"e":{"f":2}},"address":"61646472657373"}', "parse_success"),
+            "TCASE-1A877C8B6766B4C7": ("@nested-object:10", "parse_success"),
+            "TCASE-94015C0E2E3EEF18": ('{"genesisBlockId":{"hash":"00","number":1,},"address":"61646472657373",}', "parse_success"),
+            "TCASE-A037C952A7B966C2": ("@unknown-nested-object:21", "parse_exception"),
+            "TCASE-66361C13405383AA": ("@nested-array:21", "parse_exception"),
+            "TCASE-0FCD6FE6295B449F": ("@nested-object:100000", "parse_exception"),
+            "TCASE-FC15342AA62E8EA9": ("@nested-array:100000", "parse_exception"),
+            "TCASE-01E495A39E52F3DF": ("{}", "constraints_depth20_tokens100000"),
+            "TCASE-EB9B652B5EAAF9CF": ("@jackson-object:120", "parse_exception"),
+            "TCASE-E8678FD65A4DEC5A": ("@token-array:100500", "parse_exception"),
+        }
+        if stable_id in exact_parser_cases and (behavior["input"], behavior["parser_result"]) != exact_parser_cases[stable_id]:
+            raise SystemExit("C023 exact production-parser case/input/result drift: " + stable_id)
+        if stable_id in exact_parser_cases and behavior["kind"] != "json-unit":
+            raise SystemExit("C023 parser exception replaced by HTTP route status: " + stable_id)
+        if source["path"].endswith("/JsonFormatTest.java") or source["path"].endswith("/org/tron/json/JsonTest.java"):
+            if behavior["kind"] != "json-unit": raise SystemExit("C023 Java parser unit row crossed into HTTP semantics: " + stable_id)
+        if stable_id == "TCASE-B7272FC2B9889A84" and (behavior["kind"], behavior["route"], behavior["method"], behavior["expected_status"]) != ("route", "/wallet/getnowblock", "POST", [200]):
+            raise SystemExit("C023 GetNowBlock POST must ignore its body and remain HTTP 200")
+        exact_size_cases = {
+            "TCASE-45C2C387CA68BA44": ("@bytes:a:10", [200]),
+            "TCASE-F034B0A72B5741F0": ("@bytes:a:1025", [413]),
+            "TCASE-218B7D40722AEEBC": ("@raw-malformed-content-length", [400]),
+            "TCASE-650059671FFDB730": (behavior["input"], [414]),
+            "TCASE-2022C773FC2BCD8F": ("@bytes:b:1024", [200]),
+            "TCASE-E4458B80C97935F1": ("@two-services:d:612", [200, 413]),
+            "TCASE-C61B1B219D2C3745": ("@utf8-cjk:342", [413]),
+            "TCASE-E7220679BA1C61AF": ("@chunked:a:256", [200]),
+            "TCASE-29C39693D1258F87": ("@chunked:a:2048", [200]),
+            "TCASE-F3B5EB8DE6DFBAEE": ("@zero-limit:empty-and-x", [200, 413]),
+        }
+        if stable_id in exact_size_cases and (behavior["input"], behavior["expected_status"]) != exact_size_cases[stable_id]:
+            raise SystemExit("C023 exact SizeLimitHandler transport/result drift: " + stable_id)
+        if behavior["kind"] == "route":
+            class_name = pathlib.Path(source["path"]).stem.removesuffix("Test").removesuffix("Servlet").lower()
+            route_name = re.sub(r"[^a-z0-9]", "", behavior["route"].rsplit("/", 1)[-1].lower())
+            class_name = re.sub(r"[^a-z0-9]", "", class_name)
+            aliases = {"broadcast":"broadcasttransaction", "getmemofeeprices":"getmemofee", "http":"getnowblock", "transfer":"createtransaction", "gettransactionbyidsolidity":"gettransactionbyid", "getbandwidthpricesonpbft":"getbandwidthprices", "getbandwidthpricesonsolidity":"getbandwidthprices", "getenergypricesonpbft":"getenergyprices", "getenergypricesonsolidity":"getenergyprices"}
+            expected_route = aliases.get(class_name, class_name)
+            if class_name == "scanshieldedtrc20notes": expected_route += "byivk" if "ivk" in case else "byovk"
+            if route_name != expected_route:
+                raise SystemExit("C023 route row does not call its own route: " + stable_id)
+        if proof_by_id[stable_id].get("behavior") != behavior:
+            raise SystemExit("C023 scenario/reconciliation behavior mapping drift: " + stable_id)
+    if len(behavior_contracts) != 333 or "selector_index" in rust_source or "execute_row_behavior(stable_id, family" in rust_source:
+        raise SystemExit("C023 hash/generic Java-row behavior dispatch rejected")
     executable_families = {
         "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
         "c023_http_controls::body_connection_and_rate_limits_release_permits",
@@ -95,15 +166,15 @@ def metadata():
         "c023_json::descriptor_codec_matches_visible_byte_rules_and_int64_scope",
         "c023_custom::validate_address_matches_java_formats_and_messages",
     }
-    if "async fn execute_row_behavior" not in rust_source or "execute_row_behavior(stable_id, family" not in rust_source or "#[tokio::test" not in rust_source:
+    if "async fn execute_row_behavior" not in rust_source or "execute_row_behavior(stable_id, row)" not in rust_source or "#[tokio::test" not in rust_source:
         raise SystemExit("C023 row proofs are not executable behavior tests")
     for row in jrows:
         stable_id = row["stable_id"]; proof = proof_by_id.get(stable_id); symbol = "c023_" + stable_id.lower().replace("-", "_")
         family = row.get("rust_case") or "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states"
         expected = f"{stable_id}|{row['source']['path']}:{row['source']['line']}::{row['symbol']}|terminal={row['terminal_state']}|result={row['result_key']}|family={family}"
         command = f"cargo test -p tron-apis --test c023_scenarios --locked -- {symbol} --exact"
-        behavior = f"execute exact Java HTTP case {row['source']['path']}:{row['source']['line']}::{row['symbol']} and bind terminal {row['terminal_state']} to {row['result_key']}"
-        required = {"stable_id":stable_id,"source_identity":{"path":row["source"]["path"],"line":row["source"]["line"],"case":row["symbol"]},"fixture_selector":stable_id,"expected_result":expected,"java_behavior":behavior,"rust_symbol":f"c023_scenarios::{symbol}","rust_test":f"c023_scenarios::{symbol}","rust_family_test":family,"command":command,"terminal_state":row["terminal_state"],"result_key":row["result_key"],"proof_kind":"executable_behavior","behavior_selector":stable_id,"behavior_family":family}
+        behavior = row["java_behavior"]
+        required = {"stable_id":stable_id,"source_identity":{"path":row["source"]["path"],"line":row["source"]["line"],"case":row["symbol"]},"fixture_selector":stable_id,"expected_result":expected,"java_behavior":behavior,"rust_symbol":f"c023_scenarios::{symbol}","rust_test":f"c023_scenarios::{symbol}","rust_family_test":family,"command":command,"terminal_state":row["terminal_state"],"result_key":row["result_key"],"proof_kind":"executable_behavior","behavior_selector":stable_id,"behavior_family":family,"behavior":row["behavior"]}
         if family not in executable_families: raise SystemExit("C023 row proof lacks executable family: " + stable_id)
         if proof != required or any(row.get(key) != value for key, value in required.items() if key not in {"stable_id", "terminal_state", "result_key"}): raise SystemExit("C023 row-specific executable proof contract drift: " + stable_id)
         if not re.search(r"\bc023_row_proof!\(" + re.escape(symbol) + r"\s*,\s*\"" + re.escape(stable_id) + r"\"", rust_source): raise SystemExit("C023 missing exact executable Rust row selector: " + stable_id)
