@@ -1,0 +1,5673 @@
+{
+  "$id": "https://tron.invalid/schemas/c030-scenario-manifest-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allocation": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "const": "127.0.0.1"
+        },
+        "algorithm": {
+          "const": "For label L and zero-based index I, compute HMAC-SHA-256 with key UTF-8 seed_decimal and message UTF-8 'C030.01:'+L+':'+I; ports are frozen and MUST NOT be derived or remapped; secp256k1 private scalars are (big_endian(H) mod (n-1))+1; config values are emitted in node array order with lexicographically sorted keys."
+        },
+        "collision_policy": {
+          "const": "fail-before-start"
+        },
+        "node_order": {
+          "items": false,
+          "maxItems": 8,
+          "minItems": 8,
+          "prefixItems": [
+            {
+              "const": "java-witness-a"
+            },
+            {
+              "const": "java-witness-b"
+            },
+            {
+              "const": "rust-witness-a"
+            },
+            {
+              "const": "rust-witness-b"
+            },
+            {
+              "const": "rust-full"
+            },
+            {
+              "const": "java-fast-forward"
+            },
+            {
+              "const": "java-observer"
+            },
+            {
+              "const": "rust-solidity"
+            }
+          ],
+          "type": "array"
+        },
+        "seed": {
+          "const": 3001001
+        },
+        "workspace": {
+          "const": "artifacts/c030/C030.01/harness"
+        }
+      },
+      "required": [
+        "algorithm",
+        "seed",
+        "node_order",
+        "address",
+        "workspace",
+        "collision_policy"
+      ],
+      "type": "object"
+    },
+    "cleanup": {
+      "additionalProperties": false,
+      "properties": {
+        "always_run": {
+          "const": true
+        },
+        "grace_seconds": {
+          "const": 30
+        },
+        "invariants": {
+          "items": false,
+          "maxItems": 7,
+          "minItems": 7,
+          "prefixItems": [
+            {
+              "const": "no supervised process remains"
+            },
+            {
+              "const": "no descendant process remains"
+            },
+            {
+              "const": "every declared TCP and UDP port is unbound"
+            },
+            {
+              "const": "data and rendered config trees retained"
+            },
+            {
+              "const": "private key files removed"
+            },
+            {
+              "const": "logs and ordered SHA-256 evidence inventory retained"
+            },
+            {
+              "const": "cleanup failure makes C030-HARNESS-004 fail"
+            }
+          ],
+          "type": "array"
+        },
+        "signal_order": {
+          "items": false,
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "const": "SIGTERM"
+            },
+            {
+              "const": "SIGKILL"
+            }
+          ],
+          "type": "array"
+        }
+      },
+      "required": [
+        "always_run",
+        "signal_order",
+        "grace_seconds",
+        "invariants"
+      ],
+      "type": "object"
+    },
+    "frozen_spec": {
+      "additionalProperties": false,
+      "properties": {
+        "commit": {
+          "const": "76d6d03"
+        },
+        "path": {
+          "const": "docs/oracles/c030-qualification-spec.v1.json"
+        },
+        "sha256": {
+          "const": "a7fb1ebbb4c5afc0dab41ade6c136fe83f90c92be856ea23d905a33e0ffaabd6"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "commit"
+      ],
+      "type": "object"
+    },
+    "genesis": {
+      "additionalProperties": false,
+      "properties": {
+        "block_interval_ms": {
+          "const": 3000
+        },
+        "canonicalization": {
+          "const": "RFC 8785 JSON"
+        },
+        "id": {
+          "const": "c030-release-qualification-v1"
+        },
+        "network_id": {
+          "const": 728126428
+        },
+        "parent_hash_hex": {
+          "const": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "rendered_path": {
+          "const": "artifacts/c030/C030.01/harness/material/genesis.json"
+        },
+        "rendered_sha256_observation": {
+          "const": "genesis.sha256"
+        },
+        "timestamp_ms": {
+          "const": 1600000000000
+        },
+        "witnesses": {
+          "items": false,
+          "maxItems": 4,
+          "minItems": 4,
+          "prefixItems": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "address_derivation": {
+                  "const": "TRON address from secp256k1 public key derived by allocation.keys.derivation"
+                },
+                "identity": {
+                  "const": "W01"
+                },
+                "initial_vote_count": {
+                  "const": 1
+                }
+              },
+              "required": [
+                "identity",
+                "address_derivation",
+                "initial_vote_count"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "address_derivation": {
+                  "const": "TRON address from secp256k1 public key derived by allocation.keys.derivation"
+                },
+                "identity": {
+                  "const": "W02"
+                },
+                "initial_vote_count": {
+                  "const": 1
+                }
+              },
+              "required": [
+                "identity",
+                "address_derivation",
+                "initial_vote_count"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "address_derivation": {
+                  "const": "TRON address from secp256k1 public key derived by allocation.keys.derivation"
+                },
+                "identity": {
+                  "const": "W03"
+                },
+                "initial_vote_count": {
+                  "const": 1
+                }
+              },
+              "required": [
+                "identity",
+                "address_derivation",
+                "initial_vote_count"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "address_derivation": {
+                  "const": "TRON address from secp256k1 public key derived by allocation.keys.derivation"
+                },
+                "identity": {
+                  "const": "W04"
+                },
+                "initial_vote_count": {
+                  "const": 1
+                }
+              },
+              "required": [
+                "identity",
+                "address_derivation",
+                "initial_vote_count"
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "network_id",
+        "block_interval_ms",
+        "timestamp_ms",
+        "parent_hash_hex",
+        "witnesses",
+        "rendered_path",
+        "canonicalization",
+        "rendered_sha256_observation"
+      ],
+      "type": "object"
+    },
+    "handshake": {
+      "additionalProperties": false,
+      "properties": {
+        "checks": {
+          "items": false,
+          "maxItems": 4,
+          "minItems": 4,
+          "prefixItems": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "expect": {
+                  "const": "every required endpoint connected"
+                },
+                "id": {
+                  "const": "peer-links"
+                },
+                "kind": {
+                  "const": "peer-set"
+                },
+                "target": {
+                  "const": "all-p2p-links"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "target",
+                "expect"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "expect": {
+                  "const": "at least one java-to-rust and one rust-to-java established session"
+                },
+                "id": {
+                  "const": "cross-implementation"
+                },
+                "kind": {
+                  "const": "peer-direction"
+                },
+                "target": {
+                  "const": "witnesses"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "target",
+                "expect"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "expect": {
+                  "const": "network_id=728126428 and genesis_id=c030-release-qualification-v1"
+                },
+                "id": {
+                  "const": "chain-identity"
+                },
+                "kind": {
+                  "const": "chain-identity"
+                },
+                "target": {
+                  "const": "all-nodes"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "target",
+                "expect"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "expect": {
+                  "const": "serves head obtained from rust-full:50085"
+                },
+                "id": {
+                  "const": "solidity-trust"
+                },
+                "kind": {
+                  "const": "trust-rpc"
+                },
+                "target": {
+                  "const": "rust-solidity"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "target",
+                "expect"
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "array"
+        }
+      },
+      "required": [
+        "checks"
+      ],
+      "type": "object"
+    },
+    "keys": {
+      "items": false,
+      "maxItems": 4,
+      "minItems": 4,
+      "prefixItems": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "algorithm": {
+              "const": "secp256k1"
+            },
+            "derivation_index": {
+              "const": 0
+            },
+            "id": {
+              "const": "W01"
+            },
+            "mode": {
+              "const": "0600"
+            },
+            "private_key_path": {
+              "const": "artifacts/c030/C030.01/harness/keys/W01.key"
+            },
+            "private_material_in_result": {
+              "const": false
+            },
+            "public_key_path": {
+              "const": "artifacts/c030/C030.01/harness/keys/W01.pub"
+            }
+          },
+          "required": [
+            "id",
+            "algorithm",
+            "private_key_path",
+            "public_key_path",
+            "mode",
+            "derivation_index",
+            "private_material_in_result"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "algorithm": {
+              "const": "secp256k1"
+            },
+            "derivation_index": {
+              "const": 1
+            },
+            "id": {
+              "const": "W02"
+            },
+            "mode": {
+              "const": "0600"
+            },
+            "private_key_path": {
+              "const": "artifacts/c030/C030.01/harness/keys/W02.key"
+            },
+            "private_material_in_result": {
+              "const": false
+            },
+            "public_key_path": {
+              "const": "artifacts/c030/C030.01/harness/keys/W02.pub"
+            }
+          },
+          "required": [
+            "id",
+            "algorithm",
+            "private_key_path",
+            "public_key_path",
+            "mode",
+            "derivation_index",
+            "private_material_in_result"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "algorithm": {
+              "const": "secp256k1"
+            },
+            "derivation_index": {
+              "const": 2
+            },
+            "id": {
+              "const": "W03"
+            },
+            "mode": {
+              "const": "0600"
+            },
+            "private_key_path": {
+              "const": "artifacts/c030/C030.01/harness/keys/W03.key"
+            },
+            "private_material_in_result": {
+              "const": false
+            },
+            "public_key_path": {
+              "const": "artifacts/c030/C030.01/harness/keys/W03.pub"
+            }
+          },
+          "required": [
+            "id",
+            "algorithm",
+            "private_key_path",
+            "public_key_path",
+            "mode",
+            "derivation_index",
+            "private_material_in_result"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "algorithm": {
+              "const": "secp256k1"
+            },
+            "derivation_index": {
+              "const": 3
+            },
+            "id": {
+              "const": "W04"
+            },
+            "mode": {
+              "const": "0600"
+            },
+            "private_key_path": {
+              "const": "artifacts/c030/C030.01/harness/keys/W04.key"
+            },
+            "private_material_in_result": {
+              "const": false
+            },
+            "public_key_path": {
+              "const": "artifacts/c030/C030.01/harness/keys/W04.pub"
+            }
+          },
+          "required": [
+            "id",
+            "algorithm",
+            "private_key_path",
+            "public_key_path",
+            "mode",
+            "derivation_index",
+            "private_material_in_result"
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "array"
+    },
+    "launch_contract": {
+      "const": {
+        "external_prerequisites": [
+          {
+            "environment": "C030_RELEASE_SIGNING_KEYS",
+            "material": "two independently provisioned Ed25519 release-signing private keys"
+          },
+          {
+            "environment": "TRON_BUSYBOX",
+            "material": "pinned C028 BusyBox production material"
+          },
+          {
+            "environment": "C030_GRADLE_USER_HOME",
+            "material": "offline Gradle dependency cache"
+          },
+          {
+            "environment": "C030_GRADLE_CACHE_INVENTORY",
+            "material": "operator-frozen exact Gradle cache inventory and canonical SHA-256 digest"
+          },
+          {
+            "environment": "C030_HOST_ATTESTATION",
+            "material": "canonical signed host-attestation envelope bound to host, session, specification, and release"
+          },
+          {
+            "environment": "C030_HOST_ATTESTATION_TRUST_STORE",
+            "material": "external Ed25519 trust store authorizing host-attestation and Gradle-cache inventory roles"
+          },
+          {
+            "environment": "C030_SESSION_ID",
+            "material": "unique qualification session identity bound by the host attestation"
+          },
+          {
+            "environment": "C030_SAPLING_SPEND",
+            "material": "operator-provided Sapling spend parameters"
+          },
+          {
+            "environment": "C030_SAPLING_OUTPUT",
+            "material": "operator-provided Sapling output parameters"
+          },
+          {
+            "environment": "C030_SAPLING_OPERATOR_AUTHORITY",
+            "material": "explicit true authorization to use operator-provisioned Sapling parameters for the upstream Java build"
+          }
+        ],
+        "preflight_command": "python3 tools/qualification/c030_qualification.py harness --spec docs/oracles/c030-qualification-spec.v1.json --preflight",
+        "preflight_policy": {
+          "busybox": {
+            "elf_class": 64,
+            "endianness": "little",
+            "machine": "x86_64",
+            "manifest": "docs/oracles/c028-busybox-material.v1.json",
+            "sha256": "dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14",
+            "static": true,
+            "version": "1.36.1"
+          },
+          "child_environments": {
+            "java": [
+              "HOME",
+              "JAVA_HOME",
+              "LANG",
+              "LC_ALL",
+              "PATH",
+              "TMPDIR",
+              "TZ",
+              "WITNESS_PRIVATE_KEY"
+            ],
+            "policy": "closed allowlist; no inherited variables",
+            "rust": [
+              "CARGO_NET_OFFLINE",
+              "HOME",
+              "LANG",
+              "LC_ALL",
+              "NO_PROXY",
+              "PATH",
+              "RUST_BACKTRACE",
+              "TMPDIR",
+              "TZ",
+              "WITNESS_PRIVATE_KEY",
+              "no_proxy"
+            ]
+          },
+          "gradle_cache": {
+            "canonical_digest": "SHA-256 over lexicographically ordered path,size,sha256 records",
+            "inventory_environment": "C030_GRADLE_CACHE_INVENTORY",
+            "mutation_policy": "inventory and digest must match before and after build"
+          },
+          "host_attestation": {
+            "algorithm": "Ed25519",
+            "payload_type": "application/vnd.tron.c030-host-attestation.v1+json",
+            "trust_store_environment": "C030_HOST_ATTESTATION_TRUST_STORE",
+            "binding": [
+              "host_identity",
+              "session_id",
+              "spec_sha256",
+              "release_id",
+              "release_sequence",
+              "source_revision",
+              "validity_window",
+              "measurements"
+            ]
+          },
+          "sapling": {
+            "operator_authority_environment": "C030_SAPLING_OPERATOR_AUTHORITY",
+            "output": {
+              "blake2b": "a1cb23b93256adce5bce2cb09cefbc96a1d16572675ceb691e9a3626ec15b5b546926ff1c536cfe3a9df07d796b32fdfc3e5d99d65567257bf286cd2858d71a6",
+              "size": 3647804
+            },
+            "spend": {
+              "blake2b": "25fd9a0d1c1be0526c14662947ae95b758fe9f3d7fb7f55e9b4437830dcc6215a7ce3ea465914b157715b7a4d681389ea4aa84438190e185d5e4c93574d3a19a",
+              "size": 48013340
+            }
+          },
+          "signing_keys": {
+            "algorithm": "Ed25519",
+            "minimum_distinct_public_identities": 2
+          }
+        },
+        "repository_owned_provisioning": [
+          "C028 release candidate build",
+          "release and snapshot trust stores derived from external signing public keys",
+          "release and provenance signatures produced by the explicit external signing authority",
+          "authenticated install tree and receipt",
+          "C030 Java and Rust node configurations",
+          "offline Java reference build and Rust release binaries"
+        ],
+        "schema": "c030-harness-launch-contract-v1"
+      }
+    },
+    "manifest_version": {
+      "const": 1
+    },
+    "ordering": {
+      "additionalProperties": false,
+      "properties": {
+        "keys": {
+          "const": "id ascending"
+        },
+        "links": {
+          "const": "id ascending"
+        },
+        "nodes": {
+          "const": "allocation.node_order"
+        },
+        "object_keys": {
+          "const": "lexicographic when canonicalized"
+        },
+        "references": {
+          "const": "path ascending"
+        },
+        "scenarios": {
+          "const": "item ascending then id ascending"
+        }
+      },
+      "required": [
+        "references",
+        "keys",
+        "nodes",
+        "links",
+        "scenarios",
+        "object_keys"
+      ],
+      "type": "object"
+    },
+    "platform_id": {
+      "const": "P-LINUX-X64"
+    },
+    "readiness": {
+      "additionalProperties": false,
+      "properties": {
+        "checks": {
+          "items": false,
+          "maxItems": 4,
+          "minItems": 4,
+          "prefixItems": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "expect": {
+                  "const": "running"
+                },
+                "id": {
+                  "const": "process"
+                },
+                "kind": {
+                  "const": "process-alive"
+                },
+                "target": {
+                  "const": "all-nodes"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "target",
+                "expect"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "expect": {
+                  "const": "200"
+                },
+                "id": {
+                  "const": "metrics"
+                },
+                "kind": {
+                  "const": "http-status"
+                },
+                "path": {
+                  "const": "/metrics"
+                },
+                "target": {
+                  "const": "all-prometheus"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "target",
+                "path",
+                "expect"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "expect": {
+                  "const": "height>=1"
+                },
+                "id": {
+                  "const": "head"
+                },
+                "kind": {
+                  "const": "grpc-head"
+                },
+                "target": {
+                  "const": "all-grpc"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "target",
+                "expect"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "expect": {
+                  "const": "height>=0"
+                },
+                "id": {
+                  "const": "solidity"
+                },
+                "kind": {
+                  "const": "grpc-head"
+                },
+                "target": {
+                  "const": "rust-solidity"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "target",
+                "expect"
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "array"
+        },
+        "consecutive_successes": {
+          "const": 3
+        },
+        "deadline_seconds": {
+          "const": 600
+        },
+        "poll_interval_ms": {
+          "const": 250
+        }
+      },
+      "required": [
+        "poll_interval_ms",
+        "consecutive_successes",
+        "deadline_seconds",
+        "checks"
+      ],
+      "type": "object"
+    },
+    "references": {
+      "items": false,
+      "maxItems": 6,
+      "minItems": 6,
+      "prefixItems": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "const": "docs/oracles/c028-release-contract.v1.json"
+            },
+            "sha256": {
+              "const": "13b43c3dd802ecbf551fa2bcac0fcf28dad6fdc89360c1e72d6b87dfc01093c3"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "const": "docs/oracles/c030-qualification-spec.v1.json"
+            },
+            "sha256": {
+              "const": "a7fb1ebbb4c5afc0dab41ade6c136fe83f90c92be856ea23d905a33e0ffaabd6"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "const": "rust-tron/packaging/config/fullnode.conf"
+            },
+            "sha256": {
+              "const": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "const": "rust-tron/packaging/config/fullnode.deployment.json"
+            },
+            "sha256": {
+              "const": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "const": "rust-tron/packaging/config/solidity.conf"
+            },
+            "sha256": {
+              "const": "1e68bfa5a4667143daee21d328fd60e1f4b28fe3c487e569b91686342c6e0d83"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "const": "rust-tron/packaging/config/solidity.deployment.json"
+            },
+            "sha256": {
+              "const": "b85c97e6d47bddf3a001e5f607491f231af7a6b498b4eddef95944e1ed26be17"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "array"
+    },
+    "scenarios": {
+      "items": false,
+      "maxItems": 48,
+      "minItems": 48,
+      "prefixItems": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "const": "materialize"
+            },
+            "execution_state": {
+              "const": "executable"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 4,
+              "minItems": 4,
+              "prefixItems": [
+                {
+                  "const": "all_source_digests_match"
+                },
+                {
+                  "const": "all_rendered_configs_recorded"
+                },
+                {
+                  "const": "genesis_recorded"
+                },
+                {
+                  "const": "four_witness_keys_created"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-HARNESS-001"
+            },
+            "item": {
+              "const": "C030.01"
+            },
+            "name": {
+              "const": "materialize-topology"
+            },
+            "owner": {
+              "const": "runner harness"
+            },
+            "timeout_seconds": {
+              "const": 120
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "action",
+            "timeout_seconds",
+            "expected_observations"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "const": "start"
+            },
+            "execution_state": {
+              "const": "executable"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 4,
+              "minItems": 4,
+              "prefixItems": [
+                {
+                  "const": "eight_processes_running"
+                },
+                {
+                  "const": "all_declared_tcp_ports_bound"
+                },
+                {
+                  "const": "all_prometheus_endpoints_healthy"
+                },
+                {
+                  "const": "head_height_at_least_1"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-HARNESS-002"
+            },
+            "item": {
+              "const": "C030.01"
+            },
+            "name": {
+              "const": "start-and-readiness"
+            },
+            "owner": {
+              "const": "runner harness"
+            },
+            "timeout_seconds": {
+              "const": 600
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "action",
+            "timeout_seconds",
+            "expected_observations"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "const": "handshake"
+            },
+            "execution_state": {
+              "const": "executable"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 5,
+              "minItems": 5,
+              "prefixItems": [
+                {
+                  "const": "all_required_links_connected"
+                },
+                {
+                  "const": "java_to_rust_peer_observed"
+                },
+                {
+                  "const": "rust_to_java_peer_observed"
+                },
+                {
+                  "const": "solidity_trust_rpc_observed"
+                },
+                {
+                  "const": "network_and_genesis_ids_equal"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-HARNESS-003"
+            },
+            "item": {
+              "const": "C030.01"
+            },
+            "name": {
+              "const": "basic-handshake"
+            },
+            "owner": {
+              "const": "runner harness"
+            },
+            "timeout_seconds": {
+              "const": 120
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "action",
+            "timeout_seconds",
+            "expected_observations"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "const": "cleanup"
+            },
+            "execution_state": {
+              "const": "executable"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 5,
+              "minItems": 5,
+              "prefixItems": [
+                {
+                  "const": "all_processes_exited"
+                },
+                {
+                  "const": "all_declared_ports_unbound"
+                },
+                {
+                  "const": "no_child_processes"
+                },
+                {
+                  "const": "secret_files_removed"
+                },
+                {
+                  "const": "evidence_inventory_closed"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-HARNESS-004"
+            },
+            "item": {
+              "const": "C030.01"
+            },
+            "name": {
+              "const": "cleanup"
+            },
+            "owner": {
+              "const": "runner harness"
+            },
+            "timeout_seconds": {
+              "const": 120
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "action",
+            "timeout_seconds",
+            "expected_observations"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "scheduled_action_completed"
+                },
+                {
+                  "const": "planned_window_reconciled"
+                },
+                {
+                  "const": "post_action_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-LIFECYCLE-001"
+            },
+            "item": {
+              "const": "C030.02"
+            },
+            "name": {
+              "const": "genesis-sync"
+            },
+            "owner": {
+              "const": "scenarios lifecycle"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "scheduled_action_completed"
+                },
+                {
+                  "const": "planned_window_reconciled"
+                },
+                {
+                  "const": "post_action_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-LIFECYCLE-002"
+            },
+            "item": {
+              "const": "C030.02"
+            },
+            "name": {
+              "const": "maintenance"
+            },
+            "owner": {
+              "const": "scenarios lifecycle"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "scheduled_action_completed"
+                },
+                {
+                  "const": "planned_window_reconciled"
+                },
+                {
+                  "const": "post_action_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-LIFECYCLE-003"
+            },
+            "item": {
+              "const": "C030.02"
+            },
+            "name": {
+              "const": "restart"
+            },
+            "owner": {
+              "const": "scenarios lifecycle"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "scheduled_action_completed"
+                },
+                {
+                  "const": "planned_window_reconciled"
+                },
+                {
+                  "const": "post_action_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-LIFECYCLE-004"
+            },
+            "item": {
+              "const": "C030.02"
+            },
+            "name": {
+              "const": "rolling-upgrade"
+            },
+            "owner": {
+              "const": "scenarios lifecycle"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "scheduled_action_completed"
+                },
+                {
+                  "const": "planned_window_reconciled"
+                },
+                {
+                  "const": "post_action_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-LIFECYCLE-005"
+            },
+            "item": {
+              "const": "C030.02"
+            },
+            "name": {
+              "const": "snapshot-bootstrap"
+            },
+            "owner": {
+              "const": "scenarios lifecycle"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "scheduled_action_completed"
+                },
+                {
+                  "const": "planned_window_reconciled"
+                },
+                {
+                  "const": "post_action_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-LIFECYCLE-006"
+            },
+            "item": {
+              "const": "C030.02"
+            },
+            "name": {
+              "const": "witness-rotation"
+            },
+            "owner": {
+              "const": "scenarios lifecycle"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "scheduled_action_completed"
+                },
+                {
+                  "const": "planned_window_reconciled"
+                },
+                {
+                  "const": "post_action_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-LIFECYCLE-007"
+            },
+            "item": {
+              "const": "C030.02"
+            },
+            "name": {
+              "const": "reorg"
+            },
+            "owner": {
+              "const": "scenarios lifecycle"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "fault_injected"
+                },
+                {
+                  "const": "bounded_degradation"
+                },
+                {
+                  "const": "post_fault_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-FAULT-001"
+            },
+            "item": {
+              "const": "C030.03"
+            },
+            "name": {
+              "const": "api-size-rate-exhaustion"
+            },
+            "owner": {
+              "const": "scenarios network faults"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "fault_injected"
+                },
+                {
+                  "const": "bounded_degradation"
+                },
+                {
+                  "const": "post_fault_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-FAULT-002"
+            },
+            "item": {
+              "const": "C030.03"
+            },
+            "name": {
+              "const": "disconnect-ban-reconnect"
+            },
+            "owner": {
+              "const": "scenarios network faults"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "fault_injected"
+                },
+                {
+                  "const": "bounded_degradation"
+                },
+                {
+                  "const": "post_fault_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-FAULT-003"
+            },
+            "item": {
+              "const": "C030.03"
+            },
+            "name": {
+              "const": "discovery-dns-failure"
+            },
+            "owner": {
+              "const": "scenarios network faults"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "fault_injected"
+                },
+                {
+                  "const": "bounded_degradation"
+                },
+                {
+                  "const": "post_fault_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-FAULT-004"
+            },
+            "item": {
+              "const": "C030.03"
+            },
+            "name": {
+              "const": "disk-pressure-restart"
+            },
+            "owner": {
+              "const": "scenarios network faults"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "fault_injected"
+                },
+                {
+                  "const": "bounded_degradation"
+                },
+                {
+                  "const": "post_fault_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-FAULT-005"
+            },
+            "item": {
+              "const": "C030.03"
+            },
+            "name": {
+              "const": "fork-reorg"
+            },
+            "owner": {
+              "const": "scenarios network faults"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "fault_injected"
+                },
+                {
+                  "const": "bounded_degradation"
+                },
+                {
+                  "const": "post_fault_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-FAULT-006"
+            },
+            "item": {
+              "const": "C030.03"
+            },
+            "name": {
+              "const": "malformed-peer"
+            },
+            "owner": {
+              "const": "scenarios network faults"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "fault_injected"
+                },
+                {
+                  "const": "bounded_degradation"
+                },
+                {
+                  "const": "post_fault_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-FAULT-007"
+            },
+            "item": {
+              "const": "C030.03"
+            },
+            "name": {
+              "const": "pending-pool-pressure"
+            },
+            "owner": {
+              "const": "scenarios network faults"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "fault_injected"
+                },
+                {
+                  "const": "bounded_degradation"
+                },
+                {
+                  "const": "post_fault_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-FAULT-008"
+            },
+            "item": {
+              "const": "C030.03"
+            },
+            "name": {
+              "const": "slow-peer"
+            },
+            "owner": {
+              "const": "scenarios network faults"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "fault_injected"
+                },
+                {
+                  "const": "bounded_degradation"
+                },
+                {
+                  "const": "post_fault_converged"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-FAULT-009"
+            },
+            "item": {
+              "const": "C030.03"
+            },
+            "name": {
+              "const": "witness-failover"
+            },
+            "owner": {
+              "const": "scenarios network faults"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 4,
+              "minItems": 4,
+              "prefixItems": [
+                {
+                  "const": "request_count"
+                },
+                {
+                  "const": "success_ratio"
+                },
+                {
+                  "const": "latency_histogram"
+                },
+                {
+                  "const": "semantic_mismatches"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-LOAD-001"
+            },
+            "item": {
+              "const": "C030.04"
+            },
+            "name": {
+              "const": "bounded-api-load"
+            },
+            "owner": {
+              "const": "scenarios API load"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "raw_samples"
+                },
+                {
+                  "const": "deadline_evaluation"
+                },
+                {
+                  "const": "zero_tolerance_result"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-CONVERGENCE-001"
+            },
+            "item": {
+              "const": "C030.05"
+            },
+            "name": {
+              "const": "head"
+            },
+            "owner": {
+              "const": "endurance/convergence"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "raw_samples"
+                },
+                {
+                  "const": "deadline_evaluation"
+                },
+                {
+                  "const": "zero_tolerance_result"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-CONVERGENCE-002"
+            },
+            "item": {
+              "const": "C030.05"
+            },
+            "name": {
+              "const": "logical-roots"
+            },
+            "owner": {
+              "const": "endurance/convergence"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "raw_samples"
+                },
+                {
+                  "const": "deadline_evaluation"
+                },
+                {
+                  "const": "zero_tolerance_result"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-CONVERGENCE-003"
+            },
+            "item": {
+              "const": "C030.05"
+            },
+            "name": {
+              "const": "pbft"
+            },
+            "owner": {
+              "const": "endurance/convergence"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "raw_samples"
+                },
+                {
+                  "const": "deadline_evaluation"
+                },
+                {
+                  "const": "zero_tolerance_result"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-CONVERGENCE-004"
+            },
+            "item": {
+              "const": "C030.05"
+            },
+            "name": {
+              "const": "solidity"
+            },
+            "owner": {
+              "const": "endurance/convergence"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "raw_samples"
+                },
+                {
+                  "const": "deadline_evaluation"
+                },
+                {
+                  "const": "zero_tolerance_result"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-CONVERGENCE-005"
+            },
+            "item": {
+              "const": "C030.05"
+            },
+            "name": {
+              "const": "api"
+            },
+            "owner": {
+              "const": "endurance/convergence"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "raw_samples"
+                },
+                {
+                  "const": "deadline_evaluation"
+                },
+                {
+                  "const": "zero_tolerance_result"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-CONVERGENCE-006"
+            },
+            "item": {
+              "const": "C030.05"
+            },
+            "name": {
+              "const": "events"
+            },
+            "owner": {
+              "const": "endurance/convergence"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "raw_samples"
+                },
+                {
+                  "const": "deadline_evaluation"
+                },
+                {
+                  "const": "zero_tolerance_result"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-CONVERGENCE-007"
+            },
+            "item": {
+              "const": "C030.05"
+            },
+            "name": {
+              "const": "availability"
+            },
+            "owner": {
+              "const": "endurance/convergence"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-001"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "scoped-signer-authorization"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-002"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "algorithm-version-transition"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-003"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "missing-signature-rejection"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-004"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "invalid-signature-rejection"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-005"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "unknown-key-rejection"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-006"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "mirror-tamper-rejection"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-007"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "detached-sbom-rejection"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-008"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "mismatched-sbom-rejection"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-009"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "detached-provenance-rejection"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-010"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "mismatched-provenance-rejection"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-011"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "mixed-release-rejection-before-execution"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-012"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "mixed-release-rejection-before-mutation"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-013"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "threshold-signature-validation"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-014"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "key-rotation"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-015"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "key-revocation"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-016"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "offline-verification"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-017"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "artifact-substitution-rejection"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "case_executed"
+                },
+                {
+                  "const": "authenticated_result"
+                },
+                {
+                  "const": "finding_disposition"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-SECURITY-018"
+            },
+            "item": {
+              "const": "C030.06"
+            },
+            "name": {
+              "const": "authenticated-signed-manifest"
+            },
+            "owner": {
+              "const": "security"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "const": "scope_inventory"
+                },
+                {
+                  "const": "digest_reconciliation"
+                },
+                {
+                  "const": "independent_approvals"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-LICENSE-001"
+            },
+            "item": {
+              "const": "C030.07"
+            },
+            "name": {
+              "const": "license-provenance-reconciliation"
+            },
+            "owner": {
+              "const": "license"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "execution_state": {
+              "const": "contract-only"
+            },
+            "expected_observations": {
+              "items": false,
+              "maxItems": 4,
+              "minItems": 4,
+              "prefixItems": [
+                {
+                  "const": "throughput"
+                },
+                {
+                  "const": "latency"
+                },
+                {
+                  "const": "resource_usage"
+                },
+                {
+                  "const": "regression_budget"
+                }
+              ],
+              "type": "array"
+            },
+            "id": {
+              "const": "C030-PERFORMANCE-001"
+            },
+            "item": {
+              "const": "C030.08"
+            },
+            "name": {
+              "const": "release-baseline-comparison"
+            },
+            "owner": {
+              "const": "performance"
+            },
+            "result_claimed": {
+              "const": false
+            }
+          },
+          "required": [
+            "id",
+            "item",
+            "name",
+            "owner",
+            "execution_state",
+            "expected_observations",
+            "result_claimed"
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "array"
+    },
+    "schema": {
+      "const": "c030-scenario-manifest-v1"
+    },
+    "topology": {
+      "additionalProperties": false,
+      "properties": {
+        "links": {
+          "items": false,
+          "maxItems": 22,
+          "minItems": 22,
+          "prefixItems": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18087"
+                },
+                "from": {
+                  "const": "java-fast-forward"
+                },
+                "id": {
+                  "const": "p2p:java-fast-forward:java-observer"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "java-observer"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18081"
+                },
+                "from": {
+                  "const": "java-fast-forward"
+                },
+                "id": {
+                  "const": "p2p:java-fast-forward:java-witness-a"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "java-witness-a"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18082"
+                },
+                "from": {
+                  "const": "java-fast-forward"
+                },
+                "id": {
+                  "const": "p2p:java-fast-forward:java-witness-b"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "java-witness-b"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18085"
+                },
+                "from": {
+                  "const": "java-fast-forward"
+                },
+                "id": {
+                  "const": "p2p:java-fast-forward:rust-full"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-full"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18083"
+                },
+                "from": {
+                  "const": "java-fast-forward"
+                },
+                "id": {
+                  "const": "p2p:java-fast-forward:rust-witness-a"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-witness-a"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18084"
+                },
+                "from": {
+                  "const": "java-fast-forward"
+                },
+                "id": {
+                  "const": "p2p:java-fast-forward:rust-witness-b"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-witness-b"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18081"
+                },
+                "from": {
+                  "const": "java-observer"
+                },
+                "id": {
+                  "const": "p2p:java-observer:java-witness-a"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "java-witness-a"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18082"
+                },
+                "from": {
+                  "const": "java-observer"
+                },
+                "id": {
+                  "const": "p2p:java-observer:java-witness-b"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "java-witness-b"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18085"
+                },
+                "from": {
+                  "const": "java-observer"
+                },
+                "id": {
+                  "const": "p2p:java-observer:rust-full"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-full"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18083"
+                },
+                "from": {
+                  "const": "java-observer"
+                },
+                "id": {
+                  "const": "p2p:java-observer:rust-witness-a"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-witness-a"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18084"
+                },
+                "from": {
+                  "const": "java-observer"
+                },
+                "id": {
+                  "const": "p2p:java-observer:rust-witness-b"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-witness-b"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18082"
+                },
+                "from": {
+                  "const": "java-witness-a"
+                },
+                "id": {
+                  "const": "p2p:java-witness-a:java-witness-b"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "java-witness-b"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18085"
+                },
+                "from": {
+                  "const": "java-witness-a"
+                },
+                "id": {
+                  "const": "p2p:java-witness-a:rust-full"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-full"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18083"
+                },
+                "from": {
+                  "const": "java-witness-a"
+                },
+                "id": {
+                  "const": "p2p:java-witness-a:rust-witness-a"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-witness-a"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18084"
+                },
+                "from": {
+                  "const": "java-witness-a"
+                },
+                "id": {
+                  "const": "p2p:java-witness-a:rust-witness-b"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-witness-b"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18085"
+                },
+                "from": {
+                  "const": "java-witness-b"
+                },
+                "id": {
+                  "const": "p2p:java-witness-b:rust-full"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-full"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18083"
+                },
+                "from": {
+                  "const": "java-witness-b"
+                },
+                "id": {
+                  "const": "p2p:java-witness-b:rust-witness-a"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-witness-a"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18084"
+                },
+                "from": {
+                  "const": "java-witness-b"
+                },
+                "id": {
+                  "const": "p2p:java-witness-b:rust-witness-b"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-witness-b"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18083"
+                },
+                "from": {
+                  "const": "rust-full"
+                },
+                "id": {
+                  "const": "p2p:rust-full:rust-witness-a"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-witness-a"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18084"
+                },
+                "from": {
+                  "const": "rust-full"
+                },
+                "id": {
+                  "const": "p2p:rust-full:rust-witness-b"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-witness-b"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:18084"
+                },
+                "from": {
+                  "const": "rust-witness-a"
+                },
+                "id": {
+                  "const": "p2p:rust-witness-a:rust-witness-b"
+                },
+                "kind": {
+                  "const": "p2p-bidirectional"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-witness-b"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "endpoint": {
+                  "const": "127.0.0.1:50085"
+                },
+                "from": {
+                  "const": "rust-solidity"
+                },
+                "id": {
+                  "const": "trust:rust-solidity:rust-full"
+                },
+                "kind": {
+                  "const": "solidity-trust-grpc"
+                },
+                "required": {
+                  "const": true
+                },
+                "to": {
+                  "const": "rust-full"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "from",
+                "to",
+                "endpoint",
+                "required"
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "array"
+        },
+        "nodes": {
+          "items": false,
+          "maxItems": 8,
+          "minItems": 8,
+          "prefixItems": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "config": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "deployment": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.deployment.json"
+                        },
+                        "sha256": {
+                          "const": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    },
+                    "rendered_path": {
+                      "const": "artifacts/c030/C030.01/harness/config/java-witness-a.conf"
+                    },
+                    "rendered_sha256_observation": {
+                      "const": "config.java-witness-a.sha256"
+                    },
+                    "source": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.conf"
+                        },
+                        "sha256": {
+                          "const": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "source",
+                    "deployment",
+                    "rendered_path",
+                    "rendered_sha256_observation"
+                  ],
+                  "type": "object"
+                },
+                "data_path": {
+                  "const": "artifacts/c030/C030.01/harness/data/java-witness-a"
+                },
+                "id": {
+                  "const": "java-witness-a"
+                },
+                "implementation": {
+                  "const": "java"
+                },
+                "key_id": {
+                  "const": "W01"
+                },
+                "launch": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "argv": {
+                      "items": false,
+                      "maxItems": 5,
+                      "minItems": 5,
+                      "prefixItems": [
+                        {
+                          "const": "/usr/lib/jvm/java-8-openjdk-amd64/bin/java"
+                        },
+                        {
+                          "const": "-jar"
+                        },
+                        {
+                          "const": "java-tron/build/libs/FullNode.jar"
+                        },
+                        {
+                          "const": "-c"
+                        },
+                        {
+                          "const": "artifacts/c030/C030.01/harness/config/java-witness-a.conf"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "cwd": {
+                      "const": "."
+                    },
+                    "environment": {
+                      "items": false,
+                      "maxItems": 3,
+                      "minItems": 3,
+                      "prefixItems": [
+                        {
+                          "const": "LANG=C.UTF-8"
+                        },
+                        {
+                          "const": "LC_ALL=C.UTF-8"
+                        },
+                        {
+                          "const": "TZ=UTC"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "stderr": {
+                      "const": "artifacts/c030/C030.01/harness/log/java-witness-a.log.stderr"
+                    },
+                    "stdin": {
+                      "const": "null"
+                    },
+                    "stdout": {
+                      "const": "artifacts/c030/C030.01/harness/log/java-witness-a.log"
+                    },
+                    "witness_key_environment_file": {
+                      "const": "artifacts/c030/C030.01/harness/keys/W01.env"
+                    }
+                  },
+                  "required": [
+                    "argv",
+                    "cwd",
+                    "environment",
+                    "stdin",
+                    "stdout",
+                    "stderr",
+                    "witness_key_environment_file"
+                  ],
+                  "type": "object"
+                },
+                "log_path": {
+                  "const": "artifacts/c030/C030.01/harness/log/java-witness-a.log"
+                },
+                "ports": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "backup_udp": {
+                      "const": 10081
+                    },
+                    "grpc": {
+                      "const": 50081
+                    },
+                    "http": {
+                      "const": 8081
+                    },
+                    "json_rpc": {
+                      "const": 8581
+                    },
+                    "p2p_tcp_udp": {
+                      "const": 18081
+                    },
+                    "prometheus": {
+                      "const": 9581
+                    }
+                  },
+                  "required": [
+                    "backup_udp",
+                    "grpc",
+                    "http",
+                    "json_rpc",
+                    "p2p_tcp_udp",
+                    "prometheus"
+                  ],
+                  "type": "object"
+                },
+                "role": {
+                  "const": "witness"
+                },
+                "trust_node": {
+                  "type": "null"
+                },
+                "witness_identity": {
+                  "const": "W01"
+                }
+              },
+              "required": [
+                "id",
+                "implementation",
+                "role",
+                "witness_identity",
+                "trust_node",
+                "ports",
+                "config",
+                "data_path",
+                "log_path",
+                "key_id",
+                "launch"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "config": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "deployment": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.deployment.json"
+                        },
+                        "sha256": {
+                          "const": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    },
+                    "rendered_path": {
+                      "const": "artifacts/c030/C030.01/harness/config/java-witness-b.conf"
+                    },
+                    "rendered_sha256_observation": {
+                      "const": "config.java-witness-b.sha256"
+                    },
+                    "source": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.conf"
+                        },
+                        "sha256": {
+                          "const": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "source",
+                    "deployment",
+                    "rendered_path",
+                    "rendered_sha256_observation"
+                  ],
+                  "type": "object"
+                },
+                "data_path": {
+                  "const": "artifacts/c030/C030.01/harness/data/java-witness-b"
+                },
+                "id": {
+                  "const": "java-witness-b"
+                },
+                "implementation": {
+                  "const": "java"
+                },
+                "key_id": {
+                  "const": "W02"
+                },
+                "launch": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "argv": {
+                      "items": false,
+                      "maxItems": 5,
+                      "minItems": 5,
+                      "prefixItems": [
+                        {
+                          "const": "/usr/lib/jvm/java-8-openjdk-amd64/bin/java"
+                        },
+                        {
+                          "const": "-jar"
+                        },
+                        {
+                          "const": "java-tron/build/libs/FullNode.jar"
+                        },
+                        {
+                          "const": "-c"
+                        },
+                        {
+                          "const": "artifacts/c030/C030.01/harness/config/java-witness-b.conf"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "cwd": {
+                      "const": "."
+                    },
+                    "environment": {
+                      "items": false,
+                      "maxItems": 3,
+                      "minItems": 3,
+                      "prefixItems": [
+                        {
+                          "const": "LANG=C.UTF-8"
+                        },
+                        {
+                          "const": "LC_ALL=C.UTF-8"
+                        },
+                        {
+                          "const": "TZ=UTC"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "stderr": {
+                      "const": "artifacts/c030/C030.01/harness/log/java-witness-b.log.stderr"
+                    },
+                    "stdin": {
+                      "const": "null"
+                    },
+                    "stdout": {
+                      "const": "artifacts/c030/C030.01/harness/log/java-witness-b.log"
+                    },
+                    "witness_key_environment_file": {
+                      "const": "artifacts/c030/C030.01/harness/keys/W02.env"
+                    }
+                  },
+                  "required": [
+                    "argv",
+                    "cwd",
+                    "environment",
+                    "stdin",
+                    "stdout",
+                    "stderr",
+                    "witness_key_environment_file"
+                  ],
+                  "type": "object"
+                },
+                "log_path": {
+                  "const": "artifacts/c030/C030.01/harness/log/java-witness-b.log"
+                },
+                "ports": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "backup_udp": {
+                      "const": 10082
+                    },
+                    "grpc": {
+                      "const": 50082
+                    },
+                    "http": {
+                      "const": 8082
+                    },
+                    "json_rpc": {
+                      "const": 8582
+                    },
+                    "p2p_tcp_udp": {
+                      "const": 18082
+                    },
+                    "prometheus": {
+                      "const": 9582
+                    }
+                  },
+                  "required": [
+                    "backup_udp",
+                    "grpc",
+                    "http",
+                    "json_rpc",
+                    "p2p_tcp_udp",
+                    "prometheus"
+                  ],
+                  "type": "object"
+                },
+                "role": {
+                  "const": "witness"
+                },
+                "trust_node": {
+                  "type": "null"
+                },
+                "witness_identity": {
+                  "const": "W02"
+                }
+              },
+              "required": [
+                "id",
+                "implementation",
+                "role",
+                "witness_identity",
+                "trust_node",
+                "ports",
+                "config",
+                "data_path",
+                "log_path",
+                "key_id",
+                "launch"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "config": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "deployment": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.deployment.json"
+                        },
+                        "sha256": {
+                          "const": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    },
+                    "rendered_path": {
+                      "const": "artifacts/c030/C030.01/harness/config/rust-witness-a.conf"
+                    },
+                    "rendered_sha256_observation": {
+                      "const": "config.rust-witness-a.sha256"
+                    },
+                    "source": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.conf"
+                        },
+                        "sha256": {
+                          "const": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "source",
+                    "deployment",
+                    "rendered_path",
+                    "rendered_sha256_observation"
+                  ],
+                  "type": "object"
+                },
+                "data_path": {
+                  "const": "artifacts/c030/C030.01/harness/data/rust-witness-a"
+                },
+                "id": {
+                  "const": "rust-witness-a"
+                },
+                "implementation": {
+                  "const": "rust"
+                },
+                "key_id": {
+                  "const": "W03"
+                },
+                "launch": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "argv": {
+                      "items": false,
+                      "maxItems": 3,
+                      "minItems": 3,
+                      "prefixItems": [
+                        {
+                          "const": "rust-tron/target/release/tron-fullnode"
+                        },
+                        {
+                          "const": "--config"
+                        },
+                        {
+                          "const": "artifacts/c030/C030.01/harness/config/rust-witness-a.conf"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "cwd": {
+                      "const": "."
+                    },
+                    "environment": {
+                      "items": false,
+                      "maxItems": 3,
+                      "minItems": 3,
+                      "prefixItems": [
+                        {
+                          "const": "LANG=C.UTF-8"
+                        },
+                        {
+                          "const": "LC_ALL=C.UTF-8"
+                        },
+                        {
+                          "const": "TZ=UTC"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "stderr": {
+                      "const": "artifacts/c030/C030.01/harness/log/rust-witness-a.log.stderr"
+                    },
+                    "stdin": {
+                      "const": "null"
+                    },
+                    "stdout": {
+                      "const": "artifacts/c030/C030.01/harness/log/rust-witness-a.log"
+                    },
+                    "witness_key_environment_file": {
+                      "const": "artifacts/c030/C030.01/harness/keys/W03.env"
+                    }
+                  },
+                  "required": [
+                    "argv",
+                    "cwd",
+                    "environment",
+                    "stdin",
+                    "stdout",
+                    "stderr",
+                    "witness_key_environment_file"
+                  ],
+                  "type": "object"
+                },
+                "log_path": {
+                  "const": "artifacts/c030/C030.01/harness/log/rust-witness-a.log"
+                },
+                "ports": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "backup_udp": {
+                      "const": 10083
+                    },
+                    "grpc": {
+                      "const": 50083
+                    },
+                    "http": {
+                      "const": 8083
+                    },
+                    "json_rpc": {
+                      "const": 8583
+                    },
+                    "p2p_tcp_udp": {
+                      "const": 18083
+                    },
+                    "prometheus": {
+                      "const": 9583
+                    }
+                  },
+                  "required": [
+                    "backup_udp",
+                    "grpc",
+                    "http",
+                    "json_rpc",
+                    "p2p_tcp_udp",
+                    "prometheus"
+                  ],
+                  "type": "object"
+                },
+                "role": {
+                  "const": "witness"
+                },
+                "trust_node": {
+                  "type": "null"
+                },
+                "witness_identity": {
+                  "const": "W03"
+                }
+              },
+              "required": [
+                "id",
+                "implementation",
+                "role",
+                "witness_identity",
+                "trust_node",
+                "ports",
+                "config",
+                "data_path",
+                "log_path",
+                "key_id",
+                "launch"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "config": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "deployment": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.deployment.json"
+                        },
+                        "sha256": {
+                          "const": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    },
+                    "rendered_path": {
+                      "const": "artifacts/c030/C030.01/harness/config/rust-witness-b.conf"
+                    },
+                    "rendered_sha256_observation": {
+                      "const": "config.rust-witness-b.sha256"
+                    },
+                    "source": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.conf"
+                        },
+                        "sha256": {
+                          "const": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "source",
+                    "deployment",
+                    "rendered_path",
+                    "rendered_sha256_observation"
+                  ],
+                  "type": "object"
+                },
+                "data_path": {
+                  "const": "artifacts/c030/C030.01/harness/data/rust-witness-b"
+                },
+                "id": {
+                  "const": "rust-witness-b"
+                },
+                "implementation": {
+                  "const": "rust"
+                },
+                "key_id": {
+                  "const": "W04"
+                },
+                "launch": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "argv": {
+                      "items": false,
+                      "maxItems": 3,
+                      "minItems": 3,
+                      "prefixItems": [
+                        {
+                          "const": "rust-tron/target/release/tron-fullnode"
+                        },
+                        {
+                          "const": "--config"
+                        },
+                        {
+                          "const": "artifacts/c030/C030.01/harness/config/rust-witness-b.conf"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "cwd": {
+                      "const": "."
+                    },
+                    "environment": {
+                      "items": false,
+                      "maxItems": 3,
+                      "minItems": 3,
+                      "prefixItems": [
+                        {
+                          "const": "LANG=C.UTF-8"
+                        },
+                        {
+                          "const": "LC_ALL=C.UTF-8"
+                        },
+                        {
+                          "const": "TZ=UTC"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "stderr": {
+                      "const": "artifacts/c030/C030.01/harness/log/rust-witness-b.log.stderr"
+                    },
+                    "stdin": {
+                      "const": "null"
+                    },
+                    "stdout": {
+                      "const": "artifacts/c030/C030.01/harness/log/rust-witness-b.log"
+                    },
+                    "witness_key_environment_file": {
+                      "const": "artifacts/c030/C030.01/harness/keys/W04.env"
+                    }
+                  },
+                  "required": [
+                    "argv",
+                    "cwd",
+                    "environment",
+                    "stdin",
+                    "stdout",
+                    "stderr",
+                    "witness_key_environment_file"
+                  ],
+                  "type": "object"
+                },
+                "log_path": {
+                  "const": "artifacts/c030/C030.01/harness/log/rust-witness-b.log"
+                },
+                "ports": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "backup_udp": {
+                      "const": 10084
+                    },
+                    "grpc": {
+                      "const": 50084
+                    },
+                    "http": {
+                      "const": 8084
+                    },
+                    "json_rpc": {
+                      "const": 8584
+                    },
+                    "p2p_tcp_udp": {
+                      "const": 18084
+                    },
+                    "prometheus": {
+                      "const": 9584
+                    }
+                  },
+                  "required": [
+                    "backup_udp",
+                    "grpc",
+                    "http",
+                    "json_rpc",
+                    "p2p_tcp_udp",
+                    "prometheus"
+                  ],
+                  "type": "object"
+                },
+                "role": {
+                  "const": "witness"
+                },
+                "trust_node": {
+                  "type": "null"
+                },
+                "witness_identity": {
+                  "const": "W04"
+                }
+              },
+              "required": [
+                "id",
+                "implementation",
+                "role",
+                "witness_identity",
+                "trust_node",
+                "ports",
+                "config",
+                "data_path",
+                "log_path",
+                "key_id",
+                "launch"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "config": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "deployment": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.deployment.json"
+                        },
+                        "sha256": {
+                          "const": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    },
+                    "rendered_path": {
+                      "const": "artifacts/c030/C030.01/harness/config/rust-full.conf"
+                    },
+                    "rendered_sha256_observation": {
+                      "const": "config.rust-full.sha256"
+                    },
+                    "source": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.conf"
+                        },
+                        "sha256": {
+                          "const": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "source",
+                    "deployment",
+                    "rendered_path",
+                    "rendered_sha256_observation"
+                  ],
+                  "type": "object"
+                },
+                "data_path": {
+                  "const": "artifacts/c030/C030.01/harness/data/rust-full"
+                },
+                "id": {
+                  "const": "rust-full"
+                },
+                "implementation": {
+                  "const": "rust"
+                },
+                "key_id": {
+                  "type": "null"
+                },
+                "launch": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "argv": {
+                      "items": false,
+                      "maxItems": 3,
+                      "minItems": 3,
+                      "prefixItems": [
+                        {
+                          "const": "rust-tron/target/release/tron-fullnode"
+                        },
+                        {
+                          "const": "--config"
+                        },
+                        {
+                          "const": "artifacts/c030/C030.01/harness/config/rust-full.conf"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "cwd": {
+                      "const": "."
+                    },
+                    "environment": {
+                      "items": false,
+                      "maxItems": 3,
+                      "minItems": 3,
+                      "prefixItems": [
+                        {
+                          "const": "LANG=C.UTF-8"
+                        },
+                        {
+                          "const": "LC_ALL=C.UTF-8"
+                        },
+                        {
+                          "const": "TZ=UTC"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "stderr": {
+                      "const": "artifacts/c030/C030.01/harness/log/rust-full.log.stderr"
+                    },
+                    "stdin": {
+                      "const": "null"
+                    },
+                    "stdout": {
+                      "const": "artifacts/c030/C030.01/harness/log/rust-full.log"
+                    },
+                    "witness_key_environment_file": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "argv",
+                    "cwd",
+                    "environment",
+                    "stdin",
+                    "stdout",
+                    "stderr",
+                    "witness_key_environment_file"
+                  ],
+                  "type": "object"
+                },
+                "log_path": {
+                  "const": "artifacts/c030/C030.01/harness/log/rust-full.log"
+                },
+                "ports": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "backup_udp": {
+                      "const": 10085
+                    },
+                    "grpc": {
+                      "const": 50085
+                    },
+                    "http": {
+                      "const": 8085
+                    },
+                    "json_rpc": {
+                      "const": 8585
+                    },
+                    "p2p_tcp_udp": {
+                      "const": 18085
+                    },
+                    "prometheus": {
+                      "const": 9585
+                    }
+                  },
+                  "required": [
+                    "backup_udp",
+                    "grpc",
+                    "http",
+                    "json_rpc",
+                    "p2p_tcp_udp",
+                    "prometheus"
+                  ],
+                  "type": "object"
+                },
+                "role": {
+                  "const": "full"
+                },
+                "trust_node": {
+                  "type": "null"
+                },
+                "witness_identity": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "id",
+                "implementation",
+                "role",
+                "witness_identity",
+                "trust_node",
+                "ports",
+                "config",
+                "data_path",
+                "log_path",
+                "key_id",
+                "launch"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "config": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "deployment": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.deployment.json"
+                        },
+                        "sha256": {
+                          "const": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    },
+                    "rendered_path": {
+                      "const": "artifacts/c030/C030.01/harness/config/java-fast-forward.conf"
+                    },
+                    "rendered_sha256_observation": {
+                      "const": "config.java-fast-forward.sha256"
+                    },
+                    "source": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.conf"
+                        },
+                        "sha256": {
+                          "const": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "source",
+                    "deployment",
+                    "rendered_path",
+                    "rendered_sha256_observation"
+                  ],
+                  "type": "object"
+                },
+                "data_path": {
+                  "const": "artifacts/c030/C030.01/harness/data/java-fast-forward"
+                },
+                "id": {
+                  "const": "java-fast-forward"
+                },
+                "implementation": {
+                  "const": "java"
+                },
+                "key_id": {
+                  "type": "null"
+                },
+                "launch": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "argv": {
+                      "items": false,
+                      "maxItems": 5,
+                      "minItems": 5,
+                      "prefixItems": [
+                        {
+                          "const": "/usr/lib/jvm/java-8-openjdk-amd64/bin/java"
+                        },
+                        {
+                          "const": "-jar"
+                        },
+                        {
+                          "const": "java-tron/build/libs/FullNode.jar"
+                        },
+                        {
+                          "const": "-c"
+                        },
+                        {
+                          "const": "artifacts/c030/C030.01/harness/config/java-fast-forward.conf"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "cwd": {
+                      "const": "."
+                    },
+                    "environment": {
+                      "items": false,
+                      "maxItems": 3,
+                      "minItems": 3,
+                      "prefixItems": [
+                        {
+                          "const": "LANG=C.UTF-8"
+                        },
+                        {
+                          "const": "LC_ALL=C.UTF-8"
+                        },
+                        {
+                          "const": "TZ=UTC"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "stderr": {
+                      "const": "artifacts/c030/C030.01/harness/log/java-fast-forward.log.stderr"
+                    },
+                    "stdin": {
+                      "const": "null"
+                    },
+                    "stdout": {
+                      "const": "artifacts/c030/C030.01/harness/log/java-fast-forward.log"
+                    },
+                    "witness_key_environment_file": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "argv",
+                    "cwd",
+                    "environment",
+                    "stdin",
+                    "stdout",
+                    "stderr",
+                    "witness_key_environment_file"
+                  ],
+                  "type": "object"
+                },
+                "log_path": {
+                  "const": "artifacts/c030/C030.01/harness/log/java-fast-forward.log"
+                },
+                "ports": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "backup_udp": {
+                      "const": 10086
+                    },
+                    "grpc": {
+                      "const": 50086
+                    },
+                    "http": {
+                      "const": 8086
+                    },
+                    "json_rpc": {
+                      "const": 8586
+                    },
+                    "p2p_tcp_udp": {
+                      "const": 18086
+                    },
+                    "prometheus": {
+                      "const": 9586
+                    }
+                  },
+                  "required": [
+                    "backup_udp",
+                    "grpc",
+                    "http",
+                    "json_rpc",
+                    "p2p_tcp_udp",
+                    "prometheus"
+                  ],
+                  "type": "object"
+                },
+                "role": {
+                  "const": "fast-forward-full"
+                },
+                "trust_node": {
+                  "type": "null"
+                },
+                "witness_identity": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "id",
+                "implementation",
+                "role",
+                "witness_identity",
+                "trust_node",
+                "ports",
+                "config",
+                "data_path",
+                "log_path",
+                "key_id",
+                "launch"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "config": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "deployment": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.deployment.json"
+                        },
+                        "sha256": {
+                          "const": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    },
+                    "rendered_path": {
+                      "const": "artifacts/c030/C030.01/harness/config/java-observer.conf"
+                    },
+                    "rendered_sha256_observation": {
+                      "const": "config.java-observer.sha256"
+                    },
+                    "source": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/fullnode.conf"
+                        },
+                        "sha256": {
+                          "const": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "source",
+                    "deployment",
+                    "rendered_path",
+                    "rendered_sha256_observation"
+                  ],
+                  "type": "object"
+                },
+                "data_path": {
+                  "const": "artifacts/c030/C030.01/harness/data/java-observer"
+                },
+                "id": {
+                  "const": "java-observer"
+                },
+                "implementation": {
+                  "const": "java"
+                },
+                "key_id": {
+                  "type": "null"
+                },
+                "launch": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "argv": {
+                      "items": false,
+                      "maxItems": 5,
+                      "minItems": 5,
+                      "prefixItems": [
+                        {
+                          "const": "/usr/lib/jvm/java-8-openjdk-amd64/bin/java"
+                        },
+                        {
+                          "const": "-jar"
+                        },
+                        {
+                          "const": "java-tron/build/libs/FullNode.jar"
+                        },
+                        {
+                          "const": "-c"
+                        },
+                        {
+                          "const": "artifacts/c030/C030.01/harness/config/java-observer.conf"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "cwd": {
+                      "const": "."
+                    },
+                    "environment": {
+                      "items": false,
+                      "maxItems": 3,
+                      "minItems": 3,
+                      "prefixItems": [
+                        {
+                          "const": "LANG=C.UTF-8"
+                        },
+                        {
+                          "const": "LC_ALL=C.UTF-8"
+                        },
+                        {
+                          "const": "TZ=UTC"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "stderr": {
+                      "const": "artifacts/c030/C030.01/harness/log/java-observer.log.stderr"
+                    },
+                    "stdin": {
+                      "const": "null"
+                    },
+                    "stdout": {
+                      "const": "artifacts/c030/C030.01/harness/log/java-observer.log"
+                    },
+                    "witness_key_environment_file": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "argv",
+                    "cwd",
+                    "environment",
+                    "stdin",
+                    "stdout",
+                    "stderr",
+                    "witness_key_environment_file"
+                  ],
+                  "type": "object"
+                },
+                "log_path": {
+                  "const": "artifacts/c030/C030.01/harness/log/java-observer.log"
+                },
+                "ports": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "backup_udp": {
+                      "const": 10087
+                    },
+                    "grpc": {
+                      "const": 50087
+                    },
+                    "http": {
+                      "const": 8087
+                    },
+                    "json_rpc": {
+                      "const": 8587
+                    },
+                    "p2p_tcp_udp": {
+                      "const": 18087
+                    },
+                    "prometheus": {
+                      "const": 9587
+                    }
+                  },
+                  "required": [
+                    "backup_udp",
+                    "grpc",
+                    "http",
+                    "json_rpc",
+                    "p2p_tcp_udp",
+                    "prometheus"
+                  ],
+                  "type": "object"
+                },
+                "role": {
+                  "const": "full-observer"
+                },
+                "trust_node": {
+                  "type": "null"
+                },
+                "witness_identity": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "id",
+                "implementation",
+                "role",
+                "witness_identity",
+                "trust_node",
+                "ports",
+                "config",
+                "data_path",
+                "log_path",
+                "key_id",
+                "launch"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "config": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "deployment": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/solidity.deployment.json"
+                        },
+                        "sha256": {
+                          "const": "b85c97e6d47bddf3a001e5f607491f231af7a6b498b4eddef95944e1ed26be17"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    },
+                    "rendered_path": {
+                      "const": "artifacts/c030/C030.01/harness/config/rust-solidity.conf"
+                    },
+                    "rendered_sha256_observation": {
+                      "const": "config.rust-solidity.sha256"
+                    },
+                    "source": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "path": {
+                          "const": "rust-tron/packaging/config/solidity.conf"
+                        },
+                        "sha256": {
+                          "const": "1e68bfa5a4667143daee21d328fd60e1f4b28fe3c487e569b91686342c6e0d83"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "sha256"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "source",
+                    "deployment",
+                    "rendered_path",
+                    "rendered_sha256_observation"
+                  ],
+                  "type": "object"
+                },
+                "data_path": {
+                  "const": "artifacts/c030/C030.01/harness/data/rust-solidity"
+                },
+                "id": {
+                  "const": "rust-solidity"
+                },
+                "implementation": {
+                  "const": "rust"
+                },
+                "key_id": {
+                  "type": "null"
+                },
+                "launch": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "argv": {
+                      "items": false,
+                      "maxItems": 3,
+                      "minItems": 3,
+                      "prefixItems": [
+                        {
+                          "const": "rust-tron/target/release/tron-solidity"
+                        },
+                        {
+                          "const": "--config"
+                        },
+                        {
+                          "const": "artifacts/c030/C030.01/harness/config/rust-solidity.conf"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "cwd": {
+                      "const": "."
+                    },
+                    "environment": {
+                      "items": false,
+                      "maxItems": 3,
+                      "minItems": 3,
+                      "prefixItems": [
+                        {
+                          "const": "LANG=C.UTF-8"
+                        },
+                        {
+                          "const": "LC_ALL=C.UTF-8"
+                        },
+                        {
+                          "const": "TZ=UTC"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "stderr": {
+                      "const": "artifacts/c030/C030.01/harness/log/rust-solidity.log.stderr"
+                    },
+                    "stdin": {
+                      "const": "null"
+                    },
+                    "stdout": {
+                      "const": "artifacts/c030/C030.01/harness/log/rust-solidity.log"
+                    },
+                    "witness_key_environment_file": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "argv",
+                    "cwd",
+                    "environment",
+                    "stdin",
+                    "stdout",
+                    "stderr",
+                    "witness_key_environment_file"
+                  ],
+                  "type": "object"
+                },
+                "log_path": {
+                  "const": "artifacts/c030/C030.01/harness/log/rust-solidity.log"
+                },
+                "ports": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "grpc": {
+                      "const": 50061
+                    },
+                    "http": {
+                      "const": 8091
+                    },
+                    "prometheus": {
+                      "const": 9527
+                    },
+                    "zeromq": {
+                      "const": 5555
+                    }
+                  },
+                  "required": [
+                    "grpc",
+                    "http",
+                    "prometheus",
+                    "zeromq"
+                  ],
+                  "type": "object"
+                },
+                "role": {
+                  "const": "solidity"
+                },
+                "trust_node": {
+                  "const": "rust-full:50085"
+                },
+                "witness_identity": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "id",
+                "implementation",
+                "role",
+                "witness_identity",
+                "trust_node",
+                "ports",
+                "config",
+                "data_path",
+                "log_path",
+                "key_id",
+                "launch"
+              ],
+              "type": "object"
+            }
+          ],
+          "type": "array"
+        },
+        "port_policy": {
+          "const": "exact frozen mapping; bind APIs to 127.0.0.1; no defaults, reuse, wildcard exposure, or silent remapping"
+        }
+      },
+      "required": [
+        "port_policy",
+        "nodes",
+        "links"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "launch_contract",
+    "manifest_version",
+    "platform_id",
+    "frozen_spec",
+    "references",
+    "allocation",
+    "genesis",
+    "keys",
+    "topology",
+    "readiness",
+    "handshake",
+    "cleanup",
+    "scenarios",
+    "ordering"
+  ],
+  "type": "object"
+}

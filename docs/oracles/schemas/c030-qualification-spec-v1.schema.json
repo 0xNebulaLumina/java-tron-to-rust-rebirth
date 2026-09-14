@@ -2809,6 +2809,24 @@
           ],
           "type": "array"
         },
+        "mode_items": {
+          "additionalProperties": false,
+          "properties": {
+            "C030.01": { "const": "harness", "type": "string" },
+            "C030.02": { "const": "lifecycle", "type": "string" },
+            "C030.03": { "const": "network-fault", "type": "string" },
+            "C030.04": { "const": "api-load", "type": "string" },
+            "C030.05": { "const": "endurance", "type": "string" },
+            "C030.06": { "const": "security", "type": "string" },
+            "C030.07": { "const": "license", "type": "string" },
+            "C030.08": { "const": "performance", "type": "string" }
+          },
+          "required": [
+            "C030.01", "C030.02", "C030.03", "C030.04",
+            "C030.05", "C030.06", "C030.07", "C030.08"
+          ],
+          "type": "object"
+        },
         "mode_outputs": {
           "additionalProperties": false,
           "properties": {
@@ -2988,14 +3006,69 @@
         "scenario_manifest": {
           "const": "docs/oracles/c030-scenario-manifest.v1.json",
           "type": "string"
+        },
+        "harness": {
+          "const": "tools/qualification/c030_harness.py",
+          "type": "string"
+        },
+        "implemented_contract": {
+          "additionalProperties": false,
+          "properties": {
+            "executable_scenario_count": {
+              "const": 4,
+              "type": "integer"
+            },
+            "future_contract_count": {
+              "const": 44,
+              "type": "integer"
+            },
+            "item": {
+              "const": "C030.01",
+              "type": "string"
+            },
+            "link_count": {
+              "const": 22,
+              "type": "integer"
+            },
+            "mode": {
+              "const": "harness",
+              "type": "string"
+            },
+            "node_count": {
+              "const": 8,
+              "type": "integer"
+            },
+            "output_path": {
+              "const": "docs/oracles/results/c030/c030-01-harness-result.v1.json",
+              "type": "string"
+            }
+          },
+          "required": [
+            "executable_scenario_count",
+            "future_contract_count",
+            "item",
+            "link_count",
+            "mode",
+            "node_count",
+            "output_path"
+          ],
+          "type": "object"
+        },
+        "scenario_schema": {
+          "const": "docs/oracles/schemas/c030-scenario-manifest-v1.schema.json",
+          "type": "string"
         }
       },
       "required": [
         "command_modes",
+        "harness",
+        "implemented_contract",
         "ownership",
         "result_schema",
         "runner",
         "scenario_manifest",
+        "scenario_schema",
+        "mode_items",
         "mode_outputs"
       ],
       "type": "object"
@@ -5168,8 +5241,8 @@
         },
         "required_fields": {
           "items": false,
-          "maxItems": 20,
-          "minItems": 20,
+          "maxItems": 21,
+          "minItems": 21,
           "prefixItems": [
             {
               "const": "schema",
@@ -5232,6 +5305,10 @@
               "type": "string"
             },
             {
+              "const": "observations",
+              "type": "string"
+            },
+            {
               "const": "metrics",
               "type": "string"
             },
@@ -5255,7 +5332,7 @@
           "type": "array"
         },
         "required_scenario_coverage": {
-          "const": "exact implementation manifest set; missing, skipped, not_run, unknown fail",
+          "const": "exact scenario manifest item set and order; each scenario result must bind its exact manifest observation subjects to non-boolean measured expected/actual values and inventoried evidence; missing, fabricated, skipped, not_run, unknown fail",
           "type": "string"
         },
         "rerun_triggers": {

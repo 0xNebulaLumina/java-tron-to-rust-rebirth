@@ -507,15 +507,39 @@
   },
   "c030_gate_source": {
     "path": "tools/qualification/c030_gate.py",
-    "sha256": "7047531b47392e54d9e36db66002909ee50d5ef9cffb1c503b41ceca4ecdeb39"
+    "sha256": "5ec7fd00d780b0099294d2b3a9bdbcd7e7307d83ce96c36977f3e0ae5962fb05"
+  },
+  "c030_harness_source": {
+    "path": "tools/qualification/c030_harness.py",
+    "sha256": "497529c11a35136327f5fa0008814f45a8d17b975c5d7a6829b84d70abe814ea"
+  },
+  "c030_qualification_runner_source": {
+    "path": "tools/qualification/c030_qualification.py",
+    "sha256": "f44359775075bde951eb2c8ce0d9114d373becae226fd9abc177a04f0aebdef3"
   },
   "c030_qualification_schema": {
     "path": "schemas/c030-qualification-spec-v1.schema.json",
-    "sha256": "9aab7c1b14bcee5777dc2c14487de23b2f3f1f5cfa04557c973cf407571cf54e"
+    "sha256": "6dff6e795a0bbba91568e13794d741e4e85638f76c321c2d7c577900330dcc2c"
   },
   "c030_qualification_spec": {
     "path": "c030-qualification-spec.v1.json",
-    "sha256": "e0673120cf0ce3c3adbfe50705c10b9d21c88322519e42402e286241197c16ba"
+    "sha256": "a7fb1ebbb4c5afc0dab41ade6c136fe83f90c92be856ea23d905a33e0ffaabd6"
+  },
+  "c030_result_schema": {
+    "path": "schemas/c030-qualification-result-v1.schema.json",
+    "sha256": "6ad50267a23e529167d93d2ef93ede3d9a84457f7a714b3e509542d97c4b9169"
+  },
+  "c030_result_source": {
+    "path": "tools/qualification/c030_result.py",
+    "sha256": "911327c92013967a845344faace1b0c1e41fafb75eb3283aa7d1ef8916a4dc87"
+  },
+  "c030_scenario_manifest": {
+    "path": "c030-scenario-manifest.v1.json",
+    "sha256": "61dd298a52c13ac91a8a3b25eac4bc04cd87860ca6a0182f77539dacbcfdebd4"
+  },
+  "c030_scenario_schema": {
+    "path": "schemas/c030-scenario-manifest-v1.schema.json",
+    "sha256": "548c0ace695efcff956d0360791844843bb2efc4f94c9dac2c0c3cc5cfef6b92"
   },
   "dr004_extension_fixtures": "dr004-extension-fixtures.v1.json",
   "fixture_schema": "schemas/fixture-v1.schema.json",

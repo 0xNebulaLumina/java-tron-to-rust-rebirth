@@ -4466,10 +4466,12 @@
               "harness",
               "--spec",
               "docs/oracles/c030-qualification-spec.v1.json",
+              "--profile",
+              "release",
               "--output",
               "docs/oracles/results/c030/c030-01-harness-result.v1.json"
             ],
-            "timeout_seconds": 7200
+            "timeout_seconds": 280800
           },
           {
             "name": "C030 lifecycle qualification",
@@ -4575,7 +4577,9 @@
             "argv": [
               "python3",
               "tools/qualification/c030_gate.py",
-              "all"
+              "all",
+              "--trust-store-env",
+              "C030_QUALIFICATION_TRUST_STORE"
             ],
             "timeout_seconds": 3600
           }

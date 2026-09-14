@@ -1,0 +1,1537 @@
+{
+  "allocation": {
+    "address": "127.0.0.1",
+    "algorithm": "For label L and zero-based index I, compute HMAC-SHA-256 with key UTF-8 seed_decimal and message UTF-8 'C030.01:'+L+':'+I; ports are frozen and MUST NOT be derived or remapped; secp256k1 private scalars are (big_endian(H) mod (n-1))+1; config values are emitted in node array order with lexicographically sorted keys.",
+    "collision_policy": "fail-before-start",
+    "node_order": [
+      "java-witness-a",
+      "java-witness-b",
+      "rust-witness-a",
+      "rust-witness-b",
+      "rust-full",
+      "java-fast-forward",
+      "java-observer",
+      "rust-solidity"
+    ],
+    "seed": 3001001,
+    "workspace": "artifacts/c030/C030.01/harness"
+  },
+  "cleanup": {
+    "always_run": true,
+    "grace_seconds": 30,
+    "invariants": [
+      "no supervised process remains",
+      "no descendant process remains",
+      "every declared TCP and UDP port is unbound",
+      "data and rendered config trees retained",
+      "private key files removed",
+      "logs and ordered SHA-256 evidence inventory retained",
+      "cleanup failure makes C030-HARNESS-004 fail"
+    ],
+    "signal_order": [
+      "SIGTERM",
+      "SIGKILL"
+    ]
+  },
+  "frozen_spec": {
+    "commit": "76d6d03",
+    "path": "docs/oracles/c030-qualification-spec.v1.json",
+    "sha256": "a7fb1ebbb4c5afc0dab41ade6c136fe83f90c92be856ea23d905a33e0ffaabd6"
+  },
+  "genesis": {
+    "block_interval_ms": 3000,
+    "canonicalization": "RFC 8785 JSON",
+    "id": "c030-release-qualification-v1",
+    "network_id": 728126428,
+    "parent_hash_hex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "rendered_path": "artifacts/c030/C030.01/harness/material/genesis.json",
+    "rendered_sha256_observation": "genesis.sha256",
+    "timestamp_ms": 1600000000000,
+    "witnesses": [
+      {
+        "address_derivation": "TRON address from secp256k1 public key derived by allocation.keys.derivation",
+        "identity": "W01",
+        "initial_vote_count": 1
+      },
+      {
+        "address_derivation": "TRON address from secp256k1 public key derived by allocation.keys.derivation",
+        "identity": "W02",
+        "initial_vote_count": 1
+      },
+      {
+        "address_derivation": "TRON address from secp256k1 public key derived by allocation.keys.derivation",
+        "identity": "W03",
+        "initial_vote_count": 1
+      },
+      {
+        "address_derivation": "TRON address from secp256k1 public key derived by allocation.keys.derivation",
+        "identity": "W04",
+        "initial_vote_count": 1
+      }
+    ]
+  },
+  "handshake": {
+    "checks": [
+      {
+        "expect": "every required endpoint connected",
+        "id": "peer-links",
+        "kind": "peer-set",
+        "target": "all-p2p-links"
+      },
+      {
+        "expect": "at least one java-to-rust and one rust-to-java established session",
+        "id": "cross-implementation",
+        "kind": "peer-direction",
+        "target": "witnesses"
+      },
+      {
+        "expect": "network_id=728126428 and genesis_id=c030-release-qualification-v1",
+        "id": "chain-identity",
+        "kind": "chain-identity",
+        "target": "all-nodes"
+      },
+      {
+        "expect": "serves head obtained from rust-full:50085",
+        "id": "solidity-trust",
+        "kind": "trust-rpc",
+        "target": "rust-solidity"
+      }
+    ]
+  },
+  "keys": [
+    {
+      "algorithm": "secp256k1",
+      "derivation_index": 0,
+      "id": "W01",
+      "mode": "0600",
+      "private_key_path": "artifacts/c030/C030.01/harness/keys/W01.key",
+      "private_material_in_result": false,
+      "public_key_path": "artifacts/c030/C030.01/harness/keys/W01.pub"
+    },
+    {
+      "algorithm": "secp256k1",
+      "derivation_index": 1,
+      "id": "W02",
+      "mode": "0600",
+      "private_key_path": "artifacts/c030/C030.01/harness/keys/W02.key",
+      "private_material_in_result": false,
+      "public_key_path": "artifacts/c030/C030.01/harness/keys/W02.pub"
+    },
+    {
+      "algorithm": "secp256k1",
+      "derivation_index": 2,
+      "id": "W03",
+      "mode": "0600",
+      "private_key_path": "artifacts/c030/C030.01/harness/keys/W03.key",
+      "private_material_in_result": false,
+      "public_key_path": "artifacts/c030/C030.01/harness/keys/W03.pub"
+    },
+    {
+      "algorithm": "secp256k1",
+      "derivation_index": 3,
+      "id": "W04",
+      "mode": "0600",
+      "private_key_path": "artifacts/c030/C030.01/harness/keys/W04.key",
+      "private_material_in_result": false,
+      "public_key_path": "artifacts/c030/C030.01/harness/keys/W04.pub"
+    }
+  ],
+  "launch_contract": {
+    "external_prerequisites": [
+      {
+        "environment": "C030_RELEASE_SIGNING_KEYS",
+        "material": "two independently provisioned Ed25519 release-signing private keys"
+      },
+      {
+        "environment": "TRON_BUSYBOX",
+        "material": "pinned C028 BusyBox production material"
+      },
+      {
+        "environment": "C030_GRADLE_USER_HOME",
+        "material": "offline Gradle dependency cache"
+      },
+      {
+        "environment": "C030_GRADLE_CACHE_INVENTORY",
+        "material": "operator-frozen exact Gradle cache inventory and canonical SHA-256 digest"
+      },
+      {
+        "environment": "C030_HOST_ATTESTATION",
+        "material": "canonical signed host-attestation envelope bound to host, session, specification, and release"
+      },
+      {
+        "environment": "C030_HOST_ATTESTATION_TRUST_STORE",
+        "material": "external Ed25519 trust store authorizing host-attestation and Gradle-cache inventory roles"
+      },
+      {
+        "environment": "C030_SESSION_ID",
+        "material": "unique qualification session identity bound by the host attestation"
+      },
+      {
+        "environment": "C030_SAPLING_SPEND",
+        "material": "operator-provided Sapling spend parameters"
+      },
+      {
+        "environment": "C030_SAPLING_OUTPUT",
+        "material": "operator-provided Sapling output parameters"
+      },
+      {
+        "environment": "C030_SAPLING_OPERATOR_AUTHORITY",
+        "material": "explicit true authorization to use operator-provisioned Sapling parameters for the upstream Java build"
+      }
+    ],
+    "preflight_command": "python3 tools/qualification/c030_qualification.py harness --spec docs/oracles/c030-qualification-spec.v1.json --preflight",
+    "preflight_policy": {
+      "busybox": {
+        "elf_class": 64,
+        "endianness": "little",
+        "machine": "x86_64",
+        "manifest": "docs/oracles/c028-busybox-material.v1.json",
+        "sha256": "dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14",
+        "static": true,
+        "version": "1.36.1"
+      },
+      "child_environments": {
+        "java": [
+          "HOME",
+          "JAVA_HOME",
+          "LANG",
+          "LC_ALL",
+          "PATH",
+          "TMPDIR",
+          "TZ",
+          "WITNESS_PRIVATE_KEY"
+        ],
+        "policy": "closed allowlist; no inherited variables",
+        "rust": [
+          "CARGO_NET_OFFLINE",
+          "HOME",
+          "LANG",
+          "LC_ALL",
+          "NO_PROXY",
+          "PATH",
+          "RUST_BACKTRACE",
+          "TMPDIR",
+          "TZ",
+          "WITNESS_PRIVATE_KEY",
+          "no_proxy"
+        ]
+      },
+      "gradle_cache": {
+        "canonical_digest": "SHA-256 over lexicographically ordered path,size,sha256 records",
+        "inventory_environment": "C030_GRADLE_CACHE_INVENTORY",
+        "mutation_policy": "inventory and digest must match before and after build"
+      },
+      "host_attestation": {
+        "algorithm": "Ed25519",
+        "payload_type": "application/vnd.tron.c030-host-attestation.v1+json",
+        "trust_store_environment": "C030_HOST_ATTESTATION_TRUST_STORE",
+        "binding": [
+          "host_identity",
+          "session_id",
+          "spec_sha256",
+          "release_id",
+          "release_sequence",
+          "source_revision",
+          "validity_window",
+          "measurements"
+        ]
+      },
+      "sapling": {
+        "operator_authority_environment": "C030_SAPLING_OPERATOR_AUTHORITY",
+        "output": {
+          "blake2b": "a1cb23b93256adce5bce2cb09cefbc96a1d16572675ceb691e9a3626ec15b5b546926ff1c536cfe3a9df07d796b32fdfc3e5d99d65567257bf286cd2858d71a6",
+          "size": 3647804
+        },
+        "spend": {
+          "blake2b": "25fd9a0d1c1be0526c14662947ae95b758fe9f3d7fb7f55e9b4437830dcc6215a7ce3ea465914b157715b7a4d681389ea4aa84438190e185d5e4c93574d3a19a",
+          "size": 48013340
+        }
+      },
+      "signing_keys": {
+        "algorithm": "Ed25519",
+        "minimum_distinct_public_identities": 2
+      }
+    },
+    "repository_owned_provisioning": [
+      "C028 release candidate build",
+      "release and snapshot trust stores derived from external signing public keys",
+      "release and provenance signatures produced by the explicit external signing authority",
+      "authenticated install tree and receipt",
+      "C030 Java and Rust node configurations",
+      "offline Java reference build and Rust release binaries"
+    ],
+    "schema": "c030-harness-launch-contract-v1"
+  },
+  "manifest_version": 1,
+  "ordering": {
+    "keys": "id ascending",
+    "links": "id ascending",
+    "nodes": "allocation.node_order",
+    "object_keys": "lexicographic when canonicalized",
+    "references": "path ascending",
+    "scenarios": "item ascending then id ascending"
+  },
+  "platform_id": "P-LINUX-X64",
+  "readiness": {
+    "checks": [
+      {
+        "expect": "running",
+        "id": "process",
+        "kind": "process-alive",
+        "target": "all-nodes"
+      },
+      {
+        "expect": "200",
+        "id": "metrics",
+        "kind": "http-status",
+        "path": "/metrics",
+        "target": "all-prometheus"
+      },
+      {
+        "expect": "height>=1",
+        "id": "head",
+        "kind": "grpc-head",
+        "target": "all-grpc"
+      },
+      {
+        "expect": "height>=0",
+        "id": "solidity",
+        "kind": "grpc-head",
+        "target": "rust-solidity"
+      }
+    ],
+    "consecutive_successes": 3,
+    "deadline_seconds": 600,
+    "poll_interval_ms": 250
+  },
+  "references": [
+    {
+      "path": "docs/oracles/c028-release-contract.v1.json",
+      "sha256": "13b43c3dd802ecbf551fa2bcac0fcf28dad6fdc89360c1e72d6b87dfc01093c3"
+    },
+    {
+      "path": "docs/oracles/c030-qualification-spec.v1.json",
+      "sha256": "a7fb1ebbb4c5afc0dab41ade6c136fe83f90c92be856ea23d905a33e0ffaabd6"
+    },
+    {
+      "path": "rust-tron/packaging/config/fullnode.conf",
+      "sha256": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+    },
+    {
+      "path": "rust-tron/packaging/config/fullnode.deployment.json",
+      "sha256": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+    },
+    {
+      "path": "rust-tron/packaging/config/solidity.conf",
+      "sha256": "1e68bfa5a4667143daee21d328fd60e1f4b28fe3c487e569b91686342c6e0d83"
+    },
+    {
+      "path": "rust-tron/packaging/config/solidity.deployment.json",
+      "sha256": "b85c97e6d47bddf3a001e5f607491f231af7a6b498b4eddef95944e1ed26be17"
+    }
+  ],
+  "scenarios": [
+    {
+      "action": "materialize",
+      "execution_state": "executable",
+      "expected_observations": [
+        "all_source_digests_match",
+        "all_rendered_configs_recorded",
+        "genesis_recorded",
+        "four_witness_keys_created"
+      ],
+      "id": "C030-HARNESS-001",
+      "item": "C030.01",
+      "name": "materialize-topology",
+      "owner": "runner harness",
+      "timeout_seconds": 120
+    },
+    {
+      "action": "start",
+      "execution_state": "executable",
+      "expected_observations": [
+        "eight_processes_running",
+        "all_declared_tcp_ports_bound",
+        "all_prometheus_endpoints_healthy",
+        "head_height_at_least_1"
+      ],
+      "id": "C030-HARNESS-002",
+      "item": "C030.01",
+      "name": "start-and-readiness",
+      "owner": "runner harness",
+      "timeout_seconds": 600
+    },
+    {
+      "action": "handshake",
+      "execution_state": "executable",
+      "expected_observations": [
+        "all_required_links_connected",
+        "java_to_rust_peer_observed",
+        "rust_to_java_peer_observed",
+        "solidity_trust_rpc_observed",
+        "network_and_genesis_ids_equal"
+      ],
+      "id": "C030-HARNESS-003",
+      "item": "C030.01",
+      "name": "basic-handshake",
+      "owner": "runner harness",
+      "timeout_seconds": 120
+    },
+    {
+      "action": "cleanup",
+      "execution_state": "executable",
+      "expected_observations": [
+        "all_processes_exited",
+        "all_declared_ports_unbound",
+        "no_child_processes",
+        "secret_files_removed",
+        "evidence_inventory_closed"
+      ],
+      "id": "C030-HARNESS-004",
+      "item": "C030.01",
+      "name": "cleanup",
+      "owner": "runner harness",
+      "timeout_seconds": 120
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "scheduled_action_completed",
+        "planned_window_reconciled",
+        "post_action_converged"
+      ],
+      "id": "C030-LIFECYCLE-001",
+      "item": "C030.02",
+      "name": "genesis-sync",
+      "owner": "scenarios lifecycle",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "scheduled_action_completed",
+        "planned_window_reconciled",
+        "post_action_converged"
+      ],
+      "id": "C030-LIFECYCLE-002",
+      "item": "C030.02",
+      "name": "maintenance",
+      "owner": "scenarios lifecycle",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "scheduled_action_completed",
+        "planned_window_reconciled",
+        "post_action_converged"
+      ],
+      "id": "C030-LIFECYCLE-003",
+      "item": "C030.02",
+      "name": "restart",
+      "owner": "scenarios lifecycle",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "scheduled_action_completed",
+        "planned_window_reconciled",
+        "post_action_converged"
+      ],
+      "id": "C030-LIFECYCLE-004",
+      "item": "C030.02",
+      "name": "rolling-upgrade",
+      "owner": "scenarios lifecycle",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "scheduled_action_completed",
+        "planned_window_reconciled",
+        "post_action_converged"
+      ],
+      "id": "C030-LIFECYCLE-005",
+      "item": "C030.02",
+      "name": "snapshot-bootstrap",
+      "owner": "scenarios lifecycle",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "scheduled_action_completed",
+        "planned_window_reconciled",
+        "post_action_converged"
+      ],
+      "id": "C030-LIFECYCLE-006",
+      "item": "C030.02",
+      "name": "witness-rotation",
+      "owner": "scenarios lifecycle",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "scheduled_action_completed",
+        "planned_window_reconciled",
+        "post_action_converged"
+      ],
+      "id": "C030-LIFECYCLE-007",
+      "item": "C030.02",
+      "name": "reorg",
+      "owner": "scenarios lifecycle",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "fault_injected",
+        "bounded_degradation",
+        "post_fault_converged"
+      ],
+      "id": "C030-FAULT-001",
+      "item": "C030.03",
+      "name": "api-size-rate-exhaustion",
+      "owner": "scenarios network faults",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "fault_injected",
+        "bounded_degradation",
+        "post_fault_converged"
+      ],
+      "id": "C030-FAULT-002",
+      "item": "C030.03",
+      "name": "disconnect-ban-reconnect",
+      "owner": "scenarios network faults",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "fault_injected",
+        "bounded_degradation",
+        "post_fault_converged"
+      ],
+      "id": "C030-FAULT-003",
+      "item": "C030.03",
+      "name": "discovery-dns-failure",
+      "owner": "scenarios network faults",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "fault_injected",
+        "bounded_degradation",
+        "post_fault_converged"
+      ],
+      "id": "C030-FAULT-004",
+      "item": "C030.03",
+      "name": "disk-pressure-restart",
+      "owner": "scenarios network faults",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "fault_injected",
+        "bounded_degradation",
+        "post_fault_converged"
+      ],
+      "id": "C030-FAULT-005",
+      "item": "C030.03",
+      "name": "fork-reorg",
+      "owner": "scenarios network faults",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "fault_injected",
+        "bounded_degradation",
+        "post_fault_converged"
+      ],
+      "id": "C030-FAULT-006",
+      "item": "C030.03",
+      "name": "malformed-peer",
+      "owner": "scenarios network faults",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "fault_injected",
+        "bounded_degradation",
+        "post_fault_converged"
+      ],
+      "id": "C030-FAULT-007",
+      "item": "C030.03",
+      "name": "pending-pool-pressure",
+      "owner": "scenarios network faults",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "fault_injected",
+        "bounded_degradation",
+        "post_fault_converged"
+      ],
+      "id": "C030-FAULT-008",
+      "item": "C030.03",
+      "name": "slow-peer",
+      "owner": "scenarios network faults",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "fault_injected",
+        "bounded_degradation",
+        "post_fault_converged"
+      ],
+      "id": "C030-FAULT-009",
+      "item": "C030.03",
+      "name": "witness-failover",
+      "owner": "scenarios network faults",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "request_count",
+        "success_ratio",
+        "latency_histogram",
+        "semantic_mismatches"
+      ],
+      "id": "C030-LOAD-001",
+      "item": "C030.04",
+      "name": "bounded-api-load",
+      "owner": "scenarios API load",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "raw_samples",
+        "deadline_evaluation",
+        "zero_tolerance_result"
+      ],
+      "id": "C030-CONVERGENCE-001",
+      "item": "C030.05",
+      "name": "head",
+      "owner": "endurance/convergence",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "raw_samples",
+        "deadline_evaluation",
+        "zero_tolerance_result"
+      ],
+      "id": "C030-CONVERGENCE-002",
+      "item": "C030.05",
+      "name": "logical-roots",
+      "owner": "endurance/convergence",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "raw_samples",
+        "deadline_evaluation",
+        "zero_tolerance_result"
+      ],
+      "id": "C030-CONVERGENCE-003",
+      "item": "C030.05",
+      "name": "pbft",
+      "owner": "endurance/convergence",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "raw_samples",
+        "deadline_evaluation",
+        "zero_tolerance_result"
+      ],
+      "id": "C030-CONVERGENCE-004",
+      "item": "C030.05",
+      "name": "solidity",
+      "owner": "endurance/convergence",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "raw_samples",
+        "deadline_evaluation",
+        "zero_tolerance_result"
+      ],
+      "id": "C030-CONVERGENCE-005",
+      "item": "C030.05",
+      "name": "api",
+      "owner": "endurance/convergence",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "raw_samples",
+        "deadline_evaluation",
+        "zero_tolerance_result"
+      ],
+      "id": "C030-CONVERGENCE-006",
+      "item": "C030.05",
+      "name": "events",
+      "owner": "endurance/convergence",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "raw_samples",
+        "deadline_evaluation",
+        "zero_tolerance_result"
+      ],
+      "id": "C030-CONVERGENCE-007",
+      "item": "C030.05",
+      "name": "availability",
+      "owner": "endurance/convergence",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-001",
+      "item": "C030.06",
+      "name": "scoped-signer-authorization",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-002",
+      "item": "C030.06",
+      "name": "algorithm-version-transition",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-003",
+      "item": "C030.06",
+      "name": "missing-signature-rejection",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-004",
+      "item": "C030.06",
+      "name": "invalid-signature-rejection",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-005",
+      "item": "C030.06",
+      "name": "unknown-key-rejection",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-006",
+      "item": "C030.06",
+      "name": "mirror-tamper-rejection",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-007",
+      "item": "C030.06",
+      "name": "detached-sbom-rejection",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-008",
+      "item": "C030.06",
+      "name": "mismatched-sbom-rejection",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-009",
+      "item": "C030.06",
+      "name": "detached-provenance-rejection",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-010",
+      "item": "C030.06",
+      "name": "mismatched-provenance-rejection",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-011",
+      "item": "C030.06",
+      "name": "mixed-release-rejection-before-execution",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-012",
+      "item": "C030.06",
+      "name": "mixed-release-rejection-before-mutation",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-013",
+      "item": "C030.06",
+      "name": "threshold-signature-validation",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-014",
+      "item": "C030.06",
+      "name": "key-rotation",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-015",
+      "item": "C030.06",
+      "name": "key-revocation",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-016",
+      "item": "C030.06",
+      "name": "offline-verification",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-017",
+      "item": "C030.06",
+      "name": "artifact-substitution-rejection",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "case_executed",
+        "authenticated_result",
+        "finding_disposition"
+      ],
+      "id": "C030-SECURITY-018",
+      "item": "C030.06",
+      "name": "authenticated-signed-manifest",
+      "owner": "security",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "scope_inventory",
+        "digest_reconciliation",
+        "independent_approvals"
+      ],
+      "id": "C030-LICENSE-001",
+      "item": "C030.07",
+      "name": "license-provenance-reconciliation",
+      "owner": "license",
+      "result_claimed": false
+    },
+    {
+      "execution_state": "contract-only",
+      "expected_observations": [
+        "throughput",
+        "latency",
+        "resource_usage",
+        "regression_budget"
+      ],
+      "id": "C030-PERFORMANCE-001",
+      "item": "C030.08",
+      "name": "release-baseline-comparison",
+      "owner": "performance",
+      "result_claimed": false
+    }
+  ],
+  "schema": "c030-scenario-manifest-v1",
+  "topology": {
+    "links": [
+      {
+        "endpoint": "127.0.0.1:18087",
+        "from": "java-fast-forward",
+        "id": "p2p:java-fast-forward:java-observer",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "java-observer"
+      },
+      {
+        "endpoint": "127.0.0.1:18081",
+        "from": "java-fast-forward",
+        "id": "p2p:java-fast-forward:java-witness-a",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "java-witness-a"
+      },
+      {
+        "endpoint": "127.0.0.1:18082",
+        "from": "java-fast-forward",
+        "id": "p2p:java-fast-forward:java-witness-b",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "java-witness-b"
+      },
+      {
+        "endpoint": "127.0.0.1:18085",
+        "from": "java-fast-forward",
+        "id": "p2p:java-fast-forward:rust-full",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-full"
+      },
+      {
+        "endpoint": "127.0.0.1:18083",
+        "from": "java-fast-forward",
+        "id": "p2p:java-fast-forward:rust-witness-a",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-witness-a"
+      },
+      {
+        "endpoint": "127.0.0.1:18084",
+        "from": "java-fast-forward",
+        "id": "p2p:java-fast-forward:rust-witness-b",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-witness-b"
+      },
+      {
+        "endpoint": "127.0.0.1:18081",
+        "from": "java-observer",
+        "id": "p2p:java-observer:java-witness-a",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "java-witness-a"
+      },
+      {
+        "endpoint": "127.0.0.1:18082",
+        "from": "java-observer",
+        "id": "p2p:java-observer:java-witness-b",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "java-witness-b"
+      },
+      {
+        "endpoint": "127.0.0.1:18085",
+        "from": "java-observer",
+        "id": "p2p:java-observer:rust-full",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-full"
+      },
+      {
+        "endpoint": "127.0.0.1:18083",
+        "from": "java-observer",
+        "id": "p2p:java-observer:rust-witness-a",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-witness-a"
+      },
+      {
+        "endpoint": "127.0.0.1:18084",
+        "from": "java-observer",
+        "id": "p2p:java-observer:rust-witness-b",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-witness-b"
+      },
+      {
+        "endpoint": "127.0.0.1:18082",
+        "from": "java-witness-a",
+        "id": "p2p:java-witness-a:java-witness-b",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "java-witness-b"
+      },
+      {
+        "endpoint": "127.0.0.1:18085",
+        "from": "java-witness-a",
+        "id": "p2p:java-witness-a:rust-full",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-full"
+      },
+      {
+        "endpoint": "127.0.0.1:18083",
+        "from": "java-witness-a",
+        "id": "p2p:java-witness-a:rust-witness-a",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-witness-a"
+      },
+      {
+        "endpoint": "127.0.0.1:18084",
+        "from": "java-witness-a",
+        "id": "p2p:java-witness-a:rust-witness-b",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-witness-b"
+      },
+      {
+        "endpoint": "127.0.0.1:18085",
+        "from": "java-witness-b",
+        "id": "p2p:java-witness-b:rust-full",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-full"
+      },
+      {
+        "endpoint": "127.0.0.1:18083",
+        "from": "java-witness-b",
+        "id": "p2p:java-witness-b:rust-witness-a",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-witness-a"
+      },
+      {
+        "endpoint": "127.0.0.1:18084",
+        "from": "java-witness-b",
+        "id": "p2p:java-witness-b:rust-witness-b",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-witness-b"
+      },
+      {
+        "endpoint": "127.0.0.1:18083",
+        "from": "rust-full",
+        "id": "p2p:rust-full:rust-witness-a",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-witness-a"
+      },
+      {
+        "endpoint": "127.0.0.1:18084",
+        "from": "rust-full",
+        "id": "p2p:rust-full:rust-witness-b",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-witness-b"
+      },
+      {
+        "endpoint": "127.0.0.1:18084",
+        "from": "rust-witness-a",
+        "id": "p2p:rust-witness-a:rust-witness-b",
+        "kind": "p2p-bidirectional",
+        "required": true,
+        "to": "rust-witness-b"
+      },
+      {
+        "endpoint": "127.0.0.1:50085",
+        "from": "rust-solidity",
+        "id": "trust:rust-solidity:rust-full",
+        "kind": "solidity-trust-grpc",
+        "required": true,
+        "to": "rust-full"
+      }
+    ],
+    "nodes": [
+      {
+        "config": {
+          "deployment": {
+            "path": "rust-tron/packaging/config/fullnode.deployment.json",
+            "sha256": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+          },
+          "rendered_path": "artifacts/c030/C030.01/harness/config/java-witness-a.conf",
+          "rendered_sha256_observation": "config.java-witness-a.sha256",
+          "source": {
+            "path": "rust-tron/packaging/config/fullnode.conf",
+            "sha256": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+          }
+        },
+        "data_path": "artifacts/c030/C030.01/harness/data/java-witness-a",
+        "id": "java-witness-a",
+        "implementation": "java",
+        "key_id": "W01",
+        "launch": {
+          "argv": [
+            "/usr/lib/jvm/java-8-openjdk-amd64/bin/java",
+            "-jar",
+            "java-tron/build/libs/FullNode.jar",
+            "-c",
+            "artifacts/c030/C030.01/harness/config/java-witness-a.conf"
+          ],
+          "cwd": ".",
+          "environment": [
+            "LANG=C.UTF-8",
+            "LC_ALL=C.UTF-8",
+            "TZ=UTC"
+          ],
+          "stderr": "artifacts/c030/C030.01/harness/log/java-witness-a.log.stderr",
+          "stdin": "null",
+          "stdout": "artifacts/c030/C030.01/harness/log/java-witness-a.log",
+          "witness_key_environment_file": "artifacts/c030/C030.01/harness/keys/W01.env"
+        },
+        "log_path": "artifacts/c030/C030.01/harness/log/java-witness-a.log",
+        "ports": {
+          "backup_udp": 10081,
+          "grpc": 50081,
+          "http": 8081,
+          "json_rpc": 8581,
+          "p2p_tcp_udp": 18081,
+          "prometheus": 9581
+        },
+        "role": "witness",
+        "trust_node": null,
+        "witness_identity": "W01"
+      },
+      {
+        "config": {
+          "deployment": {
+            "path": "rust-tron/packaging/config/fullnode.deployment.json",
+            "sha256": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+          },
+          "rendered_path": "artifacts/c030/C030.01/harness/config/java-witness-b.conf",
+          "rendered_sha256_observation": "config.java-witness-b.sha256",
+          "source": {
+            "path": "rust-tron/packaging/config/fullnode.conf",
+            "sha256": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+          }
+        },
+        "data_path": "artifacts/c030/C030.01/harness/data/java-witness-b",
+        "id": "java-witness-b",
+        "implementation": "java",
+        "key_id": "W02",
+        "launch": {
+          "argv": [
+            "/usr/lib/jvm/java-8-openjdk-amd64/bin/java",
+            "-jar",
+            "java-tron/build/libs/FullNode.jar",
+            "-c",
+            "artifacts/c030/C030.01/harness/config/java-witness-b.conf"
+          ],
+          "cwd": ".",
+          "environment": [
+            "LANG=C.UTF-8",
+            "LC_ALL=C.UTF-8",
+            "TZ=UTC"
+          ],
+          "stderr": "artifacts/c030/C030.01/harness/log/java-witness-b.log.stderr",
+          "stdin": "null",
+          "stdout": "artifacts/c030/C030.01/harness/log/java-witness-b.log",
+          "witness_key_environment_file": "artifacts/c030/C030.01/harness/keys/W02.env"
+        },
+        "log_path": "artifacts/c030/C030.01/harness/log/java-witness-b.log",
+        "ports": {
+          "backup_udp": 10082,
+          "grpc": 50082,
+          "http": 8082,
+          "json_rpc": 8582,
+          "p2p_tcp_udp": 18082,
+          "prometheus": 9582
+        },
+        "role": "witness",
+        "trust_node": null,
+        "witness_identity": "W02"
+      },
+      {
+        "config": {
+          "deployment": {
+            "path": "rust-tron/packaging/config/fullnode.deployment.json",
+            "sha256": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+          },
+          "rendered_path": "artifacts/c030/C030.01/harness/config/rust-witness-a.conf",
+          "rendered_sha256_observation": "config.rust-witness-a.sha256",
+          "source": {
+            "path": "rust-tron/packaging/config/fullnode.conf",
+            "sha256": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+          }
+        },
+        "data_path": "artifacts/c030/C030.01/harness/data/rust-witness-a",
+        "id": "rust-witness-a",
+        "implementation": "rust",
+        "key_id": "W03",
+        "launch": {
+          "argv": [
+            "rust-tron/target/release/tron-fullnode",
+            "--config",
+            "artifacts/c030/C030.01/harness/config/rust-witness-a.conf"
+          ],
+          "cwd": ".",
+          "environment": [
+            "LANG=C.UTF-8",
+            "LC_ALL=C.UTF-8",
+            "TZ=UTC"
+          ],
+          "stderr": "artifacts/c030/C030.01/harness/log/rust-witness-a.log.stderr",
+          "stdin": "null",
+          "stdout": "artifacts/c030/C030.01/harness/log/rust-witness-a.log",
+          "witness_key_environment_file": "artifacts/c030/C030.01/harness/keys/W03.env"
+        },
+        "log_path": "artifacts/c030/C030.01/harness/log/rust-witness-a.log",
+        "ports": {
+          "backup_udp": 10083,
+          "grpc": 50083,
+          "http": 8083,
+          "json_rpc": 8583,
+          "p2p_tcp_udp": 18083,
+          "prometheus": 9583
+        },
+        "role": "witness",
+        "trust_node": null,
+        "witness_identity": "W03"
+      },
+      {
+        "config": {
+          "deployment": {
+            "path": "rust-tron/packaging/config/fullnode.deployment.json",
+            "sha256": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+          },
+          "rendered_path": "artifacts/c030/C030.01/harness/config/rust-witness-b.conf",
+          "rendered_sha256_observation": "config.rust-witness-b.sha256",
+          "source": {
+            "path": "rust-tron/packaging/config/fullnode.conf",
+            "sha256": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+          }
+        },
+        "data_path": "artifacts/c030/C030.01/harness/data/rust-witness-b",
+        "id": "rust-witness-b",
+        "implementation": "rust",
+        "key_id": "W04",
+        "launch": {
+          "argv": [
+            "rust-tron/target/release/tron-fullnode",
+            "--config",
+            "artifacts/c030/C030.01/harness/config/rust-witness-b.conf"
+          ],
+          "cwd": ".",
+          "environment": [
+            "LANG=C.UTF-8",
+            "LC_ALL=C.UTF-8",
+            "TZ=UTC"
+          ],
+          "stderr": "artifacts/c030/C030.01/harness/log/rust-witness-b.log.stderr",
+          "stdin": "null",
+          "stdout": "artifacts/c030/C030.01/harness/log/rust-witness-b.log",
+          "witness_key_environment_file": "artifacts/c030/C030.01/harness/keys/W04.env"
+        },
+        "log_path": "artifacts/c030/C030.01/harness/log/rust-witness-b.log",
+        "ports": {
+          "backup_udp": 10084,
+          "grpc": 50084,
+          "http": 8084,
+          "json_rpc": 8584,
+          "p2p_tcp_udp": 18084,
+          "prometheus": 9584
+        },
+        "role": "witness",
+        "trust_node": null,
+        "witness_identity": "W04"
+      },
+      {
+        "config": {
+          "deployment": {
+            "path": "rust-tron/packaging/config/fullnode.deployment.json",
+            "sha256": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+          },
+          "rendered_path": "artifacts/c030/C030.01/harness/config/rust-full.conf",
+          "rendered_sha256_observation": "config.rust-full.sha256",
+          "source": {
+            "path": "rust-tron/packaging/config/fullnode.conf",
+            "sha256": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+          }
+        },
+        "data_path": "artifacts/c030/C030.01/harness/data/rust-full",
+        "id": "rust-full",
+        "implementation": "rust",
+        "key_id": null,
+        "launch": {
+          "argv": [
+            "rust-tron/target/release/tron-fullnode",
+            "--config",
+            "artifacts/c030/C030.01/harness/config/rust-full.conf"
+          ],
+          "cwd": ".",
+          "environment": [
+            "LANG=C.UTF-8",
+            "LC_ALL=C.UTF-8",
+            "TZ=UTC"
+          ],
+          "stderr": "artifacts/c030/C030.01/harness/log/rust-full.log.stderr",
+          "stdin": "null",
+          "stdout": "artifacts/c030/C030.01/harness/log/rust-full.log",
+          "witness_key_environment_file": null
+        },
+        "log_path": "artifacts/c030/C030.01/harness/log/rust-full.log",
+        "ports": {
+          "backup_udp": 10085,
+          "grpc": 50085,
+          "http": 8085,
+          "json_rpc": 8585,
+          "p2p_tcp_udp": 18085,
+          "prometheus": 9585
+        },
+        "role": "full",
+        "trust_node": null,
+        "witness_identity": null
+      },
+      {
+        "config": {
+          "deployment": {
+            "path": "rust-tron/packaging/config/fullnode.deployment.json",
+            "sha256": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+          },
+          "rendered_path": "artifacts/c030/C030.01/harness/config/java-fast-forward.conf",
+          "rendered_sha256_observation": "config.java-fast-forward.sha256",
+          "source": {
+            "path": "rust-tron/packaging/config/fullnode.conf",
+            "sha256": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+          }
+        },
+        "data_path": "artifacts/c030/C030.01/harness/data/java-fast-forward",
+        "id": "java-fast-forward",
+        "implementation": "java",
+        "key_id": null,
+        "launch": {
+          "argv": [
+            "/usr/lib/jvm/java-8-openjdk-amd64/bin/java",
+            "-jar",
+            "java-tron/build/libs/FullNode.jar",
+            "-c",
+            "artifacts/c030/C030.01/harness/config/java-fast-forward.conf"
+          ],
+          "cwd": ".",
+          "environment": [
+            "LANG=C.UTF-8",
+            "LC_ALL=C.UTF-8",
+            "TZ=UTC"
+          ],
+          "stderr": "artifacts/c030/C030.01/harness/log/java-fast-forward.log.stderr",
+          "stdin": "null",
+          "stdout": "artifacts/c030/C030.01/harness/log/java-fast-forward.log",
+          "witness_key_environment_file": null
+        },
+        "log_path": "artifacts/c030/C030.01/harness/log/java-fast-forward.log",
+        "ports": {
+          "backup_udp": 10086,
+          "grpc": 50086,
+          "http": 8086,
+          "json_rpc": 8586,
+          "p2p_tcp_udp": 18086,
+          "prometheus": 9586
+        },
+        "role": "fast-forward-full",
+        "trust_node": null,
+        "witness_identity": null
+      },
+      {
+        "config": {
+          "deployment": {
+            "path": "rust-tron/packaging/config/fullnode.deployment.json",
+            "sha256": "97b6cfd8232561b00a2b148af8bd7b33d7e718c413bcf896994a400e20669594"
+          },
+          "rendered_path": "artifacts/c030/C030.01/harness/config/java-observer.conf",
+          "rendered_sha256_observation": "config.java-observer.sha256",
+          "source": {
+            "path": "rust-tron/packaging/config/fullnode.conf",
+            "sha256": "bd571fb0e4f040a4f8aadfe037875e27b9b9668abf0f22520814a0316380f83d"
+          }
+        },
+        "data_path": "artifacts/c030/C030.01/harness/data/java-observer",
+        "id": "java-observer",
+        "implementation": "java",
+        "key_id": null,
+        "launch": {
+          "argv": [
+            "/usr/lib/jvm/java-8-openjdk-amd64/bin/java",
+            "-jar",
+            "java-tron/build/libs/FullNode.jar",
+            "-c",
+            "artifacts/c030/C030.01/harness/config/java-observer.conf"
+          ],
+          "cwd": ".",
+          "environment": [
+            "LANG=C.UTF-8",
+            "LC_ALL=C.UTF-8",
+            "TZ=UTC"
+          ],
+          "stderr": "artifacts/c030/C030.01/harness/log/java-observer.log.stderr",
+          "stdin": "null",
+          "stdout": "artifacts/c030/C030.01/harness/log/java-observer.log",
+          "witness_key_environment_file": null
+        },
+        "log_path": "artifacts/c030/C030.01/harness/log/java-observer.log",
+        "ports": {
+          "backup_udp": 10087,
+          "grpc": 50087,
+          "http": 8087,
+          "json_rpc": 8587,
+          "p2p_tcp_udp": 18087,
+          "prometheus": 9587
+        },
+        "role": "full-observer",
+        "trust_node": null,
+        "witness_identity": null
+      },
+      {
+        "config": {
+          "deployment": {
+            "path": "rust-tron/packaging/config/solidity.deployment.json",
+            "sha256": "b85c97e6d47bddf3a001e5f607491f231af7a6b498b4eddef95944e1ed26be17"
+          },
+          "rendered_path": "artifacts/c030/C030.01/harness/config/rust-solidity.conf",
+          "rendered_sha256_observation": "config.rust-solidity.sha256",
+          "source": {
+            "path": "rust-tron/packaging/config/solidity.conf",
+            "sha256": "1e68bfa5a4667143daee21d328fd60e1f4b28fe3c487e569b91686342c6e0d83"
+          }
+        },
+        "data_path": "artifacts/c030/C030.01/harness/data/rust-solidity",
+        "id": "rust-solidity",
+        "implementation": "rust",
+        "key_id": null,
+        "launch": {
+          "argv": [
+            "rust-tron/target/release/tron-solidity",
+            "--config",
+            "artifacts/c030/C030.01/harness/config/rust-solidity.conf"
+          ],
+          "cwd": ".",
+          "environment": [
+            "LANG=C.UTF-8",
+            "LC_ALL=C.UTF-8",
+            "TZ=UTC"
+          ],
+          "stderr": "artifacts/c030/C030.01/harness/log/rust-solidity.log.stderr",
+          "stdin": "null",
+          "stdout": "artifacts/c030/C030.01/harness/log/rust-solidity.log",
+          "witness_key_environment_file": null
+        },
+        "log_path": "artifacts/c030/C030.01/harness/log/rust-solidity.log",
+        "ports": {
+          "grpc": 50061,
+          "http": 8091,
+          "prometheus": 9527,
+          "zeromq": 5555
+        },
+        "role": "solidity",
+        "trust_node": "rust-full:50085",
+        "witness_identity": null
+      }
+    ],
+    "port_policy": "exact frozen mapping; bind APIs to 127.0.0.1; no defaults, reuse, wildcard exposure, or silent remapping"
+  }
+}

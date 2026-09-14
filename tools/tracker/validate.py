@@ -15,7 +15,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 TRACKER = ROOT / "docs/PORTING_TRACKER.json"
 C030_GATE = ROOT / "tools/qualification/c030_gate.py"
-EXPECTED_C030_GATE_SHA256 = "7047531b47392e54d9e36db66002909ee50d5ef9cffb1c503b41ceca4ecdeb39"
+EXPECTED_C030_GATE_SHA256 = "5ec7fd00d780b0099294d2b3a9bdbcd7e7307d83ce96c36977f3e0ae5962fb05"
 CHUNK_STATUSES = {"todo", "active", "review", "blocked", "done"}
 ITEM_STATUSES = {"todo", "doing", "done"}
 GATE_STATUSES = {"unconfigured", "not_run", "failed", "passed"}

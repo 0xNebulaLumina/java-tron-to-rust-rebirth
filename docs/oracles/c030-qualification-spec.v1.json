@@ -598,6 +598,26 @@
       "license",
       "performance"
     ],
+    "harness": "tools/qualification/c030_harness.py",
+    "implemented_contract": {
+      "executable_scenario_count": 4,
+      "future_contract_count": 44,
+      "item": "C030.01",
+      "link_count": 22,
+      "mode": "harness",
+      "node_count": 8,
+      "output_path": "docs/oracles/results/c030/c030-01-harness-result.v1.json"
+    },
+    "mode_items": {
+      "C030.01": "harness",
+      "C030.02": "lifecycle",
+      "C030.03": "network-fault",
+      "C030.04": "api-load",
+      "C030.05": "endurance",
+      "C030.06": "security",
+      "C030.07": "license",
+      "C030.08": "performance"
+    },
     "mode_outputs": {
       "C030.01": "docs/oracles/results/c030/c030-01-harness-result.v1.json",
       "C030.02": "docs/oracles/results/c030/c030-02-lifecycle-result.v1.json",
@@ -638,7 +658,8 @@
     },
     "result_schema": "docs/oracles/schemas/c030-qualification-result-v1.schema.json",
     "runner": "tools/qualification/c030_qualification.py",
-    "scenario_manifest": "docs/oracles/c030-scenario-manifest.v1.json"
+    "scenario_manifest": "docs/oracles/c030-scenario-manifest.v1.json",
+    "scenario_schema": "docs/oracles/schemas/c030-scenario-manifest-v1.schema.json"
   },
   "license_and_provenance": {
     "authority_roles": [
@@ -1054,13 +1075,14 @@
       "environment_sha256",
       "scenario_ids",
       "scenario_results",
+      "observations",
       "metrics",
       "evidence_files",
       "approvals",
       "overall_status",
       "signature"
     ],
-    "required_scenario_coverage": "exact implementation manifest set; missing, skipped, not_run, unknown fail",
+    "required_scenario_coverage": "exact scenario manifest item set and order; each scenario result must bind its exact manifest observation subjects to non-boolean measured expected/actual values and inventoried evidence; missing, fabricated, skipped, not_run, unknown fail",
     "rerun_triggers": [
       "spec/schema digest",
       "release manifest/shipped digest",
