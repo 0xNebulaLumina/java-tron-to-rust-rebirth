@@ -185,7 +185,7 @@ fn context(registry: ActuatorRegistry, owner: &[u8]) -> (std::path::PathBuf, Api
         let managed = ManagedBlock { raw, id, received_at: 100 };
         let mut khaos = KhaosDatabase::new();
         khaos.start(KhaosBlockData::new(id, tron_primitives::Hash32::ZERO, 7, managed)).map_err(|error| tron_execution::ChainManagerError::State(error.to_string()))?;
-        let runtime = ExecutionRuntimeConfig { actuator_registry: actor_actuators, operation_registry: Arc::new(tron_tvm::OperationRegistry::integration().map_err(|error| tron_execution::ChainManagerError::State(format!("{error:?}")))?), shielded_parameters: parameters(), execution_config: ExecutionConfig::default() };
+        let runtime = ExecutionRuntimeConfig { actuator_registry: actor_actuators, operation_registry: Arc::new(tron_tvm::OperationRegistry::integration().map_err(|error| tron_execution::ChainManagerError::State(format!("{error:?}")))?), shielded_parameters: parameters(), execution_config: ExecutionConfig::default(), constant_call_timeout: None, deadline_observer: None };
         let processor = TransactionProcessor::new(actor_sessions.clone(), TransactionCache::new(CacheConfig::default()).map_err(|error| tron_execution::ChainManagerError::State(error.to_string()))?, StateTransactionPipeline::new(Default::default(), runtime));
         let blocks = BlockManager::new(actor_sessions.clone(), processor, khaos, FixtureConsensus, (), BlockLimits::default(), CryptoEngine::Secp256k1);
         let pending = PendingPool::new(actor_sessions.clone(), PendingLimits::default()).map_err(|error| tron_execution::ChainManagerError::State(error.to_string()))?;

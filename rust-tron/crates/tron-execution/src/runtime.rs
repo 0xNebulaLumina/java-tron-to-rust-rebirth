@@ -225,7 +225,13 @@ impl<'a> Runtime<'a> {
         let network_deadline = Duration::from_millis(
             optional_dynamic_i64(session, "MAX_CPU_TIME_OF_ONE_TX")?.unwrap_or(50).max(1) as u64,
         );
-        let deadline = Self::execution_deadline(false, network_deadline, None, retry);
+        let is_constant_call = Self::trigger_is_constant_abi(envelope, session, self.config)?;
+        let deadline = Self::execution_deadline(
+            is_constant_call,
+            network_deadline,
+            self.config.constant_call_timeout,
+            retry,
+        );
 
         Ok(CanonicalVmInvocation {
             frame: FrameContext {
@@ -357,6 +363,9 @@ impl<'a> Runtime<'a> {
         let mut meter = EnergyMeter::new(invocation.energy_limit)
             .map_err(|fault| RuntimeError::Vm(format!("{fault:?}")))?;
         let mut trace = NoTrace;
+        if let Some(observer) = &self.config.deadline_observer {
+            observer(invocation.deadline);
+        }
         let mut limiter = DeadlineLimiter::new(ProcessMonotonicClock::start(), invocation.deadline);
         let outcome = interpreter.run(
             &invocation.frame,

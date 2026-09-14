@@ -8,7 +8,7 @@ const ADDRESS_58:&str="T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb";
 #[test]
 fn descriptor_codec_matches_visible_byte_rules_and_int64_scope(){
     let codec=ProtobufJson::default();
-    let json=format!(r#"{{"owner_address":"{ADDRESS_58}","to_address":"{ADDRESS_58}","amount":9007199254740993,"unknown":{{"deep":[1,null,],}},}}"#);
+    let json=format!(r#"{{"owner_address":"{ADDRESS_58}","to_address":"{ADDRESS_58}","amount":9007199254740993,"unknown":{{"deep":[1,null]}},}}"#);
     let message=codec.parse("protocol.TransferContract",&json,true).unwrap();
     let visible:Value=serde_json::from_str(&codec.print(&message,true).unwrap()).unwrap();
     assert_eq!(visible["owner_address"],ADDRESS_58); assert_eq!(visible["amount"],9007199254740993_i64);
@@ -68,6 +68,9 @@ fn json_format_unknown_fields_repeated_shapes_and_trailing_commas() {
     ).unwrap();
     let parsed: Value = serde_json::from_str(&codec.print(&parsed, false).unwrap()).unwrap();
     assert_eq!(parsed["genesisBlockId"]["number"], 1);
+
+    assert!(codec.parse("protocol.HelloMessage", r#"{"zzz":{"a":1,}}"#, false).is_err());
+    assert!(codec.parse("protocol.HelloMessage", r#"{"zzz":[1,]}"#, false).is_err());
 }
 
 #[test]
@@ -107,6 +110,63 @@ fn json_mapper_raw_token_limit_is_enforced_before_unknown_field_skip() {
         false,
     ).unwrap_err();
     assert!(oversized_error.0.contains("exceeds the maximum allowed (100000)."));
+}
+
+#[test]
+fn production_parser_case() {
+    let codec = ProtobufJson::default();
+    let transfer = format!(r#"{{"owner_address":"{ADDRESS_58}","to_address":"{ADDRESS_58}","amount":9007199254740993,"unknown":{{"array":[1,true,null]}}}}"#);
+    let parsed = codec.parse("protocol.TransferContract", &transfer, true).unwrap();
+    let visible: Value = serde_json::from_str(&codec.print(&parsed, true).unwrap()).unwrap();
+    assert_eq!(visible["owner_address"], ADDRESS_58);
+    assert_eq!(visible["amount"], 9_007_199_254_740_993_i64);
+    let hidden: Value = serde_json::from_str(&codec.print(&parsed, false).unwrap()).unwrap();
+    assert_eq!(hidden["owner_address"], ADDRESS_HEX);
+    with_get_int64_as_string("GET", true, || {
+        let quoted: Value = serde_json::from_str(&codec.print(&parsed, true).unwrap()).unwrap();
+        assert_eq!(quoted["amount"], "9007199254740993");
+    });
+    let transaction = codec.parse_transaction(
+        &format!(r#"{{"raw_data":{{"contract":[{{"type":"TransferContract","parameter":{{"value":{{"owner_address":"{ADDRESS_58}","to_address":"{ADDRESS_58}","amount":1}}}}}}]}}}}"#),
+        true,
+    ).unwrap();
+    let transaction_json: Value = serde_json::from_str(&codec.print(&transaction, true).unwrap()).unwrap();
+    assert_eq!(transaction_json["raw_data"]["contract"][0]["type"], "TransferContract");
+    assert!(codec.parse("protocol.Proposal", r#"{"approvals":[["00"]]}"#, false).is_err());
+    assert!(codec.parse("protocol.HelloMessage", &unknown_nested_object(21), false).is_err());
+}
+
+#[test]
+fn production_parser_accepts_java_json_leniency_without_changing_results() {
+    fn body(input: &str) -> Value {
+        let (json, _) = parse_post_body(input.as_bytes(), Some("application/json")).unwrap();
+        serde_json::from_str(&json).unwrap()
+    }
+
+    assert_eq!(body("{a:1}")["a"], 1);
+    assert_eq!(body("{a:1, a:2 }")["a"], 2);
+    assert_eq!(body("{a:2, a:1 }")["a"], 1);
+    assert_eq!(body("{'a':'1'}")["a"], "1");
+
+    let numbers = body("{'a':+1,b:-2,c:.3,d:-.4,e:+.5,f:+6.,h:007}");
+    assert_eq!(numbers, serde_json::json!({"a":1,"b":-2,"c":0.3,"d":-0.4,"e":0.5,"f":6.0,"h":7}));
+    assert_eq!(body("{'a':'line1\n\tline2'}")["a"], "line1\n\tline2");
+    assert_eq!(body("{\"a\":\"\u{1}\"}")["a"], "\u{1}");
+    assert_eq!(body("{\"a\":1} \n\t // this is a comment")["a"], 1);
+    assert_eq!(body("{/* comment */\"a\":1}")["a"], 1);
+    assert_eq!(body("{\"a\":1} /* trailing comment */")["a"], 1);
+}
+
+#[test]
+fn production_parser_rejects_java_malformed_leniency_variants() {
+    for input in [
+        "{c:'NULL',,,,,,}", "[1,,2]", "{\"a\":NaN}", "[1, NaN, 2]",
+        "{outer:{inner:NaN}}", "{b:Infinity}", "{c:-Infinity}", "[Infinity]",
+        "{\"a\":\"\\q\"}", "{\"a\":1} {\"b\":2}", "{\"a\":1} garbage",
+        "{a:abc}", "{a:TRUE}", "{a:FALSE}", "{\"a\":NULL}", "NULL",
+    ] {
+        assert!(parse_post_body(input.as_bytes(), Some("application/json")).is_err(), "accepted {input:?}");
+    }
 }
 
 fn unknown_nested_object(depth: usize) -> String {

@@ -4231,22 +4231,22 @@
     {
       "id": "C029",
       "title": "Java test-surface mapping and regression closure",
-      "status": "review",
+      "status": "active",
       "owner": "review-agent",
       "updated": "2026-09-14",
-      "resume": "Independently re-review surviving round-2 findings C029-R1-003, C029-R1-004, C029-R1-005, C029-R1-006, C029-R1-007, C029-R1-009, and C029-R1-010, including exact task accounting. The full C029 gate passed with rows=3443, proofs=475, defects=7, and artifact SHA-256 f40f65a04e0b2ca108fcf4dfd702636f6556a3671fa53f2a327a4774a8a41e8d.",
+      "resume": "Independently re-review the remaining round-3 findings C029-R1-003, C029-R1-004, C029-R1-005, and C029-R1-010, including consistent accounting of 3,443 rows, 471 proofs, seven historical defects, and zero current gaps.",
       "items": [
         {
           "id": "C029.01",
           "description": "Regenerate the C000 case-level Java test/resource ledger at the release revision and reject source/count drift.",
           "status": "done",
-          "note": "Pinned ledger regeneration passed with all 3,443 stable rows preserved; artifact SHA-256 is 0b35deb0becd225ba4e55f34a9d361adbe37562ff3ef1d2d8a816de46af6e890."
+          "note": "Pinned ledger regeneration passed with all 3,443 stable rows preserved; the complete reconciliation artifact SHA-256 is c442a7c2052682ab7d7f1185fc0ec7b18746b8c0098ef816e175136748583b69."
         },
         {
           "id": "C029.02",
           "description": "Reconcile each stable case ID to behavior claim, applicability decision, Rust test/fixture IDs and execution results; many-to-one mappings require explicit behavior decomposition.",
           "status": "done",
-          "note": "All 3,443 stable case rows are reconciled with 479 passing proofs and zero unexplained defects."
+          "note": "All 3,443 stable case rows are present in the reconciliation with 471 proof commands and zero current gaps; independent round-3 re-review remains requested for C029-R1-003, C029-R1-004, C029-R1-005, and C029-R1-010."
         },
         {
           "id": "C029.03",
@@ -4258,24 +4258,24 @@
           "id": "C029.04",
           "description": "Make ignored shielded/VM/benchmark cases explicit covered, benchmark-only, or blocker-owned; never silently drop.",
           "status": "done",
-          "note": "Shielded, VM, benchmark, and ignored cases have explicit dispositions; the verified reconciliation reports zero defects."
+          "note": "Shielded, VM, benchmark, and ignored cases have explicit dispositions; VM recognition now covers all 341 pinned VM rows, including 44 explicit VM paths outside /runtime/vm/."
         },
         {
           "id": "C029.05",
           "description": "Add minimal fixture for every compatibility defect found during porting.",
           "status": "done",
-          "note": "Compatibility-defect fixture coverage is reconciled; the verified artifact reports defects=0."
+          "note": "The reconciliation records seven historical closed compatibility defects, each joined to defect-specific evidence, and zero unexplained current compatibility gaps; independent round-3 re-review of C029-R1-010 remains requested."
         },
         {
           "id": "C029.06",
           "description": "Enforce determinism/isolation and remove flaky sleeps/fixed ports/mutable images.",
           "status": "done",
-          "note": "Determinism and isolation requirements are represented by passing proofs in the zero-defect reconciliation."
+          "note": "The reconciliation contains 471 proof commands; the full gate passed with repository-pinned toolchain provenance, invocation isolation, and all-exit shared-input integrity checks, while independent round-3 re-review of C029-R1-003 remains requested."
         }
       ],
       "gate": {
         "id": "C029.V",
-        "description": "Passed: the full C029 reconciliation gate reports rows=3443, proofs=475, defects=7, with artifact SHA-256 f40f65a04e0b2ca108fcf4dfd702636f6556a3671fa53f2a327a4774a8a41e8d.",
+        "description": "Passed: all 3,443 stable Java case rows reconcile to 471 proof commands, seven historical closed compatibility defects, and zero current gaps; the complete reconciliation artifact SHA-256 is c442a7c2052682ab7d7f1185fc0ec7b18746b8c0098ef816e175136748583b69.",
         "status": "passed",
         "commands": [
           {
@@ -4303,7 +4303,7 @@
       },
       "review": {
         "state": "changes_requested",
-        "round": 2,
+        "round": 3,
         "findings": [
           {
             "id": "C029-R1-001",
@@ -4319,33 +4319,33 @@
           },
           {
             "id": "C029-R1-003",
-            "summary": "Cargo and Rustup still use caller-selected shared homes instead of invocation-private authenticated homes.",
+            "summary": "The gate still lacks repository-trusted provenance for the complete Rust toolchain and all-exit integrity checks for every shared Rust input.",
             "status": "open",
             "resolution": null
           },
           {
             "id": "C029-R1-004",
-            "summary": "Production constant-call deadline compatibility is unproved, and several C016 proofs remain test-local tautologies.",
+            "summary": "Production constant-call deadline wiring is still absent; five C016 proofs remain test-local tautologies and the fork-schedule row is incorrectly treated as non-applicable.",
             "status": "open",
             "resolution": null
           },
           {
             "id": "C029-R1-005",
-            "summary": "C023 proofs collapse 333 rows into generic families instead of executing each row's exact source behavior.",
+            "summary": "C023 still collapses most of its 333 rows into generic parser, control, or route checks instead of executing each source-specific behavior and observable assertion.",
             "status": "open",
             "resolution": null
           },
           {
             "id": "C029-R1-006",
-            "summary": "C008 lacks an independently pinned stable-ID/source/case digest that rejects ledger-row omission or substitution.",
-            "status": "open",
-            "resolution": null
+            "summary": "C008 independently pins complete identity and transition digests that reject row omission, substitution, and ownership-transition drift.",
+            "status": "closed",
+            "resolution": "The C008 gate pins the ordered 189-row stable-ID/source/line/case digest 0db78910ec46d6d66e718c915b3188833e8942d097d6de7a3478f0ea5cfe580b and the 189-transition disposition/ownership/destination digest f62bfce68df6ba34b83f0014d8896b040dd9be2bd7fa08baae08e8091d69cf7a, checks exact counts and unique identity sets, regenerates deterministically, and compares the artifact byte-for-byte."
           },
           {
             "id": "C029-R1-007",
-            "summary": "C009 lacks an independently pinned stable-ID/source/case digest that rejects ledger-row omission or substitution.",
-            "status": "open",
-            "resolution": null
+            "summary": "C009 independently pins complete identity and transition digests that reject row omission, substitution, and ownership-transition drift.",
+            "status": "closed",
+            "resolution": "The C009 gate pins the ordered 155-row stable-ID/source/line/case digest 07be6fef6ca4b312b4373b2a460bfa3e923888accff366e04644d3f1b758c8f6 and the 155-transition disposition/owner/item/gate digest 4f95dc0cd8305c08241f3ba0adac1d0865b0e2e2db09866ba12f10e476ca60bc, checks exact counts and unique identity sets, regenerates deterministically, and compares the artifact byte-for-byte."
           },
           {
             "id": "C029-R1-008",
@@ -4355,13 +4355,13 @@
           },
           {
             "id": "C029-R1-009",
-            "summary": "VM treatment classification is incomplete because explicit VM paths outside /runtime/vm/ are marked not_applicable.",
-            "status": "open",
-            "resolution": null
+            "summary": "VM treatment recognizes the complete pinned VM surface, including explicit VM paths outside /runtime/vm/.",
+            "status": "closed",
+            "resolution": "The gate centralizes VM recognition across runtime, actuator, repository, VMActuator, VMConfig, and HistoryBlockHashVM sources, pins all 44 non-/runtime/vm/ stable IDs, and reconciles 341 VM-covered rows."
           },
           {
             "id": "C029-R1-010",
-            "summary": "Historical finding IDs are complete, but compatibility-defect classifications and fixture evidence are not independently derived.",
+            "summary": "Historical finding counts are complete, but defect classification is co-authored and evidence is joined only by global token membership, allowing unrelated proofs to satisfy a defect.",
             "status": "open",
             "resolution": null
           }

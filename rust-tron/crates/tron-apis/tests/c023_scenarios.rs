@@ -1,6 +1,6 @@
 use std::{collections::BTreeSet, sync::Arc, time::{Duration, SystemTime, UNIX_EPOCH}};
 use tokio::{io::{AsyncReadExt, AsyncWriteExt}, net::TcpStream, sync::watch};
-use tron_apis::{ApiContext, RpcApiServices, http_filters::HttpControls, http_json::parse_post_body, http_router::{HttpRouteState, http_router}, http_routes::{HTTP_ROUTES, HttpSurface}, http_server::{HttpServerConfig, HttpServerPlan}, rate_limit::{ApiRateLimiter, RateLimitConfig}};
+use tron_apis::{ApiContext, RpcApiServices, http_filters::HttpControls, http_json::{ProtobufJson, parse_post_body}, http_router::{HttpRouteState, http_router}, http_routes::{HTTP_ROUTES, HttpSurface}, http_server::{HttpServerConfig, HttpServerPlan}, rate_limit::{ApiRateLimiter, RateLimitConfig}};
 use tron_crypto::CryptoEngine;
 use tron_execution::ActuatorRegistry;
 use tron_state::{CheckpointIdentity, CursorPoint, CursorSet, SessionManager, StateStore};
@@ -177,6 +177,16 @@ async fn execute_size_limit_behavior(stable_id: &str, row: &serde_json::Value) -
             stop(tx, task, path).await;
             Some(outcome(row))
         }
+        "TCASE-650059671FFDB730" => {
+            let route = row["behavior"]["route"].as_str().unwrap();
+            assert_eq!(route.len(), 9001);
+            let (address, tx, task, path) = start(controls(1024), false, 1, HttpSurface::Full).await;
+            let (status, _, response) = request(address, "GET", route, "application/x-www-form-urlencoded", b"").await;
+            assert_eq!(status, 414);
+            assert!(!String::from_utf8_lossy(&response).contains("Payload Too Large"));
+            stop(tx, task, path).await;
+            Some(outcome(row))
+        }
         "TCASE-E4458B80C97935F1" => {
             let payload = body(b'd', 612);
             let (first, tx1, task1, path1) = start(controls(1024), false, 1, HttpSurface::Full).await;
@@ -221,17 +231,31 @@ async fn execute_row_behavior(stable_id: &str, row: &serde_json::Value) -> RowOu
     if kind == "json-unit" {
         assert_eq!(behavior["proof_function"], "c023_json::production_parser_case");
         let parser_result = behavior["parser_result"].as_str().unwrap();
-        let directly_exercised = matches!(stable_id,
-            "TCASE-1A877C8B6766B4C7" | "TCASE-A037C952A7B966C2" |
-            "TCASE-66361C13405383AA" | "TCASE-0FCD6FE6295B449F" |
-            "TCASE-FC15342AA62E8EA9" | "TCASE-EB9B652B5EAAF9CF" |
-            "TCASE-E8678FD65A4DEC5A");
-        if directly_exercised {
-            let parsed = parse_post_body(&input, Some("application/json"));
-            assert_eq!(parsed.is_ok(), parser_result == "parse_success", "{stable_id} exact production-parser result drift: {parsed:?}");
+        let source_path = source["path"].as_str().unwrap();
+        let parsed = if source_path.ends_with("/org/tron/json/JsonTest.java") {
+            parse_post_body(&input, Some("application/json")).map(|_| ())
         } else {
-            assert!(matches!(parser_result, "parse_success" | "parse_exception" | "constraints_depth20_tokens100000"));
+            let message_type = match stable_id {
+                "TCASE-5B87188D04DC4B6D" | "TCASE-715A1AE53E7E9DDD" => "protocol.Proposal",
+                "TCASE-A8C8F3DEB3B9B6C3" => "protocol.Block",
+                "TCASE-C5B25C41A2F61731" => "protocol.Entry",
+                _ => "protocol.HelloMessage",
+            };
+            ProtobufJson::default().parse(message_type, std::str::from_utf8(&input).unwrap(), false).map(|_| ()).map_err(|error| tron_apis::http_json::JsonError(error.0))
+        };
+        match parser_result {
+            "parse_success" => assert!(parsed.is_ok(), "{stable_id} exact parser behavior failed: {parsed:?}"),
+            "parse_exception" => assert!(parsed.is_err(), "{stable_id} exact parser behavior unexpectedly succeeded"),
+            "constraints_depth20_tokens100000" => {
+                assert!(parsed.is_ok(), "{stable_id} configured-constraint probe input failed: {parsed:?}");
+                let depth_error = ProtobufJson::default().parse("protocol.HelloMessage", std::str::from_utf8(&behavior_input("@unknown-nested-object:21")).unwrap(), false).unwrap_err();
+                assert!(depth_error.0.contains("recursion limit"));
+                let token_error = parse_post_body(&behavior_input("@token-array:100500"), Some("application/json")).unwrap_err();
+                assert!(token_error.0.contains("100000"), "{token_error:?}");
+            }
+            other => panic!("unknown C023 parser result {other}"),
         }
+        assert_eq!(behavior["assertion"], format!("{}#{}:{parser_result}", std::path::Path::new(source_path).file_stem().unwrap().to_string_lossy(), row["symbol"].as_str().unwrap()));
         return RowOutcome { terminal: "mapped", result_key: row["result_key"].as_str().unwrap().to_owned() };
     }
     let route = behavior["route"].as_str().unwrap();
@@ -240,11 +264,21 @@ async fn execute_row_behavior(stable_id: &str, row: &serde_json::Value) -> RowOu
     let mut controls = HttpControls::default();
     if kind == "control" && expected == [413] { controls.max_body_bytes = 4; }
     let (address, tx, task, path) = start(controls, false, 1, behavior_surface(behavior["surface"].as_str().unwrap())).await;
-    let target = if method == "GET" && !route.contains('?') && route.len() < 8_000 { format!("{route}?visible=false") } else { route.to_owned() };
+    let target = if method == "GET" {
+        let query = std::str::from_utf8(&input).unwrap();
+        if route.contains('?') { format!("{route}&{query}") } else { format!("{route}?{query}") }
+    } else { route.to_owned() };
     let content_type = if method == "GET" { "application/x-www-form-urlencoded" } else { "application/json" };
-    let (status, headers, response) = request(address, method, &target, content_type, &input).await;
+    let (status, headers, response) = request(address, method, &target, content_type, if method == "GET" { b"" } else { &input }).await;
     assert!(expected.contains(&status), "{stable_id} exact {kind} behavior {method} route_len={} expected {expected:?}, received {status}", route.len());
-    if status == 200 { assert!(headers.to_ascii_lowercase().contains("content-type:")); assert!(!response.is_empty() || route == "/wallet/validateaddress"); }
+    let assertion = behavior["assertion"].as_str().unwrap();
+    assert!(assertion.contains(row["symbol"].as_str().unwrap()), "{stable_id} assertion is not source-specific");
+    assert!(headers.to_ascii_lowercase().contains("content-type:"), "{stable_id} response omitted content type");
+    assert!(!response.is_empty() || route == "/wallet/validateaddress", "{stable_id} response body semantics were not observable");
+    if matches!(kind, "route" | "custom") && status == 200 {
+        let body: serde_json::Value = serde_json::from_slice(&response).unwrap_or_else(|error| panic!("{stable_id} route returned non-JSON body: {error}"));
+        assert!(body.is_object(), "{stable_id} route response must be a JSON object, got {body}");
+    }
     stop(tx, task, path).await;
     RowOutcome { terminal: if kind == "deferred" { "deferred" } else { "mapped" }, result_key: row["result_key"].as_str().unwrap().to_owned() }
 }

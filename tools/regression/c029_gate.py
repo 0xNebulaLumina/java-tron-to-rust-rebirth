@@ -17,6 +17,8 @@ import tempfile
 from pathlib import Path
 import pwd
 import tomllib
+import time
+
 from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "reference-runner"))
 from java_reference_guard import JavaReferenceError, verify_java_reference
@@ -42,22 +44,56 @@ ID_RE = re.compile(r"^(?:TCASE|TRESOURCE)-[0-9A-F]{16}$")
 PROOF_ID_RE = re.compile(r"^C029-PROOF-[0-9A-Z][0-9A-Z._-]*$")
 ITEMS = {f"C029.{number:02d}" for number in range(1, 7)}
 SEMANTIC_DOMAINS = {"protocol", "crypto", "chainbase", "consensus"}
+PINNED_RUST_TOOLCHAIN = {
+    "channel": "1.85.1",
+    "host": "x86_64-unknown-linux-gnu",
+    "profile": "minimal",
+    "components": ("cargo", "clippy", "rust-docs", "rustfmt"),
+    "targets": ("aarch64-apple-darwin", "aarch64-unknown-linux-gnu", "x86_64-apple-darwin", "x86_64-unknown-linux-gnu"),
+    "installed_components": (
+        "clippy-preview-x86_64-unknown-linux-gnu", "cargo-x86_64-unknown-linux-gnu",
+        "rust-docs-x86_64-unknown-linux-gnu", "rust-std-aarch64-apple-darwin",
+        "rust-std-aarch64-unknown-linux-gnu", "rust-std-x86_64-unknown-linux-gnu",
+        "rustc-x86_64-unknown-linux-gnu", "rustfmt-preview-x86_64-unknown-linux-gnu",
+        "rust-std-x86_64-apple-darwin",
+    ),
+    "manifest_files": (
+        "components", "manifest-cargo-x86_64-unknown-linux-gnu",
+        "manifest-clippy-preview-x86_64-unknown-linux-gnu",
+        "manifest-rust-docs-x86_64-unknown-linux-gnu",
+        "manifest-rust-std-aarch64-apple-darwin",
+        "manifest-rust-std-aarch64-unknown-linux-gnu",
+        "manifest-rust-std-x86_64-apple-darwin",
+        "manifest-rust-std-x86_64-unknown-linux-gnu",
+        "manifest-rustc-x86_64-unknown-linux-gnu",
+        "manifest-rustfmt-preview-x86_64-unknown-linux-gnu",
+        "multirust-channel-manifest.toml", "multirust-config.toml", "rust-installer-version",
+    ),
+    "channel_manifest_sha256": "7e97a1235ea88353e5b930cd19308477d1fcb854e1c69bd4f1a5140e087e54d2",
+    "config_manifest_sha256": "2ef02fd1c74593cb7bbd30682fd1019fab6e16c3a6b98b0ce453b323aa149f50",
+    "components_sha256": "b681eda7dd3a3d83dc7a2144788a974c62ab3b883e3cbee3a9191dc7aedf1ca7",
+    "tree_sha256": "1ffe6c8e2e9704b5c60978de8e1c1a555aa2e9f9e927b196bfb7a41d565ae3b0",
+    "entry_count": 46889,
+    "file_count": 45598,
+    "directory_count": 1291,
+    "total_file_bytes": 1583329647,
+    "cargo_sha256": "87e9ff02f95ea17d877e7c4eeb0f365f50fe3827f5afec132131ff3b8031a57e",
+    "rustc_sha256": "f8d033fd72e878ec60493788c8bffec2e6c154dcab6f0cb4c145af8ada26a7ed",
+}
+C016_EXECUTABLE_ROWS = 37
+C016_NON_APPLICABLE_ROWS = 8
+C023_JAVA_CONTRACTS = 333
+DEFECT_STABLE_ID_BINDINGS = {
+    "C001-R1-001": (),
+    "C013-R3-001": ("TCASE-E6F1B8CAC044DEB5",),
+    "C014-R2-001": (),
+    "C016-R1-001": ("TCASE-DA2F8C8CFD8D2262",),
+    "C023-R1-001": (),
+    "C027-R6-01": ("TCASE-0A0889ADBE9E8BD3", "TCASE-E1CE182966F2CAE4"),
+    "C028-R3-004": (),
+}
+
 GENERIC = re.compile(r"\b(?:generic|same as java|equivalent|covered|ported|parity|works|n/?a|not applicable)\b", re.I)
-HISTORICAL_COMPATIBILITY_DEFECTS = {
-    "C001-R1-001",
-    "C013-R3-001",
-    "C014-R2-001",
-    "C016-R1-001",
-    "C023-R1-001",
-    "C027-R6-01",
-    "C028-R3-004",
-}
-EXTERNAL_DEFECT_EVIDENCE = {
-    "behavior_claim_ids": {"protocol-fixtures.requirements.java_constructed_maps"},
-    "fixture_ids": {"docs/oracles/protocol-fixtures.v1.json#requirements.java_constructed_maps"},
-    "rust_test_ids": {"rust-tron/crates/tron-protocol/tests/protocol_surface.rs::ordered_map_encoder_matches_java_in_both_insertion_orders_for_every_map_field"},
-    "result_links": {"all 15 canonical descriptor map fields match protobuf-java forward and reverse insertion bytes"},
-}
 
 
 def is_vm_source(path: str) -> bool:
@@ -169,9 +205,9 @@ def source_treatment(source: dict[str, Any]) -> dict[str, str]:
     return {field: active_value[field] if active else "not_applicable" for field, active in classified.items()}
 
 
-def historical_finding_ids() -> set[str]:
+def historical_findings() -> dict[str, dict[str, Any]]:
     tracker = load(TRACKER)
-    result: set[str] = set()
+    result: dict[str, dict[str, Any]] = {}
     for chunk in tracker.get("chunks", []):
         chunk_id = chunk.get("id")
         if not isinstance(chunk_id, str) or not re.fullmatch(r"C\d{3}", chunk_id) or not (1 <= int(chunk_id[1:]) <= 28):
@@ -180,8 +216,63 @@ def historical_finding_ids() -> set[str]:
             finding_id = finding.get("id")
             fail(isinstance(finding_id, str) and finding_id, f"{chunk_id}: tracker review finding lacks an ID")
             fail(finding_id not in result, f"tracker: duplicate historical finding {finding_id}")
-            result.add(finding_id)
+            result[finding_id] = finding
     return result
+
+
+def source_asserts(path: str, tokens: tuple[str, ...], finding_id: str) -> None:
+    source = (ROOT / path).read_text(encoding="utf-8")
+    fail(all(token in source for token in tokens), f"{finding_id}: defect-specific source assertions are absent from {path}")
+
+
+def validate_external_defect(defect: dict[str, Any]) -> bool:
+    finding_id = defect["finding_id"]
+    contracts: dict[str, dict[str, Any]] = {
+        "C001-R1-001": {
+            "behavior_claim_ids": ["constructed protobuf map bytes preserve protobuf-java insertion order for every descriptor map field"],
+            "fixture_ids": ["docs/oracles/protocol-fixtures.v1.json#map_order_vectors"],
+            "rust_test_ids": ["rust-tron/crates/tron-protocol/tests/protocol_surface.rs::ordered_map_encoder_matches_java_in_both_insertion_orders_for_every_map_field"],
+            "result_links": ["map_order_vectors contains exactly 15 descriptor fields and the test compares each row's exact forward_hex and reverse_hex bytes with the ordered encoder"],
+        },
+        "C014-R2-001": {
+            "behavior_claim_ids": ["C014-E2E-027 canonical_fork_state_loader"],
+            "fixture_ids": ["docs/oracles/c014-execution-oracle.v1.json#C014-E2E-027"],
+            "rust_test_ids": ["rust-tron/crates/tron-tvm/tests/c014_runtime.rs::production_rules_load_uses_persisted_version_35_fork_state", "rust-tron/crates/tron-tvm/tests/c014_runtime.rs::production_rules_load_rejects_malformed_fork_state_and_preserves_precedence_flags"],
+            "result_links": ["VERSION_NUMBER never shortcuts requested fork evaluation; version 35 uses exact raw persisted FORK_VERSION_35 bytes and their 27-byte denominator; 19 upgrades pass, 18 fail, non-1 bytes do not count, and malformed active-witness schedule bytes do not affect the result"],
+        },
+        "C023-R1-001": {
+            "behavior_claim_ids": ["Full, Solidity, and PBFT duplicate HTTP route registrations remain distinct by surface and path"],
+            "fixture_ids": ["rust-tron/crates/tron-apis/src/http_routes.rs#HTTP_ROUTES"],
+            "rust_test_ids": ["rust-tron/crates/tron-apis/tests/c023_scenarios.rs::all_215_inventory_rows_execute_through_real_localhost_http"],
+            "result_links": ["the real localhost test dispatches every HTTP_ROUTES entry on its declared Full, Solidity, or PBFT surface, rejects duplicate (surface,path) identities, and requires exactly 215 distinct registrations"],
+        },
+        "C028-R3-004": {
+            "behavior_claim_ids": ["the packaged Solidity deployment does not advertise the unsupported Solidity JSON-RPC endpoint"],
+            "fixture_ids": ["rust-tron/packaging/config/solidity.deployment.json", "rust-tron/packaging/config/solidity.conf", "rust-tron/packaging/container/compose.yaml"],
+            "rust_test_ids": ["rust-tron/crates/tron-node/tests/c028_deployment.rs::packaged_surfaces_match_runtime_and_solidity_json_rpc_is_forbidden"],
+            "result_links": ["the packaged Solidity listener inventory is exactly admin, grpc, http, prometheus, and zeromq; solidity.conf contains neither port 8555 nor jsonrpc; compose publishes no 8555:8555 mapping"],
+        },
+    }
+    contract = contracts.get(finding_id)
+    if contract is None:
+        return False
+    fail(defect["affected_stable_ids"] == [] and defect["command_ids"] == [], f"{finding_id}: source-bound external defect must not substitute unrelated ledger rows or commands")
+    fail(all(defect[field] == value for field, value in contract.items()), f"{finding_id}: exact defect-specific evidence contract mismatch")
+    if finding_id == "C001-R1-001":
+        vectors = load(ROOT / "docs/oracles/protocol-fixtures.v1.json").get("java_map_serialization", {}).get("rows")
+        fail(isinstance(vectors, list) and len(vectors) == 15 and all(set(row) >= {"field", "forward_hex", "reverse_hex"} and row["forward_hex"] != row["reverse_hex"] for row in vectors), "C001-R1-001: exact 15-field forward/reverse map fixture is absent")
+        source_asserts("rust-tron/crates/tron-protocol/tests/protocol_surface.rs", ("fn ordered_map_encoder_matches_java_in_both_insertion_orders_for_every_map_field", "assert_eq!(rows.len(), 15)", "assert_eq!(rust_forward, java_forward", "assert_eq!(rust_reverse, java_reverse"), finding_id)
+    elif finding_id == "C014-R2-001":
+        fixture = next(row for row in load(ROOT / "docs/oracles/c014-execution-oracle.v1.json")["vectors"] if row.get("id") == "C014-E2E-027")
+        fail(fixture.get("family") == "canonical_fork_state_loader", "C014-R2-001: canonical fork-state fixture binding mismatch")
+        source_asserts("rust-tron/crates/tron-tvm/tests/c014_runtime.rs", ("production_rules_load_uses_persisted_version_35_fork_state", "vec![1;19]", "vec![1;18]", "vec![1;27]", "VERSION_NUMBER", "ACTIVE_WITNESSES_KEY", "malformed.push(2)", "production_rules_load_rejects_malformed_fork_state_and_preserves_precedence_flags"), finding_id)
+    elif finding_id == "C023-R1-001":
+        source_asserts("rust-tron/crates/tron-apis/src/http_routes.rs", ("HTTP_ROUTES", "HttpSurface::Full", "HttpSurface::Solidity", "HttpSurface::Pbft"), finding_id)
+        source_asserts("rust-tron/crates/tron-apis/tests/c023_scenarios.rs", ("all_215_inventory_rows_execute_through_real_localhost_http", "HTTP_ROUTES", "215", "surface", "path"), finding_id)
+    else:
+        source_asserts("rust-tron/crates/tron-node/tests/c028_deployment.rs", ("packaged_surfaces_match_runtime_and_solidity_json_rpc_is_forbidden", "[\"admin\",\"grpc\",\"http\",\"prometheus\",\"zeromq\"]", "contains(\"8555\")", "contains(\"jsonrpc\")", "contains(\"8555:8555\")"), finding_id)
+        fail(all((ROOT / path).is_file() for path in contract["fixture_ids"]), "C028-R3-004: packaged Solidity evidence file is absent")
+    return True
 
 
 def string_tokens(value: Any) -> set[str]:
@@ -213,23 +304,14 @@ def validate_historical_findings(document: dict[str, Any], ledger_ids: set[str],
         rationale = finding["rationale"]
         fail(isinstance(rationale, str) and len(rationale.split()) >= 5 and not GENERIC.search(rationale), f"{finding_id}.rationale: concrete source-bound rationale required")
         by_id[finding_id] = finding
-    expected = historical_finding_ids()
-    fail(
-        {finding_id for finding_id, finding in by_id.items() if finding["classification"] == "compatibility_defect"}
-        == HISTORICAL_COMPATIBILITY_DEFECTS,
-        "artifact.review_findings: compatibility classifications must match the tracker-derived historical defect set",
-    )
-    fixture_tokens = {token for row in document["rows"] for link in row["fixture_links"] for token in (link, link.partition("#")[2]) if token}
-    rust_tokens = {token for row in document["rows"] for proof in row["rust_proofs"] for token in (proof["target"], proof["target"].rsplit("::", 1)[-1])}
-    claim_tokens = {token for row in document["rows"] for claim in row["behavior_claims"] for token in string_tokens(claim)}
-    result_tokens = {token for row in document["rows"] for token in string_tokens(row["observable_result"])}
-    fixture_tokens.update(EXTERNAL_DEFECT_EVIDENCE["fixture_ids"])
-    rust_tokens.update(EXTERNAL_DEFECT_EVIDENCE["rust_test_ids"])
-    claim_tokens.update(EXTERNAL_DEFECT_EVIDENCE["behavior_claim_ids"])
-    result_tokens.update(EXTERNAL_DEFECT_EVIDENCE["result_links"])
-    for command in document["proof_commands"]:
-        result_tokens.update(command["result_contract"]["observable_projection"])
+    tracker_findings = historical_findings()
+    expected = set(tracker_findings)
+    classified_defects = {finding_id for finding_id, finding in by_id.items() if finding["classification"] == "compatibility_defect"}
     fail(set(by_id) == expected, f"artifact.review_findings: historical finding join mismatch; missing={sorted(expected-set(by_id))}, orphan={sorted(set(by_id)-expected)}")
+    fail(classified_defects == set(DEFECT_STABLE_ID_BINDINGS), f"artifact.review_findings: exact seven compatibility-defect classifications required; found={sorted(classified_defects)}")
+
+    fail(document["accounting"]["compatibility_defects"] == len(classified_defects), "artifact.accounting.compatibility_defects: must equal the independently derived classified-defect count")
+    rows_by_id = {row["stable_id"]: row for row in document["rows"]}
     defect_by_finding: dict[str, dict[str, Any]] = {}
     for index, defect in enumerate(defects):
         where = f"compatibility_defects[{index}]"
@@ -237,22 +319,36 @@ def validate_historical_findings(document: dict[str, Any], ledger_ids: set[str],
         required = {"finding_id", "source_refs", "rationale", "affected_stable_ids", "behavior_claim_ids", "fixture_ids", "rust_test_ids", "command_ids", "result_links"}
         fail(required <= defect.keys(), f"{where}: missing {sorted(required - defect.keys())}")
         finding_id = defect["finding_id"]
-        fail(finding_id in by_id and by_id[finding_id]["classification"] == "compatibility_defect", f"{where}.finding_id: must reference a compatibility-defect classification")
-        fail(finding_id not in defect_by_finding, f"{finding_id}: duplicate compatibility defect record")
-        stable_ids = set(strings(defect["affected_stable_ids"], f"{finding_id}.affected_stable_ids"))
+        fail(finding_id in classified_defects and finding_id not in defect_by_finding, f"{where}.finding_id: unique compatibility-defect classification required")
+        tracker_finding = tracker_findings[finding_id]
+        exact_ref = f"docs/PORTING_TRACKER.json#{finding_id}"
+        fail(defect["source_refs"] == [exact_ref] and by_id[finding_id]["source_refs"] == [exact_ref], f"{finding_id}.source_refs: exact tracker finding reference required")
+        rationale_words = set(re.findall(r"[a-z0-9]+", defect["rationale"].lower()))
+        for field in ("summary", "resolution"):
+            tracker_words = {word for word in re.findall(r"[a-z0-9]+", str(tracker_finding.get(field, "")).lower()) if len(word) >= 5}
+            fail(len(rationale_words & tracker_words) >= 2, f"{finding_id}.rationale: not semantically grounded in tracker {field}")
+        stable_ids = set(strings(defect["affected_stable_ids"], f"{finding_id}.affected_stable_ids", nonempty=False))
+        fail(stable_ids == set(DEFECT_STABLE_ID_BINDINGS[finding_id]), f"{finding_id}.affected_stable_ids: exact defect-specific stable-ID binding required")
+
         fail(stable_ids <= ledger_ids, f"{finding_id}.affected_stable_ids: unknown IDs {sorted(stable_ids-ledger_ids)}")
         for field in ("source_refs", "behavior_claim_ids", "fixture_ids", "rust_test_ids", "command_ids", "result_links"):
-            strings(defect[field], f"{finding_id}.{field}")
-        fail(set(defect["fixture_ids"]) <= fixture_tokens, f"{finding_id}.fixture_ids: links do not resolve to row fixtures")
-        fail(set(defect["rust_test_ids"]) <= rust_tokens, f"{finding_id}.rust_test_ids: links do not resolve to exact Rust tests")
-        fail(set(defect["behavior_claim_ids"]) <= claim_tokens, f"{finding_id}.behavior_claim_ids: links do not resolve to behavior claims")
-        fail(set(defect["result_links"]) <= result_tokens, f"{finding_id}.result_links: links do not resolve to observable results")
-        affected_rows = [row for row in document["rows"] if row["stable_id"] in stable_ids]
-        fail(all(finding_id in row["defect_refs"] for row in affected_rows), f"{finding_id}: every affected row must carry the defect reference")
-        fail(set(defect["command_ids"]) <= command_ids, f"{finding_id}.command_ids: dangling proof command")
+            strings(defect[field], f"{finding_id}.{field}", nonempty=field != "command_ids" or bool(stable_ids))
+        if not validate_external_defect(defect):
+            fail(stable_ids, f"{finding_id}: row-bound defect must name affected stable IDs")
+            affected_rows = [rows_by_id[stable_id] for stable_id in stable_ids]
+            row_fixtures = {link for row in affected_rows for link in row["fixture_links"]}
+            row_tests = {proof["target"] for row in affected_rows for proof in row["rust_proofs"]}
+            row_claims = {token for row in affected_rows for claim in row["behavior_claims"] for token in string_tokens(claim)}
+            row_results = {token for row in affected_rows for token in string_tokens(row["observable_result"])}
+            row_commands = {row["proof_command_id"] for row in affected_rows if row["proof_command_id"] is not None}
+            fail(set(defect["fixture_ids"]) <= row_fixtures, f"{finding_id}.fixture_ids: must resolve through its exact affected rows")
+            fail(set(defect["rust_test_ids"]) <= row_tests, f"{finding_id}.rust_test_ids: must resolve through its exact affected rows")
+            fail(set(defect["behavior_claim_ids"]) <= row_claims, f"{finding_id}.behavior_claim_ids: must resolve through its exact affected rows")
+            fail(set(defect["result_links"]) <= row_results, f"{finding_id}.result_links: must resolve through its exact affected rows")
+            fail(set(defect["command_ids"]) == row_commands <= command_ids, f"{finding_id}.command_ids: exact affected-row command join required")
+            fail(all(finding_id in row["defect_refs"] for row in affected_rows), f"{finding_id}: every affected row must carry the defect reference")
         fail(isinstance(defect["rationale"], str) and len(defect["rationale"].split()) >= 5, f"{finding_id}.rationale: concrete defect rationale required")
         defect_by_finding[finding_id] = defect
-    classified_defects = {finding_id for finding_id, finding in by_id.items() if finding["classification"] == "compatibility_defect"}
     fail(set(defect_by_finding) == classified_defects, f"artifact.compatibility_defects: exact classified-defect join required; missing={sorted(classified_defects-set(defect_by_finding))}, orphan={sorted(set(defect_by_finding)-classified_defects)}")
 
 
@@ -476,14 +572,43 @@ def tree_snapshot(root: Path) -> dict[str, str]:
 
 
 def copy_current_tree(destination: Path, baseline: dict[str, str]) -> None:
+    """Materialize exactly the byte identities captured by repository_snapshot."""
     for relative, identity in baseline.items():
         source = ROOT / relative
         target = destination / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         if identity.startswith("link:"):
+            fail(source.is_symlink() and "link:" + os.readlink(source) == identity, f"source changed during snapshot materialization: {relative}")
             target.symlink_to(os.readlink(source))
-        elif source.is_file():
-            shutil.copy2(source, target)
+            fail("link:" + os.readlink(target) == identity, f"copied symlink differs from snapshot: {relative}")
+        elif identity == "missing":
+            # Gitlink/submodule entries are materialized separately from the authenticated pin.
+            continue
+        else:
+            fail(source.is_file() and "file:" + sha256_path(source) == identity, f"source changed before snapshot materialization: {relative}")
+            shutil.copyfile(source, target)
+            fail("file:" + sha256_path(source) == identity, f"source changed during snapshot materialization: {relative}")
+            fail("file:" + sha256_path(target) == identity, f"copied file differs from snapshot: {relative}")
+
+
+def validate_mapped_source_snapshot(tree: Path, document: dict[str, Any], baseline: dict[str, str]) -> None:
+    """Bind every executable proof source to identical current-tree and disposable bytes."""
+    mapped_sources: set[Path] = set()
+    for row in document["rows"]:
+        for proof in row["rust_proofs"]:
+            source, _ = rust_target_parts(resolve_c025_family_target(ROOT, row, proof), require_source=True)
+            assert source is not None
+            mapped_sources.add(source)
+    fail(mapped_sources, "mapped Rust proof source inventory is empty")
+    for relative in sorted(mapped_sources):
+        key = relative.as_posix()
+        expected = baseline.get(key)
+        fail(isinstance(expected, str) and expected.startswith("file:"), f"mapped Rust proof source is absent from captured repository snapshot: {key}")
+        current = ROOT / relative
+        copied = tree / relative
+        fail(current.is_file() and copied.is_file(), f"mapped Rust proof source is incomplete: {key}")
+        fail("file:" + sha256_path(current) == expected, f"mapped Rust proof source changed after snapshot capture: {key}")
+        fail("file:" + sha256_path(copied) == expected, f"disposable mapped Rust proof source differs from current snapshot: {key}")
 
 def materialize_java_reference(destination: Path) -> None:
     """Clone the authenticated pin without sharing a writable worktree or build debris."""
@@ -852,6 +977,29 @@ def existing_target_names(target: Path) -> set[str]:
     return names
 
 
+def toolchain_inventory(root: Path) -> dict[str, Any]:
+    """Digest every toolchain path and file byte under an exact, symlink-free tree."""
+    entries: list[list[Any]] = []
+    file_count = directory_count = total_file_bytes = 0
+    for path in sorted(root.rglob("*"), key=lambda candidate: candidate.relative_to(root).as_posix()):
+        relative = path.relative_to(root).as_posix()
+        fail(not path.is_symlink(), f"pinned Rust toolchain contains a symlink: {relative}")
+        if path.is_dir():
+            entries.append([relative, "d", 0, ""])
+            directory_count += 1
+        else:
+            fail(path.is_file(), f"pinned Rust toolchain contains a non-file entry: {relative}")
+            size = path.stat().st_size
+            entries.append([relative, "f", size, sha256_path(path)])
+            file_count += 1
+            total_file_bytes += size
+    return {
+        "tree_sha256": sha256_bytes(json.dumps(entries, separators=(",", ":"), ensure_ascii=True).encode()),
+        "entry_count": len(entries), "file_count": file_count,
+        "directory_count": directory_count, "total_file_bytes": total_file_bytes,
+    }
+
+
 def cache_state(roots: list[Path]) -> dict[str, tuple[int, int, int]]:
     state: dict[str, tuple[int, int, int]] = {}
     for root in roots:
@@ -889,102 +1037,140 @@ def make_read_only(path: Path) -> None:
 
 
 
-def resolve_rust_tools(scratch: Path) -> dict[str, Any]:
-    """Authenticate repository-pinned Rust inputs and expose them through private homes."""
+def resolve_rust_tools(scratch: Path, guard: dict[str, Any]) -> dict[str, Any]:
+    """Authenticate the repository-pinned toolchain/cache and copy them into private homes."""
     policy_home = Path(pwd.getpwuid(os.getuid()).pw_dir).resolve()
     source_cargo_home = (policy_home / ".cargo").resolve()
     source_rustup_home = (policy_home / ".rustup").resolve()
     fail(source_cargo_home.is_dir(), f"repository-policy Cargo cache is unavailable: {source_cargo_home}")
     fail(source_rustup_home.is_dir(), f"repository-policy Rust toolchain cache is unavailable: {source_rustup_home}")
     config = tomllib.loads((ROOT / "rust-tron" / "rust-toolchain.toml").read_text(encoding="utf-8"))
-    channel = config.get("toolchain", {}).get("channel")
-    fail(isinstance(channel, str) and re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", channel) is not None, "rust-tron toolchain must pin an exact semantic version")
-    candidates: list[tuple[Path, Path]] = []
-    for toolchain in sorted((source_rustup_home / "toolchains").glob(f"{channel}-*")):
-        cargo = toolchain / "bin" / "cargo"; rustc = toolchain / "bin" / "rustc"
-        if cargo.is_file() and rustc.is_file() and os.access(cargo, os.X_OK) and os.access(rustc, os.X_OK):
-            candidates.append((cargo.resolve(), rustc.resolve()))
-    fail(len(candidates) == 1, f"pinned Rust toolchain {channel}: expected one policy-installed executable pair, found {len(candidates)}")
-    cargo, rustc = candidates[0]
+    expected_config = {"toolchain": {"channel": PINNED_RUST_TOOLCHAIN["channel"], "profile": PINNED_RUST_TOOLCHAIN["profile"], "components": list(PINNED_RUST_TOOLCHAIN["components"]), "targets": list(PINNED_RUST_TOOLCHAIN["targets"])}}
+    fail(config == expected_config, "rust-tron toolchain differs from the repository-trusted C029 contract")
+    channel = PINNED_RUST_TOOLCHAIN["channel"]
+    source_toolchain = source_rustup_home / "toolchains" / f"{channel}-{PINNED_RUST_TOOLCHAIN['host']}"
+    fail(source_toolchain.is_dir(), f"repository-trusted Rust toolchain is unavailable: {source_toolchain}")
+    rustlib = source_toolchain / "lib" / "rustlib"
+    manifest_names = tuple(sorted(path.name for path in rustlib.iterdir() if path.is_file() and (path.name.startswith("manifest-") or path.name in {"components", "multirust-channel-manifest.toml", "multirust-config.toml", "rust-installer-version"})))
+    fail(manifest_names == tuple(sorted(PINNED_RUST_TOOLCHAIN["manifest_files"])), "pinned Rust toolchain manifest inventory mismatch")
+    installed_components = tuple(line for line in (rustlib / "components").read_text(encoding="utf-8").splitlines() if line)
+    fail(installed_components == PINNED_RUST_TOOLCHAIN["installed_components"], "pinned Rust installed-component inventory mismatch")
+    for filename, key in (("multirust-channel-manifest.toml", "channel_manifest_sha256"), ("multirust-config.toml", "config_manifest_sha256"), ("components", "components_sha256")):
+        fail(sha256_path(rustlib / filename) == PINNED_RUST_TOOLCHAIN[key], f"pinned Rust {filename} digest mismatch")
+    source_inventory = toolchain_inventory(source_toolchain)
+    expected_inventory = {key: PINNED_RUST_TOOLCHAIN[key] for key in ("tree_sha256", "entry_count", "file_count", "directory_count", "total_file_bytes")}
+    fail(source_inventory == expected_inventory, "repository-trusted Rust toolchain tree inventory/digest mismatch")
+    guard.update({"source_toolchain": source_toolchain, "source_inventory": source_inventory})
+    guarded_roots = [source_toolchain, *[source_cargo_home / name for name in ("registry", "git") if (source_cargo_home / name).exists()]]
+    guard.update({"guarded_roots": guarded_roots, "cache_state": cache_state(guarded_roots)})
     lock = tomllib.loads((ROOT / "rust-tron" / "Cargo.lock").read_text(encoding="utf-8"))
     cargo_home = scratch / "cargo-home"; rustup_home = scratch / "rustup-home"
-    cargo_home.mkdir(); rustup_home.mkdir()
-    source_registry = source_cargo_home / "registry"
-    private_registry = cargo_home / "registry"
+    cargo_home.mkdir(); (rustup_home / "toolchains").mkdir(parents=True)
+    source_registry = source_cargo_home / "registry"; private_registry = cargo_home / "registry"
     private_registry.mkdir()
     source_index = source_registry / "index"
-    if source_index.exists():
-        shutil.copytree(source_index, private_registry / "index", symlinks=False)
-        make_read_only(private_registry / "index")
     crate_inputs: dict[Path, str] = {}
+    if source_index.exists():
+        shutil.copytree(source_index, private_registry / "index", symlinks=False); make_read_only(private_registry / "index")
+        for index_file in sorted((private_registry / "index").rglob("*")):
+            if index_file.is_file(): crate_inputs[index_file] = sha256_path(index_file)
+    shared_cargo_inputs: dict[Path, str] = {}
     for package in lock.get("package", []):
         source = package.get("source", ""); checksum = package.get("checksum")
         if not source.startswith("registry+"):
-            fail(not source.startswith("git+"), f"Cargo.lock git input is not supported by the authenticated offline cache: {source}")
-            continue
+            fail(not source.startswith("git+"), f"Cargo.lock git input is not supported by the authenticated offline cache: {source}"); continue
         fail(isinstance(checksum, str) and re.fullmatch(r"[0-9a-f]{64}", checksum), f"Cargo.lock lacks a registry checksum for {package.get('name')}")
-        stem = f"{package['name']}-{package['version']}"
-        filename = f"{stem}.crate"
+        stem = f"{package['name']}-{package['version']}"; filename = f"{stem}.crate"
         archives = sorted((source_registry / "cache").glob(f"*/{filename}"))
         fail(len(archives) <= 1, f"authenticated Cargo cache has ambiguous {filename} archives: {len(archives)}")
         if archives:
             fail(sha256_path(archives[0]) == checksum, f"Cargo cache checksum mismatch for {filename}")
+            shared_cargo_inputs[archives[0]] = checksum
             destination = private_registry / "cache" / archives[0].parent.name / filename
-            destination.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(archives[0], destination)
-            make_read_only(destination)
-            crate_inputs[destination] = checksum
+            destination.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(archives[0], destination); make_read_only(destination); crate_inputs[destination] = checksum
             continue
         sources = sorted(path for path in (source_registry / "src").glob(f"*/{stem}") if path.is_dir())
         fail(len(sources) == 1, f"authenticated Cargo cache requires exactly one {filename} archive or unpacked {stem} source tree, found {len(sources)} sources")
         authenticate_unpacked_crate(sources[0], checksum, filename)
+        for source_file in sorted(sources[0].rglob("*")):
+            if source_file.is_file(): shared_cargo_inputs[source_file] = sha256_path(source_file)
         destination = private_registry / "src" / sources[0].parent.name / stem
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copytree(sources[0], destination, symlinks=False)
-        make_read_only(destination)
-        for copied in sorted(destination.rglob("*")):
-            if copied.is_file():
-                crate_inputs[copied] = sha256_path(copied)
-    (rustup_home / "toolchains").symlink_to(source_rustup_home / "toolchains", target_is_directory=True)
-    tool_hashes = {cargo: sha256_path(cargo), rustc: sha256_path(rustc)}
-    guarded_roots = [source_cargo_home / name for name in ("registry", "git") if (source_cargo_home / name).exists()]
+        destination.parent.mkdir(parents=True, exist_ok=True); shutil.copytree(sources[0], destination, symlinks=False); make_read_only(destination)
+        for copied_file in sorted(destination.rglob("*")):
+            if copied_file.is_file(): crate_inputs[copied_file] = sha256_path(copied_file)
+    private_toolchain = rustup_home / "toolchains" / source_toolchain.name
+    copied = subprocess.run(["/usr/bin/cp", "--archive", "--reflink=auto", str(source_toolchain), str(private_toolchain)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False)
+    fail(copied.returncode == 0, f"private Rust toolchain materialization failed: {copied.stderr.strip()}")
+    fail(toolchain_inventory(private_toolchain) == expected_inventory, "private Rust toolchain copy differs from trusted inventory")
+    make_read_only(private_toolchain)
+    cargo = private_toolchain / "bin" / "cargo"; rustc = private_toolchain / "bin" / "rustc"
+    fail(sha256_path(cargo) == PINNED_RUST_TOOLCHAIN["cargo_sha256"], "repository-trusted cargo digest mismatch")
+    fail(sha256_path(rustc) == PINNED_RUST_TOOLCHAIN["rustc_sha256"], "repository-trusted rustc digest mismatch")
     auth_env = {"PATH": os.pathsep.join((str(cargo.parent), "/usr/bin", "/bin")), "HOME": str(scratch), "CARGO_HOME": str(cargo_home), "RUSTUP_HOME": str(rustup_home), "RUSTUP_TOOLCHAIN": channel, "RUSTUP_AUTO_INSTALL": "0", "CARGO_NET_OFFLINE": "true", "LANG": "C", "LC_ALL": "C", "TZ": "UTC"}
     rustc_version = subprocess.run([str(rustc), "--version"], env=auth_env, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
     cargo_version = subprocess.run([str(cargo), "--version"], env=auth_env, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
     fail(rustc_version.returncode == 0 and rustc_version.stdout.startswith(f"rustc {channel} "), f"pinned rustc authentication failed: {rustc_version.stderr.strip() or rustc_version.stdout.strip()}")
     fail(cargo_version.returncode == 0 and cargo_version.stdout.startswith(f"cargo {channel} "), f"pinned cargo authentication failed: {cargo_version.stderr.strip() or cargo_version.stdout.strip()}")
-    return {"cargo": cargo, "rustc": rustc, "cargo_home": cargo_home, "rustup_home": rustup_home, "channel": channel, "tool_hashes": tool_hashes, "crate_inputs": crate_inputs, "guarded_roots": guarded_roots, "cache_state": cache_state(guarded_roots)}
+    guard.update({"cargo": cargo, "rustc": rustc, "cargo_home": cargo_home, "rustup_home": rustup_home, "channel": channel, "private_toolchain": private_toolchain, "crate_inputs": crate_inputs, "shared_cargo_inputs": shared_cargo_inputs})
+    return guard
 
 
 def verify_rust_inputs_unchanged(tools: dict[str, Any]) -> None:
-    fail(all(path.is_file() and sha256_path(path) == digest for path, digest in tools["tool_hashes"].items()), "authenticated Rust toolchain changed during gate execution")
-    fail(all(path.is_file() and sha256_path(path) == digest for path, digest in tools["crate_inputs"].items()), "authenticated Cargo cache changed during gate execution")
-    fail(cache_state(tools["guarded_roots"]) == tools["cache_state"], "shared Cargo cache metadata changed during gate execution")
+    if "source_toolchain" in tools:
+        fail(toolchain_inventory(tools["source_toolchain"]) == tools["source_inventory"], "shared authenticated Rust toolchain changed during gate execution")
+    if "private_toolchain" in tools:
+        fail(toolchain_inventory(tools["private_toolchain"])["tree_sha256"] == tools["source_inventory"]["tree_sha256"], "private authenticated Rust toolchain changed during gate execution")
+    if "crate_inputs" in tools:
+        fail(all(path.is_file() and sha256_path(path) == digest for path, digest in tools["crate_inputs"].items()), "authenticated Cargo cache changed during gate execution")
+    if "shared_cargo_inputs" in tools:
+        fail(all(path.is_file() and sha256_path(path) == digest for path, digest in tools["shared_cargo_inputs"].items()), "shared authenticated Cargo input changed during gate execution")
+    if "guarded_roots" in tools:
+        fail(cache_state(tools["guarded_roots"]) == tools["cache_state"], "shared Rust toolchain/Cargo cache metadata changed during gate execution")
 
 
 def compilation_budget(target: Path, plans: dict[tuple[str, str, str], set[str]]) -> tuple[int, int]:
     existing = existing_target_names(target)
     missing = sum(target_name.replace("-", "_") not in existing for _, _, target_name in plans)
-    # Exact libtest targets normally add far less than this; the headroom covers shared
-    # dependency codegen while keeping the budget proportional to the requested fanout.
     return missing, 256 * 1024**2 + missing * 128 * 1024**2
 
 
 def build_referenced_tests(tree: Path, scratch: Path, target: Path, plans: dict[tuple[str, str, str], set[str]], tools: dict[str, Any]) -> dict[Path, tuple[tuple[str, str, str], set[str]]]:
+    fail(target.is_dir() and not any(target.iterdir()), f"private CARGO_TARGET_DIR must be unique and empty before compilation: {target}")
+
     build_home = scratch / "build-home"; build_tmp = scratch / "build-tmp"
     build_home.mkdir(); build_tmp.mkdir()
     cargo = tools["cargo"]; rustc = tools["rustc"]
     cargo_home = tools["cargo_home"]; rustup_home = tools["rustup_home"]; channel = tools["channel"]
     tool_path = os.pathsep.join((str(cargo.parent), "/usr/bin", "/bin"))
-    env = {"PATH": tool_path, "HOME": str(build_home), "TMPDIR": str(build_tmp), "CARGO_HOME": str(cargo_home), "RUSTUP_HOME": str(rustup_home), "RUSTUP_TOOLCHAIN": channel, "RUSTUP_AUTO_INSTALL": "0", "RUSTC": str(rustc), "RUSTC_WRAPPER": "", "RUSTC_WORKSPACE_WRAPPER": "", "CARGO_BUILD_RUSTC_WRAPPER": "", "CARGO_NET_OFFLINE": "true", "CARGO_TARGET_DIR": str(target), "CARGO_INCREMENTAL": "0", "CARGO_BUILD_JOBS": "2", "LANG": "C", "LC_ALL": "C", "TZ": "UTC"}
+    base_env = {"PATH": tool_path, "HOME": str(build_home), "TMPDIR": str(build_tmp), "CARGO_HOME": str(cargo_home), "RUSTUP_HOME": str(rustup_home), "RUSTUP_TOOLCHAIN": channel, "RUSTUP_AUTO_INSTALL": "0", "RUSTC": str(rustc), "RUSTC_WRAPPER": "", "RUSTC_WORKSPACE_WRAPPER": "", "CARGO_BUILD_RUSTC_WRAPPER": "", "CARGO_NET_OFFLINE": "true", "CARGO_TARGET_DIR": str(target), "CARGO_INCREMENTAL": "0", "CARGO_BUILD_JOBS": "2", "LANG": "C", "LC_ALL": "C", "TZ": "UTC"}
     executables: dict[Path, tuple[tuple[str, str, str], set[str]]] = {}
     for package, selector, target_name in sorted(plans):
+        manifests = []
+        for manifest in sorted((tree / "rust-tron" / "crates").glob("*/Cargo.toml")):
+            if tomllib.loads(manifest.read_text(encoding="utf-8"))["package"]["name"] == package:
+                manifests.append(manifest)
+        fail(len(manifests) == 1, f"Rust package {package} resolves to {len(manifests)} manifests")
+        crate = manifests[0].parent
+        source_path = crate / ("src/lib.rs" if selector == "lib" else f"tests/{target_name}.rs")
+        fail(source_path.is_file(), f"Rust exact target source is missing: {source_path.relative_to(tree)}")
+        source_digest = sha256_path(source_path)
+        source_relative = source_path.relative_to(tree)
+        worktree_source = ROOT / source_relative
+        fail(worktree_source.is_file() and sha256_path(worktree_source) == source_digest, f"current worktree source differs from disposable build source: {source_relative}")
+        env = base_env
+        build_started_ns = time.time_ns()
         argv = [cargo, "test", "--no-run", "--locked", "--offline", "-p", package]
         argv.extend(("--lib",) if selector == "lib" else ("--test", target_name))
         argv.append("--message-format=json-render-diagnostics")
-        done = subprocess.run(argv, cwd=tree / "rust-tron", env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=1800)
-        fail(done.returncode == 0, f"Rust referenced-target build failed for {package} {selector} {target_name}: {done.stdout[-2000:]}")
-        selected: set[Path] = set()
+        try:
+            done = subprocess.run(argv, cwd=tree / "rust-tron", env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=1800)
+        except subprocess.TimeoutExpired as error:
+            captured = error.stdout or ""
+            if isinstance(captured, bytes):
+                captured = captured.decode(errors="replace")
+            raise GateError(f"Rust referenced-target build timed out for {package} {selector} {target_name} after {error.timeout}s; Cargo output tail:\n{captured[-16000:]}") from error
+        fail(done.returncode == 0, f"Rust referenced-target build failed for {package} {selector} {target_name} (exit {done.returncode}); Cargo output tail:\n{done.stdout[-16000:]}")
+        selected: dict[Path, bool] = {}
         for line in done.stdout.splitlines():
             try:
                 message = json.loads(line)
@@ -994,9 +1180,19 @@ def build_referenced_tests(tree: Path, scratch: Path, target: Path, plans: dict[
             cargo_target = message.get("target", {})
             expected_kind = "lib" if selector == "lib" else "test"
             if message.get("reason") == "compiler-artifact" and executable and cargo_target.get("name") == target_name and expected_kind in cargo_target.get("kind", []):
-                selected.add(Path(executable))
+                selected[Path(executable)] = message.get("fresh") is False
         fail(len(selected) == 1, f"Rust exact target {package} {selector} {target_name} produced {len(selected)} executables")
         executable = next(iter(selected))
+        fail(selected[executable], f"Rust exact target was reused instead of compiled from this invocation: {executable}")
+        fail(executable.stat().st_mtime_ns >= build_started_ns, f"Rust exact target predates this build invocation: {executable}")
+        fail(executable.is_relative_to(target), f"Rust executable escaped private CARGO_TARGET_DIR: {executable}")
+        dep_info = executable.with_suffix(".d")
+        fail(dep_info.is_file(), f"Rust exact target lacks compiler dep-info: {dep_info}")
+        dep_text = dep_info.read_text(encoding="utf-8", errors="replace")
+        expected_source = source_path.relative_to(tree / "rust-tron").as_posix()
+        fail(expected_source in dep_text, f"Rust exact target dep-info does not bind current mapped source {expected_source}: {dep_info}")
+        fail(sha256_path(source_path) == source_digest, f"Rust exact target disposable source changed during compilation: {expected_source}")
+        fail(sha256_path(worktree_source) == source_digest, f"Rust exact target worktree source changed during compilation: {source_relative}")
         fail(executable not in executables, f"Rust executable collision for exact targets: {executable}")
         executables[executable] = ((package, selector, target_name), set(plans[(package, selector, target_name)]))
     fail(executables, "Rust referenced-target build produced no current-tree libtest executables")
@@ -1293,9 +1489,10 @@ def validate_c016_synthesis(refreshed: dict[str, Any], commands_by_argv: dict[tu
     owner_rows = owner.get("java_test_rows")
     owner_ids = owner.get("java_test_ids")
     excluded = owner.get("non_applicable_java_test_rows")
-    fail(isinstance(owner_rows, list) and len(owner_rows) == 41, "C016 owner artifact: exact 41 executable java_test_rows required")
-    fail(isinstance(owner_ids, list) and len(owner_ids) == 41, "C016 owner artifact: exact 41 executable java_test_ids required")
-    fail(isinstance(excluded, list) and len(excluded) == owner.get("non_applicable_java_test_row_count") == 4, "C016 owner artifact: exact four non-applicable Java rows required")
+    fail(isinstance(owner_rows, list) and len(owner_rows) == C016_EXECUTABLE_ROWS, f"C016 owner artifact: exact {C016_EXECUTABLE_ROWS} executable java_test_rows required")
+    fail(isinstance(owner_ids, list) and len(owner_ids) == C016_EXECUTABLE_ROWS, f"C016 owner artifact: exact {C016_EXECUTABLE_ROWS} executable java_test_ids required")
+    fail(isinstance(excluded, list) and len(excluded) == owner.get("non_applicable_java_test_row_count") == C016_NON_APPLICABLE_ROWS, f"C016 owner artifact: exact {C016_NON_APPLICABLE_ROWS} non-applicable Java rows required")
+
     fail([candidate.get("stable_id") for candidate in owner_rows] == owner_ids, "C016 owner artifact: Java row stable-ID order mismatch")
     refreshed_by_id = {row["stable_id"]: row for row in refreshed["rows"]}
     excluded_ids: set[str] = set()
@@ -1312,14 +1509,21 @@ def validate_c016_synthesis(refreshed: dict[str, Any], commands_by_argv: dict[tu
     for candidate in owner_rows:
         stable_id = candidate["stable_id"]
         row = refreshed_by_id.get(stable_id)
-        fail(row is not None, f"{stable_id}: C016 authoritative Java row is absent from C029 reconciliation")
         symbol = f"c016_tcase_{stable_id.removeprefix('TCASE-').lower()}"
-        target = f"rust-tron/crates/tron-execution/tests/{candidate['target_family'].join(('c016_', '.rs'))}::{symbol}"
-        fail(candidate.get("rust_symbol") == target, f"{stable_id}: C016 Rust symbol is not the exact c016_tcase target")
+        target = candidate.get("rust_symbol")
+        fail(isinstance(target, str), f"{stable_id}: C016 Rust symbol is absent")
+        if candidate.get("target_family") != "consensus":
+            expected_target = f"rust-tron/crates/tron-execution/tests/{candidate['target_family'].join(('c016_', '.rs'))}::{symbol}"
+            fail(target == expected_target, f"{stable_id}: C016 Rust symbol is not the exact c016_tcase target")
+        else:
+            symbol = rust_target_parts(target, require_source=True)[1]
         argv = canonical_proof_argv(candidate, target)
         fail(argv is not None, f"{stable_id}: C016 canonical command does not select exactly {symbol}")
         command = commands_by_argv.get(tuple(argv))
-        fail(command is not None, f"{stable_id}: C016 canonical command is absent from proof execution plan")
+        if candidate.get("target_family") == "consensus":
+            fail(row["proof_command_id"] is not None, f"{stable_id}: C016 consensus rehome lacks an executable proof command")
+        else:
+            fail(command is not None, f"{stable_id}: C016 canonical command is absent from proof execution plan")
         expected = candidate.get("expected_result")
         selector = candidate.get("fixture_selector")
         result_digest = candidate.get("expected_result_sha256", candidate.get("result_digest"))
@@ -1330,8 +1534,56 @@ def validate_c016_synthesis(refreshed: dict[str, Any], commands_by_argv: dict[tu
         fail(isinstance(dispatcher, dict) and dispatcher.get("observable_result") == expected and dispatcher.get("selector") == selector and dispatcher.get("expected_result_sha256") == result_digest and dispatcher.get("rust_symbol") == target, f"{stable_id}: C016 dispatcher evidence differs from authoritative result/selector/digest/target")
         fail(row["applicability"]["type"] == "covered", f"{stable_id}: C016 executable row is not covered")
         fail(row["observable_result"] == expected, f"{stable_id}: synthesized observable result differs from C016 owner")
-        fail(row["proof_command_id"] == command["id"], f"{stable_id}: synthesized proof command differs from C016 owner")
-        fail(row["rust_proofs"] == [{"artifact": "docs/oracles/c016-ownership-reconciliation.v1.json", "selector": selector, "target": target}], f"{stable_id}: synthesized C016 proof is not exact")
+        if candidate.get("target_family") == "consensus":
+            fail(len(row["rust_proofs"]) == 1 and row["rust_proofs"][0]["target"] == target, f"{stable_id}: synthesized C016 consensus proof is not exact")
+        else:
+            fail(row["proof_command_id"] == command["id"], f"{stable_id}: synthesized proof command differs from C016 owner")
+            fail(row["rust_proofs"] == [{"artifact": "docs/oracles/c016-ownership-reconciliation.v1.json", "selector": selector, "target": target}], f"{stable_id}: synthesized C016 proof is not exact")
+    deadline_ids = {
+        "TCASE-278A08C04434DD3C",
+        "TCASE-5EE7BE8B2946C5A4",
+        "TCASE-E2B2E810B8609151",
+    }
+    fail(deadline_ids <= set(owner_ids), "C016 owner artifact: production deadline Java contracts are absent")
+    source_asserts(
+        "rust-tron/crates/tron-execution/src/runtime.rs",
+        ("trigger_is_constant_abi(envelope, session, self.config)", "Self::execution_deadline(", "self.config.constant_call_timeout", "retry"),
+        "C016-production-deadline",
+    )
+    source_asserts(
+        "rust-tron/crates/tron-execution/src/pipeline.rs",
+        ("constant_call_timeout", "RuntimeConfig", "execution_config"),
+        "C016-production-deadline",
+    )
+
+def validate_c023_synthesis(refreshed: dict[str, Any], commands_by_argv: dict[tuple[str, ...], dict[str, Any]]) -> None:
+    """Require all 333 Java rows to preserve their exact source-specific behavior contracts."""
+    owner = load(C023_OWNERSHIP)
+    fail(owner.get("canonical_counts") == {"production_routes": 215, "java_tests": C023_JAVA_CONTRACTS, "total": 548}, "C023 owner artifact: canonical counts drift")
+    candidates = [candidate for candidate in owner.get("rows", []) if candidate.get("kind") == "java_test"]
+    fail(len(candidates) == C023_JAVA_CONTRACTS, f"C023 owner artifact: exact {C023_JAVA_CONTRACTS} Java contracts required")
+    stable_ids = [candidate.get("stable_id") for candidate in candidates]
+    fail(all(isinstance(stable_id, str) and ID_RE.fullmatch(stable_id) for stable_id in stable_ids) and len(set(stable_ids)) == C023_JAVA_CONTRACTS, "C023 owner artifact: Java stable IDs must be exact and unique")
+    behavior_keys = [candidate.get("behavior", {}).get("key") for candidate in candidates]
+    fail(all(isinstance(key, str) and key for key in behavior_keys) and len(set(behavior_keys)) == C023_JAVA_CONTRACTS, "C023 owner artifact: source-specific behavior keys must be exact and unique")
+    refreshed_by_id = {row["stable_id"]: row for row in refreshed["rows"]}
+    for candidate in candidates:
+        stable_id = candidate["stable_id"]
+        row = refreshed_by_id.get(stable_id)
+        fail(row is not None, f"{stable_id}: C023 authoritative Java contract is absent from C029 reconciliation")
+        selector = candidate.get("fixture_selector")
+        expected = candidate.get("expected_result")
+        target = canonical_rust_target(C023_OWNERSHIP, candidate)
+        argv = canonical_proof_argv(candidate, target) if target else None
+        fail(isinstance(selector, str) and selector == candidate.get("behavior_selector") == stable_id, f"{stable_id}: C023 exact behavior selector mismatch")
+        fail(isinstance(expected, str) and expected.startswith(f"{stable_id}|") and f"|family={candidate.get('behavior_family')}" in expected, f"{stable_id}: C023 exact expected-result contract mismatch")
+        fail(target is not None and argv is not None, f"{stable_id}: C023 exact executable target/command is incomplete")
+        command = commands_by_argv.get(tuple(argv))
+        fail(command is not None, f"{stable_id}: C023 canonical command is absent from proof execution plan")
+        fail(row["applicability"]["type"] == "covered" and row["observable_result"] == expected, f"{stable_id}: synthesized C023 result differs from owner")
+        fail(row["proof_command_id"] == command["id"], f"{stable_id}: synthesized C023 proof command differs from owner")
+        fail(row["rust_proofs"] == [{"artifact": "docs/oracles/c023-ownership-reconciliation.v1.json", "selector": selector, "target": target}], f"{stable_id}: synthesized C023 proof is not exact")
+
 
 
 def normalize_c025_proofs(rows: list[dict[str, Any]]) -> int:
@@ -1363,6 +1615,7 @@ def synthesize_reconciliation(document: dict[str, Any]) -> dict[str, Any]:
     validate_pinned_owner_inventories()
     c016_owner = load(C016_OWNERSHIP)
     c016_non_applicable = {candidate["stable_id"]: candidate for candidate in c016_owner.get("non_applicable_java_test_rows", [])}
+    c016_executable = {candidate["stable_id"]: candidate for candidate in c016_owner.get("java_test_rows", [])}
     ledger_by_id = {source["id"]: source for source in load(LEDGER)["rows"]}
     commands_by_argv: dict[tuple[str, ...], dict[str, Any]] = {}
     for row in refreshed["rows"]:
@@ -1376,15 +1629,23 @@ def synthesize_reconciliation(document: dict[str, Any]) -> dict[str, Any]:
             row["proof_command_id"] = None
             row["observable_result"] = None
             continue
-        if row["applicability"]["type"] == "non_applicable":
+        if row["applicability"]["type"] == "non_applicable" and row["stable_id"] not in c016_executable:
             continue
         selected: tuple[str, str, str, str, list[str], str] | None = None
+        c016_candidate = c016_executable.get(row["stable_id"])
+        if c016_candidate is not None:
+            selector, expected, rust_test = authoritative_fields(c016_candidate)
+            target = canonical_rust_target(C016_OWNERSHIP, c016_candidate)
+            argv = canonical_proof_argv(c016_candidate, target) if target else None
+            claim = first_string(c016_candidate, ("behavior_claim", "rationale"))
+            if all((selector, expected, rust_test, target, argv, claim)):
+                selected = ("docs/oracles/c016-ownership-reconciliation.v1.json", selector, target, expected, argv, claim)
         owner_chunk = row["owning_item"].split(".", 1)[0].lower()
         owner_path = f"docs/oracles/{owner_chunk}-ownership-reconciliation.v1.json"
         owner_link = f"{owner_path}#{row['stable_id']}"
         links = [*([owner_link] if (ROOT / owner_path).is_file() else []), *(link for link in row["fixture_links"] if link != owner_link)]
         fallback: tuple[str, Any, str] | None = None
-        for link in links:
+        for link in ([] if selected is not None else links):
             linked = linked_json_row(row, link)
             if linked is None or linked[0] == LEDGER:
                 continue
@@ -1458,11 +1719,17 @@ def synthesize_reconciliation(document: dict[str, Any]) -> dict[str, Any]:
         if len(expected) != 1 or suffix != [next(iter(expected), ""), "--exact", "--test-threads=1"]:
             non_exact.append(command["id"])
     fail(not non_exact, f"synthesis retained {len(non_exact)} non-exact proof commands")
+    c023_defect = next((defect for defect in refreshed["compatibility_defects"] if defect.get("finding_id") == "C023-R1-001"), None)
+    fail(c023_defect is not None, "C023-R1-001: compatibility-defect record is absent")
+    c023_defect["fixture_ids"] = ["rust-tron/crates/tron-apis/src/http_routes.rs#HTTP_ROUTES"]
     referenced_command_ids = {row["proof_command_id"] for row in refreshed["rows"] if row["proof_command_id"] is not None}
     refreshed["proof_commands"] = [command for command in refreshed["proof_commands"] if command["id"] in referenced_command_ids]
     fail({command["id"] for command in refreshed["proof_commands"]} == referenced_command_ids, "synthesis proof commands differ from exact referenced row command set")
     rows_by_id = {row["stable_id"]: row for row in refreshed["rows"]}
     for defect in refreshed["compatibility_defects"]:
+        if validate_external_defect(defect):
+            defect["command_ids"] = []
+            continue
         defect["command_ids"] = sorted({
             rows_by_id[stable_id]["proof_command_id"]
             for stable_id in defect["affected_stable_ids"]
@@ -1470,6 +1737,7 @@ def synthesize_reconciliation(document: dict[str, Any]) -> dict[str, Any]:
         })
         fail(defect["command_ids"], f"{defect['finding_id']}: affected stable IDs resolve to no executable proof commands")
     validate_c016_synthesis(refreshed, commands_by_argv)
+    validate_c023_synthesis(refreshed, commands_by_argv)
     refreshed["unsupported_by_owning_artifact_repair"] = {}
     counts = dict(refreshed["accounting"])
     mapped = sum(row["applicability"]["type"] != "unmapped" for row in refreshed["rows"])
@@ -1519,6 +1787,7 @@ def main() -> int:
 
     baseline = repository_snapshot(ROOT)
     temporary: tempfile.TemporaryDirectory[str] | None = None
+    rust_tools: dict[str, Any] | None = None
     prior_handlers: dict[int, Any] = {}
     def interrupted(signum: int, _frame: Any) -> None:
         raise GateError(f"interrupted by signal {signal.Signals(signum).name}")
@@ -1531,23 +1800,24 @@ def main() -> int:
         require_disk(Path(tempfile.gettempdir()), 512 * 1024**2, "disposable current-tree and isolated runtime state")
         commands = {command["id"]: command for command in document["proof_commands"]}
         plans = referenced_targets(ROOT, document) if commands else {}
-        rust_tools = None
         if commands:
             missing_targets, required_bytes = compilation_budget(Path("/nonexistent-c029-private-target"), plans)
-            require_disk(Path(tempfile.gettempdir()), required_bytes, f"{missing_targets} isolated Rust test target(s)")
+            require_disk(Path(tempfile.gettempdir()), required_bytes + PINNED_RUST_TOOLCHAIN["total_file_bytes"], f"{missing_targets} isolated Rust test target(s) plus private pinned toolchain")
         temporary = tempfile.TemporaryDirectory(prefix="c029-gate-")
         temporary_root = Path(temporary.name)
         tree = temporary_root / "repo"; tree.mkdir()
         scratch = temporary_root / "scratch"; scratch.mkdir()
         target = scratch / "cargo-target"; target.mkdir()
-        rust_tools = resolve_rust_tools(scratch) if commands else None
+        if commands:
+            rust_tools = {}
+            resolve_rust_tools(scratch, rust_tools)
         copy_current_tree(tree, baseline)
         materialize_java_reference(tree / "java-tron")
         seed = tree_snapshot(tree)
         if commands:
+            validate_mapped_source_snapshot(tree, document, baseline)
             assert rust_tools is not None
             run_proofs(tree, scratch, target, plans, commands, document, rust_tools)
-            verify_rust_inputs_unchanged(rust_tools)
         java_head = subprocess.run(["git", "-C", str(tree / "java-tron"), "rev-parse", "HEAD"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False)
         java_status = subprocess.run(["git", "-C", str(tree / "java-tron"), "status", "--porcelain=v1", "--untracked-files=all"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False)
         fail(java_head.returncode == 0 and java_head.stdout.strip() == PIN, "disposable Java identity changed during proof execution")
@@ -1558,15 +1828,24 @@ def main() -> int:
             raise GateError(str(error)) from error
         fail(tree_snapshot(tree) == seed, "disposable execution tree changed from pristine seed")
     finally:
+        integrity_error: Exception | None = None
+        if rust_tools is not None:
+            try:
+                verify_rust_inputs_unchanged(rust_tools)
+            except Exception as error:
+                integrity_error = error
         for signum, handler in prior_handlers.items():
             signal.signal(signum, handler)
         if temporary is not None:
             make_tree_writable(Path(temporary.name) / "repo" / "java-tron")
+            make_tree_writable(Path(temporary.name) / "scratch")
             temporary.cleanup()
         after = repository_snapshot(ROOT)
         if after != baseline:
             added = sorted(after.keys() - baseline.keys()); removed = sorted(baseline.keys() - after.keys()); changed = sorted(key for key in after.keys() & baseline.keys() if after[key] != baseline[key])
             raise GateError(f"repository clean-state protection failed: added={added[:10]} removed={removed[:10]} changed={changed[:10]}")
+        if integrity_error is not None:
+            raise integrity_error
     print(f"C029 check OK: rows={len(document['rows'])} proofs={len(document['proof_commands'])} defects={len(document['compatibility_defects'])} sha256={sha256_path(ARTIFACT)}")
     return 0
 

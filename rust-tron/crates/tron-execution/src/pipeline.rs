@@ -44,6 +44,10 @@ pub struct ExecutionRuntimeConfig {
     pub operation_registry: Arc<OperationRegistry>,
     pub shielded_parameters: Arc<TronParameters>,
     pub execution_config: ExecutionConfig,
+    /// Wall-clock limit for ABI constant calls. `None` and zero use the network deadline.
+    pub constant_call_timeout: Option<std::time::Duration>,
+    /// Optional invocation observer used by integration boundaries that must audit the selected VM deadline.
+    pub deadline_observer: Option<Arc<dyn Fn(std::time::Duration) + Send + Sync>>,
 }
 
 /// The production transaction path. Authorization and execution use one shared

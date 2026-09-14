@@ -89,6 +89,8 @@ def metadata():
     proof_by_id = {p["stable_id"]: p for p in proofs}
     rust_source = (RUST / "crates/tron-apis/tests/c023_scenarios.rs").read_text()
     behavior_contracts = {}
+    semantic_fingerprints = {}
+    forbidden_default_inputs = {"", "{}"}
     for row in jrows:
         stable_id = row["stable_id"]
         behavior = row.get("behavior")
@@ -96,23 +98,44 @@ def metadata():
         exact_key = f"{stable_id}|{source['path']}:{source['line']}::{row['symbol']}"
         if not isinstance(behavior, dict) or behavior.get("key") != exact_key:
             raise SystemExit("C023 exact stable-ID/source behavior mapping drift: " + stable_id)
+        source_class = pathlib.Path(source["path"]).stem
+        expected_assertion_prefix = f"{source_class}#{row['symbol']}:"
+        if not isinstance(behavior.get("assertion"), str) or not behavior["assertion"].startswith(expected_assertion_prefix):
+            raise SystemExit("C023 behavior assertion is not bound to its source method: " + stable_id)
         if behavior.get("kind") == "json-unit":
-            required_behavior_fields = {"key","kind","route","method","surface","input","proof_function","parser_result"}
+            required_behavior_fields = {"key","kind","route","method","surface","input","proof_function","parser_result","assertion"}
             if set(behavior) != required_behavior_fields or behavior["route"] != "" or behavior["method"] != "UNIT" or behavior["surface"] != "PARSER" or behavior["proof_function"] != "c023_json::production_parser_case":
                 raise SystemExit("C023 parser-unit row substituted an HTTP proof: " + stable_id)
             if behavior["parser_result"] not in {"parse_success","parse_exception","constraints_depth20_tokens100000"}:
                 raise SystemExit("C023 invalid exact parser result: " + stable_id)
-            contract = (behavior["kind"], behavior["proof_function"], behavior["input"], behavior["parser_result"])
+            contract = (behavior["kind"], behavior["proof_function"], behavior["input"], behavior["parser_result"], behavior["assertion"])
         else:
-            required_behavior_fields = {"key","kind","route","method","surface","input","expected_status"}
+            required_behavior_fields = {"key","kind","route","method","surface","input","expected_status","assertion"}
             if set(behavior) != required_behavior_fields or behavior["method"] not in ("GET","POST") or behavior["surface"] not in ("FULL","SOLIDITY","PBFT"):
                 raise SystemExit("C023 invalid exact HTTP behavior contract: " + stable_id)
-            contract = (behavior["kind"], behavior["route"], behavior["method"], behavior["surface"], behavior["input"], tuple(behavior["expected_status"]))
+            if behavior["expected_status"] == [200, 400]:
+                raise SystemExit("C023 broad success/error status substitution rejected: " + stable_id)
+            contract = (behavior["kind"], behavior["route"], behavior["method"], behavior["surface"], behavior["input"], tuple(behavior["expected_status"]), behavior["assertion"])
+        if behavior["input"] in forbidden_default_inputs:
+            raise SystemExit("C023 empty/default behavior input rejected: " + stable_id)
         if stable_id in behavior_contracts:
             raise SystemExit("C023 duplicate exact behavior contract: " + stable_id)
         behavior_contracts[stable_id] = contract
+        # Identity tokens do not count toward semantic uniqueness.  The remaining
+        # decomposition must still identify one source action and one observable.
+        normalized = re.sub(r"TCASE-[0-9A-F]{16}", "TCASE", json.dumps(contract, sort_keys=True, separators=(",", ":")))
+        fingerprint = hashlib.sha256(normalized.encode()).hexdigest()
+        if fingerprint in semantic_fingerprints:
+            raise SystemExit("C023 duplicate/substituted semantic behavior contracts: " + semantic_fingerprints[fingerprint] + " and " + stable_id)
+        semantic_fingerprints[fingerprint] = stable_id
         case = row["symbol"].lower()
         exact_parser_cases = {
+            "TCASE-B2E6737D25EE29F2": ('{a:1}', "parse_success"),
+            "TCASE-472B63ACF325D391": ('{a:1, a:2 }', "parse_success"),
+            "TCASE-8E83BB067871C5CE": ("{'a':'1'}", "parse_success"),
+            "TCASE-F356A8E31D690479": ("{'a':+1,b:-2,c:.3,d:-.4,e:+.5,f:+6.,h:007}", "parse_success"),
+            "TCASE-AF621E9BF2958287": ("{'a':'line1\n\tline2'}", "parse_success"),
+            "TCASE-7B1E77B5A4C86C9B": ('{/* comment */"a":1}', "parse_success"),
             "TCASE-B953AD91CF184781": ('{"zzz":{"a":1,"b":[true,false,null,{"c":"d"}],"e":{"f":2}},"address":"61646472657373"}', "parse_success"),
             "TCASE-1A877C8B6766B4C7": ("@nested-object:10", "parse_success"),
             "TCASE-94015C0E2E3EEF18": ('{"genesisBlockId":{"hash":"00","number":1,},"address":"61646472657373",}', "parse_success"),
@@ -120,7 +143,7 @@ def metadata():
             "TCASE-66361C13405383AA": ("@nested-array:21", "parse_exception"),
             "TCASE-0FCD6FE6295B449F": ("@nested-object:100000", "parse_exception"),
             "TCASE-FC15342AA62E8EA9": ("@nested-array:100000", "parse_exception"),
-            "TCASE-01E495A39E52F3DF": ("{}", "constraints_depth20_tokens100000"),
+            "TCASE-01E495A39E52F3DF": ('{"c023_case":"TCASE-01E495A39E52F3DF","java_class":"JsonTest","java_behavior":"testJsonMapperHasConfiguredConstraints"}', "constraints_depth20_tokens100000"),
             "TCASE-EB9B652B5EAAF9CF": ("@jackson-object:120", "parse_exception"),
             "TCASE-E8678FD65A4DEC5A": ("@token-array:100500", "parse_exception"),
         }
@@ -157,7 +180,7 @@ def metadata():
                 raise SystemExit("C023 route row does not call its own route: " + stable_id)
         if proof_by_id[stable_id].get("behavior") != behavior:
             raise SystemExit("C023 scenario/reconciliation behavior mapping drift: " + stable_id)
-    if len(behavior_contracts) != 333 or "selector_index" in rust_source or "execute_row_behavior(stable_id, family" in rust_source:
+    if len(behavior_contracts) != 333 or len(semantic_fingerprints) != 333 or "selector_index" in rust_source or "execute_row_behavior(stable_id, family" in rust_source:
         raise SystemExit("C023 hash/generic Java-row behavior dispatch rejected")
     executable_families = {
         "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",

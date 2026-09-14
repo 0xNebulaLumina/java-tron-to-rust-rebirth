@@ -86,7 +86,7 @@ fn runtime_config() -> ExecutionRuntimeConfig {
         let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../../java-tron/framework/src/main/resources/params");
         tron_shielded::load_tron_parameters(root.join("sapling-spend.params"), root.join("sapling-output.params")).unwrap()
     });
-    ExecutionRuntimeConfig { actuator_registry: Arc::new(ActuatorRegistry::empty()), operation_registry: Arc::new(tron_tvm::OperationRegistry::integration().unwrap()), shielded_parameters: Arc::clone(&PARAMETERS), execution_config: ExecutionConfig::default() }
+    ExecutionRuntimeConfig { actuator_registry: Arc::new(ActuatorRegistry::empty()), operation_registry: Arc::new(tron_tvm::OperationRegistry::integration().unwrap()), shielded_parameters: Arc::clone(&PARAMETERS), execution_config: ExecutionConfig::default(), constant_call_timeout: None, deadline_observer: None }
 }
 
 

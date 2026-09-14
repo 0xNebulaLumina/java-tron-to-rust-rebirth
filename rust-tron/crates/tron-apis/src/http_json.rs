@@ -32,15 +32,18 @@ impl ProtobufJson {
     pub fn parse(&self, message_name: &str, input: &str, visible: bool) -> Result<DynamicMessage, JsonError> {
         let descriptor = self.pool.get_message_by_name(message_name)
             .ok_or_else(|| JsonError(format!("unknown message type: {message_name}")))?;
+        validate_unknown_field_commas(input, &descriptor)?;
         let value = parse_lenient_json(input)?;
         self.parse_value(&descriptor, &value, visible)
     }
 
     pub fn parse_transaction(&self, input: &str, visible: bool) -> Result<DynamicMessage, JsonError> {
+        let descriptor = self.pool.get_message_by_name("protocol.Transaction")
+            .ok_or_else(|| JsonError("unknown message type: protocol.Transaction".into()))?;
+        validate_unknown_field_commas(input, &descriptor)?;
         let mut value = parse_lenient_json(input)?;
         normalize_transaction_json(&mut value, visible);
-        self.parse_value(&self.pool.get_message_by_name("protocol.Transaction")
-            .ok_or_else(|| JsonError("unknown message type: protocol.Transaction".into()))?, &value, visible)
+        self.parse_value(&descriptor, &value, visible)
     }
 
     pub fn print(&self, message: &DynamicMessage, visible: bool) -> Result<String, JsonError> {
@@ -258,7 +261,8 @@ const MAX_PROTOBUF_JSON_TOKENS: usize = 100_000;
 
 fn parse_lenient_json(input: &str) -> Result<Value, JsonError> {
     validate_json_admission(input)?;
-    serde_json::from_str(&strip_trailing_commas(input)).map_err(|e| JsonError(e.to_string()))
+    let normalized = normalize_java_json(input)?;
+    serde_json::from_str(&strip_trailing_commas(&normalized)).map_err(|e| JsonError(e.to_string()))
 }
 
 fn validate_json_admission(input: &str) -> Result<(), JsonError> {
@@ -314,6 +318,189 @@ fn validate_json_admission(input: &str) -> Result<(), JsonError> {
         }
     }
     Ok(())
+}
+fn validate_unknown_field_commas(input: &str, descriptor: &MessageDescriptor) -> Result<(), JsonError> {
+    let bytes = input.as_bytes();
+    let mut index = skip_space(bytes, 0);
+    if bytes.get(index) != Some(&b'{') { return Ok(()); }
+    index += 1;
+    loop {
+        index = skip_space(bytes, index);
+        if bytes.get(index) == Some(&b'}') || index >= bytes.len() { return Ok(()); }
+        let Some((name, after_name)) = json_string(input, index) else { return Ok(()); };
+        index = skip_space(bytes, after_name);
+        if bytes.get(index) != Some(&b':') { return Ok(()); }
+        index = skip_space(bytes, index + 1);
+        let end = json_value_end(bytes, index);
+        if descriptor.get_field_by_name(&name).is_none() && has_container_trailing_comma(&input[index..end]) {
+            return Err(JsonError("Expected identifier or string value after trailing comma in unknown field.".into()));
+        }
+        index = skip_space(bytes, end);
+        if bytes.get(index) == Some(&b',') { index += 1; } else { return Ok(()); }
+    }
+}
+
+fn skip_space(bytes: &[u8], mut index: usize) -> usize {
+    while bytes.get(index).is_some_and(u8::is_ascii_whitespace) { index += 1; }
+    index
+}
+
+fn json_string(input: &str, start: usize) -> Option<(String, usize)> {
+    if input.as_bytes().get(start) != Some(&b'"') { return None; }
+    let mut escaped = false;
+    for index in start + 1..input.len() {
+        match input.as_bytes()[index] {
+            b'"' if !escaped => return serde_json::from_str(&input[start..=index]).ok().map(|value| (value, index + 1)),
+            b'\\' if !escaped => escaped = true,
+            _ => escaped = false,
+        }
+    }
+    None
+}
+
+fn json_value_end(bytes: &[u8], start: usize) -> usize {
+    let mut index = start;
+    let mut depth = 0usize;
+    let mut string = false;
+    let mut escaped = false;
+    while index < bytes.len() {
+        let byte = bytes[index];
+        if string {
+            if escaped { escaped = false; }
+            else if byte == b'\\' { escaped = true; }
+            else if byte == b'"' { string = false; }
+        } else {
+            match byte {
+                b'"' => string = true,
+                b'{' | b'[' => depth += 1,
+                b'}' | b']' if depth > 0 => depth -= 1,
+                b',' | b'}' if depth == 0 => break,
+                _ => {}
+            }
+        }
+        index += 1;
+    }
+    index
+}
+
+fn has_container_trailing_comma(value: &str) -> bool {
+    let bytes = value.as_bytes();
+    let mut string = false;
+    let mut escaped = false;
+    for (index, &byte) in bytes.iter().enumerate() {
+        if string {
+            if escaped { escaped = false; }
+            else if byte == b'\\' { escaped = true; }
+            else if byte == b'"' { string = false; }
+        } else if byte == b'"' { string = true; }
+        else if matches!(byte, b'}' | b']') {
+            let mut previous = index;
+            while previous > 0 && bytes[previous - 1].is_ascii_whitespace() { previous -= 1; }
+            if previous > 0 && bytes[previous - 1] == b',' { return true; }
+        }
+    }
+    false
+}
+
+
+fn normalize_java_json(input: &str) -> Result<String, JsonError> {
+    let bytes = input.as_bytes();
+    let mut output = String::with_capacity(input.len());
+    let mut index = 0usize;
+    while index < bytes.len() {
+        if bytes[index] == b'/' && bytes.get(index + 1) == Some(&b'/') {
+            index += 2;
+            while index < bytes.len() && bytes[index] != b'\n' { index += 1; }
+            continue;
+        }
+        if bytes[index] == b'/' && bytes.get(index + 1) == Some(&b'*') {
+            let start = index;
+            index += 2;
+            while index + 1 < bytes.len() && !(bytes[index] == b'*' && bytes[index + 1] == b'/') { index += 1; }
+            if index + 1 >= bytes.len() { return Err(JsonError(format!("unterminated comment at byte {start}"))); }
+            index += 2;
+            continue;
+        }
+        if matches!(bytes[index], b'"' | b'\'') {
+            let quote = bytes[index];
+            output.push('"');
+            index += 1;
+            let mut escaped = false;
+            let mut closed = false;
+            while index < bytes.len() {
+                let byte = bytes[index];
+                index += 1;
+                if escaped {
+                    output.push('\\');
+                    output.push(byte as char);
+                    escaped = false;
+                } else if byte == b'\\' {
+                    escaped = true;
+                } else if byte == quote {
+                    output.push('"');
+                    closed = true;
+                    break;
+                } else if byte == b'"' {
+                    output.push_str("\\\"");
+                } else if byte < 0x20 {
+                    use std::fmt::Write as _;
+                    let _ = write!(output, "\\u{byte:04x}");
+                } else if byte >= 0x80 {
+                    let character = input[index - 1..].chars().next().ok_or_else(|| JsonError("invalid UTF-8 JSON input".into()))?;
+                    output.push(character);
+                    index += character.len_utf8() - 1;
+                } else {
+                    output.push(byte as char);
+                }
+            }
+            if !closed { return Err(JsonError("unterminated JSON string".into())); }
+            continue;
+        }
+        if bytes[index].is_ascii_alphabetic() || bytes[index] == b'_' {
+            let start = index;
+            index += 1;
+            while index < bytes.len() && (bytes[index].is_ascii_alphanumeric() || bytes[index] == b'_') { index += 1; }
+            let word = &input[start..index];
+            let next = skip_space(bytes, index);
+            if bytes.get(next) == Some(&b':') { output.push('"'); output.push_str(word); output.push('"'); }
+            else { output.push_str(word); }
+            continue;
+        }
+        if matches!(bytes[index], b'+' | b'-' | b'.' | b'0'..=b'9') {
+            let start = index;
+            index += 1;
+            while index < bytes.len() && !bytes[index].is_ascii_whitespace() && !matches!(bytes[index], b',' | b']' | b'}' | b':') { index += 1; }
+            output.push_str(&normalize_java_number(&input[start..index]));
+            continue;
+        }
+        if bytes[index] >= 0x80 {
+            let character = input[index..].chars().next().ok_or_else(|| JsonError("invalid UTF-8 JSON input".into()))?;
+            output.push(character);
+            index += character.len_utf8();
+        } else {
+            output.push(bytes[index] as char);
+            index += 1;
+        }
+    }
+    Ok(output)
+}
+
+fn normalize_java_number(token: &str) -> String {
+    let mut token = token;
+    let negative = token.starts_with('-');
+    if token.starts_with('+') || negative { token = &token[1..]; }
+    if token.is_empty() || !token.bytes().all(|byte| byte.is_ascii_digit() || matches!(byte, b'.' | b'e' | b'E' | b'+' | b'-')) {
+        return if negative { format!("-{token}") } else { token.to_owned() };
+    }
+    let mut number = token.to_owned();
+    if number.starts_with('.') { number.insert(0, '0'); }
+    if number.ends_with('.') { number.push('0'); }
+    if !number.contains(['.', 'e', 'E']) {
+        let trimmed = number.trim_start_matches('0');
+        number = if trimmed.is_empty() { "0".into() } else { trimmed.into() };
+    }
+    if negative { number.insert(0, '-'); }
+    number
 }
 
 fn strip_trailing_commas(input: &str) -> String { let mut out=String::with_capacity(input.len()); let mut chars=input.chars().peekable(); let mut string=false; let mut escaped=false; while let Some(c)=chars.next(){ if string { out.push(c); if escaped {escaped=false}else if c=='\\'{escaped=true}else if c=='"'{string=false} } else if c=='"'{string=true;out.push(c)} else if c==',' { let mut look=chars.clone(); while matches!(look.peek(),Some(c) if c.is_whitespace()){look.next();} if !matches!(look.peek(),Some(']')|Some('}')){out.push(c)} } else {out.push(c)} } out }
