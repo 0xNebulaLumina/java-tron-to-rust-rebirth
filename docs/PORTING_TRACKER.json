@@ -4231,51 +4231,51 @@
     {
       "id": "C029",
       "title": "Java test-surface mapping and regression closure",
-      "status": "review",
-      "owner": "review-agent",
+      "status": "done",
+      "owner": null,
       "updated": "2026-09-14",
-      "resume": "Independently re-review closure of C029-R1-005 and C029-R1-010 and verify the passed-gate accounting of 3,443 rows, 438 proof commands, seven historical compatibility defects, and artifact SHA-256 0903d4cb3e0bb332b22a5647fe5691670bbcd851a55e6459eae507dae0fa7d3e.",
+      "resume": null,
       "items": [
         {
           "id": "C029.01",
           "description": "Regenerate the C000 case-level Java test/resource ledger at the release revision and reject source/count drift.",
           "status": "done",
-          "note": "Pinned ledger regeneration passed with all 3,443 stable rows preserved; the complete reconciliation artifact SHA-256 is 0903d4cb3e0bb332b22a5647fe5691670bbcd851a55e6459eae507dae0fa7d3e."
+          "note": "Pinned ledger regeneration passed with all 3,443 stable rows preserved; the complete reconciliation artifact SHA-256 is 29b0d904f0f041135d616e1b25c2f53178cad2040948a41a8ee45ea94da1da4b."
         },
         {
           "id": "C029.02",
           "description": "Reconcile each stable case ID to behavior claim, applicability decision, Rust test/fixture IDs and execution results; many-to-one mappings require explicit behavior decomposition.",
           "status": "done",
-          "note": "All 3,443 stable case rows are present in the reconciliation with 438 proof commands, including 294 executable C023 rows and 39 reviewed non-applicable C023 rows, and zero current mapping gaps."
+          "note": "All 3,443 stable case rows are present in the reconciliation with 439 proof commands, including 294 executable C023 rows and 39 reviewed non-applicable C023 rows, with zero unmapped or generic rows."
         },
         {
           "id": "C029.03",
           "description": "Re-home protocol/crypto/chainbase/consensus behavior currently tested from framework.",
           "status": "done",
-          "note": "Framework-owned protocol, crypto, chainbase, and consensus claims are explicitly reconciled in the verified mapping."
+          "note": "Framework-owned protocol, crypto, chainbase, and consensus claims are explicitly reconciled in the verified zero-unmapped, zero-generic mapping."
         },
         {
           "id": "C029.04",
           "description": "Make ignored shielded/VM/benchmark cases explicit covered, benchmark-only, or blocker-owned; never silently drop.",
           "status": "done",
-          "note": "Shielded, VM, benchmark, and ignored cases have explicit dispositions; VM recognition now covers all 341 pinned VM rows, including 44 explicit VM paths outside /runtime/vm/."
+          "note": "Shielded, VM, benchmark, and ignored cases have explicit dispositions; VM recognition covers all 341 pinned VM rows, including 44 explicit VM paths outside /runtime/vm/."
         },
         {
           "id": "C029.05",
           "description": "Add minimal fixture for every compatibility defect found during porting.",
           "status": "done",
-          "note": "The reconciliation records 78 historical review findings and seven historical compatibility defects with zero unexplained current compatibility gaps; closure of C029-R1-005 and C029-R1-010 remains under independent re-review."
+          "note": "The reconciliation records 78 historical review findings and seven historical compatibility defects with zero unexplained current compatibility gaps; independent review found C029-R1-005 and C029-R1-010 clean and closed."
         },
         {
           "id": "C029.06",
           "description": "Enforce determinism/isolation and remove flaky sleeps/fixed ports/mutable images.",
           "status": "done",
-          "note": "The reconciliation contains 438 proof commands, including 294 executable C023 rows and 39 reviewed non-applicable C023 rows; the full C029 gate passed with invocation-private execution, repository-pinned provenance, and all-exit shared-input integrity checks."
+          "note": "The reconciliation contains 439 proof commands, including 294 executable C023 rows and 39 reviewed non-applicable C023 rows; the canonical C029 gate passed with invocation-private execution, repository-pinned provenance, and all-exit shared-input integrity checks."
         }
       ],
       "gate": {
         "id": "C029.V",
-        "description": "Passed with 3,443 rows, 438 proof commands, 78 historical review findings, seven historical compatibility defects, zero current mapping gaps, and complete reconciliation artifact SHA-256 0903d4cb3e0bb332b22a5647fe5691670bbcd851a55e6459eae507dae0fa7d3e.",
+        "description": "Passed with 3,443 rows, 439 proof commands, 78 historical review findings, seven historical compatibility defects, zero unmapped or generic rows, and complete reconciliation artifact SHA-256 29b0d904f0f041135d616e1b25c2f53178cad2040948a41a8ee45ea94da1da4b.",
         "status": "passed",
         "commands": [
           {
@@ -4302,8 +4302,8 @@
         "last_failure": null
       },
       "review": {
-        "state": "changes_requested",
-        "round": 4,
+        "state": "approved",
+        "round": 5,
         "findings": [
           {
             "id": "C029-R1-001",
@@ -4332,8 +4332,8 @@
           {
             "id": "C029-R1-005",
             "summary": "All 333 C023 source contracts are still collapsed to generic family probes rather than source-specific execution and observable assertions.",
-            "status": "open",
-            "resolution": null
+            "status": "closed",
+            "resolution": "Independent review confirmed all 333 C023 source contracts are explicitly reconciled as 294 executable rows and 39 reviewed non-applicable rows, with source-specific observable proofs and zero generic mappings."
           },
           {
             "id": "C029-R1-006",
@@ -4362,8 +4362,8 @@
           {
             "id": "C029-R1-010",
             "summary": "Defect classification remains driven by DEFECT_STABLE_ID_BINDINGS, and four external defects lack executed defect-specific recurrence proofs.",
-            "status": "open",
-            "resolution": null
+            "status": "closed",
+            "resolution": "Independent review confirmed all seven historical compatibility defects have executed defect-specific recurrence proofs and classification is independently reconciled rather than accepted from binding declarations."
           }
         ]
       },
