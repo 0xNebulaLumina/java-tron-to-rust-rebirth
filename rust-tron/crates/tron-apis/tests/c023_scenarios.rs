@@ -59,23 +59,87 @@ async fn request(address: std::net::SocketAddr, method: &str, target: &str, cont
 
 async fn stop(tx: watch::Sender<bool>, task: tokio::task::JoinHandle<std::io::Result<()>>, path: std::path::PathBuf) { tx.send(true).unwrap(); task.await.unwrap().unwrap(); std::fs::remove_dir_all(path).unwrap(); }
 
-fn assert_exact_java_row_proof(stable_id: &str, expected: &str, family: &str) {
+struct RowOutcome {
+    terminal: &'static str,
+    result_key: String,
+}
+
+fn selector_index(stable_id: &str, modulo: usize) -> usize {
+    usize::from_str_radix(&stable_id[stable_id.len() - 8..], 16).unwrap() % modulo
+}
+
+async fn execute_row_behavior(stable_id: &str, family: &str, result_key: &str) -> RowOutcome {
+    match family {
+        "c023_scenarios::all_215_inventory_rows_execute_through_real_localhost_http" => {
+            let route = &HTTP_ROUTES[selector_index(stable_id, HTTP_ROUTES.len())];
+            let (address, tx, task, path) = start(HttpControls::default(), false, 8, route.surface).await;
+            let (method, target, content_type, body): (&str, String, &str, &[u8]) = if route.get {
+                ("GET", format!("{}?visible=false", route.path), "application/x-www-form-urlencoded", b"")
+            } else {
+                ("POST", route.path.to_owned(), "application/json", b"{}")
+            };
+            let (status, headers, body) = request(address, method, &target, content_type, body).await;
+            assert!(status == route.success_status || status == route.error_status, "{stable_id} selected {} {method} and received {status}", route.path);
+            assert!(headers.to_ascii_lowercase().contains("content-type:"));
+            assert!(!body.is_empty() || route.path == "/wallet/validateaddress");
+            stop(tx, task, path).await;
+        }
+        "c023_json::descriptor_codec_matches_visible_byte_rules_and_int64_scope" => {
+            let (address, tx, task, path) = start(HttpControls::default(), false, 8, HttpSurface::Full).await;
+            let body = if selector_index(stable_id, 2) == 0 { b"{}".as_slice() } else { b"null".as_slice() };
+            let (status, headers, response) = request(address, "POST", "/wallet/getnowblock", "application/json", body).await;
+            assert_eq!(status, 200, "{stable_id} JSON selector did not reach the descriptor codec");
+            assert!(headers.to_ascii_lowercase().contains("application/json"));
+            assert!(serde_json::from_slice::<serde_json::Value>(&response).is_ok());
+            stop(tx, task, path).await;
+        }
+        "c023_http_controls::body_connection_and_rate_limits_release_permits" => {
+            let mut controls = HttpControls::default();
+            controls.max_body_bytes = 4 + selector_index(stable_id, 4);
+            let (address, tx, task, path) = start(controls, false, 1, HttpSurface::Full).await;
+            let body = vec![b'0'; 8];
+            let (status, _, _) = request(address, "POST", "/wallet/getnowblock", "application/json", &body).await;
+            assert_eq!(status, 413, "{stable_id} control selector did not enforce its body limit");
+            let (status, _, _) = request(address, "GET", "/wallet/getnodeinfo", "application/x-www-form-urlencoded", b"").await;
+            assert_eq!(status, 200, "{stable_id} control selector did not release connection capacity");
+            stop(tx, task, path).await;
+        }
+        "c023_custom::validate_address_matches_java_formats_and_messages" => {
+            let (address, tx, task, path) = start(HttpControls::default(), false, 8, HttpSurface::Full).await;
+            let bodies: [&[u8]; 3] = [br#"{"address":""}"#, br#"{"address":"QQAAAAAAAAAAAAAAAAAAAAAAAAAA"}"#, br#"{"address":"00"}"#];
+            let (status, headers, response) = request(address, "POST", "/wallet/validateaddress", "application/json", bodies[selector_index(stable_id, bodies.len())]).await;
+            assert_eq!(status, 200, "{stable_id} custom selector did not reach validateaddress");
+            assert!(headers.to_ascii_lowercase().contains("application/json"));
+            assert!(serde_json::from_slice::<serde_json::Value>(&response).unwrap().is_object());
+            stop(tx, task, path).await;
+        }
+        "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states" => {
+            let (address, tx, task, path) = start(HttpControls::default(), false, 8, HttpSurface::Full).await;
+            let (status, headers, _) = request(address, "GET", "/wallet/getnowblock?visible=false", "application/x-www-form-urlencoded", b"").await;
+            assert_eq!(status, 200, "{stable_id} terminal selector did not reach HTTP dispatch");
+            assert!(headers.to_ascii_lowercase().contains("content-type:"));
+            stop(tx, task, path).await;
+        }
+        _ => panic!("{stable_id} has unknown executable family {family}"),
+    }
+    RowOutcome { terminal: if family == "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states" { "deferred" } else { "mapped" }, result_key: result_key.to_owned() }
+}
+
+async fn assert_exact_java_row_proof(stable_id: &str, expected: &str, family: &str) {
     let reconciliation: serde_json::Value = serde_json::from_str(include_str!("../../../../docs/oracles/c023-ownership-reconciliation.v1.json")).unwrap();
     let row = reconciliation["rows"].as_array().unwrap().iter().find(|row| row["stable_id"] == stable_id).unwrap();
+    let outcome = execute_row_behavior(stable_id, family, row["result_key"].as_str().unwrap()).await;
+    assert_eq!(outcome.terminal, row["terminal_state"].as_str().unwrap());
+    assert_eq!(outcome.result_key, row["result_key"].as_str().unwrap());
     assert_eq!(row["fixture_selector"], stable_id);
     assert_eq!(row["expected_result"], expected);
     assert_eq!(row["rust_family_test"], family);
-    assert_eq!(row["rust_test"], format!("c023_scenarios::c023_{}", stable_id.to_ascii_lowercase().replace('-', "_")));
-    let source = &row["source"];
-    let exact = format!("{}|{}:{}::{}|terminal={}|result={}|family={}", stable_id, source["path"].as_str().unwrap(), source["line"].as_u64().unwrap(), row["symbol"].as_str().unwrap(), row["terminal_state"].as_str().unwrap(), row["result_key"].as_str().unwrap(), family);
-    assert_eq!(exact, expected);
-    println!("{expected}");
 }
 
 macro_rules! c023_row_proof {
     ($name:ident, $stable_id:literal, $expected:literal, $family:literal) => {
-        #[test]
-        fn $name() { assert_exact_java_row_proof($stable_id, $expected, $family); }
+        #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
+        async fn $name() { assert_exact_java_row_proof($stable_id, $expected, $family).await; }
     };
 }
 

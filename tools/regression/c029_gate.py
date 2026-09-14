@@ -15,7 +15,6 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
-import time
 import tomllib
 from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "reference-runner"))
@@ -27,6 +26,7 @@ LEDGER = ORACLES / "java-test-ownership.v1.json"
 ARTIFACT = ORACLES / "c029-java-surface-reconciliation.v1.json"
 C016_OWNERSHIP = ORACLES / "c016-ownership-reconciliation.v1.json"
 MANIFEST = ORACLES / "manifest.v1.json"
+TRACKER = ROOT / "docs/PORTING_TRACKER.json"
 PIN = "4a21592f95e37908b21bc3f611c6e7a1a67f09f3"
 ARTIFACT_KEY = "c029_java_surface_reconciliation"
 GATE_KEY = "c029_gate_source"
@@ -83,6 +83,111 @@ def strings(values: Any, where: str, *, nonempty: bool = True) -> list[str]:
 
 def ledger_projection(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [{"id": row["id"], "source": row["source"], "case": row["case"], "kind": row["kind"]} for row in rows]
+
+
+def source_treatment(source: dict[str, Any]) -> dict[str, str]:
+    """Derive C029 special handling solely from generated source classifications."""
+    path = source["source"]["path"].lower()
+    basename = Path(path).name.lower()
+    classified = {
+        "ignored": bool(source.get("ignored")),
+        "shielded": any(token in path for token in ("shield", "zksnark", "sapling", "/zen/note/", "burncipher")),
+        "vm": "/runtime/vm/" in path,
+        "benchmark": "benchmark" in basename,
+        "resource": source["kind"] == "test_resource",
+        "assumption_gated": bool(source.get("assumption_gated")),
+        "bounded_dynamic": source.get("expansion", {}).get("status") == "bounded_unresolved",
+    }
+    active_value = {
+        "ignored": "covered",
+        "shielded": "covered",
+        "vm": "covered",
+        "benchmark": "covered",
+        "resource": "resource",
+        "assumption_gated": "assumption_gated",
+        "bounded_dynamic": "bounded_dynamic",
+    }
+    return {field: active_value[field] if active else "not_applicable" for field, active in classified.items()}
+
+
+def historical_finding_ids() -> set[str]:
+    tracker = load(TRACKER)
+    result: set[str] = set()
+    for chunk in tracker.get("chunks", []):
+        chunk_id = chunk.get("id")
+        if not isinstance(chunk_id, str) or not re.fullmatch(r"C\d{3}", chunk_id) or not (1 <= int(chunk_id[1:]) <= 28):
+            continue
+        for finding in chunk.get("review", {}).get("findings", []):
+            finding_id = finding.get("id")
+            fail(isinstance(finding_id, str) and finding_id, f"{chunk_id}: tracker review finding lacks an ID")
+            fail(finding_id not in result, f"tracker: duplicate historical finding {finding_id}")
+            result.add(finding_id)
+    return result
+
+
+def string_tokens(value: Any) -> set[str]:
+    if isinstance(value, str) and value:
+        return {value}
+    if isinstance(value, dict):
+        return {token for item in value.values() for token in string_tokens(item)}
+    if isinstance(value, list):
+        return {token for item in value for token in string_tokens(item)}
+    return set()
+
+
+def validate_historical_findings(document: dict[str, Any], ledger_ids: set[str], command_ids: set[str]) -> None:
+    findings = document["review_findings"]
+    defects = document["compatibility_defects"]
+    fail(isinstance(findings, list) and findings, "artifact.review_findings: exhaustive non-empty classification array required")
+    fail(isinstance(defects, list), "artifact.compatibility_defects: must be an array")
+    by_id: dict[str, dict[str, Any]] = {}
+    for index, finding in enumerate(findings):
+        where = f"review_findings[{index}]"
+        fail(isinstance(finding, dict), f"{where}: object required")
+        required = {"finding_id", "source_refs", "classification", "rationale"}
+        fail(required <= finding.keys(), f"{where}: missing {sorted(required - finding.keys())}")
+        finding_id = finding["finding_id"]
+        fail(isinstance(finding_id, str) and finding_id and finding_id not in by_id, f"{where}.finding_id: non-empty unique ID required")
+        refs = strings(finding["source_refs"], f"{finding_id}.source_refs")
+        fail(any(finding_id in ref or (ROOT / ref.partition("#")[0]).is_file() for ref in refs), f"{finding_id}.source_refs: source-bound tracker/file reference required")
+        fail(finding["classification"] in {"compatibility_defect", "non_compatibility"}, f"{finding_id}.classification: invalid classification")
+        rationale = finding["rationale"]
+        fail(isinstance(rationale, str) and len(rationale.split()) >= 5 and not GENERIC.search(rationale), f"{finding_id}.rationale: concrete source-bound rationale required")
+        by_id[finding_id] = finding
+    expected = historical_finding_ids()
+    fixture_tokens = {token for row in document["rows"] for link in row["fixture_links"] for token in (link, link.partition("#")[2]) if token}
+    rust_tokens = {token for row in document["rows"] for proof in row["rust_proofs"] for token in (proof["target"], proof["target"].rsplit("::", 1)[-1])}
+    claim_tokens = {token for row in document["rows"] for claim in row["behavior_claims"] for token in string_tokens(claim)}
+    result_tokens = {token for row in document["rows"] for token in string_tokens(row["observable_result"])}
+    for command in document["proof_commands"]:
+        result_tokens.update(command["result_contract"]["observable_projection"])
+    fail(set(by_id) == expected, f"artifact.review_findings: historical finding join mismatch; missing={sorted(expected-set(by_id))}, orphan={sorted(set(by_id)-expected)}")
+    defect_by_finding: dict[str, dict[str, Any]] = {}
+    for index, defect in enumerate(defects):
+        where = f"compatibility_defects[{index}]"
+        fail(isinstance(defect, dict), f"{where}: object required")
+        required = {"finding_id", "source_refs", "rationale", "affected_stable_ids", "behavior_claim_ids", "fixture_ids", "rust_test_ids", "command_ids", "result_links"}
+        fail(required <= defect.keys(), f"{where}: missing {sorted(required - defect.keys())}")
+        finding_id = defect["finding_id"]
+        fail(finding_id in by_id and by_id[finding_id]["classification"] == "compatibility_defect", f"{where}.finding_id: must reference a compatibility-defect classification")
+        fail(finding_id not in defect_by_finding, f"{finding_id}: duplicate compatibility defect record")
+        stable_ids = set(strings(defect["affected_stable_ids"], f"{finding_id}.affected_stable_ids"))
+        fail(stable_ids <= ledger_ids, f"{finding_id}.affected_stable_ids: unknown IDs {sorted(stable_ids-ledger_ids)}")
+        for field in ("source_refs", "behavior_claim_ids", "fixture_ids", "rust_test_ids", "command_ids", "result_links"):
+            strings(defect[field], f"{finding_id}.{field}")
+        fail(set(defect["fixture_ids"]) <= fixture_tokens, f"{finding_id}.fixture_ids: links do not resolve to row fixtures")
+        fail(set(defect["rust_test_ids"]) <= rust_tokens, f"{finding_id}.rust_test_ids: links do not resolve to exact Rust tests")
+        fail(set(defect["behavior_claim_ids"]) <= claim_tokens, f"{finding_id}.behavior_claim_ids: links do not resolve to behavior claims")
+        fail(set(defect["result_links"]) <= result_tokens, f"{finding_id}.result_links: links do not resolve to observable results")
+        affected_rows = [row for row in document["rows"] if row["stable_id"] in stable_ids]
+        fail(all(finding_id in row["defect_refs"] for row in affected_rows), f"{finding_id}: every affected row must carry the defect reference")
+        fail(set(defect["command_ids"]) <= command_ids, f"{finding_id}.command_ids: dangling proof command")
+        fail(isinstance(defect["rationale"], str) and len(defect["rationale"].split()) >= 5, f"{finding_id}.rationale: concrete defect rationale required")
+        defect_by_finding[finding_id] = defect
+    classified_defects = {finding_id for finding_id, finding in by_id.items() if finding["classification"] == "compatibility_defect"}
+    fail(set(defect_by_finding) == classified_defects, f"artifact.compatibility_defects: exact classified-defect join required; missing={sorted(classified_defects-set(defect_by_finding))}, orphan={sorted(set(defect_by_finding)-classified_defects)}")
+
+
 
 
 def source_identity(row: dict[str, Any]) -> dict[str, Any]:
@@ -335,8 +440,7 @@ def materialize_java_reference(destination: Path) -> None:
         stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False,
     )
     fail(tree.returncode == 0, f"disposable guard tree creation failed: {tree.stderr.strip()}")
-    commit_env = os.environ.copy()
-    commit_env.update({"GIT_AUTHOR_NAME": "C029 Gate", "GIT_AUTHOR_EMAIL": "c029@invalid", "GIT_AUTHOR_DATE": "2000-01-01T00:00:00+00:00", "GIT_COMMITTER_NAME": "C029 Gate", "GIT_COMMITTER_EMAIL": "c029@invalid", "GIT_COMMITTER_DATE": "2000-01-01T00:00:00+00:00"})
+    commit_env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "HOME": str(parent), "TMPDIR": str(parent), "LANG": "C", "LC_ALL": "C", "TZ": "UTC", "GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": os.devnull, "GIT_AUTHOR_NAME": "C029 Gate", "GIT_AUTHOR_EMAIL": "c029@invalid", "GIT_AUTHOR_DATE": "2000-01-01T00:00:00+00:00", "GIT_COMMITTER_NAME": "C029 Gate", "GIT_COMMITTER_EMAIL": "c029@invalid", "GIT_COMMITTER_DATE": "2000-01-01T00:00:00+00:00"}
     commit = subprocess.run(
         ["git", "-C", str(parent), "commit-tree", tree.stdout.strip(), "-m", "pinned Java reference"],
         env=commit_env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False,
@@ -425,8 +529,8 @@ def validate_command(command: dict[str, Any], index: int) -> None:
     fail(isinstance(command["timeout_seconds"], int) and 1 <= command["timeout_seconds"] <= 1800, f"{command['id']}.timeout_seconds: must be 1..1800")
     environment = command["environment"]
     fail(isinstance(environment, dict) and environment, f"{command['id']}.environment: closed deterministic environment required")
-    required_env = {"HOME", "TMPDIR", "LANG", "LC_ALL", "TZ", "RUST_TEST_THREADS"}
-    fail(required_env <= environment.keys(), f"{command['id']}.environment: missing {sorted(required_env-environment.keys())}")
+    required_env = {"HOME", "TMPDIR", "LANG", "LC_ALL", "TZ", "RUST_TEST_THREADS", "CARGO_NET_OFFLINE"}
+    fail(set(environment) == required_env, f"{command['id']}.environment: expected closed allowlist {sorted(required_env)}")
     fail(all(isinstance(k, str) and isinstance(v, str) for k, v in environment.items()), f"{command['id']}.environment: string map required")
     fail(environment["TZ"] == "UTC" and environment["RUST_TEST_THREADS"] == "1", f"{command['id']}.environment: UTC and one test thread required")
     contract = command["result_contract"]
@@ -509,9 +613,12 @@ def validate_artifact(
         fail(rehome["final_owner"] == row["owning_item"] and isinstance(rehome["final_gate"], str), f"{sid}.semantic_rehome: final owner/gate mismatch")
         treatment = row["treatment"]
         exact_keys(treatment, {"ignored", "shielded", "vm", "benchmark", "resource", "assumption_gated", "bounded_dynamic"}, f"{sid}.treatment")
-        expected_flags = {"ignored": bool(source.get("ignored")), "resource": source["kind"] != "java_test_case", "assumption_gated": bool(source.get("assumption_gated")), "bounded_dynamic": source.get("expansion", {}).get("status") not in {None, "enumerated"}}
-        for field, active in expected_flags.items():
-            counts[field + ("s" if field == "resource" else "")] += int(active)
+        expected_treatment = source_treatment(source)
+        fail(treatment == expected_treatment, f"{sid}.treatment: source-derived mismatch; expected {expected_treatment}")
+        for field, value in expected_treatment.items():
+            active = value != "not_applicable"
+            if field in {"ignored", "resource", "assumption_gated", "bounded_dynamic"}:
+                counts[field + ("s" if field == "resource" else "")] += int(active)
         contract = row["determinism_isolation"]
         exact_keys(contract, {"fresh_temp", "virtual_or_injected_time", "ephemeral_listeners", "fixed_seed", "immutable_inputs", "repeat_runs", "projection"}, f"{sid}.determinism_isolation")
         fail(isinstance(contract["projection"], list) and isinstance(contract["repeat_runs"], int), f"{sid}.determinism_isolation: invalid projection contract")
@@ -524,7 +631,7 @@ def validate_artifact(
     fail(unsupported == unmapped_by_owner, "artifact.unsupported_by_owning_artifact_repair: exact grouped unmapped-row repair inventory mismatch")
     fail(document["accounting"] == counts, f"artifact.accounting: exact recomputation mismatch; expected {counts}")
     fail(counts["mapped"] + counts["unmapped"] == 3443 and counts["generic"] == 0, "artifact.accounting: all rows must be exact-mapped or explicit unsupported gaps")
-    fail(isinstance(document["compatibility_defects"], list) and isinstance(document["review_findings"], list), "artifact defect/finding collections must be arrays")
+    validate_historical_findings(document, set(source_ids), set(command_ids))
     return by_command
 
 
@@ -545,17 +652,6 @@ def parse_test_result(output: str) -> tuple[int, int, int]:
     return passed, ignored, skipped
 
 
-def cleanup_aborted_trees() -> None:
-    """Remove abandoned gate trees without interfering with a concurrently running gate."""
-    cutoff = time.time() - 3600
-    for candidate in Path(tempfile.gettempdir()).glob("c029-gate-*"):
-        try:
-            if candidate.is_dir() and candidate.stat().st_mtime < cutoff:
-                shutil.rmtree(candidate)
-        except FileNotFoundError:
-            pass
-        except OSError as error:
-            raise GateError(f"cannot remove abandoned gate tree {candidate}: {error}") from error
 
 
 def require_disk(path: Path, minimum: int, purpose: str) -> None:
@@ -674,6 +770,33 @@ def existing_target_names(target: Path) -> set[str]:
     return names
 
 
+def resolve_rust_tools() -> tuple[Path, Path, Path, Path, Path, str]:
+    """Resolve the pinned, already-installed toolchain before entering isolation."""
+    cargo_home = Path(os.environ.get("CARGO_HOME", str(Path.home() / ".cargo"))).resolve()
+    rustup_home = Path(os.environ.get("RUSTUP_HOME", str(Path.home() / ".rustup"))).resolve()
+    fail(cargo_home.is_dir(), f"existing CARGO_HOME is unavailable: {cargo_home}")
+    fail(rustup_home.is_dir(), f"existing RUSTUP_HOME is unavailable: {rustup_home}")
+    rustup = (cargo_home / "bin" / "rustup").resolve()
+    fail(rustup.is_file() and os.access(rustup, os.X_OK), f"existing rustup executable is unavailable: {rustup}")
+    config = tomllib.loads((ROOT / "rust-tron" / "rust-toolchain.toml").read_text(encoding="utf-8"))
+    channel = config.get("toolchain", {}).get("channel")
+    fail(isinstance(channel, str) and channel and channel != "stable", "rust-tron toolchain must pin an explicit installed channel")
+    candidates: list[tuple[Path, Path]] = []
+    for toolchain in sorted((rustup_home / "toolchains").glob(f"{channel}-*")):
+        cargo = toolchain / "bin" / "cargo"
+        rustc = toolchain / "bin" / "rustc"
+        if cargo.is_file() and rustc.is_file() and os.access(cargo, os.X_OK) and os.access(rustc, os.X_OK):
+            candidates.append((cargo.resolve(), rustc.resolve()))
+    fail(len(candidates) == 1, f"pinned Rust toolchain {channel}: expected one installed executable pair, found {len(candidates)}")
+    cargo, rustc = candidates[0]
+    authentication_env = {"PATH": os.pathsep.join((str(cargo.parent), "/usr/bin", "/bin")), "HOME": str(cargo_home), "CARGO_HOME": str(cargo_home), "RUSTUP_HOME": str(rustup_home), "RUSTUP_TOOLCHAIN": channel, "RUSTUP_AUTO_INSTALL": "0", "CARGO_NET_OFFLINE": "true", "LANG": "C", "LC_ALL": "C", "TZ": "UTC"}
+    rustc_version = subprocess.run([str(rustc), "--version"], env=authentication_env, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
+    cargo_version = subprocess.run([str(cargo), "--version"], env=authentication_env, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
+    fail(rustc_version.returncode == 0 and rustc_version.stdout.startswith(f"rustc {channel} "), f"pinned rustc authentication failed: {rustc_version.stderr.strip() or rustc_version.stdout.strip()}")
+    fail(cargo_version.returncode == 0 and cargo_version.stdout.startswith(f"cargo {channel} "), f"pinned cargo authentication failed: {cargo_version.stderr.strip() or cargo_version.stdout.strip()}")
+    return cargo, rustc, rustup, cargo_home, rustup_home, channel
+
+
 def compilation_budget(target: Path, plans: dict[tuple[str, str, str], set[str]]) -> tuple[int, int]:
     existing = existing_target_names(target)
     missing = sum(target_name.replace("-", "_") not in existing for _, _, target_name in plans)
@@ -682,20 +805,12 @@ def compilation_budget(target: Path, plans: dict[tuple[str, str, str], set[str]]
     return missing, 256 * 1024**2 + missing * 128 * 1024**2
 
 
-def build_referenced_tests(tree: Path, scratch: Path, target: Path, plans: dict[tuple[str, str, str], set[str]]) -> dict[Path, tuple[tuple[str, str, str], set[str]]]:
+def build_referenced_tests(tree: Path, scratch: Path, target: Path, plans: dict[tuple[str, str, str], set[str]], tools: tuple[Path, Path, Path, Path, Path, str]) -> dict[Path, tuple[tuple[str, str, str], set[str]]]:
     build_home = scratch / "build-home"; build_tmp = scratch / "build-tmp"
     build_home.mkdir(); build_tmp.mkdir()
-    cargo = shutil.which("cargo")
-    fail(cargo is not None, "cargo executable is unavailable")
-    cargo_home = Path(os.environ.get("CARGO_HOME", str(Path.home() / ".cargo"))).resolve()
-    rustup_home = Path(os.environ.get("RUSTUP_HOME", str(Path.home() / ".rustup"))).resolve()
-    fail(cargo_home.is_dir(), f"existing CARGO_HOME is unavailable: {cargo_home}")
-    fail(rustup_home.is_dir(), f"existing RUSTUP_HOME is unavailable: {rustup_home}")
-    env = os.environ.copy()
-    for key in tuple(env):
-        if key in {"RUSTC_WRAPPER", "RUSTC_WORKSPACE_WRAPPER"} or key.startswith("SCCACHE_"):
-            env.pop(key)
-    env.update({"HOME": str(build_home), "TMPDIR": str(build_tmp), "CARGO_HOME": str(cargo_home), "RUSTUP_HOME": str(rustup_home), "RUSTUP_AUTO_INSTALL": "0", "RUSTC_WRAPPER": "", "RUSTC_WORKSPACE_WRAPPER": "", "CARGO_BUILD_RUSTC_WRAPPER": "", "CARGO_NET_OFFLINE": "true", "CARGO_TARGET_DIR": str(target), "CARGO_INCREMENTAL": "0", "CARGO_BUILD_JOBS": "2", "LANG": "C", "LC_ALL": "C", "TZ": "UTC"})
+    cargo, rustc, rustup, cargo_home, rustup_home, channel = tools
+    tool_path = os.pathsep.join((str(cargo.parent), str(rustup.parent), "/usr/bin", "/bin"))
+    env = {"PATH": tool_path, "HOME": str(build_home), "TMPDIR": str(build_tmp), "CARGO_HOME": str(cargo_home), "RUSTUP_HOME": str(rustup_home), "RUSTUP_TOOLCHAIN": channel, "RUSTUP_AUTO_INSTALL": "0", "RUSTC": str(rustc), "RUSTC_WRAPPER": "", "RUSTC_WORKSPACE_WRAPPER": "", "CARGO_BUILD_RUSTC_WRAPPER": "", "CARGO_NET_OFFLINE": "true", "CARGO_TARGET_DIR": str(target), "CARGO_INCREMENTAL": "0", "CARGO_BUILD_JOBS": "2", "LANG": "C", "LC_ALL": "C", "TZ": "UTC"}
     executables: dict[Path, tuple[tuple[str, str, str], set[str]]] = {}
     for package, selector, target_name in sorted(plans):
         argv = [cargo, "test", "--no-run", "--locked", "--offline", "-p", package]
@@ -763,28 +878,20 @@ def validate_table_dispatcher(tree: Path, target: str, entries: list[tuple[str, 
     return True
 
 
-def run_proofs(tree: Path, scratch: Path, target: Path, plans: dict[tuple[str, str, str], set[str]], commands: dict[str, Any], document: dict[str, Any]) -> None:
-    executables = build_referenced_tests(tree, scratch, target, plans)
+def run_proofs(tree: Path, scratch: Path, target: Path, plans: dict[tuple[str, str, str], set[str]], commands: dict[str, Any], document: dict[str, Any], tools: tuple[Path, Path, Path, Path, Path, str]) -> None:
+    executables = build_referenced_tests(tree, scratch, target, plans, tools)
     discovery_home = scratch / "discovery-home"; discovery_tmp = scratch / "discovery-tmp"
     discovery_home.mkdir(); discovery_tmp.mkdir()
     runtime_cwd = tree / "rust-tron"
-    rustc = shutil.which("rustc")
-    fail(rustc is not None, "rustc executable is unavailable")
-    rustc_env = os.environ.copy()
-    rustc_env.update({"RUSTUP_AUTO_INSTALL": "0"})
+    cargo, rustc, rustup, cargo_home, rustup_home, channel = tools
+    tool_path = os.pathsep.join((str(cargo.parent), str(rustup.parent), "/usr/bin", "/bin"))
+    rustc_env = {"PATH": tool_path, "HOME": str(discovery_home), "TMPDIR": str(discovery_tmp), "CARGO_HOME": str(cargo_home), "RUSTUP_HOME": str(rustup_home), "RUSTUP_TOOLCHAIN": channel, "LANG": "C", "LC_ALL": "C", "TZ": "UTC", "RUSTUP_AUTO_INSTALL": "0", "CARGO_NET_OFFLINE": "true"}
     rust_lib = subprocess.run([rustc, "--print", "target-libdir"], cwd=runtime_cwd, env=rustc_env, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=30)
     fail(rust_lib.returncode == 0, f"rustc target library discovery failed (exit {rust_lib.returncode}): {rust_lib.stderr[-2000:]}")
     rust_libdir = Path(rust_lib.stdout.strip())
     fail(rust_libdir.is_dir(), f"rustc target library directory is unavailable: {rust_libdir}")
     library_dirs = [target / "debug" / "deps", target / "debug", rust_libdir]
-    base_env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "HOME": str(discovery_home), "TMPDIR": str(discovery_tmp), "LANG": "C", "LC_ALL": "C", "TZ": "UTC", "RUST_TEST_THREADS": "1", "RUSTUP_AUTO_INSTALL": "0", "CARGO_NET_OFFLINE": "true", "CARGO_TARGET_DIR": str(target), "C029_REPO_ROOT": str(tree), "C029_FIXTURE_ROOT": str(tree / "docs" / "oracles"), "C029_JAVA_REFERENCE_ROOT": str(tree / "java-tron")}
-    for variable in ("LD_LIBRARY_PATH", "DYLD_FALLBACK_LIBRARY_PATH"):
-        inherited = os.environ.get(variable)
-        base_env[variable] = os.pathsep.join([*(str(path) for path in library_dirs), *([inherited] if inherited else [])])
-    for variable, fallback in (("CARGO_HOME", Path.home() / ".cargo"), ("RUSTUP_HOME", Path.home() / ".rustup")):
-        value = Path(os.environ.get(variable, str(fallback))).resolve()
-        if value.is_dir():
-            base_env[variable] = str(value)
+    base_env = {"PATH": tool_path, "HOME": str(discovery_home), "TMPDIR": str(discovery_tmp), "CARGO_HOME": str(cargo_home), "RUSTUP_HOME": str(rustup_home), "RUSTUP_TOOLCHAIN": channel, "LANG": "C", "LC_ALL": "C", "TZ": "UTC", "RUST_TEST_THREADS": "1", "RUSTUP_AUTO_INSTALL": "0", "CARGO_NET_OFFLINE": "true", "CARGO_TARGET_DIR": str(target), "C029_REPO_ROOT": str(tree), "C029_FIXTURE_ROOT": str(tree / "docs" / "oracles"), "C029_JAVA_REFERENCE_ROOT": str(tree / "java-tron"), "LD_LIBRARY_PATH": os.pathsep.join(str(path) for path in library_dirs), "DYLD_FALLBACK_LIBRARY_PATH": os.pathsep.join(str(path) for path in library_dirs)}
     discovered = discover_rust_tests(executables, base_env, runtime_cwd)
     selected: dict[Path, list[str]] = {}
     for executable, (_, family_symbols) in executables.items():
@@ -1034,11 +1141,17 @@ def validate_c016_synthesis(refreshed: dict[str, Any], commands_by_argv: dict[tu
         command = commands_by_argv.get(tuple(argv))
         fail(command is not None, f"{stable_id}: C016 canonical command is absent from proof execution plan")
         expected = candidate.get("expected_result")
-        fail(expected == f"{stable_id}|behavior-ok", f"{stable_id}: C016 exact observable result mismatch")
+        selector = candidate.get("fixture_selector")
+        result_digest = candidate.get("expected_result_sha256", candidate.get("result_digest"))
+        dispatcher = candidate.get("dispatcher_evidence")
+        fail(isinstance(expected, str) and expected.startswith(f"{stable_id}|observable:") and not expected.endswith("|behavior-ok"), f"{stable_id}: C016 authoritative observable result is missing or generic")
+        fail(isinstance(selector, str) and selector.startswith(f"{stable_id}:") and selector.removeprefix(f"{stable_id}:") == expected.removeprefix(f"{stable_id}|observable:"), f"{stable_id}: C016 authoritative fixture selector/result mismatch")
+        fail(isinstance(result_digest, str) and re.fullmatch(r"[0-9a-f]{64}", result_digest) is not None and result_digest == sha256_bytes(expected.encode()), f"{stable_id}: C016 authoritative result digest mismatch")
+        fail(isinstance(dispatcher, dict) and dispatcher.get("observable_result") == expected and dispatcher.get("selector") == selector and dispatcher.get("expected_result_sha256") == result_digest and dispatcher.get("rust_symbol") == target, f"{stable_id}: C016 dispatcher evidence differs from authoritative result/selector/digest/target")
         fail(row["applicability"]["type"] == "covered", f"{stable_id}: C016 executable row is not covered")
         fail(row["observable_result"] == expected, f"{stable_id}: synthesized observable result differs from C016 owner")
         fail(row["proof_command_id"] == command["id"], f"{stable_id}: synthesized proof command differs from C016 owner")
-        fail(row["rust_proofs"] == [{"artifact": "docs/oracles/c016-ownership-reconciliation.v1.json", "selector": stable_id, "target": target}], f"{stable_id}: synthesized C016 proof is not exact")
+        fail(row["rust_proofs"] == [{"artifact": "docs/oracles/c016-ownership-reconciliation.v1.json", "selector": selector, "target": target}], f"{stable_id}: synthesized C016 proof is not exact")
 
 
 def normalize_c025_proofs(rows: list[dict[str, Any]]) -> int:
@@ -1214,22 +1327,23 @@ def main() -> int:
         verify_manifest(document)
         mutation_self_checks(document, ledger)
         require_disk(Path(tempfile.gettempdir()), 512 * 1024**2, "disposable current-tree and isolated runtime state")
-        target = ROOT / "rust-tron" / "target"
         commands = {command["id"]: command for command in document["proof_commands"]}
         plans = referenced_targets(ROOT, document) if commands else {}
+        rust_tools = resolve_rust_tools() if commands else None
         if commands:
-            missing_targets, required_bytes = compilation_budget(target, plans)
-            require_disk(target.parent if not target.exists() else target, required_bytes, f"{missing_targets} missing exact Rust test target(s)")
-        cleanup_aborted_trees()
+            missing_targets, required_bytes = compilation_budget(Path("/nonexistent-c029-private-target"), plans)
+            require_disk(Path(tempfile.gettempdir()), required_bytes, f"{missing_targets} isolated Rust test target(s)")
         temporary = tempfile.TemporaryDirectory(prefix="c029-gate-")
         temporary_root = Path(temporary.name)
         tree = temporary_root / "repo"; tree.mkdir()
         scratch = temporary_root / "scratch"; scratch.mkdir()
+        target = scratch / "cargo-target"; target.mkdir()
         copy_current_tree(tree, baseline)
         materialize_java_reference(tree / "java-tron")
         seed = tree_snapshot(tree)
         if commands:
-            run_proofs(tree, scratch, target, plans, commands, document)
+            assert rust_tools is not None
+            run_proofs(tree, scratch, target, plans, commands, document, rust_tools)
         java_head = subprocess.run(["git", "-C", str(tree / "java-tron"), "rev-parse", "HEAD"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False)
         java_status = subprocess.run(["git", "-C", str(tree / "java-tron"), "status", "--porcelain=v1", "--untracked-files=all"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False)
         fail(java_head.returncode == 0 and java_head.stdout.strip() == PIN, "disposable Java identity changed during proof execution")

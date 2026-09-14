@@ -384,13 +384,12 @@ def documents():
     return prod, test, inventory_hash
 
 PRODUCTION_STRUCTURAL_FIELDS = {
-    "id", "kind", "source", "domain", "owning_item", "acceptance_gate",
-    "symbol", "category",
+    "id", "kind", "source", "symbol", "category",
 }
 TEST_STRUCTURAL_FIELDS = {
-    "id", "kind", "source", "domain", "owning_item", "acceptance_gate",
-    "case", "annotations", "parameter_sources", "expansion", "nested",
-    "inherited", "generated", "ignored", "ignore_reason", "assumption_gated",
+    "id", "kind", "source", "case", "annotations", "parameter_sources",
+    "expansion", "nested", "inherited", "generated", "ignored",
+    "ignore_reason", "assumption_gated",
 }
 DOCUMENT_STRUCTURAL_FIELDS = {
     "schema_version", "java_source_revision", "java_reference_identity",

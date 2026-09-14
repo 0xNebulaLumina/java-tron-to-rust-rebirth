@@ -6967,6 +6967,256 @@
     }
   ],
   "schema_version": 3,
+  "source_inventory": {
+    "row_count": 189,
+    "sources": [
+      {
+        "case_count": 6,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/AccountCapsuleTest.java",
+        "sha256": "98bc51be68fad6933fbcd39a1ef47ef5a95ad9d496e30f4f1c931df4d7a9d3e6"
+      },
+      {
+        "case_count": 11,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+        "sha256": "b72a9bd921453da32e0d858b7934ef8b3b0e49860870bc3fc68d9cd0d2dccf49"
+      },
+      {
+        "case_count": 1,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/ContractStateCapsuleTest.java",
+        "sha256": "26e4fb519ce6d4fbe6a669998c5c32c1ade63eac3552705336ba4fba4dad3f26"
+      },
+      {
+        "case_count": 5,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java",
+        "sha256": "89f054167e031b2d37015fce749f3cfe59d5858f8d5734c1b8f07fb071fd1057"
+      },
+      {
+        "case_count": 4,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/TransactionCapsuleTest.java",
+        "sha256": "a791f31c604fb90d3e3a865536eb1ab13243f0c6e585b920fc089e923d13a549"
+      },
+      {
+        "case_count": 1,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/VotesCapsuleTest.java",
+        "sha256": "43ffdae2285dc97abe2f16aaf7ccf12d61da725f8f57023ecdebf1f1cf53eaf0"
+      },
+      {
+        "case_count": 2,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/AssetUtilTest.java",
+        "sha256": "2ad7f0d3fa0a3509c933b662dd2b5a09f6e0eaffa9657bea5032884c7a6bebb5"
+      },
+      {
+        "case_count": 2,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/DecodeResultTest.java",
+        "sha256": "f7cf1f0aedc9afaacca7644c0b2ead4747479f1459f27ab0e34ec88d8dc6e66b"
+      },
+      {
+        "case_count": 14,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+        "sha256": "9b2c79da3e697a27afdb4cd0f61f4218dad389e6ea608a4fd3fbebcbc9629347"
+      },
+      {
+        "case_count": 5,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/MerkleTreeTest.java",
+        "sha256": "3d0d509fd45ae3c7eb5776c8f1e262870a7728f52ade3e6e54da9429d14a8cf4"
+      },
+      {
+        "case_count": 4,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/RLPListTest.java",
+        "sha256": "4a5b6bb99d364da34f940d28e1d062ad77cceba18f337e97a0dcd192e47b6fcf"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/AbiStoreTest.java",
+        "sha256": "7936a373b328151ddd4b71881cd5a89c1b08f3c672ee3bd90b50e1e6a5ca4689"
+      },
+      {
+        "case_count": 4,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/AccountAssetStoreTest.java",
+        "sha256": "8d18d715a565fa17d62637ab536eb6142577a29c1af08aff0ddf322d64453da3"
+      },
+      {
+        "case_count": 4,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/AccountIdIndexStoreTest.java",
+        "sha256": "d8f0aef230a7c09bef2ebef65b80582a22cd3354bddcfce30d8ea68b2b43367c"
+      },
+      {
+        "case_count": 1,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/AccountIndexStoreTest.java",
+        "sha256": "237b32278cfa79d1394085e7a8e8a904c185b19024c5115d207d05ed989835d3"
+      },
+      {
+        "case_count": 4,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/AccountStoreTest.java",
+        "sha256": "5eb8bab1afa3f8618cf2565627bf64566a6324aa89294c11264edcaea0b00a63"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/AccountTraceStoreTest.java",
+        "sha256": "05e771fb39407ec5540eb89c8d666cc1e27500abc9ac91e3cf5cf34e3deb1b88"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/AssetIssueStoreTest.java",
+        "sha256": "82b9bad2ff4db053df2ea4a50430f83e029496ea9d9fc739636b05ab3b0cd4fe"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/AssetIssueV2StoreTest.java",
+        "sha256": "ee7b88c153b701cd8a269ab5122d58ee7c74f858d00bf71cf265aa2c85494025"
+      },
+      {
+        "case_count": 8,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/BalanceTraceStoreTest.java",
+        "sha256": "4c7f2f63f585e6b8e4ff8998d79eaf9b924abcde3e093aac7bbcac7fbcb955e2"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/BlockFilledSlotsTest.java",
+        "sha256": "e38d065ebf330278f88ef448e37dcb0d595af00934decc3febff23c51ed60844"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/BlockIndexStoreTest.java",
+        "sha256": "020743b71dd09b5e62fd360a8d39338c5cfb53791304b821ae5ab341c7dc56e4"
+      },
+      {
+        "case_count": 4,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/BlockStoreTest.java",
+        "sha256": "3c007af66490622ce447ff9913f4167091be2a9096a468734b5e3e8d0f9d2449"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/CodeStoreTest.java",
+        "sha256": "53dbd57511612ecc83e25fd579a052edb862f93c04ba429005a40b86d1747125"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/ContractStoreTest.java",
+        "sha256": "7ccff356477162812220545a33a9b009fbbc785cdb3f546cbea84fc95ddef667"
+      },
+      {
+        "case_count": 8,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+        "sha256": "39bbec49b9c90688e3760ffa74f5f5f5b98f693edfede42b0d604e61d9645781"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceStoreTest.java",
+        "sha256": "2e2f6cfd244f7d34541e3605d579cf82f5c1b8e6525b7179146c3122b6383dd0"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/DelegationStoreTest.java",
+        "sha256": "2c97535ceb8d6a1be97999aa08a0947be339c8b22148971ff201f86ee3ff56c3"
+      },
+      {
+        "case_count": 4,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/ExchangeStoreTest.java",
+        "sha256": "ffd90e7e0b9411cafb38da41f2fba1af6915ee29dd95707ff1ffd01cef013da6"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/ExchangeV2StoreTest.java",
+        "sha256": "18f371eb83677dcc8c8e33740459e36d9b02bb8697712360d2b39c687c7eb837"
+      },
+      {
+        "case_count": 2,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/IncrementalMerkleTreeStoreTest.java",
+        "sha256": "dbd37ab3e15c5058416eb96b0e7a7adfe0882d35798694c7f0d53d51c959af18"
+      },
+      {
+        "case_count": 2,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/MarketAccountStoreTest.java",
+        "sha256": "cff793e293d3029a85dce6691c3956c71f6cd642ca989d91a134d00b4d8070cf"
+      },
+      {
+        "case_count": 2,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/MarketOrderStoreTest.java",
+        "sha256": "16958316fe2118ef2a2fa910a6e9cdb4d8bd99b760e0b407590358074abd7493"
+      },
+      {
+        "case_count": 12,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+        "sha256": "a2d3e1a2d1f389eea06d17938cdc82394345a3a77a4edde787c9237a01737799"
+      },
+      {
+        "case_count": 6,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/MarketPairToPriceStoreTest.java",
+        "sha256": "dd5ef71280c9fc5fb8f921aad7ba3175f18306c32bfe4f40475c396ec005ea89"
+      },
+      {
+        "case_count": 2,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/NullifierStoreTest.java",
+        "sha256": "7224fd0ad1358b5434dec82e040bf0615ae4436512cdf4cc195033b41204c35a"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/ProposalStoreTest.java",
+        "sha256": "42577c9a0911ce0fa74a5c0a8d9be502706ca71b80a28b687e0dd46d27595ec1"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/RecentBlockStoreTest.java",
+        "sha256": "8128d9261afdba46aab46d8f8a048167a1f79054873f9c8964233fc1d925faa1"
+      },
+      {
+        "case_count": 2,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/RecentTransactionStoreTest.java",
+        "sha256": "8defb67448c010c8e398fb173854ed0d6d53168ac2599bf0d437bb6c9e2eaddf"
+      },
+      {
+        "case_count": 2,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/TransactionHistoryTest.java",
+        "sha256": "c732c17f6d9a3ceee8bbc2b1a9a8984f62f3f3261476740c62347c196df1ebdb"
+      },
+      {
+        "case_count": 2,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/TransactionRetStoreTest.java",
+        "sha256": "662e8da22e76717b832931ca77236649206f7c1e58479999775a39436d89c82a"
+      },
+      {
+        "case_count": 8,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/TransactionStoreTest.java",
+        "sha256": "a5222accdbcb24451ae87037463f79f771e8d0ea9761f5d90310468bad9a203f"
+      },
+      {
+        "case_count": 3,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/TreeBlockIndexStoreTest.java",
+        "sha256": "da091e7bbbad02e96898276ae7e585ddea3291ff4198ae045cc6c3afa2a648a9"
+      },
+      {
+        "case_count": 1,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/VotesStoreTest.java",
+        "sha256": "52e3e040e5499e1f5096cf7e71fcb0095d8483a7a230cbd378f61e2ec6791e89"
+      },
+      {
+        "case_count": 4,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/WitnessScheduleStoreTest.java",
+        "sha256": "db6ad1b5e8459a6229ec55a19144fa757550b5ef8b26564dbe3b09c993abaccd"
+      },
+      {
+        "case_count": 2,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/WitnessStoreTest.java",
+        "sha256": "3d4af6dba1cab4a9c433130784e571c9d1b0ffee8a1e6e0f8fc948f2e0581464"
+      },
+      {
+        "case_count": 2,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/ZKProofStoreTest.java",
+        "sha256": "f6b31fe563440f30aa26c779906af1219394774f1563aff81cee97273cab0391"
+      },
+      {
+        "case_count": 1,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/api/AssetUpdateHelperTest.java",
+        "sha256": "d21756e87ea2fafc26a55a39d704fc661bc7f7aa04e9f04b505ff514e075b386"
+      },
+      {
+        "case_count": 5,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/api/pojo/PojoTest.java",
+        "sha256": "0f7fd8f310eee22d0f1debf9776cb47e16e478aec92b8e9353227e56c9434298"
+      }
+    ]
+  },
   "state_cases": [
     {
       "id": "cross-store-atomic-batch",

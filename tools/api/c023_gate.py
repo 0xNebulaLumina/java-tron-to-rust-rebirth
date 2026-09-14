@@ -88,15 +88,25 @@ def metadata():
     if len(proofs) != 333 or scenario.get("row_proof_count") != 333 or len({p.get("stable_id") for p in proofs}) != 333: raise SystemExit("C023 exact 333 row-proof identity drift")
     proof_by_id = {p["stable_id"]: p for p in proofs}
     rust_source = (RUST / "crates/tron-apis/tests/c023_scenarios.rs").read_text()
+    executable_families = {
+        "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
+        "c023_http_controls::body_connection_and_rate_limits_release_permits",
+        "c023_scenarios::all_215_inventory_rows_execute_through_real_localhost_http",
+        "c023_json::descriptor_codec_matches_visible_byte_rules_and_int64_scope",
+        "c023_custom::validate_address_matches_java_formats_and_messages",
+    }
+    if "async fn execute_row_behavior" not in rust_source or "execute_row_behavior(stable_id, family" not in rust_source or "#[tokio::test" not in rust_source:
+        raise SystemExit("C023 row proofs are not executable behavior tests")
     for row in jrows:
         stable_id = row["stable_id"]; proof = proof_by_id.get(stable_id); symbol = "c023_" + stable_id.lower().replace("-", "_")
         family = row.get("rust_case") or "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states"
         expected = f"{stable_id}|{row['source']['path']}:{row['source']['line']}::{row['symbol']}|terminal={row['terminal_state']}|result={row['result_key']}|family={family}"
         command = f"cargo test -p tron-apis --test c023_scenarios --locked -- {symbol} --exact"
         behavior = f"execute exact Java HTTP case {row['source']['path']}:{row['source']['line']}::{row['symbol']} and bind terminal {row['terminal_state']} to {row['result_key']}"
-        required = {"stable_id":stable_id,"source_identity":{"path":row["source"]["path"],"line":row["source"]["line"],"case":row["symbol"]},"fixture_selector":stable_id,"expected_result":expected,"java_behavior":behavior,"rust_symbol":f"c023_scenarios::{symbol}","rust_test":f"c023_scenarios::{symbol}","rust_family_test":family,"command":command,"terminal_state":row["terminal_state"],"result_key":row["result_key"]}
-        if proof != required or any(row.get(key) != value for key, value in required.items() if key not in {"stable_id", "terminal_state", "result_key"}): raise SystemExit("C023 row-specific proof contract drift: " + stable_id)
-        if not re.search(r"\bc023_row_proof!\(" + re.escape(symbol) + r"\s*,", rust_source): raise SystemExit("C023 missing exact Rust row selector: " + stable_id)
+        required = {"stable_id":stable_id,"source_identity":{"path":row["source"]["path"],"line":row["source"]["line"],"case":row["symbol"]},"fixture_selector":stable_id,"expected_result":expected,"java_behavior":behavior,"rust_symbol":f"c023_scenarios::{symbol}","rust_test":f"c023_scenarios::{symbol}","rust_family_test":family,"command":command,"terminal_state":row["terminal_state"],"result_key":row["result_key"],"proof_kind":"executable_behavior","behavior_selector":stable_id,"behavior_family":family}
+        if family not in executable_families: raise SystemExit("C023 row proof lacks executable family: " + stable_id)
+        if proof != required or any(row.get(key) != value for key, value in required.items() if key not in {"stable_id", "terminal_state", "result_key"}): raise SystemExit("C023 row-specific executable proof contract drift: " + stable_id)
+        if not re.search(r"\bc023_row_proof!\(" + re.escape(symbol) + r"\s*,\s*\"" + re.escape(stable_id) + r"\"", rust_source): raise SystemExit("C023 missing exact executable Rust row selector: " + stable_id)
     if "rust_live" in scenario or "rust_live_http" in scenario: raise SystemExit("C023 boolean live evidence rejected")
     manifest = load(MANIFEST)
     for key, path in (("c023_routes",ROUTES),("c023_scenarios",SCENARIOS),("c023_ownership_reconciliation",RECON)):

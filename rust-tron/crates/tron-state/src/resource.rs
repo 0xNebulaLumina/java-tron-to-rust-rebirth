@@ -103,7 +103,7 @@ impl ResourceWindow {
             let old_window=self.window_slots()?;
             let remaining_window=(old_window-(now-self.latest_slot)).max(0);
             let window=if usage==0 { i128::from(standard_window) } else {
-                ceil_div(i128::from(remaining)*i128::from(remaining_window)+i128::from(amount)*i128::from(standard_window),i128::from(usage))
+                ((i128::from(remaining)*i128::from(remaining_window)+i128::from(amount)*i128::from(standard_window))/i128::from(usage))
                     .min(i128::from(standard_window))
             };
             Ok(Self { usage, latest_slot:now, window:i64_exact(window)?, precise:false, standard_window })

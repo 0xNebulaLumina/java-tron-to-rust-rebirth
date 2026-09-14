@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import hashlib,json,subprocess,sys
+import hashlib,json,re,subprocess,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 OR=ROOT/'docs/oracles'
@@ -17,6 +17,19 @@ EXPECTED_COMMANDS=[
 ]
 ACTIVATION_ORDER=['always','multi_sign','transfer_trc10','constantinople','solidity_059','istanbul','freeze','vote','london','compatible_evm','create2_depth_timeout','higher_cpu_memory','freeze_v2','optimized_chain_id','dynamic_energy','shanghai','energy_adjustment','strict_math','cancun','disable_java_math','blob','selfdestruct_restriction','osaka','harden_resource','shielded_reserved','energy_limit_hardfork']
 RESULT={'success':{'runtime_result':'SUCCESS','number':0},'revert':{'runtime_result':'REVERT','number':1},'faults':['UNKNOWN','TRANSFER_FAILED','OUT_OF_ENERGY','BAD_JUMP_DESTINATION','OUT_OF_TIME','JVM_STACK_OVER_FLOW','STACK_TOO_SMALL','STACK_TOO_LARGE','ILLEGAL_OPERATION','OUT_OF_MEMORY','PRECOMPILED_CONTRACT','CONTRACT_VALIDATE_ERROR']}
+PRODUCTION_ROW_COUNT=1149
+TOTAL_RECONCILIATION_ROW_COUNT=1475
+PRODUCTION_INVENTORY_SHA256='684ef2a62d0780d81b71acb8f52d27f8e2d5f7a5b15e86fe1c1a488a837024c9'
+PRODUCTION_SOURCE_PREFIXES=(
+ 'java-tron/actuator/src/main/java/org/tron/core/vm/',
+ 'java-tron/chainbase/src/main/java/org/tron/common/runtime/',
+ 'java-tron/framework/src/main/java/org/tron/common/runtime/',
+)
+PRODUCTION_SOURCE_EXCLUSIONS={
+ 'java-tron/chainbase/src/main/java/org/tron/common/runtime/CallCreate.java',
+ 'java-tron/chainbase/src/main/java/org/tron/common/runtime/InternalTransaction.java',
+}
+PRODUCTION_ORIGINAL_OWNERSHIP={('C016.06','C016.V'),('C009.06','C009.V')}
 def load(p):return json.loads(p.read_text())
 def dump(p,v):p.write_text(json.dumps(v,indent=2,sort_keys=True)+'\n')
 def normalized_rows():
@@ -53,9 +66,27 @@ def reconciliation_evidence(row):
  expected=f"stable-id={selector};source={path}:{src['line']};case={case};observable={result}"
  rust=f'rust-tron/crates/{package}/tests/{test_file}.rs::{symbol}'
  return {'case_id':selector,'fixture_selector':selector,'expected_result':expected,'observable_result':expected,'rust_symbol':rust,'rust_test':f'{test_file}::{symbol}','command':f'cargo test -p {package} --test {test_file} {symbol} --locked -- --exact','dispatcher_evidence':{'stable_id':selector,'source_case':case,'selector':selector,'rust_symbol':rust,'observable_result':expected}}
+def production_source_rows():
+ data=load(OR/'production-ownership.v1.json')
+ rows=[]
+ for row in data.get('rows',[]):
+  src=row.get('source',{}); path=src.get('path','') if isinstance(src,dict) else ''
+  if not any(path.startswith(prefix) for prefix in PRODUCTION_SOURCE_PREFIXES):continue
+  if path in PRODUCTION_SOURCE_EXCLUSIONS:continue
+  if (row.get('owning_item'),row.get('acceptance_gate')) not in PRODUCTION_ORIGINAL_OWNERSHIP:continue
+  if not re.fullmatch(r'PROD-[0-9A-F]{16}',row.get('id','')):raise ValueError(f"invalid C014 production stable ID: {row.get('id')}")
+  if not isinstance(src.get('line'),int) or not row.get('symbol'):raise ValueError(f"invalid C014 production source identity: {row.get('id')}")
+  rows.append(row)
+ inventory=[{'stable_id':row['id'],'source':row['source'],'symbol':row['symbol'],'owning_item':row['owning_item'],'acceptance_gate':row['acceptance_gate']} for row in rows]
+ digest=hashlib.sha256(json.dumps(inventory,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+ if len(rows)!=PRODUCTION_ROW_COUNT or digest!=PRODUCTION_INVENTORY_SHA256:raise ValueError('pinned C014 production inventory drift')
+ return rows
 def reconciliation():
- committed_path=OR/'c014-ownership-reconciliation.v1.json'
- rows=[r for r in load(committed_path).get('rows',[]) if r.get('ledger')=='production-ownership.v1.json'] if committed_path.exists() else []
+ rows=[]
+ for r in production_source_rows():
+  src=r['source']; path=src['path']
+  owner,item,gate,rationale=classify(path,r.get('symbol'))
+  rows.append({'ledger':'production-ownership.v1.json','stable_id':r['id'],'source':{'path':path,'line':src['line']},'previous_item':r['owning_item'],'owner':owner,'owning_item':item,'acceptance_gate':gate,'rationale':rationale})
  data=load(OR/'java-test-ownership.v1.json')
  source_rows=data.get('rows',data.get('entries',data if isinstance(data,list) else []))
  for r in source_rows:
@@ -67,7 +98,9 @@ def reconciliation():
   identity={'path':path,'line':src.get('line') if isinstance(src,dict) else None}
   rows.append({'ledger':'java-test-ownership.v1.json','stable_id':r.get('id'),'source':identity,'case':r.get('case'),'previous_item':r.get('owning_item'),'owner':owner,'owning_item':item,'acceptance_gate':gate,'rationale':rationale})
  for row in rows: row.update(reconciliation_evidence(row))
- return sorted(rows,key=lambda r:(r['ledger'],r['stable_id'] or ''))
+ rows=sorted(rows,key=lambda r:(r['ledger'],r['stable_id'] or ''))
+ if len(rows)!=TOTAL_RECONCILIATION_ROW_COUNT:raise ValueError('C014 reconciliation total drift')
+ return rows
 def vectors():
  forks=[{'modifier':m,'disabled':m!='always','enabled':True} for m in ACTIVATION_ORDER]
  cases=[
@@ -123,7 +156,7 @@ def verify():
   missing=required-r.keys()
   if missing:errors.append(f"opcode {r['hex']} missing {sorted(missing)}")
  rec=load(OR/'c014-ownership-reconciliation.v1.json'); actual=reconciliation()
- if rec.get('rows')!=actual or rec.get('row_count')!=len(actual):errors.append('C016 VM production/test reconciliation exact source drift')
+ if rec.get('rows')!=actual or rec.get('row_count')!=TOTAL_RECONCILIATION_ROW_COUNT:errors.append('C016 VM production/test reconciliation exact source drift')
  stable_ids=[r.get('stable_id') for r in actual]
  if any(not stable_id for stable_id in stable_ids):errors.append('null or missing ownership reconciliation stable ID')
  if len(stable_ids)!=len(set(stable_ids)):errors.append('duplicate ownership reconciliation stable ID')

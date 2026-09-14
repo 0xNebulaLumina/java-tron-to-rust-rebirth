@@ -23,6 +23,57 @@ EXPECTED_COMMANDS = [
  {"name":"C008 atomic, reopen, crash, market and account-asset integration","cwd":"rust-tron","argv":["cargo","test","-p","tron-state","--test","integration_contract","--locked"],"timeout_seconds":300},
  {"name":"C008 state workspace check","cwd":"rust-tron","argv":["cargo","check","-p","tron-state","--all-targets","--locked"],"timeout_seconds":300},
 ]
+C008_TEST_SOURCES = {
+    "java-tron/framework/src/test/java/org/tron/core/capsule/AccountCapsuleTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/capsule/BlockCapsuleTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/capsule/ContractStateCapsuleTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/capsule/TransactionCapsuleTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/capsule/VotesCapsuleTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/capsule/utils/AssetUtilTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/capsule/utils/DecodeResultTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/capsule/utils/MerkleTreeTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/capsule/utils/RLPListTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/AbiStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/AccountAssetStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/AccountIdIndexStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/AccountIndexStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/AccountStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/AccountTraceStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/AssetIssueStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/AssetIssueV2StoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/BalanceTraceStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/BlockFilledSlotsTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/BlockIndexStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/BlockStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/CodeStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/ContractStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/DelegationStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/ExchangeStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/ExchangeV2StoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/IncrementalMerkleTreeStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/MarketAccountStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/MarketOrderStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/MarketPairPriceToOrderStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/MarketPairToPriceStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/NullifierStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/ProposalStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/RecentBlockStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/RecentTransactionStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/TransactionHistoryTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/TransactionRetStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/TransactionStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/TreeBlockIndexStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/VotesStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/WitnessScheduleStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/WitnessStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/ZKProofStoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/api/AssetUpdateHelperTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/api/pojo/PojoTest.java",
+}
 
 # Rust StoreKind, exact Java DB name, Java source, key codec, value codec.
 FAMILIES = [
@@ -86,10 +137,21 @@ def java_rows() -> list[dict]:
     return rows
 def proof_symbol(path: str, symbol: str) -> str: return f"{path}::{symbol}"
 
-def reconcile_java_tests(fixture: dict) -> list[dict]:
+def c008_ledger_rows() -> list[dict]:
     ownership=json.loads(OWNERSHIP.read_text())
-    final_ids={row["stable_id"] for row in json.loads(COVERAGE.read_text()).get("java_test_reconciliation",[])} if COVERAGE.is_file() else set()
-    ledger=[row for row in ownership["rows"] if row.get("acceptance_gate")=="C008.V" and (not final_ids or row["id"] in final_ids)]
+    identity=ownership.get("java_reference_identity",{})
+    if ownership.get("java_source_revision")!=REVISION or identity.get("java_revision")!=REVISION:
+        raise RuntimeError("C008 Java-test ownership ledger revision drift")
+    rows=[row for row in ownership["rows"] if row.get("acceptance_gate")=="C008.V" and row["source"]["path"] in C008_TEST_SOURCES]
+    paths={row["source"]["path"] for row in rows}
+    if len(rows)!=189 or len({row["id"] for row in rows})!=189 or paths!=C008_TEST_SOURCES:
+        raise RuntimeError(f"C008 immutable Java-test inventory drift: rows={len(rows)} missing_sources={sorted(C008_TEST_SOURCES-paths)} extra_sources={sorted(paths-C008_TEST_SOURCES)}")
+    return rows
+
+def c008_source_inventory(rows: list[dict]) -> dict:
+    return {"row_count":len(rows),"sources":[{"path":path,"sha256":sha(ROOT/path),"case_count":sum(row["source"]["path"]==path for row in rows)} for path in sorted(C008_TEST_SOURCES)]}
+
+def reconcile_java_tests(fixture: dict, ledger: list[dict]) -> list[dict]:
     dispatch=fixture["rust_dispatch"]; fixture_rows={row["id"]:row for row in fixture["rows"]}; store_aliases={"ZKProof":"ZkProof"}
     deferred_c010={"ContractStateCapsuleTest","ExchangeCapsuleTest","ExchangeProcessorTest","AssetUtilTest","BalanceTraceStoreTest","BlockFilledSlotsTest","DelegatedResourceAccountIndexStoreTest"}
     deferred_c029={"DecodeResultTest","MerkleTreeTest","RLPListTest","PojoTest","AssetUpdateHelperTest"}
@@ -147,7 +209,8 @@ def documents() -> dict[Path,dict]:
     if FIXTURES.is_file():
         existing_fixture=json.loads(FIXTURES.read_text())
         if "market_price_logical_order" in existing_fixture: fixture["market_price_logical_order"]=existing_fixture["market_price_logical_order"]
-    coverage={"schema_version":3,"java_revision":REVISION,"java_test_reconciliation":reconcile_java_tests(fixture),"inventory_rows":[{"id":r["id"],"proof":proof_symbol(TEST,"java_codec_artifact_dispatches_every_row"),"case_id":r["id"],"dispatch_variant":dispatch[r["id"]]["enum_variant"]} for r in rows],"state_cases":[
+    java_test_rows=c008_ledger_rows()
+    coverage={"schema_version":3,"java_revision":REVISION,"source_inventory":c008_source_inventory(java_test_rows),"java_test_reconciliation":reconcile_java_tests(fixture,java_test_rows),"inventory_rows":[{"id":r["id"],"proof":proof_symbol(TEST,"java_codec_artifact_dispatches_every_row"),"case_id":r["id"],"dispatch_variant":dispatch[r["id"]]["enum_variant"]} for r in rows],"state_cases":[
       {"id":"cross-store-atomic-batch","proof":f"{INTEGRATION_TEST}::cross_store_batch_is_atomic_and_reopens"},
       {"id":"all-c007-precommit-phases","proof":f"{INTEGRATION_TEST}::c007_precommit_crash_matrix_keeps_cross_store_batch_atomic"},
       {"id":"market-linked-atomicity","proof":f"{INTEGRATION_TEST}::market_linked_updates_are_atomic_across_crashes"},
@@ -176,12 +239,14 @@ def verify(errors:list[str], expected:dict[Path,dict])->None:
     if match_variants!=expected_variants: errors.append(f"Rust match variants must exactly cover artifact dispatch: missing={sorted(expected_variants-match_variants)} extra={sorted(match_variants-expected_variants)}")
     if "c008-state-fixtures.v1.json" not in tests or "rust_dispatch" not in tests or "dispatch_row" not in tests: errors.append("Rust must deserialize the artifact and execute typed per-row dispatch")
     reconciliation=expected[COVERAGE]["java_test_reconciliation"]
-    ledger=json.loads(OWNERSHIP.read_text())
-    eligible_ids={row["id"] for row in ledger["rows"] if row.get("acceptance_gate")=="C008.V"}
+    ledger_rows=c008_ledger_rows()
+    ledger_by_id={row["id"]:row for row in ledger_rows}
     stable_ids=[row["stable_id"] for row in reconciliation]
-    if len(reconciliation)!=189 or len(set(stable_ids))!=189 or not set(stable_ids)<=eligible_ids: errors.append("C008.V reconciliation must preserve exactly 189 stable Java-test ledger rows")
+    if len(reconciliation)!=189 or len(set(stable_ids))!=189 or set(stable_ids)!=set(ledger_by_id): errors.append("C008.V reconciliation must preserve exactly the immutable 189-row Java-test inventory")
+    if expected[COVERAGE].get("source_inventory")!=c008_source_inventory(ledger_rows): errors.append("C008 Java-test source identity inventory drift")
     for row in reconciliation:
-        common_valid=(row.get("case_id")==row["stable_id"] and row.get("fixture_selector")==row["stable_id"] and row.get("final_owner")==row.get("owner") and bool(row.get("expected_result")) and row.get("java_line")==row.get("source_identity",{}).get("line"))
+        source=ledger_by_id.get(row["stable_id"],{}).get("source",{})
+        common_valid=(row.get("case_id")==row["stable_id"] and row.get("fixture_selector")==row["stable_id"] and row.get("final_owner")==row.get("owner") and bool(row.get("expected_result")) and row.get("java_source")==source.get("path") and row.get("java_line")==source.get("line") and row.get("java_case")==ledger_by_id.get(row["stable_id"],{}).get("case") and row.get("source_identity")=={"id":row["stable_id"],"path":source.get("path"),"line":source.get("line"),"case":ledger_by_id.get(row["stable_id"],{}).get("case"),"kind":ledger_by_id.get(row["stable_id"],{}).get("kind")})
         if not common_valid: errors.append("invalid exact C008 reconciliation identity: "+row["stable_id"])
         if row.get("disposition")=="rust":
             symbol=row.get("rust_symbol","").rsplit("::",1)[-1]; case_id=row.get("rust_case_id")

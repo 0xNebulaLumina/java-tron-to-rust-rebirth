@@ -10,11 +10,28 @@
   "c007_storage_reconciliation": "c007-storage-reconciliation.v1.json",
   "c007_storage_source_inventory": "c007-storage-source-inventory.v1.json",
   "c008_dynamic_properties": "c008-dynamic-properties.v1.json",
-  "c008_state_coverage": "c008-state-coverage.v1.json",
+  "c008_gate_source": {
+    "path": "tools/state/c008_gate.py",
+    "sha256": "ce9a3ef941e96b643d4f75ba12e264420cbabd85f2139b9dc823dee54dc96891"
+  },
+  "c008_state_coverage": {
+    "path": "c008-state-coverage.v1.json",
+    "sha256": "aa434faf7a8fb02cdfb3e3e6df5e3d4701337e48a1c415f8376dce156c927c6b"
+  },
   "c008_state_fixtures": "c008-state-fixtures.v1.json",
   "c008_state_inventory": "c008-state-inventory.v1.json",
-  "c009_java_test_reconciliation": "c009-java-test-reconciliation.v1.json",
-  "c009_revoking_fixtures": "c009-revoking-fixtures.v1.json",
+  "c009_gate_source": {
+    "path": "tools/state/c009_gate.py",
+    "sha256": "21a24d71abfc6179b90d1557d536c55c4b071ed123b533d88972546f38f391cb"
+  },
+  "c009_java_test_reconciliation": {
+    "path": "c009-java-test-reconciliation.v1.json",
+    "sha256": "d880002db1997957e85855085a1d24100b383ad7faebe5f165dbebee40e9b96f"
+  },
+  "c009_revoking_fixtures": {
+    "path": "c009-revoking-fixtures.v1.json",
+    "sha256": "bac4341c053ab4ade5aabdb3724986029a62e28fa8763893108720dd2c03befe"
+  },
   "c009_revoking_source_inventory": "c009-revoking-source-inventory.v1.json",
   "c009_state_lifecycle": "c009-state-lifecycle.v1.json",
   "c010_ownership_reconciliation": "c010-ownership-reconciliation.v1.json",
@@ -60,9 +77,13 @@
     "path": "c014-execution-oracle.v1.json",
     "sha256": "88f6a1fc50d90fd547a12e1db0078ac32e53f2a6127abd88e3d594bf00542812"
   },
+  "c014_gate_source": {
+    "path": "tools/tvm/c014_gate.py",
+    "sha256": "117303c2df97457cb4d605282b5d3fc0fccb9c3d6084ad853e4cf23ab4b16e5d"
+  },
   "c014_ownership_reconciliation": {
     "path": "c014-ownership-reconciliation.v1.json",
-    "sha256": "c815e08379248733acfe9e037924bc3ea059865a3f05939e623c7b86624af99d"
+    "sha256": "9d091ac7e9e839f4f679d753446cc5e6674ca13332b6367d80e7060d3e6afa72"
   },
   "c014_tvm_conformance": {
     "path": "c014-tvm-conformance.v1.json",
@@ -92,9 +113,13 @@
     "path": "c016-admission-vectors.v1.json",
     "sha256": "60e54d49b57971cb38762484775fdb49be7ce6afe09aef863321ed982f59b0a4"
   },
+  "c016_gate_source": {
+    "path": "tools/execution/c016_gate.py",
+    "sha256": "eeff6b448b350a0164e6c740b68ee93181f3912526bd5086fa165d9d238559b6"
+  },
   "c016_ownership_reconciliation": {
     "path": "c016-ownership-reconciliation.v1.json",
-    "sha256": "f010b6ea6e5bba5c5b8eb51e879577abb6e246bf5c5e9f967b4de8c54196e0fc"
+    "sha256": "f58beeb08844f3b318486cc115a2124fe27eb36e471ff6da58a981f8894330b7"
   },
   "c016_pipeline_pending": {
     "path": "c016-pipeline-pending.v1.json",
@@ -276,9 +301,13 @@
     "path": "c023-http-foundation.v1.json",
     "sha256": "1aa7ac076c7330d8e2faf7aa5d5db3d5cb4f3655f3bf6c8735d78dacac868527"
   },
+  "c023_gate_source": {
+    "path": "tools/api/c023_gate.py",
+    "sha256": "faed8492d55899d3a1c04bc54beeca8ae68f02f5a35e973623f276dbc6642b7d"
+  },
   "c023_ownership_reconciliation": {
     "path": "c023-ownership-reconciliation.v1.json",
-    "sha256": "accd5edd322d8d507c77cbcc32fd2cd78846bb41bc20eee148153438caa9af5f"
+    "sha256": "da8cc226727fdf482d7d4bc7cf002346c7a263f2fd566fd495f77ecf82c8ffa9"
   },
   "c023_routes": {
     "path": "c023-routes.v1.json",
@@ -286,7 +315,7 @@
   },
   "c023_scenarios": {
     "path": "c023-scenarios.v1.json",
-    "sha256": "2ed6be1120b95f86988f642899689d1304851448cdb2ade73d3155d1b0600400"
+    "sha256": "5acb8dc1ff2f80bded053dc721c1f2197f4cda70e5a338cd5fb8a34b0db7fdd1"
   },
   "c024_methods": {
     "path": "c024-methods.v1.json",
@@ -470,11 +499,11 @@
   },
   "c029_gate_source": {
     "path": "tools/regression/c029_gate.py",
-    "sha256": "d733d8df56b62fc2109a6756ee938a3a8438397315981c733472c633a549a485"
+    "sha256": "ab50888458f20ce603017da8b970a00d03dd5d35e419dc0d6f87e5a0c9607b35"
   },
   "c029_java_surface_reconciliation": {
     "path": "c029-java-surface-reconciliation.v1.json",
-    "sha256": "0b35deb0becd225ba4e55f34a9d361adbe37562ff3ef1d2d8a816de46af6e890"
+    "sha256": "2aa41f2625a93de46144bdce7994568b8d0f9daa23239dfa9fdd5d18579f7bdc"
   },
   "dr004_extension_fixtures": "dr004-extension-fixtures.v1.json",
   "fixture_schema": "schemas/fixture-v1.schema.json",

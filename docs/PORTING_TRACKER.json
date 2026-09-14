@@ -4234,7 +4234,7 @@
       "status": "review",
       "owner": "review-agent",
       "updated": "2026-09-14",
-      "resume": "Independently review the C029 reconciliation artifact and gate implementation, confirm all 3,443 stable rows and 479 proofs preserve the zero-defect result, then record review findings without modifying C030 or C031.",
+      "resume": "Independently re-review all C029-R1-001 through C029-R1-010 fixes and verify complete task accounting against the passing 3,443-row, 479-proof, zero-defect C029 gate artifact (SHA-256 2aa41f2625a93de46144bdce7994568b8d0f9daa23239dfa9fdd5d18579f7bdc); keep round 1 changes requested and findings open until that review is complete.",
       "items": [
         {
           "id": "C029.01",
@@ -4302,9 +4302,70 @@
         "last_failure": null
       },
       "review": {
-        "state": "not_started",
-        "round": 0,
-        "findings": []
+        "state": "changes_requested",
+        "round": 1,
+        "findings": [
+          {
+            "id": "C029-R1-001",
+            "summary": "Cargo checks use a shared target directory instead of a private isolated target.",
+            "status": "open",
+            "resolution": null
+          },
+          {
+            "id": "C029-R1-002",
+            "summary": "Temporary-directory cleanup deletes entries by age without proving C029 ownership.",
+            "status": "open",
+            "resolution": null
+          },
+          {
+            "id": "C029-R1-003",
+            "summary": "Build proofs inherit an ambient environment instead of a controlled build environment.",
+            "status": "open",
+            "resolution": null
+          },
+          {
+            "id": "C029-R1-004",
+            "summary": "C016 rows contain behavior mappings that do not establish the claimed source behavior.",
+            "status": "open",
+            "resolution": null
+          },
+          {
+            "id": "C029-R1-005",
+            "summary": "C023 artifact-only checks are recorded as behavioral tests without executable behavior proof.",
+            "status": "open",
+            "resolution": null
+          },
+          {
+            "id": "C029-R1-006",
+            "summary": "C008 reconciliation authorizes its ownership subset from the same evidence being validated.",
+            "status": "open",
+            "resolution": null
+          },
+          {
+            "id": "C029-R1-007",
+            "summary": "C009 reconciliation can fall back to a self-authorizing inventory.",
+            "status": "open",
+            "resolution": null
+          },
+          {
+            "id": "C029-R1-008",
+            "summary": "C014 production rows are seeded by the reconciliation instead of derived independently from source.",
+            "status": "open",
+            "resolution": null
+          },
+          {
+            "id": "C029-R1-009",
+            "summary": "Special-case treatment values are accepted without validation against their source evidence.",
+            "status": "open",
+            "resolution": null
+          },
+          {
+            "id": "C029-R1-010",
+            "summary": "Historical review findings are not exhaustively classified in the reconciliation.",
+            "status": "open",
+            "resolution": null
+          }
+        ]
       },
       "blocker": null
     },

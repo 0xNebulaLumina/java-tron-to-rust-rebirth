@@ -31001,7 +31001,7 @@
   },
   "gate_source": {
     "path": "tools/regression/c029_gate.py",
-    "sha256": "d733d8df56b62fc2109a6756ee938a3a8438397315981c733472c633a549a485"
+    "sha256": "ab50888458f20ce603017da8b970a00d03dd5d35e419dc0d6f87e5a0c9607b35"
   },
   "accounting": {
     "mapped": 3443,
@@ -31012,10 +31012,10 @@
     "ignored": 23,
     "resources": 11,
     "assumption_gated": 26,
-    "bounded_dynamic": 25,
+    "bounded_dynamic": 14,
     "semantic_rehomes": 3443,
     "compatibility_defects": 0,
-    "review_findings": 0
+    "review_findings": 78
   },
   "proof_commands": [
     {
@@ -50659,7 +50659,632 @@
     }
   ],
   "compatibility_defects": [],
-  "review_findings": [],
+  "review_findings": [
+    {
+      "finding_id": "C001-R1-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C001-R1-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C001 record C001-R1-001 is closed and documents this historical implementation, evidence, security, or governance issue: Constructed protobuf map encoding previously canonicalized generated BTreeMap order, so reverse Rust insertion did not reproduce protobuf-java reverse insertion bytes. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C002.R.01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C002.R.01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C002 record C002.R.01 is closed and documents this historical implementation, evidence, security, or governance issue: Final review required confirmation of ambient-clock isolation, exact Merkle behavior, digest-provider boundaries, BlockId postprocessing, byte/math operations, strict fixture consumption, and the complete locked validation results. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C003.R.01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C003.R.01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C003 record C003.R.01 is closed and documents this historical implementation, evidence, security, or governance issue: Final review required confirmation of complete config and CLI inventory coverage, differential fixture consumption, precedence and validation behavior, lifecycle ordering and failure propagation, and the complete locked validation results. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C004.R.01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C004.R.01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C004 record C004.R.01 is closed and documents this historical implementation, evidence, security, or governance issue: Final review required confirmation of authenticated Java-oracle provenance, exact cross-engine crypto and address vectors, malformed and historical signature behavior, and the complete locked validation results. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C005.R.01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C005.R.01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C005 record C005.R.01 is closed and documents this historical implementation, evidence, security, or governance issue: Final review required confirmation of authenticated Java-oracle provenance, exhaustive Rust keystore dispatch coverage, and the complete locked workspace validation result. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C006.R.01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C006.R.01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C006 record C006.R.01 is closed and documents this historical implementation, evidence, security, or governance issue: Final review required confirmation of the secured package boundary, complete method and Java-case mapping, shielded compatibility suites, and the locked workspace validation result. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C007.R.01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C007.R.01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C007 record C007.R.01 is closed and documents this historical implementation, evidence, security, or governance issue: Final review required confirmation of the authenticated inventory and vectors, complete storage contract matrix, platform qualification, and locked workspace result. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C008.R.01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C008.R.01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C008 record C008.R.01 is closed and documents this historical implementation, evidence, security, or governance issue: Final review required confirmation of the complete C008 reconciliation, logical and integration contracts, and locked workspace result. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C009.R.01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C009.R.01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C009 record C009.R.01 is closed and documents this historical implementation, evidence, security, or governance issue: Final review required confirmation of the complete C009 store matrix, Java-test and production reconciliation, revoking contract, and locked workspace result. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C010.R.01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C010.R.01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C010 record C010.R.01 is closed and documents this historical implementation, evidence, security, or governance issue: Final review required confirmation of the complete C010 fixture and ownership reconciliation, contract tests, module contracts, and locked workspace result. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C011.R.01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C011.R.01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C011 record C011.R.01 is closed and documents this historical implementation, evidence, security, or governance issue: Final review required confirmation of the complete C011 fixture and Java-test reconciliation, contract tests, and locked workspace result. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C012.R.01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C012.R.01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C012 record C012.R.01 is closed and documents this historical implementation, evidence, security, or governance issue: Independent review required confirmation of DR-004 provenance, all 14 Rust executions, validation capability enforcement, built-in isolation, and the absence of a pinned-Java claim. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C013-R3-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C013-R3-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C013 record C013-R3-001 is closed and documents this historical implementation, evidence, security, or governance issue: Broad replay error normalization could accept Rust errors that did not exactly match the captured Java error bytes. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C013-R3-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C013-R3-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C013 record C013-R3-002 is closed and documents this historical implementation, evidence, security, or governance issue: Legacy storage protobuf messages and wallet RPCs needed an explicit executable-contract scope decision because pinned Java has no matching ContractType values or production actuators. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C014-R2-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C014-R2-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C014 record C014-R2-001 is closed and documents this historical implementation, evidence, security, or governance issue: Fork evaluation could shortcut requested versions or derive passNew quorum from decoded active-witness schedule data instead of canonical persisted fork state. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C014-R2-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C014-R2-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C014 record C014-R2-002 is closed and documents this historical implementation, evidence, security, or governance issue: Attacker-controlled copy, CALL, and CREATE-family ranges could reach unchecked memory allocation or energy arithmetic. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C014-R2-003",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C014-R2-003"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C014 record C014-R2-003 is closed and documents this historical implementation, evidence, security, or governance issue: Final correctness and security reviews needed to confirm that the fork, memory, recursive execution, mutation, and rollback fixes left no blocking finding. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C015-R1-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C015-R1-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C015 record C015-R1-001 is closed and documents this historical implementation, evidence, security, or governance issue: Independent technical/legal provenance reviewer must confirm the newly authored Apache-2.0 Freeze clean-room record and continued prohibition on the original UNLICENSED artifact. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C016-R1-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C016-R1-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C016 record C016-R1-001 is closed and documents this historical implementation, evidence, security, or governance issue: Non-VM actuator execution must not inherit VM-only fee-limit, energy-dynamic-property, planning, or settlement requirements. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C023-R1-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C023-R1-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C023 record C023-R1-001 is closed and documents this historical implementation, evidence, security, or governance issue: Shared route registration could collapse duplicate paths across Full, Solidity, and PBFT HTTP servers instead of preserving surface-specific dispatch and cursors. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C023-R1-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C023-R1-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C023 record C023-R1-002 is closed and documents this historical implementation, evidence, security, or governance issue: Connection admission needed absolute first-header and maximum-age bounds in addition to idle I/O and request limits so silent or drip-fed clients could not retain permits indefinitely. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C023-R2-003",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C023-R2-003"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C023 record C023-R2-003 is closed and documents this historical implementation, evidence, security, or governance issue: Final correctness and security reviews required confirmation of surface isolation, bounded admission and deadlines, exact route/scenario accounting, and correctly aligned tracker item notes. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C027-R2-01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C027-R2-01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C027 record C027-R2-01 is closed and documents this historical implementation, evidence, security, or governance issue: Replace transaction crashes could leave ambiguous old/new generations. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C027-R2-02",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C027-R2-02"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C027 record C027-R2-02 is closed and documents this historical implementation, evidence, security, or governance issue: Keystore overwrite lacked durable crash recovery and tamper-safe journal validation. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C027-R2-03",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C027-R2-03"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C027 record C027-R2-03 is closed and documents this historical implementation, evidence, security, or governance issue: Storage lock release and fresh-directory creation had race windows under canonical combined execution. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C027-R2-04",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C027-R2-04"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C027 record C027-R2-04 is closed and documents this historical implementation, evidence, security, or governance issue: Parallel keystore recovery fixtures could collide on pid plus timestamp names. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C027-R3-01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C027-R3-01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C027 record C027-R3-01 is closed and documents this historical implementation, evidence, security, or governance issue: Storage and keystore rollback cleanup may delete recovery journals after an unchecked failed backup restore. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C027-R3-02",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C027-R3-02"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C027 record C027-R3-02 is closed and documents this historical implementation, evidence, security, or governance issue: Move publication releases the source lock before quarantine/removal and resume removes an unlocked, unverified source. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C027-R4-01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C027-R4-01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C027 record C027-R4-01 is closed and documents this historical implementation, evidence, security, or governance issue: Storage recovery journal path handling permits arbitrary deletion and move cleanup has a remaining TOCTOU window. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C027-R4-02",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C027-R4-02"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C027 record C027-R4-02 is closed and documents this historical implementation, evidence, security, or governance issue: Keystore overwrite/recovery has a remaining target replacement TOCTOU window. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C027-R4-03",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C027-R4-03"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C027 record C027-R4-03 is closed and documents this historical implementation, evidence, security, or governance issue: C027 evidence manifest and gate permit self-authentication or registry bypass. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C027-R5-01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C027-R5-01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C027 record C027-R5-01 is closed and documents this historical implementation, evidence, security, or governance issue: DB root reports a zero hash for recognized namespaces with no physical rows instead of omitting them and returning 404 when none are present. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C027-R6-01",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C027-R6-01"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C027 record C027-R6-01 is closed and documents this historical implementation, evidence, security, or governance issue: db root opens and initializes missing or plain-empty paths instead of returning Java-compatible 404 without writes. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C027-R6-02",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C027-R6-02"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C027 record C027-R6-02 is closed and documents this historical implementation, evidence, security, or governance issue: DB root Merkle reduction required explicit cross-language agreement proof that odd leaves are promoted unchanged rather than duplicated. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R1-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R1-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R1-001 is closed and documents this historical implementation, evidence, security, or governance issue: Production node binaries must compose the real Full/Solidity service graph rather than a placeholder runtime. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R1-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R1-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R1-002 is closed and documents this historical implementation, evidence, security, or governance issue: Snapshot recovery must use the authenticated durable journal path and preserve atomic fault recovery. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R1-003",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R1-003"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R1-003 is closed and documents this historical implementation, evidence, security, or governance issue: Release installation must publish the receipt and current slot atomically with crash-safe ordering. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R1-004",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R1-004"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R1-004 is closed and documents this historical implementation, evidence, security, or governance issue: Release signature authorization must enforce the manifest channel scope. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R1-005",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R1-005"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R1-005 is closed and documents this historical implementation, evidence, security, or governance issue: Publish workflow must provision and use an external out-of-band release trust anchor. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R1-006",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R1-006"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R1-006 is closed and documents this historical implementation, evidence, security, or governance issue: Bundle verification and installation must close the verified-member TOCTOU window. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R1-007",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R1-007"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R1-007 is closed and documents this historical implementation, evidence, security, or governance issue: Snapshot checkpoint trust must be independent of snapshot-supplied metadata. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R2-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R2-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R2-001 is closed and documents this historical implementation, evidence, security, or governance issue: Production runtime still constructs a placeholder service graph instead of the complete canonical node graph. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R2-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R2-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R2-002 is closed and documents this historical implementation, evidence, security, or governance issue: Publish workflow retains a path-based TOCTOU window after offline verification and before upload. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R2-003",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R2-003"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R2-003 is closed and documents this historical implementation, evidence, security, or governance issue: Snapshot verification permits a higher snapshot-supplied checkpoint to bypass the independently trusted checkpoint. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R3-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R3-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R3-001 is closed and documents this historical implementation, evidence, security, or governance issue: Production backup role is not authenticated end to end and can enter MASTER unconditionally. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R3-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R3-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R3-002 is closed and documents this historical implementation, evidence, security, or governance issue: Snapshot trust inputs permit symlink/path substitution instead of requiring stable authenticated file identity. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R3-003",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R3-003"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R3-003 is closed and documents this historical implementation, evidence, security, or governance issue: The 44-drill and 62-production-row evidence permits interchangeable proof substitution instead of exact row-specific observable evidence. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R3-004",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R3-004"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R3-004 is closed and documents this historical implementation, evidence, security, or governance issue: Packaging advertises a Solidity JSON-RPC surface that C026 does not support and must not publish. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R4-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R4-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R4-001 is closed and documents this historical implementation, evidence, security, or governance issue: Install receipt validation derives a current path that can disagree with the configured installation root. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R4-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R4-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R4-002 is closed and documents this historical implementation, evidence, security, or governance issue: The 44-drill manifest still permits semantic substitutions where a row-specific condition is not proved by its dispatched behavior. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R4-003",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R4-003"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R4-003 is closed and documents this historical implementation, evidence, security, or governance issue: Clean-install authentication uses a one-of-one signing threshold instead of exercising the release threshold contract. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R4-004",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R4-004"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R4-004 is closed and documents this historical implementation, evidence, security, or governance issue: Release candidate and publish workflows are disconnected and do not bind the published bytes to one immutable release identity. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R4-005",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R4-005"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R4-005 is closed and documents this historical implementation, evidence, security, or governance issue: The shipped container layout lacks required packaged configuration and externally provisioned trust, keyring, receipt, and data path wiring. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R5-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R5-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R5-001 is closed and documents this historical implementation, evidence, security, or governance issue: The installer verifies signed configuration artifacts but never materializes them into the signed config root. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R5-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R5-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R5-002 is closed and documents this historical implementation, evidence, security, or governance issue: The OCI image configuration names an entrypoint path that is absent from the produced root filesystem. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R5-003",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R5-003"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R5-003 is closed and documents this historical implementation, evidence, security, or governance issue: The OCI config records the compressed layer hash as diff_id instead of the uncompressed layer digest. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R5-004",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R5-004"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R5-004 is closed and documents this historical implementation, evidence, security, or governance issue: The 44 drill rows dispatch synthetic run_probe labels rather than executing their exact recovery and authentication behaviors. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R6-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R6-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R6-001 is closed and documents this historical implementation, evidence, security, or governance issue: Compose does not provide TRON_VERIFICATION_TIME or the complete material set required by the OCI entrypoint. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R6-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R6-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R6-002 is closed and documents this historical implementation, evidence, security, or governance issue: The signed OCI build uses unpinned apt BusyBox input and permits PATH fallback instead of exact shipped executable paths. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R6-003",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R6-003"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R6-003 is closed and documents this historical implementation, evidence, security, or governance issue: Release workflows disable submodules, so canonical Java guards and prerequisite gates cannot execute on the checked-out tree. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R7-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R7-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R7-001 is closed and documents this historical implementation, evidence, security, or governance issue: Publication inventory and release tag are not bound to the signed release source_revision, permitting publication identity to diverge from authenticated source identity. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R7-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R7-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R7-002 is closed and documents this historical implementation, evidence, security, or governance issue: The candidate job executes externally downloaded BusyBox before signing secrets are used on the same runner, so untrusted executable input shares the signing-secret boundary. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R8-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R8-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R8-001 is closed and documents this historical implementation, evidence, security, or governance issue: The isolated signing job self-authorizes signer identity and candidate digest from the candidate checkout instead of an independently trusted workflow boundary. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R9-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R9-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R9-001 is closed and documents this historical implementation, evidence, security, or governance issue: Snapshot verification accepts threshold signatures without enforcing the exact TrustRole.scope, allowing a mismatched authorized role to satisfy the snapshot threshold. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R9-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R9-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R9-002 is closed and documents this historical implementation, evidence, security, or governance issue: The commit-pinned external reusable signing workflow is unreachable from the public candidate caller, so the production signing handoff is not operationally usable. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R10-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R10-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R10-001 is closed and documents this historical implementation, evidence, security, or governance issue: Release installation has a crash window after filesystem mutation but before the durable journal phase records the mutation, permitting incomplete or ambiguous recovery. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R10-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R10-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R10-002 is closed and documents this historical implementation, evidence, security, or governance issue: C028 schema validation can be bypassed, and not every C028 schema is authenticated through the central registry and mutation coverage. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R10-003",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R10-003"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R10-003 is closed and documents this historical implementation, evidence, security, or governance issue: The publish workflow interpolates expected_release_id into shell commands without first rejecting shell metacharacters, permitting command injection through workflow input. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R11-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R11-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R11-001 is closed and documents this historical implementation, evidence, security, or governance issue: The signer emits c028-workflow-metadata-v1 while the publish validator requires obsolete c028-workflow-candidate-v1, so the authenticated production handoff cannot validate its own output. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R11-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R11-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R11-002 is closed and documents this historical implementation, evidence, security, or governance issue: Container restart verify-install trusts a mutable unsigned receipt and installed-file state without re-authenticating them against the signed release manifest and externally provisioned trust root. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R12-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R12-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R12-001 is closed and documents this historical implementation, evidence, security, or governance issue: The Solidity Compose profile also starts the unprofiled FullNode and collides on host ports; the canonical container drill masks the production failure by explicitly selecting only the Solidity service. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R13-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R13-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R13-001 is closed and documents this historical implementation, evidence, security, or governance issue: Bootstrap ignores snapshot_policy.max_payload_bytes and enforces only the broader runtime payload cap, allowing an authenticated snapshot to exceed its configured snapshot-specific limit. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R14-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R14-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R14-001 is closed and documents this historical implementation, evidence, security, or governance issue: Compose accepts simultaneous Full and Solidity profiles instead of rejecting the conflicting dual-node host-port configuration. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R14-002",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R14-002"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R14-002 is closed and documents this historical implementation, evidence, security, or governance issue: The release-candidate workflow runs the canonical gate and builds without explicitly provisioning the pinned Rust 1.85.1 toolchain. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R14-003",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R14-003"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R14-003 is closed and documents this historical implementation, evidence, security, or governance issue: The publish workflow reruns the complete C028 gate without provisioning the authenticated pinned BusyBox material required by native release assembly. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R14-004",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R14-004"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R14-004 is closed and documents this historical implementation, evidence, security, or governance issue: Snapshot descriptor loading calls fs::read before checking max_manifest_bytes, allowing unbounded allocation from an oversized descriptor. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R15-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R15-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R15-001 is closed and documents this historical implementation, evidence, security, or governance issue: Candidate and signer workflow release-ID validation lacks the 128-character upper bound enforced by the authenticated schema and publish workflow, permitting inconsistent release identity acceptance across trust boundaries. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    },
+    {
+      "finding_id": "C028-R16-001",
+      "source_refs": [
+        "docs/PORTING_TRACKER.json#C028-R16-001"
+      ],
+      "classification": "non_compatibility",
+      "rationale": "Tracker C028 record C028-R16-001 is closed and documents this historical implementation, evidence, security, or governance issue: The offline release verifier accepts an arbitrary manifest release_id and uses it as a filesystem path component, bypassing the canonical 1..128 release identity contract and permitting unsafe path construction. Its resolution remains in the owning chunk and does not establish an unresolved C029 cross-language defect."
+    }
+  ],
   "rows": [
     {
       "stable_id": "TCASE-278A08C04434DD3C",
@@ -50671,7 +51296,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testConstantCallUsesConfiguredTimeoutVerbatim at java-tron/actuator/src/test/java/org/tron/core/actuator/VMActuatorTest.java:10 executes its row-specific C016 behavioral scenario and returns TCASE-278A08C04434DD3C|behavior-ok."
+        "testConstantCallUsesConfiguredTimeoutVerbatim preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -50680,17 +51305,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-278A08C04434DD3C",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-278A08C04434DD3C"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-278A08C04434DD3C",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-278A08C04434DD3C:testConstantCallUsesConfiguredTimeoutVerbatim"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-278A08C04434DD3C",
+          "selector": "TCASE-278A08C04434DD3C:testConstantCallUsesConfiguredTimeoutVerbatim",
           "target": "rust-tron/crates/tron-execution/tests/c016_pipeline.rs::c016_tcase_278a08c04434dd3c"
         }
       ],
       "proof_command_id": "C029-PROOF-5FDE4C1025D916EC",
-      "observable_result": "TCASE-278A08C04434DD3C|behavior-ok",
+      "observable_result": "TCASE-278A08C04434DD3C|observable:testConstantCallUsesConfiguredTimeoutVerbatim",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "actuators",
@@ -50729,7 +51355,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testConstantCallWithoutConfiguredTimeoutUsesNetworkDeadline at java-tron/actuator/src/test/java/org/tron/core/actuator/VMActuatorTest.java:15 executes its row-specific C016 behavioral scenario and returns TCASE-5EE7BE8B2946C5A4|behavior-ok."
+        "testConstantCallWithoutConfiguredTimeoutUsesNetworkDeadline preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -50738,17 +51364,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-5EE7BE8B2946C5A4",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-5EE7BE8B2946C5A4"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-5EE7BE8B2946C5A4",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-5EE7BE8B2946C5A4:testConstantCallWithoutConfiguredTimeoutUsesNetworkDeadline"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-5EE7BE8B2946C5A4",
+          "selector": "TCASE-5EE7BE8B2946C5A4:testConstantCallWithoutConfiguredTimeoutUsesNetworkDeadline",
           "target": "rust-tron/crates/tron-execution/tests/c016_pipeline.rs::c016_tcase_5ee7be8b2946c5a4"
         }
       ],
       "proof_command_id": "C029-PROOF-D430BD0098B1DADF",
-      "observable_result": "TCASE-5EE7BE8B2946C5A4|behavior-ok",
+      "observable_result": "TCASE-5EE7BE8B2946C5A4|observable:testConstantCallWithoutConfiguredTimeoutUsesNetworkDeadline",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "actuators",
@@ -50787,7 +51414,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testNonConstantCallIgnoresConfiguredTimeout at java-tron/actuator/src/test/java/org/tron/core/actuator/VMActuatorTest.java:20 executes its row-specific C016 behavioral scenario and returns TCASE-E2B2E810B8609151|behavior-ok."
+        "testNonConstantCallIgnoresConfiguredTimeout preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -50796,17 +51423,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-E2B2E810B8609151",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-E2B2E810B8609151"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-E2B2E810B8609151",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-E2B2E810B8609151:testNonConstantCallIgnoresConfiguredTimeout"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-E2B2E810B8609151",
+          "selector": "TCASE-E2B2E810B8609151:testNonConstantCallIgnoresConfiguredTimeout",
           "target": "rust-tron/crates/tron-execution/tests/c016_pipeline.rs::c016_tcase_e2b2e810b8609151"
         }
       ],
       "proof_command_id": "C029-PROOF-C36EDDB48CB070D8",
-      "observable_result": "TCASE-E2B2E810B8609151|behavior-ok",
+      "observable_result": "TCASE-E2B2E810B8609151|observable:testNonConstantCallIgnoresConfiguredTimeout",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "actuators",
@@ -73686,7 +74314,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -73746,7 +74374,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -73806,7 +74434,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -73866,7 +74494,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -73926,7 +74554,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -73986,7 +74614,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74046,7 +74674,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74106,7 +74734,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74166,7 +74794,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74226,7 +74854,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74286,7 +74914,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74346,7 +74974,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74406,7 +75034,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74466,7 +75094,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74526,7 +75154,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74586,7 +75214,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74646,7 +75274,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74706,7 +75334,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74766,7 +75394,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74826,7 +75454,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74886,7 +75514,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -74946,7 +75574,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75006,7 +75634,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75066,7 +75694,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75126,7 +75754,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75186,7 +75814,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75246,7 +75874,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75306,7 +75934,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75366,7 +75994,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75426,7 +76054,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75486,7 +76114,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75546,7 +76174,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75606,7 +76234,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75666,7 +76294,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75726,7 +76354,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75786,7 +76414,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75846,7 +76474,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75906,7 +76534,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -75966,7 +76594,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -76026,7 +76654,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -76458,7 +77086,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -76518,7 +77146,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -76578,7 +77206,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -76638,7 +77266,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -76698,7 +77326,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -76758,7 +77386,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -76818,7 +77446,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -76878,7 +77506,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -76938,7 +77566,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -76998,7 +77626,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77058,7 +77686,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77118,7 +77746,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77178,7 +77806,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77238,7 +77866,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77298,7 +77926,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77358,7 +77986,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77418,7 +78046,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77478,7 +78106,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77538,7 +78166,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77598,7 +78226,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77658,7 +78286,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77718,7 +78346,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77778,7 +78406,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77838,7 +78466,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77898,7 +78526,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -77958,7 +78586,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78018,7 +78646,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78078,7 +78706,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78138,7 +78766,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78198,7 +78826,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78258,7 +78886,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78318,7 +78946,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78378,7 +79006,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78438,7 +79066,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78498,7 +79126,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78558,7 +79186,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78618,7 +79246,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78678,7 +79306,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78738,7 +79366,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78798,7 +79426,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78858,7 +79486,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78918,7 +79546,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -78978,7 +79606,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -79038,7 +79666,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -79098,7 +79726,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -79158,7 +79786,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -79218,7 +79846,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -79278,7 +79906,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -79338,7 +79966,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -79398,7 +80026,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -79458,7 +80086,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -79518,7 +80146,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -79578,7 +80206,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -79638,7 +80266,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -80507,9 +81135,9 @@
         "shielded": "not_applicable",
         "vm": "covered",
         "benchmark": "not_applicable",
-        "resource": "covered",
+        "resource": "resource",
         "assumption_gated": "not_applicable",
-        "bounded_dynamic": "covered"
+        "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
         "fresh_temp": true,
@@ -81062,7 +81690,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81122,7 +81750,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81182,7 +81810,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81242,7 +81870,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81302,7 +81930,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81362,7 +81990,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81422,7 +82050,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81482,7 +82110,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81542,7 +82170,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81602,7 +82230,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81662,7 +82290,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81722,7 +82350,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81782,7 +82410,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81842,7 +82470,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81902,7 +82530,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -81962,7 +82590,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82022,7 +82650,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82082,7 +82710,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82142,7 +82770,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82202,7 +82830,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82262,7 +82890,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82322,7 +82950,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82382,7 +83010,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82442,7 +83070,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82502,7 +83130,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82562,7 +83190,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82622,7 +83250,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82682,7 +83310,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82742,7 +83370,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82802,7 +83430,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82862,7 +83490,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82922,7 +83550,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -82982,7 +83610,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83042,7 +83670,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83102,7 +83730,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83162,7 +83790,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83222,7 +83850,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83282,7 +83910,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83342,7 +83970,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83402,7 +84030,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83462,7 +84090,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83522,7 +84150,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83582,7 +84210,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83642,7 +84270,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83702,7 +84330,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83762,7 +84390,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83822,7 +84450,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83880,9 +84508,9 @@
         "rationale": "Exact authoritative ownership retained; executable coverage is not inferred."
       },
       "treatment": {
-        "ignored": "not_applicable",
+        "ignored": "covered",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -83942,7 +84570,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -84002,7 +84630,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -84062,7 +84690,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -84122,7 +84750,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -84182,7 +84810,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -84242,7 +84870,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -84302,7 +84930,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -84362,7 +84990,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -84422,7 +85050,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -84482,7 +85110,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -84542,7 +85170,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -84602,7 +85230,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -85222,7 +85850,7 @@
         "ignored": "not_applicable",
         "shielded": "not_applicable",
         "vm": "covered",
-        "benchmark": "not_applicable",
+        "benchmark": "covered",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
         "bounded_dynamic": "not_applicable"
@@ -85284,7 +85912,7 @@
         "ignored": "not_applicable",
         "shielded": "not_applicable",
         "vm": "covered",
-        "benchmark": "not_applicable",
+        "benchmark": "covered",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
         "bounded_dynamic": "not_applicable"
@@ -85346,7 +85974,7 @@
         "ignored": "not_applicable",
         "shielded": "not_applicable",
         "vm": "covered",
-        "benchmark": "not_applicable",
+        "benchmark": "covered",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
         "bounded_dynamic": "not_applicable"
@@ -85408,7 +86036,7 @@
         "ignored": "not_applicable",
         "shielded": "not_applicable",
         "vm": "covered",
-        "benchmark": "not_applicable",
+        "benchmark": "covered",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
         "bounded_dynamic": "not_applicable"
@@ -89248,9 +89876,9 @@
         "rationale": "Exact authoritative ownership retained; executable coverage is not inferred."
       },
       "treatment": {
-        "ignored": "not_applicable",
+        "ignored": "covered",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -89310,7 +89938,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -89370,7 +89998,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -89430,7 +90058,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -89490,7 +90118,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -89550,7 +90178,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -89608,9 +90236,9 @@
         "rationale": "Exact authoritative ownership retained; executable coverage is not inferred."
       },
       "treatment": {
-        "ignored": "not_applicable",
+        "ignored": "covered",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -89670,7 +90298,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -89728,10 +90356,10 @@
         "rationale": "Exact authoritative ownership retained; executable coverage is not inferred."
       },
       "treatment": {
-        "ignored": "not_applicable",
+        "ignored": "covered",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
-        "benchmark": "not_applicable",
+        "vm": "covered",
+        "benchmark": "covered",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
         "bounded_dynamic": "not_applicable"
@@ -89790,7 +90418,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -89850,7 +90478,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -89910,7 +90538,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -89970,7 +90598,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90030,7 +90658,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90090,7 +90718,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90150,7 +90778,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90210,7 +90838,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90270,7 +90898,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90330,7 +90958,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90390,7 +91018,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90450,7 +91078,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90510,7 +91138,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90570,7 +91198,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90630,7 +91258,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90690,7 +91318,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90750,7 +91378,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90810,7 +91438,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90868,9 +91496,9 @@
         "rationale": "Exact authoritative ownership retained; executable coverage is not inferred."
       },
       "treatment": {
-        "ignored": "not_applicable",
+        "ignored": "covered",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90930,7 +91558,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -90990,7 +91618,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -91050,7 +91678,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -91110,7 +91738,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -91170,7 +91798,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -91230,7 +91858,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -91290,7 +91918,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -91350,7 +91978,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -91410,7 +92038,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -91470,7 +92098,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -91530,7 +92158,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -91590,7 +92218,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -91650,7 +92278,7 @@
       "treatment": {
         "ignored": "not_applicable",
         "shielded": "not_applicable",
-        "vm": "not_applicable",
+        "vm": "covered",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
         "assumption_gated": "not_applicable",
@@ -101600,7 +102228,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testCreateNewAccount at java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java:209 executes its row-specific C016 behavioral scenario and returns TCASE-6C8EB179A234D836|behavior-ok."
+        "testCreateNewAccount preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -101609,17 +102237,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-6C8EB179A234D836",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-6C8EB179A234D836"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-6C8EB179A234D836",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-6C8EB179A234D836:testCreateNewAccount"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-6C8EB179A234D836",
+          "selector": "TCASE-6C8EB179A234D836:testCreateNewAccount",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_6c8eb179a234d836"
         }
       ],
       "proof_command_id": "C029-PROOF-8F65AE57CD95BD91",
-      "observable_result": "TCASE-6C8EB179A234D836|behavior-ok",
+      "observable_result": "TCASE-6C8EB179A234D836|observable:testCreateNewAccount",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -101658,7 +102287,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testFree at java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java:251 executes its row-specific C016 behavioral scenario and returns TCASE-BDC9A59D968429CB|behavior-ok."
+        "testFree preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -101667,17 +102296,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-BDC9A59D968429CB",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-BDC9A59D968429CB"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-BDC9A59D968429CB",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-BDC9A59D968429CB:testFree"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-BDC9A59D968429CB",
+          "selector": "TCASE-BDC9A59D968429CB:testFree",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_bdc9a59d968429cb"
         }
       ],
       "proof_command_id": "C029-PROOF-A8AE94185491553D",
-      "observable_result": "TCASE-BDC9A59D968429CB|behavior-ok",
+      "observable_result": "TCASE-BDC9A59D968429CB|observable:testFree",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -101716,7 +102346,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testConsumeAssetAccount at java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java:307 executes its row-specific C016 behavioral scenario and returns TCASE-2DE8E53DB9931DF6|behavior-ok."
+        "testConsumeAssetAccount preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -101725,17 +102355,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-2DE8E53DB9931DF6",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-2DE8E53DB9931DF6"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-2DE8E53DB9931DF6",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-2DE8E53DB9931DF6:testConsumeAssetAccount"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-2DE8E53DB9931DF6",
+          "selector": "TCASE-2DE8E53DB9931DF6:testConsumeAssetAccount",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_2de8e53db9931df6"
         }
       ],
       "proof_command_id": "C029-PROOF-C4D370F893911B96",
-      "observable_result": "TCASE-2DE8E53DB9931DF6|behavior-ok",
+      "observable_result": "TCASE-2DE8E53DB9931DF6|observable:testConsumeAssetAccount",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -101774,7 +102405,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testConsumeAssetAccountV2 at java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java:381 executes its row-specific C016 behavioral scenario and returns TCASE-BF8DFFB681B6F890|behavior-ok."
+        "testConsumeAssetAccountV2 preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -101783,17 +102414,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-BF8DFFB681B6F890",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-BF8DFFB681B6F890"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-BF8DFFB681B6F890",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-BF8DFFB681B6F890:testConsumeAssetAccountV2"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-BF8DFFB681B6F890",
+          "selector": "TCASE-BF8DFFB681B6F890:testConsumeAssetAccountV2",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_bf8dffb681b6f890"
         }
       ],
       "proof_command_id": "C029-PROOF-DA017EA356336B13",
-      "observable_result": "TCASE-BF8DFFB681B6F890|behavior-ok",
+      "observable_result": "TCASE-BF8DFFB681B6F890|observable:testConsumeAssetAccountV2",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -101832,7 +102464,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testConsumeOwner at java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java:451 executes its row-specific C016 behavioral scenario and returns TCASE-BDA48820FE7D09DE|behavior-ok."
+        "testConsumeOwner preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -101841,17 +102473,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-BDA48820FE7D09DE",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-BDA48820FE7D09DE"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-BDA48820FE7D09DE",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-BDA48820FE7D09DE:testConsumeOwner"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-BDA48820FE7D09DE",
+          "selector": "TCASE-BDA48820FE7D09DE:testConsumeOwner",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_bda48820fe7d09de"
         }
       ],
       "proof_command_id": "C029-PROOF-BC3366A03E14E847",
-      "observable_result": "TCASE-BDA48820FE7D09DE|behavior-ok",
+      "observable_result": "TCASE-BDA48820FE7D09DE|observable:testConsumeOwner",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -101890,7 +102523,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testUsingFee at java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java:504 executes its row-specific C016 behavioral scenario and returns TCASE-495B54882A138C09|behavior-ok."
+        "testUsingFee preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -101899,17 +102532,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-495B54882A138C09",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-495B54882A138C09"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-495B54882A138C09",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-495B54882A138C09:testUsingFee"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-495B54882A138C09",
+          "selector": "TCASE-495B54882A138C09:testUsingFee",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_495b54882a138c09"
         }
       ],
       "proof_command_id": "C029-PROOF-7FC2922C0CF1CDF2",
-      "observable_result": "TCASE-495B54882A138C09|behavior-ok",
+      "observable_result": "TCASE-495B54882A138C09|observable:testUsingFee",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -101948,7 +102582,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testConsumeBandwidthTooBigTransactionResultException at java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java:553 executes its row-specific C016 behavioral scenario and returns TCASE-A8EF33F0E4D922A0|behavior-ok."
+        "testConsumeBandwidthTooBigTransactionResultException preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -101957,17 +102591,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-A8EF33F0E4D922A0",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-A8EF33F0E4D922A0"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-A8EF33F0E4D922A0",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-A8EF33F0E4D922A0:testConsumeBandwidthTooBigTransactionResultException"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-A8EF33F0E4D922A0",
+          "selector": "TCASE-A8EF33F0E4D922A0:testConsumeBandwidthTooBigTransactionResultException",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_a8ef33f0e4d922a0"
         }
       ],
       "proof_command_id": "C029-PROOF-F32112915F0E3559",
-      "observable_result": "TCASE-A8EF33F0E4D922A0|behavior-ok",
+      "observable_result": "TCASE-A8EF33F0E4D922A0|observable:testConsumeBandwidthTooBigTransactionResultException",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -102006,7 +102641,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "sameTokenNameCloseConsumeSuccess at java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java:583 executes its row-specific C016 behavioral scenario and returns TCASE-2F92219FA24D2E46|behavior-ok."
+        "sameTokenNameCloseConsumeSuccess preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -102015,17 +102650,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-2F92219FA24D2E46",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-2F92219FA24D2E46"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-2F92219FA24D2E46",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-2F92219FA24D2E46:sameTokenNameCloseConsumeSuccess"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-2F92219FA24D2E46",
+          "selector": "TCASE-2F92219FA24D2E46:sameTokenNameCloseConsumeSuccess",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_2f92219fa24d2e46"
         }
       ],
       "proof_command_id": "C029-PROOF-7482AD155E512F9A",
-      "observable_result": "TCASE-2F92219FA24D2E46|behavior-ok",
+      "observable_result": "TCASE-2F92219FA24D2E46|observable:sameTokenNameCloseConsumeSuccess",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -102064,7 +102700,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "sameTokenNameOpenConsumeSuccess at java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java:700 executes its row-specific C016 behavioral scenario and returns TCASE-4804C751442550AC|behavior-ok."
+        "sameTokenNameOpenConsumeSuccess preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -102073,17 +102709,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-4804C751442550AC",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-4804C751442550AC"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-4804C751442550AC",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-4804C751442550AC:sameTokenNameOpenConsumeSuccess"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-4804C751442550AC",
+          "selector": "TCASE-4804C751442550AC:sameTokenNameOpenConsumeSuccess",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_4804c751442550ac"
         }
       ],
       "proof_command_id": "C029-PROOF-9D25EBCCF2DB51A3",
-      "observable_result": "TCASE-4804C751442550AC|behavior-ok",
+      "observable_result": "TCASE-4804C751442550AC|observable:sameTokenNameOpenConsumeSuccess",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -102122,7 +102759,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "sameTokenNameCloseTransferToAccountNotExist at java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java:808 executes its row-specific C016 behavioral scenario and returns TCASE-5B75FB5E99505106|behavior-ok."
+        "sameTokenNameCloseTransferToAccountNotExist preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -102131,17 +102768,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-5B75FB5E99505106",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-5B75FB5E99505106"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-5B75FB5E99505106",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-5B75FB5E99505106:sameTokenNameCloseTransferToAccountNotExist"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-5B75FB5E99505106",
+          "selector": "TCASE-5B75FB5E99505106:sameTokenNameCloseTransferToAccountNotExist",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_5b75fb5e99505106"
         }
       ],
       "proof_command_id": "C029-PROOF-A4D8E33E71C49C70",
-      "observable_result": "TCASE-5B75FB5E99505106|behavior-ok",
+      "observable_result": "TCASE-5B75FB5E99505106|observable:sameTokenNameCloseTransferToAccountNotExist",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -102180,7 +102818,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testCalculateGlobalNetLimit at java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java:873 executes its row-specific C016 behavioral scenario and returns TCASE-F3CAC4AB70F91556|behavior-ok."
+        "testCalculateGlobalNetLimit preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -102189,17 +102827,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-F3CAC4AB70F91556",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-F3CAC4AB70F91556"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-F3CAC4AB70F91556",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-F3CAC4AB70F91556:testCalculateGlobalNetLimit"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-F3CAC4AB70F91556",
+          "selector": "TCASE-F3CAC4AB70F91556:testCalculateGlobalNetLimit",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_f3cac4ab70f91556"
         }
       ],
       "proof_command_id": "C029-PROOF-885012A838834C90",
-      "observable_result": "TCASE-F3CAC4AB70F91556|behavior-ok",
+      "observable_result": "TCASE-F3CAC4AB70F91556|observable:testCalculateGlobalNetLimit",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -109558,7 +110197,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testUseContractCreatorEnergy at java-tron/framework/src/test/java/org/tron/core/EnergyProcessorTest.java:74 executes its row-specific C016 behavioral scenario and returns TCASE-E3AC0196F07F9E88|behavior-ok."
+        "testUseContractCreatorEnergy preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -109567,17 +110206,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-E3AC0196F07F9E88",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-E3AC0196F07F9E88"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-E3AC0196F07F9E88",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-E3AC0196F07F9E88:testUseContractCreatorEnergy"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-E3AC0196F07F9E88",
+          "selector": "TCASE-E3AC0196F07F9E88:testUseContractCreatorEnergy",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_e3ac0196f07f9e88"
         }
       ],
       "proof_command_id": "C029-PROOF-663E5F94A7755F23",
-      "observable_result": "TCASE-E3AC0196F07F9E88|behavior-ok",
+      "observable_result": "TCASE-E3AC0196F07F9E88|observable:testUseContractCreatorEnergy",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -109616,7 +110256,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testUseEnergyInWindowSizeV2 at java-tron/framework/src/test/java/org/tron/core/EnergyProcessorTest.java:104 executes its row-specific C016 behavioral scenario and returns TCASE-E7B3D063DD7F6FFA|behavior-ok."
+        "testUseEnergyInWindowSizeV2 preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -109625,17 +110265,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-E7B3D063DD7F6FFA",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-E7B3D063DD7F6FFA"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-E7B3D063DD7F6FFA",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-E7B3D063DD7F6FFA:testUseEnergyInWindowSizeV2"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-E7B3D063DD7F6FFA",
+          "selector": "TCASE-E7B3D063DD7F6FFA:testUseEnergyInWindowSizeV2",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_e7b3d063dd7f6ffa"
         }
       ],
       "proof_command_id": "C029-PROOF-B917F3DA6FD50D35",
-      "observable_result": "TCASE-E7B3D063DD7F6FFA|behavior-ok",
+      "observable_result": "TCASE-E7B3D063DD7F6FFA|observable:testUseEnergyInWindowSizeV2",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -109674,7 +110315,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "updateAdaptiveTotalEnergyLimit at java-tron/framework/src/test/java/org/tron/core/EnergyProcessorTest.java:161 executes its row-specific C016 behavioral scenario and returns TCASE-2502F84F727C84A6|behavior-ok."
+        "updateAdaptiveTotalEnergyLimit preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -109683,17 +110324,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-2502F84F727C84A6",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-2502F84F727C84A6"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-2502F84F727C84A6",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-2502F84F727C84A6:updateAdaptiveTotalEnergyLimit"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-2502F84F727C84A6",
+          "selector": "TCASE-2502F84F727C84A6:updateAdaptiveTotalEnergyLimit",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_2502f84f727c84a6"
         }
       ],
       "proof_command_id": "C029-PROOF-5C566AF966DB360D",
-      "observable_result": "TCASE-2502F84F727C84A6|behavior-ok",
+      "observable_result": "TCASE-2502F84F727C84A6|observable:updateAdaptiveTotalEnergyLimit",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -112054,7 +112696,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testTxOutputCapsule at java-tron/framework/src/test/java/org/tron/core/TxInputCapsuleTest.java:28 executes its row-specific C016 behavioral scenario and returns TCASE-F8BCF349EEED6C70|behavior-ok."
+        "testTxOutputCapsule preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -112063,17 +112705,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-F8BCF349EEED6C70",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-F8BCF349EEED6C70"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-F8BCF349EEED6C70",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-F8BCF349EEED6C70:testTxOutputCapsule"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-F8BCF349EEED6C70",
+          "selector": "TCASE-F8BCF349EEED6C70:testTxOutputCapsule",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_f8bcf349eeed6c70"
         }
       ],
       "proof_command_id": "C029-PROOF-4CA50A8485B9AC52",
-      "observable_result": "TCASE-F8BCF349EEED6C70|behavior-ok",
+      "observable_result": "TCASE-F8BCF349EEED6C70|observable:testTxOutputCapsule",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -112112,7 +112755,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testNewput at java-tron/framework/src/test/java/org/tron/core/TxInputUtilTest.java:29 executes its row-specific C016 behavioral scenario and returns TCASE-93435F1B9F1B2134|behavior-ok."
+        "testNewput preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -112121,17 +112764,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-93435F1B9F1B2134",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-93435F1B9F1B2134"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-93435F1B9F1B2134",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-93435F1B9F1B2134:testNewput"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-93435F1B9F1B2134",
+          "selector": "TCASE-93435F1B9F1B2134:testNewput",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_93435f1b9f1b2134"
         }
       ],
       "proof_command_id": "C029-PROOF-80EE521A75DD98CA",
-      "observable_result": "TCASE-93435F1B9F1B2134|behavior-ok",
+      "observable_result": "TCASE-93435F1B9F1B2134|observable:testNewput",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -112170,7 +112814,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testNewTxInput at java-tron/framework/src/test/java/org/tron/core/TxInputUtilTest.java:37 executes its row-specific C016 behavioral scenario and returns TCASE-83352044E600158C|behavior-ok."
+        "testNewTxInput preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -112179,17 +112823,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-83352044E600158C",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-83352044E600158C"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-83352044E600158C",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-83352044E600158C:testNewTxInput"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-83352044E600158C",
+          "selector": "TCASE-83352044E600158C:testNewTxInput",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_83352044e600158c"
         }
       ],
       "proof_command_id": "C029-PROOF-F0653CA1AF6A3760",
-      "observable_result": "TCASE-83352044E600158C|behavior-ok",
+      "observable_result": "TCASE-83352044E600158C|observable:testNewTxInput",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -112228,7 +112873,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testTxOutputCapsule at java-tron/framework/src/test/java/org/tron/core/TxOutputCapsuleTest.java:28 executes its row-specific C016 behavioral scenario and returns TCASE-A0EBFED0698F85CC|behavior-ok."
+        "testTxOutputCapsule preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -112237,17 +112882,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-A0EBFED0698F85CC",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-A0EBFED0698F85CC"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-A0EBFED0698F85CC",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-A0EBFED0698F85CC:testTxOutputCapsule"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-A0EBFED0698F85CC",
+          "selector": "TCASE-A0EBFED0698F85CC:testTxOutputCapsule",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_a0ebfed0698f85cc"
         }
       ],
       "proof_command_id": "C029-PROOF-BF94F300D79F5B6D",
-      "observable_result": "TCASE-A0EBFED0698F85CC|behavior-ok",
+      "observable_result": "TCASE-A0EBFED0698F85CC|observable:testTxOutputCapsule",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -112286,7 +112932,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testNewTxOutput at java-tron/framework/src/test/java/org/tron/core/TxOutputUtilTest.java:29 executes its row-specific C016 behavioral scenario and returns TCASE-5E6939EA7DA852A4|behavior-ok."
+        "testNewTxOutput preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -112295,17 +112941,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-5E6939EA7DA852A4",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-5E6939EA7DA852A4"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-5E6939EA7DA852A4",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-5E6939EA7DA852A4:testNewTxOutput"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-5E6939EA7DA852A4",
+          "selector": "TCASE-5E6939EA7DA852A4:testNewTxOutput",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_5e6939ea7da852a4"
         }
       ],
       "proof_command_id": "C029-PROOF-63CCE81F52EC1B8C",
-      "observable_result": "TCASE-5E6939EA7DA852A4|behavior-ok",
+      "observable_result": "TCASE-5E6939EA7DA852A4|observable:testNewTxOutput",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -120881,7 +121528,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "variableCheck at java-tron/framework/src/test/java/org/tron/core/actuator/ActuatorConstantTest.java:24 executes its row-specific C016 behavioral scenario and returns TCASE-98FA38D6F908E7F8|behavior-ok."
+        "variableCheck preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -120890,17 +121537,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-98FA38D6F908E7F8",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-98FA38D6F908E7F8"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-98FA38D6F908E7F8",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-98FA38D6F908E7F8:variableCheck"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-98FA38D6F908E7F8",
+          "selector": "TCASE-98FA38D6F908E7F8:variableCheck",
           "target": "rust-tron/crates/tron-execution/tests/c016_pipeline.rs::c016_tcase_98fa38d6f908e7f8"
         }
       ],
       "proof_command_id": "C029-PROOF-106A38EA88B1B439",
-      "observable_result": "TCASE-98FA38D6F908E7F8|behavior-ok",
+      "observable_result": "TCASE-98FA38D6F908E7F8|observable:variableCheck",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -120939,7 +121587,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testCreateActuator at java-tron/framework/src/test/java/org/tron/core/actuator/ActuatorFactoryTest.java:62 executes its row-specific C016 behavioral scenario and returns TCASE-DA2F8C8CFD8D2262|behavior-ok."
+        "testCreateActuator preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -120948,17 +121596,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-DA2F8C8CFD8D2262",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-DA2F8C8CFD8D2262"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-DA2F8C8CFD8D2262",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-DA2F8C8CFD8D2262:testCreateActuator"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-DA2F8C8CFD8D2262",
+          "selector": "TCASE-DA2F8C8CFD8D2262:testCreateActuator",
           "target": "rust-tron/crates/tron-execution/tests/c016_pipeline.rs::c016_tcase_da2f8c8cfd8d2262"
         }
       ],
       "proof_command_id": "C029-PROOF-74ADCB97139938F5",
-      "observable_result": "TCASE-DA2F8C8CFD8D2262|behavior-ok",
+      "observable_result": "TCASE-DA2F8C8CFD8D2262|observable:testCreateActuator",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -140328,7 +140977,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -140389,7 +141038,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -140450,7 +141099,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -140511,7 +141160,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -140572,7 +141221,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -140633,7 +141282,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -140694,7 +141343,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -140755,7 +141404,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -140816,7 +141465,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -140877,7 +141526,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -140938,7 +141587,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -140999,7 +141648,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141060,7 +141709,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141121,7 +141770,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141182,7 +141831,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141243,7 +141892,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141304,7 +141953,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141365,7 +142014,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141426,7 +142075,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141487,7 +142136,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141548,7 +142197,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141609,7 +142258,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141670,7 +142319,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141731,7 +142380,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141792,7 +142441,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141853,7 +142502,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -141914,7 +142563,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -153268,7 +153917,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "validProposalTypeCheck at java-tron/framework/src/test/java/org/tron/core/actuator/utils/ProposalUtilTest.java:56 executes its row-specific C016 behavioral scenario and returns TCASE-8ED5E9F04524D95C|behavior-ok."
+        "validProposalTypeCheck preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153277,17 +153926,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-8ED5E9F04524D95C",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-8ED5E9F04524D95C"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-8ED5E9F04524D95C",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-8ED5E9F04524D95C:validProposalTypeCheck"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-8ED5E9F04524D95C",
+          "selector": "TCASE-8ED5E9F04524D95C:validProposalTypeCheck",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_8ed5e9f04524d95c"
         }
       ],
       "proof_command_id": "C029-PROOF-F9B6AEEB9B81D91A",
-      "observable_result": "TCASE-8ED5E9F04524D95C|behavior-ok",
+      "observable_result": "TCASE-8ED5E9F04524D95C|observable:validProposalTypeCheck",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -153326,7 +153976,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "validateCheck at java-tron/framework/src/test/java/org/tron/core/actuator/utils/ProposalUtilTest.java:76 executes its row-specific C016 behavioral scenario and returns TCASE-91C2AE602E0BF52D|behavior-ok."
+        "validateCheck preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153335,17 +153985,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-91C2AE602E0BF52D",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-91C2AE602E0BF52D"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-91C2AE602E0BF52D",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-91C2AE602E0BF52D:validateCheck"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-91C2AE602E0BF52D",
+          "selector": "TCASE-91C2AE602E0BF52D:validateCheck",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_91c2ae602e0bf52d"
         }
       ],
       "proof_command_id": "C029-PROOF-C5B6355E086B05F0",
-      "observable_result": "TCASE-91C2AE602E0BF52D|behavior-ok",
+      "observable_result": "TCASE-91C2AE602E0BF52D|observable:validateCheck",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -153384,7 +154035,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "blockVersionCheck at java-tron/framework/src/test/java/org/tron/core/actuator/utils/ProposalUtilTest.java:793 executes its row-specific C016 behavioral scenario and returns TCASE-35A21A2DCDC70150|behavior-ok."
+        "blockVersionCheck preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153393,17 +154044,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-35A21A2DCDC70150",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-35A21A2DCDC70150"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-35A21A2DCDC70150",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-35A21A2DCDC70150:blockVersionCheck"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-35A21A2DCDC70150",
+          "selector": "TCASE-35A21A2DCDC70150:blockVersionCheck",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_35a21a2dcdc70150"
         }
       ],
       "proof_command_id": "C029-PROOF-81C2ED115B79C63B",
-      "observable_result": "TCASE-35A21A2DCDC70150|behavior-ok",
+      "observable_result": "TCASE-35A21A2DCDC70150|observable:blockVersionCheck",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -153442,7 +154094,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "validAccountNameCheck at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:156 executes its row-specific C016 behavioral scenario and returns TCASE-2AD25CA6B699B4B3|behavior-ok."
+        "validAccountNameCheck preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153451,17 +154103,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-2AD25CA6B699B4B3",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-2AD25CA6B699B4B3"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-2AD25CA6B699B4B3",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-2AD25CA6B699B4B3:validAccountNameCheck"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-2AD25CA6B699B4B3",
+          "selector": "TCASE-2AD25CA6B699B4B3:validAccountNameCheck",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_2ad25ca6b699b4b3"
         }
       ],
       "proof_command_id": "C029-PROOF-ACE380C5D2BB0B0C",
-      "observable_result": "TCASE-2AD25CA6B699B4B3|behavior-ok",
+      "observable_result": "TCASE-2AD25CA6B699B4B3|observable:validAccountNameCheck",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -153500,7 +154153,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "validAccountIdCheck at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:168 executes its row-specific C016 behavioral scenario and returns TCASE-62BBCA2F0EB74AAE|behavior-ok."
+        "validAccountIdCheck preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153509,17 +154162,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-62BBCA2F0EB74AAE",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-62BBCA2F0EB74AAE"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-62BBCA2F0EB74AAE",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-62BBCA2F0EB74AAE:validAccountIdCheck"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-62BBCA2F0EB74AAE",
+          "selector": "TCASE-62BBCA2F0EB74AAE:validAccountIdCheck",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_62bbca2f0eb74aae"
         }
       ],
       "proof_command_id": "C029-PROOF-0219BF3E35686E97",
-      "observable_result": "TCASE-62BBCA2F0EB74AAE|behavior-ok",
+      "observable_result": "TCASE-62BBCA2F0EB74AAE|observable:validAccountIdCheck",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -153558,7 +154212,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "validAssetNameCheck at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:192 executes its row-specific C016 behavioral scenario and returns TCASE-AA6B5949F4393D6E|behavior-ok."
+        "validAssetNameCheck preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153567,17 +154221,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-AA6B5949F4393D6E",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-AA6B5949F4393D6E"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-AA6B5949F4393D6E",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-AA6B5949F4393D6E:validAssetNameCheck"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-AA6B5949F4393D6E",
+          "selector": "TCASE-AA6B5949F4393D6E:validAssetNameCheck",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_aa6b5949f4393d6e"
         }
       ],
       "proof_command_id": "C029-PROOF-82E933BFA1DC1D0F",
-      "observable_result": "TCASE-AA6B5949F4393D6E|behavior-ok",
+      "observable_result": "TCASE-AA6B5949F4393D6E|observable:validAssetNameCheck",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -153616,7 +154271,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "validTokenAbbrNameCheck at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:211 executes its row-specific C016 behavioral scenario and returns TCASE-C8FE1277832FD36B|behavior-ok."
+        "validTokenAbbrNameCheck preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153625,17 +154280,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-C8FE1277832FD36B",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-C8FE1277832FD36B"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-C8FE1277832FD36B",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-C8FE1277832FD36B:validTokenAbbrNameCheck"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-C8FE1277832FD36B",
+          "selector": "TCASE-C8FE1277832FD36B:validTokenAbbrNameCheck",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_c8fe1277832fd36b"
         }
       ],
       "proof_command_id": "C029-PROOF-4AA9C2F9108B2A68",
-      "observable_result": "TCASE-C8FE1277832FD36B|behavior-ok",
+      "observable_result": "TCASE-C8FE1277832FD36B|observable:validTokenAbbrNameCheck",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -153674,7 +154330,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "isNumberCheck at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:230 executes its row-specific C016 behavioral scenario and returns TCASE-D34B55644C3EEB93|behavior-ok."
+        "isNumberCheck preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153683,17 +154339,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-D34B55644C3EEB93",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-D34B55644C3EEB93"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-D34B55644C3EEB93",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-D34B55644C3EEB93:isNumberCheck"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-D34B55644C3EEB93",
+          "selector": "TCASE-D34B55644C3EEB93:isNumberCheck",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_d34b55644c3eeb93"
         }
       ],
       "proof_command_id": "C029-PROOF-C056822D93018B75",
-      "observable_result": "TCASE-D34B55644C3EEB93|behavior-ok",
+      "observable_result": "TCASE-D34B55644C3EEB93|observable:isNumberCheck",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -153732,7 +154389,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testEstimateConsumeBandWidthSize at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:243 executes its row-specific C016 behavioral scenario and returns TCASE-18CCD301F9E60F45|behavior-ok."
+        "testEstimateConsumeBandWidthSize preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153741,17 +154398,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-18CCD301F9E60F45",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-18CCD301F9E60F45"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-18CCD301F9E60F45",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-18CCD301F9E60F45:testEstimateConsumeBandWidthSize"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-18CCD301F9E60F45",
+          "selector": "TCASE-18CCD301F9E60F45:testEstimateConsumeBandWidthSize",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_18ccd301f9e60f45"
         }
       ],
       "proof_command_id": "C029-PROOF-205920F08DEADBE9",
-      "observable_result": "TCASE-18CCD301F9E60F45|behavior-ok",
+      "observable_result": "TCASE-18CCD301F9E60F45|observable:testEstimateConsumeBandWidthSize",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -153790,7 +154448,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testEstimateConsumeBandWidthSize2 at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:253 executes its row-specific C016 behavioral scenario and returns TCASE-D4059CF3D359A3C8|behavior-ok."
+        "testEstimateConsumeBandWidthSize2 preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153799,17 +154457,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-D4059CF3D359A3C8",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-D4059CF3D359A3C8"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-D4059CF3D359A3C8",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-D4059CF3D359A3C8:testEstimateConsumeBandWidthSize2"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-D4059CF3D359A3C8",
+          "selector": "TCASE-D4059CF3D359A3C8:testEstimateConsumeBandWidthSize2",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_d4059cf3d359a3c8"
         }
       ],
       "proof_command_id": "C029-PROOF-5E12E66961A0FB59",
-      "observable_result": "TCASE-D4059CF3D359A3C8|behavior-ok",
+      "observable_result": "TCASE-D4059CF3D359A3C8|observable:testEstimateConsumeBandWidthSize2",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -153848,7 +154507,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testEstimateConsumeBandWidthSizeOld at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:266 executes its row-specific C016 behavioral scenario and returns TCASE-579186AEBFED27E7|behavior-ok."
+        "testEstimateConsumeBandWidthSizeOld preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153857,17 +154516,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-579186AEBFED27E7",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-579186AEBFED27E7"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-579186AEBFED27E7",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-579186AEBFED27E7:testEstimateConsumeBandWidthSizeOld"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-579186AEBFED27E7",
+          "selector": "TCASE-579186AEBFED27E7:testEstimateConsumeBandWidthSizeOld",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_579186aebfed27e7"
         }
       ],
       "proof_command_id": "C029-PROOF-FABC4010FE47AF5F",
-      "observable_result": "TCASE-579186AEBFED27E7|behavior-ok",
+      "observable_result": "TCASE-579186AEBFED27E7|observable:testEstimateConsumeBandWidthSizeOld",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -153906,7 +154566,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testEstimateConsumeBandWidthSizeNew at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:314 executes its row-specific C016 behavioral scenario and returns TCASE-4E7527C537892F01|behavior-ok."
+        "testEstimateConsumeBandWidthSizeNew preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153915,17 +154575,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-4E7527C537892F01",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-4E7527C537892F01"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-4E7527C537892F01",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-4E7527C537892F01:testEstimateConsumeBandWidthSizeNew"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-4E7527C537892F01",
+          "selector": "TCASE-4E7527C537892F01:testEstimateConsumeBandWidthSizeNew",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_4e7527c537892f01"
         }
       ],
       "proof_command_id": "C029-PROOF-34CFBD3994B9A50F",
-      "observable_result": "TCASE-4E7527C537892F01|behavior-ok",
+      "observable_result": "TCASE-4E7527C537892F01|observable:testEstimateConsumeBandWidthSizeNew",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -153964,7 +154625,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testEstimateConsumeBandWidthSize3 at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:335 executes its row-specific C016 behavioral scenario and returns TCASE-3F768CF5572AEBEA|behavior-ok."
+        "testEstimateConsumeBandWidthSize3 preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -153973,17 +154634,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-3F768CF5572AEBEA",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-3F768CF5572AEBEA"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-3F768CF5572AEBEA",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-3F768CF5572AEBEA:testEstimateConsumeBandWidthSize3"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-3F768CF5572AEBEA",
+          "selector": "TCASE-3F768CF5572AEBEA:testEstimateConsumeBandWidthSize3",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_3f768cf5572aebea"
         }
       ],
       "proof_command_id": "C029-PROOF-FAE9EAF4D9AFE72A",
-      "observable_result": "TCASE-3F768CF5572AEBEA|behavior-ok",
+      "observable_result": "TCASE-3F768CF5572AEBEA|observable:testEstimateConsumeBandWidthSize3",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -154022,7 +154684,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "estimateConsumeBandWidthSizePositive at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:377 executes its row-specific C016 behavioral scenario and returns TCASE-C28B422D0CA2F4B1|behavior-ok."
+        "estimateConsumeBandWidthSizePositive preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -154031,17 +154693,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-C28B422D0CA2F4B1",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-C28B422D0CA2F4B1"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-C28B422D0CA2F4B1",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-C28B422D0CA2F4B1:estimateConsumeBandWidthSizePositive"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-C28B422D0CA2F4B1",
+          "selector": "TCASE-C28B422D0CA2F4B1:estimateConsumeBandWidthSizePositive",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_c28b422d0ca2f4b1"
         }
       ],
       "proof_command_id": "C029-PROOF-32F0C0124A9AE2CF",
-      "observable_result": "TCASE-C28B422D0CA2F4B1|behavior-ok",
+      "observable_result": "TCASE-C28B422D0CA2F4B1|observable:estimateConsumeBandWidthSizePositive",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -154080,7 +154743,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "estimateConsumeBandWidthSizeBoundary at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:395 executes its row-specific C016 behavioral scenario and returns TCASE-107A8A0D3C5A0C71|behavior-ok."
+        "estimateConsumeBandWidthSizeBoundary preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -154089,17 +154752,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-107A8A0D3C5A0C71",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-107A8A0D3C5A0C71"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-107A8A0D3C5A0C71",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-107A8A0D3C5A0C71:estimateConsumeBandWidthSizeBoundary"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-107A8A0D3C5A0C71",
+          "selector": "TCASE-107A8A0D3C5A0C71:estimateConsumeBandWidthSizeBoundary",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_107a8a0d3c5a0c71"
         }
       ],
       "proof_command_id": "C029-PROOF-34B3807654F61DC2",
-      "observable_result": "TCASE-107A8A0D3C5A0C71|behavior-ok",
+      "observable_result": "TCASE-107A8A0D3C5A0C71|observable:estimateConsumeBandWidthSizeBoundary",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -154138,7 +154802,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "estimateConsumeBandWidthSizeEdge at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:413 executes its row-specific C016 behavioral scenario and returns TCASE-C59F85303715E074|behavior-ok."
+        "estimateConsumeBandWidthSizeEdge preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -154147,17 +154811,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-C59F85303715E074",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-C59F85303715E074"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-C59F85303715E074",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-C59F85303715E074:estimateConsumeBandWidthSizeEdge"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-C59F85303715E074",
+          "selector": "TCASE-C59F85303715E074:estimateConsumeBandWidthSizeEdge",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_c59f85303715e074"
         }
       ],
       "proof_command_id": "C029-PROOF-2F11501589BC4D3F",
-      "observable_result": "TCASE-C59F85303715E074|behavior-ok",
+      "observable_result": "TCASE-C59F85303715E074|observable:estimateConsumeBandWidthSizeEdge",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -154196,7 +154861,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "estimateConsumeBandWidthSizeCorner at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:431 executes its row-specific C016 behavioral scenario and returns TCASE-5696E0E0368EAD97|behavior-ok."
+        "estimateConsumeBandWidthSizeCorner preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -154205,17 +154870,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-5696E0E0368EAD97",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-5696E0E0368EAD97"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-5696E0E0368EAD97",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-5696E0E0368EAD97:estimateConsumeBandWidthSizeCorner"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-5696E0E0368EAD97",
+          "selector": "TCASE-5696E0E0368EAD97:estimateConsumeBandWidthSizeCorner",
           "target": "rust-tron/crates/tron-execution/tests/c016_trace.rs::c016_tcase_5696e0e0368ead97"
         }
       ],
       "proof_command_id": "C029-PROOF-77059EB170E7530C",
-      "observable_result": "TCASE-5696E0E0368EAD97|behavior-ok",
+      "observable_result": "TCASE-5696E0E0368EAD97|observable:estimateConsumeBandWidthSizeCorner",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -154254,7 +154920,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testConcurrentToString at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:449 executes its row-specific C016 behavioral scenario and returns TCASE-6F7BB0115BC978B7|behavior-ok."
+        "testConcurrentToString preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -154263,17 +154929,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-6F7BB0115BC978B7",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-6F7BB0115BC978B7"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-6F7BB0115BC978B7",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-6F7BB0115BC978B7:testConcurrentToString"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-6F7BB0115BC978B7",
+          "selector": "TCASE-6F7BB0115BC978B7:testConcurrentToString",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_6f7bb0115bc978b7"
         }
       ],
       "proof_command_id": "C029-PROOF-A0BB3D9C5D2116EC",
-      "observable_result": "TCASE-6F7BB0115BC978B7|behavior-ok",
+      "observable_result": "TCASE-6F7BB0115BC978B7|observable:testConcurrentToString",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -154312,7 +154979,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testSignWeightSigTruncate at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:467 executes its row-specific C016 behavioral scenario and returns TCASE-CB986677CB979CF1|behavior-ok."
+        "testSignWeightSigTruncate preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -154321,17 +154988,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-CB986677CB979CF1",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-CB986677CB979CF1"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-CB986677CB979CF1",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-CB986677CB979CF1:testSignWeightSigTruncate"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-CB986677CB979CF1",
+          "selector": "TCASE-CB986677CB979CF1:testSignWeightSigTruncate",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_cb986677cb979cf1"
         }
       ],
       "proof_command_id": "C029-PROOF-7FA103AE2E5F740D",
-      "observable_result": "TCASE-CB986677CB979CF1|behavior-ok",
+      "observable_result": "TCASE-CB986677CB979CF1|observable:testSignWeightSigTruncate",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -154370,7 +155038,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "testSignWeightTooManySigs at java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java:510 executes its row-specific C016 behavioral scenario and returns TCASE-4F6BDEE632C843B4|behavior-ok."
+        "testSignWeightTooManySigs preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -154379,17 +155047,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-4F6BDEE632C843B4",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-4F6BDEE632C843B4"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-4F6BDEE632C843B4",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-4F6BDEE632C843B4:testSignWeightTooManySigs"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-4F6BDEE632C843B4",
+          "selector": "TCASE-4F6BDEE632C843B4:testSignWeightTooManySigs",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_4f6bdee632c843b4"
         }
       ],
       "proof_command_id": "C029-PROOF-16DF2F7CAD9E9DDC",
-      "observable_result": "TCASE-4F6BDEE632C843B4|behavior-ok",
+      "observable_result": "TCASE-4F6BDEE632C843B4|observable:testSignWeightTooManySigs",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -154428,7 +155097,7 @@
         "kind": "java_test_case"
       },
       "behavior_claims": [
-        "variableCheck at java-tron/framework/src/test/java/org/tron/core/actuator/utils/ZenChainParamsTest.java:15 executes its row-specific C016 behavioral scenario and returns TCASE-99B436DC5B35D049|behavior-ok."
+        "variableCheck preserves the Java row observable contract through its dedicated Rust case."
       ],
       "applicability": {
         "type": "covered",
@@ -154437,17 +155106,18 @@
       "owning_item": "C016.06",
       "fixture_links": [
         "docs/oracles/java-test-ownership.v1.json#TCASE-99B436DC5B35D049",
-        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-99B436DC5B35D049"
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-99B436DC5B35D049",
+        "docs/oracles/c016-ownership-reconciliation.v1.json#TCASE-99B436DC5B35D049:variableCheck"
       ],
       "rust_proofs": [
         {
           "artifact": "docs/oracles/c016-ownership-reconciliation.v1.json",
-          "selector": "TCASE-99B436DC5B35D049",
+          "selector": "TCASE-99B436DC5B35D049:variableCheck",
           "target": "rust-tron/crates/tron-execution/tests/c016_admission.rs::c016_tcase_99b436dc5b35d049"
         }
       ],
       "proof_command_id": "C029-PROOF-98567952F12A264F",
-      "observable_result": "TCASE-99B436DC5B35D049|behavior-ok",
+      "observable_result": "TCASE-99B436DC5B35D049|observable:variableCheck",
       "behavior_slices": [],
       "semantic_rehome": {
         "domain": "transaction_pipeline",
@@ -220981,7 +221651,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -221040,7 +221710,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -221099,7 +221769,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -221158,7 +221828,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -221217,7 +221887,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -221276,7 +221946,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -221335,7 +222005,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -221394,7 +222064,7 @@
       },
       "treatment": {
         "ignored": "not_applicable",
-        "shielded": "not_applicable",
+        "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
@@ -247625,7 +248295,7 @@
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
-        "assumption_gated": "covered",
+        "assumption_gated": "assumption_gated",
         "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
@@ -247688,7 +248358,7 @@
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
-        "assumption_gated": "covered",
+        "assumption_gated": "assumption_gated",
         "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
@@ -247751,7 +248421,7 @@
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
-        "assumption_gated": "covered",
+        "assumption_gated": "assumption_gated",
         "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
@@ -247814,7 +248484,7 @@
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
-        "assumption_gated": "covered",
+        "assumption_gated": "assumption_gated",
         "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
@@ -248003,7 +248673,7 @@
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
-        "assumption_gated": "covered",
+        "assumption_gated": "assumption_gated",
         "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
@@ -248066,7 +248736,7 @@
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
-        "assumption_gated": "covered",
+        "assumption_gated": "assumption_gated",
         "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
@@ -248129,7 +248799,7 @@
         "vm": "not_applicable",
         "benchmark": "not_applicable",
         "resource": "not_applicable",
-        "assumption_gated": "covered",
+        "assumption_gated": "assumption_gated",
         "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
@@ -250655,9 +251325,9 @@
         "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
-        "resource": "covered",
+        "resource": "resource",
         "assumption_gated": "not_applicable",
-        "bounded_dynamic": "covered"
+        "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
         "fresh_temp": true,
@@ -250716,9 +251386,9 @@
         "shielded": "not_applicable",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
-        "resource": "covered",
+        "resource": "resource",
         "assumption_gated": "not_applicable",
-        "bounded_dynamic": "covered"
+        "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
         "fresh_temp": true,
@@ -250773,9 +251443,9 @@
         "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
-        "resource": "covered",
+        "resource": "resource",
         "assumption_gated": "not_applicable",
-        "bounded_dynamic": "covered"
+        "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
         "fresh_temp": true,
@@ -250830,9 +251500,9 @@
         "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
-        "resource": "covered",
+        "resource": "resource",
         "assumption_gated": "not_applicable",
-        "bounded_dynamic": "covered"
+        "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
         "fresh_temp": true,
@@ -250887,9 +251557,9 @@
         "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
-        "resource": "covered",
+        "resource": "resource",
         "assumption_gated": "not_applicable",
-        "bounded_dynamic": "covered"
+        "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
         "fresh_temp": true,
@@ -250944,9 +251614,9 @@
         "shielded": "covered",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
-        "resource": "covered",
+        "resource": "resource",
         "assumption_gated": "not_applicable",
-        "bounded_dynamic": "covered"
+        "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
         "fresh_temp": true,
@@ -251005,9 +251675,9 @@
         "shielded": "not_applicable",
         "vm": "not_applicable",
         "benchmark": "not_applicable",
-        "resource": "covered",
+        "resource": "resource",
         "assumption_gated": "not_applicable",
-        "bounded_dynamic": "covered"
+        "bounded_dynamic": "not_applicable"
       },
       "determinism_isolation": {
         "fresh_temp": true,

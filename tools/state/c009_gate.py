@@ -41,6 +41,30 @@ EXPECTED_COMMANDS = [
     {"name": "C009 complete revoking contract", "cwd": "rust-tron", "argv": ["cargo", "test", "-p", "tron-state", "--test", "revoking_contract", "--locked"], "timeout_seconds": 300},
     {"name": "C009 state workspace check", "cwd": "rust-tron", "argv": ["cargo", "check", "-p", "tron-state", "--all-targets", "--locked"], "timeout_seconds": 300},
 ]
+C009_TEST_SOURCES = {
+    "java-tron/framework/src/test/java/org/tron/common/storage/CheckOrInitEngineTest.java",
+    "java-tron/framework/src/test/java/org/tron/common/storage/DbDataSourceImplTest.java",
+    "java-tron/framework/src/test/java/org/tron/common/storage/leveldb/LevelDbDataSourceImplTest.java",
+    "java-tron/framework/src/test/java/org/tron/common/storage/rocksdb/RocksDbDataSourceImplTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/ByteArrayWrapperTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/CheckPointV2StoreTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/DBIteratorTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashIntegrationTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/HistoryBlockHashVmTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/ManagerMockTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/ManagerTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/SerializedTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/TronDatabaseTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/TxCacheDBInitTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db/TxCacheDBTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db2/ChainbaseTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db2/CheckpointV2Test.java",
+    "java-tron/framework/src/test/java/org/tron/core/db2/RevokingDbWithCacheNewValueTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotImplTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotManagerTest.java",
+    "java-tron/framework/src/test/java/org/tron/core/db2/SnapshotRootTest.java",
+}
 REQUIRED_TEST_SYMBOLS = {
     "direct_java_snapshot_cases_dispatch_by_case_id",
     "exhaustive_45_store_transition_matrix_restores_root_after_revoke",
@@ -132,14 +156,14 @@ def dump(value: object) -> bytes:
 
 def ledger_rows() -> list[dict]:
     ledger = json.loads(OWNERSHIP.read_text())
-    rows = [row for row in ledger["rows"] if row.get("acceptance_gate") == "C009.V"]
-    if len(rows) == 155:
-        return rows
-    stable_ids = {row["stable_id"] for row in json.loads(RECONCILIATION.read_text())["rows"]}
-    retained = [row for row in ledger["rows"] if row["id"] in stable_ids]
-    if len(retained) != 155:
-        raise ValueError(f"C009 authoritative stable-ID inventory drift: {len(retained)}")
-    return retained
+    identity = ledger.get("java_reference_identity", {})
+    if ledger.get("java_source_revision") != REVISION or identity.get("java_revision") != REVISION:
+        raise ValueError("C009 Java-test ownership ledger revision drift")
+    rows = [row for row in ledger["rows"] if row.get("acceptance_gate") == "C008.V" and row["source"]["path"] in C009_TEST_SOURCES]
+    paths = {row["source"]["path"] for row in rows}
+    if len(rows) != 155 or len({row["id"] for row in rows}) != 155 or paths != C009_TEST_SOURCES:
+        raise ValueError(f"C009 immutable Java-test inventory drift: rows={len(rows)} missing_sources={sorted(C009_TEST_SOURCES-paths)} extra_sources={sorted(paths-C009_TEST_SOURCES)}")
+    return rows
 
 def c009_production_rows(ledger: dict) -> list[dict]:
     if PRODUCTION_RECONCILIATION.is_file():
@@ -337,7 +361,7 @@ def documents() -> dict[Path, dict]:
     production = json.loads(PRODUCTION.read_text())
     return {
         INVENTORY: inventory,
-        RECONCILIATION: {"schema_version": 1, "java_revision": REVISION, "rows": reconciliation},
+        RECONCILIATION: {"schema_version": 1, "java_revision": REVISION, "source_inventory": {"path": INVENTORY.relative_to(ROOT).as_posix(), "sha256": hashlib.sha256(dump(inventory)).hexdigest(), "row_count": len(rows)}, "rows": reconciliation},
         PRODUCTION_RECONCILIATION: production_reconciliation(production),
         FIXTURES: fixtures,
     }
@@ -369,9 +393,13 @@ def verify(errors: list[str], expected: dict[Path, dict]) -> None:
     if len(fixtures["transition_matrix"]) != 45 or len({row["store"] for row in fixtures["transition_matrix"]}) != 45:
         errors.append("transition matrix must exhaust exactly 45 logical stores")
     reconciliation = expected[RECONCILIATION]["rows"]
-    ledger_ids = {row["id"] for row in ledger_rows()}
-    if len(reconciliation) != 155 or {row["stable_id"] for row in reconciliation} != ledger_ids:
-        errors.append("C009 reconciliation must match exactly 155 stable Java-test rows")
+    authoritative_rows = ledger_rows()
+    ledger_by_id = {row["id"]: row for row in authoritative_rows}
+    if len(reconciliation) != 155 or len({row["stable_id"] for row in reconciliation}) != 155 or {row["stable_id"] for row in reconciliation} != set(ledger_by_id):
+        errors.append("C009 reconciliation must match exactly the immutable 155-row Java-test inventory")
+    inventory_metadata = expected[RECONCILIATION].get("source_inventory", {})
+    if inventory_metadata.get("row_count") != 155 or inventory_metadata.get("sha256") != hashlib.sha256(dump(expected[INVENTORY])).hexdigest():
+        errors.append("C009 reconciliation source-inventory identity drift")
     direct = [row for row in reconciliation if row["disposition"] == "rust"]
     direct_ids = [row.get("rust_case_id") for row in direct]
     if len(direct) != 23 or any(row["owner"] != "C009" or row.get("dispatch_kind") != "parameterized_case" for row in direct):
@@ -390,6 +418,9 @@ def verify(errors: list[str], expected: dict[Path, dict]) -> None:
     if set(actual_test_symbols) != REQUIRED_TEST_SYMBOLS:
         errors.append(f"revoking-contract target must expose exactly the canonical C009 test symbols: {sorted(REQUIRED_TEST_SYMBOLS)}")
     for row in reconciliation:
+        source_row = ledger_by_id.get(row["stable_id"])
+        if source_row is None or (row.get("java_source"), row.get("java_line"), row.get("java_case")) != (source_row["source"]["path"], source_row["source"]["line"], source_row["case"]):
+            errors.append(f"C009 Java source identity drift: {row['stable_id']}")
         if not all(row.get(key) for key in ("fixture_selector", "expected_result", "rust_symbol", "canonical_command")):
             errors.append(f"incomplete exact C009 reconciliation proof: {row['stable_id']}")
         if row.get("fixture_selector") != row.get("rust_case_id"):
