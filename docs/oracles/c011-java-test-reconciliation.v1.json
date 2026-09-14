@@ -3,129 +3,363 @@
   "rows": [
     {
       "acceptance_gate": "C011.V",
+      "canonical_command": "cargo test -p tron-state --test khaos_contract --locked linked_orphan_number_and_strict_head_contract -- --exact",
+      "case_id": "TCASE-DC962C8486AEB077",
+      "disposition": "rust",
+      "expected_result": "stable-id=TCASE-DC962C8486AEB077; case=testStartBlock; result=linked=true,unlinked=false",
+      "final_owner": "C011",
       "fixture_id": "khaos:linked",
+      "fixture_selector": "TCASE-DC962C8486AEB077",
       "java_case": "testStartBlock",
       "java_line": 39,
       "java_source": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
       "owner": "C011",
       "owning_item": "C011.01",
       "previous_gate": "C009.V",
+      "proof_command": "cargo test -p tron-state --test khaos_contract --locked linked_orphan_number_and_strict_head_contract -- --exact",
       "rust_case_ids": [
         "khaos:linked"
       ],
+      "rust_case_selector": "khaos:linked",
+      "rust_proofs": [
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked linked_orphan_number_and_strict_head_contract -- --exact",
+          "expected_result": "linked=true,unlinked=false",
+          "fixture_selector": "khaos:linked",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::linked_orphan_number_and_strict_head_contract"
+        }
+      ],
       "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::linked_orphan_number_and_strict_head_contract",
+      "rust_test": "rust-tron/crates/tron-state/tests/khaos_contract.rs::linked_orphan_number_and_strict_head_contract",
+      "source_identity": {
+        "case": "testStartBlock",
+        "id": "TCASE-DC962C8486AEB077",
+        "kind": "java_test_case",
+        "line": 39,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java"
+      },
       "stable_id": "TCASE-DC962C8486AEB077"
     },
     {
       "acceptance_gate": "C011.V",
+      "canonical_command": "cargo test -p tron-state --test khaos_contract --locked linked_orphan_number_and_strict_head_contract -- --exact",
+      "case_id": "TCASE-4FC0EDF1C0D78E1B",
+      "disposition": "rust",
+      "expected_result": "stable-id=TCASE-4FC0EDF1C0D78E1B; case=testPushGetBlock; result=insert-unlinked-before-UnLinkedBlock",
+      "final_owner": "C011",
       "fixture_id": "khaos:orphan",
+      "fixture_selector": "TCASE-4FC0EDF1C0D78E1B",
       "java_case": "testPushGetBlock",
       "java_line": 50,
       "java_source": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
       "owner": "C011",
       "owning_item": "C011.01",
       "previous_gate": "C009.V",
+      "proof_command": "cargo test -p tron-state --test khaos_contract --locked linked_orphan_number_and_strict_head_contract -- --exact",
       "rust_case_ids": [
         "khaos:orphan",
         "khaos:remove"
       ],
+      "rust_case_selector": "khaos:orphan",
+      "rust_proofs": [
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked linked_orphan_number_and_strict_head_contract -- --exact",
+          "expected_result": "insert-unlinked-before-UnLinkedBlock",
+          "fixture_selector": "khaos:orphan",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::linked_orphan_number_and_strict_head_contract"
+        },
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked removal_reselects_first_inserted_at_highest_height_and_weak_parent_disappears -- --exact",
+          "expected_result": "reselect first insertion at maximum retained height; mutation precedes null-head error",
+          "fixture_selector": "khaos:remove",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::removal_reselects_first_inserted_at_highest_height_and_weak_parent_disappears"
+        }
+      ],
       "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::linked_orphan_number_and_strict_head_contract",
+      "rust_test": "rust-tron/crates/tron-state/tests/khaos_contract.rs::linked_orphan_number_and_strict_head_contract",
+      "source_identity": {
+        "case": "testPushGetBlock",
+        "id": "TCASE-4FC0EDF1C0D78E1B",
+        "kind": "java_test_case",
+        "line": 50,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java"
+      },
       "stable_id": "TCASE-4FC0EDF1C0D78E1B"
     },
     {
       "acceptance_gate": "C011.V",
+      "canonical_command": "cargo test -p tron-state --test khaos_contract --locked removal_reselects_first_inserted_at_highest_height_and_weak_parent_disappears -- --exact",
+      "case_id": "TCASE-3502FD0040F2328C",
+      "disposition": "rust",
+      "expected_result": "stable-id=TCASE-3502FD0040F2328C; case=checkWeakReference; result=child parent upgrade fails",
+      "final_owner": "C011",
       "fixture_id": "khaos:weak-parent",
+      "fixture_selector": "TCASE-3502FD0040F2328C",
       "java_case": "checkWeakReference",
       "java_line": 76,
       "java_source": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
       "owner": "C011",
       "owning_item": "C011.01",
       "previous_gate": "C009.V",
+      "proof_command": "cargo test -p tron-state --test khaos_contract --locked removal_reselects_first_inserted_at_highest_height_and_weak_parent_disappears -- --exact",
       "rust_case_ids": [
         "khaos:weak-parent"
       ],
+      "rust_case_selector": "khaos:weak-parent",
+      "rust_proofs": [
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked removal_reselects_first_inserted_at_highest_height_and_weak_parent_disappears -- --exact",
+          "expected_result": "child parent upgrade fails",
+          "fixture_selector": "khaos:weak-parent",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::removal_reselects_first_inserted_at_highest_height_and_weak_parent_disappears"
+        }
+      ],
       "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::removal_reselects_first_inserted_at_highest_height_and_weak_parent_disappears",
+      "rust_test": "rust-tron/crates/tron-state/tests/khaos_contract.rs::removal_reselects_first_inserted_at_highest_height_and_weak_parent_disappears",
+      "source_identity": {
+        "case": "checkWeakReference",
+        "id": "TCASE-3502FD0040F2328C",
+        "kind": "java_test_case",
+        "line": 76,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java"
+      },
       "stable_id": "TCASE-3502FD0040F2328C"
     },
     {
       "acceptance_gate": "C011.V",
+      "canonical_command": "cargo test -p tron-state --test khaos_contract --locked modern_branch_is_argument_oriented_tip_to_common_exclusive -- --exact",
+      "case_id": "TCASE-F8C35B5DF3CB7207",
+      "disposition": "rust",
+      "expected_result": "stable-id=TCASE-F8C35B5DF3CB7207; case=testGetBranch; result=argument-oriented tip-to-common-exclusive paths",
+      "final_owner": "C011",
       "fixture_id": "khaos:modern-branch",
+      "fixture_selector": "TCASE-F8C35B5DF3CB7207",
       "java_case": "testGetBranch",
       "java_line": 104,
       "java_source": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
       "owner": "C011",
       "owning_item": "C011.02",
       "previous_gate": "C009.V",
+      "proof_command": "cargo test -p tron-state --test khaos_contract --locked modern_branch_is_argument_oriented_tip_to_common_exclusive -- --exact",
       "rust_case_ids": [
         "khaos:modern-branch"
       ],
+      "rust_case_selector": "khaos:modern-branch",
+      "rust_proofs": [
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked modern_branch_is_argument_oriented_tip_to_common_exclusive -- --exact",
+          "expected_result": "argument-oriented tip-to-common-exclusive paths",
+          "fixture_selector": "khaos:modern-branch",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::modern_branch_is_argument_oriented_tip_to_common_exclusive"
+        }
+      ],
       "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::modern_branch_is_argument_oriented_tip_to_common_exclusive",
+      "rust_test": "rust-tron/crates/tron-state/tests/khaos_contract.rs::modern_branch_is_argument_oriented_tip_to_common_exclusive",
+      "source_identity": {
+        "case": "testGetBranch",
+        "id": "TCASE-F8C35B5DF3CB7207",
+        "kind": "java_test_case",
+        "line": 104,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java"
+      },
       "stable_id": "TCASE-F8C35B5DF3CB7207"
     },
     {
       "acceptance_gate": "C011.V",
+      "canonical_command": "cargo test -p tron-state --test khaos_contract --locked unsupported_inherited_is_not_empty_contract -- --exact",
+      "case_id": "TCASE-C70C87BC73F43547",
+      "disposition": "rust",
+      "expected_result": "stable-id=TCASE-C70C87BC73F43547; case=testIsNotEmpty; result=typed UnsupportedOperation",
+      "final_owner": "C011",
       "fixture_id": "khaos:unsupported-is-not-empty",
+      "fixture_selector": "TCASE-C70C87BC73F43547",
       "java_case": "testIsNotEmpty",
       "java_line": 163,
       "java_source": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java",
       "owner": "C011",
       "owning_item": "C011.01",
       "previous_gate": "C009.V",
+      "proof_command": "cargo test -p tron-state --test khaos_contract --locked unsupported_inherited_is_not_empty_contract -- --exact",
       "rust_case_ids": [
         "khaos:unsupported-is-not-empty"
       ],
+      "rust_case_selector": "khaos:unsupported-is-not-empty",
+      "rust_proofs": [
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked unsupported_inherited_is_not_empty_contract -- --exact",
+          "expected_result": "typed UnsupportedOperation",
+          "fixture_selector": "khaos:unsupported-is-not-empty",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::unsupported_inherited_is_not_empty_contract"
+        }
+      ],
       "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::unsupported_inherited_is_not_empty_contract",
+      "rust_test": "rust-tron/crates/tron-state/tests/khaos_contract.rs::unsupported_inherited_is_not_empty_contract",
+      "source_identity": {
+        "case": "testIsNotEmpty",
+        "id": "TCASE-C70C87BC73F43547",
+        "kind": "java_test_case",
+        "line": 163,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/KhaosDatabaseTest.java"
+      },
       "stable_id": "TCASE-C70C87BC73F43547"
     },
     {
       "acceptance_gate": "C011.V",
+      "canonical_command": "cargo test -p tron-state --test khaos_contract --locked test_pass_matches_old_new_energy_and_raw_stats_contract -- --exact",
+      "case_id": "TCASE-478556449FDDE99F",
+      "disposition": "rust",
+      "expected_result": "stable-id=TCASE-478556449FDDE99F; case=testPass; result=pass=true then false; raw length",
+      "final_owner": "C011",
       "fixture_id": "activation:old-version",
+      "fixture_selector": "TCASE-478556449FDDE99F",
       "java_case": "testPass",
       "java_line": 27,
       "java_source": "java-tron/framework/src/test/java/org/tron/core/ForkControllerTest.java",
       "owner": "C011",
       "owning_item": "C011.03",
       "previous_gate": "C019.V",
+      "proof_command": "cargo test -p tron-state --test khaos_contract --locked test_pass_matches_old_new_energy_and_raw_stats_contract -- --exact",
       "rust_case_ids": [
         "activation:old-version",
         "activation:energy-height",
         "activation:maintenance-rounding",
         "activation:new-version-quorum"
       ],
+      "rust_case_selector": "activation:old-version",
+      "rust_proofs": [
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked test_pass_matches_old_new_energy_and_raw_stats_contract -- --exact",
+          "expected_result": "pass=true then false; raw length",
+          "fixture_selector": "activation:old-version",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_pass_matches_old_new_energy_and_raw_stats_contract"
+        },
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked test_pass_matches_old_new_energy_and_raw_stats_contract -- --exact",
+          "expected_result": "before=false,at=true",
+          "fixture_selector": "activation:energy-height",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_pass_matches_old_new_energy_and_raw_stats_contract"
+        },
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked test_pass_matches_old_new_energy_and_raw_stats_contract -- --exact",
+          "expected_result": "activation boundary uses Java maintenance rounding",
+          "fixture_selector": "activation:maintenance-rounding",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_pass_matches_old_new_energy_and_raw_stats_contract"
+        },
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked test_pass_matches_old_new_energy_and_raw_stats_contract -- --exact",
+          "expected_result": "required=ceil(rate*rawLength/100)",
+          "fixture_selector": "activation:new-version-quorum",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_pass_matches_old_new_energy_and_raw_stats_contract"
+        }
+      ],
       "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_pass_matches_old_new_energy_and_raw_stats_contract",
+      "rust_test": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_pass_matches_old_new_energy_and_raw_stats_contract",
+      "source_identity": {
+        "case": "testPass",
+        "id": "TCASE-478556449FDDE99F",
+        "kind": "java_test_case",
+        "line": 27,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ForkControllerTest.java"
+      },
       "stable_id": "TCASE-478556449FDDE99F"
     },
     {
       "acceptance_gate": "C011.V",
+      "canonical_command": "cargo test -p tron-state --test khaos_contract --locked test_reset_preserves_passing_raw_length_and_resizes_failing_stats -- --exact",
+      "case_id": "TCASE-359D8D71081CED91",
+      "disposition": "rust",
+      "expected_result": "stable-id=TCASE-359D8D71081CED91; case=testReset; result=retain passing raw length; failing becomes active-length zeros",
+      "final_owner": "C011",
       "fixture_id": "activation:reset",
+      "fixture_selector": "TCASE-359D8D71081CED91",
       "java_case": "testReset",
       "java_line": 81,
       "java_source": "java-tron/framework/src/test/java/org/tron/core/ForkControllerTest.java",
       "owner": "C011",
       "owning_item": "C011.03",
       "previous_gate": "C019.V",
+      "proof_command": "cargo test -p tron-state --test khaos_contract --locked test_reset_preserves_passing_raw_length_and_resizes_failing_stats -- --exact",
       "rust_case_ids": [
         "activation:reset"
       ],
+      "rust_case_selector": "activation:reset",
+      "rust_proofs": [
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked test_reset_preserves_passing_raw_length_and_resizes_failing_stats -- --exact",
+          "expected_result": "retain passing raw length; failing becomes active-length zeros",
+          "fixture_selector": "activation:reset",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_reset_preserves_passing_raw_length_and_resizes_failing_stats"
+        }
+      ],
       "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_reset_preserves_passing_raw_length_and_resizes_failing_stats",
+      "rust_test": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_reset_preserves_passing_raw_length_and_resizes_failing_stats",
+      "source_identity": {
+        "case": "testReset",
+        "id": "TCASE-359D8D71081CED91",
+        "kind": "java_test_case",
+        "line": 81,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ForkControllerTest.java"
+      },
       "stable_id": "TCASE-359D8D71081CED91"
     },
     {
       "acceptance_gate": "C011.V",
+      "canonical_command": "cargo test -p tron-state --test khaos_contract --locked test_update_uses_first_active_index_and_java_upgrade_order -- --exact",
+      "case_id": "TCASE-373DA15C1459A3A0",
+      "disposition": "rust",
+      "expected_result": "stable-id=TCASE-373DA15C1459A3A0; case=testUpdate; result=candidate is published on the following update because pass precedes current vote",
+      "final_owner": "C011",
       "fixture_id": "activation:upgrade",
+      "fixture_selector": "TCASE-373DA15C1459A3A0",
       "java_case": "testUpdate",
       "java_line": 133,
       "java_source": "java-tron/framework/src/test/java/org/tron/core/ForkControllerTest.java",
       "owner": "C011",
       "owning_item": "C011.03",
       "previous_gate": "C019.V",
+      "proof_command": "cargo test -p tron-state --test khaos_contract --locked test_update_uses_first_active_index_and_java_upgrade_order -- --exact",
       "rust_case_ids": [
         "activation:upgrade",
         "activation:downgrade",
         "activation:duplicate-witness",
         "activation:resize-order"
       ],
+      "rust_case_selector": "activation:upgrade",
+      "rust_proofs": [
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked test_update_uses_first_active_index_and_java_upgrade_order -- --exact",
+          "expected_result": "candidate is published on the following update because pass precedes current vote",
+          "fixture_selector": "activation:upgrade",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_update_uses_first_active_index_and_java_upgrade_order"
+        },
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked test_update_uses_first_active_index_and_java_upgrade_order -- --exact",
+          "expected_result": "later non-passing slot is cleared before candidate pass/vote handling",
+          "fixture_selector": "activation:downgrade",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_update_uses_first_active_index_and_java_upgrade_order"
+        },
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked test_update_uses_first_active_index_and_java_upgrade_order -- --exact",
+          "expected_result": "Java indexOf selects and updates only the first matching index",
+          "fixture_selector": "activation:duplicate-witness",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_update_uses_first_active_index_and_java_upgrade_order"
+        },
+        {
+          "canonical_command": "cargo test -p tron-state --test khaos_contract --locked test_update_resizes_candidate_locally_before_passing_upgrade -- --exact",
+          "expected_result": "pass uses stored candidate; local resize supplies upgrade slot size; older arrays remain length 5",
+          "fixture_selector": "activation:resize-order",
+          "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_update_resizes_candidate_locally_before_passing_upgrade"
+        }
+      ],
       "rust_symbol": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_update_uses_first_active_index_and_java_upgrade_order",
+      "rust_test": "rust-tron/crates/tron-state/tests/khaos_contract.rs::test_update_uses_first_active_index_and_java_upgrade_order",
+      "source_identity": {
+        "case": "testUpdate",
+        "id": "TCASE-373DA15C1459A3A0",
+        "kind": "java_test_case",
+        "line": 133,
+        "path": "java-tron/framework/src/test/java/org/tron/core/ForkControllerTest.java"
+      },
       "stable_id": "TCASE-373DA15C1459A3A0"
     }
   ],

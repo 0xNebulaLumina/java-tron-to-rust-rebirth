@@ -9,6 +9,7 @@ RECON = ORACLES / "c023-ownership-reconciliation.v1.json"
 SCENARIOS = ORACLES / "c023-scenarios.v1.json"
 TRACKER = ROOT / "docs/PORTING_TRACKER.json"
 MANIFEST = ORACLES / "manifest.v1.json"
+JAVA_TEST_OWNERSHIP = ORACLES / "java-test-ownership.v1.json"
 COMMANDS = {
     "routes": ["cargo","test","-p","tron-apis","--test","c023_routes","--locked"],
     "json": ["cargo","test","-p","tron-apis","--test","c023_json","--locked"],
@@ -24,7 +25,14 @@ def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 def java_rows(reconciliation):
     rows = [row for row in reconciliation.get("rows", []) if row.get("kind") == "java_test"]
     if len(rows) != 333: raise SystemExit("C023 exact 333 Java test rows drift")
+    ledger_rows = load(JAVA_TEST_OWNERSHIP).get("rows", [])
+    stable_ids = {
+        (entry.get("source", {}).get("path"), entry.get("source", {}).get("line"), entry.get("case")): entry.get("id")
+        for entry in ledger_rows
+        if entry.get("kind") == "java_test_case"
+    }
     expected = []
+    seen_stable_ids = set()
     for row in rows:
         source = ROOT / row["source"]["path"]
         if row.get("source_sha256") != sha(source): raise SystemExit("C023 Java authenticated source hash drift: " + row["id"])
@@ -32,8 +40,12 @@ def java_rows(reconciliation):
         line = row["source"]["line"]
         if not (1 <= line <= len(lines)) or not re.search(r"\b" + re.escape(row["symbol"]) + r"\s*\(", lines[line - 1]):
             raise SystemExit("C023 Java source path/line/symbol drift: " + row["id"])
+        identity = (row["source"]["path"], line, row["symbol"])
+        if stable_ids.get(identity) != row.get("stable_id") or not re.fullmatch(r"TCASE-[0-9A-F]{16}", row.get("stable_id", "")):
+            raise SystemExit("C023 exact stable-ID/source identity drift: " + row["id"])
+        seen_stable_ids.add(row["stable_id"])
         expected.append((row["source"]["path"].split("/java/", 1)[1][:-5].replace("/", "."), row["symbol"], row["id"]))
-    if len(set((name, symbol) for name, symbol, _ in expected)) != 333: raise SystemExit("C023 Java test identity collision")
+    if len(seen_stable_ids) != 333 or len(set((name, symbol) for name, symbol, _ in expected)) != 333: raise SystemExit("C023 Java test identity collision")
     return rows, expected
 
 def rust_cases_exist(rows):
@@ -70,9 +82,21 @@ def metadata():
     if {(r["surface"],r["path"]) for r in prod} != set(identities): raise SystemExit("C023 row-specific production reconciliation drift")
     if any(r.get("source_sha256") != sha(ROUTES) or r.get("terminal_state") != "observed" for r in prod): raise SystemExit("C023 production source hash/terminal evidence drift")
     jrows, _ = java_rows(reconciliation); rust_cases_exist(all_rows)
-    scenario = load(SCENARIOS); scenarios = scenario.get("scenarios", [])
+    scenario = load(SCENARIOS); scenarios = scenario.get("scenarios", []); proofs = scenario.get("row_proofs", [])
     if len(scenarios) != 18 or len({r.get("id") for r in scenarios}) != 18 or any(not r.get("rust_case") or r.get("terminal_state") != "observed" for r in scenarios): raise SystemExit("C023 exact 18-scenario identity/terminal coverage drift")
     rust_cases_exist(scenarios)
+    if len(proofs) != 333 or scenario.get("row_proof_count") != 333 or len({p.get("stable_id") for p in proofs}) != 333: raise SystemExit("C023 exact 333 row-proof identity drift")
+    proof_by_id = {p["stable_id"]: p for p in proofs}
+    rust_source = (RUST / "crates/tron-apis/tests/c023_scenarios.rs").read_text()
+    for row in jrows:
+        stable_id = row["stable_id"]; proof = proof_by_id.get(stable_id); symbol = "c023_" + stable_id.lower().replace("-", "_")
+        family = row.get("rust_case") or "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states"
+        expected = f"{stable_id}|{row['source']['path']}:{row['source']['line']}::{row['symbol']}|terminal={row['terminal_state']}|result={row['result_key']}|family={family}"
+        command = f"cargo test -p tron-apis --test c023_scenarios --locked -- {symbol} --exact"
+        behavior = f"execute exact Java HTTP case {row['source']['path']}:{row['source']['line']}::{row['symbol']} and bind terminal {row['terminal_state']} to {row['result_key']}"
+        required = {"stable_id":stable_id,"source_identity":{"path":row["source"]["path"],"line":row["source"]["line"],"case":row["symbol"]},"fixture_selector":stable_id,"expected_result":expected,"java_behavior":behavior,"rust_symbol":f"c023_scenarios::{symbol}","rust_test":f"c023_scenarios::{symbol}","rust_family_test":family,"command":command,"terminal_state":row["terminal_state"],"result_key":row["result_key"]}
+        if proof != required or any(row.get(key) != value for key, value in required.items() if key not in {"stable_id", "terminal_state", "result_key"}): raise SystemExit("C023 row-specific proof contract drift: " + stable_id)
+        if not re.search(r"\bc023_row_proof!\(" + re.escape(symbol) + r"\s*,", rust_source): raise SystemExit("C023 missing exact Rust row selector: " + stable_id)
     if "rust_live" in scenario or "rust_live_http" in scenario: raise SystemExit("C023 boolean live evidence rejected")
     manifest = load(MANIFEST)
     for key, path in (("c023_routes",ROUTES),("c023_scenarios",SCENARIOS),("c023_ownership_reconciliation",RECON)):

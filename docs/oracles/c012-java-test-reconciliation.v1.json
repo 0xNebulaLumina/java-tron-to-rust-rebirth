@@ -1,4 +1,33 @@
 {
+  "additional_stable_id_proofs": [
+    {
+      "canonical_command": "cargo test -p tron-execution --test c012_witness_contract reward_callback_precedes_vote_account_reload_and_duplicate_order_is_preserved --locked",
+      "fixture": {
+        "path": "docs/oracles/c012-witness-real.v1.json",
+        "selector": "vote-duplicate-order"
+      },
+      "fixture_selector": "vote-duplicate-order",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-ADA6C17DC10097D3"
+      },
+      "java_case": "addVotesTest",
+      "java_line": 73,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/AccountCapsuleTest.java",
+      "observation_digest": "5276b331ad3b4b5193cdb0d9696bed4f9e2d2930ca9ea673784edc2b6381afa4",
+      "result": "pass: vote additions preserve Java order after reward callback reload",
+      "rust_case_id": "TCASE-ADA6C17DC10097D3",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c012_witness_contract.rs::reward_callback_precedes_vote_account_reload_and_duplicate_order_is_preserved",
+      "scenario_id": "TCASE-ADA6C17DC10097D3",
+      "source_identity": {
+        "case": "addVotesTest",
+        "line": 73,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/AccountCapsuleTest.java"
+      },
+      "stable_id": "TCASE-ADA6C17DC10097D3"
+    }
+  ],
   "chunk": "C012",
   "excluded_count": 0,
   "excluded_invocation_count": 0,

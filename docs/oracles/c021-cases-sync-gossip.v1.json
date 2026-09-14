@@ -2350,5 +2350,6 @@
   "count": 102,
   "family": "sync-gossip",
   "schema": "c021-cases-sync-gossip.v1",
-  "source_ledger": "docs/oracles/c021-ownership-reconciliation.v1.json"
+  "source_ledger": "docs/oracles/c021-ownership-reconciliation.v1.json",
+  "rust_test": "rust-tron/crates/tron-network/tests/c021_cases_sync_gossip.rs::every_sync_gossip_reconciliation_row_executes_its_exact_case"
 }

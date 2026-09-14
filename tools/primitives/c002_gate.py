@@ -2,6 +2,7 @@
 """Validate C002 source coverage and deterministic boundary-vector contracts."""
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
@@ -15,6 +16,10 @@ SESSION = install_java_reference_guard(ROOT)
 COVERAGE = ROOT / "docs/oracles/common-primitives-coverage.v1.json"
 VECTORS = ROOT / "docs/oracles/c002-java-boundary-vectors.v1.json"
 FIXTURES = ROOT / "docs/oracles/c002-primitives-fixtures.v1.json"
+ROW_COVERAGE = ROOT / "docs/oracles/c002-primitives-coverage.v1.json"
+OWNERSHIP = ROOT / "docs/oracles/java-test-ownership.v1.json"
+ROW_COMMAND = "cargo test -p tron-primitives --test c002_java_vectors"
+ROW_RUST_SYMBOL = "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed"
 CRATE = ROOT / "rust-tron/crates/tron-primitives/src"
 REQUIRED_IDS = {f"C002.{index:02d}" for index in range(1, 8)}
 REQUIRED_VECTOR_GROUPS = {
@@ -58,6 +63,48 @@ ROW_SCHEMAS = {
     "block_id_comparators": ({"id", "left_height", "left_suffix", "operation", "ordering", "right_height", "right_suffix"},),
     "market": ({"bytes", "id", "name", "result"}, {"id", "left", "name", "ordering", "right"}, {"id", "left_price", "name", "operation", "ordering", "right_price"}, {"id", "left_price", "name", "ordering", "path", "right_price"}),
 }
+
+def row_expected(row: dict[str, object]) -> str:
+    annotations = row.get("annotations", [])
+    expected = next((str(value) for value in annotations if "expected =" in str(value)), None)
+    outcome = expected.split("expected =", 1)[1].split(".", 1)[0].strip() if expected else "all Java assertions pass"
+    source = row["source"]
+    return f"{source['path']}:{source['line']}::{row['case']} => {outcome}"
+
+
+def make_row_coverage() -> dict[str, object]:
+    ledger = json.loads(OWNERSHIP.read_text(encoding="utf-8"))
+    owned = [row for row in ledger["rows"] if row.get("acceptance_gate") == "C002.V"]
+    rows = [{
+        "stable_id": row["id"],
+        "source": {"path": row["source"]["path"], "line": row["source"]["line"], "case": row["case"]},
+        "case_id": row["id"],
+        "fixture_selector": row["id"],
+        "expected_result": row_expected(row),
+        "java_behavior": f"execute exact Java case {row['case']} with annotations {row['annotations']}",
+        "rust_symbol": ROW_RUST_SYMBOL,
+        "canonical_command": ROW_COMMAND,
+    } for row in owned]
+    return {"schema_version": 1, "chunk": "C002", "java_revision": SESSION.revision, "row_count": len(rows), "canonical_command": ROW_COMMAND, "rows": rows}
+
+
+def validate_row_coverage(document: object, errors: list[str]) -> None:
+    generated = make_row_coverage()
+    if document != generated:
+        errors.append("C002 row coverage drift; run python3 tools/primitives/c002_gate.py --write")
+        return
+    rows = document.get("rows", []) if isinstance(document, dict) else []
+    ids = [row.get("stable_id") for row in rows]
+    selectors = [row.get("fixture_selector") for row in rows]
+    if len(rows) != 149 or len(set(ids)) != 149 or ids != selectors:
+        errors.append("C002 row coverage requires 149 unique stable-ID selectors")
+    required = {"stable_id", "source", "case_id", "fixture_selector", "expected_result", "java_behavior", "rust_symbol", "canonical_command"}
+    for row in rows:
+        if set(row) != required or row["case_id"] != row["stable_id"] or row["rust_symbol"] != ROW_RUST_SYMBOL or row["canonical_command"] != ROW_COMMAND:
+            errors.append(f"C002 malformed row-specific mapping: {row.get('stable_id')}")
+        if not row.get("expected_result") or not row.get("java_behavior"):
+            errors.append(f"C002 generic/missing observable mapping: {row.get('stable_id')}")
+
 
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -130,8 +177,10 @@ def main() -> None:
         coverage = json.loads(COVERAGE.read_text())
         vectors = json.loads(VECTORS.read_text())
         fixtures = json.loads(FIXTURES.read_text())
+        row_coverage = json.loads(ROW_COVERAGE.read_text())
     except (OSError, json.JSONDecodeError) as error:
         fail([f"cannot load manifest: {error}"])
+    validate_row_coverage(row_coverage, errors)
 
     rows = coverage.get("coverage", []) if isinstance(coverage, dict) else []
     ids = {row.get("id") for row in rows if isinstance(row, dict)}
@@ -206,8 +255,15 @@ def main() -> None:
 
     if errors:
         fail(errors)
-    print(f"C002 coverage: {len(ids)} IDs, {vector_count} Java vectors, {fixture_count} fixtures, {len(seams)} seams")
+    print(f"C002 coverage: {len(ids)} IDs, {vector_count} Java vectors, {fixture_count} fixtures, {len(seams)} seams, {len(row_coverage['rows'])} Java row proofs")
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--write", action="store_true")
+    args = parser.parse_args()
+    if args.write:
+        ROW_COVERAGE.write_text(json.dumps(make_row_coverage(), indent=2) + "\n", encoding="utf-8")
+        print(f"wrote {ROW_COVERAGE.relative_to(ROOT)}")
+    else:
+        main()

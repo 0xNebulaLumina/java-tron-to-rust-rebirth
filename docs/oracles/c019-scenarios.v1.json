@@ -25,7 +25,7 @@
   },
   "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
   "minimum_reorg_depth": 2,
-  "rust_target": "c019_scenarios",
+  "rust_target": "c019_fork_switch",
   "rust_tests": [
     "multi_branch_switch_rewinds_head_first_and_replays_oldest_first",
     "removed_callbacks_observe_each_old_block_as_current_head",
@@ -167,5 +167,3731 @@
       "root_contract": "exact logical root captured at every checkpoint; failed replay restores A2 root byte-for-byte"
     }
   ],
-  "schema": "c019-scenarios.v1"
+  "schema": "c019-scenarios.v1",
+  "row_evidence": [
+    {
+      "stable_id": "PROD-414F1202032A6D3E",
+      "source_identity": {
+        "stable_id": "PROD-414F1202032A6D3E",
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java",
+        "line": 1,
+        "case": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java"
+      },
+      "scenario_id": "valid-apply",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "PROD-414F1202032A6D3E",
+        "scenario_id": "valid-apply",
+        "java_case": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java"
+      },
+      "rust_target": "c019_block_apply",
+      "rust_test_symbol": "pinned_java_full_wire_merkle_vectors",
+      "canonical_command": "cargo test -p tron-execution --test c019_block_apply --locked",
+      "row_result": "PROD-414F1202032A6D3E:java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java:head=A2",
+      "case_id": "C019-414F1202032A6D3E",
+      "expected_result": "PROD-414F1202032A6D3E:java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java:head=A2",
+      "rust_test": "pinned_java_full_wire_merkle_vectors",
+      "fixture": {
+        "stable_id": "PROD-414F1202032A6D3E",
+        "scenario_id": "valid-apply",
+        "java_case": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java"
+      }
+    },
+    {
+      "stable_id": "PROD-5E6469BD5C01E920",
+      "source_identity": {
+        "stable_id": "PROD-5E6469BD5C01E920",
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java",
+        "line": 1,
+        "case": "org.tron.core"
+      },
+      "scenario_id": "valid-apply",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "PROD-5E6469BD5C01E920",
+        "scenario_id": "valid-apply",
+        "java_case": "org.tron.core"
+      },
+      "rust_target": "c019_block_apply",
+      "rust_test_symbol": "pinned_java_full_wire_merkle_vectors",
+      "canonical_command": "cargo test -p tron-execution --test c019_block_apply --locked",
+      "row_result": "PROD-5E6469BD5C01E920:org.tron.core:head=A2",
+      "case_id": "C019-5E6469BD5C01E920",
+      "expected_result": "PROD-5E6469BD5C01E920:org.tron.core:head=A2",
+      "rust_test": "pinned_java_full_wire_merkle_vectors",
+      "fixture": {
+        "stable_id": "PROD-5E6469BD5C01E920",
+        "scenario_id": "valid-apply",
+        "java_case": "org.tron.core"
+      }
+    },
+    {
+      "stable_id": "PROD-A31D45B54BECACEC",
+      "source_identity": {
+        "stable_id": "PROD-A31D45B54BECACEC",
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java",
+        "line": 73,
+        "case": "ChainBaseManager"
+      },
+      "scenario_id": "valid-apply",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "PROD-A31D45B54BECACEC",
+        "scenario_id": "valid-apply",
+        "java_case": "ChainBaseManager"
+      },
+      "rust_target": "c019_block_apply",
+      "rust_test_symbol": "pinned_java_full_wire_merkle_vectors",
+      "canonical_command": "cargo test -p tron-execution --test c019_block_apply --locked",
+      "row_result": "PROD-A31D45B54BECACEC:ChainBaseManager:head=A2",
+      "case_id": "C019-A31D45B54BECACEC",
+      "expected_result": "PROD-A31D45B54BECACEC:ChainBaseManager:head=A2",
+      "rust_test": "pinned_java_full_wire_merkle_vectors",
+      "fixture": {
+        "stable_id": "PROD-A31D45B54BECACEC",
+        "scenario_id": "valid-apply",
+        "java_case": "ChainBaseManager"
+      }
+    },
+    {
+      "stable_id": "PROD-DF00A77932CBFE76",
+      "source_identity": {
+        "stable_id": "PROD-DF00A77932CBFE76",
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java",
+        "line": 300,
+        "case": "containBlock"
+      },
+      "scenario_id": "side-fork",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "PROD-DF00A77932CBFE76",
+        "scenario_id": "side-fork",
+        "java_case": "containBlock"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "multi_branch_switch_rewinds_head_first_and_replays_oldest_first",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "PROD-DF00A77932CBFE76:containBlock:head=A2",
+      "case_id": "C019-DF00A77932CBFE76",
+      "expected_result": "PROD-DF00A77932CBFE76:containBlock:head=A2",
+      "rust_test": "multi_branch_switch_rewinds_head_first_and_replays_oldest_first",
+      "fixture": {
+        "stable_id": "PROD-DF00A77932CBFE76",
+        "scenario_id": "side-fork",
+        "java_case": "containBlock"
+      }
+    },
+    {
+      "stable_id": "PROD-DC143FE34271125B",
+      "source_identity": {
+        "stable_id": "PROD-DC143FE34271125B",
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java",
+        "line": 310,
+        "case": "containBlockInMainChain"
+      },
+      "scenario_id": "successful-switch",
+      "scenario_observation": "head=B3",
+      "fixture_selector": {
+        "stable_id": "PROD-DC143FE34271125B",
+        "scenario_id": "successful-switch",
+        "java_case": "containBlockInMainChain"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "multi_branch_switch_rewinds_head_first_and_replays_oldest_first",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "PROD-DC143FE34271125B:containBlockInMainChain:head=B3",
+      "case_id": "C019-DC143FE34271125B",
+      "expected_result": "PROD-DC143FE34271125B:containBlockInMainChain:head=B3",
+      "rust_test": "multi_branch_switch_rewinds_head_first_and_replays_oldest_first",
+      "fixture": {
+        "stable_id": "PROD-DC143FE34271125B",
+        "scenario_id": "successful-switch",
+        "java_case": "containBlockInMainChain"
+      }
+    },
+    {
+      "stable_id": "PROD-8851468653D418E6",
+      "source_identity": {
+        "stable_id": "PROD-8851468653D418E6",
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java",
+        "line": 318,
+        "case": "getKhaosDbHead"
+      },
+      "scenario_id": "successful-switch",
+      "scenario_observation": "head=B3",
+      "fixture_selector": {
+        "stable_id": "PROD-8851468653D418E6",
+        "scenario_id": "successful-switch",
+        "java_case": "getKhaosDbHead"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "multi_branch_switch_rewinds_head_first_and_replays_oldest_first",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "PROD-8851468653D418E6:getKhaosDbHead:head=B3",
+      "case_id": "C019-8851468653D418E6",
+      "expected_result": "PROD-8851468653D418E6:getKhaosDbHead:head=B3",
+      "rust_test": "multi_branch_switch_rewinds_head_first_and_replays_oldest_first",
+      "fixture": {
+        "stable_id": "PROD-8851468653D418E6",
+        "scenario_id": "successful-switch",
+        "java_case": "getKhaosDbHead"
+      }
+    },
+    {
+      "stable_id": "PROD-C1AD2355DA3D4D75",
+      "source_identity": {
+        "stable_id": "PROD-C1AD2355DA3D4D75",
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java",
+        "line": 337,
+        "case": "hasBlocks"
+      },
+      "scenario_id": "side-fork",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "PROD-C1AD2355DA3D4D75",
+        "scenario_id": "side-fork",
+        "java_case": "hasBlocks"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "multi_branch_switch_rewinds_head_first_and_replays_oldest_first",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "PROD-C1AD2355DA3D4D75:hasBlocks:head=A2",
+      "case_id": "C019-C1AD2355DA3D4D75",
+      "expected_result": "PROD-C1AD2355DA3D4D75:hasBlocks:head=A2",
+      "rust_test": "multi_branch_switch_rewinds_head_first_and_replays_oldest_first",
+      "fixture": {
+        "stable_id": "PROD-C1AD2355DA3D4D75",
+        "scenario_id": "side-fork",
+        "java_case": "hasBlocks"
+      }
+    },
+    {
+      "stable_id": "PROD-9BE312C35849A0D9",
+      "source_identity": {
+        "stable_id": "PROD-9BE312C35849A0D9",
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java",
+        "line": 341,
+        "case": "setBlockReference"
+      },
+      "scenario_id": "views-and-roots",
+      "scenario_observation": "observed=views-and-roots",
+      "fixture_selector": {
+        "stable_id": "PROD-9BE312C35849A0D9",
+        "scenario_id": "views-and-roots",
+        "java_case": "setBlockReference"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "PROD-9BE312C35849A0D9:setBlockReference:observed=views-and-roots",
+      "case_id": "C019-9BE312C35849A0D9",
+      "expected_result": "PROD-9BE312C35849A0D9:setBlockReference:observed=views-and-roots",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "PROD-9BE312C35849A0D9",
+        "scenario_id": "views-and-roots",
+        "java_case": "setBlockReference"
+      }
+    },
+    {
+      "stable_id": "PROD-576515C432E68887",
+      "source_identity": {
+        "stable_id": "PROD-576515C432E68887",
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java",
+        "line": 356,
+        "case": "getGenesisBlockId"
+      },
+      "scenario_id": "views-and-roots",
+      "scenario_observation": "observed=views-and-roots",
+      "fixture_selector": {
+        "stable_id": "PROD-576515C432E68887",
+        "scenario_id": "views-and-roots",
+        "java_case": "getGenesisBlockId"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "PROD-576515C432E68887:getGenesisBlockId:observed=views-and-roots",
+      "case_id": "C019-576515C432E68887",
+      "expected_result": "PROD-576515C432E68887:getGenesisBlockId:observed=views-and-roots",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "PROD-576515C432E68887",
+        "scenario_id": "views-and-roots",
+        "java_case": "getGenesisBlockId"
+      }
+    },
+    {
+      "stable_id": "PROD-9D295FF0453C658F",
+      "source_identity": {
+        "stable_id": "PROD-9D295FF0453C658F",
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java",
+        "line": 373,
+        "case": "getInstance"
+      },
+      "scenario_id": "valid-apply",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "PROD-9D295FF0453C658F",
+        "scenario_id": "valid-apply",
+        "java_case": "getInstance"
+      },
+      "rust_target": "c019_block_apply",
+      "rust_test_symbol": "pinned_java_full_wire_merkle_vectors",
+      "canonical_command": "cargo test -p tron-execution --test c019_block_apply --locked",
+      "row_result": "PROD-9D295FF0453C658F:getInstance:head=A2",
+      "case_id": "C019-9D295FF0453C658F",
+      "expected_result": "PROD-9D295FF0453C658F:getInstance:head=A2",
+      "rust_test": "pinned_java_full_wire_merkle_vectors",
+      "fixture": {
+        "stable_id": "PROD-9D295FF0453C658F",
+        "scenario_id": "valid-apply",
+        "java_case": "getInstance"
+      }
+    },
+    {
+      "stable_id": "PROD-C9B9C4FC24CEC811",
+      "source_identity": {
+        "stable_id": "PROD-C9B9C4FC24CEC811",
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java",
+        "line": 377,
+        "case": "init"
+      },
+      "scenario_id": "valid-apply",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "PROD-C9B9C4FC24CEC811",
+        "scenario_id": "valid-apply",
+        "java_case": "init"
+      },
+      "rust_target": "c019_block_apply",
+      "rust_test_symbol": "pinned_java_full_wire_merkle_vectors",
+      "canonical_command": "cargo test -p tron-execution --test c019_block_apply --locked",
+      "row_result": "PROD-C9B9C4FC24CEC811:init:head=A2",
+      "case_id": "C019-C9B9C4FC24CEC811",
+      "expected_result": "PROD-C9B9C4FC24CEC811:init:head=A2",
+      "rust_test": "pinned_java_full_wire_merkle_vectors",
+      "fixture": {
+        "stable_id": "PROD-C9B9C4FC24CEC811",
+        "scenario_id": "valid-apply",
+        "java_case": "init"
+      }
+    },
+    {
+      "stable_id": "PROD-48A8F51B6D3D4BE5",
+      "source_identity": {
+        "stable_id": "PROD-48A8F51B6D3D4BE5",
+        "path": "java-tron/chainbase/src/main/java/org/tron/core/ChainBaseManager.java",
+        "line": 408,
+        "case": "NodeType"
+      },
+      "scenario_id": "views-and-roots",
+      "scenario_observation": "observed=views-and-roots",
+      "fixture_selector": {
+        "stable_id": "PROD-48A8F51B6D3D4BE5",
+        "scenario_id": "views-and-roots",
+        "java_case": "NodeType"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "PROD-48A8F51B6D3D4BE5:NodeType:observed=views-and-roots",
+      "case_id": "C019-48A8F51B6D3D4BE5",
+      "expected_result": "PROD-48A8F51B6D3D4BE5:NodeType:observed=views-and-roots",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "PROD-48A8F51B6D3D4BE5",
+        "scenario_id": "views-and-roots",
+        "java_case": "NodeType"
+      }
+    },
+    {
+      "stable_id": "TCASE-67A94CD6B2AFB89B",
+      "source_identity": {
+        "stable_id": "TCASE-67A94CD6B2AFB89B",
+        "path": "java-tron/framework/src/test/java/org/tron/core/BlockUtilTest.java",
+        "line": 48,
+        "case": "testBlockUtil"
+      },
+      "scenario_id": "valid-apply",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-67A94CD6B2AFB89B",
+        "scenario_id": "valid-apply",
+        "java_case": "testBlockUtil"
+      },
+      "rust_target": "c019_block_apply",
+      "rust_test_symbol": "pinned_java_full_wire_merkle_vectors",
+      "canonical_command": "cargo test -p tron-execution --test c019_block_apply --locked",
+      "row_result": "TCASE-67A94CD6B2AFB89B:testBlockUtil:head=A2",
+      "case_id": "C019-67A94CD6B2AFB89B",
+      "expected_result": "TCASE-67A94CD6B2AFB89B:testBlockUtil:head=A2",
+      "rust_test": "pinned_java_full_wire_merkle_vectors",
+      "fixture": {
+        "stable_id": "TCASE-67A94CD6B2AFB89B",
+        "scenario_id": "valid-apply",
+        "java_case": "testBlockUtil"
+      }
+    },
+    {
+      "stable_id": "TCASE-8255F7BD68AF32A9",
+      "source_identity": {
+        "stable_id": "TCASE-8255F7BD68AF32A9",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 63,
+        "case": "testAccountResourceInsufficientExceptionMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-8255F7BD68AF32A9",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testAccountResourceInsufficientExceptionMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-8255F7BD68AF32A9:testAccountResourceInsufficientExceptionMessage:head=A2",
+      "case_id": "C019-8255F7BD68AF32A9",
+      "expected_result": "TCASE-8255F7BD68AF32A9:testAccountResourceInsufficientExceptionMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-8255F7BD68AF32A9",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testAccountResourceInsufficientExceptionMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-EB837455DECAA928",
+      "source_identity": {
+        "stable_id": "TCASE-EB837455DECAA928",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 72,
+        "case": "testBadBlockExceptionWithNoMessageAndDefaultType"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-EB837455DECAA928",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadBlockExceptionWithNoMessageAndDefaultType"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-EB837455DECAA928:testBadBlockExceptionWithNoMessageAndDefaultType:head=A2",
+      "case_id": "C019-EB837455DECAA928",
+      "expected_result": "TCASE-EB837455DECAA928:testBadBlockExceptionWithNoMessageAndDefaultType:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-EB837455DECAA928",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadBlockExceptionWithNoMessageAndDefaultType"
+      }
+    },
+    {
+      "stable_id": "TCASE-703871B74A56F7F5",
+      "source_identity": {
+        "stable_id": "TCASE-703871B74A56F7F5",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 81,
+        "case": "testBadBlockExceptionWithMessageAndDefaultType"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-703871B74A56F7F5",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadBlockExceptionWithMessageAndDefaultType"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-703871B74A56F7F5:testBadBlockExceptionWithMessageAndDefaultType:head=A2",
+      "case_id": "C019-703871B74A56F7F5",
+      "expected_result": "TCASE-703871B74A56F7F5:testBadBlockExceptionWithMessageAndDefaultType:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-703871B74A56F7F5",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadBlockExceptionWithMessageAndDefaultType"
+      }
+    },
+    {
+      "stable_id": "TCASE-97943D6DF4551FB0",
+      "source_identity": {
+        "stable_id": "TCASE-97943D6DF4551FB0",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 92,
+        "case": "testBadBlockExceptionWithSpecificTypeAndMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-97943D6DF4551FB0",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadBlockExceptionWithSpecificTypeAndMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-97943D6DF4551FB0:testBadBlockExceptionWithSpecificTypeAndMessage:head=A2",
+      "case_id": "C019-97943D6DF4551FB0",
+      "expected_result": "TCASE-97943D6DF4551FB0:testBadBlockExceptionWithSpecificTypeAndMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-97943D6DF4551FB0",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadBlockExceptionWithSpecificTypeAndMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-9B65109F6360E9F2",
+      "source_identity": {
+        "stable_id": "TCASE-9B65109F6360E9F2",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 103,
+        "case": "testTypeEnumValues"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-9B65109F6360E9F2",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTypeEnumValues"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-9B65109F6360E9F2:testTypeEnumValues:head=A2",
+      "case_id": "C019-9B65109F6360E9F2",
+      "expected_result": "TCASE-9B65109F6360E9F2:testTypeEnumValues:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-9B65109F6360E9F2",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTypeEnumValues"
+      }
+    },
+    {
+      "stable_id": "TCASE-3677149AB306BA96",
+      "source_identity": {
+        "stable_id": "TCASE-3677149AB306BA96",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 110,
+        "case": "testBadItemExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-3677149AB306BA96",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadItemExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-3677149AB306BA96:testBadItemExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-3677149AB306BA96",
+      "expected_result": "TCASE-3677149AB306BA96:testBadItemExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-3677149AB306BA96",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadItemExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-16F698FAB5A37854",
+      "source_identity": {
+        "stable_id": "TCASE-16F698FAB5A37854",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 116,
+        "case": "testBadItemExceptionMessageConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-16F698FAB5A37854",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadItemExceptionMessageConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-16F698FAB5A37854:testBadItemExceptionMessageConstructor:head=A2",
+      "case_id": "C019-16F698FAB5A37854",
+      "expected_result": "TCASE-16F698FAB5A37854:testBadItemExceptionMessageConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-16F698FAB5A37854",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadItemExceptionMessageConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-540CC4353CDA1E61",
+      "source_identity": {
+        "stable_id": "TCASE-540CC4353CDA1E61",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 125,
+        "case": "testBadItemExceptionMessageAndCauseConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-540CC4353CDA1E61",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadItemExceptionMessageAndCauseConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-540CC4353CDA1E61:testBadItemExceptionMessageAndCauseConstructor:head=A2",
+      "case_id": "C019-540CC4353CDA1E61",
+      "expected_result": "TCASE-540CC4353CDA1E61:testBadItemExceptionMessageAndCauseConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-540CC4353CDA1E61",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadItemExceptionMessageAndCauseConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-AF1E53EB7ED90208",
+      "source_identity": {
+        "stable_id": "TCASE-AF1E53EB7ED90208",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 135,
+        "case": "testBadNumberBlockExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-AF1E53EB7ED90208",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadNumberBlockExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-AF1E53EB7ED90208:testBadNumberBlockExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-AF1E53EB7ED90208",
+      "expected_result": "TCASE-AF1E53EB7ED90208:testBadNumberBlockExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-AF1E53EB7ED90208",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadNumberBlockExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-55906A87A23B6735",
+      "source_identity": {
+        "stable_id": "TCASE-55906A87A23B6735",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 142,
+        "case": "testBadNumberBlockExceptionMessageConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-55906A87A23B6735",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadNumberBlockExceptionMessageConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-55906A87A23B6735:testBadNumberBlockExceptionMessageConstructor:head=A2",
+      "case_id": "C019-55906A87A23B6735",
+      "expected_result": "TCASE-55906A87A23B6735:testBadNumberBlockExceptionMessageConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-55906A87A23B6735",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadNumberBlockExceptionMessageConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-9603DCEF619D5626",
+      "source_identity": {
+        "stable_id": "TCASE-9603DCEF619D5626",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 150,
+        "case": "testBadTransactionExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-9603DCEF619D5626",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadTransactionExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-9603DCEF619D5626:testBadTransactionExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-9603DCEF619D5626",
+      "expected_result": "TCASE-9603DCEF619D5626:testBadTransactionExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-9603DCEF619D5626",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadTransactionExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-3671504CA2CF8400",
+      "source_identity": {
+        "stable_id": "TCASE-3671504CA2CF8400",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 158,
+        "case": "testBadTransactionExceptionMessageConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-3671504CA2CF8400",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadTransactionExceptionMessageConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-3671504CA2CF8400:testBadTransactionExceptionMessageConstructor:head=A2",
+      "case_id": "C019-3671504CA2CF8400",
+      "expected_result": "TCASE-3671504CA2CF8400:testBadTransactionExceptionMessageConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-3671504CA2CF8400",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadTransactionExceptionMessageConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-19BC5BA244EAA7AD",
+      "source_identity": {
+        "stable_id": "TCASE-19BC5BA244EAA7AD",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 170,
+        "case": "testBadTransactionExceptionMessageAndCauseConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-19BC5BA244EAA7AD",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadTransactionExceptionMessageAndCauseConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-19BC5BA244EAA7AD:testBadTransactionExceptionMessageAndCauseConstructor:head=A2",
+      "case_id": "C019-19BC5BA244EAA7AD",
+      "expected_result": "TCASE-19BC5BA244EAA7AD:testBadTransactionExceptionMessageAndCauseConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-19BC5BA244EAA7AD",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBadTransactionExceptionMessageAndCauseConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-17205B30DDC14E0B",
+      "source_identity": {
+        "stable_id": "TCASE-17205B30DDC14E0B",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 184,
+        "case": "testBalanceInsufficientExceptionWithNoMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-17205B30DDC14E0B",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBalanceInsufficientExceptionWithNoMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-17205B30DDC14E0B:testBalanceInsufficientExceptionWithNoMessage:head=A2",
+      "case_id": "C019-17205B30DDC14E0B",
+      "expected_result": "TCASE-17205B30DDC14E0B:testBalanceInsufficientExceptionWithNoMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-17205B30DDC14E0B",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBalanceInsufficientExceptionWithNoMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-C6F5C9BA1C71F8F3",
+      "source_identity": {
+        "stable_id": "TCASE-C6F5C9BA1C71F8F3",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 190,
+        "case": "testBalanceInsufficientExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-C6F5C9BA1C71F8F3",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBalanceInsufficientExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-C6F5C9BA1C71F8F3:testBalanceInsufficientExceptionWithMessage:head=A2",
+      "case_id": "C019-C6F5C9BA1C71F8F3",
+      "expected_result": "TCASE-C6F5C9BA1C71F8F3:testBalanceInsufficientExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-C6F5C9BA1C71F8F3",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testBalanceInsufficientExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-CAFABB16F5363C64",
+      "source_identity": {
+        "stable_id": "TCASE-CAFABB16F5363C64",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 197,
+        "case": "testCancelExceptionWithNoMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-CAFABB16F5363C64",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testCancelExceptionWithNoMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-CAFABB16F5363C64:testCancelExceptionWithNoMessage:head=A2",
+      "case_id": "C019-CAFABB16F5363C64",
+      "expected_result": "TCASE-CAFABB16F5363C64:testCancelExceptionWithNoMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-CAFABB16F5363C64",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testCancelExceptionWithNoMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-C99DC9342611A16F",
+      "source_identity": {
+        "stable_id": "TCASE-C99DC9342611A16F",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 204,
+        "case": "testCancelExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-C99DC9342611A16F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testCancelExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-C99DC9342611A16F:testCancelExceptionWithMessage:head=A2",
+      "case_id": "C019-C99DC9342611A16F",
+      "expected_result": "TCASE-C99DC9342611A16F:testCancelExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-C99DC9342611A16F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testCancelExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-FC6CA5A21884CB28",
+      "source_identity": {
+        "stable_id": "TCASE-FC6CA5A21884CB28",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 213,
+        "case": "testCipherExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-FC6CA5A21884CB28",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testCipherExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-FC6CA5A21884CB28:testCipherExceptionWithMessage:head=A2",
+      "case_id": "C019-FC6CA5A21884CB28",
+      "expected_result": "TCASE-FC6CA5A21884CB28:testCipherExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-FC6CA5A21884CB28",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testCipherExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-A3BB2528DE2590C8",
+      "source_identity": {
+        "stable_id": "TCASE-A3BB2528DE2590C8",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 224,
+        "case": "testCipherExceptionWithCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-A3BB2528DE2590C8",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testCipherExceptionWithCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-A3BB2528DE2590C8:testCipherExceptionWithCause:head=A2",
+      "case_id": "C019-A3BB2528DE2590C8",
+      "expected_result": "TCASE-A3BB2528DE2590C8:testCipherExceptionWithCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-A3BB2528DE2590C8",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testCipherExceptionWithCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-F82946538E0BE673",
+      "source_identity": {
+        "stable_id": "TCASE-F82946538E0BE673",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 234,
+        "case": "testCipherExceptionWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-F82946538E0BE673",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testCipherExceptionWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-F82946538E0BE673:testCipherExceptionWithMessageAndCause:head=A2",
+      "case_id": "C019-F82946538E0BE673",
+      "expected_result": "TCASE-F82946538E0BE673:testCipherExceptionWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-F82946538E0BE673",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testCipherExceptionWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-1F001CB629A912CF",
+      "source_identity": {
+        "stable_id": "TCASE-1F001CB629A912CF",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 246,
+        "case": "testContractExeExceptionWithNoMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-1F001CB629A912CF",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractExeExceptionWithNoMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-1F001CB629A912CF:testContractExeExceptionWithNoMessage:head=A2",
+      "case_id": "C019-1F001CB629A912CF",
+      "expected_result": "TCASE-1F001CB629A912CF:testContractExeExceptionWithNoMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-1F001CB629A912CF",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractExeExceptionWithNoMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-A30DC833A5CB0581",
+      "source_identity": {
+        "stable_id": "TCASE-A30DC833A5CB0581",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 253,
+        "case": "testContractExeExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-A30DC833A5CB0581",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractExeExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-A30DC833A5CB0581:testContractExeExceptionWithMessage:head=A2",
+      "case_id": "C019-A30DC833A5CB0581",
+      "expected_result": "TCASE-A30DC833A5CB0581:testContractExeExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-A30DC833A5CB0581",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractExeExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-98AC2BA406BAF8D5",
+      "source_identity": {
+        "stable_id": "TCASE-98AC2BA406BAF8D5",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 262,
+        "case": "testContractSizeNotEqualToOneExceptionWithNoMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-98AC2BA406BAF8D5",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractSizeNotEqualToOneExceptionWithNoMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-98AC2BA406BAF8D5:testContractSizeNotEqualToOneExceptionWithNoMessage:head=A2",
+      "case_id": "C019-98AC2BA406BAF8D5",
+      "expected_result": "TCASE-98AC2BA406BAF8D5:testContractSizeNotEqualToOneExceptionWithNoMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-98AC2BA406BAF8D5",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractSizeNotEqualToOneExceptionWithNoMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-7AFEBEF200E2FE07",
+      "source_identity": {
+        "stable_id": "TCASE-7AFEBEF200E2FE07",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 269,
+        "case": "testContractSizeNotEqualToOneExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-7AFEBEF200E2FE07",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractSizeNotEqualToOneExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-7AFEBEF200E2FE07:testContractSizeNotEqualToOneExceptionWithMessage:head=A2",
+      "case_id": "C019-7AFEBEF200E2FE07",
+      "expected_result": "TCASE-7AFEBEF200E2FE07:testContractSizeNotEqualToOneExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-7AFEBEF200E2FE07",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractSizeNotEqualToOneExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-FDD4BB0F3D5B0C2E",
+      "source_identity": {
+        "stable_id": "TCASE-FDD4BB0F3D5B0C2E",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 279,
+        "case": "testContractValidateExceptionWithNoMessageOrThrowable"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-FDD4BB0F3D5B0C2E",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractValidateExceptionWithNoMessageOrThrowable"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-FDD4BB0F3D5B0C2E:testContractValidateExceptionWithNoMessageOrThrowable:head=A2",
+      "case_id": "C019-FDD4BB0F3D5B0C2E",
+      "expected_result": "TCASE-FDD4BB0F3D5B0C2E:testContractValidateExceptionWithNoMessageOrThrowable:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-FDD4BB0F3D5B0C2E",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractValidateExceptionWithNoMessageOrThrowable"
+      }
+    },
+    {
+      "stable_id": "TCASE-8170F9CFC5DC2CB0",
+      "source_identity": {
+        "stable_id": "TCASE-8170F9CFC5DC2CB0",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 288,
+        "case": "testContractValidateExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-8170F9CFC5DC2CB0",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractValidateExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-8170F9CFC5DC2CB0:testContractValidateExceptionWithMessage:head=A2",
+      "case_id": "C019-8170F9CFC5DC2CB0",
+      "expected_result": "TCASE-8170F9CFC5DC2CB0:testContractValidateExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-8170F9CFC5DC2CB0",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractValidateExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-E03ABFD50C1A65E2",
+      "source_identity": {
+        "stable_id": "TCASE-E03ABFD50C1A65E2",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 299,
+        "case": "testContractValidateExceptionWithMessageAndThrowable"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-E03ABFD50C1A65E2",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractValidateExceptionWithMessageAndThrowable"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-E03ABFD50C1A65E2:testContractValidateExceptionWithMessageAndThrowable:head=A2",
+      "case_id": "C019-E03ABFD50C1A65E2",
+      "expected_result": "TCASE-E03ABFD50C1A65E2:testContractValidateExceptionWithMessageAndThrowable:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-E03ABFD50C1A65E2",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testContractValidateExceptionWithMessageAndThrowable"
+      }
+    },
+    {
+      "stable_id": "TCASE-9C20EA6AA2C77746",
+      "source_identity": {
+        "stable_id": "TCASE-9C20EA6AA2C77746",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 312,
+        "case": "testDupTransactionExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-9C20EA6AA2C77746",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testDupTransactionExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-9C20EA6AA2C77746:testDupTransactionExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-9C20EA6AA2C77746",
+      "expected_result": "TCASE-9C20EA6AA2C77746:testDupTransactionExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-9C20EA6AA2C77746",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testDupTransactionExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-0F28453F1B317BB2",
+      "source_identity": {
+        "stable_id": "TCASE-0F28453F1B317BB2",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 320,
+        "case": "testDupTransactionExceptionMessageConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-0F28453F1B317BB2",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testDupTransactionExceptionMessageConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-0F28453F1B317BB2:testDupTransactionExceptionMessageConstructor:head=A2",
+      "case_id": "C019-0F28453F1B317BB2",
+      "expected_result": "TCASE-0F28453F1B317BB2:testDupTransactionExceptionMessageConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-0F28453F1B317BB2",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testDupTransactionExceptionMessageConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-85E2DCBA846B99BD",
+      "source_identity": {
+        "stable_id": "TCASE-85E2DCBA846B99BD",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 330,
+        "case": "testEventBloomExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-85E2DCBA846B99BD",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testEventBloomExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-85E2DCBA846B99BD:testEventBloomExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-85E2DCBA846B99BD",
+      "expected_result": "TCASE-85E2DCBA846B99BD:testEventBloomExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-85E2DCBA846B99BD",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testEventBloomExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-4A50038E063F7D46",
+      "source_identity": {
+        "stable_id": "TCASE-4A50038E063F7D46",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 340,
+        "case": "testEventBloomExceptionMessageConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-4A50038E063F7D46",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testEventBloomExceptionMessageConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-4A50038E063F7D46:testEventBloomExceptionMessageConstructor:head=A2",
+      "case_id": "C019-4A50038E063F7D46",
+      "expected_result": "TCASE-4A50038E063F7D46:testEventBloomExceptionMessageConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-4A50038E063F7D46",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testEventBloomExceptionMessageConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-754E8FCFC820E0E3",
+      "source_identity": {
+        "stable_id": "TCASE-754E8FCFC820E0E3",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 352,
+        "case": "testEventBloomExceptionMessageAndCauseConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-754E8FCFC820E0E3",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testEventBloomExceptionMessageAndCauseConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-754E8FCFC820E0E3:testEventBloomExceptionMessageAndCauseConstructor:head=A2",
+      "case_id": "C019-754E8FCFC820E0E3",
+      "expected_result": "TCASE-754E8FCFC820E0E3:testEventBloomExceptionMessageAndCauseConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-754E8FCFC820E0E3",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testEventBloomExceptionMessageAndCauseConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-E7EA0D102AC71E51",
+      "source_identity": {
+        "stable_id": "TCASE-E7EA0D102AC71E51",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 365,
+        "case": "testHeaderNotFoundDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-E7EA0D102AC71E51",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testHeaderNotFoundDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-E7EA0D102AC71E51:testHeaderNotFoundDefaultConstructor:head=A2",
+      "case_id": "C019-E7EA0D102AC71E51",
+      "expected_result": "TCASE-E7EA0D102AC71E51:testHeaderNotFoundDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-E7EA0D102AC71E51",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testHeaderNotFoundDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-5D9F8635D142CE1E",
+      "source_identity": {
+        "stable_id": "TCASE-5D9F8635D142CE1E",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 374,
+        "case": "testHeaderNotFoundMessageConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-5D9F8635D142CE1E",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testHeaderNotFoundMessageConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-5D9F8635D142CE1E:testHeaderNotFoundMessageConstructor:head=A2",
+      "case_id": "C019-5D9F8635D142CE1E",
+      "expected_result": "TCASE-5D9F8635D142CE1E:testHeaderNotFoundMessageConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-5D9F8635D142CE1E",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testHeaderNotFoundMessageConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-DDCA2A2A7DF83D03",
+      "source_identity": {
+        "stable_id": "TCASE-DDCA2A2A7DF83D03",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 384,
+        "case": "testHighFreqExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-DDCA2A2A7DF83D03",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testHighFreqExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-DDCA2A2A7DF83D03:testHighFreqExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-DDCA2A2A7DF83D03",
+      "expected_result": "TCASE-DDCA2A2A7DF83D03:testHighFreqExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-DDCA2A2A7DF83D03",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testHighFreqExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-0FFFCCDD97053DB7",
+      "source_identity": {
+        "stable_id": "TCASE-0FFFCCDD97053DB7",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 393,
+        "case": "testHighFreqExceptionMessageConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-0FFFCCDD97053DB7",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testHighFreqExceptionMessageConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-0FFFCCDD97053DB7:testHighFreqExceptionMessageConstructor:head=A2",
+      "case_id": "C019-0FFFCCDD97053DB7",
+      "expected_result": "TCASE-0FFFCCDD97053DB7:testHighFreqExceptionMessageConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-0FFFCCDD97053DB7",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testHighFreqExceptionMessageConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-719A4AEA20097030",
+      "source_identity": {
+        "stable_id": "TCASE-719A4AEA20097030",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 404,
+        "case": "testItemNotFoundExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-719A4AEA20097030",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testItemNotFoundExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-719A4AEA20097030:testItemNotFoundExceptionWithMessage:head=A2",
+      "case_id": "C019-719A4AEA20097030",
+      "expected_result": "TCASE-719A4AEA20097030:testItemNotFoundExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-719A4AEA20097030",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testItemNotFoundExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-7DAF7A4CADA66733",
+      "source_identity": {
+        "stable_id": "TCASE-7DAF7A4CADA66733",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 415,
+        "case": "testItemNotFoundExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-7DAF7A4CADA66733",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testItemNotFoundExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-7DAF7A4CADA66733:testItemNotFoundExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-7DAF7A4CADA66733",
+      "expected_result": "TCASE-7DAF7A4CADA66733:testItemNotFoundExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-7DAF7A4CADA66733",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testItemNotFoundExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-D0A8080BBEE7A6D0",
+      "source_identity": {
+        "stable_id": "TCASE-D0A8080BBEE7A6D0",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 425,
+        "case": "testItemNotFoundExceptionWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-D0A8080BBEE7A6D0",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testItemNotFoundExceptionWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-D0A8080BBEE7A6D0:testItemNotFoundExceptionWithMessageAndCause:head=A2",
+      "case_id": "C019-D0A8080BBEE7A6D0",
+      "expected_result": "TCASE-D0A8080BBEE7A6D0:testItemNotFoundExceptionWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-D0A8080BBEE7A6D0",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testItemNotFoundExceptionWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-E82DC11EC39CC002",
+      "source_identity": {
+        "stable_id": "TCASE-E82DC11EC39CC002",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 437,
+        "case": "testJsonRpcInternalExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-E82DC11EC39CC002",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInternalExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-E82DC11EC39CC002:testJsonRpcInternalExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-E82DC11EC39CC002",
+      "expected_result": "TCASE-E82DC11EC39CC002:testJsonRpcInternalExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-E82DC11EC39CC002",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInternalExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-3FDE27107F830984",
+      "source_identity": {
+        "stable_id": "TCASE-3FDE27107F830984",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 447,
+        "case": "testJsonRpcInternalExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-3FDE27107F830984",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInternalExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-3FDE27107F830984:testJsonRpcInternalExceptionWithMessage:head=A2",
+      "case_id": "C019-3FDE27107F830984",
+      "expected_result": "TCASE-3FDE27107F830984:testJsonRpcInternalExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-3FDE27107F830984",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInternalExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-24DAD049DE8CC13F",
+      "source_identity": {
+        "stable_id": "TCASE-24DAD049DE8CC13F",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 458,
+        "case": "testJsonRpcInternalExceptionWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-24DAD049DE8CC13F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInternalExceptionWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-24DAD049DE8CC13F:testJsonRpcInternalExceptionWithMessageAndCause:head=A2",
+      "case_id": "C019-24DAD049DE8CC13F",
+      "expected_result": "TCASE-24DAD049DE8CC13F:testJsonRpcInternalExceptionWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-24DAD049DE8CC13F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInternalExceptionWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-091458C7FBE3F1F8",
+      "source_identity": {
+        "stable_id": "TCASE-091458C7FBE3F1F8",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 470,
+        "case": "testJsonRpcInvalidParamsExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-091458C7FBE3F1F8",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInvalidParamsExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-091458C7FBE3F1F8:testJsonRpcInvalidParamsExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-091458C7FBE3F1F8",
+      "expected_result": "TCASE-091458C7FBE3F1F8:testJsonRpcInvalidParamsExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-091458C7FBE3F1F8",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInvalidParamsExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-7E8A8E00D2BD7783",
+      "source_identity": {
+        "stable_id": "TCASE-7E8A8E00D2BD7783",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 480,
+        "case": "testJsonRpcInvalidParamsExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-7E8A8E00D2BD7783",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInvalidParamsExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-7E8A8E00D2BD7783:testJsonRpcInvalidParamsExceptionWithMessage:head=A2",
+      "case_id": "C019-7E8A8E00D2BD7783",
+      "expected_result": "TCASE-7E8A8E00D2BD7783:testJsonRpcInvalidParamsExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-7E8A8E00D2BD7783",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInvalidParamsExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-F05D7D25A9B15CEB",
+      "source_identity": {
+        "stable_id": "TCASE-F05D7D25A9B15CEB",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 491,
+        "case": "testJsonRpcInvalidParamsExceptionWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-F05D7D25A9B15CEB",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInvalidParamsExceptionWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-F05D7D25A9B15CEB:testJsonRpcInvalidParamsExceptionWithMessageAndCause:head=A2",
+      "case_id": "C019-F05D7D25A9B15CEB",
+      "expected_result": "TCASE-F05D7D25A9B15CEB:testJsonRpcInvalidParamsExceptionWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-F05D7D25A9B15CEB",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInvalidParamsExceptionWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-B69B08B9202C1CA7",
+      "source_identity": {
+        "stable_id": "TCASE-B69B08B9202C1CA7",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 503,
+        "case": "testJsonRpcInvalidRequestExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-B69B08B9202C1CA7",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInvalidRequestExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-B69B08B9202C1CA7:testJsonRpcInvalidRequestExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-B69B08B9202C1CA7",
+      "expected_result": "TCASE-B69B08B9202C1CA7:testJsonRpcInvalidRequestExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-B69B08B9202C1CA7",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInvalidRequestExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-8BF3EB56D9001245",
+      "source_identity": {
+        "stable_id": "TCASE-8BF3EB56D9001245",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 511,
+        "case": "testJsonRpcInvalidRequestExceptionConstructorWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-8BF3EB56D9001245",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInvalidRequestExceptionConstructorWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-8BF3EB56D9001245:testJsonRpcInvalidRequestExceptionConstructorWithMessage:head=A2",
+      "case_id": "C019-8BF3EB56D9001245",
+      "expected_result": "TCASE-8BF3EB56D9001245:testJsonRpcInvalidRequestExceptionConstructorWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-8BF3EB56D9001245",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInvalidRequestExceptionConstructorWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-51B088523A8B6D9A",
+      "source_identity": {
+        "stable_id": "TCASE-51B088523A8B6D9A",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 520,
+        "case": "testJsonRpcInvalidRequestExceptionConstructorWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-51B088523A8B6D9A",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInvalidRequestExceptionConstructorWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-51B088523A8B6D9A:testJsonRpcInvalidRequestExceptionConstructorWithMessageAndCause:head=A2",
+      "case_id": "C019-51B088523A8B6D9A",
+      "expected_result": "TCASE-51B088523A8B6D9A:testJsonRpcInvalidRequestExceptionConstructorWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-51B088523A8B6D9A",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcInvalidRequestExceptionConstructorWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-CB6F0D4052AF40B4",
+      "source_identity": {
+        "stable_id": "TCASE-CB6F0D4052AF40B4",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 530,
+        "case": "testJsonRpcMethodNotFoundExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-CB6F0D4052AF40B4",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcMethodNotFoundExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-CB6F0D4052AF40B4:testJsonRpcMethodNotFoundExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-CB6F0D4052AF40B4",
+      "expected_result": "TCASE-CB6F0D4052AF40B4:testJsonRpcMethodNotFoundExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-CB6F0D4052AF40B4",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcMethodNotFoundExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-DC248E0426A9133F",
+      "source_identity": {
+        "stable_id": "TCASE-DC248E0426A9133F",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 538,
+        "case": "testJsonRpcMethodNotFoundExceptionConstructorWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-DC248E0426A9133F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcMethodNotFoundExceptionConstructorWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-DC248E0426A9133F:testJsonRpcMethodNotFoundExceptionConstructorWithMessage:head=A2",
+      "case_id": "C019-DC248E0426A9133F",
+      "expected_result": "TCASE-DC248E0426A9133F:testJsonRpcMethodNotFoundExceptionConstructorWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-DC248E0426A9133F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcMethodNotFoundExceptionConstructorWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-D67755AB226A86E6",
+      "source_identity": {
+        "stable_id": "TCASE-D67755AB226A86E6",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 547,
+        "case": "testJsonRpcMethodNotFoundExceptionConstructorWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-D67755AB226A86E6",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcMethodNotFoundExceptionConstructorWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-D67755AB226A86E6:testJsonRpcMethodNotFoundExceptionConstructorWithMessageAndCause:head=A2",
+      "case_id": "C019-D67755AB226A86E6",
+      "expected_result": "TCASE-D67755AB226A86E6:testJsonRpcMethodNotFoundExceptionConstructorWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-D67755AB226A86E6",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcMethodNotFoundExceptionConstructorWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-FC7E356640BC0F34",
+      "source_identity": {
+        "stable_id": "TCASE-FC7E356640BC0F34",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 557,
+        "case": "testJsonRpcTooManyResultExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-FC7E356640BC0F34",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcTooManyResultExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-FC7E356640BC0F34:testJsonRpcTooManyResultExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-FC7E356640BC0F34",
+      "expected_result": "TCASE-FC7E356640BC0F34:testJsonRpcTooManyResultExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-FC7E356640BC0F34",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcTooManyResultExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-DA44D751DD1BA187",
+      "source_identity": {
+        "stable_id": "TCASE-DA44D751DD1BA187",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 565,
+        "case": "testJsonRpcTooManyResultExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-DA44D751DD1BA187",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcTooManyResultExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-DA44D751DD1BA187:testJsonRpcTooManyResultExceptionWithMessage:head=A2",
+      "case_id": "C019-DA44D751DD1BA187",
+      "expected_result": "TCASE-DA44D751DD1BA187:testJsonRpcTooManyResultExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-DA44D751DD1BA187",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcTooManyResultExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-85187A83EE09D781",
+      "source_identity": {
+        "stable_id": "TCASE-85187A83EE09D781",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 574,
+        "case": "testJsonRpcTooManyResultExceptionWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-85187A83EE09D781",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcTooManyResultExceptionWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-85187A83EE09D781:testJsonRpcTooManyResultExceptionWithMessageAndCause:head=A2",
+      "case_id": "C019-85187A83EE09D781",
+      "expected_result": "TCASE-85187A83EE09D781:testJsonRpcTooManyResultExceptionWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-85187A83EE09D781",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testJsonRpcTooManyResultExceptionWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-0EBC8A00D010CC80",
+      "source_identity": {
+        "stable_id": "TCASE-0EBC8A00D010CC80",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 584,
+        "case": "testNonCommonBlockExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-0EBC8A00D010CC80",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testNonCommonBlockExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-0EBC8A00D010CC80:testNonCommonBlockExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-0EBC8A00D010CC80",
+      "expected_result": "TCASE-0EBC8A00D010CC80:testNonCommonBlockExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-0EBC8A00D010CC80",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testNonCommonBlockExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-D133462D243FD052",
+      "source_identity": {
+        "stable_id": "TCASE-D133462D243FD052",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 592,
+        "case": "testNonCommonBlockExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-D133462D243FD052",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testNonCommonBlockExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-D133462D243FD052:testNonCommonBlockExceptionWithMessage:head=A2",
+      "case_id": "C019-D133462D243FD052",
+      "expected_result": "TCASE-D133462D243FD052:testNonCommonBlockExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-D133462D243FD052",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testNonCommonBlockExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-D3247C398E1A71DC",
+      "source_identity": {
+        "stable_id": "TCASE-D3247C398E1A71DC",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 601,
+        "case": "testNonCommonBlockExceptionWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-D3247C398E1A71DC",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testNonCommonBlockExceptionWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-D3247C398E1A71DC:testNonCommonBlockExceptionWithMessageAndCause:head=A2",
+      "case_id": "C019-D3247C398E1A71DC",
+      "expected_result": "TCASE-D3247C398E1A71DC:testNonCommonBlockExceptionWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-D3247C398E1A71DC",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testNonCommonBlockExceptionWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-E7C83E4B91A3BDC4",
+      "source_identity": {
+        "stable_id": "TCASE-E7C83E4B91A3BDC4",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 611,
+        "case": "testDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-E7C83E4B91A3BDC4",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-E7C83E4B91A3BDC4:testDefaultConstructor:head=A2",
+      "case_id": "C019-E7C83E4B91A3BDC4",
+      "expected_result": "TCASE-E7C83E4B91A3BDC4:testDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-E7C83E4B91A3BDC4",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-CB64714E49CCDA5F",
+      "source_identity": {
+        "stable_id": "TCASE-CB64714E49CCDA5F",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 619,
+        "case": "testConstructorWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-CB64714E49CCDA5F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testConstructorWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-CB64714E49CCDA5F:testConstructorWithMessage:head=A2",
+      "case_id": "C019-CB64714E49CCDA5F",
+      "expected_result": "TCASE-CB64714E49CCDA5F:testConstructorWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-CB64714E49CCDA5F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testConstructorWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-B1DF0A1FE0D5A702",
+      "source_identity": {
+        "stable_id": "TCASE-B1DF0A1FE0D5A702",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 628,
+        "case": "testConstructorWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-B1DF0A1FE0D5A702",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testConstructorWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-B1DF0A1FE0D5A702:testConstructorWithMessageAndCause:head=A2",
+      "case_id": "C019-B1DF0A1FE0D5A702",
+      "expected_result": "TCASE-B1DF0A1FE0D5A702:testConstructorWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-B1DF0A1FE0D5A702",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testConstructorWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-65104AFCB29A34B9",
+      "source_identity": {
+        "stable_id": "TCASE-65104AFCB29A34B9",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 638,
+        "case": "testConstructorWithCauseOnly"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-65104AFCB29A34B9",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testConstructorWithCauseOnly"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-65104AFCB29A34B9:testConstructorWithCauseOnly:head=A2",
+      "case_id": "C019-65104AFCB29A34B9",
+      "expected_result": "TCASE-65104AFCB29A34B9:testConstructorWithCauseOnly:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-65104AFCB29A34B9",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testConstructorWithCauseOnly"
+      }
+    },
+    {
+      "stable_id": "TCASE-A788E0926E615234",
+      "source_identity": {
+        "stable_id": "TCASE-A788E0926E615234",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 648,
+        "case": "testConstructorWithTypeEnumAndErrMsg"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-A788E0926E615234",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testConstructorWithTypeEnumAndErrMsg"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-A788E0926E615234:testConstructorWithTypeEnumAndErrMsg:head=A2",
+      "case_id": "C019-A788E0926E615234",
+      "expected_result": "TCASE-A788E0926E615234:testConstructorWithTypeEnumAndErrMsg:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-A788E0926E615234",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testConstructorWithTypeEnumAndErrMsg"
+      }
+    },
+    {
+      "stable_id": "TCASE-B2FE9DC2C6C4CF12",
+      "source_identity": {
+        "stable_id": "TCASE-B2FE9DC2C6C4CF12",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 656,
+        "case": "testConstructorWithTypeEnumAndThrowable"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-B2FE9DC2C6C4CF12",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testConstructorWithTypeEnumAndThrowable"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-B2FE9DC2C6C4CF12:testConstructorWithTypeEnumAndThrowable:head=A2",
+      "case_id": "C019-B2FE9DC2C6C4CF12",
+      "expected_result": "TCASE-B2FE9DC2C6C4CF12:testConstructorWithTypeEnumAndThrowable:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-B2FE9DC2C6C4CF12",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testConstructorWithTypeEnumAndThrowable"
+      }
+    },
+    {
+      "stable_id": "TCASE-A7A1250A9ECE1911",
+      "source_identity": {
+        "stable_id": "TCASE-A7A1250A9ECE1911",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 664,
+        "case": "testConstructorWithTypeEnumErrMsgAndThrowable"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-A7A1250A9ECE1911",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testConstructorWithTypeEnumErrMsgAndThrowable"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-A7A1250A9ECE1911:testConstructorWithTypeEnumErrMsgAndThrowable:head=A2",
+      "case_id": "C019-A7A1250A9ECE1911",
+      "expected_result": "TCASE-A7A1250A9ECE1911:testConstructorWithTypeEnumErrMsgAndThrowable:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-A7A1250A9ECE1911",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testConstructorWithTypeEnumErrMsgAndThrowable"
+      }
+    },
+    {
+      "stable_id": "TCASE-4F798C27A85ECBE7",
+      "source_identity": {
+        "stable_id": "TCASE-4F798C27A85ECBE7",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 675,
+        "case": "testP2pExceptionTypeEnumValues"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-4F798C27A85ECBE7",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testP2pExceptionTypeEnumValues"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-4F798C27A85ECBE7:testP2pExceptionTypeEnumValues:head=A2",
+      "case_id": "C019-4F798C27A85ECBE7",
+      "expected_result": "TCASE-4F798C27A85ECBE7:testP2pExceptionTypeEnumValues:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-4F798C27A85ECBE7",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testP2pExceptionTypeEnumValues"
+      }
+    },
+    {
+      "stable_id": "TCASE-1EF36FA26191816F",
+      "source_identity": {
+        "stable_id": "TCASE-1EF36FA26191816F",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 689,
+        "case": "testPermissionExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-1EF36FA26191816F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testPermissionExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-1EF36FA26191816F:testPermissionExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-1EF36FA26191816F",
+      "expected_result": "TCASE-1EF36FA26191816F:testPermissionExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-1EF36FA26191816F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testPermissionExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-A6D0F49BA5C6E799",
+      "source_identity": {
+        "stable_id": "TCASE-A6D0F49BA5C6E799",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 695,
+        "case": "testPermissionExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-A6D0F49BA5C6E799",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testPermissionExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-A6D0F49BA5C6E799:testPermissionExceptionWithMessage:head=A2",
+      "case_id": "C019-A6D0F49BA5C6E799",
+      "expected_result": "TCASE-A6D0F49BA5C6E799:testPermissionExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-A6D0F49BA5C6E799",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testPermissionExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-58E63E8C39D0A661",
+      "source_identity": {
+        "stable_id": "TCASE-58E63E8C39D0A661",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 703,
+        "case": "testReceiptCheckErrExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-58E63E8C39D0A661",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testReceiptCheckErrExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-58E63E8C39D0A661:testReceiptCheckErrExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-58E63E8C39D0A661",
+      "expected_result": "TCASE-58E63E8C39D0A661:testReceiptCheckErrExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-58E63E8C39D0A661",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testReceiptCheckErrExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-DC3F5C193469E0BE",
+      "source_identity": {
+        "stable_id": "TCASE-DC3F5C193469E0BE",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 711,
+        "case": "testReceiptCheckErrExceptionConstructorWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-DC3F5C193469E0BE",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testReceiptCheckErrExceptionConstructorWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-DC3F5C193469E0BE:testReceiptCheckErrExceptionConstructorWithMessage:head=A2",
+      "case_id": "C019-DC3F5C193469E0BE",
+      "expected_result": "TCASE-DC3F5C193469E0BE:testReceiptCheckErrExceptionConstructorWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-DC3F5C193469E0BE",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testReceiptCheckErrExceptionConstructorWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-D0FC747FB669133A",
+      "source_identity": {
+        "stable_id": "TCASE-D0FC747FB669133A",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 720,
+        "case": "testReceiptCheckErrExceptionConstructorWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-D0FC747FB669133A",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testReceiptCheckErrExceptionConstructorWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-D0FC747FB669133A:testReceiptCheckErrExceptionConstructorWithMessageAndCause:head=A2",
+      "case_id": "C019-D0FC747FB669133A",
+      "expected_result": "TCASE-D0FC747FB669133A:testReceiptCheckErrExceptionConstructorWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-D0FC747FB669133A",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testReceiptCheckErrExceptionConstructorWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-1AE74F8C9E1B3054",
+      "source_identity": {
+        "stable_id": "TCASE-1AE74F8C9E1B3054",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 730,
+        "case": "testRevokingStoreIllegalStateExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-1AE74F8C9E1B3054",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testRevokingStoreIllegalStateExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-1AE74F8C9E1B3054:testRevokingStoreIllegalStateExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-1AE74F8C9E1B3054",
+      "expected_result": "TCASE-1AE74F8C9E1B3054:testRevokingStoreIllegalStateExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-1AE74F8C9E1B3054",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testRevokingStoreIllegalStateExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-62971756FF8B8FB9",
+      "source_identity": {
+        "stable_id": "TCASE-62971756FF8B8FB9",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 738,
+        "case": "testRevokingStoreIllegalStateExceptionConstructorWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-62971756FF8B8FB9",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testRevokingStoreIllegalStateExceptionConstructorWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-62971756FF8B8FB9:testRevokingStoreIllegalStateExceptionConstructorWithMessage:head=A2",
+      "case_id": "C019-62971756FF8B8FB9",
+      "expected_result": "TCASE-62971756FF8B8FB9:testRevokingStoreIllegalStateExceptionConstructorWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-62971756FF8B8FB9",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testRevokingStoreIllegalStateExceptionConstructorWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-AF0CF714804A9345",
+      "source_identity": {
+        "stable_id": "TCASE-AF0CF714804A9345",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 747,
+        "case": "testRevokingStoreIllegalStateExceptionConstructorWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-AF0CF714804A9345",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testRevokingStoreIllegalStateExceptionConstructorWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-AF0CF714804A9345:testRevokingStoreIllegalStateExceptionConstructorWithMessageAndCause:head=A2",
+      "case_id": "C019-AF0CF714804A9345",
+      "expected_result": "TCASE-AF0CF714804A9345:testRevokingStoreIllegalStateExceptionConstructorWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-AF0CF714804A9345",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testRevokingStoreIllegalStateExceptionConstructorWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-8569E1594C9C88E3",
+      "source_identity": {
+        "stable_id": "TCASE-8569E1594C9C88E3",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 758,
+        "case": "testRevokingStoreIllegalStateExceptionConstructorWithCauseOnly"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-8569E1594C9C88E3",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testRevokingStoreIllegalStateExceptionConstructorWithCauseOnly"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-8569E1594C9C88E3:testRevokingStoreIllegalStateExceptionConstructorWithCauseOnly:head=A2",
+      "case_id": "C019-8569E1594C9C88E3",
+      "expected_result": "TCASE-8569E1594C9C88E3:testRevokingStoreIllegalStateExceptionConstructorWithCauseOnly:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-8569E1594C9C88E3",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testRevokingStoreIllegalStateExceptionConstructorWithCauseOnly"
+      }
+    },
+    {
+      "stable_id": "TCASE-4840DC18B5A77F1D",
+      "source_identity": {
+        "stable_id": "TCASE-4840DC18B5A77F1D",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 767,
+        "case": "testRevokingStoreIllegalStateExceptionConstructorWithActiveSession"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-4840DC18B5A77F1D",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testRevokingStoreIllegalStateExceptionConstructorWithActiveSession"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-4840DC18B5A77F1D:testRevokingStoreIllegalStateExceptionConstructorWithActiveSession:head=A2",
+      "case_id": "C019-4840DC18B5A77F1D",
+      "expected_result": "TCASE-4840DC18B5A77F1D:testRevokingStoreIllegalStateExceptionConstructorWithActiveSession:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-4840DC18B5A77F1D",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testRevokingStoreIllegalStateExceptionConstructorWithActiveSession"
+      }
+    },
+    {
+      "stable_id": "TCASE-BE7C0D5F80164466",
+      "source_identity": {
+        "stable_id": "TCASE-BE7C0D5F80164466",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 776,
+        "case": "testSignatureFormatExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-BE7C0D5F80164466",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testSignatureFormatExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-BE7C0D5F80164466:testSignatureFormatExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-BE7C0D5F80164466",
+      "expected_result": "TCASE-BE7C0D5F80164466:testSignatureFormatExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-BE7C0D5F80164466",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testSignatureFormatExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-ABF99C1F24C96C15",
+      "source_identity": {
+        "stable_id": "TCASE-ABF99C1F24C96C15",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 783,
+        "case": "testSignatureFormatExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-ABF99C1F24C96C15",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testSignatureFormatExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-ABF99C1F24C96C15:testSignatureFormatExceptionWithMessage:head=A2",
+      "case_id": "C019-ABF99C1F24C96C15",
+      "expected_result": "TCASE-ABF99C1F24C96C15:testSignatureFormatExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-ABF99C1F24C96C15",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testSignatureFormatExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-E3B813F611248F14",
+      "source_identity": {
+        "stable_id": "TCASE-E3B813F611248F14",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 792,
+        "case": "testStoreExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-E3B813F611248F14",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testStoreExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-E3B813F611248F14:testStoreExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-E3B813F611248F14",
+      "expected_result": "TCASE-E3B813F611248F14:testStoreExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-E3B813F611248F14",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testStoreExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-CD39D2EA180C3EC8",
+      "source_identity": {
+        "stable_id": "TCASE-CD39D2EA180C3EC8",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 800,
+        "case": "testStoreExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-CD39D2EA180C3EC8",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testStoreExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-CD39D2EA180C3EC8:testStoreExceptionWithMessage:head=A2",
+      "case_id": "C019-CD39D2EA180C3EC8",
+      "expected_result": "TCASE-CD39D2EA180C3EC8:testStoreExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-CD39D2EA180C3EC8",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testStoreExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-24F4F16C43D854C1",
+      "source_identity": {
+        "stable_id": "TCASE-24F4F16C43D854C1",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 810,
+        "case": "testStoreExceptionWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-24F4F16C43D854C1",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testStoreExceptionWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-24F4F16C43D854C1:testStoreExceptionWithMessageAndCause:head=A2",
+      "case_id": "C019-24F4F16C43D854C1",
+      "expected_result": "TCASE-24F4F16C43D854C1:testStoreExceptionWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-24F4F16C43D854C1",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testStoreExceptionWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-696F64FA670F0FB4",
+      "source_identity": {
+        "stable_id": "TCASE-696F64FA670F0FB4",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 821,
+        "case": "testStoreExceptionWithCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-696F64FA670F0FB4",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testStoreExceptionWithCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-696F64FA670F0FB4:testStoreExceptionWithCause:head=A2",
+      "case_id": "C019-696F64FA670F0FB4",
+      "expected_result": "TCASE-696F64FA670F0FB4:testStoreExceptionWithCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-696F64FA670F0FB4",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testStoreExceptionWithCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-2BA568AEC23DB4C6",
+      "source_identity": {
+        "stable_id": "TCASE-2BA568AEC23DB4C6",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 829,
+        "case": "testTaposExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-2BA568AEC23DB4C6",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTaposExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-2BA568AEC23DB4C6:testTaposExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-2BA568AEC23DB4C6",
+      "expected_result": "TCASE-2BA568AEC23DB4C6:testTaposExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-2BA568AEC23DB4C6",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTaposExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-D2CC4F52BA54A3AC",
+      "source_identity": {
+        "stable_id": "TCASE-D2CC4F52BA54A3AC",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 837,
+        "case": "testTaposExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-D2CC4F52BA54A3AC",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTaposExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-D2CC4F52BA54A3AC:testTaposExceptionWithMessage:head=A2",
+      "case_id": "C019-D2CC4F52BA54A3AC",
+      "expected_result": "TCASE-D2CC4F52BA54A3AC:testTaposExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-D2CC4F52BA54A3AC",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTaposExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-21E4BBC9D1D9207E",
+      "source_identity": {
+        "stable_id": "TCASE-21E4BBC9D1D9207E",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 846,
+        "case": "testTaposExceptionWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-21E4BBC9D1D9207E",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTaposExceptionWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-21E4BBC9D1D9207E:testTaposExceptionWithMessageAndCause:head=A2",
+      "case_id": "C019-21E4BBC9D1D9207E",
+      "expected_result": "TCASE-21E4BBC9D1D9207E:testTaposExceptionWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-21E4BBC9D1D9207E",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTaposExceptionWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-6AA03E7C496C5D9D",
+      "source_identity": {
+        "stable_id": "TCASE-6AA03E7C496C5D9D",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 856,
+        "case": "testTooBigTransactionExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-6AA03E7C496C5D9D",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTooBigTransactionExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-6AA03E7C496C5D9D:testTooBigTransactionExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-6AA03E7C496C5D9D",
+      "expected_result": "TCASE-6AA03E7C496C5D9D:testTooBigTransactionExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-6AA03E7C496C5D9D",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTooBigTransactionExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-A520ECE4D9C0A0BC",
+      "source_identity": {
+        "stable_id": "TCASE-A520ECE4D9C0A0BC",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 863,
+        "case": "testTooBigTransactionExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-A520ECE4D9C0A0BC",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTooBigTransactionExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-A520ECE4D9C0A0BC:testTooBigTransactionExceptionWithMessage:head=A2",
+      "case_id": "C019-A520ECE4D9C0A0BC",
+      "expected_result": "TCASE-A520ECE4D9C0A0BC:testTooBigTransactionExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-A520ECE4D9C0A0BC",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTooBigTransactionExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-DB82250295A8C473",
+      "source_identity": {
+        "stable_id": "TCASE-DB82250295A8C473",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 871,
+        "case": "testTooBigTransactionResultExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-DB82250295A8C473",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTooBigTransactionResultExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-DB82250295A8C473:testTooBigTransactionResultExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-DB82250295A8C473",
+      "expected_result": "TCASE-DB82250295A8C473:testTooBigTransactionResultExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-DB82250295A8C473",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTooBigTransactionResultExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-ACACCC436B113CD7",
+      "source_identity": {
+        "stable_id": "TCASE-ACACCC436B113CD7",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 879,
+        "case": "testTooBigTransactionResultExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-ACACCC436B113CD7",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTooBigTransactionResultExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-ACACCC436B113CD7:testTooBigTransactionResultExceptionWithMessage:head=A2",
+      "case_id": "C019-ACACCC436B113CD7",
+      "expected_result": "TCASE-ACACCC436B113CD7:testTooBigTransactionResultExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-ACACCC436B113CD7",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTooBigTransactionResultExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-1B6B7B1C1DB5C68F",
+      "source_identity": {
+        "stable_id": "TCASE-1B6B7B1C1DB5C68F",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 887,
+        "case": "testTraitorPeerExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-1B6B7B1C1DB5C68F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTraitorPeerExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-1B6B7B1C1DB5C68F:testTraitorPeerExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-1B6B7B1C1DB5C68F",
+      "expected_result": "TCASE-1B6B7B1C1DB5C68F:testTraitorPeerExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-1B6B7B1C1DB5C68F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTraitorPeerExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-F5C90E795E7DF2C4",
+      "source_identity": {
+        "stable_id": "TCASE-F5C90E795E7DF2C4",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 895,
+        "case": "testTraitorPeerExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-F5C90E795E7DF2C4",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTraitorPeerExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-F5C90E795E7DF2C4:testTraitorPeerExceptionWithMessage:head=A2",
+      "case_id": "C019-F5C90E795E7DF2C4",
+      "expected_result": "TCASE-F5C90E795E7DF2C4:testTraitorPeerExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-F5C90E795E7DF2C4",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTraitorPeerExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-E07C45A7195CA945",
+      "source_identity": {
+        "stable_id": "TCASE-E07C45A7195CA945",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 904,
+        "case": "testTraitorPeerExceptionWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-E07C45A7195CA945",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTraitorPeerExceptionWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-E07C45A7195CA945:testTraitorPeerExceptionWithMessageAndCause:head=A2",
+      "case_id": "C019-E07C45A7195CA945",
+      "expected_result": "TCASE-E07C45A7195CA945:testTraitorPeerExceptionWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-E07C45A7195CA945",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTraitorPeerExceptionWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-542F9561D7CEBE38",
+      "source_identity": {
+        "stable_id": "TCASE-542F9561D7CEBE38",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 914,
+        "case": "testTransactionExpirationExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-542F9561D7CEBE38",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTransactionExpirationExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-542F9561D7CEBE38:testTransactionExpirationExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-542F9561D7CEBE38",
+      "expected_result": "TCASE-542F9561D7CEBE38:testTransactionExpirationExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-542F9561D7CEBE38",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTransactionExpirationExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-4E7ACEC81AD37345",
+      "source_identity": {
+        "stable_id": "TCASE-4E7ACEC81AD37345",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 921,
+        "case": "testTransactionExpirationExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-4E7ACEC81AD37345",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTransactionExpirationExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-4E7ACEC81AD37345:testTransactionExpirationExceptionWithMessage:head=A2",
+      "case_id": "C019-4E7ACEC81AD37345",
+      "expected_result": "TCASE-4E7ACEC81AD37345:testTransactionExpirationExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-4E7ACEC81AD37345",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTransactionExpirationExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-3429EB59034AC413",
+      "source_identity": {
+        "stable_id": "TCASE-3429EB59034AC413",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 929,
+        "case": "testTronRuntimeExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-3429EB59034AC413",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronRuntimeExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-3429EB59034AC413:testTronRuntimeExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-3429EB59034AC413",
+      "expected_result": "TCASE-3429EB59034AC413:testTronRuntimeExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-3429EB59034AC413",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronRuntimeExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-855E7591EACF76DC",
+      "source_identity": {
+        "stable_id": "TCASE-855E7591EACF76DC",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 937,
+        "case": "testTronRuntimeExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-855E7591EACF76DC",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronRuntimeExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-855E7591EACF76DC:testTronRuntimeExceptionWithMessage:head=A2",
+      "case_id": "C019-855E7591EACF76DC",
+      "expected_result": "TCASE-855E7591EACF76DC:testTronRuntimeExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-855E7591EACF76DC",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronRuntimeExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-5E1BFF8D923E575D",
+      "source_identity": {
+        "stable_id": "TCASE-5E1BFF8D923E575D",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 946,
+        "case": "testTronRuntimeExceptionWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-5E1BFF8D923E575D",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronRuntimeExceptionWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-5E1BFF8D923E575D:testTronRuntimeExceptionWithMessageAndCause:head=A2",
+      "case_id": "C019-5E1BFF8D923E575D",
+      "expected_result": "TCASE-5E1BFF8D923E575D:testTronRuntimeExceptionWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-5E1BFF8D923E575D",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronRuntimeExceptionWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-1AEB88E1E2CB4AD0",
+      "source_identity": {
+        "stable_id": "TCASE-1AEB88E1E2CB4AD0",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 956,
+        "case": "testTronRuntimeExceptionWithCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-1AEB88E1E2CB4AD0",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronRuntimeExceptionWithCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-1AEB88E1E2CB4AD0:testTronRuntimeExceptionWithCause:head=A2",
+      "case_id": "C019-1AEB88E1E2CB4AD0",
+      "expected_result": "TCASE-1AEB88E1E2CB4AD0:testTronRuntimeExceptionWithCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-1AEB88E1E2CB4AD0",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronRuntimeExceptionWithCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-0D3EAD235B64B77F",
+      "source_identity": {
+        "stable_id": "TCASE-0D3EAD235B64B77F",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 963,
+        "case": "testTypeMismatchNamingException_WithRequiredAndActualTypes"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-0D3EAD235B64B77F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTypeMismatchNamingException_WithRequiredAndActualTypes"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-0D3EAD235B64B77F:testTypeMismatchNamingException_WithRequiredAndActualTypes:head=A2",
+      "case_id": "C019-0D3EAD235B64B77F",
+      "expected_result": "TCASE-0D3EAD235B64B77F:testTypeMismatchNamingException_WithRequiredAndActualTypes:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-0D3EAD235B64B77F",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTypeMismatchNamingException_WithRequiredAndActualTypes"
+      }
+    },
+    {
+      "stable_id": "TCASE-273111F09E0060BF",
+      "source_identity": {
+        "stable_id": "TCASE-273111F09E0060BF",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 975,
+        "case": "testTypeMismatchNamingException_WithExplanation"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-273111F09E0060BF",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTypeMismatchNamingException_WithExplanation"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-273111F09E0060BF:testTypeMismatchNamingException_WithExplanation:head=A2",
+      "case_id": "C019-273111F09E0060BF",
+      "expected_result": "TCASE-273111F09E0060BF:testTypeMismatchNamingException_WithExplanation:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-273111F09E0060BF",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTypeMismatchNamingException_WithExplanation"
+      }
+    },
+    {
+      "stable_id": "TCASE-4D6A88358EA6F1FE",
+      "source_identity": {
+        "stable_id": "TCASE-4D6A88358EA6F1FE",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 986,
+        "case": "testUnLinkedBlockExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-4D6A88358EA6F1FE",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testUnLinkedBlockExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-4D6A88358EA6F1FE:testUnLinkedBlockExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-4D6A88358EA6F1FE",
+      "expected_result": "TCASE-4D6A88358EA6F1FE:testUnLinkedBlockExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-4D6A88358EA6F1FE",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testUnLinkedBlockExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-08A5ACE27E5B14F9",
+      "source_identity": {
+        "stable_id": "TCASE-08A5ACE27E5B14F9",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 994,
+        "case": "testUnLinkedBlockExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-08A5ACE27E5B14F9",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testUnLinkedBlockExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-08A5ACE27E5B14F9:testUnLinkedBlockExceptionWithMessage:head=A2",
+      "case_id": "C019-08A5ACE27E5B14F9",
+      "expected_result": "TCASE-08A5ACE27E5B14F9:testUnLinkedBlockExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-08A5ACE27E5B14F9",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testUnLinkedBlockExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-DA903CD0D2EA5F48",
+      "source_identity": {
+        "stable_id": "TCASE-DA903CD0D2EA5F48",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1003,
+        "case": "testUnLinkedBlockExceptionWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-DA903CD0D2EA5F48",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testUnLinkedBlockExceptionWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-DA903CD0D2EA5F48:testUnLinkedBlockExceptionWithMessageAndCause:head=A2",
+      "case_id": "C019-DA903CD0D2EA5F48",
+      "expected_result": "TCASE-DA903CD0D2EA5F48:testUnLinkedBlockExceptionWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-DA903CD0D2EA5F48",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testUnLinkedBlockExceptionWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-81BE1BE4636C4C81",
+      "source_identity": {
+        "stable_id": "TCASE-81BE1BE4636C4C81",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1013,
+        "case": "testUnReachBlockExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-81BE1BE4636C4C81",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testUnReachBlockExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-81BE1BE4636C4C81:testUnReachBlockExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-81BE1BE4636C4C81",
+      "expected_result": "TCASE-81BE1BE4636C4C81:testUnReachBlockExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-81BE1BE4636C4C81",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testUnReachBlockExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-BAE6AC8FC77D3617",
+      "source_identity": {
+        "stable_id": "TCASE-BAE6AC8FC77D3617",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1021,
+        "case": "testUnReachBlockExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-BAE6AC8FC77D3617",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testUnReachBlockExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-BAE6AC8FC77D3617:testUnReachBlockExceptionWithMessage:head=A2",
+      "case_id": "C019-BAE6AC8FC77D3617",
+      "expected_result": "TCASE-BAE6AC8FC77D3617:testUnReachBlockExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-BAE6AC8FC77D3617",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testUnReachBlockExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-109C12EF5963325B",
+      "source_identity": {
+        "stable_id": "TCASE-109C12EF5963325B",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1030,
+        "case": "testUnReachBlockExceptionWithMessageAndCause"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-109C12EF5963325B",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testUnReachBlockExceptionWithMessageAndCause"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-109C12EF5963325B:testUnReachBlockExceptionWithMessageAndCause:head=A2",
+      "case_id": "C019-109C12EF5963325B",
+      "expected_result": "TCASE-109C12EF5963325B:testUnReachBlockExceptionWithMessageAndCause:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-109C12EF5963325B",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testUnReachBlockExceptionWithMessageAndCause"
+      }
+    },
+    {
+      "stable_id": "TCASE-B52C58598762BB5E",
+      "source_identity": {
+        "stable_id": "TCASE-B52C58598762BB5E",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1039,
+        "case": "testValidateScheduleExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-B52C58598762BB5E",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testValidateScheduleExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-B52C58598762BB5E:testValidateScheduleExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-B52C58598762BB5E",
+      "expected_result": "TCASE-B52C58598762BB5E:testValidateScheduleExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-B52C58598762BB5E",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testValidateScheduleExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-1EB8C9FA91C22D58",
+      "source_identity": {
+        "stable_id": "TCASE-1EB8C9FA91C22D58",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1048,
+        "case": "testValidateScheduleExceptionConstructorWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-1EB8C9FA91C22D58",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testValidateScheduleExceptionConstructorWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-1EB8C9FA91C22D58:testValidateScheduleExceptionConstructorWithMessage:head=A2",
+      "case_id": "C019-1EB8C9FA91C22D58",
+      "expected_result": "TCASE-1EB8C9FA91C22D58:testValidateScheduleExceptionConstructorWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-1EB8C9FA91C22D58",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testValidateScheduleExceptionConstructorWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-9033438D5CB88147",
+      "source_identity": {
+        "stable_id": "TCASE-9033438D5CB88147",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1059,
+        "case": "testValidateSignatureExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-9033438D5CB88147",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testValidateSignatureExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-9033438D5CB88147:testValidateSignatureExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-9033438D5CB88147",
+      "expected_result": "TCASE-9033438D5CB88147:testValidateSignatureExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-9033438D5CB88147",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testValidateSignatureExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-6E3C85E20B408364",
+      "source_identity": {
+        "stable_id": "TCASE-6E3C85E20B408364",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1066,
+        "case": "testValidateSignatureExceptionConstructorWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-6E3C85E20B408364",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testValidateSignatureExceptionConstructorWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-6E3C85E20B408364:testValidateSignatureExceptionConstructorWithMessage:head=A2",
+      "case_id": "C019-6E3C85E20B408364",
+      "expected_result": "TCASE-6E3C85E20B408364:testValidateSignatureExceptionConstructorWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-6E3C85E20B408364",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testValidateSignatureExceptionConstructorWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-98210649CB1AFF54",
+      "source_identity": {
+        "stable_id": "TCASE-98210649CB1AFF54",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1074,
+        "case": "testVMIllegalExceptionDefaultConstructor"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-98210649CB1AFF54",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testVMIllegalExceptionDefaultConstructor"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-98210649CB1AFF54:testVMIllegalExceptionDefaultConstructor:head=A2",
+      "case_id": "C019-98210649CB1AFF54",
+      "expected_result": "TCASE-98210649CB1AFF54:testVMIllegalExceptionDefaultConstructor:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-98210649CB1AFF54",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testVMIllegalExceptionDefaultConstructor"
+      }
+    },
+    {
+      "stable_id": "TCASE-1D73EB26CDCB3409",
+      "source_identity": {
+        "stable_id": "TCASE-1D73EB26CDCB3409",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1081,
+        "case": "testVMIllegalExceptionConstructorWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-1D73EB26CDCB3409",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testVMIllegalExceptionConstructorWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-1D73EB26CDCB3409:testVMIllegalExceptionConstructorWithMessage:head=A2",
+      "case_id": "C019-1D73EB26CDCB3409",
+      "expected_result": "TCASE-1D73EB26CDCB3409:testVMIllegalExceptionConstructorWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-1D73EB26CDCB3409",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testVMIllegalExceptionConstructorWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-085DD1A671BAD355",
+      "source_identity": {
+        "stable_id": "TCASE-085DD1A671BAD355",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1089,
+        "case": "testZkProofValidateExceptionWithFirstValidatedTrue"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-085DD1A671BAD355",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testZkProofValidateExceptionWithFirstValidatedTrue"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-085DD1A671BAD355:testZkProofValidateExceptionWithFirstValidatedTrue:head=A2",
+      "case_id": "C019-085DD1A671BAD355",
+      "expected_result": "TCASE-085DD1A671BAD355:testZkProofValidateExceptionWithFirstValidatedTrue:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-085DD1A671BAD355",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testZkProofValidateExceptionWithFirstValidatedTrue"
+      }
+    },
+    {
+      "stable_id": "TCASE-16507B9DA2D9DC60",
+      "source_identity": {
+        "stable_id": "TCASE-16507B9DA2D9DC60",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1101,
+        "case": "testZkProofValidateExceptionWithFirstValidatedFalse"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-16507B9DA2D9DC60",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testZkProofValidateExceptionWithFirstValidatedFalse"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-16507B9DA2D9DC60:testZkProofValidateExceptionWithFirstValidatedFalse:head=A2",
+      "case_id": "C019-16507B9DA2D9DC60",
+      "expected_result": "TCASE-16507B9DA2D9DC60:testZkProofValidateExceptionWithFirstValidatedFalse:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-16507B9DA2D9DC60",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testZkProofValidateExceptionWithFirstValidatedFalse"
+      }
+    },
+    {
+      "stable_id": "TCASE-9FAC9F1B125DF58D",
+      "source_identity": {
+        "stable_id": "TCASE-9FAC9F1B125DF58D",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1113,
+        "case": "testZksnarkExceptionNoMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-9FAC9F1B125DF58D",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testZksnarkExceptionNoMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-9FAC9F1B125DF58D:testZksnarkExceptionNoMessage:head=A2",
+      "case_id": "C019-9FAC9F1B125DF58D",
+      "expected_result": "TCASE-9FAC9F1B125DF58D:testZksnarkExceptionNoMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-9FAC9F1B125DF58D",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testZksnarkExceptionNoMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-942FC9E14B36CF84",
+      "source_identity": {
+        "stable_id": "TCASE-942FC9E14B36CF84",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1120,
+        "case": "testZksnarkExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-942FC9E14B36CF84",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testZksnarkExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-942FC9E14B36CF84:testZksnarkExceptionWithMessage:head=A2",
+      "case_id": "C019-942FC9E14B36CF84",
+      "expected_result": "TCASE-942FC9E14B36CF84:testZksnarkExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-942FC9E14B36CF84",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testZksnarkExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-5BD3D8367300F08A",
+      "source_identity": {
+        "stable_id": "TCASE-5BD3D8367300F08A",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1128,
+        "case": "testTronDBExceptionNoArgs"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-5BD3D8367300F08A",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronDBExceptionNoArgs"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-5BD3D8367300F08A:testTronDBExceptionNoArgs:head=A2",
+      "case_id": "C019-5BD3D8367300F08A",
+      "expected_result": "TCASE-5BD3D8367300F08A:testTronDBExceptionNoArgs:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-5BD3D8367300F08A",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronDBExceptionNoArgs"
+      }
+    },
+    {
+      "stable_id": "TCASE-62A4417DFE23114A",
+      "source_identity": {
+        "stable_id": "TCASE-62A4417DFE23114A",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1136,
+        "case": "testTronDBExceptionWithMessage"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-62A4417DFE23114A",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronDBExceptionWithMessage"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-62A4417DFE23114A:testTronDBExceptionWithMessage:head=A2",
+      "case_id": "C019-62A4417DFE23114A",
+      "expected_result": "TCASE-62A4417DFE23114A:testTronDBExceptionWithMessage:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-62A4417DFE23114A",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronDBExceptionWithMessage"
+      }
+    },
+    {
+      "stable_id": "TCASE-998E8B2762538628",
+      "source_identity": {
+        "stable_id": "TCASE-998E8B2762538628",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1145,
+        "case": "testTronDBExceptionWithMessageAndThrowable"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-998E8B2762538628",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronDBExceptionWithMessageAndThrowable"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-998E8B2762538628:testTronDBExceptionWithMessageAndThrowable:head=A2",
+      "case_id": "C019-998E8B2762538628",
+      "expected_result": "TCASE-998E8B2762538628:testTronDBExceptionWithMessageAndThrowable:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-998E8B2762538628",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronDBExceptionWithMessageAndThrowable"
+      }
+    },
+    {
+      "stable_id": "TCASE-A612920FF94F2C0D",
+      "source_identity": {
+        "stable_id": "TCASE-A612920FF94F2C0D",
+        "path": "java-tron/framework/src/test/java/org/tron/core/CoreExceptionTest.java",
+        "line": 1155,
+        "case": "testTronDBExceptionWithThrowable"
+      },
+      "scenario_id": "mid-replay-apply-failure",
+      "scenario_observation": "head=A2",
+      "fixture_selector": {
+        "stable_id": "TCASE-A612920FF94F2C0D",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronDBExceptionWithThrowable"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-A612920FF94F2C0D:testTronDBExceptionWithThrowable:head=A2",
+      "case_id": "C019-A612920FF94F2C0D",
+      "expected_result": "TCASE-A612920FF94F2C0D:testTronDBExceptionWithThrowable:head=A2",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-A612920FF94F2C0D",
+        "scenario_id": "mid-replay-apply-failure",
+        "java_case": "testTronDBExceptionWithThrowable"
+      }
+    },
+    {
+      "stable_id": "TCASE-FCFFC117D6BB9873",
+      "source_identity": {
+        "stable_id": "TCASE-FCFFC117D6BB9873",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ComputeRewardTest.java",
+        "line": 251,
+        "case": "query"
+      },
+      "scenario_id": "views-and-roots",
+      "scenario_observation": "observed=views-and-roots",
+      "fixture_selector": {
+        "stable_id": "TCASE-FCFFC117D6BB9873",
+        "scenario_id": "views-and-roots",
+        "java_case": "query"
+      },
+      "rust_target": "c019_fork_switch",
+      "rust_test_symbol": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "canonical_command": "cargo test -p tron-execution --test c019_fork_switch --locked",
+      "row_result": "TCASE-FCFFC117D6BB9873:query:observed=views-and-roots",
+      "case_id": "C019-FCFFC117D6BB9873",
+      "expected_result": "TCASE-FCFFC117D6BB9873:query:observed=views-and-roots",
+      "rust_test": "apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch",
+      "fixture": {
+        "stable_id": "TCASE-FCFFC117D6BB9873",
+        "scenario_id": "views-and-roots",
+        "java_case": "query"
+      }
+    }
+  ]
 }

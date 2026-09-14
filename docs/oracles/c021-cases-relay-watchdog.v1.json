@@ -3178,5 +3178,6 @@
   "count": 138,
   "family": "relay-watchdog",
   "schema": "c021-cases-relay-watchdog.v1",
-  "source_ledger": "docs/oracles/c021-ownership-reconciliation.v1.json"
+  "source_ledger": "docs/oracles/c021-ownership-reconciliation.v1.json",
+  "rust_test": "rust-tron/crates/tron-network/tests/c021_cases_relay_watchdog.rs::every_relay_watchdog_row_executes_exact_declaration_or_behavior"
 }

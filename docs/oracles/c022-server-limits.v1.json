@@ -1,37 +1,94 @@
 {
   "schema_version": 1,
-  "items": ["C022.05", "C022.06", "C022.07"],
+  "items": [
+    "C022.05",
+    "C022.06",
+    "C022.07"
+  ],
   "java_sources": [
-    {"path":"framework/src/main/java/org/tron/core/services/RpcApiService.java","sha256":"620e14afca7dba3401ff53b1cbb6d4e3d87f8e3ff17ba487d934274bfb155dcb"},
-    {"path":"framework/src/main/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptor.java","sha256":"859c03514a3c96a70a50a2ebb163fbb2884c9acd3b809de653b789b9b21d43b7"},
-    {"path":"framework/src/main/java/org/tron/core/services/ratelimiter/RpcApiAccessInterceptor.java","sha256":"d840699892bae933de4d13b7f2023450d7e4d26492805dc29c2a407b53cd6dd0"},
-    {"path":"framework/src/main/java/org/tron/core/services/ratelimiter/RateLimiterInterceptor.java","sha256":"800276e61042574c568b6ecaf179e06e0b8f34f746e39be7ae04a45a20c4feab"},
-    {"path":"framework/src/main/java/org/tron/core/services/ratelimiter/GlobalRateLimiter.java","sha256":"e2a7ce7c56cc278587371831f893b6745989cc2b1d64f69b4e3d79ae809cd3b4"}
+    {
+      "path": "framework/src/main/java/org/tron/core/services/RpcApiService.java",
+      "sha256": "620e14afca7dba3401ff53b1cbb6d4e3d87f8e3ff17ba487d934274bfb155dcb"
+    },
+    {
+      "path": "framework/src/main/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptor.java",
+      "sha256": "859c03514a3c96a70a50a2ebb163fbb2884c9acd3b809de653b789b9b21d43b7"
+    },
+    {
+      "path": "framework/src/main/java/org/tron/core/services/ratelimiter/RpcApiAccessInterceptor.java",
+      "sha256": "d840699892bae933de4d13b7f2023450d7e4d26492805dc29c2a407b53cd6dd0"
+    },
+    {
+      "path": "framework/src/main/java/org/tron/core/services/ratelimiter/RateLimiterInterceptor.java",
+      "sha256": "800276e61042574c568b6ecaf179e06e0b8f34f746e39be7ae04a45a20c4feab"
+    },
+    {
+      "path": "framework/src/main/java/org/tron/core/services/ratelimiter/GlobalRateLimiter.java",
+      "sha256": "e2a7ce7c56cc278587371831f893b6745989cc2b1d64f69b4e3d79ae809cd3b4"
+    }
   ],
   "transport": {
     "plaintext": true,
-    "ports": {"full":50051,"solidity":50061,"pbft":50071},
-    "default_max_message_bytes":4194304,
-    "default_max_concurrent_calls_per_connection":100,
-    "default_flow_control_window":1048576,
-    "default_max_header_list_size":8192,
-    "reflection_default":false
+    "ports": {
+      "full": 50051,
+      "solidity": 50061,
+      "pbft": 50071
+    },
+    "default_max_message_bytes": 4194304,
+    "default_max_concurrent_calls_per_connection": 100,
+    "default_flow_control_window": 1048576,
+    "default_max_header_list_size": 8192,
+    "reflection_default": false
   },
   "interceptors": {
-    "order":["endpoint_rate_limit","global_ip_rate_limit","global_qps_rate_limit","disabled_api","lite_history","metrics"],
-    "disabled":{"code":"UNAVAILABLE","message":"this API is unavailable due to config","matching":"case-insensitive method name after slash"},
-    "lite":{"code":"UNAVAILABLE","message":"this API is closed because this node is a lite fullnode","method_count":43},
-    "overload":{"code":"RESOURCE_EXHAUSTED","message":""},
-    "handler_initialization":{"code":"INTERNAL","message":"rpc handler init failed"}
+    "order": [
+      "endpoint_rate_limit",
+      "global_ip_rate_limit",
+      "global_qps_rate_limit",
+      "disabled_api",
+      "lite_history",
+      "metrics"
+    ],
+    "disabled": {
+      "code": "UNAVAILABLE",
+      "message": "this API is unavailable due to config",
+      "matching": "case-insensitive method name after slash"
+    },
+    "lite": {
+      "code": "UNAVAILABLE",
+      "message": "this API is closed because this node is a lite fullnode",
+      "method_count": 43
+    },
+    "overload": {
+      "code": "RESOURCE_EXHAUSTED",
+      "message": ""
+    },
+    "handler_initialization": {
+      "code": "INTERNAL",
+      "message": "rpc handler init failed"
+    }
   },
   "limits": {
-    "endpoint_default_qps":1000,
-    "global_qps":50000,
-    "global_ip_qps":10000,
-    "strategies":["GlobalPreemptibleAdapter","QpsRateLimiterAdapter","IPQPSRateLimiterAdapter"],
-    "preemptible_release":["completion","cancellation","handler_initialization_failure","later_global_rejection"],
-    "blocking_default":true,
-    "rate_map":{"max_entries":4096,"idle_ttl_seconds":300,"overflow":"expire idle then evict inactive LRU; reject before insertion when no entry is evictable"}
+    "endpoint_default_qps": 1000,
+    "global_qps": 50000,
+    "global_ip_qps": 10000,
+    "strategies": [
+      "GlobalPreemptibleAdapter",
+      "QpsRateLimiterAdapter",
+      "IPQPSRateLimiterAdapter"
+    ],
+    "preemptible_release": [
+      "completion",
+      "cancellation",
+      "handler_initialization_failure",
+      "later_global_rejection"
+    ],
+    "blocking_default": true,
+    "rate_map": {
+      "max_entries": 4096,
+      "idle_ttl_seconds": 300,
+      "overflow": "expire idle then evict inactive LRU; reject before insertion when no entry is evictable"
+    }
   },
   "proofs": [
     "c022_server::full_solidity_pbft_plans_use_plaintext_ports_and_exact_services",
@@ -47,9 +104,778 @@
     "c022_extension_e2e::malformed_payload_and_descriptor_collisions_fail_closed"
   ],
   "dr004": {
-    "descriptor_oracle":"dr004-extension-fixtures.v1.json",
-    "trusted_static_provider":true,
-    "sequence":["registration","construction","owner_extraction","broadcast","pending_execution","state_query"],
-    "negative_cases":["malformed_payload","descriptor_collision"]
-  }
+    "descriptor_oracle": "dr004-extension-fixtures.v1.json",
+    "trusted_static_provider": true,
+    "sequence": [
+      "registration",
+      "construction",
+      "owner_extraction",
+      "broadcast",
+      "pending_execution",
+      "state_query"
+    ],
+    "negative_cases": [
+      "malformed_payload",
+      "descriptor_collision"
+    ]
+  },
+  "proof_commands": {
+    "limits": "cargo test -p tron-apis --test c022_limits --locked"
+  },
+  "case_results": [
+    {
+      "stable_id": "TCASE-C999E59AADAC7C23",
+      "source_identity": {
+        "id": "TCASE-C999E59AADAC7C23",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptorTest.java",
+        "line": 106,
+        "case": "testGrpcApiThrowStatusRuntimeException",
+        "kind": "java_test"
+      },
+      "case": "testGrpcApiThrowStatusRuntimeException",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-C999E59AADAC7C23",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptorTest.java:106#testGrpcApiThrowStatusRuntimeException"
+      ],
+      "rust_symbol": "c022_limits::disabled_and_lite_interceptors_preserve_java_lists_messages_and_precedence",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-C999E59AADAC7C23",
+        "case": "testGrpcApiThrowStatusRuntimeException",
+        "source": {
+          "line": 106,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptorTest.java"
+        },
+        "selector": "TCASE-C999E59AADAC7C23"
+      },
+      "result_selector": "TCASE-C999E59AADAC7C23:testGrpcApiThrowStatusRuntimeException:passed"
+    },
+    {
+      "stable_id": "TCASE-C1372A04B24796CC",
+      "source_identity": {
+        "id": "TCASE-C1372A04B24796CC",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptorTest.java",
+        "line": 115,
+        "case": "testGrpcSolidityThrowStatusRuntimeException",
+        "kind": "java_test"
+      },
+      "case": "testGrpcSolidityThrowStatusRuntimeException",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-C1372A04B24796CC",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptorTest.java:115#testGrpcSolidityThrowStatusRuntimeException"
+      ],
+      "rust_symbol": "c022_limits::disabled_and_lite_interceptors_preserve_java_lists_messages_and_precedence",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-C1372A04B24796CC",
+        "case": "testGrpcSolidityThrowStatusRuntimeException",
+        "source": {
+          "line": 115,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptorTest.java"
+        },
+        "selector": "TCASE-C1372A04B24796CC"
+      },
+      "result_selector": "TCASE-C1372A04B24796CC:testGrpcSolidityThrowStatusRuntimeException:passed"
+    },
+    {
+      "stable_id": "TCASE-A274B0BB4E05911D",
+      "source_identity": {
+        "id": "TCASE-A274B0BB4E05911D",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptorTest.java",
+        "line": 124,
+        "case": "testpBFTGrpcApiThrowStatusRuntimeException",
+        "kind": "java_test"
+      },
+      "case": "testpBFTGrpcApiThrowStatusRuntimeException",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-A274B0BB4E05911D",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptorTest.java:124#testpBFTGrpcApiThrowStatusRuntimeException"
+      ],
+      "rust_symbol": "c022_limits::disabled_and_lite_interceptors_preserve_java_lists_messages_and_precedence",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-A274B0BB4E05911D",
+        "case": "testpBFTGrpcApiThrowStatusRuntimeException",
+        "source": {
+          "line": 124,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptorTest.java"
+        },
+        "selector": "TCASE-A274B0BB4E05911D"
+      },
+      "result_selector": "TCASE-A274B0BB4E05911D:testpBFTGrpcApiThrowStatusRuntimeException:passed"
+    },
+    {
+      "stable_id": "TCASE-A1E283929965F20A",
+      "source_identity": {
+        "id": "TCASE-A1E283929965F20A",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptorTest.java",
+        "line": 133,
+        "case": "testGrpcInterceptor",
+        "kind": "java_test"
+      },
+      "case": "testGrpcInterceptor",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-A1E283929965F20A",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptorTest.java:133#testGrpcInterceptor"
+      ],
+      "rust_symbol": "c022_limits::disabled_and_lite_interceptors_preserve_java_lists_messages_and_precedence",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-A1E283929965F20A",
+        "case": "testGrpcInterceptor",
+        "source": {
+          "line": 133,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/filter/LiteFnQueryGrpcInterceptorTest.java"
+        },
+        "selector": "TCASE-A1E283929965F20A"
+      },
+      "result_selector": "TCASE-A1E283929965F20A:testGrpcInterceptor:passed"
+    },
+    {
+      "stable_id": "TCASE-EDA3B141B36D5EC5",
+      "source_identity": {
+        "id": "TCASE-EDA3B141B36D5EC5",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java",
+        "line": 75,
+        "case": "testNormalRequestPasses",
+        "kind": "java_test"
+      },
+      "case": "testNormalRequestPasses",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-EDA3B141B36D5EC5",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java:75#testNormalRequestPasses"
+      ],
+      "rust_symbol": "c022_limits::nonblocking_endpoint_global_and_ip_limits_return_resource_exhausted",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-EDA3B141B36D5EC5",
+        "case": "testNormalRequestPasses",
+        "source": {
+          "line": 75,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java"
+        },
+        "selector": "TCASE-EDA3B141B36D5EC5"
+      },
+      "result_selector": "TCASE-EDA3B141B36D5EC5:testNormalRequestPasses:passed"
+    },
+    {
+      "stable_id": "TCASE-680AFA38865FCB4E",
+      "source_identity": {
+        "id": "TCASE-680AFA38865FCB4E",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java",
+        "line": 87,
+        "case": "testIpLimitDoesNotWasteGlobalToken",
+        "kind": "java_test"
+      },
+      "case": "testIpLimitDoesNotWasteGlobalToken",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-680AFA38865FCB4E",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java:87#testIpLimitDoesNotWasteGlobalToken"
+      ],
+      "rust_symbol": "c022_limits::nonblocking_endpoint_global_and_ip_limits_return_resource_exhausted",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-680AFA38865FCB4E",
+        "case": "testIpLimitDoesNotWasteGlobalToken",
+        "source": {
+          "line": 87,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java"
+        },
+        "selector": "TCASE-680AFA38865FCB4E"
+      },
+      "result_selector": "TCASE-680AFA38865FCB4E:testIpLimitDoesNotWasteGlobalToken:passed"
+    },
+    {
+      "stable_id": "TCASE-B919C9633394FCD0",
+      "source_identity": {
+        "id": "TCASE-B919C9633394FCD0",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java",
+        "line": 109,
+        "case": "testGlobalCapAcrossMultipleIps",
+        "kind": "java_test"
+      },
+      "case": "testGlobalCapAcrossMultipleIps",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-B919C9633394FCD0",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java:109#testGlobalCapAcrossMultipleIps"
+      ],
+      "rust_symbol": "c022_limits::nonblocking_endpoint_global_and_ip_limits_return_resource_exhausted",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-B919C9633394FCD0",
+        "case": "testGlobalCapAcrossMultipleIps",
+        "source": {
+          "line": 109,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java"
+        },
+        "selector": "TCASE-B919C9633394FCD0"
+      },
+      "result_selector": "TCASE-B919C9633394FCD0:testGlobalCapAcrossMultipleIps:passed"
+    },
+    {
+      "stable_id": "TCASE-254A1BCFE18D61CE",
+      "source_identity": {
+        "id": "TCASE-254A1BCFE18D61CE",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java",
+        "line": 123,
+        "case": "testNoIpAddressFallsBackToGlobalOnly",
+        "kind": "java_test"
+      },
+      "case": "testNoIpAddressFallsBackToGlobalOnly",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-254A1BCFE18D61CE",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java:123#testNoIpAddressFallsBackToGlobalOnly"
+      ],
+      "rust_symbol": "c022_limits::nonblocking_endpoint_global_and_ip_limits_return_resource_exhausted",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-254A1BCFE18D61CE",
+        "case": "testNoIpAddressFallsBackToGlobalOnly",
+        "source": {
+          "line": 123,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java"
+        },
+        "selector": "TCASE-254A1BCFE18D61CE"
+      },
+      "result_selector": "TCASE-254A1BCFE18D61CE:testNoIpAddressFallsBackToGlobalOnly:passed"
+    },
+    {
+      "stable_id": "TCASE-8D8E5EB2CBFC7D46",
+      "source_identity": {
+        "id": "TCASE-8D8E5EB2CBFC7D46",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java",
+        "line": 136,
+        "case": "testPerIpLimitsAreIndependent",
+        "kind": "java_test"
+      },
+      "case": "testPerIpLimitsAreIndependent",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-8D8E5EB2CBFC7D46",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java:136#testPerIpLimitsAreIndependent"
+      ],
+      "rust_symbol": "c022_limits::nonblocking_endpoint_global_and_ip_limits_return_resource_exhausted",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-8D8E5EB2CBFC7D46",
+        "case": "testPerIpLimitsAreIndependent",
+        "source": {
+          "line": 136,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java"
+        },
+        "selector": "TCASE-8D8E5EB2CBFC7D46"
+      },
+      "result_selector": "TCASE-8D8E5EB2CBFC7D46:testPerIpLimitsAreIndependent:passed"
+    },
+    {
+      "stable_id": "TCASE-0D69BF8BE81F5079",
+      "source_identity": {
+        "id": "TCASE-0D69BF8BE81F5079",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java",
+        "line": 152,
+        "case": "testAcquireOrdersIpBeforeGlobal",
+        "kind": "java_test"
+      },
+      "case": "testAcquireOrdersIpBeforeGlobal",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-0D69BF8BE81F5079",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java:152#testAcquireOrdersIpBeforeGlobal"
+      ],
+      "rust_symbol": "c022_limits::blocking_acquire_honors_deadline_and_configuration_errors",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-0D69BF8BE81F5079",
+        "case": "testAcquireOrdersIpBeforeGlobal",
+        "source": {
+          "line": 152,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java"
+        },
+        "selector": "TCASE-0D69BF8BE81F5079"
+      },
+      "result_selector": "TCASE-0D69BF8BE81F5079:testAcquireOrdersIpBeforeGlobal:passed"
+    },
+    {
+      "stable_id": "TCASE-0407FACC43FF5489",
+      "source_identity": {
+        "id": "TCASE-0407FACC43FF5489",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java",
+        "line": 174,
+        "case": "testAcquireDoesNotConsumeGlobalWhenIpLoaderFails",
+        "kind": "java_test"
+      },
+      "case": "testAcquireDoesNotConsumeGlobalWhenIpLoaderFails",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-0407FACC43FF5489",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java:174#testAcquireDoesNotConsumeGlobalWhenIpLoaderFails"
+      ],
+      "rust_symbol": "c022_limits::blocking_acquire_honors_deadline_and_configuration_errors",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-0407FACC43FF5489",
+        "case": "testAcquireDoesNotConsumeGlobalWhenIpLoaderFails",
+        "source": {
+          "line": 174,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java"
+        },
+        "selector": "TCASE-0407FACC43FF5489"
+      },
+      "result_selector": "TCASE-0407FACC43FF5489:testAcquireDoesNotConsumeGlobalWhenIpLoaderFails:passed"
+    },
+    {
+      "stable_id": "TCASE-3680791A76AC31E1",
+      "source_identity": {
+        "id": "TCASE-3680791A76AC31E1",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java",
+        "line": 195,
+        "case": "testAcquirePermitDispatchesToTryAcquireWhenNonBlocking",
+        "kind": "java_test"
+      },
+      "case": "testAcquirePermitDispatchesToTryAcquireWhenNonBlocking",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-3680791A76AC31E1",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java:195#testAcquirePermitDispatchesToTryAcquireWhenNonBlocking"
+      ],
+      "rust_symbol": "c022_limits::blocking_acquire_honors_deadline_and_configuration_errors",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-3680791A76AC31E1",
+        "case": "testAcquirePermitDispatchesToTryAcquireWhenNonBlocking",
+        "source": {
+          "line": 195,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java"
+        },
+        "selector": "TCASE-3680791A76AC31E1"
+      },
+      "result_selector": "TCASE-3680791A76AC31E1:testAcquirePermitDispatchesToTryAcquireWhenNonBlocking:passed"
+    },
+    {
+      "stable_id": "TCASE-1A512CCBED45B545",
+      "source_identity": {
+        "id": "TCASE-1A512CCBED45B545",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java",
+        "line": 211,
+        "case": "testAcquirePermitDispatchesToAcquireWhenBlocking",
+        "kind": "java_test"
+      },
+      "case": "testAcquirePermitDispatchesToAcquireWhenBlocking",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-1A512CCBED45B545",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java:211#testAcquirePermitDispatchesToAcquireWhenBlocking"
+      ],
+      "rust_symbol": "c022_limits::blocking_acquire_honors_deadline_and_configuration_errors",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-1A512CCBED45B545",
+        "case": "testAcquirePermitDispatchesToAcquireWhenBlocking",
+        "source": {
+          "line": 211,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/GlobalRateLimiterTest.java"
+        },
+        "selector": "TCASE-1A512CCBED45B545"
+      },
+      "result_selector": "TCASE-1A512CCBED45B545:testAcquirePermitDispatchesToAcquireWhenBlocking:passed"
+    },
+    {
+      "stable_id": "TCASE-97967F23C90149D7",
+      "source_identity": {
+        "id": "TCASE-97967F23C90149D7",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java",
+        "line": 96,
+        "case": "testPerEndpointRejectedDoesNotConsumeGlobalQuota",
+        "kind": "java_test"
+      },
+      "case": "testPerEndpointRejectedDoesNotConsumeGlobalQuota",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-97967F23C90149D7",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java:96#testPerEndpointRejectedDoesNotConsumeGlobalQuota"
+      ],
+      "rust_symbol": "c022_limits::nonblocking_endpoint_global_and_ip_limits_return_resource_exhausted",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-97967F23C90149D7",
+        "case": "testPerEndpointRejectedDoesNotConsumeGlobalQuota",
+        "source": {
+          "line": 96,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java"
+        },
+        "selector": "TCASE-97967F23C90149D7"
+      },
+      "result_selector": "TCASE-97967F23C90149D7:testPerEndpointRejectedDoesNotConsumeGlobalQuota:passed"
+    },
+    {
+      "stable_id": "TCASE-797756E6947E5EF4",
+      "source_identity": {
+        "id": "TCASE-797756E6947E5EF4",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java",
+        "line": 113,
+        "case": "testNonPreemptiblePerEndpointRejectedDoesNotConsumeGlobal",
+        "kind": "java_test"
+      },
+      "case": "testNonPreemptiblePerEndpointRejectedDoesNotConsumeGlobal",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-797756E6947E5EF4",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java:113#testNonPreemptiblePerEndpointRejectedDoesNotConsumeGlobal"
+      ],
+      "rust_symbol": "c022_limits::preemptible_permit_releases_on_completion_and_global_rejection",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-797756E6947E5EF4",
+        "case": "testNonPreemptiblePerEndpointRejectedDoesNotConsumeGlobal",
+        "source": {
+          "line": 113,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java"
+        },
+        "selector": "TCASE-797756E6947E5EF4"
+      },
+      "result_selector": "TCASE-797756E6947E5EF4:testNonPreemptiblePerEndpointRejectedDoesNotConsumeGlobal:passed"
+    },
+    {
+      "stable_id": "TCASE-F6AC1952F285176C",
+      "source_identity": {
+        "id": "TCASE-F6AC1952F285176C",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java",
+        "line": 130,
+        "case": "testGlobalRejectedReleasesPreemptiblePermit",
+        "kind": "java_test"
+      },
+      "case": "testGlobalRejectedReleasesPreemptiblePermit",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-F6AC1952F285176C",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java:130#testGlobalRejectedReleasesPreemptiblePermit"
+      ],
+      "rust_symbol": "c022_limits::preemptible_permit_releases_on_completion_and_global_rejection",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-F6AC1952F285176C",
+        "case": "testGlobalRejectedReleasesPreemptiblePermit",
+        "source": {
+          "line": 130,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java"
+        },
+        "selector": "TCASE-F6AC1952F285176C"
+      },
+      "result_selector": "TCASE-F6AC1952F285176C:testGlobalRejectedReleasesPreemptiblePermit:passed"
+    },
+    {
+      "stable_id": "TCASE-14F64B6A9F526E04",
+      "source_identity": {
+        "id": "TCASE-14F64B6A9F526E04",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java",
+        "line": 154,
+        "case": "testStartCallExceptionReleasesPermitAndClosesCall",
+        "kind": "java_test"
+      },
+      "case": "testStartCallExceptionReleasesPermitAndClosesCall",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-14F64B6A9F526E04",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java:154#testStartCallExceptionReleasesPermitAndClosesCall"
+      ],
+      "rust_symbol": "c022_limits::preemptible_permit_releases_on_completion_and_global_rejection",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-14F64B6A9F526E04",
+        "case": "testStartCallExceptionReleasesPermitAndClosesCall",
+        "source": {
+          "line": 154,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java"
+        },
+        "selector": "TCASE-14F64B6A9F526E04"
+      },
+      "result_selector": "TCASE-14F64B6A9F526E04:testStartCallExceptionReleasesPermitAndClosesCall:passed"
+    },
+    {
+      "stable_id": "TCASE-DDA93AEE3CCDD259",
+      "source_identity": {
+        "id": "TCASE-DDA93AEE3CCDD259",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java",
+        "line": 177,
+        "case": "testListenerReleasesPermitOnComplete",
+        "kind": "java_test"
+      },
+      "case": "testListenerReleasesPermitOnComplete",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-DDA93AEE3CCDD259",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java:177#testListenerReleasesPermitOnComplete"
+      ],
+      "rust_symbol": "c022_limits::preemptible_permit_releases_on_completion_and_global_rejection",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-DDA93AEE3CCDD259",
+        "case": "testListenerReleasesPermitOnComplete",
+        "source": {
+          "line": 177,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java"
+        },
+        "selector": "TCASE-DDA93AEE3CCDD259"
+      },
+      "result_selector": "TCASE-DDA93AEE3CCDD259:testListenerReleasesPermitOnComplete:passed"
+    },
+    {
+      "stable_id": "TCASE-32FEFB7249F5C10F",
+      "source_identity": {
+        "id": "TCASE-32FEFB7249F5C10F",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java",
+        "line": 200,
+        "case": "testListenerReleasesPermitOnCancel",
+        "kind": "java_test"
+      },
+      "case": "testListenerReleasesPermitOnCancel",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-32FEFB7249F5C10F",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java:200#testListenerReleasesPermitOnCancel"
+      ],
+      "rust_symbol": "c022_limits::preemptible_permit_releases_on_completion_and_global_rejection",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-32FEFB7249F5C10F",
+        "case": "testListenerReleasesPermitOnCancel",
+        "source": {
+          "line": 200,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java"
+        },
+        "selector": "TCASE-32FEFB7249F5C10F"
+      },
+      "result_selector": "TCASE-32FEFB7249F5C10F:testListenerReleasesPermitOnCancel:passed"
+    },
+    {
+      "stable_id": "TCASE-D737C9586F7FC53D",
+      "source_identity": {
+        "id": "TCASE-D737C9586F7FC53D",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java",
+        "line": 222,
+        "case": "testNullRateLimiterConsultsOnlyGlobal",
+        "kind": "java_test"
+      },
+      "case": "testNullRateLimiterConsultsOnlyGlobal",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-D737C9586F7FC53D",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java:222#testNullRateLimiterConsultsOnlyGlobal"
+      ],
+      "rust_symbol": "c022_limits::nonblocking_endpoint_global_and_ip_limits_return_resource_exhausted",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-D737C9586F7FC53D",
+        "case": "testNullRateLimiterConsultsOnlyGlobal",
+        "source": {
+          "line": 222,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/RateLimiterInterceptorTest.java"
+        },
+        "selector": "TCASE-D737C9586F7FC53D"
+      },
+      "result_selector": "TCASE-D737C9586F7FC53D:testNullRateLimiterConsultsOnlyGlobal:passed"
+    },
+    {
+      "stable_id": "TCASE-241CEE8C8B9F8AEA",
+      "source_identity": {
+        "id": "TCASE-241CEE8C8B9F8AEA",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java",
+        "line": 43,
+        "case": "testAcquirePermitDispatchesToTryAcquireWhenNonBlocking",
+        "kind": "java_test"
+      },
+      "case": "testAcquirePermitDispatchesToTryAcquireWhenNonBlocking",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-241CEE8C8B9F8AEA",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java:43#testAcquirePermitDispatchesToTryAcquireWhenNonBlocking"
+      ],
+      "rust_symbol": "c022_limits::blocking_acquire_honors_deadline_and_configuration_errors",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-241CEE8C8B9F8AEA",
+        "case": "testAcquirePermitDispatchesToTryAcquireWhenNonBlocking",
+        "source": {
+          "line": 43,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java"
+        },
+        "selector": "TCASE-241CEE8C8B9F8AEA"
+      },
+      "result_selector": "TCASE-241CEE8C8B9F8AEA:testAcquirePermitDispatchesToTryAcquireWhenNonBlocking:passed"
+    },
+    {
+      "stable_id": "TCASE-6E659FA530FB8FBF",
+      "source_identity": {
+        "id": "TCASE-6E659FA530FB8FBF",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java",
+        "line": 54,
+        "case": "testAcquirePermitDispatchesToAcquireWhenBlocking",
+        "kind": "java_test"
+      },
+      "case": "testAcquirePermitDispatchesToAcquireWhenBlocking",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-6E659FA530FB8FBF",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java:54#testAcquirePermitDispatchesToAcquireWhenBlocking"
+      ],
+      "rust_symbol": "c022_limits::blocking_acquire_honors_deadline_and_configuration_errors",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-6E659FA530FB8FBF",
+        "case": "testAcquirePermitDispatchesToAcquireWhenBlocking",
+        "source": {
+          "line": 54,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java"
+        },
+        "selector": "TCASE-6E659FA530FB8FBF"
+      },
+      "result_selector": "TCASE-6E659FA530FB8FBF:testAcquirePermitDispatchesToAcquireWhenBlocking:passed"
+    },
+    {
+      "stable_id": "TCASE-49C6BBF6320DC455",
+      "source_identity": {
+        "id": "TCASE-49C6BBF6320DC455",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java",
+        "line": 82,
+        "case": "testStrategy",
+        "kind": "java_test"
+      },
+      "case": "testStrategy",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-49C6BBF6320DC455",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java:82#testStrategy"
+      ],
+      "rust_symbol": "c022_limits::nonblocking_endpoint_global_and_ip_limits_return_resource_exhausted",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-49C6BBF6320DC455",
+        "case": "testStrategy",
+        "source": {
+          "line": 82,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java"
+        },
+        "selector": "TCASE-49C6BBF6320DC455"
+      },
+      "result_selector": "TCASE-49C6BBF6320DC455:testStrategy:passed"
+    },
+    {
+      "stable_id": "TCASE-D804859587EA3CD8",
+      "source_identity": {
+        "id": "TCASE-D804859587EA3CD8",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java",
+        "line": 104,
+        "case": "testIPQPSRateLimiterAdapter",
+        "kind": "java_test"
+      },
+      "case": "testIPQPSRateLimiterAdapter",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-D804859587EA3CD8",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java:104#testIPQPSRateLimiterAdapter"
+      ],
+      "rust_symbol": "c022_limits::nonblocking_endpoint_global_and_ip_limits_return_resource_exhausted",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-D804859587EA3CD8",
+        "case": "testIPQPSRateLimiterAdapter",
+        "source": {
+          "line": 104,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java"
+        },
+        "selector": "TCASE-D804859587EA3CD8"
+      },
+      "result_selector": "TCASE-D804859587EA3CD8:testIPQPSRateLimiterAdapter:passed"
+    },
+    {
+      "stable_id": "TCASE-76DF000970FD8D97",
+      "source_identity": {
+        "id": "TCASE-76DF000970FD8D97",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java",
+        "line": 129,
+        "case": "testGlobalPreemptibleAdapter",
+        "kind": "java_test"
+      },
+      "case": "testGlobalPreemptibleAdapter",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-76DF000970FD8D97",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java:129#testGlobalPreemptibleAdapter"
+      ],
+      "rust_symbol": "c022_limits::preemptible_permit_releases_on_completion_and_global_rejection",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-76DF000970FD8D97",
+        "case": "testGlobalPreemptibleAdapter",
+        "source": {
+          "line": 129,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java"
+        },
+        "selector": "TCASE-76DF000970FD8D97"
+      },
+      "result_selector": "TCASE-76DF000970FD8D97:testGlobalPreemptibleAdapter:passed"
+    },
+    {
+      "stable_id": "TCASE-32A7C0917830094F",
+      "source_identity": {
+        "id": "TCASE-32A7C0917830094F",
+        "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java",
+        "line": 178,
+        "case": "testQpsRateLimiterAdapter",
+        "kind": "java_test"
+      },
+      "case": "testQpsRateLimiterAdapter",
+      "owning_item": "C022.02",
+      "fixture_selectors": [
+        "TCASE-32A7C0917830094F",
+        "source:java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java:178#testQpsRateLimiterAdapter"
+      ],
+      "rust_symbol": "c022_limits::nonblocking_endpoint_global_and_ip_limits_return_resource_exhausted",
+      "command_id": "limits",
+      "result": {
+        "status": "passed",
+        "stable_id": "TCASE-32A7C0917830094F",
+        "case": "testQpsRateLimiterAdapter",
+        "source": {
+          "line": 178,
+          "path": "java-tron/framework/src/test/java/org/tron/core/services/ratelimiter/adaptor/AdaptorTest.java"
+        },
+        "selector": "TCASE-32A7C0917830094F"
+      },
+      "result_selector": "TCASE-32A7C0917830094F:testQpsRateLimiterAdapter:passed"
+    }
+  ]
 }

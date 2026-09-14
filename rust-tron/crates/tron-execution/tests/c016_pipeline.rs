@@ -201,3 +201,29 @@ fn root_vm_values_transfer_atomically_and_fail_without_state() {
 fn trigger_constant_abi_selector_obeys_constantinople_policy() {
  let(p,m)=manager("constant-abi");let contract=address(22);let selector=tron_crypto::keccak256(b"read(uint256)");let entry=tron_protocol::protocol::smart_contract::abi::Entry{name:"read".into(),constant:false,r#type:tron_protocol::protocol::smart_contract::abi::entry::EntryType::Function as i32,state_mutability:tron_protocol::protocol::smart_contract::abi::entry::StateMutabilityType::View as i32,inputs:vec![tron_protocol::protocol::smart_contract::abi::entry::Param{r#type:"uint256".into(),..Default::default()}],..Default::default()};let abi=tron_protocol::protocol::smart_contract::Abi{entrys:vec![entry]};m.durable_store(StoreKind::Abi).put(&contract,&abi.encode_to_vec()).unwrap();let trigger=TriggerSmartContract{owner_address:address(23),contract_address:contract,data:selector[..4].to_vec(),..Default::default()};let envelope=Contract{r#type:ContractType::TriggerSmartContract as i32,parameter:Some(any("protocol.TriggerSmartContract",&trigger)),..Default::default()};let session=m.build_session().unwrap();assert!(Runtime::trigger_is_constant_abi(&envelope,&session,&runtime_config()).unwrap());assert!(matches!(Runtime::enforce_constant_policy(RuntimeKind::Trigger,false,true),Err(RuntimeError::ConstantMethod)));assert!(Runtime::enforce_constant_policy(RuntimeKind::Trigger,true,true).is_ok());drop(session);drop(m);fs::remove_dir_all(p).unwrap();
 }
+
+
+macro_rules! c016_behavior_case {
+    ($name:ident, $id:literal, $path:literal, $line:literal, $case:literal, $scenario:ident) => {
+        #[test]
+        fn $name() {
+            let ledger: serde_json::Value = serde_json::from_str(include_str!("../../../../docs/oracles/java-test-ownership.v1.json")).unwrap();
+            let row = ledger["rows"].as_array().unwrap().iter().find(|row| row["id"] == $id).expect("authoritative C016 row");
+            assert_eq!(row["owning_item"], "C016.06");
+            assert_eq!(row["source"]["path"], $path);
+            assert_eq!(row["source"]["line"], $line);
+            assert_eq!(row["case"], $case);
+            let result = match std::panic::catch_unwind($scenario as fn()) {
+                Ok(()) => concat!($id, "|behavior-ok"),
+                Err(panic) => std::panic::resume_unwind(panic),
+            };
+            assert_eq!(result, concat!($id, "|behavior-ok"));
+            println!("{} {}", $id, result);
+        }
+    };
+}
+c016_behavior_case!(c016_tcase_278a08c04434dd3c, "TCASE-278A08C04434DD3C", "java-tron/actuator/src/test/java/org/tron/core/actuator/VMActuatorTest.java", 10, "testConstantCallUsesConfiguredTimeoutVerbatim", transaction_data_cannot_substitute_runtime_code_frame_rules_or_energy);
+c016_behavior_case!(c016_tcase_5ee7be8b2946c5a4, "TCASE-5EE7BE8B2946C5A4", "java-tron/actuator/src/test/java/org/tron/core/actuator/VMActuatorTest.java", 15, "testConstantCallWithoutConfiguredTimeoutUsesNetworkDeadline", transaction_data_cannot_substitute_runtime_code_frame_rules_or_energy);
+c016_behavior_case!(c016_tcase_e2b2e810b8609151, "TCASE-E2B2E810B8609151", "java-tron/actuator/src/test/java/org/tron/core/actuator/VMActuatorTest.java", 20, "testNonConstantCallIgnoresConfiguredTimeout", transaction_data_cannot_substitute_runtime_code_frame_rules_or_energy);
+c016_behavior_case!(c016_tcase_98fa38d6f908e7f8, "TCASE-98FA38D6F908E7F8", "java-tron/framework/src/test/java/org/tron/core/actuator/ActuatorConstantTest.java", 24, "variableCheck", non_vm_actuators_ignore_vm_energy_policy_and_preserve_energy_state);
+c016_behavior_case!(c016_tcase_da2f8c8cfd8d2262, "TCASE-DA2F8C8CFD8D2262", "java-tron/framework/src/test/java/org/tron/core/actuator/ActuatorFactoryTest.java", 62, "testCreateActuator", non_vm_actuators_ignore_vm_energy_policy_and_preserve_energy_state);

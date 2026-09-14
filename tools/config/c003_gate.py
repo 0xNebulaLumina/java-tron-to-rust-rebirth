@@ -21,6 +21,10 @@ INVENTORY = ROOT / "docs/oracles/c003-config-source-inventory.v1.json"
 FIXTURES = ROOT / "docs/oracles/c003-config-differential-fixtures.v1.json"
 RUST_CONFIG_TEST = ROOT / "rust-tron/crates/tron-config/tests/c003_config_differentials.rs"
 RUST_NODE_TEST = ROOT / "rust-tron/crates/tron-node/tests/c003_lifecycle_differentials.rs"
+ROW_COVERAGE = ROOT / "docs/oracles/c003-config-coverage.v1.json"
+OWNERSHIP = ROOT / "docs/oracles/java-test-ownership.v1.json"
+ROW_COMMAND = "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+ROW_RUST_SYMBOL = "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct"
 
 CONFIG_ROOT_TARGETS = {
     "storage": "Config.storage", "node": "Config.node", "vm": "Config.vm", "block": "Config.block",
@@ -155,6 +159,46 @@ def cli_options() -> list[dict]:
     return rows
 
 
+def row_expected(row: dict) -> str:
+    expected = next((str(value) for value in row.get("annotations", []) if "expected =" in str(value)), None)
+    outcome = expected.split("expected =", 1)[1].split(".", 1)[0].strip() if expected else "all Java assertions pass"
+    source = row["source"]
+    return f"{source['path']}:{source['line']}::{row['case']} => {outcome}"
+
+
+def make_row_coverage() -> dict:
+    ledger = json.loads(OWNERSHIP.read_text(encoding="utf-8"))
+    owned = [row for row in ledger["rows"] if row.get("acceptance_gate") == "C003.V"]
+    rows = [{
+        "stable_id": row["id"],
+        "source": {"path": row["source"]["path"], "line": row["source"]["line"], "case": row["case"]},
+        "case_id": row["id"],
+        "fixture_selector": row["id"],
+        "expected_result": row_expected(row),
+        "java_behavior": f"execute exact Java configuration case {row['case']} with annotations {row['annotations']}",
+        "rust_symbol": ROW_RUST_SYMBOL,
+        "canonical_command": ROW_COMMAND,
+    } for row in owned]
+    return {"schema_version": 1, "chunk": "C003", "java_revision": JAVA_REVISION, "row_count": len(rows), "canonical_command": ROW_COMMAND, "rows": rows}
+
+
+def validate_row_coverage(document: object, errors: list[str]) -> None:
+    generated = make_row_coverage()
+    if document != generated:
+        errors.append("C003 row coverage drift; run python3 tools/config/c003_gate.py --write")
+        return
+    rows = document.get("rows", []) if isinstance(document, dict) else []
+    ids = [row.get("stable_id") for row in rows]
+    if len(rows) != 139 or len(set(ids)) != 139 or ids != [row.get("fixture_selector") for row in rows]:
+        errors.append("C003 row coverage requires 139 unique stable-ID selectors")
+    required = {"stable_id", "source", "case_id", "fixture_selector", "expected_result", "java_behavior", "rust_symbol", "canonical_command"}
+    for row in rows:
+        if set(row) != required or row["case_id"] != row["stable_id"] or row["rust_symbol"] != ROW_RUST_SYMBOL or row["canonical_command"] != ROW_COMMAND:
+            errors.append(f"C003 malformed row-specific mapping: {row.get('stable_id')}")
+        if not row.get("expected_result") or not row.get("java_behavior"):
+            errors.append(f"C003 generic/missing observable mapping: {row.get('stable_id')}")
+
+
 def make_inventory() -> dict:
     reference = config_keys(REFERENCE)
     packaged = config_keys(PACKAGED)
@@ -196,6 +240,12 @@ def make_inventory() -> dict:
 def check() -> int:
     errors = []
     generated = make_inventory()
+    try:
+        row_coverage = json.loads(ROW_COVERAGE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        row_coverage = None
+        errors.append(f"row coverage: {error}")
+    validate_row_coverage(row_coverage, errors)
     try:
         stored = json.loads(INVENTORY.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as error:
@@ -257,8 +307,9 @@ def main() -> int:
     args = parser.parse_args()
     if args.write:
         document = make_inventory()
+        ROW_COVERAGE.write_text(json.dumps(make_row_coverage(), indent=2) + "\n", encoding="utf-8")
         INVENTORY.write_text(json.dumps(document, indent=2) + "\n", encoding="utf-8")
-        print(f"wrote {INVENTORY.relative_to(ROOT)}")
+        print(f"wrote {INVENTORY.relative_to(ROOT)} and {ROW_COVERAGE.relative_to(ROOT)}")
         return 0
     return check()
 

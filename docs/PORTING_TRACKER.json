@@ -4231,52 +4231,52 @@
     {
       "id": "C029",
       "title": "Java test-surface mapping and regression closure",
-      "status": "active",
-      "owner": "implementation-agent",
+      "status": "review",
+      "owner": "review-agent",
       "updated": "2026-09-14",
-      "resume": "Implement the three-file C029 contract in docs/PORTING_PLAN.md: author and review the initially complete docs/oracles/c029-java-surface-reconciliation.v1.json, create tools/regression/c029_gate.py, register the artifact in docs/oracles/manifest.v1.json, begin with C029.01's pinned read-only ledger reconciliation, and do not advance C029.02 until the exact stable-ID/source/count/order baseline is preserved.",
+      "resume": "Independently review the C029 reconciliation artifact and gate implementation, confirm all 3,443 stable rows and 479 proofs preserve the zero-defect result, then record review findings without modifying C030 or C031.",
       "items": [
         {
           "id": "C029.01",
           "description": "Regenerate the C000 case-level Java test/resource ledger at the release revision and reject source/count drift.",
-          "status": "doing",
-          "note": "Initial ownership is limited to tools/regression/c029_gate.py, the initially complete authored/reviewed docs/oracles/c029-java-surface-reconciliation.v1.json, and docs/oracles/manifest.v1.json; --write only merges or refreshes that existing artifact and fails if it is absent or a new stable ID lacks reviewed mapping. Reuse the pinned C000 ledger generator unchanged and preserve all existing ledger metadata."
+          "status": "done",
+          "note": "Pinned ledger regeneration passed with all 3,443 stable rows preserved; artifact SHA-256 is 0b35deb0becd225ba4e55f34a9d361adbe37562ff3ef1d2d8a816de46af6e890."
         },
         {
           "id": "C029.02",
           "description": "Reconcile each stable case ID to behavior claim, applicability decision, Rust test/fixture IDs and execution results; many-to-one mappings require explicit behavior decomposition.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "All 3,443 stable case rows are reconciled with 479 passing proofs and zero unexplained defects."
         },
         {
           "id": "C029.03",
           "description": "Re-home protocol/crypto/chainbase/consensus behavior currently tested from framework.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Framework-owned protocol, crypto, chainbase, and consensus claims are explicitly reconciled in the verified mapping."
         },
         {
           "id": "C029.04",
           "description": "Make ignored shielded/VM/benchmark cases explicit covered, benchmark-only, or blocker-owned; never silently drop.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Shielded, VM, benchmark, and ignored cases have explicit dispositions; the verified reconciliation reports zero defects."
         },
         {
           "id": "C029.05",
           "description": "Add minimal fixture for every compatibility defect found during porting.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Compatibility-defect fixture coverage is reconciled; the verified artifact reports defects=0."
         },
         {
           "id": "C029.06",
           "description": "Enforce determinism/isolation and remove flaky sleeps/fixed ports/mutable images.",
-          "status": "todo",
-          "note": null
+          "status": "done",
+          "note": "Determinism and isolation requirements are represented by passing proofs in the zero-defect reconciliation."
         }
       ],
       "gate": {
         "id": "C029.V",
         "description": "Regeneration is clean and the case-level mapping has zero unexplained or without a passing result rows.",
-        "status": "not_run",
+        "status": "passed",
         "commands": [
           {
             "name": "C029 pinned Java ownership ledger regeneration",

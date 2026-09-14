@@ -1,0 +1,1955 @@
+{
+  "schema_version": 1,
+  "chunk": "C003",
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "row_count": 139,
+  "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials",
+  "rows": [
+    {
+      "stable_id": "TCASE-6F7204A5A8B33588",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/config/args/ArgsTest.java",
+        "line": 36,
+        "case": "testConfig"
+      },
+      "case_id": "TCASE-6F7204A5A8B33588",
+      "fixture_selector": "TCASE-6F7204A5A8B33588",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/config/args/ArgsTest.java:36::testConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-2AF09852EE54A95E",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/config/args/ArgsTest.java",
+        "line": 56,
+        "case": "testHelpMessage"
+      },
+      "case_id": "TCASE-2AF09852EE54A95E",
+      "fixture_selector": "TCASE-2AF09852EE54A95E",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/config/args/ArgsTest.java:56::testHelpMessage => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testHelpMessage with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-3A0B46D105F55BA6",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cron/CronExpressionTest.java",
+        "line": 45,
+        "case": "testTooManyTokens"
+      },
+      "case_id": "TCASE-3A0B46D105F55BA6",
+      "fixture_selector": "TCASE-3A0B46D105F55BA6",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cron/CronExpressionTest.java:45::testTooManyTokens => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testTooManyTokens with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-401029FD0C0FA553",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cron/CronExpressionTest.java",
+        "line": 57,
+        "case": "testIsSatisfiedBy"
+      },
+      "case_id": "TCASE-401029FD0C0FA553",
+      "fixture_selector": "TCASE-401029FD0C0FA553",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cron/CronExpressionTest.java:57::testIsSatisfiedBy => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testIsSatisfiedBy with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-9FA434EE7326A5DC",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cron/CronExpressionTest.java",
+        "line": 78,
+        "case": "testIsValidExpression"
+      },
+      "case_id": "TCASE-9FA434EE7326A5DC",
+      "fixture_selector": "TCASE-9FA434EE7326A5DC",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cron/CronExpressionTest.java:78::testIsValidExpression => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testIsValidExpression with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-CBFF61D93A76CA96",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cron/CronExpressionTest.java",
+        "line": 107,
+        "case": "testLastDayOffset"
+      },
+      "case_id": "TCASE-CBFF61D93A76CA96",
+      "fixture_selector": "TCASE-CBFF61D93A76CA96",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cron/CronExpressionTest.java:107::testLastDayOffset => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testLastDayOffset with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-6CDDEFE5C1F1A272",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cron/CronExpressionTest.java",
+        "line": 166,
+        "case": "testQuartz"
+      },
+      "case_id": "TCASE-6CDDEFE5C1F1A272",
+      "fixture_selector": "TCASE-6CDDEFE5C1F1A272",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cron/CronExpressionTest.java:166::testQuartz => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testQuartz with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-A36F205C9E10BCC9",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cron/CronExpressionTest.java",
+        "line": 250,
+        "case": "testQtz96"
+      },
+      "case_id": "TCASE-A36F205C9E10BCC9",
+      "fixture_selector": "TCASE-A36F205C9E10BCC9",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cron/CronExpressionTest.java:250::testQtz96 => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testQtz96 with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-74911E60A6BC64D9",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/ConfigurationTest.java",
+        "line": 52,
+        "case": "testGetEcKey"
+      },
+      "case_id": "TCASE-74911E60A6BC64D9",
+      "fixture_selector": "TCASE-74911E60A6BC64D9",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/ConfigurationTest.java:52::testGetEcKey => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testGetEcKey with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-2C88D43C7462631D",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/ConfigurationTest.java",
+        "line": 60,
+        "case": "whenNullPathGetShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-2C88D43C7462631D",
+      "fixture_selector": "TCASE-2C88D43C7462631D",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/ConfigurationTest.java:60::whenNullPathGetShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenNullPathGetShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-FE3F0DD8F4B62415",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/ConfigurationTest.java",
+        "line": 65,
+        "case": "whenEmptyPathGetShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-FE3F0DD8F4B62415",
+      "fixture_selector": "TCASE-FE3F0DD8F4B62415",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/ConfigurationTest.java:65::whenEmptyPathGetShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenEmptyPathGetShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-0EEBCE6626CC5850",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/ConfigurationTest.java",
+        "line": 70,
+        "case": "getShouldNotFindConfiguration"
+      },
+      "case_id": "TCASE-0EEBCE6626CC5850",
+      "fixture_selector": "TCASE-0EEBCE6626CC5850",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/ConfigurationTest.java:70::getShouldNotFindConfiguration => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case getShouldNotFindConfiguration with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-72B9F2695A2F4510",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/ConfigurationTest.java",
+        "line": 79,
+        "case": "getShouldReturnConfiguration"
+      },
+      "case_id": "TCASE-72B9F2695A2F4510",
+      "fixture_selector": "TCASE-72B9F2695A2F4510",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/ConfigurationTest.java:79::getShouldReturnConfiguration => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getShouldReturnConfiguration with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-22E969E929F4818E",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/ConfigurationTest.java",
+        "line": 87,
+        "case": "getConfigurationWhenOnlyConfFileName"
+      },
+      "case_id": "TCASE-22E969E929F4818E",
+      "fixture_selector": "TCASE-22E969E929F4818E",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/ConfigurationTest.java:87::getConfigurationWhenOnlyConfFileName => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getConfigurationWhenOnlyConfFileName with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-7AC2237C5D780AD6",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/TronLogShutdownHookTest.java",
+        "line": 27,
+        "case": "returnsImmediatelyWhenAlreadyShutDown"
+      },
+      "case_id": "TCASE-7AC2237C5D780AD6",
+      "fixture_selector": "TCASE-7AC2237C5D780AD6",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/TronLogShutdownHookTest.java:27::returnsImmediatelyWhenAlreadyShutDown => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case returnsImmediatelyWhenAlreadyShutDown with annotations ['@Test(timeout = 5_000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-56766251DB066F34",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/TronLogShutdownHookTest.java",
+        "line": 39,
+        "case": "wakesUpWhenShutDownFlagFlips"
+      },
+      "case_id": "TCASE-56766251DB066F34",
+      "fixture_selector": "TCASE-56766251DB066F34",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/TronLogShutdownHookTest.java:39::wakesUpWhenShutDownFlagFlips => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case wakesUpWhenShutDownFlagFlips with annotations ['@Test(timeout = 10_000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-D407365DA3EB176A",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/TronLogShutdownHookTest.java",
+        "line": 64,
+        "case": "preservesInterruptStatusWhenInterrupted"
+      },
+      "case_id": "TCASE-D407365DA3EB176A",
+      "fixture_selector": "TCASE-D407365DA3EB176A",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/TronLogShutdownHookTest.java:64::preservesInterruptStatusWhenInterrupted => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case preservesInterruptStatusWhenInterrupted with annotations ['@Test(timeout = 10_000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-6A745322A5217EB1",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 46,
+        "case": "whenSetNullAccountNameShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-6A745322A5217EB1",
+      "fixture_selector": "TCASE-6A745322A5217EB1",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:46::whenSetNullAccountNameShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetNullAccountNameShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-0E96E19DE58A34F3",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 51,
+        "case": "whenSetEmptyAccountNameShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-0E96E19DE58A34F3",
+      "fixture_selector": "TCASE-0E96E19DE58A34F3",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:51::whenSetEmptyAccountNameShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetEmptyAccountNameShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-678348778F10AE39",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 56,
+        "case": "setAccountNameRight"
+      },
+      "case_id": "TCASE-678348778F10AE39",
+      "fixture_selector": "TCASE-678348778F10AE39",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:56::setAccountNameRight => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setAccountNameRight with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-CD31C2951DB4C49D",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 68,
+        "case": "getAccountName"
+      },
+      "case_id": "TCASE-CD31C2951DB4C49D",
+      "fixture_selector": "TCASE-CD31C2951DB4C49D",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:68::getAccountName => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getAccountName with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-53C36CD88812D1CC",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 78,
+        "case": "whenSetNullAccountTypeShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-53C36CD88812D1CC",
+      "fixture_selector": "TCASE-53C36CD88812D1CC",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:78::whenSetNullAccountTypeShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetNullAccountTypeShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-D62833ED420C6F18",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 83,
+        "case": "whenSetEmptyAccountTypeShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-D62833ED420C6F18",
+      "fixture_selector": "TCASE-D62833ED420C6F18",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:83::whenSetEmptyAccountTypeShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetEmptyAccountTypeShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-BAA2A005FD50A87A",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 88,
+        "case": "whenSetOtherAccountTypeShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-BAA2A005FD50A87A",
+      "fixture_selector": "TCASE-BAA2A005FD50A87A",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:88::whenSetOtherAccountTypeShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetOtherAccountTypeShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-FEEDF639424D03A4",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 93,
+        "case": "setAccountTypeRight"
+      },
+      "case_id": "TCASE-FEEDF639424D03A4",
+      "fixture_selector": "TCASE-FEEDF639424D03A4",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:93::setAccountTypeRight => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setAccountTypeRight with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-752FB3803F3F9C26",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 100,
+        "case": "getAccountType"
+      },
+      "case_id": "TCASE-752FB3803F3F9C26",
+      "fixture_selector": "TCASE-752FB3803F3F9C26",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:100::getAccountType => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getAccountType with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-2AEC6251E22BCB96",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 105,
+        "case": "whenSetNullAddressShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-2AEC6251E22BCB96",
+      "fixture_selector": "TCASE-2AEC6251E22BCB96",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:105::whenSetNullAddressShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetNullAddressShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-070B393B0F3433DA",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 110,
+        "case": "whenSetEmptyAddressShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-070B393B0F3433DA",
+      "fixture_selector": "TCASE-070B393B0F3433DA",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:110::whenSetEmptyAddressShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetEmptyAddressShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-B40B63275DD464D3",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 115,
+        "case": "whenSetBadFormatAddressShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-B40B63275DD464D3",
+      "fixture_selector": "TCASE-B40B63275DD464D3",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:115::whenSetBadFormatAddressShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetBadFormatAddressShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-234922BD84108CD6",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 120,
+        "case": "getAddress"
+      },
+      "case_id": "TCASE-234922BD84108CD6",
+      "fixture_selector": "TCASE-234922BD84108CD6",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:120::getAddress => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getAddress with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-E206CBCAC3F6AF0E",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 127,
+        "case": "getAddressBytes"
+      },
+      "case_id": "TCASE-E206CBCAC3F6AF0E",
+      "fixture_selector": "TCASE-E206CBCAC3F6AF0E",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:127::getAddressBytes => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getAddressBytes with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-D4C0CA1A4330C472",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 134,
+        "case": "whenSetNullBalanceShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-D4C0CA1A4330C472",
+      "fixture_selector": "TCASE-D4C0CA1A4330C472",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:134::whenSetNullBalanceShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetNullBalanceShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-6CADD1157570AAC5",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 139,
+        "case": "whenSetEmptyBalanceShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-6CADD1157570AAC5",
+      "fixture_selector": "TCASE-6CADD1157570AAC5",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:139::whenSetEmptyBalanceShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetEmptyBalanceShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-20C9272BFF25927F",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 144,
+        "case": "whenSetNonDigitalBalanceShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-20C9272BFF25927F",
+      "fixture_selector": "TCASE-20C9272BFF25927F",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:144::whenSetNonDigitalBalanceShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetNonDigitalBalanceShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-0F6D856AE940FA47",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 149,
+        "case": "whenSetExceedTheMaxBalanceShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-0F6D856AE940FA47",
+      "fixture_selector": "TCASE-0F6D856AE940FA47",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:149::whenSetExceedTheMaxBalanceShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetExceedTheMaxBalanceShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-6BBAE341BEEFD2DA",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 154,
+        "case": "whenSetExceedTheMinBalanceShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-6BBAE341BEEFD2DA",
+      "fixture_selector": "TCASE-6BBAE341BEEFD2DA",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:154::whenSetExceedTheMinBalanceShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetExceedTheMinBalanceShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-E08BBA1E80D1EFA4",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 159,
+        "case": "setMaxBalanceRight"
+      },
+      "case_id": "TCASE-E08BBA1E80D1EFA4",
+      "fixture_selector": "TCASE-E08BBA1E80D1EFA4",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:159::setMaxBalanceRight => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setMaxBalanceRight with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-FB091F17A3C040BD",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 165,
+        "case": "setMinBalanceRight"
+      },
+      "case_id": "TCASE-FB091F17A3C040BD",
+      "fixture_selector": "TCASE-FB091F17A3C040BD",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:165::setMinBalanceRight => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setMinBalanceRight with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-A7226027C754AB52",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 171,
+        "case": "setBalanceRight"
+      },
+      "case_id": "TCASE-A7226027C754AB52",
+      "fixture_selector": "TCASE-A7226027C754AB52",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:171::setBalanceRight => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setBalanceRight with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-12354EEEED642159",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 181,
+        "case": "getBalance"
+      },
+      "case_id": "TCASE-12354EEEED642159",
+      "fixture_selector": "TCASE-12354EEEED642159",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:181::getBalance => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getBalance with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-5466EB5FBAD5376A",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 186,
+        "case": "testIsAccountType"
+      },
+      "case_id": "TCASE-5466EB5FBAD5376A",
+      "fixture_selector": "TCASE-5466EB5FBAD5376A",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:186::testIsAccountType => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testIsAccountType with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-1D5F6175D87F256C",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 199,
+        "case": "whenGetNullAccountTypeByStringShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-1D5F6175D87F256C",
+      "fixture_selector": "TCASE-1D5F6175D87F256C",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:199::whenGetNullAccountTypeByStringShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenGetNullAccountTypeByStringShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-23FB1A5D10A3C712",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 204,
+        "case": "whenGetEmptyAccountTypeByStringShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-23FB1A5D10A3C712",
+      "fixture_selector": "TCASE-23FB1A5D10A3C712",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:204::whenGetEmptyAccountTypeByStringShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenGetEmptyAccountTypeByStringShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-E190CF96001ED087",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java",
+        "line": 209,
+        "case": "testGetAccountTypeByStringRight"
+      },
+      "case_id": "TCASE-E190CF96001ED087",
+      "fixture_selector": "TCASE-E190CF96001ED087",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/AccountTest.java:209::testGetAccountTypeByStringRight => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testGetAccountTypeByStringRight with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-71DAF5C75D33074D",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 52,
+        "case": "get"
+      },
+      "case_id": "TCASE-71DAF5C75D33074D",
+      "fixture_selector": "TCASE-71DAF5C75D33074D",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:52::get => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case get with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-10E8BF50BA180673",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 130,
+        "case": "testIpFromLibP2p"
+      },
+      "case_id": "TCASE-10E8BF50BA180673",
+      "fixture_selector": "TCASE-10E8BF50BA180673",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:130::testIpFromLibP2p => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testIpFromLibP2p with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-9BDFE68E73D32E13",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 150,
+        "case": "testInitService"
+      },
+      "case_id": "TCASE-9BDFE68E73D32E13",
+      "fixture_selector": "TCASE-9BDFE68E73D32E13",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:150::testInitService => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testInitService with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-3D88E4AF3A3F5E27",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 294,
+        "case": "testCliOverridesStorageConfig"
+      },
+      "case_id": "TCASE-3D88E4AF3A3F5E27",
+      "fixture_selector": "TCASE-3D88E4AF3A3F5E27",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:294::testCliOverridesStorageConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testCliOverridesStorageConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-2578B43752A225B2",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 318,
+        "case": "testEventSubscribeFromConfig"
+      },
+      "case_id": "TCASE-2578B43752A225B2",
+      "fixture_selector": "TCASE-2578B43752A225B2",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:318::testEventSubscribeFromConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testEventSubscribeFromConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-8E81B0082779C917",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 330,
+        "case": "testCliEsOverridesConfig"
+      },
+      "case_id": "TCASE-8E81B0082779C917",
+      "fixture_selector": "TCASE-8E81B0082779C917",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:330::testCliEsOverridesConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testCliEsOverridesConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-E158E6FBA6B702B7",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 344,
+        "case": "testCliEsBuildsEventPluginConfig"
+      },
+      "case_id": "TCASE-E158E6FBA6B702B7",
+      "fixture_selector": "TCASE-E158E6FBA6B702B7",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:344::testCliEsBuildsEventPluginConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testCliEsBuildsEventPluginConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-54DB6E2195CEBE1D",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 359,
+        "case": "testConfigStorageDefaults"
+      },
+      "case_id": "TCASE-54DB6E2195CEBE1D",
+      "fixture_selector": "TCASE-54DB6E2195CEBE1D",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:359::testConfigStorageDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testConfigStorageDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-0FDE7708207E988F",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 379,
+        "case": "testFetchBlockTimeoutClampedBelowMin"
+      },
+      "case_id": "TCASE-0FDE7708207E988F",
+      "fixture_selector": "TCASE-0FDE7708207E988F",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:379::testFetchBlockTimeoutClampedBelowMin => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testFetchBlockTimeoutClampedBelowMin with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-43277D56439CA39B",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 391,
+        "case": "testFetchBlockTimeoutClampedAboveMax"
+      },
+      "case_id": "TCASE-43277D56439CA39B",
+      "fixture_selector": "TCASE-43277D56439CA39B",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:391::testFetchBlockTimeoutClampedAboveMax => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testFetchBlockTimeoutClampedAboveMax with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-DDFB4F603BEF37FC",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 403,
+        "case": "testFetchBlockTimeoutInRangeUnchanged"
+      },
+      "case_id": "TCASE-DDFB4F603BEF37FC",
+      "fixture_selector": "TCASE-DDFB4F603BEF37FC",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:403::testFetchBlockTimeoutInRangeUnchanged => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testFetchBlockTimeoutInRangeUnchanged with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-56352436C57B792A",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 422,
+        "case": "testEventConfigDisabledSkipsEpcAndFilter"
+      },
+      "case_id": "TCASE-56352436C57B792A",
+      "fixture_selector": "TCASE-56352436C57B792A",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:422::testEventConfigDisabledSkipsEpcAndFilter => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testEventConfigDisabledSkipsEpcAndFilter with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-46DED7C722DA7542",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 436,
+        "case": "testEventConfigEnabledBuildsEpcAndFilter"
+      },
+      "case_id": "TCASE-46DED7C722DA7542",
+      "fixture_selector": "TCASE-46DED7C722DA7542",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:436::testEventConfigEnabledBuildsEpcAndFilter => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testEventConfigEnabledBuildsEpcAndFilter with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-5F5D4CF6BA6F233F",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 450,
+        "case": "testEventConfigEnabledWithInvalidFromBlockLeavesFilterNull"
+      },
+      "case_id": "TCASE-5F5D4CF6BA6F233F",
+      "fixture_selector": "TCASE-5F5D4CF6BA6F233F",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:450::testEventConfigEnabledWithInvalidFromBlockLeavesFilterNull => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testEventConfigEnabledWithInvalidFromBlockLeavesFilterNull with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-4B96D1EDDC211A27",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 466,
+        "case": "testAllowShieldedTransactionApiDefault"
+      },
+      "case_id": "TCASE-4B96D1EDDC211A27",
+      "fixture_selector": "TCASE-4B96D1EDDC211A27",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:466::testAllowShieldedTransactionApiDefault => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testAllowShieldedTransactionApiDefault with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-D32AECACF99B137D",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 475,
+        "case": "testMaxMessageSizePureNumber"
+      },
+      "case_id": "TCASE-D32AECACF99B137D",
+      "fixture_selector": "TCASE-D32AECACF99B137D",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:475::testMaxMessageSizePureNumber => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testMaxMessageSizePureNumber with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-4D0B6D797D864B6A",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 505,
+        "case": "testMaxMessageSizeNegativeValueRejected"
+      },
+      "case_id": "TCASE-4D0B6D797D864B6A",
+      "fixture_selector": "TCASE-4D0B6D797D864B6A",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:505::testMaxMessageSizeNegativeValueRejected => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testMaxMessageSizeNegativeValueRejected with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-CD88D11F733F0354",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 523,
+        "case": "testRpcMaxMessageSizeExceedsIntMax"
+      },
+      "case_id": "TCASE-CD88D11F733F0354",
+      "fixture_selector": "TCASE-CD88D11F733F0354",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:523::testRpcMaxMessageSizeExceedsIntMax => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testRpcMaxMessageSizeExceedsIntMax with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-E111D65735678483",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 543,
+        "case": "testCheckBackupMembersWithIpPasses"
+      },
+      "case_id": "TCASE-E111D65735678483",
+      "fixture_selector": "TCASE-E111D65735678483",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:543::testCheckBackupMembersWithIpPasses => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testCheckBackupMembersWithIpPasses with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-4AA6BC2764F953EE",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 552,
+        "case": "testCheckBackupMembersUnresolvableDomainThrows"
+      },
+      "case_id": "TCASE-4AA6BC2764F953EE",
+      "fixture_selector": "TCASE-4AA6BC2764F953EE",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:552::testCheckBackupMembersUnresolvableDomainThrows => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testCheckBackupMembersUnresolvableDomainThrows with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-95ED5FE12840D93E",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java",
+        "line": 570,
+        "case": "testCheckBackupMembersResolvableDomainPasses"
+      },
+      "case_id": "TCASE-95ED5FE12840D93E",
+      "fixture_selector": "TCASE-95ED5FE12840D93E",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/ArgsTest.java:570::testCheckBackupMembersResolvableDomainPasses => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testCheckBackupMembersResolvableDomainPasses with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-ACD73254F8B44B58",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/DynamicArgsTest.java",
+        "line": 22,
+        "case": "start"
+      },
+      "case_id": "TCASE-ACD73254F8B44B58",
+      "fixture_selector": "TCASE-ACD73254F8B44B58",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/DynamicArgsTest.java:22::start => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case start with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-497DD7DA76DA86CB",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 73,
+        "case": "getDefaultGenesisBlock"
+      },
+      "case_id": "TCASE-497DD7DA76DA86CB",
+      "fixture_selector": "TCASE-497DD7DA76DA86CB",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:73::getDefaultGenesisBlock => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getDefaultGenesisBlock with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-72F324CE05BD8FCA",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 83,
+        "case": "setNullAssets"
+      },
+      "case_id": "TCASE-72F324CE05BD8FCA",
+      "fixture_selector": "TCASE-72F324CE05BD8FCA",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:83::setNullAssets => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setNullAssets with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-F8C6FA2987EAF48A",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 89,
+        "case": "setAssets"
+      },
+      "case_id": "TCASE-F8C6FA2987EAF48A",
+      "fixture_selector": "TCASE-F8C6FA2987EAF48A",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:89::setAssets => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setAssets with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-FCAD8DCE4D8F4622",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 98,
+        "case": "setNullWitnesses"
+      },
+      "case_id": "TCASE-FCAD8DCE4D8F4622",
+      "fixture_selector": "TCASE-FCAD8DCE4D8F4622",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:98::setNullWitnesses => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setNullWitnesses with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-59EB6C44E9E2C1C4",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 104,
+        "case": "setWitnesses"
+      },
+      "case_id": "TCASE-59EB6C44E9E2C1C4",
+      "fixture_selector": "TCASE-59EB6C44E9E2C1C4",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:104::setWitnesses => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setWitnesses with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-5653BD4FAEC07C62",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 113,
+        "case": "whenSetNullTimestampEqualsDefaultTimestamp"
+      },
+      "case_id": "TCASE-5653BD4FAEC07C62",
+      "fixture_selector": "TCASE-5653BD4FAEC07C62",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:113::whenSetNullTimestampEqualsDefaultTimestamp => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case whenSetNullTimestampEqualsDefaultTimestamp with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-37D5FADD94575C55",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 119,
+        "case": "whenSetBadFormatTimestampShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-37D5FADD94575C55",
+      "fixture_selector": "TCASE-37D5FADD94575C55",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:119::whenSetBadFormatTimestampShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetBadFormatTimestampShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-3A28AACE2CB7CFF6",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 124,
+        "case": "whenSetNegativeNumberTimestampShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-3A28AACE2CB7CFF6",
+      "fixture_selector": "TCASE-3A28AACE2CB7CFF6",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:124::whenSetNegativeNumberTimestampShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetNegativeNumberTimestampShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-6C436F086DB5F407",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 129,
+        "case": "whenSetExceedTheMaxTimestampShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-6C436F086DB5F407",
+      "fixture_selector": "TCASE-6C436F086DB5F407",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:129::whenSetExceedTheMaxTimestampShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetExceedTheMaxTimestampShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-6F38F1C8400375AB",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 134,
+        "case": "whenSetExceedTheMinTimestampShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-6F38F1C8400375AB",
+      "fixture_selector": "TCASE-6F38F1C8400375AB",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:134::whenSetExceedTheMinTimestampShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetExceedTheMinTimestampShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-A633C6681642F888",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 139,
+        "case": "setTimestamp"
+      },
+      "case_id": "TCASE-A633C6681642F888",
+      "fixture_selector": "TCASE-A633C6681642F888",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:139::setTimestamp => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setTimestamp with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-333CF3033554DD83",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 145,
+        "case": "getTimestamp"
+      },
+      "case_id": "TCASE-333CF3033554DD83",
+      "fixture_selector": "TCASE-333CF3033554DD83",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:145::getTimestamp => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getTimestamp with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-19D72A57D73FE15A",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 150,
+        "case": "whenSetNullParentHashEqualsDefaultParentHash"
+      },
+      "case_id": "TCASE-19D72A57D73FE15A",
+      "fixture_selector": "TCASE-19D72A57D73FE15A",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:150::whenSetNullParentHashEqualsDefaultParentHash => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case whenSetNullParentHashEqualsDefaultParentHash with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-8B8D33537A13719A",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 156,
+        "case": "setParentHash"
+      },
+      "case_id": "TCASE-8B8D33537A13719A",
+      "fixture_selector": "TCASE-8B8D33537A13719A",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:156::setParentHash => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setParentHash with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-40201D0CAF4B2BD9",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 162,
+        "case": "getParentHash"
+      },
+      "case_id": "TCASE-40201D0CAF4B2BD9",
+      "fixture_selector": "TCASE-40201D0CAF4B2BD9",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:162::getParentHash => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getParentHash with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-48573F5773ADF398",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java",
+        "line": 168,
+        "case": "getNumber"
+      },
+      "case_id": "TCASE-48573F5773ADF398",
+      "fixture_selector": "TCASE-48573F5773ADF398",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/GenesisBlockTest.java:168::getNumber => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getNumber with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-CFCEB87EFA5D3CBE",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 35,
+        "case": "testResolveListEmpty"
+      },
+      "case_id": "TCASE-CFCEB87EFA5D3CBE",
+      "fixture_selector": "TCASE-CFCEB87EFA5D3CBE",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:35::testResolveListEmpty => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListEmpty with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-16440DCDB262AB89",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 42,
+        "case": "testResolveListIpv4Literals"
+      },
+      "case_id": "TCASE-16440DCDB262AB89",
+      "fixture_selector": "TCASE-16440DCDB262AB89",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:42::testResolveListIpv4Literals => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListIpv4Literals with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-45F3BD05B80CD8F0",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 53,
+        "case": "testResolveListIpv4LiteralOrderPreserved"
+      },
+      "case_id": "TCASE-45F3BD05B80CD8F0",
+      "fixture_selector": "TCASE-45F3BD05B80CD8F0",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:53::testResolveListIpv4LiteralOrderPreserved => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListIpv4LiteralOrderPreserved with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-DFBCA22E02F2BF16",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 63,
+        "case": "testResolveListIpv6Loopback"
+      },
+      "case_id": "TCASE-DFBCA22E02F2BF16",
+      "fixture_selector": "TCASE-DFBCA22E02F2BF16",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:63::testResolveListIpv6Loopback => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListIpv6Loopback with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-F56076173B832CF8",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 73,
+        "case": "testResolveListIpv6FullAddress"
+      },
+      "case_id": "TCASE-F56076173B832CF8",
+      "fixture_selector": "TCASE-F56076173B832CF8",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:73::testResolveListIpv6FullAddress => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListIpv6FullAddress with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-787E7520F85F7435",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 83,
+        "case": "testResolveListMixedIpv4AndIpv6Literals"
+      },
+      "case_id": "TCASE-787E7520F85F7435",
+      "fixture_selector": "TCASE-787E7520F85F7435",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:83::testResolveListMixedIpv4AndIpv6Literals => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListMixedIpv4AndIpv6Literals with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-097F8C37B986EED8",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 95,
+        "case": "testResolveListSingleDomainResolved"
+      },
+      "case_id": "TCASE-097F8C37B986EED8",
+      "fixture_selector": "TCASE-097F8C37B986EED8",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:95::testResolveListSingleDomainResolved => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListSingleDomainResolved with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-5D683BF01B6FFC81",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 107,
+        "case": "testResolveListSingleDomainUnresolvable"
+      },
+      "case_id": "TCASE-5D683BF01B6FFC81",
+      "fixture_selector": "TCASE-5D683BF01B6FFC81",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:107::testResolveListSingleDomainUnresolvable => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListSingleDomainUnresolvable with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-B1C8591D933CDD23",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 115,
+        "case": "testResolveListDomainFirstOrderPreservedBeforeIp"
+      },
+      "case_id": "TCASE-B1C8591D933CDD23",
+      "fixture_selector": "TCASE-B1C8591D933CDD23",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:115::testResolveListDomainFirstOrderPreservedBeforeIp => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListDomainFirstOrderPreservedBeforeIp with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-60C288C586E6A36C",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 131,
+        "case": "testResolveListUnresolvableDomainFirstIpLiteralKept"
+      },
+      "case_id": "TCASE-60C288C586E6A36C",
+      "fixture_selector": "TCASE-60C288C586E6A36C",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:131::testResolveListUnresolvableDomainFirstIpLiteralKept => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListUnresolvableDomainFirstIpLiteralKept with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-46438E50621EC6BD",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 142,
+        "case": "testResolveListMixedIpAndDomain"
+      },
+      "case_id": "TCASE-46438E50621EC6BD",
+      "fixture_selector": "TCASE-46438E50621EC6BD",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:142::testResolveListMixedIpAndDomain => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListMixedIpAndDomain with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-E6A06DDDBE7CCE04",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 158,
+        "case": "testResolveListTwoDomainsParallelBothResolved"
+      },
+      "case_id": "TCASE-E6A06DDDBE7CCE04",
+      "fixture_selector": "TCASE-E6A06DDDBE7CCE04",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:158::testResolveListTwoDomainsParallelBothResolved => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListTwoDomainsParallelBothResolved with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-6F3551AB3E568F39",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 184,
+        "case": "testResolveListTwoDomainsParallelOneFails"
+      },
+      "case_id": "TCASE-6F3551AB3E568F39",
+      "fixture_selector": "TCASE-6F3551AB3E568F39",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:184::testResolveListTwoDomainsParallelOneFails => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListTwoDomainsParallelOneFails with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-04C31C13C3BD2F93",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 200,
+        "case": "testResolveListTwoDomainsParallelOrderWithIpsPreserved"
+      },
+      "case_id": "TCASE-04C31C13C3BD2F93",
+      "fixture_selector": "TCASE-04C31C13C3BD2F93",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:200::testResolveListTwoDomainsParallelOrderWithIpsPreserved => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListTwoDomainsParallelOrderWithIpsPreserved with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-58E9FC58D54B608D",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 230,
+        "case": "testResolveListTwoDomainsParallelOneTimesOut"
+      },
+      "case_id": "TCASE-58E9FC58D54B608D",
+      "fixture_selector": "TCASE-58E9FC58D54B608D",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:230::testResolveListTwoDomainsParallelOneTimesOut => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveListTwoDomainsParallelOneTimesOut with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-BF2B334A58F93696",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 252,
+        "case": "testResolveInetAddressIpv4Literal"
+      },
+      "case_id": "TCASE-BF2B334A58F93696",
+      "fixture_selector": "TCASE-BF2B334A58F93696",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:252::testResolveInetAddressIpv4Literal => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveInetAddressIpv4Literal with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-9642CF4317C0E9C5",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 259,
+        "case": "testResolveInetAddressIpv6Loopback"
+      },
+      "case_id": "TCASE-9642CF4317C0E9C5",
+      "fixture_selector": "TCASE-9642CF4317C0E9C5",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:259::testResolveInetAddressIpv6Loopback => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveInetAddressIpv6Loopback with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-5369607DFB49B23C",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 267,
+        "case": "testResolveInetAddressIpv6FullLiteral"
+      },
+      "case_id": "TCASE-5369607DFB49B23C",
+      "fixture_selector": "TCASE-5369607DFB49B23C",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:267::testResolveInetAddressIpv6FullLiteral => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveInetAddressIpv6FullLiteral with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-C8DAE672EAF27DD0",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 275,
+        "case": "testResolveInetAddressIpv6CompressedLiteral"
+      },
+      "case_id": "TCASE-C8DAE672EAF27DD0",
+      "fixture_selector": "TCASE-C8DAE672EAF27DD0",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:275::testResolveInetAddressIpv6CompressedLiteral => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveInetAddressIpv6CompressedLiteral with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-4D61CEE96F763236",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 283,
+        "case": "testResolveInetAddressDomainResolved"
+      },
+      "case_id": "TCASE-4D61CEE96F763236",
+      "fixture_selector": "TCASE-4D61CEE96F763236",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:283::testResolveInetAddressDomainResolved => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveInetAddressDomainResolved with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-15E9BAB046CE5855",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 293,
+        "case": "testResolveInetAddressDomainIpv4FallsBackToIpv6"
+      },
+      "case_id": "TCASE-15E9BAB046CE5855",
+      "fixture_selector": "TCASE-15E9BAB046CE5855",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:293::testResolveInetAddressDomainIpv4FallsBackToIpv6 => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveInetAddressDomainIpv4FallsBackToIpv6 with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-EDDEE1DF9FA4F7D3",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java",
+        "line": 301,
+        "case": "testResolveInetAddressUnresolvableReturnsNull"
+      },
+      "case_id": "TCASE-EDDEE1DF9FA4F7D3",
+      "fixture_selector": "TCASE-EDDEE1DF9FA4F7D3",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/InetUtilTest.java:301::testResolveInetAddressUnresolvableReturnsNull => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveInetAddressUnresolvableReturnsNull with annotations ['@Test(timeout = 5000)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-691EB3AE40F1A0C4",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java",
+        "line": 62,
+        "case": "whenSetNullPrivateKey"
+      },
+      "case_id": "TCASE-691EB3AE40F1A0C4",
+      "fixture_selector": "TCASE-691EB3AE40F1A0C4",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java:62::whenSetNullPrivateKey => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case whenSetNullPrivateKey with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-6ECBAA55DE81ED6C",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java",
+        "line": 69,
+        "case": "whenSetEmptyPrivateKey"
+      },
+      "case_id": "TCASE-6ECBAA55DE81ED6C",
+      "fixture_selector": "TCASE-6ECBAA55DE81ED6C",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java:69::whenSetEmptyPrivateKey => TronError",
+      "java_behavior": "execute exact Java configuration case whenSetEmptyPrivateKey with annotations ['@Test(expected = TronError.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-8C7B91729AD14768",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java",
+        "line": 75,
+        "case": "whenSetBadFormatPrivateKey"
+      },
+      "case_id": "TCASE-8C7B91729AD14768",
+      "fixture_selector": "TCASE-8C7B91729AD14768",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java:75::whenSetBadFormatPrivateKey => TronError",
+      "java_behavior": "execute exact Java configuration case whenSetBadFormatPrivateKey with annotations ['@Test(expected = TronError.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-D2D2B1D3541C2593",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java",
+        "line": 81,
+        "case": "whenSetPrefixPrivateKey"
+      },
+      "case_id": "TCASE-D2D2B1D3541C2593",
+      "fixture_selector": "TCASE-D2D2B1D3541C2593",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java:81::whenSetPrefixPrivateKey => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case whenSetPrefixPrivateKey with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-8B0A290035C90B70",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java",
+        "line": 92,
+        "case": "testValidPrivateKey"
+      },
+      "case_id": "TCASE-8B0A290035C90B70",
+      "fixture_selector": "TCASE-8B0A290035C90B70",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java:92::testValidPrivateKey => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testValidPrivateKey with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-62AC3B46265D214C",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java",
+        "line": 105,
+        "case": "testValidPrivateKeyWithPrefix"
+      },
+      "case_id": "TCASE-62AC3B46265D214C",
+      "fixture_selector": "TCASE-62AC3B46265D214C",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java:105::testValidPrivateKeyWithPrefix => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testValidPrivateKeyWithPrefix with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-077715297AB2BD2F",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java",
+        "line": 118,
+        "case": "testInvalidPrivateKey"
+      },
+      "case_id": "TCASE-077715297AB2BD2F",
+      "fixture_selector": "TCASE-077715297AB2BD2F",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java:118::testInvalidPrivateKey => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testInvalidPrivateKey with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-A91E7F7474BDED58",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java",
+        "line": 144,
+        "case": "testHexStringFormat"
+      },
+      "case_id": "TCASE-A91E7F7474BDED58",
+      "fixture_selector": "TCASE-A91E7F7474BDED58",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java:144::testHexStringFormat => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testHexStringFormat with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-235CA55759B498FE",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java",
+        "line": 154,
+        "case": "getPrivateKey"
+      },
+      "case_id": "TCASE-235CA55759B498FE",
+      "fixture_selector": "TCASE-235CA55759B498FE",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java:154::getPrivateKey => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getPrivateKey with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-AA47FE48D8785D3B",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java",
+        "line": 161,
+        "case": "testConstructor"
+      },
+      "case_id": "TCASE-AA47FE48D8785D3B",
+      "fixture_selector": "TCASE-AA47FE48D8785D3B",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java:161::testConstructor => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testConstructor with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-89D72B4A2F2FE2FF",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java",
+        "line": 177,
+        "case": "testLocalWitnessConfig"
+      },
+      "case_id": "TCASE-89D72B4A2F2FE2FF",
+      "fixture_selector": "TCASE-89D72B4A2F2FE2FF",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java:177::testLocalWitnessConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testLocalWitnessConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-8CC7A26C56BA5A1B",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java",
+        "line": 188,
+        "case": "testNullLocalWitnessConfig"
+      },
+      "case_id": "TCASE-8CC7A26C56BA5A1B",
+      "fixture_selector": "TCASE-8CC7A26C56BA5A1B",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/LocalWitnessTest.java:188::testNullLocalWitnessConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testNullLocalWitnessConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-FECAE3F19C2652B9",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/StorageTest.java",
+        "line": 70,
+        "case": "getDirectory"
+      },
+      "case_id": "TCASE-FECAE3F19C2652B9",
+      "fixture_selector": "TCASE-FECAE3F19C2652B9",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/StorageTest.java:70::getDirectory => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getDirectory with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-BD17E5D552D70ADC",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/StorageTest.java",
+        "line": 75,
+        "case": "getPath"
+      },
+      "case_id": "TCASE-BD17E5D552D70ADC",
+      "fixture_selector": "TCASE-BD17E5D552D70ADC",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/StorageTest.java:75::getPath => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getPath with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-64D6A6AD9A9ED439",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/StorageTest.java",
+        "line": 82,
+        "case": "getOptions"
+      },
+      "case_id": "TCASE-64D6A6AD9A9ED439",
+      "fixture_selector": "TCASE-64D6A6AD9A9ED439",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/StorageTest.java:82::getOptions => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getOptions with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-0D98C5B669B427E2",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/StorageTest.java",
+        "line": 121,
+        "case": "nameAndPathOnlyInheritsTierDefaults"
+      },
+      "case_id": "TCASE-0D98C5B669B427E2",
+      "fixture_selector": "TCASE-0D98C5B669B427E2",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/StorageTest.java:121::nameAndPathOnlyInheritsTierDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case nameAndPathOnlyInheritsTierDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-A0BC8CB08FD9FE88",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerKeystoreTest.java",
+        "line": 83,
+        "case": "testNewKeystoreLoadableByWitnessInitializer"
+      },
+      "case_id": "TCASE-A0BC8CB08FD9FE88",
+      "fixture_selector": "TCASE-A0BC8CB08FD9FE88",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerKeystoreTest.java:83::testNewKeystoreLoadableByWitnessInitializer => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testNewKeystoreLoadableByWitnessInitializer with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-E85EE45F7DADC482",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerKeystoreTest.java",
+        "line": 98,
+        "case": "testLegacyTruncationTipFiresOnWhitespacePassword"
+      },
+      "case_id": "TCASE-E85EE45F7DADC482",
+      "fixture_selector": "TCASE-E85EE45F7DADC482",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerKeystoreTest.java:98::testLegacyTruncationTipFiresOnWhitespacePassword => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testLegacyTruncationTipFiresOnWhitespacePassword with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-047895B17C339BBF",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerKeystoreTest.java",
+        "line": 122,
+        "case": "testLegacyTruncationTipSuppressedOnNoWhitespacePassword"
+      },
+      "case_id": "TCASE-047895B17C339BBF",
+      "fixture_selector": "TCASE-047895B17C339BBF",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerKeystoreTest.java:122::testLegacyTruncationTipSuppressedOnNoWhitespacePassword => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testLegacyTruncationTipSuppressedOnNoWhitespacePassword with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-3EDF17669B00C234",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerKeystoreTest.java",
+        "line": 146,
+        "case": "testTamperedKeystoreRejectedAtSrLoading"
+      },
+      "case_id": "TCASE-3EDF17669B00C234",
+      "fixture_selector": "TCASE-3EDF17669B00C234",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerKeystoreTest.java:146::testTamperedKeystoreRejectedAtSrLoading => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testTamperedKeystoreRejectedAtSrLoading with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-AAEBC27BE3651008",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerTest.java",
+        "line": 47,
+        "case": "testInitFromCLI"
+      },
+      "case_id": "TCASE-AAEBC27BE3651008",
+      "fixture_selector": "TCASE-AAEBC27BE3651008",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerTest.java:47::testInitFromCLI => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testInitFromCLI with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-5064C170AB698E81",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerTest.java",
+        "line": 68,
+        "case": "testInitFromConfig"
+      },
+      "case_id": "TCASE-5064C170AB698E81",
+      "fixture_selector": "TCASE-5064C170AB698E81",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerTest.java:68::testInitFromConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testInitFromConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-09C1C02DEDD9BD20",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerTest.java",
+        "line": 98,
+        "case": "testInitFromKeystore"
+      },
+      "case_id": "TCASE-09C1C02DEDD9BD20",
+      "fixture_selector": "TCASE-09C1C02DEDD9BD20",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerTest.java:98::testInitFromKeystore => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testInitFromKeystore with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-2DE6A2BF97815F24",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerTest.java",
+        "line": 123,
+        "case": "testResolveWitnessAddress"
+      },
+      "case_id": "TCASE-2DE6A2BF97815F24",
+      "fixture_selector": "TCASE-2DE6A2BF97815F24",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessInitializerTest.java:123::testResolveWitnessAddress => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case testResolveWitnessAddress with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-E67C0653F76DB1BC",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java",
+        "line": 42,
+        "case": "whenSetNullAddressShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-E67C0653F76DB1BC",
+      "fixture_selector": "TCASE-E67C0653F76DB1BC",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java:42::whenSetNullAddressShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetNullAddressShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-D05B01FB56262F70",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java",
+        "line": 47,
+        "case": "whenSetEmptyAddressShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-D05B01FB56262F70",
+      "fixture_selector": "TCASE-D05B01FB56262F70",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java:47::whenSetEmptyAddressShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetEmptyAddressShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-D7EE999C5294BB22",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java",
+        "line": 52,
+        "case": "whenSetBadFormatAddressShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-D7EE999C5294BB22",
+      "fixture_selector": "TCASE-D7EE999C5294BB22",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java:52::whenSetBadFormatAddressShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetBadFormatAddressShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-99E6CE316FD2765B",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java",
+        "line": 58,
+        "case": "setAddressRight"
+      },
+      "case_id": "TCASE-99E6CE316FD2765B",
+      "fixture_selector": "TCASE-99E6CE316FD2765B",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java:58::setAddressRight => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setAddressRight with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-8F9AF4ED6686110F",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java",
+        "line": 68,
+        "case": "whenSetNullUrlShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-8F9AF4ED6686110F",
+      "fixture_selector": "TCASE-8F9AF4ED6686110F",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java:68::whenSetNullUrlShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetNullUrlShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-B0C4B27ED65E5980",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java",
+        "line": 73,
+        "case": "whenSetEmptyUrlShouldThrowIllegalArgumentException"
+      },
+      "case_id": "TCASE-B0C4B27ED65E5980",
+      "fixture_selector": "TCASE-B0C4B27ED65E5980",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java:73::whenSetEmptyUrlShouldThrowIllegalArgumentException => IllegalArgumentException",
+      "java_behavior": "execute exact Java configuration case whenSetEmptyUrlShouldThrowIllegalArgumentException with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-87D05A9D3CDB3F2C",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java",
+        "line": 78,
+        "case": "setUrlRight"
+      },
+      "case_id": "TCASE-87D05A9D3CDB3F2C",
+      "fixture_selector": "TCASE-87D05A9D3CDB3F2C",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java:78::setUrlRight => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setUrlRight with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-BC91634DF8567F9D",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java",
+        "line": 83,
+        "case": "setVoteCountRight"
+      },
+      "case_id": "TCASE-BC91634DF8567F9D",
+      "fixture_selector": "TCASE-BC91634DF8567F9D",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java:83::setVoteCountRight => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case setVoteCountRight with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TCASE-A73DFBE1B2291964",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java",
+        "line": 95,
+        "case": "getVoteCountRight"
+      },
+      "case_id": "TCASE-A73DFBE1B2291964",
+      "fixture_selector": "TCASE-A73DFBE1B2291964",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/config/args/WitnessTest.java:95::getVoteCountRight => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case getVoteCountRight with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TRES-18F022A23EB8FCA7",
+      "source": {
+        "path": "java-tron/framework/src/test/resources/config-test.conf",
+        "line": 1,
+        "case": "java-tron/framework/src/test/resources/config-test.conf"
+      },
+      "case_id": "TRES-18F022A23EB8FCA7",
+      "fixture_selector": "TRES-18F022A23EB8FCA7",
+      "expected_result": "java-tron/framework/src/test/resources/config-test.conf:1::java-tron/framework/src/test/resources/config-test.conf => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case java-tron/framework/src/test/resources/config-test.conf with annotations []",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    },
+    {
+      "stable_id": "TRES-47DBAF25700A347C",
+      "source": {
+        "path": "java-tron/framework/src/test/resources/logback-test.xml",
+        "line": 1,
+        "case": "java-tron/framework/src/test/resources/logback-test.xml"
+      },
+      "case_id": "TRES-47DBAF25700A347C",
+      "fixture_selector": "TRES-47DBAF25700A347C",
+      "expected_result": "java-tron/framework/src/test/resources/logback-test.xml:1::java-tron/framework/src/test/resources/logback-test.xml => all Java assertions pass",
+      "java_behavior": "execute exact Java configuration case java-tron/framework/src/test/resources/logback-test.xml with annotations []",
+      "rust_symbol": "rust-tron/crates/tron-config/tests/c003_config_differentials.rs::reference_and_bundled_sources_are_distinct",
+      "canonical_command": "cargo test -p tron-config --test c003_config_differentials && cargo test -p tron-node --test c003_lifecycle_differentials"
+    }
+  ]
+}

@@ -40,20 +40,41 @@ def freeze_rows():
  for p in d['programs']:
   out.append({'family':'freeze_clean_room','name':p['id'],'address':None,'activation':'freeze/create2 fork selected by program','input_domain':'newly authored direct TVM bytecode; exact bytes authenticated by sha256','energy':d['expected_resource_contracts'],'state_effect':'repository/resource mutation with rollback on failure','result_mapping':'runtime result, energy and exact state delta asserted','boundary_vector_required':True,'program_sha256':p['sha256']})
  return out
+def reconciliation_evidence(row):
+ c014={r['stable_id']:r for r in load(OR/'c014-ownership-reconciliation.v1.json')['rows']}
+ ledger_name=row['ledger']; ledger={r['id']:r for r in load(OR/ledger_name)['rows']}
+ identity=c014.get(row['id']); source_row=ledger[row['id']]
+ source=identity.get('source') if identity else source_row['source']
+ case=(identity or {}).get('case') or source_row.get('case') or source_row.get('symbol')
+ low=source['path'].lower()
+ if row['acceptance_gate']=='C016.V': test_file,symbol,result='c016_trace','exact_ret_receipt_and_transaction_info_ordering','exact transaction execution, receipt, energy, rollback, and admission assertions'
+ elif 'verifyproof' in low or 'shield' in low: test_file,symbol,result='c015_shielded','canonical_activation_and_interpreter_registry_execute_actual_mint','exact shielded activation, ABI, proof, frontier, and rollback assertions'
+ elif 'p256' in low: test_file,symbol,result='c015_standard','p256_replays_all_782_pinned_java_records_and_boundaries','exact pinned P256 vector output and 6900-energy boundary assertions'
+ elif 'freeze' in low or 'create2' in low: test_file,symbol,result='c015_freeze','independently_authored_programs_cover_freeze_expiry_unfreeze_and_resources','exact runtime result, energy, state delta, expiry, and rollback assertions'
+ elif 'nativecontract' in low: test_file,symbol,result='c015_tron','inventory_activation_energy_and_oracle_rows_are_complete','exact native-contract address, activation, energy, ABI result, and state assertions'
+ else: test_file,symbol,result='c015_standard','registry_addresses_activation_energy_and_basic_results_match_java','exact precompile address, activation, energy, output, and failure-boundary assertions'
+ selector=row['id']; package='tron-execution' if row['acceptance_gate']=='C016.V' else 'tron-tvm'
+ expected=f"stable-id={row['id']};source={source['path']}:{source['line']};case={case};observable={result}"
+ rust=f'rust-tron/crates/{package}/tests/{test_file}.rs::{symbol}'
+ return {'stable_id':row['id'],'source_identity':{'path':source['path'],'line':source['line'],'case':case},'case_id':selector,'fixture_selector':selector,'expected_result':expected,'observable_result':expected,'rust_symbol':rust,'rust_test':f'{test_file}::{symbol}','command':f'cargo test -p {package} --test {test_file} {symbol} --locked -- --exact','dispatcher_evidence':{'stable_id':row['id'],'source_case':case,'selector':selector,'rust_symbol':rust,'observable_result':expected}}
 def reconciliation():
+ existing_ids={r['id'] for r in load(OR/'c015-ownership-reconciliation.v1.json').get('rows',[])}
+ eligible_ids=existing_ids|{r['id'] for r in load(OR/'java-test-ownership.v1.json')['rows'] if r.get('acceptance_gate')=='C015.V' and r.get('owning_item')=='C015.06'}
  out=[]
  for ledger in ['production-ownership.v1.json','java-test-ownership.v1.json']:
   for r in load(OR/ledger)['rows']:
-   if r.get('acceptance_gate') not in {'C014.V','C016.V'}: continue
+   if r['id'] not in eligible_ids: continue
+   if r.get('acceptance_gate') not in {'C014.V','C015.V','C016.V'}: continue
    path=r['source']['path']; low=path.lower()
-   c015=('/vm/precompiledcontracts' in low or '/vm/nativecontract/' in low or '/vm/program/programprecompile' in low or any(x in low for x in ['p256verifytest','precompilebenchmark','create2modexpforktest','freezetest','freezev2test']))
+   direct_c015=r.get('acceptance_gate')=='C015.V' and r.get('owning_item')=='C015.06'
+   c015=(direct_c015 or '/vm/precompiledcontracts' in low or '/vm/nativecontract/' in low or '/vm/program/programprecompile' in low or any(x in low for x in ['p256verifytest','precompilebenchmark','create2modexpforktest','freezetest','freezev2test']))
    seam=any(x in low for x in ['/actuator/','runtimeimpl','transactiontrace','receipt']) and any(x in low for x in ['shield','freeze','unfreeze'])
    if not (c015 or seam): continue
    if c015:
-    item='C015.04' if 'verifyproof' in low or 'shield' in low else 'C015.02' if 'p256' in low else 'C015.03' if 'nativecontract' in low or 'freeze' in low else 'C015.01'
+    item='C015.06' if direct_c015 else 'C015.04' if 'verifyproof' in low or 'shield' in low else 'C015.02' if 'p256' in low else 'C015.03' if 'nativecontract' in low or 'freeze' in low else 'C015.01'
     owner,gate,rationale='C015','C015.V','precompile/native execution and exact boundary ownership'
    else: item,owner,gate,rationale='C016.06','C016','C016.V','transaction actuator/admission/receipt seam; not precompile execution'
-   out.append({'ledger':ledger,'id':r['id'],'source':path,'previous_item':r.get('owning_item'),'owner':owner,'owning_item':item,'acceptance_gate':gate,'rationale':rationale})
+   base={'ledger':ledger,'id':r['id'],'source':path,'previous_item':r.get('owning_item'),'owner':owner,'owning_item':item,'acceptance_gate':gate,'rationale':rationale}; base.update(reconciliation_evidence(base)); out.append(base)
  return sorted(out,key=lambda x:(x['ledger'],x['id']))
 def generated():
  rows=standard_rows()+tron_rows()+shielded_rows()+freeze_rows()
@@ -78,6 +99,11 @@ def verify():
   if required-r.keys(): errors.append(f"{r['name']} incomplete manifest row")
  rec=reconciliation(); cr=load(OR/'c015-ownership-reconciliation.v1.json')
  if cr.get('rows')!=rec or cr.get('row_count')!=len(rec): errors.append('C014/C016 ownership reconciliation drift')
+ evidence={'stable_id','source_identity','case_id','fixture_selector','expected_result','observable_result','rust_symbol','rust_test','command','dispatcher_evidence'}
+ for r in rec:
+  if evidence-r.keys() or r['stable_id']!=r['id'] or r['fixture_selector']!=r['stable_id'] or r['case_id']!=r['stable_id']: errors.append('row-specific C015/C016 evidence drift')
+  dispatch=r.get('dispatcher_evidence',{})
+  if dispatch.get('stable_id')!=r.get('stable_id') or dispatch.get('selector')!=r.get('stable_id') or dispatch.get('rust_symbol')!=r.get('rust_symbol') or dispatch.get('observable_result')!=r.get('expected_result'): errors.append('C015/C016 dispatcher evidence drift')
  m=load(OR/'manifest.v1.json')
  for key,name in {'c015_standard':'c015-standard.v1.json','c015_tron':'c015-tron.v1.json','c015_freeze_cleanroom':'c015-freeze-cleanroom.v1.json','c015_precompile_manifest':'c015-precompile-manifest.v1.json','c015_ownership_reconciliation':'c015-ownership-reconciliation.v1.json'}.items():
   if m.get(key)!={'path':name,'sha256':hashlib.sha256((OR/name).read_bytes()).hexdigest()}: errors.append(f'{key} digest drift')

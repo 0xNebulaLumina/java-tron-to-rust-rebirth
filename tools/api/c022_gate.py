@@ -110,6 +110,50 @@ def validate_seams(ownership):
     if claimed_c006 != c006_ids:
         raise SystemExit("C022/C006 exact shielded identity drift")
 
+def validate_row_proofs(ownership):
+    wallet = load(ORACLES / "c022-wallet-query.v1.json")
+    limits = load(ORACLES / "c022-server-limits.v1.json")
+    proof_rows = wallet.get("case_results", []) + limits.get("case_results", [])
+    expected = {row["id"] for row in ownership.get("rows", []) if row.get("disposition") == "executed"}
+    observed = {row.get("stable_id") for row in proof_rows}
+    if observed != expected or len(proof_rows) != len(observed):
+        raise SystemExit("C022 exact row-proof identity drift")
+    ownership_by_id = {row["id"]: row for row in ownership["rows"]}
+    required = ("source_identity", "case", "fixture_selectors", "rust_symbol", "command_id", "result", "result_selector")
+    for proof in proof_rows:
+        row = ownership_by_id[proof["stable_id"]]
+        source = proof.get("source_identity", {})
+        if any(proof.get(field) in (None, "", []) for field in required):
+            raise SystemExit("C022 row proof lacks exact selector/result fields: " + proof["stable_id"])
+        if (source.get("path"), source.get("line"), source.get("case")) != (row["source"]["path"], row["source"]["line"], row["symbol"]):
+            raise SystemExit("C022 row proof source identity drift: " + proof["stable_id"])
+        result = proof["result"]
+        if result.get("status") != "passed" or result.get("stable_id") != row["id"] or result.get("case") != row["symbol"]:
+            raise SystemExit("C022 row proof result drift: " + proof["stable_id"])
+    reassigned = [row for row in ownership["rows"] if row.get("disposition") == "reassigned"]
+    expected_reassignments = {
+        "TCASE-A061ABBE5EE6438D": ("java-tron/framework/src/test/java/org/tron/core/services/NodeInfoServiceTest.java", 54, "test"),
+        "TCASE-36E313B32E2AF3FA": ("java-tron/framework/src/test/java/org/tron/core/services/WalletApiTest.java", 49, "listNodesTest"),
+    }
+    if len(reassigned) != 2 or {row.get("stable_id") for row in reassigned} != set(expected_reassignments):
+        raise SystemExit("C022 future HTTP seam reassignment identity drift")
+    for row in reassigned:
+        path, line, case = expected_reassignments[row["stable_id"]]
+        source = {"id": row["stable_id"], "path": path, "line": line, "case": case, "kind": "java_test"}
+        result = row.get("observable_result", {})
+        reassignment = row.get("reassignment", {})
+        if row.get("source_identity") != source or row.get("case") != case or row.get("symbol") != case:
+            raise SystemExit("C022 future HTTP seam source/case drift: " + row["stable_id"])
+        if reassignment != {"destination_item":"C023.02","destination_gate":"C023.V","seam":"future_http","stable_id":row["stable_id"],"source":source}:
+            raise SystemExit("C022 future HTTP seam destination evidence drift: " + row["stable_id"])
+        if row.get("executable_credit") is not False or row.get("proof_command_id") is not None or row.get("rust_symbol") is not None or not row.get("reason"):
+            raise SystemExit("C022 future HTTP seam executable-credit drift: " + row["stable_id"])
+        if result.get("status") != "reassigned" or result.get("destination") != "C023.02" or result.get("destination_gate") != "C023.V" or result.get("selector") != row["stable_id"] or not result.get("reason"):
+            raise SystemExit("C022 future HTTP seam observable-result drift: " + row["stable_id"])
+    if {row["stable_id"] for row in wallet.get("reassignments", [])} != {row["id"] for row in reassigned}:
+        raise SystemExit("C022 future HTTP seam oracle drift")
+
+
 def gradle_test_results(tree, expected_rows):
     expected = {(pathlib.Path(row["source"]["path"]).stem, row["symbol"]) for row in expected_rows}
     actual = []
@@ -161,9 +205,10 @@ def metadata():
     ownership = load(OWNERSHIP)
     java_rows = annotated_java_tests(ownership)
     validate_seams(ownership)
+    validate_row_proofs(ownership)
     rows_by_kind = {}
     for row in ownership.get("rows", []):
-        key = "future_http_seams" if row.get("disposition") == "future_http_seam" else ({"java_test":"java_tests","c021_grpc_client_seam":"c021_grpc_client_seams","c006_shielded_seam":"c006_shielded_cases"}.get(row.get("kind")))
+        key = "future_http_seams" if row.get("disposition") == "reassigned" and row.get("reassignment", {}).get("destination_gate") == "C023.V" else ({"java_test":"java_tests","c021_grpc_client_seam":"c021_grpc_client_seams","c006_shielded_seam":"c006_shielded_cases"}.get(row.get("kind")))
         if key: rows_by_kind[key] = rows_by_kind.get(key, 0) + 1
     rows_by_kind["total"] = len(ownership.get("rows", []))
     if ownership.get("canonical_counts") != rows_by_kind or ownership.get("unmapped") != []: raise SystemExit("C022 ownership reconciliation drift")

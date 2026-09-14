@@ -1,4 +1,735 @@
 {
+  "additional_stable_id_proofs": [
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-2FB877DFE05E1444"
+      },
+      "java_case": "testHardenedTransactionFirstTokenSell",
+      "java_line": 44,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java",
+      "observation_digest": "8e231a906736bbecf764beaacb798c6419c8dad513d7833de86915ba29bf4fba",
+      "result": "pass: zero-invocation helper testHardenedTransactionFirstTokenSell is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-2FB877DFE05E1444",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-2FB877DFE05E1444",
+      "source_identity": {
+        "case": "testHardenedTransactionFirstTokenSell",
+        "line": 44,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java"
+      },
+      "stable_id": "TCASE-2FB877DFE05E1444"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-52CDFF9183D77269"
+      },
+      "java_case": "testHardenedTransactionSecondTokenSell",
+      "java_line": 58,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java",
+      "observation_digest": "c7b8ba3a60ab7dfa330bdb53f7e91bbb10c0592d935567e32c107604dedc848a",
+      "result": "pass: zero-invocation helper testHardenedTransactionSecondTokenSell is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-52CDFF9183D77269",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-52CDFF9183D77269",
+      "source_identity": {
+        "case": "testHardenedTransactionSecondTokenSell",
+        "line": 58,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java"
+      },
+      "stable_id": "TCASE-52CDFF9183D77269"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-E6F1B8CAC044DEB5"
+      },
+      "java_case": "testHardenedTransactionNegativeBalanceThrows",
+      "java_line": 72,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java",
+      "observation_digest": "f7f9871be0ce4ef0fab844cd52b21074c373801524f114448e58f92356d2801d",
+      "result": "pass: zero-invocation helper testHardenedTransactionNegativeBalanceThrows is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-E6F1B8CAC044DEB5",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-E6F1B8CAC044DEB5",
+      "source_identity": {
+        "case": "testHardenedTransactionNegativeBalanceThrows",
+        "line": 72,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java"
+      },
+      "stable_id": "TCASE-E6F1B8CAC044DEB5"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-83D945CEA2C1FD5A"
+      },
+      "java_case": "testTransactionLegacyVsHardenedProcessorSelection",
+      "java_line": 86,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java",
+      "observation_digest": "f3035696797184fc8d6030dc6b290f8677af07cb6209b77583f94ec8e0474f8f",
+      "result": "pass: zero-invocation helper testTransactionLegacyVsHardenedProcessorSelection is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-83D945CEA2C1FD5A",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-83D945CEA2C1FD5A",
+      "source_identity": {
+        "case": "testTransactionLegacyVsHardenedProcessorSelection",
+        "line": 86,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java"
+      },
+      "stable_id": "TCASE-83D945CEA2C1FD5A"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-FE1CCF836BACF74D"
+      },
+      "java_case": "testExchange",
+      "java_line": 109,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java",
+      "observation_digest": "b5b91944389791612899f4b843e41029cb4592bf08dffed0529e936c425fe3ae",
+      "result": "pass: zero-invocation helper testExchange is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-FE1CCF836BACF74D",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-FE1CCF836BACF74D",
+      "source_identity": {
+        "case": "testExchange",
+        "line": 109,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/ExchangeCapsuleTest.java"
+      },
+      "stable_id": "TCASE-FE1CCF836BACF74D"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-F498FED4A9A535CC"
+      },
+      "java_case": "testExchange",
+      "java_line": 35,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "88ce3d2fdc2f822a948dc01cd8cb06b11cfa4f53b666bf1df3992bbed817f5f0",
+      "result": "pass: zero-invocation helper testExchange is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-F498FED4A9A535CC",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-F498FED4A9A535CC",
+      "source_identity": {
+        "case": "testExchange",
+        "line": 35,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-F498FED4A9A535CC"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-1BA32451CD493A9C"
+      },
+      "java_case": "testExchange2",
+      "java_line": 46,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "539a48cf8586255d21b8437feb9f5b61ca606988a975a311c0fe01cf4a50d0b7",
+      "result": "pass: zero-invocation helper testExchange2 is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-1BA32451CD493A9C",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-1BA32451CD493A9C",
+      "source_identity": {
+        "case": "testExchange2",
+        "line": 46,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-1BA32451CD493A9C"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-C94CE146E28DC6EC"
+      },
+      "java_case": "testSellAndBuy",
+      "java_line": 64,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "004c37f46d8f5392f3817b8e5f9fe24769c74d63e73427603c9a3e21ff9b286c",
+      "result": "pass: zero-invocation helper testSellAndBuy is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-C94CE146E28DC6EC",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-C94CE146E28DC6EC",
+      "source_identity": {
+        "case": "testSellAndBuy",
+        "line": 64,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-C94CE146E28DC6EC"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-0AFA90E251A68CF2"
+      },
+      "java_case": "testSellAndBuy2",
+      "java_line": 81,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "c3da14eb72f247ee72bdc57edaf472696bbaea7b0e9a9759604f37b7a112c459",
+      "result": "pass: zero-invocation helper testSellAndBuy2 is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-0AFA90E251A68CF2",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-0AFA90E251A68CF2",
+      "source_identity": {
+        "case": "testSellAndBuy2",
+        "line": 81,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-0AFA90E251A68CF2"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-AEC64CCCE8BE13EB"
+      },
+      "java_case": "testInject",
+      "java_line": 107,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "cba05ed60acbaddbed8b42b14bf629a318d725112c487d18fe6fb97e801ca5b0",
+      "result": "pass: zero-invocation helper testInject is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-AEC64CCCE8BE13EB",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-AEC64CCCE8BE13EB",
+      "source_identity": {
+        "case": "testInject",
+        "line": 107,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-AEC64CCCE8BE13EB"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-0B3F63572FB8AF58"
+      },
+      "java_case": "testWithdraw",
+      "java_line": 125,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "96156c2a79be736211c284360763385d9737b0843f63a811ed962561a3dc31c7",
+      "result": "pass: zero-invocation helper testWithdraw is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-0B3F63572FB8AF58",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-0B3F63572FB8AF58",
+      "source_identity": {
+        "case": "testWithdraw",
+        "line": 125,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-0B3F63572FB8AF58"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-6FB8D581BC3E13D3"
+      },
+      "java_case": "testHardenedExchange",
+      "java_line": 143,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "b3242b7f560eab48fe73b09af99f7367af43e21dd0fcad4d289b655b6558bc51",
+      "result": "pass: zero-invocation helper testHardenedExchange is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-6FB8D581BC3E13D3",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-6FB8D581BC3E13D3",
+      "source_identity": {
+        "case": "testHardenedExchange",
+        "line": 143,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-6FB8D581BC3E13D3"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-B53A567613555F77"
+      },
+      "java_case": "testHardenedOverflowDetection",
+      "java_line": 160,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "2d5f38e10e07f8fbd9f0a32ea89929f0fcc94ed791519f76ac2b6522ac942b26",
+      "result": "pass: zero-invocation helper testHardenedOverflowDetection is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-B53A567613555F77",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-B53A567613555F77",
+      "source_identity": {
+        "case": "testHardenedOverflowDetection",
+        "line": 160,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-B53A567613555F77"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-D207EDE1A82F434C"
+      },
+      "java_case": "testHardenedSmallQuant",
+      "java_line": 166,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "9b1c949d561881c8d3ba78d0fc9a4178f69a8c50dba56cfe21533c2cfb14f2bb",
+      "result": "pass: zero-invocation helper testHardenedSmallQuant is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-D207EDE1A82F434C",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-D207EDE1A82F434C",
+      "source_identity": {
+        "case": "testHardenedSmallQuant",
+        "line": 166,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-D207EDE1A82F434C"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-D82D0E898F86514A"
+      },
+      "java_case": "testHardenedLargeQuant",
+      "java_line": 177,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "6040cdc71df4d520899cf9396fff0798e4bc2c176aa57b582980f00af01c7f8b",
+      "result": "pass: zero-invocation helper testHardenedLargeQuant is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-D82D0E898F86514A",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-D82D0E898F86514A",
+      "source_identity": {
+        "case": "testHardenedLargeQuant",
+        "line": 177,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-D82D0E898F86514A"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-7BD916901FB7BA89"
+      },
+      "java_case": "testSafeProcessorDivByZeroThrows",
+      "java_line": 188,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "00fb9bdca9121ec76a7482ba014226491dabaf9165c6ca8053f5ba9b7b42fee3",
+      "result": "pass: zero-invocation helper testSafeProcessorDivByZeroThrows is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-7BD916901FB7BA89",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-7BD916901FB7BA89",
+      "source_identity": {
+        "case": "testSafeProcessorDivByZeroThrows",
+        "line": 188,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-7BD916901FB7BA89"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-3069F8B28838449E"
+      },
+      "java_case": "testSafeProcessorAddExactOverflowThrows",
+      "java_line": 195,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "61b41788e11516e7e20178f0751da6998a4a1d55f0b51531ba7e35560c416e3a",
+      "result": "pass: zero-invocation helper testSafeProcessorAddExactOverflowThrows is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-3069F8B28838449E",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-3069F8B28838449E",
+      "source_identity": {
+        "case": "testSafeProcessorAddExactOverflowThrows",
+        "line": 195,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-3069F8B28838449E"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-8EA5EFA10EACB495"
+      },
+      "java_case": "testSafeProcessorNoOvershootForTypicalInputs",
+      "java_line": 202,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "93b62b2b050c679faf2a6a0fe4e6aa8892fc437d1d12b4d12733a0791f83f7b1",
+      "result": "pass: zero-invocation helper testSafeProcessorNoOvershootForTypicalInputs is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-8EA5EFA10EACB495",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-8EA5EFA10EACB495",
+      "source_identity": {
+        "case": "testSafeProcessorNoOvershootForTypicalInputs",
+        "line": 202,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-8EA5EFA10EACB495"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_proposal_exchange exchange_create_inject_withdraw_trade_legacy_and_hardened --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-proposal-exchange-real.v1.json",
+        "selector": "trade-hardened"
+      },
+      "fixture_selector": "trade-hardened",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-91F77838FAA75597"
+      },
+      "java_case": "testStrictMath",
+      "java_line": 219,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java",
+      "observation_digest": "d370af3d2f0a0d11408a1461c1175318c0d541b33cbcdb6e2f6c5ea1c96a955a",
+      "result": "pass: zero-invocation helper testStrictMath is covered by exact legacy/hardened exchange arithmetic assertions",
+      "rust_case_id": "TCASE-91F77838FAA75597",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_proposal_exchange.rs::exchange_create_inject_withdraw_trade_legacy_and_hardened",
+      "scenario_id": "TCASE-91F77838FAA75597",
+      "source_identity": {
+        "case": "testStrictMath",
+        "line": 219,
+        "path": "java-tron/framework/src/test/java/org/tron/core/capsule/utils/ExchangeProcessorTest.java"
+      },
+      "stable_id": "TCASE-91F77838FAA75597"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_resource_contract java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-resource-real.v1.json",
+        "selector": "legacy-delegation-index-convert"
+      },
+      "fixture_selector": "legacy-delegation-index-convert",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-C17A4736D1172F79"
+      },
+      "java_case": "testGet",
+      "java_line": 39,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "observation_digest": "1b1ea746e7271ba89ac1343ebeaa7ed08c9d75e1c1b91c51a131f989f361f474",
+      "result": "pass: zero-invocation helper testGet is covered by exact legacy delegation-index conversion assertions",
+      "rust_case_id": "TCASE-C17A4736D1172F79",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_resource_contract.rs::java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source",
+      "scenario_id": "TCASE-C17A4736D1172F79",
+      "source_identity": {
+        "case": "testGet",
+        "line": 39,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java"
+      },
+      "stable_id": "TCASE-C17A4736D1172F79"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_resource_contract java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-resource-real.v1.json",
+        "selector": "legacy-delegation-index-convert"
+      },
+      "fixture_selector": "legacy-delegation-index-convert",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-C964CE27D1CCA51D"
+      },
+      "java_case": "testConvert",
+      "java_line": 49,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "observation_digest": "bcd0a28703abb85f6700966fdac4ee44a0b3ce926185a8c8b39b3777e3f17026",
+      "result": "pass: zero-invocation helper testConvert is covered by exact legacy delegation-index conversion assertions",
+      "rust_case_id": "TCASE-C964CE27D1CCA51D",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_resource_contract.rs::java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source",
+      "scenario_id": "TCASE-C964CE27D1CCA51D",
+      "source_identity": {
+        "case": "testConvert",
+        "line": 49,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java"
+      },
+      "stable_id": "TCASE-C964CE27D1CCA51D"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_resource_contract java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-resource-real.v1.json",
+        "selector": "legacy-delegation-index-convert"
+      },
+      "fixture_selector": "legacy-delegation-index-convert",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-39418FB8A0C4B2E5"
+      },
+      "java_case": "testDelegate",
+      "java_line": 70,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "observation_digest": "ed467fb751cca988849fdc6a68ef5fd88c3df823ad0bbcbb2cd5e88657c5317f",
+      "result": "pass: zero-invocation helper testDelegate is covered by exact legacy delegation-index conversion assertions",
+      "rust_case_id": "TCASE-39418FB8A0C4B2E5",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_resource_contract.rs::java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source",
+      "scenario_id": "TCASE-39418FB8A0C4B2E5",
+      "source_identity": {
+        "case": "testDelegate",
+        "line": 70,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java"
+      },
+      "stable_id": "TCASE-39418FB8A0C4B2E5"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_resource_contract java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-resource-real.v1.json",
+        "selector": "legacy-delegation-index-convert"
+      },
+      "fixture_selector": "legacy-delegation-index-convert",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-0CC151C0D4E6B56C"
+      },
+      "java_case": "testDelegateV2",
+      "java_line": 86,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "observation_digest": "570eaa68b4bbe9dc2088028dd2ca34204d5a46594e85274dc4fd7b9844446674",
+      "result": "pass: zero-invocation helper testDelegateV2 is covered by exact legacy delegation-index conversion assertions",
+      "rust_case_id": "TCASE-0CC151C0D4E6B56C",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_resource_contract.rs::java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source",
+      "scenario_id": "TCASE-0CC151C0D4E6B56C",
+      "source_identity": {
+        "case": "testDelegateV2",
+        "line": 86,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java"
+      },
+      "stable_id": "TCASE-0CC151C0D4E6B56C"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_resource_contract java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-resource-real.v1.json",
+        "selector": "legacy-delegation-index-convert"
+      },
+      "fixture_selector": "legacy-delegation-index-convert",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-C84E15673ADFD602"
+      },
+      "java_case": "testUnDelegate",
+      "java_line": 102,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "observation_digest": "c13d41ded4ee8ff85390960199d453635acfbb6e07256a7989b2a3276c55d796",
+      "result": "pass: zero-invocation helper testUnDelegate is covered by exact legacy delegation-index conversion assertions",
+      "rust_case_id": "TCASE-C84E15673ADFD602",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_resource_contract.rs::java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source",
+      "scenario_id": "TCASE-C84E15673ADFD602",
+      "source_identity": {
+        "case": "testUnDelegate",
+        "line": 102,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java"
+      },
+      "stable_id": "TCASE-C84E15673ADFD602"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_resource_contract java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-resource-real.v1.json",
+        "selector": "legacy-delegation-index-convert"
+      },
+      "fixture_selector": "legacy-delegation-index-convert",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-C76DB1243A08C275"
+      },
+      "java_case": "testUnDelegateV2",
+      "java_line": 118,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "observation_digest": "e77e30f992f3a6a63a3242868a7a6d36273bd39e1e54e4c64e894b940722951e",
+      "result": "pass: zero-invocation helper testUnDelegateV2 is covered by exact legacy delegation-index conversion assertions",
+      "rust_case_id": "TCASE-C76DB1243A08C275",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_resource_contract.rs::java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source",
+      "scenario_id": "TCASE-C76DB1243A08C275",
+      "source_identity": {
+        "case": "testUnDelegateV2",
+        "line": 118,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java"
+      },
+      "stable_id": "TCASE-C76DB1243A08C275"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_resource_contract java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-resource-real.v1.json",
+        "selector": "legacy-delegation-index-convert"
+      },
+      "fixture_selector": "legacy-delegation-index-convert",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-34BE7E0660FD5E24"
+      },
+      "java_case": "testGetIndex",
+      "java_line": 134,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "observation_digest": "349d0e673ec666ec5075fd0ca3e4ba56f7447841caeff3d5e5b1e06b0b1e1694",
+      "result": "pass: zero-invocation helper testGetIndex is covered by exact legacy delegation-index conversion assertions",
+      "rust_case_id": "TCASE-34BE7E0660FD5E24",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_resource_contract.rs::java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source",
+      "scenario_id": "TCASE-34BE7E0660FD5E24",
+      "source_identity": {
+        "case": "testGetIndex",
+        "line": 134,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java"
+      },
+      "stable_id": "TCASE-34BE7E0660FD5E24"
+    },
+    {
+      "canonical_command": "cargo test -p tron-execution --test c013_resource_contract java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source --locked",
+      "fixture": {
+        "path": "docs/oracles/c013-resource-real.v1.json",
+        "selector": "legacy-delegation-index-convert"
+      },
+      "fixture_selector": "legacy-delegation-index-convert",
+      "invocation_selector": {
+        "kind": "zero_invocation_helper",
+        "ordinals": [],
+        "stable_id": "TCASE-DD9482ACE7A84DFC"
+      },
+      "java_case": "testGetV2Index",
+      "java_line": 143,
+      "java_source": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java",
+      "observation_digest": "3083fccf12ff530ad5d50e4da8ee6c6bbed26eb508c31179ee0a2db8a3e49f92",
+      "result": "pass: zero-invocation helper testGetV2Index is covered by exact legacy delegation-index conversion assertions",
+      "rust_case_id": "TCASE-DD9482ACE7A84DFC",
+      "rust_symbol": "rust-tron/crates/tron-execution/tests/c013_resource_contract.rs::java_legacy_delegation_index_convert_fans_out_both_arrays_and_deletes_source",
+      "scenario_id": "TCASE-DD9482ACE7A84DFC",
+      "source_identity": {
+        "case": "testGetV2Index",
+        "line": 143,
+        "path": "java-tron/framework/src/test/java/org/tron/core/db/DelegatedResourceAccountIndexStoreTest.java"
+      },
+      "stable_id": "TCASE-DD9482ACE7A84DFC"
+    }
+  ],
   "chunk": "C013",
   "excluded_count": 0,
   "instrumented_invocation_count": 926,

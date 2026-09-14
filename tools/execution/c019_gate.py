@@ -20,6 +20,14 @@ COMMANDS = {
     'scenario': ['cargo','test','-p','tron-execution','--test','c019_scenarios','--locked'],
     'all-targets': ['cargo','check','-p','tron-execution','--all-targets','--locked'],
 }
+ROW_EXECUTION = {
+    'valid-apply': ('c019_block_apply', 'pinned_java_full_wire_merkle_vectors', 'cargo test -p tron-execution --test c019_block_apply --locked'),
+    'side-fork': ('c019_fork_switch', 'multi_branch_switch_rewinds_head_first_and_replays_oldest_first', 'cargo test -p tron-execution --test c019_fork_switch --locked'),
+    'successful-switch': ('c019_fork_switch', 'multi_branch_switch_rewinds_head_first_and_replays_oldest_first', 'cargo test -p tron-execution --test c019_fork_switch --locked'),
+    'invalid-witness-signature': ('c019_fork_switch', 'invalid_new_witness_signature_removes_branch_and_restores_old_head', 'cargo test -p tron-execution --test c019_fork_switch --locked'),
+    'mid-replay-apply-failure': ('c019_fork_switch', 'apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch', 'cargo test -p tron-execution --test c019_fork_switch --locked'),
+    'views-and-roots': ('c019_fork_switch', 'apply_failure_retracts_partial_new_branch_and_atomically_restores_old_branch', 'cargo test -p tron-execution --test c019_fork_switch --locked'),
+}
 def load(path): return json.loads(path.read_text())
 def digest(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 def source_rows():
@@ -41,6 +49,34 @@ def metadata():
     expected = {r['id'] for r in prod} | {r['id'] for r in tests} | {(r.get('stable_id') or 'PROD-'+r['case_id'].split('-')[-1]) for r in excluded}
     rows = recon.get('rows',[])
     if len(rows) != len(expected) or {r.get('stable_id') for r in rows} != expected: raise SystemExit('C019 exact ownership union drift')
+    exact_rows = [r for r in rows if r.get('origin') != 'c017-exact-exclusion' and not r.get('java_source','').endswith('/ConditionallyStopTest.java')]
+    if len(exact_rows) != 133: raise SystemExit('C019 exact executable row count drift')
+    scenario_by_id = {r['id']:r for r in scenarios['scenarios']}
+    evidence = scenarios.get('row_evidence',[])
+    if len(evidence) != 133 or {r.get('stable_id') for r in evidence} != {r['stable_id'] for r in exact_rows}: raise SystemExit('C019 exact row evidence union drift')
+    evidence_by_id = {r['stable_id']:r for r in evidence}
+    for row in exact_rows:
+        stable_id = row['stable_id']; case = row['java_symbol']; scenario_id = row.get('scenario_id')
+        source_identity = {'stable_id':stable_id,'path':row['java_source'],'line':row['java_line'],'case':case}
+        fixture_selector = {'stable_id':stable_id,'scenario_id':scenario_id,'java_case':case}
+        execution = ROW_EXECUTION.get(scenario_id)
+        if not execution: raise SystemExit('C019 row has no block/fork scenario: '+stable_id)
+        rust_target, rust_test_symbol, canonical_command = execution
+        observation = scenario_by_id[scenario_id].get('result','observed='+scenario_id)
+        result = f'{stable_id}:{case}:{observation}'
+        case_id = 'C019-'+stable_id.split('-',1)[1]
+        required = {'java_case':case,'source_identity':source_identity,'scenario_observation':observation,'fixture_selector':fixture_selector,'rust_target':rust_target,'rust_test_symbol':rust_test_symbol,'canonical_command':canonical_command,'row_result':result,'case_id':case_id,'expected_result':result,'rust_test':rust_test_symbol,'fixture':fixture_selector}
+        if any(row.get(key) != value for key,value in required.items()): raise SystemExit('C019 row-specific executable evidence drift: '+stable_id)
+        if evidence_by_id[stable_id] != {'stable_id':stable_id,'source_identity':source_identity,'scenario_id':scenario_id,'scenario_observation':observation,'fixture_selector':fixture_selector,'rust_target':rust_target,'rust_test_symbol':rust_test_symbol,'canonical_command':canonical_command,'row_result':result,'case_id':case_id,'expected_result':result,'rust_test':rust_test_symbol,'fixture':fixture_selector}: raise SystemExit('C019 scenario evidence join drift: '+stable_id)
+        if rust_target == 'c019_fork_switch' and (not fixture_selector or not result): raise SystemExit('generic c019_fork_switch credit is forbidden: '+stable_id)
+    constrained = [r for r in rows if r.get('java_source','').endswith('/ConditionallyStopTest.java')]
+    constrained_ids = {'TCASE-47655B65C468B3B6','TCASE-71021F9EA6E5F635','TCASE-BC4A0B0FC0854DAA','TCASE-D09E3EA1E5C24521'}
+    if len(constrained) != 4 or {r.get('stable_id') for r in constrained} != constrained_ids: raise SystemExit('C019 exact constrained exclusion identity drift')
+    for row in constrained:
+        source_identity = {'stable_id':row['stable_id'],'path':row['java_source'],'line':row['java_line'],'case':row['java_symbol']}
+        result = row.get('observable_result',{})
+        if row.get('disposition') != 'non_applicable' or row.get('evidence_kind') != 'exact_constrained_exclusion' or row.get('executable_credit') is not False or row.get('rust_target') is not None: raise SystemExit('C019 constrained exclusion executable-credit drift: '+row['stable_id'])
+        if row.get('case') != row.get('java_symbol') or row.get('source_identity') != source_identity or result.get('status') != 'non_applicable' or result.get('selector') != row['stable_id'] or not row.get('reason') or not result.get('reason'): raise SystemExit('C019 constrained exclusion evidence drift: '+row['stable_id'])
     if len(recon.get('c011_excluded_rows',[])) != len(c11) or any(r.get('owner') != 'C011' or r.get('acceptance_gate') != 'C011.V' for r in recon['c011_excluded_rows']): raise SystemExit('C019/C011 row exclusion drift')
     ledger_hashes = recon.get('source_ledgers',{})
     expected_hashes = {'production_sha256':digest(PROD),'java_tests_sha256':digest(TESTS),'c017_reconciliation_sha256':digest(C017),'c011_reconciliation_sha256':digest(C011)}

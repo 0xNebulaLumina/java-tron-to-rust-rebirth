@@ -1,0 +1,2095 @@
+{
+  "schema_version": 1,
+  "chunk": "C002",
+  "java_revision": "4a21592f95e37908b21bc3f611c6e7a1a67f09f3",
+  "row_count": 149,
+  "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors",
+  "rows": [
+    {
+      "stable_id": "TCASE-6CA31435B171093B",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/BlockConfigTest.java",
+        "line": 22,
+        "case": "testDefaults"
+      },
+      "case_id": "TCASE-6CA31435B171093B",
+      "fixture_selector": "TCASE-6CA31435B171093B",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/BlockConfigTest.java:22::testDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-EA9C5E5EFF9C473C",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/BlockConfigTest.java",
+        "line": 29,
+        "case": "testFromConfig"
+      },
+      "case_id": "TCASE-EA9C5E5EFF9C473C",
+      "fixture_selector": "TCASE-EA9C5E5EFF9C473C",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/BlockConfigTest.java:29::testFromConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java case testFromConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E0DB22B46EAADA30",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/BlockConfigTest.java",
+        "line": 41,
+        "case": "testProposalExpireTimeTooLow"
+      },
+      "case_id": "TCASE-E0DB22B46EAADA30",
+      "fixture_selector": "TCASE-E0DB22B46EAADA30",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/BlockConfigTest.java:41::testProposalExpireTimeTooLow => TronError",
+      "java_behavior": "execute exact Java case testProposalExpireTimeTooLow with annotations ['@Test(expected = TronError.class)']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-130FA6CE8B4A7AB8",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/BlockConfigTest.java",
+        "line": 46,
+        "case": "testProposalExpireTimeTooHigh"
+      },
+      "case_id": "TCASE-130FA6CE8B4A7AB8",
+      "fixture_selector": "TCASE-130FA6CE8B4A7AB8",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/BlockConfigTest.java:46::testProposalExpireTimeTooHigh => TronError",
+      "java_behavior": "execute exact Java case testProposalExpireTimeTooHigh with annotations ['@Test(expected = TronError.class)']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-B65EE0C49AE2B0B6",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/BlockConfigTest.java",
+        "line": 51,
+        "case": "testRejectsCommitteeProposalExpireTime"
+      },
+      "case_id": "TCASE-B65EE0C49AE2B0B6",
+      "fixture_selector": "TCASE-B65EE0C49AE2B0B6",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/BlockConfigTest.java:51::testRejectsCommitteeProposalExpireTime => TronError",
+      "java_behavior": "execute exact Java case testRejectsCommitteeProposalExpireTime with annotations ['@Test(expected = TronError.class)']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-5BDDEA964E17F57D",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 20,
+        "case": "testDefaults"
+      },
+      "case_id": "TCASE-5BDDEA964E17F57D",
+      "fixture_selector": "TCASE-5BDDEA964E17F57D",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:20::testDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-24D5D0F9BFF722D6",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 30,
+        "case": "testFromConfig"
+      },
+      "case_id": "TCASE-24D5D0F9BFF722D6",
+      "fixture_selector": "TCASE-24D5D0F9BFF722D6",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:30::testFromConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java case testFromConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-65E54693F46EF31B",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 40,
+        "case": "testUnfreezeDelayDaysClamped"
+      },
+      "case_id": "TCASE-65E54693F46EF31B",
+      "fixture_selector": "TCASE-65E54693F46EF31B",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:40::testUnfreezeDelayDaysClamped => all Java assertions pass",
+      "java_behavior": "execute exact Java case testUnfreezeDelayDaysClamped with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-964FCAA70A28DFFA",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 48,
+        "case": "testDynamicEnergyClamped"
+      },
+      "case_id": "TCASE-964FCAA70A28DFFA",
+      "fixture_selector": "TCASE-964FCAA70A28DFFA",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:48::testDynamicEnergyClamped => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDynamicEnergyClamped with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E9BC818309B57546",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 54,
+        "case": "testDynamicEnergyThresholdClamped"
+      },
+      "case_id": "TCASE-E9BC818309B57546",
+      "fixture_selector": "TCASE-E9BC818309B57546",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:54::testDynamicEnergyThresholdClamped => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDynamicEnergyThresholdClamped with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-2EE3859883E969AD",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 61,
+        "case": "testAllowOldRewardOptWithoutPrerequisites"
+      },
+      "case_id": "TCASE-2EE3859883E969AD",
+      "fixture_selector": "TCASE-2EE3859883E969AD",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:61::testAllowOldRewardOptWithoutPrerequisites => IllegalArgumentException",
+      "java_behavior": "execute exact Java case testAllowOldRewardOptWithoutPrerequisites with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-220C1AEC294DAC04",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 66,
+        "case": "testAllowOldRewardOptWithPrerequisite"
+      },
+      "case_id": "TCASE-220C1AEC294DAC04",
+      "fixture_selector": "TCASE-220C1AEC294DAC04",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:66::testAllowOldRewardOptWithPrerequisite => all Java assertions pass",
+      "java_behavior": "execute exact Java case testAllowOldRewardOptWithPrerequisite with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-AB489B55346F1736",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 84,
+        "case": "testMemoFeeClampedBelowZero"
+      },
+      "case_id": "TCASE-AB489B55346F1736",
+      "fixture_selector": "TCASE-AB489B55346F1736",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:84::testMemoFeeClampedBelowZero => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMemoFeeClampedBelowZero with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-6C651D0C4056CF60",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 90,
+        "case": "testMemoFeeClampedAboveMax"
+      },
+      "case_id": "TCASE-6C651D0C4056CF60",
+      "fixture_selector": "TCASE-6C651D0C4056CF60",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:90::testMemoFeeClampedAboveMax => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMemoFeeClampedAboveMax with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-5F0B88F0B2FBC973",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 96,
+        "case": "testMemoFeeInRangeUnchanged"
+      },
+      "case_id": "TCASE-5F0B88F0B2FBC973",
+      "fixture_selector": "TCASE-5F0B88F0B2FBC973",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:96::testMemoFeeInRangeUnchanged => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMemoFeeInRangeUnchanged with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-AE54432D4FE13B8C",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 102,
+        "case": "testMemoFeeBoundaryValues"
+      },
+      "case_id": "TCASE-AE54432D4FE13B8C",
+      "fixture_selector": "TCASE-AE54432D4FE13B8C",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:102::testMemoFeeBoundaryValues => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMemoFeeBoundaryValues with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-F952DA8957F7238B",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 112,
+        "case": "testAllowNewRewardClampedBelowZero"
+      },
+      "case_id": "TCASE-F952DA8957F7238B",
+      "fixture_selector": "TCASE-F952DA8957F7238B",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:112::testAllowNewRewardClampedBelowZero => all Java assertions pass",
+      "java_behavior": "execute exact Java case testAllowNewRewardClampedBelowZero with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-91CB358C1B90AAAA",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 118,
+        "case": "testAllowNewRewardClampedAboveOne"
+      },
+      "case_id": "TCASE-91CB358C1B90AAAA",
+      "fixture_selector": "TCASE-91CB358C1B90AAAA",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:118::testAllowNewRewardClampedAboveOne => all Java assertions pass",
+      "java_behavior": "execute exact Java case testAllowNewRewardClampedAboveOne with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-0D2C2805E6D26C48",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 124,
+        "case": "testAllowNewRewardBoundaryValues"
+      },
+      "case_id": "TCASE-0D2C2805E6D26C48",
+      "fixture_selector": "TCASE-0D2C2805E6D26C48",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:124::testAllowNewRewardBoundaryValues => all Java assertions pass",
+      "java_behavior": "execute exact Java case testAllowNewRewardBoundaryValues with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-01389C9CA50F632C",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 136,
+        "case": "testAllowNewRewardClampRunsBeforeCrossFieldCheck"
+      },
+      "case_id": "TCASE-01389C9CA50F632C",
+      "fixture_selector": "TCASE-01389C9CA50F632C",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:136::testAllowNewRewardClampRunsBeforeCrossFieldCheck => all Java assertions pass",
+      "java_behavior": "execute exact Java case testAllowNewRewardClampRunsBeforeCrossFieldCheck with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-C1B6FEBC7208106C",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 146,
+        "case": "testAllowDelegateOptimizationClampedBelowZero"
+      },
+      "case_id": "TCASE-C1B6FEBC7208106C",
+      "fixture_selector": "TCASE-C1B6FEBC7208106C",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:146::testAllowDelegateOptimizationClampedBelowZero => all Java assertions pass",
+      "java_behavior": "execute exact Java case testAllowDelegateOptimizationClampedBelowZero with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-6C961BFC54DEDEA5",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 153,
+        "case": "testAllowDelegateOptimizationClampedAboveOne"
+      },
+      "case_id": "TCASE-6C961BFC54DEDEA5",
+      "fixture_selector": "TCASE-6C961BFC54DEDEA5",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:153::testAllowDelegateOptimizationClampedAboveOne => all Java assertions pass",
+      "java_behavior": "execute exact Java case testAllowDelegateOptimizationClampedAboveOne with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-D6CC4432EF7059D2",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 162,
+        "case": "testAllowDynamicEnergyClampedBelowZero"
+      },
+      "case_id": "TCASE-D6CC4432EF7059D2",
+      "fixture_selector": "TCASE-D6CC4432EF7059D2",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:162::testAllowDynamicEnergyClampedBelowZero => all Java assertions pass",
+      "java_behavior": "execute exact Java case testAllowDynamicEnergyClampedBelowZero with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-1BB8249E0F59D181",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 170,
+        "case": "testUnfreezeDelayDaysBoundaryValues"
+      },
+      "case_id": "TCASE-1BB8249E0F59D181",
+      "fixture_selector": "TCASE-1BB8249E0F59D181",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:170::testUnfreezeDelayDaysBoundaryValues => all Java assertions pass",
+      "java_behavior": "execute exact Java case testUnfreezeDelayDaysBoundaryValues with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-C3564F613A47CECA",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 182,
+        "case": "testDynamicEnergyThresholdClampedBelowZero"
+      },
+      "case_id": "TCASE-C3564F613A47CECA",
+      "fixture_selector": "TCASE-C3564F613A47CECA",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:182::testDynamicEnergyThresholdClampedBelowZero => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDynamicEnergyThresholdClampedBelowZero with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-4E2F6CCB18711D94",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 191,
+        "case": "testDynamicEnergyIncreaseFactorClamped"
+      },
+      "case_id": "TCASE-4E2F6CCB18711D94",
+      "fixture_selector": "TCASE-4E2F6CCB18711D94",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:191::testDynamicEnergyIncreaseFactorClamped => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDynamicEnergyIncreaseFactorClamped with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-6A5C4541D8000686",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 206,
+        "case": "testDynamicEnergyMaxFactorClamped"
+      },
+      "case_id": "TCASE-6A5C4541D8000686",
+      "fixture_selector": "TCASE-6A5C4541D8000686",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:206::testDynamicEnergyMaxFactorClamped => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDynamicEnergyMaxFactorClamped with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-513D29D28833ACFC",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 221,
+        "case": "testAllowOldRewardOptWithAllowNewReward"
+      },
+      "case_id": "TCASE-513D29D28833ACFC",
+      "fixture_selector": "TCASE-513D29D28833ACFC",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:221::testAllowOldRewardOptWithAllowNewReward => all Java assertions pass",
+      "java_behavior": "execute exact Java case testAllowOldRewardOptWithAllowNewReward with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-71F989E85283405E",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java",
+        "line": 228,
+        "case": "testAllowOldRewardOptWithAllowNewRewardAlgorithm"
+      },
+      "case_id": "TCASE-71F989E85283405E",
+      "fixture_selector": "TCASE-71F989E85283405E",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/CommitteeConfigTest.java:228::testAllowOldRewardOptWithAllowNewRewardAlgorithm => all Java assertions pass",
+      "java_behavior": "execute exact Java case testAllowOldRewardOptWithAllowNewRewardAlgorithm with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-1AFF057CE2AD2EFF",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/ConfigParityGateTest.java",
+        "line": 165,
+        "case": "hoconKeysAreBound"
+      },
+      "case_id": "TCASE-1AFF057CE2AD2EFF",
+      "fixture_selector": "TCASE-1AFF057CE2AD2EFF",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/ConfigParityGateTest.java:165::hoconKeysAreBound => all Java assertions pass",
+      "java_behavior": "execute exact Java case hoconKeysAreBound with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-ACC9EB3CA04D1ACE",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/ConfigParityGateTest.java",
+        "line": 172,
+        "case": "beanPropertiesHaveHoconKeys"
+      },
+      "case_id": "TCASE-ACC9EB3CA04D1ACE",
+      "fixture_selector": "TCASE-ACC9EB3CA04D1ACE",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/ConfigParityGateTest.java:172::beanPropertiesHaveHoconKeys => all Java assertions pass",
+      "java_behavior": "execute exact Java case beanPropertiesHaveHoconKeys with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-275E957046FED837",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/ConfigParityGateTest.java",
+        "line": 179,
+        "case": "defaultValuesMatch"
+      },
+      "case_id": "TCASE-275E957046FED837",
+      "fixture_selector": "TCASE-275E957046FED837",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/ConfigParityGateTest.java:179::defaultValuesMatch => all Java assertions pass",
+      "java_behavior": "execute exact Java case defaultValuesMatch with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-C89CF7F9018C85E0",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/ConfigParityGateTest.java",
+        "line": 202,
+        "case": "allowlistEntriesAreLive"
+      },
+      "case_id": "TCASE-C89CF7F9018C85E0",
+      "fixture_selector": "TCASE-C89CF7F9018C85E0",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/ConfigParityGateTest.java:202::allowlistEntriesAreLive => all Java assertions pass",
+      "java_behavior": "execute exact Java case allowlistEntriesAreLive with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-8E031DB7DE1CC247",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/ConfigParityGateTest.java",
+        "line": 225,
+        "case": "everyReferenceConfTopLevelKeyIsCovered"
+      },
+      "case_id": "TCASE-8E031DB7DE1CC247",
+      "fixture_selector": "TCASE-8E031DB7DE1CC247",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/ConfigParityGateTest.java:225::everyReferenceConfTopLevelKeyIsCovered => all Java assertions pass",
+      "java_behavior": "execute exact Java case everyReferenceConfTopLevelKeyIsCovered with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-AA6469CCAC4154A7",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/EventConfigTest.java",
+        "line": 22,
+        "case": "testDefaults"
+      },
+      "case_id": "TCASE-AA6469CCAC4154A7",
+      "fixture_selector": "TCASE-AA6469CCAC4154A7",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/EventConfigTest.java:22::testDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-61587C3A9294D4CD",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/EventConfigTest.java",
+        "line": 33,
+        "case": "testNativeQueue"
+      },
+      "case_id": "TCASE-61587C3A9294D4CD",
+      "fixture_selector": "TCASE-61587C3A9294D4CD",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/EventConfigTest.java:33::testNativeQueue => all Java assertions pass",
+      "java_behavior": "execute exact Java case testNativeQueue with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-2E62CBD4EE338EED",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/EventConfigTest.java",
+        "line": 45,
+        "case": "testTopicsWithOptionalFields"
+      },
+      "case_id": "TCASE-2E62CBD4EE338EED",
+      "fixture_selector": "TCASE-2E62CBD4EE338EED",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/EventConfigTest.java:45::testTopicsWithOptionalFields => all Java assertions pass",
+      "java_behavior": "execute exact Java case testTopicsWithOptionalFields with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-B360FECFE500BD55",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/EventConfigTest.java",
+        "line": 70,
+        "case": "testFilter"
+      },
+      "case_id": "TCASE-B360FECFE500BD55",
+      "fixture_selector": "TCASE-B360FECFE500BD55",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/EventConfigTest.java:70::testFilter => all Java assertions pass",
+      "java_behavior": "execute exact Java case testFilter with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-7D58A43E3DFFABB8",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/EventConfigTest.java",
+        "line": 84,
+        "case": "testTopicsEmptyList"
+      },
+      "case_id": "TCASE-7D58A43E3DFFABB8",
+      "fixture_selector": "TCASE-7D58A43E3DFFABB8",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/EventConfigTest.java:84::testTopicsEmptyList => all Java assertions pass",
+      "java_behavior": "execute exact Java case testTopicsEmptyList with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E58EE11E57401DC0",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/GenesisConfigTest.java",
+        "line": 22,
+        "case": "testDefaults"
+      },
+      "case_id": "TCASE-E58EE11E57401DC0",
+      "fixture_selector": "TCASE-E58EE11E57401DC0",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/GenesisConfigTest.java:22::testDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-852726ED82F2C043",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/GenesisConfigTest.java",
+        "line": 32,
+        "case": "testWithAssets"
+      },
+      "case_id": "TCASE-852726ED82F2C043",
+      "fixture_selector": "TCASE-852726ED82F2C043",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/GenesisConfigTest.java:32::testWithAssets => all Java assertions pass",
+      "java_behavior": "execute exact Java case testWithAssets with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-86700C3C78678F52",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/GenesisConfigTest.java",
+        "line": 51,
+        "case": "testEmptyLists"
+      },
+      "case_id": "TCASE-86700C3C78678F52",
+      "fixture_selector": "TCASE-86700C3C78678F52",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/GenesisConfigTest.java:51::testEmptyLists => all Java assertions pass",
+      "java_behavior": "execute exact Java case testEmptyLists with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-6EA91C9735303F07",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/LocalWitnessConfigTest.java",
+        "line": 22,
+        "case": "testDefaults"
+      },
+      "case_id": "TCASE-6EA91C9735303F07",
+      "fixture_selector": "TCASE-6EA91C9735303F07",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/LocalWitnessConfigTest.java:22::testDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-D266F7459DE3A6E9",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/LocalWitnessConfigTest.java",
+        "line": 31,
+        "case": "testWithPrivateKeys"
+      },
+      "case_id": "TCASE-D266F7459DE3A6E9",
+      "fixture_selector": "TCASE-D266F7459DE3A6E9",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/LocalWitnessConfigTest.java:31::testWithPrivateKeys => all Java assertions pass",
+      "java_behavior": "execute exact Java case testWithPrivateKeys with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-3ADF8417A41AE4E3",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/LocalWitnessConfigTest.java",
+        "line": 42,
+        "case": "testWithKeystores"
+      },
+      "case_id": "TCASE-3ADF8417A41AE4E3",
+      "fixture_selector": "TCASE-3ADF8417A41AE4E3",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/LocalWitnessConfigTest.java:42::testWithKeystores => all Java assertions pass",
+      "java_behavior": "execute exact Java case testWithKeystores with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-BBAF1E6222D5C33D",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/MiscConfigTest.java",
+        "line": 23,
+        "case": "testDefaults"
+      },
+      "case_id": "TCASE-BBAF1E6222D5C33D",
+      "fixture_selector": "TCASE-BBAF1E6222D5C33D",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/MiscConfigTest.java:23::testDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-75D86A69F5830CC2",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/MiscConfigTest.java",
+        "line": 38,
+        "case": "testFromConfig"
+      },
+      "case_id": "TCASE-75D86A69F5830CC2",
+      "fixture_selector": "TCASE-75D86A69F5830CC2",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/MiscConfigTest.java:38::testFromConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java case testFromConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-2161CB21576E2009",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 24,
+        "case": "testDefaults"
+      },
+      "case_id": "TCASE-2161CB21576E2009",
+      "fixture_selector": "TCASE-2161CB21576E2009",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:24::testDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-39EE0583E564BFED",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 39,
+        "case": "testDotNotationFields"
+      },
+      "case_id": "TCASE-39EE0583E564BFED",
+      "fixture_selector": "TCASE-39EE0583E564BFED",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:39::testDotNotationFields => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDotNotationFields with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-BD613E54E4FB749B",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 50,
+        "case": "testDiscoveryFields"
+      },
+      "case_id": "TCASE-BD613E54E4FB749B",
+      "fixture_selector": "TCASE-BD613E54E4FB749B",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:50::testDiscoveryFields => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDiscoveryFields with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-5B3E3DCB433C671E",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 59,
+        "case": "testHttpSubBean"
+      },
+      "case_id": "TCASE-5B3E3DCB433C671E",
+      "fixture_selector": "TCASE-5B3E3DCB433C671E",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:59::testHttpSubBean => all Java assertions pass",
+      "java_behavior": "execute exact Java case testHttpSubBean with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-7F7E8A73E08ACDFC",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 71,
+        "case": "testRpcSubBean"
+      },
+      "case_id": "TCASE-7F7E8A73E08ACDFC",
+      "fixture_selector": "TCASE-7F7E8A73E08ACDFC",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:71::testRpcSubBean => all Java assertions pass",
+      "java_behavior": "execute exact Java case testRpcSubBean with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E4A8F5E1EEEB885A",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 83,
+        "case": "testBackupSubBean"
+      },
+      "case_id": "TCASE-E4A8F5E1EEEB885A",
+      "fixture_selector": "TCASE-E4A8F5E1EEEB885A",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:83::testBackupSubBean => all Java assertions pass",
+      "java_behavior": "execute exact Java case testBackupSubBean with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-AF3F684CB955C092",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 93,
+        "case": "testIsOpenFullTcpDisconnect"
+      },
+      "case_id": "TCASE-AF3F684CB955C092",
+      "fixture_selector": "TCASE-AF3F684CB955C092",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:93::testIsOpenFullTcpDisconnect => all Java assertions pass",
+      "java_behavior": "execute exact Java case testIsOpenFullTcpDisconnect with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E5595BF59444B482",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 101,
+        "case": "testRpcDefaultsFromReference"
+      },
+      "case_id": "TCASE-E5595BF59444B482",
+      "fixture_selector": "TCASE-E5595BF59444B482",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:101::testRpcDefaultsFromReference => all Java assertions pass",
+      "java_behavior": "execute exact Java case testRpcDefaultsFromReference with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-F3639FD4DCE177B1",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 120,
+        "case": "testRpcUserOverrideZeroNotConverted"
+      },
+      "case_id": "TCASE-F3639FD4DCE177B1",
+      "fixture_selector": "TCASE-F3639FD4DCE177B1",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:120::testRpcUserOverrideZeroNotConverted => all Java assertions pass",
+      "java_behavior": "execute exact Java case testRpcUserOverrideZeroNotConverted with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-0105C35ABECE9692",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 129,
+        "case": "testRpcZeroConcurrentCallsUsesSecureDefault"
+      },
+      "case_id": "TCASE-0105C35ABECE9692",
+      "fixture_selector": "TCASE-0105C35ABECE9692",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:129::testRpcZeroConcurrentCallsUsesSecureDefault => all Java assertions pass",
+      "java_behavior": "execute exact Java case testRpcZeroConcurrentCallsUsesSecureDefault with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-71ED9FB70DA97A6A",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 138,
+        "case": "testRpcNegativeConcurrentCallsRejected"
+      },
+      "case_id": "TCASE-71ED9FB70DA97A6A",
+      "fixture_selector": "TCASE-71ED9FB70DA97A6A",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:138::testRpcNegativeConcurrentCallsRejected => all Java assertions pass",
+      "java_behavior": "execute exact Java case testRpcNegativeConcurrentCallsRejected with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-A4484B7B316ACB93",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 150,
+        "case": "testRpcUserOverrideExplicitValues"
+      },
+      "case_id": "TCASE-A4484B7B316ACB93",
+      "fixture_selector": "TCASE-A4484B7B316ACB93",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:150::testRpcUserOverrideExplicitValues => all Java assertions pass",
+      "java_behavior": "execute exact Java case testRpcUserOverrideExplicitValues with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-F6FC2F9FE7509056",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 175,
+        "case": "testBlockProducedTimeOutClampedBelowMin"
+      },
+      "case_id": "TCASE-F6FC2F9FE7509056",
+      "fixture_selector": "TCASE-F6FC2F9FE7509056",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:175::testBlockProducedTimeOutClampedBelowMin => all Java assertions pass",
+      "java_behavior": "execute exact Java case testBlockProducedTimeOutClampedBelowMin with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-C2A0BD39CF3D7724",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 182,
+        "case": "testBlockProducedTimeOutClampedAboveMax"
+      },
+      "case_id": "TCASE-C2A0BD39CF3D7724",
+      "fixture_selector": "TCASE-C2A0BD39CF3D7724",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:182::testBlockProducedTimeOutClampedAboveMax => all Java assertions pass",
+      "java_behavior": "execute exact Java case testBlockProducedTimeOutClampedAboveMax with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-EEC31166F698C394",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 189,
+        "case": "testBlockProducedTimeOutBoundaryValues"
+      },
+      "case_id": "TCASE-EEC31166F698C394",
+      "fixture_selector": "TCASE-EEC31166F698C394",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:189::testBlockProducedTimeOutBoundaryValues => all Java assertions pass",
+      "java_behavior": "execute exact Java case testBlockProducedTimeOutBoundaryValues with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-AC9C2DA17E203079",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 201,
+        "case": "testInactiveThresholdClampedBelowMin"
+      },
+      "case_id": "TCASE-AC9C2DA17E203079",
+      "fixture_selector": "TCASE-AC9C2DA17E203079",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:201::testInactiveThresholdClampedBelowMin => all Java assertions pass",
+      "java_behavior": "execute exact Java case testInactiveThresholdClampedBelowMin with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-896BE79EC908C912",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 208,
+        "case": "testInactiveThresholdClampedNegative"
+      },
+      "case_id": "TCASE-896BE79EC908C912",
+      "fixture_selector": "TCASE-896BE79EC908C912",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:208::testInactiveThresholdClampedNegative => all Java assertions pass",
+      "java_behavior": "execute exact Java case testInactiveThresholdClampedNegative with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-B4DDC8B260B13A60",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 215,
+        "case": "testInactiveThresholdInRangeUnchanged"
+      },
+      "case_id": "TCASE-B4DDC8B260B13A60",
+      "fixture_selector": "TCASE-B4DDC8B260B13A60",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:215::testInactiveThresholdInRangeUnchanged => all Java assertions pass",
+      "java_behavior": "execute exact Java case testInactiveThresholdInRangeUnchanged with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-6D22D382ED8163DB",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 227,
+        "case": "testMaxFastForwardNumClampedBelowMin"
+      },
+      "case_id": "TCASE-6D22D382ED8163DB",
+      "fixture_selector": "TCASE-6D22D382ED8163DB",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:227::testMaxFastForwardNumClampedBelowMin => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMaxFastForwardNumClampedBelowMin with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-8C56CFC916D4CDF8",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 234,
+        "case": "testMaxFastForwardNumClampedAboveMax"
+      },
+      "case_id": "TCASE-8C56CFC916D4CDF8",
+      "fixture_selector": "TCASE-8C56CFC916D4CDF8",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:234::testMaxFastForwardNumClampedAboveMax => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMaxFastForwardNumClampedAboveMax with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-9FAF544CCEDDFAF7",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 241,
+        "case": "testMaxFastForwardNumBoundaryValues"
+      },
+      "case_id": "TCASE-9FAF544CCEDDFAF7",
+      "fixture_selector": "TCASE-9FAF544CCEDDFAF7",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:241::testMaxFastForwardNumBoundaryValues => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMaxFastForwardNumBoundaryValues with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-62F165251B247FFA",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 253,
+        "case": "testValidContractProtoThreadsDefaultAutoExpands"
+      },
+      "case_id": "TCASE-62F165251B247FFA",
+      "fixture_selector": "TCASE-62F165251B247FFA",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:253::testValidContractProtoThreadsDefaultAutoExpands => all Java assertions pass",
+      "java_behavior": "execute exact Java case testValidContractProtoThreadsDefaultAutoExpands with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-40F7C2E9DD108D05",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 262,
+        "case": "testValidContractProtoThreadsExplicitPreserved"
+      },
+      "case_id": "TCASE-40F7C2E9DD108D05",
+      "fixture_selector": "TCASE-40F7C2E9DD108D05",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:262::testValidContractProtoThreadsExplicitPreserved => all Java assertions pass",
+      "java_behavior": "execute exact Java case testValidContractProtoThreadsExplicitPreserved with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-DFF472055F8742E9",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 271,
+        "case": "testTrustNodeNotDefaultedByReferenceConf"
+      },
+      "case_id": "TCASE-DFF472055F8742E9",
+      "fixture_selector": "TCASE-DFF472055F8742E9",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:271::testTrustNodeNotDefaultedByReferenceConf => all Java assertions pass",
+      "java_behavior": "execute exact Java case testTrustNodeNotDefaultedByReferenceConf with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-EF695852A142B12D",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 279,
+        "case": "testMaxConnectionsWithSameIpNotOverriddenByReferenceConfAlias"
+      },
+      "case_id": "TCASE-EF695852A142B12D",
+      "fixture_selector": "TCASE-EF695852A142B12D",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:279::testMaxConnectionsWithSameIpNotOverriddenByReferenceConfAlias => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMaxConnectionsWithSameIpNotOverriddenByReferenceConfAlias with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-B6E90F8AEAFA4092",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 289,
+        "case": "testMaxActiveNodesWithSameIpLegacyAliasStillWorks"
+      },
+      "case_id": "TCASE-B6E90F8AEAFA4092",
+      "fixture_selector": "TCASE-B6E90F8AEAFA4092",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:289::testMaxActiveNodesWithSameIpLegacyAliasStillWorks => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMaxActiveNodesWithSameIpLegacyAliasStillWorks with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-9F4B6D5825557CDC",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 298,
+        "case": "testLegacyAliasTakesPriorityOverModernKey"
+      },
+      "case_id": "TCASE-9F4B6D5825557CDC",
+      "fixture_selector": "TCASE-9F4B6D5825557CDC",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:298::testLegacyAliasTakesPriorityOverModernKey => all Java assertions pass",
+      "java_behavior": "execute exact Java case testLegacyAliasTakesPriorityOverModernKey with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E3FAA1988079599D",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 306,
+        "case": "testShieldedApiDefaultsToFalseWhenNeitherKeySet"
+      },
+      "case_id": "TCASE-E3FAA1988079599D",
+      "fixture_selector": "TCASE-E3FAA1988079599D",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:306::testShieldedApiDefaultsToFalseWhenNeitherKeySet => all Java assertions pass",
+      "java_behavior": "execute exact Java case testShieldedApiDefaultsToFalseWhenNeitherKeySet with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-4B900DF7325E2A79",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 312,
+        "case": "testShieldedApiModernKeyRespected"
+      },
+      "case_id": "TCASE-4B900DF7325E2A79",
+      "fixture_selector": "TCASE-4B900DF7325E2A79",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:312::testShieldedApiModernKeyRespected => all Java assertions pass",
+      "java_behavior": "execute exact Java case testShieldedApiModernKeyRespected with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-EC473D9E6E0FE74A",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 319,
+        "case": "testShieldedApiLegacyKeyRespected"
+      },
+      "case_id": "TCASE-EC473D9E6E0FE74A",
+      "fixture_selector": "TCASE-EC473D9E6E0FE74A",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:319::testShieldedApiLegacyKeyRespected => all Java assertions pass",
+      "java_behavior": "execute exact Java case testShieldedApiLegacyKeyRespected with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-1A3E056696AE414C",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 338,
+        "case": "testShieldedApiModernKeyTakesPriorityOverLegacy"
+      },
+      "case_id": "TCASE-1A3E056696AE414C",
+      "fixture_selector": "TCASE-1A3E056696AE414C",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:338::testShieldedApiModernKeyTakesPriorityOverLegacy => all Java assertions pass",
+      "java_behavior": "execute exact Java case testShieldedApiModernKeyTakesPriorityOverLegacy with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-BBEF5FA205DD00A6",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 370,
+        "case": "testExternalIpAbsentDefaultsToEmpty"
+      },
+      "case_id": "TCASE-BBEF5FA205DD00A6",
+      "fixture_selector": "TCASE-BBEF5FA205DD00A6",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:370::testExternalIpAbsentDefaultsToEmpty => all Java assertions pass",
+      "java_behavior": "execute exact Java case testExternalIpAbsentDefaultsToEmpty with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-93AF0814A0AE25A1",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 376,
+        "case": "testExternalIpHoconNullTreatedAsEmpty"
+      },
+      "case_id": "TCASE-93AF0814A0AE25A1",
+      "fixture_selector": "TCASE-93AF0814A0AE25A1",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:376::testExternalIpHoconNullTreatedAsEmpty => all Java assertions pass",
+      "java_behavior": "execute exact Java case testExternalIpHoconNullTreatedAsEmpty with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-A1C1FF98DD3F07AA",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 384,
+        "case": "testExternalIpStringNullSentinelConvertedToEmpty"
+      },
+      "case_id": "TCASE-A1C1FF98DD3F07AA",
+      "fixture_selector": "TCASE-A1C1FF98DD3F07AA",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:384::testExternalIpStringNullSentinelConvertedToEmpty => all Java assertions pass",
+      "java_behavior": "execute exact Java case testExternalIpStringNullSentinelConvertedToEmpty with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-C80BEF8F5821A0AF",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java",
+        "line": 396,
+        "case": "testExternalIpValidValuePreserved"
+      },
+      "case_id": "TCASE-C80BEF8F5821A0AF",
+      "fixture_selector": "TCASE-C80BEF8F5821A0AF",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/NodeConfigTest.java:396::testExternalIpValidValuePreserved => all Java assertions pass",
+      "java_behavior": "execute exact Java case testExternalIpValidValuePreserved with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E194A21CD9D23930",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/RateLimiterConfigTest.java",
+        "line": 22,
+        "case": "testDefaults"
+      },
+      "case_id": "TCASE-E194A21CD9D23930",
+      "fixture_selector": "TCASE-E194A21CD9D23930",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/RateLimiterConfigTest.java:22::testDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-7490457C9718AB90",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/RateLimiterConfigTest.java",
+        "line": 37,
+        "case": "testFromConfig"
+      },
+      "case_id": "TCASE-7490457C9718AB90",
+      "fixture_selector": "TCASE-7490457C9718AB90",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/RateLimiterConfigTest.java:37::testFromConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java case testFromConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-6C87EA36B305BD98",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 26,
+        "case": "testDefaults"
+      },
+      "case_id": "TCASE-6C87EA36B305BD98",
+      "fixture_selector": "TCASE-6C87EA36B305BD98",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:26::testDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-C86F46F79D918918",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 38,
+        "case": "testFromConfig"
+      },
+      "case_id": "TCASE-C86F46F79D918918",
+      "fixture_selector": "TCASE-C86F46F79D918918",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:38::testFromConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java case testFromConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-F72E0CFA2A1ADBBF",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 52,
+        "case": "testCheckpointDefaults"
+      },
+      "case_id": "TCASE-F72E0CFA2A1ADBBF",
+      "fixture_selector": "TCASE-F72E0CFA2A1ADBBF",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:52::testCheckpointDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java case testCheckpointDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-BDFA369FBA0EF7B4",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 60,
+        "case": "testDbSettingsDefaults"
+      },
+      "case_id": "TCASE-BDFA369FBA0EF7B4",
+      "fixture_selector": "TCASE-BDFA369FBA0EF7B4",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:60::testDbSettingsDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDbSettingsDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E33A29422C4D87AA",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 81,
+        "case": "testCompactThreadsAutoExpand"
+      },
+      "case_id": "TCASE-E33A29422C4D87AA",
+      "fixture_selector": "TCASE-E33A29422C4D87AA",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:81::testCompactThreadsAutoExpand => all Java assertions pass",
+      "java_behavior": "execute exact Java case testCompactThreadsAutoExpand with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-33D9BB21DA0D8376",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 90,
+        "case": "testCompactThreadsExplicitPreserved"
+      },
+      "case_id": "TCASE-33D9BB21DA0D8376",
+      "fixture_selector": "TCASE-33D9BB21DA0D8376",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:90::testCompactThreadsExplicitPreserved => all Java assertions pass",
+      "java_behavior": "execute exact Java case testCompactThreadsExplicitPreserved with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-07AF8351EA9AABB7",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 98,
+        "case": "testBalanceHistoryLookup"
+      },
+      "case_id": "TCASE-07AF8351EA9AABB7",
+      "fixture_selector": "TCASE-07AF8351EA9AABB7",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:98::testBalanceHistoryLookup => all Java assertions pass",
+      "java_behavior": "execute exact Java case testBalanceHistoryLookup with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-DF72DE2A30877883",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 106,
+        "case": "testSnapshotMaxFlushCountZeroRejected"
+      },
+      "case_id": "TCASE-DF72DE2A30877883",
+      "fixture_selector": "TCASE-DF72DE2A30877883",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:106::testSnapshotMaxFlushCountZeroRejected => IllegalArgumentException",
+      "java_behavior": "execute exact Java case testSnapshotMaxFlushCountZeroRejected with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-D8449D9DC00240E2",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 111,
+        "case": "testSnapshotMaxFlushCountNegativeRejected"
+      },
+      "case_id": "TCASE-D8449D9DC00240E2",
+      "fixture_selector": "TCASE-D8449D9DC00240E2",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:111::testSnapshotMaxFlushCountNegativeRejected => IllegalArgumentException",
+      "java_behavior": "execute exact Java case testSnapshotMaxFlushCountNegativeRejected with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-4AF463E394E12B80",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 116,
+        "case": "testSnapshotMaxFlushCountOver500Rejected"
+      },
+      "case_id": "TCASE-4AF463E394E12B80",
+      "fixture_selector": "TCASE-4AF463E394E12B80",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:116::testSnapshotMaxFlushCountOver500Rejected => IllegalArgumentException",
+      "java_behavior": "execute exact Java case testSnapshotMaxFlushCountOver500Rejected with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-A668097BE79B79C5",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 121,
+        "case": "testTxCacheEstimatedClampedBelowMin"
+      },
+      "case_id": "TCASE-A668097BE79B79C5",
+      "fixture_selector": "TCASE-A668097BE79B79C5",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:121::testTxCacheEstimatedClampedBelowMin => all Java assertions pass",
+      "java_behavior": "execute exact Java case testTxCacheEstimatedClampedBelowMin with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-CFF5353FB349BCE7",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 128,
+        "case": "testTxCacheEstimatedClampedAboveMax"
+      },
+      "case_id": "TCASE-CFF5353FB349BCE7",
+      "fixture_selector": "TCASE-CFF5353FB349BCE7",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:128::testTxCacheEstimatedClampedAboveMax => all Java assertions pass",
+      "java_behavior": "execute exact Java case testTxCacheEstimatedClampedAboveMax with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E83AAF54883DDDA2",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 135,
+        "case": "testTxCacheEstimatedWithinRangePreserved"
+      },
+      "case_id": "TCASE-E83AAF54883DDDA2",
+      "fixture_selector": "TCASE-E83AAF54883DDDA2",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:135::testTxCacheEstimatedWithinRangePreserved => all Java assertions pass",
+      "java_behavior": "execute exact Java case testTxCacheEstimatedWithinRangePreserved with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-A7B650E187B43D75",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 148,
+        "case": "testPropertiesDefaultEmpty"
+      },
+      "case_id": "TCASE-A7B650E187B43D75",
+      "fixture_selector": "TCASE-A7B650E187B43D75",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:148::testPropertiesDefaultEmpty => all Java assertions pass",
+      "java_behavior": "execute exact Java case testPropertiesDefaultEmpty with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-FB7C89E016C023D7",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 155,
+        "case": "testPropertiesNameAndPathOnly"
+      },
+      "case_id": "TCASE-FB7C89E016C023D7",
+      "fixture_selector": "TCASE-FB7C89E016C023D7",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:155::testPropertiesNameAndPathOnly => all Java assertions pass",
+      "java_behavior": "execute exact Java case testPropertiesNameAndPathOnly with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-5D555BAC55E49FAE",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 171,
+        "case": "testPropertiesNameOnlyKeepsEmptyPath"
+      },
+      "case_id": "TCASE-5D555BAC55E49FAE",
+      "fixture_selector": "TCASE-5D555BAC55E49FAE",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:171::testPropertiesNameOnlyKeepsEmptyPath => all Java assertions pass",
+      "java_behavior": "execute exact Java case testPropertiesNameOnlyKeepsEmptyPath with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E480FF4A580E55B0",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 178,
+        "case": "testPropertiesFullOverrideParsed"
+      },
+      "case_id": "TCASE-E480FF4A580E55B0",
+      "fixture_selector": "TCASE-E480FF4A580E55B0",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:178::testPropertiesFullOverrideParsed => all Java assertions pass",
+      "java_behavior": "execute exact Java case testPropertiesFullOverrideParsed with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E00F9B5FFDA94351",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 189,
+        "case": "testPropertiesPartialOverrideLeavesOthersNull"
+      },
+      "case_id": "TCASE-E00F9B5FFDA94351",
+      "fixture_selector": "TCASE-E00F9B5FFDA94351",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:189::testPropertiesPartialOverrideLeavesOthersNull => all Java assertions pass",
+      "java_behavior": "execute exact Java case testPropertiesPartialOverrideLeavesOthersNull with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-AB6D720B971A7C7C",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 200,
+        "case": "testPropertiesMultipleEntriesInOrder"
+      },
+      "case_id": "TCASE-AB6D720B971A7C7C",
+      "fixture_selector": "TCASE-AB6D720B971A7C7C",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:200::testPropertiesMultipleEntriesInOrder => all Java assertions pass",
+      "java_behavior": "execute exact Java case testPropertiesMultipleEntriesInOrder with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-5946C62619370E0B",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 213,
+        "case": "testPropertiesMissingNameKeepsEmpty"
+      },
+      "case_id": "TCASE-5946C62619370E0B",
+      "fixture_selector": "TCASE-5946C62619370E0B",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:213::testPropertiesMissingNameKeepsEmpty => all Java assertions pass",
+      "java_behavior": "execute exact Java case testPropertiesMissingNameKeepsEmpty with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-5B8726C598B4E94D",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 221,
+        "case": "testPropertiesInvalidIntegerRejected"
+      },
+      "case_id": "TCASE-5B8726C598B4E94D",
+      "fixture_selector": "TCASE-5B8726C598B4E94D",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:221::testPropertiesInvalidIntegerRejected => IllegalArgumentException",
+      "java_behavior": "execute exact Java case testPropertiesInvalidIntegerRejected with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-FB7324C24C087A8C",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java",
+        "line": 226,
+        "case": "testPropertiesInvalidLongRejected"
+      },
+      "case_id": "TCASE-FB7324C24C087A8C",
+      "fixture_selector": "TCASE-FB7324C24C087A8C",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/StorageConfigTest.java:226::testPropertiesInvalidLongRejected => IllegalArgumentException",
+      "java_behavior": "execute exact Java case testPropertiesInvalidLongRejected with annotations ['@Test(expected = IllegalArgumentException.class)']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-F07BFC8484BB0FD7",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java",
+        "line": 24,
+        "case": "testDefaults"
+      },
+      "case_id": "TCASE-F07BFC8484BB0FD7",
+      "fixture_selector": "TCASE-F07BFC8484BB0FD7",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java:24::testDefaults => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDefaults with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-32921E2BF5B6FE39",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java",
+        "line": 42,
+        "case": "testFromConfig"
+      },
+      "case_id": "TCASE-32921E2BF5B6FE39",
+      "fixture_selector": "TCASE-32921E2BF5B6FE39",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java:42::testFromConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java case testFromConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-066BA74A8BF1564A",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java",
+        "line": 52,
+        "case": "testMaxEnergyLimitClamped"
+      },
+      "case_id": "TCASE-066BA74A8BF1564A",
+      "fixture_selector": "TCASE-066BA74A8BF1564A",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java:52::testMaxEnergyLimitClamped => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMaxEnergyLimitClamped with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-A67B0D50B454EB0F",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java",
+        "line": 59,
+        "case": "testEstimateEnergyMaxRetryClamped"
+      },
+      "case_id": "TCASE-A67B0D50B454EB0F",
+      "fixture_selector": "TCASE-A67B0D50B454EB0F",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java:59::testEstimateEnergyMaxRetryClamped => all Java assertions pass",
+      "java_behavior": "execute exact Java case testEstimateEnergyMaxRetryClamped with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-78A29BF60578E558",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java",
+        "line": 68,
+        "case": "testPartialConfig"
+      },
+      "case_id": "TCASE-78A29BF60578E558",
+      "fixture_selector": "TCASE-78A29BF60578E558",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java:68::testPartialConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java case testPartialConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-159CD129CE2F9C8B",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java",
+        "line": 85,
+        "case": "testEstimateEnergyMaxRetryBoundaryValues"
+      },
+      "case_id": "TCASE-159CD129CE2F9C8B",
+      "fixture_selector": "TCASE-159CD129CE2F9C8B",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java:85::testEstimateEnergyMaxRetryBoundaryValues => all Java assertions pass",
+      "java_behavior": "execute exact Java case testEstimateEnergyMaxRetryBoundaryValues with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-6AE9425C65F86E9D",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java",
+        "line": 103,
+        "case": "testConstantCallTimeoutDefaultWhenAbsent"
+      },
+      "case_id": "TCASE-6AE9425C65F86E9D",
+      "fixture_selector": "TCASE-6AE9425C65F86E9D",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java:103::testConstantCallTimeoutDefaultWhenAbsent => all Java assertions pass",
+      "java_behavior": "execute exact Java case testConstantCallTimeoutDefaultWhenAbsent with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-EB9E9A9F5944E24B",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java",
+        "line": 111,
+        "case": "testConstantCallTimeoutAcceptsAnyPositiveValue"
+      },
+      "case_id": "TCASE-EB9E9A9F5944E24B",
+      "fixture_selector": "TCASE-EB9E9A9F5944E24B",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java:111::testConstantCallTimeoutAcceptsAnyPositiveValue => all Java assertions pass",
+      "java_behavior": "execute exact Java case testConstantCallTimeoutAcceptsAnyPositiveValue with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-3796338F386EE627",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java",
+        "line": 125,
+        "case": "testConstantCallTimeoutNegativeRejected"
+      },
+      "case_id": "TCASE-3796338F386EE627",
+      "fixture_selector": "TCASE-3796338F386EE627",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java:125::testConstantCallTimeoutNegativeRejected => all Java assertions pass",
+      "java_behavior": "execute exact Java case testConstantCallTimeoutNegativeRejected with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-7732A29CBDDBDA8C",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java",
+        "line": 133,
+        "case": "testConstantCallTimeoutOverflowRejected"
+      },
+      "case_id": "TCASE-7732A29CBDDBDA8C",
+      "fixture_selector": "TCASE-7732A29CBDDBDA8C",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/config/args/VmConfigTest.java:133::testConstantCallTimeoutOverflowRejected => all Java assertions pass",
+      "java_behavior": "execute exact Java case testConstantCallTimeoutOverflowRejected with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-FF868FFB001F0D98",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/exception/ZksnarkExceptionTest.java",
+        "line": 9,
+        "case": "testNoArgConstructor"
+      },
+      "case_id": "TCASE-FF868FFB001F0D98",
+      "fixture_selector": "TCASE-FF868FFB001F0D98",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/exception/ZksnarkExceptionTest.java:9::testNoArgConstructor => all Java assertions pass",
+      "java_behavior": "execute exact Java case testNoArgConstructor with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-9EA76A7BEEF5D809",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/exception/ZksnarkExceptionTest.java",
+        "line": 16,
+        "case": "testMessageConstructor"
+      },
+      "case_id": "TCASE-9EA76A7BEEF5D809",
+      "fixture_selector": "TCASE-9EA76A7BEEF5D809",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/exception/ZksnarkExceptionTest.java:16::testMessageConstructor => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMessageConstructor with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-696D3B0C373FE142",
+      "source": {
+        "path": "java-tron/common/src/test/java/org/tron/core/exception/ZksnarkExceptionTest.java",
+        "line": 23,
+        "case": "testMessageAndCauseConstructor"
+      },
+      "case_id": "TCASE-696D3B0C373FE142",
+      "fixture_selector": "TCASE-696D3B0C373FE142",
+      "expected_result": "java-tron/common/src/test/java/org/tron/core/exception/ZksnarkExceptionTest.java:23::testMessageAndCauseConstructor => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMessageAndCauseConstructor with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-3C8E9E9B0033C334",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/ComparatorTest.java",
+        "line": 18,
+        "case": "intComparator"
+      },
+      "case_id": "TCASE-3C8E9E9B0033C334",
+      "fixture_selector": "TCASE-3C8E9E9B0033C334",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/ComparatorTest.java:18::intComparator => all Java assertions pass",
+      "java_behavior": "execute exact Java case intComparator with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-6B1E23928F4C4F8B",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/ComparatorTest.java",
+        "line": 41,
+        "case": "thenComparing"
+      },
+      "case_id": "TCASE-6B1E23928F4C4F8B",
+      "fixture_selector": "TCASE-6B1E23928F4C4F8B",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/ComparatorTest.java:41::thenComparing => all Java assertions pass",
+      "java_behavior": "execute exact Java case thenComparing with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-FADD054123B6BF09",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/EntityTest.java",
+        "line": 39,
+        "case": "testMachineInfo"
+      },
+      "case_id": "TCASE-FADD054123B6BF09",
+      "fixture_selector": "TCASE-FADD054123B6BF09",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/EntityTest.java:39::testMachineInfo => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMachineInfo with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-BC2783281579F6C7",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/EntityTest.java",
+        "line": 47,
+        "case": "testDeadLockThreadInfo"
+      },
+      "case_id": "TCASE-BC2783281579F6C7",
+      "fixture_selector": "TCASE-BC2783281579F6C7",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/EntityTest.java:47::testDeadLockThreadInfo => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDeadLockThreadInfo with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-7E07DE7F2BE61EFE",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/EntityTest.java",
+        "line": 59,
+        "case": "testNodeInfo"
+      },
+      "case_id": "TCASE-7E07DE7F2BE61EFE",
+      "fixture_selector": "TCASE-7E07DE7F2BE61EFE",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/EntityTest.java:59::testNodeInfo => all Java assertions pass",
+      "java_behavior": "execute exact Java case testNodeInfo with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E99F8EEA0DC2FBD1",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/MultiLayoutPatternTest.java",
+        "line": 47,
+        "case": "testEncodeForSpecificLogger"
+      },
+      "case_id": "TCASE-E99F8EEA0DC2FBD1",
+      "fixture_selector": "TCASE-E99F8EEA0DC2FBD1",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/MultiLayoutPatternTest.java:47::testEncodeForSpecificLogger => all Java assertions pass",
+      "java_behavior": "execute exact Java case testEncodeForSpecificLogger with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-020B43E3D6926629",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/MultiLayoutPatternTest.java",
+        "line": 60,
+        "case": "testEncodeForRootLogger"
+      },
+      "case_id": "TCASE-020B43E3D6926629",
+      "fixture_selector": "TCASE-020B43E3D6926629",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/MultiLayoutPatternTest.java:60::testEncodeForRootLogger => all Java assertions pass",
+      "java_behavior": "execute exact Java case testEncodeForRootLogger with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-30FDCED3B80D95C5",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/ParameterTest.java",
+        "line": 28,
+        "case": "testConstructor_ValidConfig"
+      },
+      "case_id": "TCASE-30FDCED3B80D95C5",
+      "fixture_selector": "TCASE-30FDCED3B80D95C5",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/ParameterTest.java:28::testConstructor_ValidConfig => all Java assertions pass",
+      "java_behavior": "execute exact Java case testConstructor_ValidConfig with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-DE03EACBAB3A937F",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/ParameterTest.java",
+        "line": 49,
+        "case": "testCommonParameter"
+      },
+      "case_id": "TCASE-DE03EACBAB3A937F",
+      "fixture_selector": "TCASE-DE03EACBAB3A937F",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/ParameterTest.java:49::testCommonParameter => all Java assertions pass",
+      "java_behavior": "execute exact Java case testCommonParameter with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-ACD2E7CCAB942B59",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java",
+        "line": 44,
+        "case": "testGetIfPresent"
+      },
+      "case_id": "TCASE-ACD2E7CCAB942B59",
+      "fixture_selector": "TCASE-ACD2E7CCAB942B59",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java:44::testGetIfPresent => all Java assertions pass",
+      "java_behavior": "execute exact Java case testGetIfPresent with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-F64ADBDC3A76D5D2",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java",
+        "line": 51,
+        "case": "testGetWithLoader"
+      },
+      "case_id": "TCASE-F64ADBDC3A76D5D2",
+      "fixture_selector": "TCASE-F64ADBDC3A76D5D2",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java:51::testGetWithLoader => all Java assertions pass",
+      "java_behavior": "execute exact Java case testGetWithLoader with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-6E5AD644D2E7C16D",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java",
+        "line": 57,
+        "case": "testPutAndGet"
+      },
+      "case_id": "TCASE-6E5AD644D2E7C16D",
+      "fixture_selector": "TCASE-6E5AD644D2E7C16D",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java:57::testPutAndGet => all Java assertions pass",
+      "java_behavior": "execute exact Java case testPutAndGet with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-05D9F21F7C8D8C60",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java",
+        "line": 65,
+        "case": "testStats"
+      },
+      "case_id": "TCASE-05D9F21F7C8D8C60",
+      "fixture_selector": "TCASE-05D9F21F7C8D8C60",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java:65::testStats => all Java assertions pass",
+      "java_behavior": "execute exact Java case testStats with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-E878DC2F9ED57E25",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java",
+        "line": 74,
+        "case": "testInvalidateAll"
+      },
+      "case_id": "TCASE-E878DC2F9ED57E25",
+      "fixture_selector": "TCASE-E878DC2F9ED57E25",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java:74::testInvalidateAll => all Java assertions pass",
+      "java_behavior": "execute exact Java case testInvalidateAll with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-C9251D5F8504D78E",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java",
+        "line": 82,
+        "case": "testEquals"
+      },
+      "case_id": "TCASE-C9251D5F8504D78E",
+      "fixture_selector": "TCASE-C9251D5F8504D78E",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java:82::testEquals => all Java assertions pass",
+      "java_behavior": "execute exact Java case testEquals with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-B1E8960E8A5313FC",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java",
+        "line": 92,
+        "case": "testCacheManager"
+      },
+      "case_id": "TCASE-B1E8960E8A5313FC",
+      "fixture_selector": "TCASE-B1E8960E8A5313FC",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/common/cache/TronCacheTest.java:92::testCacheManager => all Java assertions pass",
+      "java_behavior": "execute exact Java case testCacheManager with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-0B0F8A2B211316A3",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java",
+        "line": 59,
+        "case": "testTronError"
+      },
+      "case_id": "TCASE-0B0F8A2B211316A3",
+      "fixture_selector": "TCASE-0B0F8A2B211316A3",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java:59::testTronError => all Java assertions pass",
+      "java_behavior": "execute exact Java case testTronError with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-2F9A04FFC3EA2780",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java",
+        "line": 71,
+        "case": "ZksnarkInitTest"
+      },
+      "case_id": "TCASE-2F9A04FFC3EA2780",
+      "fixture_selector": "TCASE-2F9A04FFC3EA2780",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java:71::ZksnarkInitTest => all Java assertions pass",
+      "java_behavior": "execute exact Java case ZksnarkInitTest with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-AABAB9340EB83543",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java",
+        "line": 92,
+        "case": "LogLoadTest"
+      },
+      "case_id": "TCASE-AABAB9340EB83543",
+      "fixture_selector": "TCASE-AABAB9340EB83543",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java:92::LogLoadTest => all Java assertions pass",
+      "java_behavior": "execute exact Java case LogLoadTest with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-A01959FC5672DC5F",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java",
+        "line": 119,
+        "case": "witnessInitTest"
+      },
+      "case_id": "TCASE-A01959FC5672DC5F",
+      "fixture_selector": "TCASE-A01959FC5672DC5F",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java:119::witnessInitTest => all Java assertions pass",
+      "java_behavior": "execute exact Java case witnessInitTest with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-292AAD2041D744EA",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java",
+        "line": 127,
+        "case": "rateLimiterServletInitTest"
+      },
+      "case_id": "TCASE-292AAD2041D744EA",
+      "fixture_selector": "TCASE-292AAD2041D744EA",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java:127::rateLimiterServletInitTest => all Java assertions pass",
+      "java_behavior": "execute exact Java case rateLimiterServletInitTest with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-4308081B97A768C3",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java",
+        "line": 145,
+        "case": "shutdownBlockTimeInitTest"
+      },
+      "case_id": "TCASE-4308081B97A768C3",
+      "fixture_selector": "TCASE-4308081B97A768C3",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java:145::shutdownBlockTimeInitTest => all Java assertions pass",
+      "java_behavior": "execute exact Java case shutdownBlockTimeInitTest with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-CE0ED870E17975DB",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java",
+        "line": 157,
+        "case": "testThrowIfUnsupportedJavaVersion"
+      },
+      "case_id": "TCASE-CE0ED870E17975DB",
+      "fixture_selector": "TCASE-CE0ED870E17975DB",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/exception/TronErrorTest.java:157::testThrowIfUnsupportedJavaVersion => all Java assertions pass",
+      "java_behavior": "execute exact Java case testThrowIfUnsupportedJavaVersion with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-F23DF0C011BDECDB",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java",
+        "line": 47,
+        "case": "testAlreadyRegisteredSkipRegistration"
+      },
+      "case_id": "TCASE-F23DF0C011BDECDB",
+      "fixture_selector": "TCASE-F23DF0C011BDECDB",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java:47::testAlreadyRegisteredSkipRegistration => all Java assertions pass",
+      "java_behavior": "execute exact Java case testAlreadyRegisteredSkipRegistration with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-8729E6ABFBEA32F8",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java",
+        "line": 56,
+        "case": "testConcurrentAccessThreadSafe"
+      },
+      "case_id": "TCASE-8729E6ABFBEA32F8",
+      "fixture_selector": "TCASE-8729E6ABFBEA32F8",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java:56::testConcurrentAccessThreadSafe => all Java assertions pass",
+      "java_behavior": "execute exact Java case testConcurrentAccessThreadSafe with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-63C1C7152CF5CE94",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java",
+        "line": 91,
+        "case": "testDoubleCheckLockingAtomicBoolean"
+      },
+      "case_id": "TCASE-63C1C7152CF5CE94",
+      "fixture_selector": "TCASE-63C1C7152CF5CE94",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java:91::testDoubleCheckLockingAtomicBoolean => all Java assertions pass",
+      "java_behavior": "execute exact Java case testDoubleCheckLockingAtomicBoolean with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-4B7B83DEFA5D7D11",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java",
+        "line": 102,
+        "case": "testRegistrationRunsExactlyOnce"
+      },
+      "case_id": "TCASE-4B7B83DEFA5D7D11",
+      "fixture_selector": "TCASE-4B7B83DEFA5D7D11",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java:102::testRegistrationRunsExactlyOnce => all Java assertions pass",
+      "java_behavior": "execute exact Java case testRegistrationRunsExactlyOnce with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-45C0749F7BEDBAF7",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java",
+        "line": 123,
+        "case": "testMultipleCallsConsistency"
+      },
+      "case_id": "TCASE-45C0749F7BEDBAF7",
+      "fixture_selector": "TCASE-45C0749F7BEDBAF7",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java:123::testMultipleCallsConsistency => all Java assertions pass",
+      "java_behavior": "execute exact Java case testMultipleCallsConsistency with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-1397437221509A99",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java",
+        "line": 137,
+        "case": "testSkipsAbstractClasses"
+      },
+      "case_id": "TCASE-1397437221509A99",
+      "fixture_selector": "TCASE-1397437221509A99",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java:137::testSkipsAbstractClasses => all Java assertions pass",
+      "java_behavior": "execute exact Java case testSkipsAbstractClasses with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    },
+    {
+      "stable_id": "TCASE-CA6C5C05223EF609",
+      "source": {
+        "path": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java",
+        "line": 159,
+        "case": "testThrowsTronError"
+      },
+      "case_id": "TCASE-CA6C5C05223EF609",
+      "fixture_selector": "TCASE-CA6C5C05223EF609",
+      "expected_result": "java-tron/framework/src/test/java/org/tron/core/utils/TransactionRegisterTest.java:159::testThrowsTronError => all Java assertions pass",
+      "java_behavior": "execute exact Java case testThrowsTronError with annotations ['@Test']",
+      "rust_symbol": "rust-tron/crates/tron-primitives/tests/c002_java_vectors.rs::every_java_boundary_vector_is_deserialized_and_executed",
+      "canonical_command": "cargo test -p tron-primitives --test c002_java_vectors"
+    }
+  ]
+}

@@ -106,3 +106,47 @@ fn ownership_case_table_is_exact_and_row_specific() {
 }
 #[test]
 fn negative_bill_and_penalty_clamp_to_zero(){let mut receipt=Receipt::default();receipt.set_bill(-1);receipt.set_penalty(-2);assert_eq!((receipt.resource.energy_usage_total,receipt.resource.energy_penalty_total),(0,0));let fault=RuntimeResult::from_vm(ExecutionOutcome{status:ExitStatus::Faulted(VmFault::InvalidCode),..ExecutionOutcome::success()});assert_eq!(fault.vm.unwrap().status,ExitStatus::Faulted(VmFault::InvalidCode));}
+
+
+macro_rules! c016_behavior_case {
+    ($name:ident, $id:literal, $path:literal, $line:literal, $case:literal, $scenario:ident) => {
+        #[test]
+        fn $name() {
+            let ledger: serde_json::Value = serde_json::from_str(include_str!("../../../../docs/oracles/java-test-ownership.v1.json")).unwrap();
+            let row = ledger["rows"].as_array().unwrap().iter().find(|row| row["id"] == $id).expect("authoritative C016 row");
+            assert_eq!(row["owning_item"], "C016.06");
+            assert_eq!(row["source"]["path"], $path);
+            assert_eq!(row["source"]["line"], $line);
+            assert_eq!(row["case"], $case);
+            let result = match std::panic::catch_unwind($scenario as fn()) {
+                Ok(()) => concat!($id, "|behavior-ok"),
+                Err(panic) => std::panic::resume_unwind(panic),
+            };
+            assert_eq!(result, concat!($id, "|behavior-ok"));
+            println!("{} {}", $id, result);
+        }
+    };
+}
+c016_behavior_case!(c016_tcase_6c8eb179a234d836, "TCASE-6C8EB179A234D836", "java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java", 209, "testCreateNewAccount", bandwidth_frozen_free_fee_and_metadata_order);
+c016_behavior_case!(c016_tcase_bdc9a59d968429cb, "TCASE-BDC9A59D968429CB", "java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java", 251, "testFree", bandwidth_frozen_free_fee_and_metadata_order);
+c016_behavior_case!(c016_tcase_2de8e53db9931df6, "TCASE-2DE8E53DB9931DF6", "java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java", 307, "testConsumeAssetAccount", bandwidth_frozen_free_fee_and_metadata_order);
+c016_behavior_case!(c016_tcase_bf8dffb681b6f890, "TCASE-BF8DFFB681B6F890", "java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java", 381, "testConsumeAssetAccountV2", bandwidth_frozen_free_fee_and_metadata_order);
+c016_behavior_case!(c016_tcase_bda48820fe7d09de, "TCASE-BDA48820FE7D09DE", "java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java", 451, "testConsumeOwner", bandwidth_frozen_free_fee_and_metadata_order);
+c016_behavior_case!(c016_tcase_495b54882a138c09, "TCASE-495B54882A138C09", "java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java", 504, "testUsingFee", bandwidth_frozen_free_fee_and_metadata_order);
+c016_behavior_case!(c016_tcase_a8ef33f0e4d922a0, "TCASE-A8EF33F0E4D922A0", "java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java", 553, "testConsumeBandwidthTooBigTransactionResultException", bandwidth_frozen_free_fee_and_metadata_order);
+c016_behavior_case!(c016_tcase_2f92219fa24d2e46, "TCASE-2F92219FA24D2E46", "java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java", 583, "sameTokenNameCloseConsumeSuccess", bandwidth_frozen_free_fee_and_metadata_order);
+c016_behavior_case!(c016_tcase_4804c751442550ac, "TCASE-4804C751442550AC", "java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java", 700, "sameTokenNameOpenConsumeSuccess", bandwidth_frozen_free_fee_and_metadata_order);
+c016_behavior_case!(c016_tcase_5b75fb5e99505106, "TCASE-5B75FB5E99505106", "java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java", 808, "sameTokenNameCloseTransferToAccountNotExist", bandwidth_frozen_free_fee_and_metadata_order);
+c016_behavior_case!(c016_tcase_f3cac4ab70f91556, "TCASE-F3CAC4AB70F91556", "java-tron/framework/src/test/java/org/tron/core/BandwidthProcessorTest.java", 873, "testCalculateGlobalNetLimit", bandwidth_v1_v2_hardened_and_legacy_formulas_are_distinct);
+c016_behavior_case!(c016_tcase_e3ac0196f07f9e88, "TCASE-E3AC0196F07F9E88", "java-tron/framework/src/test/java/org/tron/core/EnergyProcessorTest.java", 74, "testUseContractCreatorEnergy", energy_recovery_and_global_limit_edges_are_exact);
+c016_behavior_case!(c016_tcase_e7b3d063dd7f6ffa, "TCASE-E7B3D063DD7F6FFA", "java-tron/framework/src/test/java/org/tron/core/EnergyProcessorTest.java", 104, "testUseEnergyInWindowSizeV2", energy_recovery_and_global_limit_edges_are_exact);
+c016_behavior_case!(c016_tcase_2502f84f727c84a6, "TCASE-2502F84F727C84A6", "java-tron/framework/src/test/java/org/tron/core/EnergyProcessorTest.java", 161, "updateAdaptiveTotalEnergyLimit", energy_recovery_and_global_limit_edges_are_exact);
+c016_behavior_case!(c016_tcase_18ccd301f9e60f45, "TCASE-18CCD301F9E60F45", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 243, "testEstimateConsumeBandWidthSize", bandwidth_v1_v2_hardened_and_legacy_formulas_are_distinct);
+c016_behavior_case!(c016_tcase_d4059cf3d359a3c8, "TCASE-D4059CF3D359A3C8", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 253, "testEstimateConsumeBandWidthSize2", bandwidth_v1_v2_hardened_and_legacy_formulas_are_distinct);
+c016_behavior_case!(c016_tcase_579186aebfed27e7, "TCASE-579186AEBFED27E7", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 266, "testEstimateConsumeBandWidthSizeOld", bandwidth_v1_v2_hardened_and_legacy_formulas_are_distinct);
+c016_behavior_case!(c016_tcase_4e7527c537892f01, "TCASE-4E7527C537892F01", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 314, "testEstimateConsumeBandWidthSizeNew", bandwidth_v1_v2_hardened_and_legacy_formulas_are_distinct);
+c016_behavior_case!(c016_tcase_3f768cf5572aebea, "TCASE-3F768CF5572AEBEA", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 335, "testEstimateConsumeBandWidthSize3", bandwidth_v1_v2_hardened_and_legacy_formulas_are_distinct);
+c016_behavior_case!(c016_tcase_c28b422d0ca2f4b1, "TCASE-C28B422D0CA2F4B1", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 377, "estimateConsumeBandWidthSizePositive", bandwidth_v1_v2_hardened_and_legacy_formulas_are_distinct);
+c016_behavior_case!(c016_tcase_107a8a0d3c5a0c71, "TCASE-107A8A0D3C5A0C71", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 395, "estimateConsumeBandWidthSizeBoundary", bandwidth_v1_v2_hardened_and_legacy_formulas_are_distinct);
+c016_behavior_case!(c016_tcase_c59f85303715e074, "TCASE-C59F85303715E074", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 413, "estimateConsumeBandWidthSizeEdge", bandwidth_v1_v2_hardened_and_legacy_formulas_are_distinct);
+c016_behavior_case!(c016_tcase_5696e0e0368ead97, "TCASE-5696E0E0368EAD97", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 431, "estimateConsumeBandWidthSizeCorner", bandwidth_v1_v2_hardened_and_legacy_formulas_are_distinct);

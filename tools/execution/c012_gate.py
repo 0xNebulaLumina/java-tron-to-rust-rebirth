@@ -158,6 +158,7 @@ def generate():
     dump(FIXTURES, fixture)
 
     old = load(RECON)
+    additional_stable_id_proofs = old.get("additional_stable_id_proofs", [])
     mapped = explicit_mapping(documents)
     direct_proofs = direct_java_mapping(direct)
     direct_by_id = selected_by_stable_id(direct)
@@ -187,7 +188,7 @@ def generate():
                  "row_count": len(result_rows), "mapped_count": len(result_rows), "excluded_count": 0,
                  "instrumented_stable_id_count": len(direct_by_id), "instrumented_invocation_count": len(selected),
                  "unique_observation_count": len(unique_observations), "executed_observation_count": len(unique_observations),
-                 "excluded_invocation_count": 0, "rows": result_rows})
+                 "excluded_invocation_count": 0, "additional_stable_id_proofs": additional_stable_id_proofs, "rows": result_rows})
 
     source_paths = ([spec[0] for spec in FAMILIES.values()] + [str(Path(spec[1])) for spec in FAMILIES.values()]
                     + [DIRECT_JAVA.name, "tools/execution/c012_java_oracle.py", "tools/execution/C012Oracle.java", "tools/execution/C012ReopenProbe.java"]
@@ -250,6 +251,16 @@ def verify(errors):
         errors.append("contract manifest digest drift")
     recon_rows = recon.get("rows", [])
     if len(recon_rows) != 222 or recon.get("row_count") != 222: errors.append("reconciliation must contain exactly 222 rows")
+    supplemental = recon.get("additional_stable_id_proofs", [])
+    required = {"stable_id", "source_identity", "invocation_selector", "fixture", "observation_digest", "result", "rust_symbol", "canonical_command"}
+    if len(supplemental) != 1 or supplemental[0].get("stable_id") != "TCASE-ADA6C17DC10097D3":
+        errors.append("expected exact supplemental addVotesTest stable-ID proof")
+    for proof in supplemental:
+        if not required.issubset(proof) or not all(proof.get(key) for key in required - {"invocation_selector"}):
+            errors.append(f"incomplete supplemental proof: {proof.get('stable_id')}")
+        selector = proof.get("invocation_selector", {})
+        if selector.get("kind") != "zero_invocation_helper" or selector.get("stable_id") != proof.get("stable_id") or selector.get("ordinals") != []:
+            errors.append(f"supplemental zero-invocation selector drift: {proof.get('stable_id')}")
     recon_by_id = {row.get("stable_id"): row for row in recon_rows}
     if len(recon_by_id) != len(recon_rows): errors.append("reconciliation stable IDs must be unique")
     if set(recon_by_id) != set(ownership): errors.append("reconciliation stable IDs must exactly equal the C012.V ownership ledger")

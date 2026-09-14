@@ -24,11 +24,11 @@ def load(p:Path):return json.loads(p.read_text())
 def digest(p:Path):return hashlib.sha256(p.read_bytes()).hexdigest()
 def observation(m):return hashlib.sha256(json.dumps({k:v for k,v in m.items() if k not in {'java_source','previous_owner','capture_identity_sha256'}},sort_keys=True,separators=(',',':')).encode()).hexdigest()
 def generate()->None:
- java=load(JAVA);members=java['members'];ledger={r['id']:r for r in load(LEDGER)['rows']};rows=[];invocations=0
+ java=load(JAVA);members=java['members'];ledger={r['id']:r for r in load(LEDGER)['rows']};rows=[];invocations=0;additional_stable_id_proofs=load(RECON).get('additional_stable_id_proofs',[])
  for member in members:
   sid=member['variant_id'];lr=ledger[sid];invs=member['invocations'];invocations+=len(invs);proof=ZERO.get(sid)
   rows.append({'stable_id':sid,'java_source':lr['source']['path'],'java_line':lr['source']['line'],'java_case':lr['case'],'owner':'C013','owning_item':CLASS_ITEMS[Path(lr['source']['path']).stem],'acceptance_gate':'C013.V','previous_owner':lr['owning_item'],'disposition':'instrumented_java_method' if invs else 'executable_zero_invocation_helper_proof','executable_proof':proof,'scenario_id':sid,'invocation_ids':[x['invocation_id'] for x in invs],'observation_digest':observation(member),'equivalence_basis':'Exact isolated execution of the pinned Java test method and strict Rust replay.'})
- atomic_write_json(RECON,{'schema':'c013-java-test-reconciliation.v1','chunk':'C013','row_count':len(rows),'mapped_count':len(rows),'excluded_count':0,'instrumented_invocation_count':invocations,'zero_invocation_method_count':len(ZERO),'rows':rows})
+ atomic_write_json(RECON,{'schema':'c013-java-test-reconciliation.v1','chunk':'C013','row_count':len(rows),'mapped_count':len(rows),'excluded_count':0,'instrumented_invocation_count':invocations,'zero_invocation_method_count':len(ZERO),'additional_stable_id_proofs':additional_stable_id_proofs,'rows':rows})
  refs=[]
  for name,path in FAMILIES.items():
   runner=ROOT/'tools/execution/c013'/name/'run.py';done=subprocess.run([sys.executable,str(runner)],cwd=ROOT,text=True,capture_output=True,check=True);document=json.loads(done.stdout);atomic_write_json(path,document);refs.append({'family':name,'path':str(path.relative_to(ROOT)),'sha256':digest(path),'runner':str(runner.relative_to(ROOT)),'row_count':len(document['rows'])})
@@ -61,6 +61,13 @@ def verify()->list[str]:
  if provenance.get('reference',{}).get('java_revision')!=SESSION.revision:errors.append('Java revision provenance drift')
  recon=load(RECON);fixtures=load(FIXTURES);contract=load(CONTRACT)
  if (recon.get('row_count'),recon.get('instrumented_invocation_count'),recon.get('zero_invocation_method_count'))!=(370,926,13):errors.append('reconciliation accounting drift')
+ supplemental=recon.get('additional_stable_id_proofs',[])
+ required={'stable_id','source_identity','invocation_selector','fixture','observation_digest','result','rust_symbol','canonical_command'}
+ if len(supplemental)!=27 or len({row.get('stable_id') for row in supplemental})!=27:errors.append('expected 27 unique supplemental stable-ID proofs')
+ for row in supplemental:
+  if not required.issubset(row) or not all(row.get(key) for key in required-{'invocation_selector'}):errors.append('incomplete supplemental proof '+str(row.get('stable_id')))
+  selector=row.get('invocation_selector',{})
+  if selector.get('kind')!='zero_invocation_helper' or selector.get('stable_id')!=row.get('stable_id') or selector.get('ordinals')!=[]:errors.append('supplemental zero-invocation selector drift '+str(row.get('stable_id')))
  if fixtures['pinned_java']['sha256']!=digest(JAVA) or contract['fixture_inventory']['sha256']!=digest(FIXTURES) or contract['ownership_reconciliation']['sha256']!=digest(RECON) or contract['source_inventory']['sha256']!=digest(SOURCE):errors.append('digest binding drift')
  storage=load(FAMILIES['market_misc']).get('storage_contract_compatibility',{})
  expected_storage=[('protocol.BuyStorageContract',21),('protocol.BuyStorageBytesContract',22),('protocol.SellStorageContract',23)]

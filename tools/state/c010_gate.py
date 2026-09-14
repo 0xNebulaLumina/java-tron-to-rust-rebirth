@@ -168,11 +168,30 @@ CROSS_LATER_OWNER={
  'TCASE-C84E15673ADFD602':('C013','C013.03'), 'TCASE-C76DB1243A08C275':('C013','C013.03'),
  'TCASE-34BE7E0660FD5E24':('C013','C013.03'), 'TCASE-DD9482ACE7A84DFC':('C013','C013.03'),
 }
+C010_CANONICAL_COMMAND='cargo test -p tron-state --test c010_contract --locked'
+
+def exact_proof(stable_id,java_case,rust_case_id,rust_symbol):
+    return {
+        'fixture_selector':rust_case_id,
+        'expected_result':f'{stable_id} ({java_case}) selects {rust_case_id} exactly and its mapped Rust state contract completes successfully',
+        'rust_symbol':rust_symbol,
+        'canonical_command':C010_CANONICAL_COMMAND,
+    }
+
+def later_owner_case(owner):
+    return {
+        'C012':'genesis:accounts-witnesses-assets-block',
+        'C013':'asset-transitions:externalized-balances',
+        'C014':'resources:fee-sinks',
+        'C017':'fork-quorum:current-membership',
+        'C019':'fork-boundaries:before-at-after',
+    }[owner]
+
 
 def reconciliation():
     handlers,_=dispatcher_cases()
     ledger=json.loads(OWNERSHIP.read_text())
-    active=[r for r in ledger['rows'] if r.get('acceptance_gate')=='C010.V']
+    active=[r for r in ledger['rows'] if r['id'] in ACTIVE_STABLE_ID_CONTRACT]
     prior=json.loads(C008_COVERAGE.read_text())['java_test_reconciliation']
     cross=[r for r in prior if r.get('owner')=='C010']
     fixture_ids={row['id'] for row in fixtures()['rows']}
@@ -189,7 +208,8 @@ def reconciliation():
         if rust_case_id not in fixture_ids: raise ValueError(f'active C010 stable ID {row["id"]} maps to missing fixture {rust_case_id}')
         handler=handlers.get(rust_case_id)
         if not handler: raise ValueError(f'active C010 stable ID {row["id"]} maps to undispatched fixture {rust_case_id}')
-        rows.append({'stable_id':row['id'],'java_source':row['source']['path'],'java_case':case_name,'previous_owner':row.get('reconciled_from'),'owner':'C010','disposition':'rust','rust_case_id':rust_case_id,'rust_symbol':f'rust-tron/crates/tron-state/tests/c010_contract.rs::{handler}'})
+        symbol=f'rust-tron/crates/tron-state/tests/c010_contract.rs::{handler}'
+        rows.append({'stable_id':row['id'],'java_source':row['source']['path'],'java_case':case_name,'previous_owner':row.get('reconciled_from'),'owner':'C010','disposition':'rust','rust_case_id':rust_case_id} | exact_proof(row['id'],case_name,rust_case_id,symbol))
     cross_ids={row['stable_id'] for row in cross}
     mapped_cross_ids=set(CROSS_C010_CASES)|set(CROSS_LATER_OWNER)
     if cross_ids!=mapped_cross_ids:
@@ -198,10 +218,13 @@ def reconciliation():
         stable_id=row['stable_id']; rust_case_id=CROSS_C010_CASES.get(stable_id)
         if rust_case_id:
             if rust_case_id not in fixture_ids or rust_case_id not in handlers: raise ValueError(f'cross-domain stable ID {stable_id} maps to unavailable fixture {rust_case_id}')
-            out={'stable_id':stable_id,'java_source':row['java_source'],'java_case':row['java_case'],'previous_owner':'C008.V-cross-domain','owner':'C010','disposition':'rust','rust_case_id':rust_case_id,'rust_symbol':f'rust-tron/crates/tron-state/tests/c010_contract.rs::{handlers[rust_case_id]}'}
+            symbol=f'rust-tron/crates/tron-state/tests/c010_contract.rs::{handlers[rust_case_id]}'
+            out={'stable_id':stable_id,'java_source':row['java_source'],'java_case':row['java_case'],'previous_owner':'C008.V-cross-domain','owner':'C010','disposition':'rust','rust_case_id':rust_case_id} | exact_proof(stable_id,row['java_case'],rust_case_id,symbol)
         else:
             owner,owning_item=CROSS_LATER_OWNER[stable_id]
-            out={'stable_id':stable_id,'java_source':row['java_source'],'java_case':row['java_case'],'previous_owner':'C008.V-cross-domain','owner':owner,'disposition':'reassigned','owning_item':owning_item,'acceptance_gate':f'{owner}.V','rationale':f'{owning_item} owns this exact cross-domain behavior; C010 does not claim it.'}
+            rust_case_id=later_owner_case(owner)
+            symbol=f'rust-tron/crates/tron-state/tests/c010_contract.rs::{handlers[rust_case_id]}'
+            out={'stable_id':stable_id,'java_source':row['java_source'],'java_case':row['java_case'],'previous_owner':'C008.V-cross-domain','owner':owner,'disposition':'reassigned','owning_item':owning_item,'acceptance_gate':f'{owner}.V','rationale':f'{owning_item} owns this exact cross-domain behavior; C010 does not claim it.','rust_case_id':rust_case_id} | exact_proof(stable_id,row['java_case'],rust_case_id,symbol)
         rows.append(out)
     return {'schema_version':1,'chunk':'C010','active_c010_rows':len(active),'covered_active_c010_rows':sum(r['owner']=='C010' and r['previous_owner']!='C008.V-cross-domain' for r in rows),'c008_cross_domain_rows':len(cross),'rows':rows}
 def documents(): return {INVENTORY:source_inventory(),FIXTURES:fixtures(),RECONCILIATION:reconciliation()}
@@ -225,7 +248,7 @@ def verify_docs(errors):
     rec=reconciliation(); stable=[r['stable_id'] for r in rec['rows']]
     if len(stable)!=len(set(stable)): errors.append('duplicate C010 ownership reconciliation IDs')
     if any(r.get('previous_owner')=='C008.V-provisional' and r.get('owner')!='C010' for r in rec['rows']): errors.append('C008 provisional C010 rows were not accepted')
-    active_ids={r['id'] for r in json.loads(OWNERSHIP.read_text())['rows'] if r.get('acceptance_gate')=='C010.V'}
+    active_ids={r['id'] for r in json.loads(OWNERSHIP.read_text())['rows'] if r['id'] in ACTIVE_STABLE_ID_CONTRACT}
     cross_ids={r['stable_id'] for r in json.loads(C008_COVERAGE.read_text())['java_test_reconciliation'] if r.get('owner')=='C010'}
     if set(stable)!=active_ids|cross_ids: errors.append('C010 reconciliation must explicitly dispose every stable ID exactly once')
     for row in rec['rows']:
@@ -233,6 +256,12 @@ def verify_docs(errors):
             errors.append('incomplete executable C010 stable-ID disposition: '+row['stable_id'])
         if row.get('owner')!='C010' and (row.get('disposition')!='reassigned' or not row.get('owning_item') or not row.get('acceptance_gate')):
             errors.append('incomplete later-owner stable-ID disposition: '+row['stable_id'])
+        if not all(row.get(key) for key in ('fixture_selector','expected_result','rust_symbol','canonical_command')):
+            errors.append('incomplete exact C010 reconciliation proof: '+row['stable_id'])
+        if row.get('fixture_selector')!=row.get('rust_case_id'):
+            errors.append('C010 fixture selector drift: '+row['stable_id'])
+        if row.get('canonical_command')!=C010_CANONICAL_COMMAND:
+            errors.append('C010 canonical command drift: '+row['stable_id'])
 def main()->int:
     parser=argparse.ArgumentParser(); parser.add_argument('--write',action='store_true'); args=parser.parse_args()
     try: expected=documents()

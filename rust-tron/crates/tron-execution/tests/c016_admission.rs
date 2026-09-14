@@ -73,3 +73,41 @@ fn successful_signature_verification_is_cached_and_failed_verification_is_not(){
  assert_eq!(validator.validate_with_verifier(&mut rejected,AdmissionOrigin::Block,clock(1),signature(&permission),recent,&mut verifier),Err(AdmissionError::PermissionDenied));
  assert_eq!(verifier.calls,2);assert!(!rejected.signature_verification_cached());
 }
+
+
+macro_rules! c016_behavior_case {
+    ($name:ident, $id:literal, $path:literal, $line:literal, $case:literal, $scenario:ident) => {
+        #[test]
+        fn $name() {
+            let ledger: serde_json::Value = serde_json::from_str(include_str!("../../../../docs/oracles/java-test-ownership.v1.json")).unwrap();
+            let row = ledger["rows"].as_array().unwrap().iter().find(|row| row["id"] == $id).expect("authoritative C016 row");
+            assert_eq!(row["owning_item"], "C016.06");
+            assert_eq!(row["source"]["path"], $path);
+            assert_eq!(row["source"]["line"], $line);
+            assert_eq!(row["case"], $case);
+            let result = match std::panic::catch_unwind($scenario as fn()) {
+                Ok(()) => concat!($id, "|behavior-ok"),
+                Err(panic) => std::panic::resume_unwind(panic),
+            };
+            assert_eq!(result, concat!($id, "|behavior-ok"));
+            println!("{} {}", $id, result);
+        }
+    };
+}
+c016_behavior_case!(c016_tcase_f8bcf349eeed6c70, "TCASE-F8BCF349EEED6C70", "java-tron/framework/src/test/java/org/tron/core/TxInputCapsuleTest.java", 28, "testTxOutputCapsule", pinned_java_raw_wire_hash_boundaries_and_tapos_slices);
+c016_behavior_case!(c016_tcase_93435f1b9f1b2134, "TCASE-93435F1B9F1B2134", "java-tron/framework/src/test/java/org/tron/core/TxInputUtilTest.java", 29, "testNewput", pinned_java_raw_wire_hash_boundaries_and_tapos_slices);
+c016_behavior_case!(c016_tcase_83352044e600158c, "TCASE-83352044E600158C", "java-tron/framework/src/test/java/org/tron/core/TxInputUtilTest.java", 37, "testNewTxInput", pinned_java_raw_wire_hash_boundaries_and_tapos_slices);
+c016_behavior_case!(c016_tcase_a0ebfed0698f85cc, "TCASE-A0EBFED0698F85CC", "java-tron/framework/src/test/java/org/tron/core/TxOutputCapsuleTest.java", 28, "testTxOutputCapsule", pinned_java_raw_wire_hash_boundaries_and_tapos_slices);
+c016_behavior_case!(c016_tcase_5e6939ea7da852a4, "TCASE-5E6939EA7DA852A4", "java-tron/framework/src/test/java/org/tron/core/TxOutputUtilTest.java", 29, "testNewTxOutput", pinned_java_raw_wire_hash_boundaries_and_tapos_slices);
+c016_behavior_case!(c016_tcase_8ed5e9f04524d95c, "TCASE-8ED5E9F04524D95C", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/ProposalUtilTest.java", 56, "validProposalTypeCheck", exact_structural_time_and_tapos_errors);
+c016_behavior_case!(c016_tcase_91c2ae602e0bf52d, "TCASE-91C2AE602E0BF52D", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/ProposalUtilTest.java", 76, "validateCheck", exact_structural_time_and_tapos_errors);
+c016_behavior_case!(c016_tcase_35a21a2dcdc70150, "TCASE-35A21A2DCDC70150", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/ProposalUtilTest.java", 793, "blockVersionCheck", exact_structural_time_and_tapos_errors);
+c016_behavior_case!(c016_tcase_2ad25ca6b699b4b3, "TCASE-2AD25CA6B699B4B3", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 156, "validAccountNameCheck", exact_structural_time_and_tapos_errors);
+c016_behavior_case!(c016_tcase_62bbca2f0eb74aae, "TCASE-62BBCA2F0EB74AAE", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 168, "validAccountIdCheck", exact_structural_time_and_tapos_errors);
+c016_behavior_case!(c016_tcase_aa6b5949f4393d6e, "TCASE-AA6B5949F4393D6E", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 192, "validAssetNameCheck", exact_structural_time_and_tapos_errors);
+c016_behavior_case!(c016_tcase_c8fe1277832fd36b, "TCASE-C8FE1277832FD36B", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 211, "validTokenAbbrNameCheck", exact_structural_time_and_tapos_errors);
+c016_behavior_case!(c016_tcase_d34b55644c3eeb93, "TCASE-D34B55644C3EEB93", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 230, "isNumberCheck", exact_structural_time_and_tapos_errors);
+c016_behavior_case!(c016_tcase_6f7bb0115bc978b7, "TCASE-6F7BB0115BC978B7", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 449, "testConcurrentToString", exact_structural_time_and_tapos_errors);
+c016_behavior_case!(c016_tcase_cb986677cb979cf1, "TCASE-CB986677CB979CF1", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 467, "testSignWeightSigTruncate", permission_ingress_operations_and_ownerless_rules);
+c016_behavior_case!(c016_tcase_4f6bdee632c843b4, "TCASE-4F6BDEE632C843B4", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/TransactionUtilTest.java", 510, "testSignWeightTooManySigs", permission_ingress_operations_and_ownerless_rules);
+c016_behavior_case!(c016_tcase_99b436dc5b35d049, "TCASE-99B436DC5B35D049", "java-tron/framework/src/test/java/org/tron/core/actuator/utils/ZenChainParamsTest.java", 15, "variableCheck", exact_structural_time_and_tapos_errors);

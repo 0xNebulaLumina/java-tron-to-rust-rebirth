@@ -220,7 +220,11 @@ def main() -> int:
         if any(row.get(field) != owned.get(field) for field in ("case", "ignored")) or row.get("source") != owned.get("source"):
             errors.append(f"replacement ledger ownership drift for {row_id}")
     generic = re.compile(r"covered by|fixture family|gate dispatch|generic|placeholder|todo|tbd", re.IGNORECASE)
-    required_mapping_fields = {"owner_chunk", "rust_test_file", "rust_test_symbol", "dispatch", "covered_contract"}
+    required_mapping_fields = {
+        "owner_chunk", "rust_test_file", "rust_test_symbol", "dispatch", "covered_contract",
+        "stable_id", "source_identity", "case_id", "behavior_slices", "observable_result",
+        "fixture_links", "rust_case_id", "selector", "canonical_command", "ignored_disposition",
+    }
     allowed_owners = {"C006.01", "C006.02", "C006.03", "C006.04", "C006.05", "C006.06", "C015.04", "C016.02", "C022.01B", "C022.02", "C029.02"}
     builder_rows = [row for row in ignored if row.get("source", {}).get("path", "").endswith("ShieldedTRC20BuilderTest.java")]
     expected_owner_counts = {"C022.01B": 7, "C016.02": 6, "C015.04": 1}
@@ -241,7 +245,7 @@ def main() -> int:
         errors.append("ignored external ZK case must dispatch to the named C006.06 local gRPC boundary test")
     if len(concurrent_rows) != 1 or concurrent_rows[0].get("replacement", {}).get("owner_chunk") != "C006.05" or concurrent_rows[0].get("replacement", {}).get("rust_test_symbol") != "bounded_concurrent_contexts_replace_ignored_benchmark":
         errors.append("ignored concurrent benchmark must dispatch to the named bounded C006.05 test")
-    for row in case_rows:
+    for row in java_rows:
         mapping = row.get("replacement")
         if not isinstance(mapping, dict) or set(mapping) != required_mapping_fields:
             errors.append(f"Java row {row.get('id')} must use exactly the five structured replacement mapping fields")
@@ -251,6 +255,38 @@ def main() -> int:
         test_symbol = mapping.get("rust_test_symbol")
         dispatch = mapping.get("dispatch")
         contract = mapping.get("covered_contract")
+        stable_id = mapping.get("stable_id")
+        expected_identity = {
+            "id": row.get("id"),
+            "path": row.get("source", {}).get("path"),
+            "line": row.get("source", {}).get("line"),
+            "case": row.get("case"),
+            "kind": "java_test_case" if row.get("id", "").startswith("TCASE-") else "java_test_resource",
+        }
+        exact_text_fields = (
+            stable_id, mapping.get("case_id"), mapping.get("observable_result"),
+            mapping.get("rust_case_id"), mapping.get("selector"),
+        )
+        if mapping.get("source_identity") != expected_identity:
+            errors.append(f"Java row {row.get('id')} has drifted stable-ID/source/case identity")
+            continue
+        if any(not isinstance(value, str) or not value.strip() or generic.search(value) for value in exact_text_fields):
+            errors.append(f"Java row {row.get('id')} has a missing or catchall row-proof field")
+            continue
+        if stable_id != row.get("id") or mapping.get("case_id") != stable_id or mapping.get("rust_case_id") != stable_id or mapping.get("selector") != stable_id:
+            errors.append(f"Java row {row.get('id')} must use its stable ID as every case selector")
+            continue
+        if mapping.get("behavior_slices") != [f"{stable_id}:{row.get('case')}"]:
+            errors.append(f"Java row {row.get('id')} lacks its exact behavior slice")
+            continue
+        expected_ignored = "consciously_replaced_ignored_java_case" if row.get("ignored") else "not_ignored"
+        if mapping.get("ignored_disposition") != expected_ignored:
+            errors.append(f"Java row {row.get('id')} has an invalid ignored disposition")
+            continue
+        fixture_links = mapping.get("fixture_links")
+        if not isinstance(fixture_links, list) or not fixture_links or not all(stable_id in link for link in fixture_links):
+            errors.append(f"Java row {row.get('id')} lacks explicit per-ID fixture selectors")
+            continue
         text_fields = (owner, test_file, test_symbol, contract)
         if owner not in allowed_owners or any(not isinstance(value, str) or not value.strip() or generic.search(value) for value in text_fields):
             errors.append(f"Java row {row.get('id')} has a missing, generic, or invalid replacement field")
@@ -270,6 +306,8 @@ def main() -> int:
                 errors.append(f"Java row {row.get('id')} must identify its reassigned owner gate instead of a C006 Rust file")
         if dispatch != expected_dispatch:
             errors.append(f"Java row {row.get('id')} has a non-canonical replacement dispatch")
+        if mapping.get("canonical_command") != expected_dispatch:
+            errors.append(f"Java row {row.get('id')} must store the canonical command beside its exact result")
     payload = json.dumps(vectors.get("vectors", []), sort_keys=True, separators=(",", ":")).encode()
     if hashlib.sha256(payload).hexdigest() != vectors.get("vectors_sha256"):
         errors.append("oracle vector payload digest drift")

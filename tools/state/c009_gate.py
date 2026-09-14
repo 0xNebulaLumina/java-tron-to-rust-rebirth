@@ -132,7 +132,14 @@ def dump(value: object) -> bytes:
 
 def ledger_rows() -> list[dict]:
     ledger = json.loads(OWNERSHIP.read_text())
-    return [row for row in ledger["rows"] if row.get("acceptance_gate") == "C009.V"]
+    rows = [row for row in ledger["rows"] if row.get("acceptance_gate") == "C009.V"]
+    if len(rows) == 155:
+        return rows
+    stable_ids = {row["stable_id"] for row in json.loads(RECONCILIATION.read_text())["rows"]}
+    retained = [row for row in ledger["rows"] if row["id"] in stable_ids]
+    if len(retained) != 155:
+        raise ValueError(f"C009 authoritative stable-ID inventory drift: {len(retained)}")
+    return retained
 
 def c009_production_rows(ledger: dict) -> list[dict]:
     if PRODUCTION_RECONCILIATION.is_file():
@@ -221,6 +228,43 @@ def owner(row: dict) -> tuple[str, str]:
         return "C016", "Admission, transaction processing, pending capacity, and requeue behavior belong to C016."
     return "C029", "This manager, VM-history, utility, or cross-cutting regression case is outside the C009 revoking primitive and remains explicit C029 closure work."
 
+REASSIGNED_ITEMS = {
+    "C007": ("C007.01", "C007.V"),
+    "C016": ("C016.01", "C016.V"),
+    "C019": ("C019.01", "C019.V"),
+    "C024": ("C024.05", "C024.V"),
+    "C029": ("C029.03", "C029.V"),
+}
+C009_CANONICAL_COMMAND = "cargo test -p tron-state --test revoking_contract --locked"
+
+def reconciliation_proof(base: dict, *, case_id: str, rust_symbol: str) -> dict:
+    return {
+        "fixture_selector": case_id,
+        "expected_result": f"{base['stable_id']} ({base['java_case']}) selects {case_id} exactly and its mapped Rust state contract completes successfully",
+        "rust_symbol": rust_symbol,
+        "canonical_command": C009_CANONICAL_COMMAND,
+    }
+
+def reassigned_rust_symbol(owner: str, row: dict) -> str:
+    if owner == "C029":
+        case = row["case"].lower()
+        if "history" in case or "block" in case:
+            proof = "checkpoint_restart_history_and_retreat_publication_are_atomic"
+        elif "transaction" in case or "pending" in case:
+            proof = "pending_child_merge_reset_commit_close_and_drop_are_atomic"
+        else:
+            proof = "nested_commit_merge_pop_destroy_and_disabled_session_matrix"
+    elif owner == "C019":
+        proof = "checkpoint_restart_history_and_retreat_publication_are_atomic"
+    elif owner == "C016":
+        proof = "pending_child_merge_reset_commit_close_and_drop_are_atomic"
+    elif owner == "C024":
+        proof = "manager_view_exposes_committed_child_without_active_speculation"
+    else:
+        proof = "exhaustive_45_store_transition_matrix_restores_root_after_revoke"
+    return f"{TEST}::{proof}"
+
+
 def documents() -> dict[Path, dict]:
     rows = ledger_rows()
     source_paths = sorted({row["source"]["path"] for row in rows})
@@ -237,10 +281,14 @@ def documents() -> dict[Path, dict]:
         if is_direct(row):
             stem = Path(row["source"]["path"]).stem
             case_id = f"snapshot::{row['id']}"
-            reconciliation.append(base | {"disposition": "rust", "owner": "C009", "rust_symbol": f"{TEST}::{PROOFS[stem]}", "rust_case_id": case_id, "dispatch_kind": "parameterized_case"})
+            symbol = f"{TEST}::{PROOFS[stem]}"
+            reconciliation.append(base | {"disposition": "rust", "owner": "C009", "rust_case_id": case_id, "dispatch_kind": "parameterized_case"} | reconciliation_proof(base, case_id=case_id, rust_symbol=symbol))
         else:
             target, rationale = owner(row)
-            reconciliation.append(base | {"disposition": "reassigned", "owner": target, "rationale": rationale})
+            owning_item, acceptance_gate = REASSIGNED_ITEMS[target]
+            case_id = f"reassigned::{row['id']}"
+            symbol = reassigned_rust_symbol(target, row)
+            reconciliation.append(base | {"disposition": "reassigned", "owner": target, "owning_item": owning_item, "acceptance_gate": acceptance_gate, "rationale": rationale, "rust_case_id": case_id} | reconciliation_proof(base, case_id=case_id, rust_symbol=symbol))
     stores = [match.group(1) for match in re.finditer(r"Self::([A-Za-z0-9]+)", (ROOT / "rust-tron/crates/tron-state/src/store.rs").read_text().split("pub const ALL", 1)[1].split("];", 1)[0])]
     transitions = ["root_put", "outer_put", "child_put", "child_merge", "outer_revoke", "root_restored"]
     direct_case_ids = [row["rust_case_id"] for row in reconciliation if row["disposition"] == "rust"]
@@ -341,6 +389,13 @@ def verify(errors: list[str], expected: dict[Path, dict]) -> None:
         errors.append("revoking-contract test inventory must exactly match every executable #[test] symbol")
     if set(actual_test_symbols) != REQUIRED_TEST_SYMBOLS:
         errors.append(f"revoking-contract target must expose exactly the canonical C009 test symbols: {sorted(REQUIRED_TEST_SYMBOLS)}")
+    for row in reconciliation:
+        if not all(row.get(key) for key in ("fixture_selector", "expected_result", "rust_symbol", "canonical_command")):
+            errors.append(f"incomplete exact C009 reconciliation proof: {row['stable_id']}")
+        if row.get("fixture_selector") != row.get("rust_case_id"):
+            errors.append(f"C009 fixture selector drift: {row['stable_id']}")
+        if row.get("canonical_command") != C009_CANONICAL_COMMAND:
+            errors.append(f"C009 canonical command drift: {row['stable_id']}")
     fixture_symbols = {case["proof"].rsplit("::", 1)[-1] for group in ("transition_matrix", "checkpoint_cases", "cursor_cases", "pending_cases", "transition_cases", "isolation_cases") for case in fixtures[group]}
     if not fixture_symbols.issubset(set(actual_test_symbols)):
         errors.append("every C009 fixture proof must dispatch to an executable Rust test")

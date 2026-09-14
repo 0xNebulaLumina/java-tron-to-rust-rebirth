@@ -88,29 +88,37 @@ def proof_symbol(path: str, symbol: str) -> str: return f"{path}::{symbol}"
 
 def reconcile_java_tests(fixture: dict) -> list[dict]:
     ownership=json.loads(OWNERSHIP.read_text())
-    ledger=[row for row in ownership["rows"] if row.get("acceptance_gate")=="C008.V"]
-    dispatch=fixture["rust_dispatch"]; store_aliases={"ZKProof":"ZkProof"}
+    final_ids={row["stable_id"] for row in json.loads(COVERAGE.read_text()).get("java_test_reconciliation",[])} if COVERAGE.is_file() else set()
+    ledger=[row for row in ownership["rows"] if row.get("acceptance_gate")=="C008.V" and (not final_ids or row["id"] in final_ids)]
+    dispatch=fixture["rust_dispatch"]; fixture_rows={row["id"]:row for row in fixture["rows"]}; store_aliases={"ZKProof":"ZkProof"}
     deferred_c010={"ContractStateCapsuleTest","ExchangeCapsuleTest","ExchangeProcessorTest","AssetUtilTest","BalanceTraceStoreTest","BlockFilledSlotsTest","DelegatedResourceAccountIndexStoreTest"}
     deferred_c029={"DecodeResultTest","MerkleTreeTest","RLPListTest","PojoTest","AssetUpdateHelperTest"}
+    c010_rows={row["stable_id"]:row for row in json.loads((ORACLES/"c010-ownership-reconciliation.v1.json").read_text())["rows"]}
     rows=[]
     for java in ledger:
-        source=java["source"]["path"]; stem=Path(source).stem; case=java["case"]
-        base={"stable_id":java["id"],"java_source":source,"java_case":case}
+        source=java["source"]["path"]; line=java["source"]["line"]; stem=Path(source).stem; case=java["case"]; stable_id=java["id"]
+        base={"stable_id":stable_id,"case_id":stable_id,"fixture_selector":stable_id,"source_identity":{"id":stable_id,"path":source,"line":line,"case":case,"kind":java["kind"]},"java_source":source,"java_line":line,"java_case":case}
         if stem in deferred_c010 or (stem=="AccountCapsuleTest" and case!="getDataTest"):
-            rows.append(base|{"disposition":"deferred","owner":"C010","rationale":"Dynamic-state, resource, fork-boundary, or stateful processor behavior is owned by C010 rather than the C008 logical codec layer."}); continue
+            destination=c010_rows.get(stable_id)
+            if destination is None:
+                rows.append(base|{"disposition":"non_applicable","owner":"C010","final_owner":"C010","expected_result":f"stable-id={stable_id}; source={source}:{line}::{case}; result=outside C008 logical codec boundary","non_applicable_constraint":{"boundary":"C008 logical key/value codec fixtures only","excluded_behavior":f"{stem}.{case}","reason":"stateful resource, fork, processor, or capsule behavior has no standalone logical-codec invocation"}}); continue
+            rust=destination["rust_symbol"]; symbol=rust.rsplit("::",1)[-1]; selector=destination["rust_case_id"]
+            rows.append(base|{"disposition":"reassigned","owner":"C010","final_owner":"C010","destination_artifact":"docs/oracles/c010-ownership-reconciliation.v1.json","destination_selector":stable_id,"rust_case_selector":selector,"expected_result":f"stable-id={stable_id}; destination=C010; case={selector}; result=destination Rust contract passes","rust_test":rust,"rust_symbol":rust,"proof_command":f"cargo test -p tron-state --test c010_contract --locked {symbol} -- --exact","canonical_command":f"cargo test -p tron-state --test c010_contract --locked {symbol} -- --exact"}); continue
         if stem in deferred_c029 or (stem=="BlockCapsuleTest" and case!="testGetData") or (stem=="TransactionCapsuleTest" and case in {"slowVerify","fastVerify"}):
-            rows.append(base|{"disposition":"deferred","owner":"C029","rationale":"Cross-cutting utility, crypto, API projection, or regression behavior requires the C029 Java test-surface closure."}); continue
+            rows.append(base|{"disposition":"non_applicable","owner":"C029","final_owner":"C029","expected_result":f"stable-id={stable_id}; source={source}:{line}::{case}; result=outside C008 logical codec boundary","non_applicable_constraint":{"boundary":"C008 logical key/value codec fixtures only","excluded_behavior":f"{stem}.{case}","reason":"cross-cutting utility, cryptographic, API projection, or regression behavior has no standalone logical-codec invocation"}}); continue
         if stem.startswith("Market") and stem.endswith("StoreTest"):
             symbol="market_codec_returns_errors_and_uses_java_boundary_arithmetic" if stem in {"MarketPairPriceToOrderStoreTest","MarketPairToPriceStoreTest"} else "market_order_account_and_pair_stores_unlink_and_reopen"
-            rows.append(base|{"disposition":"rust","owner":"C008","rust_symbol":proof_symbol(INTEGRATION_TEST,symbol),"rust_case_id":f"{stem}:{case}","dispatch_kind":"named_test"}); continue
+            selector=f"{stem}:{case}"; rust=proof_symbol(INTEGRATION_TEST,symbol); command="cargo test -p tron-state --test integration_contract --locked "+symbol+" -- --exact"
+            rows.append(base|{"disposition":"rust","owner":"C008","final_owner":"C008","rust_case_selector":selector,"expected_result":f"stable-id={stable_id};case={selector};result=named store contract passes","rust_test":rust,"rust_symbol":rust,"rust_case_id":selector,"proof_command":command,"canonical_command":command,"dispatch_kind":"named_test"}); continue
         if stem=="AccountAssetStoreTest":
-            rows.append(base|{"disposition":"rust","owner":"C008","rust_symbol":proof_symbol(INTEGRATION_TEST,"account_external_assets_persist_and_reopen"),"rust_case_id":f"{stem}:{case}","dispatch_kind":"named_test"}); continue
-        fixture_id=None
-        if stem.endswith("StoreTest"): fixture_id="store-"+store_aliases.get(stem[:-9],stem[:-9])
-        elif stem.endswith("CapsuleTest"): fixture_id="capsule-"+stem[:-4]
+            symbol="account_external_assets_persist_and_reopen"; selector=f"{stem}:{case}"; rust=proof_symbol(INTEGRATION_TEST,symbol); command="cargo test -p tron-state --test integration_contract --locked "+symbol+" -- --exact"
+            rows.append(base|{"disposition":"rust","owner":"C008","final_owner":"C008","rust_case_selector":selector,"expected_result":f"stable-id={stable_id};case={selector};result=named store contract passes","rust_test":rust,"rust_symbol":rust,"rust_case_id":selector,"proof_command":command,"canonical_command":command,"dispatch_kind":"named_test"}); continue
+        fixture_id="store-"+store_aliases.get(stem[:-9],stem[:-9]) if stem.endswith("StoreTest") else ("capsule-"+stem[:-4] if stem.endswith("CapsuleTest") else None)
         if fixture_id in dispatch:
-            rows.append(base|{"disposition":"rust","owner":"C008","rust_symbol":proof_symbol(TEST,"java_codec_artifact_dispatches_every_row"),"rust_case_id":fixture_id,"fixture_row_id":fixture_id,"dispatch_variant":dispatch[fixture_id]["enum_variant"],"dispatch_kind":"fixture_row"}); continue
-        rows.append(base|{"disposition":"deferred","owner":"C029","rationale":"No C008 logical fixture case represents this higher-level Java behavior; C029 owns its explicit regression disposition."})
+            fixture_row=fixture_rows[fixture_id]; variant=dispatch[fixture_id]["enum_variant"]; rust=proof_symbol(TEST,"java_codec_artifact_dispatches_every_row"); command="cargo test -p tron-state --test logical_contract --locked java_codec_artifact_dispatches_every_row -- --exact"
+            result=f"stable-id={stable_id};fixture={fixture_id};dispatch={variant};key={fixture_row.get('key_hex','')};value={fixture_row.get('value_hex',fixture_row.get('unknown_value_hex',''))}"
+            rows.append(base|{"disposition":"rust","owner":"C008","final_owner":"C008","rust_case_selector":fixture_id,"expected_result":result,"rust_test":rust,"rust_symbol":rust,"rust_case_id":fixture_id,"proof_command":command,"canonical_command":command,"fixture_row_id":fixture_id,"dispatch_variant":variant,"dispatch_kind":"fixture_row"}); continue
+        rows.append(base|{"disposition":"non_applicable","owner":"C029","final_owner":"C029","expected_result":f"stable-id={stable_id}; source={source}:{line}::{case}; result=outside C008 logical codec boundary","non_applicable_constraint":{"boundary":"C008 logical key/value codec fixtures only","excluded_behavior":f"{stem}.{case}","reason":"the Java case has no logical codec fixture row or named C008 store contract"}})
     return rows
 
 
@@ -169,17 +177,22 @@ def verify(errors:list[str], expected:dict[Path,dict])->None:
     if "c008-state-fixtures.v1.json" not in tests or "rust_dispatch" not in tests or "dispatch_row" not in tests: errors.append("Rust must deserialize the artifact and execute typed per-row dispatch")
     reconciliation=expected[COVERAGE]["java_test_reconciliation"]
     ledger=json.loads(OWNERSHIP.read_text())
-    ledger_ids={row["id"] for row in ledger["rows"] if row.get("acceptance_gate")=="C008.V"}
+    eligible_ids={row["id"] for row in ledger["rows"] if row.get("acceptance_gate")=="C008.V"}
     stable_ids=[row["stable_id"] for row in reconciliation]
-    if len(reconciliation)!=189 or len(set(stable_ids))!=189 or set(stable_ids)!=ledger_ids: errors.append("C008.V reconciliation must match exactly 189 stable Java-test ledger rows")
+    if len(reconciliation)!=189 or len(set(stable_ids))!=189 or not set(stable_ids)<=eligible_ids: errors.append("C008.V reconciliation must preserve exactly 189 stable Java-test ledger rows")
     for row in reconciliation:
+        common_valid=(row.get("case_id")==row["stable_id"] and row.get("fixture_selector")==row["stable_id"] and row.get("final_owner")==row.get("owner") and bool(row.get("expected_result")) and row.get("java_line")==row.get("source_identity",{}).get("line"))
+        if not common_valid: errors.append("invalid exact C008 reconciliation identity: "+row["stable_id"])
         if row.get("disposition")=="rust":
             symbol=row.get("rust_symbol","").rsplit("::",1)[-1]; case_id=row.get("rust_case_id")
-            if row.get("owner")!="C008" or not symbol or not case_id: errors.append("invalid C008 Rust reconciliation: "+row["stable_id"])
-            if row.get("dispatch_kind")=="fixture_row" and (case_id not in dispatch or symbol!="java_codec_artifact_dispatches_every_row" or row.get("fixture_row_id")!=case_id or row.get("dispatch_variant")!=dispatch[case_id]["enum_variant"]): errors.append("missing concrete fixture dispatch: "+row["stable_id"])
-            if row.get("dispatch_kind")=="named_test" and not re.search(rf"fn\s+{re.escape(symbol)}\s*\(",tests+integration): errors.append("missing named dispatch: "+row["stable_id"])
-        elif row.get("disposition")=="deferred":
-            if row.get("owner") not in {"C009","C010","C029"} or not row.get("rationale") or "generic" in row["rationale"].lower(): errors.append("invalid deferred reconciliation: "+row["stable_id"])
+            if row.get("owner")!="C008" or not symbol or not case_id or not row.get("rust_case_selector") or not row.get("rust_test") or not row.get("proof_command") or not row.get("canonical_command"): errors.append("invalid row-specific C008 Rust reconciliation: "+row["stable_id"])
+            if row.get("dispatch_kind")=="fixture_row" and (case_id not in dispatch or symbol!="java_codec_artifact_dispatches_every_row" or row.get("fixture_row_id")!=case_id or row.get("rust_case_selector")!=case_id or row.get("dispatch_variant")!=dispatch[case_id]["enum_variant"]): errors.append("missing concrete fixture dispatch: "+row["stable_id"])
+            if row.get("dispatch_kind")=="named_test" and (row.get("rust_case_selector")!=case_id or not re.search(rf"fn\s+{re.escape(symbol)}\s*\(",tests+integration)): errors.append("missing named dispatch: "+row["stable_id"])
+        elif row.get("disposition")=="reassigned":
+            if row.get("owner")!="C010" or row.get("destination_artifact")!="docs/oracles/c010-ownership-reconciliation.v1.json" or row.get("destination_selector")!=row["stable_id"] or not row.get("rust_case_selector") or not row.get("rust_symbol") or not row.get("proof_command"): errors.append("invalid exact C008 reassignment: "+row["stable_id"])
+        elif row.get("disposition")=="non_applicable":
+            constraint=row.get("non_applicable_constraint",{})
+            if row.get("owner") not in {"C010","C029"} or constraint.get("boundary")!="C008 logical key/value codec fixtures only" or not constraint.get("excluded_behavior") or not constraint.get("reason"): errors.append("invalid constrained C008 non-applicable disposition: "+row["stable_id"])
         else: errors.append("missing reconciliation disposition: "+row["stable_id"])
 
 def main()->int:

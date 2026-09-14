@@ -90,15 +90,19 @@ def fixtures():
     return {"schema_version": 1, "chunk": "C011", "java_revision": revision(), "rows": [{"id": i, "input": inp, "expected": out, "rust_symbol": f"rust-tron/crates/tron-state/tests/khaos_contract.rs::{handlers[i]}", "command_index": 1} for i, inp, out in CASES]}
 def reconciliation():
     handlers = dispatch(); ledger = json.loads(OWNERSHIP.read_text()); by_id = {r["id"]: r for r in ledger["rows"]}
+    expected_by_id = {case_id: expected for case_id, _, expected in CASES}
     rows = []
     for stable_id, (case, item, previous_gate, rust_case_ids) in TEST_ROWS.items():
         row = by_id.get(stable_id)
         if row is None: raise ValueError(f"missing ownership row {stable_id}")
         actual = row["case"]["name"] if isinstance(row.get("case"), dict) else row.get("case")
         if actual != case: raise ValueError(f"ownership metadata drift {stable_id}")
-        symbols = [handlers[case_id] for case_id in rust_case_ids]
-        fixture = rust_case_ids[0]
-        rows.append({"stable_id": stable_id, "java_source": row["source"]["path"], "java_line": row["source"]["line"], "java_case": case, "previous_gate": previous_gate, "owner": "C011", "owning_item": item, "acceptance_gate": "C011.V", "fixture_id": fixture, "rust_case_ids": rust_case_ids, "rust_symbol": f"rust-tron/crates/tron-state/tests/khaos_contract.rs::{symbols[0]}"})
+        source = row["source"]; rust_proofs = []
+        for case_id in rust_case_ids:
+            symbol = handlers[case_id]
+            rust_proofs.append({"fixture_selector": case_id, "expected_result": expected_by_id[case_id], "rust_symbol": f"rust-tron/crates/tron-state/tests/khaos_contract.rs::{symbol}", "canonical_command": f"cargo test -p tron-state --test khaos_contract --locked {symbol} -- --exact"})
+        primary = rust_proofs[0]
+        rows.append({"stable_id": stable_id, "source_identity": {"id": stable_id, "path": source["path"], "line": source["line"], "case": case, "kind": row["kind"]}, "java_source": source["path"], "java_line": source["line"], "java_case": case, "previous_gate": previous_gate, "owner": "C011", "final_owner": "C011", "owning_item": item, "acceptance_gate": "C011.V", "disposition": "rust", "case_id": stable_id, "fixture_id": rust_case_ids[0], "fixture_selector": stable_id, "rust_case_ids": rust_case_ids, "rust_case_selector": primary["fixture_selector"], "expected_result": f"stable-id={stable_id}; case={case}; result={primary['expected_result']}", "rust_symbol": primary["rust_symbol"], "rust_test": primary["rust_symbol"], "proof_command": primary["canonical_command"], "canonical_command": primary["canonical_command"], "rust_proofs": rust_proofs})
     return {"schema_version": 1, "chunk": "C011", "rows": rows}
 def contract(schema, prefix, source_paths, fixture_document):
     rows = [row for row in fixture_document["rows"] if row["id"].startswith(prefix)]
@@ -142,6 +146,19 @@ def verify_ownership(errors):
         row = by_id[stable_id]
         if (row.get("acceptance_gate"), row.get("owning_item"), row.get("rust_case_ids")) != ("C011.V", item, rust_case_ids):
             errors.append(f"C011 ownership not reassigned exactly: {stable_id}")
+def verify_reconciliation(errors, document):
+    if len(document["rows"]) != len(TEST_ROWS): errors.append("C011 reconciliation must preserve all eight Java proofs")
+    for row in document["rows"]:
+        identity = row.get("source_identity", {})
+        if row.get("disposition") != "rust" or row.get("owner") != "C011" or row.get("final_owner") != "C011" or row.get("case_id") != row.get("stable_id") or row.get("fixture_selector") != row.get("stable_id"):
+            errors.append(f"C011 exact proof identity missing: {row.get('stable_id')}")
+        if identity.get("id") != row.get("stable_id") or identity.get("path") != row.get("java_source") or identity.get("line") != row.get("java_line") or identity.get("case") != row.get("java_case"):
+            errors.append(f"C011 stable source identity drift: {row.get('stable_id')}")
+        if not row.get("rust_case_selector") or not row.get("expected_result") or not row.get("rust_symbol") or not row.get("rust_test") or not row.get("proof_command") or row.get("canonical_command") != row.get("proof_command"):
+            errors.append(f"C011 executable proof metadata missing: {row.get('stable_id')}")
+        proofs = row.get("rust_proofs", [])
+        if [proof.get("fixture_selector") for proof in proofs] != row.get("rust_case_ids") or any(not proof.get("expected_result") or not proof.get("rust_symbol") or not proof.get("canonical_command") for proof in proofs):
+            errors.append(f"C011 Rust proof list does not preserve every fixture: {row.get('stable_id')}")
 def main():
     parser = argparse.ArgumentParser(); parser.add_argument("--write", action="store_true"); args = parser.parse_args()
     fixture_document = fixtures()
@@ -159,7 +176,7 @@ def main():
         if not path.exists() or path.read_bytes() != dump(value): errors.append(f"stale generated artifact: {path.relative_to(ROOT)}")
     if not MANIFEST.exists() or MANIFEST.read_bytes() != dump(expected_manifest):
         errors.append(f"stale generated artifact registration: {MANIFEST.relative_to(ROOT)}")
-    verify_tracker(errors); verify_ownership(errors)
+    verify_tracker(errors); verify_ownership(errors); verify_reconciliation(errors, artifacts[RECONCILIATION])
     if errors:
         for error in errors: print(f"ERROR: {error}", file=sys.stderr)
         return 1

@@ -383,6 +383,65 @@ def documents():
     test = {**common, "ledger": "java-test-ownership", "coverage": "annotated JUnit 4/5, JUnit3 test* methods, statically enumerable parameter/repetition cases, inherited cases and exact bounded-unresolved dynamic expansion rows, plus test resources", "row_count": len(tests), "rows": tests}
     return prod, test, inventory_hash
 
+PRODUCTION_STRUCTURAL_FIELDS = {
+    "id", "kind", "source", "domain", "owning_item", "acceptance_gate",
+    "symbol", "category",
+}
+TEST_STRUCTURAL_FIELDS = {
+    "id", "kind", "source", "domain", "owning_item", "acceptance_gate",
+    "case", "annotations", "parameter_sources", "expansion", "nested",
+    "inherited", "generated", "ignored", "ignore_reason", "assumption_gated",
+}
+DOCUMENT_STRUCTURAL_FIELDS = {
+    "schema_version", "java_source_revision", "java_reference_identity",
+    "regeneration", "ledger", "coverage", "row_count", "rows",
+}
+
+
+def rows_by_id(rows, label):
+    indexed = {}
+    duplicates = []
+    for row in rows:
+        row_id = row.get("id")
+        if not isinstance(row_id, str) or not row_id:
+            raise ValueError(f"{label} contains a row without a stable ID")
+        if row_id in indexed:
+            duplicates.append(row_id)
+        indexed[row_id] = row
+    if duplicates:
+        raise ValueError(f"{label} contains duplicate stable IDs: {sorted(set(duplicates))}")
+    return indexed
+
+
+def preserve_reviewed_metadata(path, generated, structural_fields):
+    if not path.is_file():
+        raise ValueError(f"refusing to regenerate missing reviewed ledger: {path.relative_to(ROOT)}")
+    reviewed = json.loads(path.read_text(encoding="utf-8"))
+    if reviewed.get("ledger") != generated["ledger"]:
+        raise ValueError(f"unexpected ledger identity in {path.relative_to(ROOT)}")
+
+    old_rows = rows_by_id(reviewed.get("rows", []), f"checked-in {generated['ledger']}")
+    new_rows = rows_by_id(generated["rows"], f"generated {generated['ledger']}")
+    orphaned = sorted(old_rows.keys() - new_rows.keys())
+    new = sorted(new_rows.keys() - old_rows.keys())
+    if orphaned or new:
+        details = []
+        if orphaned:
+            details.append(f"orphaned stable IDs: {orphaned}")
+        if new:
+            details.append(f"new stable IDs lacking reviewed metadata: {new}")
+        raise ValueError(f"refusing lossy regeneration of {generated['ledger']}: " + "; ".join(details))
+
+    for row in generated["rows"]:
+        prior = old_rows[row["id"]]
+        for key, value in prior.items():
+            if key not in structural_fields:
+                row[key] = value
+    for key, value in reviewed.items():
+        if key not in DOCUMENT_STRUCTURAL_FIELDS:
+            generated[key] = value
+    return generated
+
 
 def encoded(value):
     return json.dumps(value, indent=2, sort_keys=True) + "\n"
@@ -393,6 +452,10 @@ def main():
     parser.add_argument("--check", action="store_true", help="verify checked-in ledgers without writing")
     args = parser.parse_args()
     prod, test, inventory_hash = documents()
+    prod = preserve_reviewed_metadata(
+        OUT / "production-ownership.v1.json", prod, PRODUCTION_STRUCTURAL_FIELDS)
+    test = preserve_reviewed_metadata(
+        OUT / "java-test-ownership.v1.json", test, TEST_STRUCTURAL_FIELDS)
     outputs = ((OUT / "production-ownership.v1.json", encoded(prod)), (OUT / "java-test-ownership.v1.json", encoded(test)))
     stale = [path.relative_to(ROOT).as_posix() for path, content in outputs if not path.is_file() or path.read_text(encoding="utf-8") != content]
     if args.check:

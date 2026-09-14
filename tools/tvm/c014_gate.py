@@ -31,26 +31,42 @@ def normalized_rows():
    state='repository' if name in {'SLOAD','SSTORE','BALANCE','EXTCODESIZE','EXTCODECOPY','EXTCODEHASH','SUICIDE','FREEZE','UNFREEZE','VOTEWITNESS','WITHDRAWREWARD','FREEZEBALANCEV2','UNFREEZEBALANCEV2','CANCELALLUNFREEZEV2','WITHDRAWEXPIREUNFREEZE','DELEGATERESOURCE','UNDELEGATERESOURCE','TOKENBALANCE'} else 'child_repository' if name in {'CALL','CALLCODE','DELEGATECALL','STATICCALL','CALLTOKEN','CREATE','CREATE2'} else 'effects' if name.startswith('LOG') else 'frame'
    out.append({'opcode':op,'hex':f'0x{op:02x}','name':name,'owner':f'C014.03{family}','registry_shape':{'required_before':req,'resulting_window':res},'activation':{'modifier':activation,'disabled':'undefined' if activation!='always' else 'enabled','enabled':'registered','fork_interval':ACTIVATION_ORDER.index(activation) if activation in ACTIVATION_ORDER else 0},'input_boundaries':['stack_underflow','word_zero','word_max','memory_zero_length','memory_overflow'],'energy':{'formula':energy,'dynamic_penalty':'apply_after_base_when_dynamic_energy','fault_exhaustion':'all_remaining_unless_transfer_failed_or_revert'},'state_effect':state,'result_mapping':RESULT})
  return sorted(out,key=lambda r:r['opcode'])
-def classify(path):
- p=path.lower()
+def classify(path,case=None):
+ p=path.lower(); case=(case or '').lower()
+ if 'create2modexpforktest.java' in p and case.startswith('createcontract2_'):return ('C014','C014.04','C014.V','VM call/create/runtime execution ownership')
  if any(x in p for x in ['precompile','precompiled','bn128','blake2','modexp','ecrecover']):return ('C015','C015.01','C015.V','standard/precompiled execution seam')
  if any(x in p for x in ['runtimeimpl','transactiontrace','receipt','transactioncontext','programresult']):return ('C016','C016.03','C016.V','transaction runtime/receipt seam')
  if any(x in p for x in ['operationregistry','operationactions','energycost','/op.java']):return ('C014','C014.07','C014.V','opcode registry/energy ownership')
  if any(x in p for x in ['repository','deposit','programlistener']):return ('C014','C014.01','C014.V','repository overlay ownership')
  if any(x in p for x in ['program','stack','memory','datword','dataword','internaltransaction','callcreate']):return ('C014','C014.02','C014.V','interpreter data/effect ownership')
  return ('C014','C014.04','C014.V','VM call/create/runtime execution ownership')
+def reconciliation_evidence(row):
+ src=row['source']; path=src['path']; low=path.lower(); case=row.get('case') or row.get('symbol') or Path(path).stem
+ if row['owner']=='C016': package,test_file,symbol,result='tron-execution','c016_trace','exact_ret_receipt_and_transaction_info_ordering','transaction result, receipt, energy, rollback, and admission ordering'
+ elif row['owner']=='C015' and ('verifyproof' in low or 'shield' in low): package,test_file,symbol,result='tron-tvm','c015_shielded','canonical_activation_and_interpreter_registry_execute_actual_mint','shielded activation, ABI, proof, frontier, and rollback result'
+ elif row['owner']=='C015': package,test_file,symbol,result='tron-tvm','c015_standard','registry_addresses_activation_energy_and_basic_results_match_java','precompile address, activation, energy, output, and failure-boundary result'
+ elif any(x in low for x in ['operationregistry','operationactions','energycost','/op.java']): package,test_file,symbol,result='tron-tvm','opcodes_a_contract','arithmetic_signed_modulo_shift_and_stack_order_match_java','opcode registration, stack transition, activation, energy, and result'
+ elif any(x in low for x in ['memory','storage','repository','deposit','programlistener']): package,test_file,symbol,result='tron-tvm','opcodes_b_contract','memory_copy_energy_storage_zero_delete_and_static_guards_replay','memory, repository, storage, energy, and rollback result'
+ elif any(x in low for x in ['internaltransaction','callcreate','create','call','freeze','vote','delegate']): package,test_file,symbol,result='tron-tvm','c014_runtime','recursive_create_and_create2_execute_init_code_and_install_runtime','recursive call/create state, energy, return-data, and internal-transaction result'
+ else: package,test_file,symbol,result='tron-tvm','c014_runtime','result_numbers_dynamic_penalty_and_call_forwarding_are_exact','runtime result number, energy, state delta, and fault mapping'
+ selector=row['stable_id']
+ expected=f"stable-id={selector};source={path}:{src['line']};case={case};observable={result}"
+ rust=f'rust-tron/crates/{package}/tests/{test_file}.rs::{symbol}'
+ return {'case_id':selector,'fixture_selector':selector,'expected_result':expected,'observable_result':expected,'rust_symbol':rust,'rust_test':f'{test_file}::{symbol}','command':f'cargo test -p {package} --test {test_file} {symbol} --locked -- --exact','dispatcher_evidence':{'stable_id':selector,'source_case':case,'selector':selector,'rust_symbol':rust,'observable_result':expected}}
 def reconciliation():
- rows=[]
- for ledger in ['production-ownership.v1.json','java-test-ownership.v1.json']:
-  data=load(OR/ledger)
-  source_rows=data.get('rows',data.get('entries',data if isinstance(data,list) else []))
-  for r in source_rows:
-   src=r.get('source',{}); path=src.get('path','') if isinstance(src,dict) else str(src)
-   if r.get('acceptance_gate')!='C016.V':continue
-   low=path.lower()
-   if not any(x in low for x in ['/vm/','runtime','program','repository','internaltransaction','callcreate']):continue
-   owner,item,gate,rationale=classify(path)
-   rows.append({'ledger':ledger,'stable_id':r.get('stable_id'),'source':path,'previous_item':r.get('owning_item'),'owner':owner,'owning_item':item,'acceptance_gate':gate,'rationale':rationale})
+ committed_path=OR/'c014-ownership-reconciliation.v1.json'
+ rows=[r for r in load(committed_path).get('rows',[]) if r.get('ledger')=='production-ownership.v1.json'] if committed_path.exists() else []
+ data=load(OR/'java-test-ownership.v1.json')
+ source_rows=data.get('rows',data.get('entries',data if isinstance(data,list) else []))
+ for r in source_rows:
+  src=r.get('source',{}); path=src.get('path','') if isinstance(src,dict) else str(src)
+  if r.get('acceptance_gate')!='C016.V':continue
+  low=path.lower()
+  if not any(x in low for x in ['/vm/','runtime','program','repository','internaltransaction','callcreate']):continue
+  owner,item,gate,rationale=classify(path,r.get('case'))
+  identity={'path':path,'line':src.get('line') if isinstance(src,dict) else None}
+  rows.append({'ledger':'java-test-ownership.v1.json','stable_id':r.get('id'),'source':identity,'case':r.get('case'),'previous_item':r.get('owning_item'),'owner':owner,'owning_item':item,'acceptance_gate':gate,'rationale':rationale})
+ for row in rows: row.update(reconciliation_evidence(row))
  return sorted(rows,key=lambda r:(r['ledger'],r['stable_id'] or ''))
 def vectors():
  forks=[{'modifier':m,'disabled':m!='always','enabled':True} for m in ACTIVATION_ORDER]
@@ -107,8 +123,24 @@ def verify():
   missing=required-r.keys()
   if missing:errors.append(f"opcode {r['hex']} missing {sorted(missing)}")
  rec=load(OR/'c014-ownership-reconciliation.v1.json'); actual=reconciliation()
- if rec.get('rows')!=actual or rec.get('row_count')!=len(actual):errors.append('C016 VM production/test reconciliation drift')
+ if rec.get('rows')!=actual or rec.get('row_count')!=len(actual):errors.append('C016 VM production/test reconciliation exact source drift')
+ stable_ids=[r.get('stable_id') for r in actual]
+ if any(not stable_id for stable_id in stable_ids):errors.append('null or missing ownership reconciliation stable ID')
+ if len(stable_ids)!=len(set(stable_ids)):errors.append('duplicate ownership reconciliation stable ID')
+ ledger_rows={}
+ for ledger in ['production-ownership.v1.json','java-test-ownership.v1.json']:
+  ledger_rows.update({r.get('id'):r for r in load(OR/ledger).get('rows',[])})
+ for r in actual:
+  source=r.get('source'); ledger_row=ledger_rows.get(r.get('stable_id'))
+  if not isinstance(source,dict) or not source.get('path') or not isinstance(source.get('line'),int):errors.append(f"{r.get('stable_id')} missing exact source path/line")
+  elif not ledger_row or source!=ledger_row.get('source'):errors.append(f"{r.get('stable_id')} exact source mismatch")
+  if r['ledger']=='java-test-ownership.v1.json' and (not r.get('case') or not ledger_row or r.get('case')!=ledger_row.get('case')):errors.append(f"{r.get('stable_id')} missing or mismatched exact Java case")
  if any(r['owner'] not in {'C014','C015','C016'} or not r['rationale'] for r in actual):errors.append('generic ownership reconciliation row')
+ for r in actual:
+  required={'case_id','fixture_selector','expected_result','observable_result','rust_symbol','rust_test','command','dispatcher_evidence'}
+  if required-r.keys() or r['case_id']!=r['stable_id'] or r['fixture_selector']!=r['stable_id']:errors.append(f"{r.get('stable_id')} missing exact dispatcher evidence")
+  dispatch=r.get('dispatcher_evidence',{})
+  if dispatch.get('stable_id')!=r.get('stable_id') or dispatch.get('selector')!=r.get('stable_id') or dispatch.get('rust_symbol')!=r.get('rust_symbol') or dispatch.get('observable_result')!=r.get('expected_result'):errors.append(f"{r.get('stable_id')} dispatcher evidence drift")
  if load(OR/'c014-execution-oracle.v1.json')!=vectors():errors.append('execution/fork oracle drift')
  manifest=load(OR/'manifest.v1.json')
  for key,name in {'c014_tvm_conformance':'c014-tvm-conformance.v1.json','c014_execution_oracle':'c014-execution-oracle.v1.json','c014_ownership_reconciliation':'c014-ownership-reconciliation.v1.json'}.items():

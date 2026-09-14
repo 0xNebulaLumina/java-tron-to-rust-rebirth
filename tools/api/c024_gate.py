@@ -2,9 +2,28 @@
 import argparse, hashlib, json, pathlib, re, subprocess, sys, tempfile
 ROOT=pathlib.Path(__file__).resolve().parents[2]; RUST=ROOT/'rust-tron'; ORACLES=ROOT/'docs/oracles'
 METHODS=ORACLES/'c024-methods.v1.json'; RECON=ORACLES/'c024-ownership-reconciliation.v1.json'; SCENARIOS=ORACLES/'c024-scenarios.v1.json'; TRACKER=ROOT/'docs/PORTING_TRACKER.json'; MANIFEST=ORACLES/'manifest.v1.json'
+JAVA_TEST_OWNERSHIP=ORACLES/'java-test-ownership.v1.json'
 COMMANDS={'parser':['cargo','test','-p','tron-apis','--test','c024_jsonrpc','--locked'],'methods':['cargo','test','-p','tron-apis','--test','c024_methods','--locked'],'filters':['cargo','test','-p','tron-apis','--test','c024_filters','--locked'],'server':['cargo','test','-p','tron-apis','--test','c024_server','--locked'],'scenarios':['cargo','test','-p','tron-apis','--test','c024_scenarios','--locked','--','--test-threads=1'],'cursors':['cargo','test','-p','tron-apis','--test','c024_cursor_live','--locked'],'all-targets':['cargo','check','-p','tron-apis','--all-targets','--locked']}
 def load(p):return json.loads(p.read_text())
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def java_evidence_rows(rows):
+ ledger={row.get('id'):row for row in load(JAVA_TEST_OWNERSHIP).get('rows',[]) if row.get('kind')=='java_test_case'}
+ tests={p.stem:p.read_text() for p in (RUST/'crates/tron-apis/tests').glob('c024_*.rs')}
+ commands={name:tuple(command) for name,command in COMMANDS.items() if name not in ('all-targets',)}
+ forbidden=re.compile(r'(?:generic|fallback|default|todo|stub)',re.I)
+ seen=set()
+ for row in (item for item in rows if item.get('kind')=='java_test'):
+  stable_id=row.get('id',''); source=row.get('source',{}); case=row.get('case_symbol',''); ledger_row=ledger.get(stable_id)
+  if not re.fullmatch(r'TCASE-[0-9A-F]{16}',stable_id) or not ledger_row or (ledger_row.get('source',{}).get('path'),ledger_row.get('source',{}).get('line'),ledger_row.get('case'))!=(source.get('path'),source.get('line'),case):raise SystemExit('C024 exact stable-ID/source/case identity drift: '+stable_id)
+  selector=row.get('case_selector',{}); result=row.get('result_selector',{}); rust=row.get('rust_symbol',''); family=row.get('evidence_family','')
+  if selector!={'stable_id':stable_id,'source_path':source.get('path'),'source_line':source.get('line'),'case_symbol':case}:raise SystemExit('C024 row-specific case selector drift: '+stable_id)
+  if result!={'stable_id':stable_id,'rust_test':rust,'expected':'passed'}:raise SystemExit('C024 row-specific result selector drift: '+stable_id)
+  if stable_id in seen or forbidden.search(rust) or '::' not in rust:raise SystemExit('C024 duplicate or generic row credit rejected: '+stable_id)
+  seen.add(stable_id); test_file,symbol=rust.split('::',1)
+  if test_file not in tests or not re.search(r'\bfn\s+'+re.escape(symbol)+r'\b',tests[test_file]):raise SystemExit('C024 declaration-only or nonexistent Rust proof rejected: '+stable_id)
+  canonical=tuple(row.get('canonical_command',[])); expected=('cargo','test','-p','tron-apis','--test',test_file,'--locked','--',symbol,'--exact')
+  if canonical not in (expected,expected+('--test-threads=1',)) or (family=='scenarios')!=(canonical==expected+('--test-threads=1',)):raise SystemExit('C024 non-canonical executable command rejected: '+stable_id)
+ if len(seen)!=227:raise SystemExit('C024 exact 227 stable-ID evidence rows drift')
 def metadata():
  m=load(METHODS); names=[r['name'] for r in m.get('methods',[])];
  if m.get('count')!=52 or len(names)!=52 or len(set(names))!=52:raise SystemExit('C024 exact 52-method inventory drift')
@@ -16,6 +35,7 @@ def metadata():
  for row in (x for x in rows if x['kind']=='java_test'):
   p=ROOT/row['source']['path'];
   if sha(p)!=row['source_sha256']:raise SystemExit('C024 Java source hash drift: '+row['id'])
+ java_evidence_rows(rows)
  s=load(SCENARIOS); tests={p.stem:p.read_text() for p in (RUST/'crates/tron-apis/tests').glob('c024_*.rs')}
  if s.get('count')!=13 or len(s.get('scenarios',[]))!=13:raise SystemExit('C024 scenario count drift')
  for row in s['scenarios']:
