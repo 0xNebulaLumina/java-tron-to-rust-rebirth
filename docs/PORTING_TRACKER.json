@@ -4372,16 +4372,16 @@
     {
       "id": "C030",
       "title": "Mixed-network qualification, security, and performance",
-      "status": "active",
-      "owner": "implementation-agent",
+      "status": "blocked",
+      "owner": "qualification-operator",
       "updated": "2026-09-14",
-      "resume": "Implement C030.01 mixed Java/Rust harness, scenario manifest, and qualification result schema against the frozen C030 specification.",
+      "resume": "Provision the external inputs, run the exact release-profile preflight until its decision is ready, execute the frozen harness to produce and verify docs/oracles/results/c030/c030-01-harness-result.v1.json, then mark C030.01 done before starting C030.02.",
       "items": [
         {
           "id": "C030.01",
           "description": "Reproducible mixed Java/Rust multi-node harness with full, witness, fast-forward and Solidity roles.",
-          "status": "todo",
-          "note": null
+          "status": "doing",
+          "note": "Repository implementation and preflight are complete, but no signed C030.01 result exists. TRON_BUSYBOX and Sapling are upstream C028 build inputs, not direct harness prerequisites."
         },
         {
           "id": "C030.02",
@@ -4591,7 +4591,10 @@
         "round": 0,
         "findings": []
       },
-      "blocker": null
+      "blocker": {
+        "reason": "There are zero missing repository inputs, but qualification lacks the authenticated external release manifest, install, configuration, receipt, trust, bundle, channel, and time inputs; signed Gradle inventory and cache; signed host attestation, trust, and session; approval records; the external qualification trust store; and exactly two distinct Ed25519 signing keys. TRON_BUSYBOX and Sapling are upstream C028 build inputs, not direct harness prerequisites.",
+        "unblock_condition": "On a qualifying Linux x86_64 host, the exact release-profile preflight decision is ready with empty missing_repository_inputs and external prerequisites, after which the signed canonical C030.01 result at docs/oracles/results/c030/c030-01-harness-result.v1.json validates."
+      }
     },
     {
       "id": "C031",
