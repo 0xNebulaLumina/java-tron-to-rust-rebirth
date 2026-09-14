@@ -466,7 +466,7 @@
         },
         {
           "id": "C003.04",
-          "description": "Implement precedence: CLI parse → config → CLI override → event → platform → witness post-processing.",
+          "description": "Implement precedence: CLI parse \u2192 config \u2192 CLI override \u2192 event \u2192 platform \u2192 witness post-processing.",
           "status": "done",
           "note": "The fixed config, assigned CLI, event, platform, and witness precedence pipeline is implemented."
         },
@@ -2453,7 +2453,7 @@
         },
         {
           "id": "C018.06",
-          "description": "Extend consensus manifests with PBFT quorum−1/at/+1, expiry, dedup, invalid signatures, backup election and timeout scenarios.",
+          "description": "Extend consensus manifests with PBFT quorum\u22121/at/+1, expiry, dedup, invalid signatures, backup election and timeout scenarios.",
           "status": "done",
           "note": "Four authenticated family manifests prove every retained row exactly once: PBFT 51, persistence/cursor 15, backup wire/DNS/lifecycle 60, backup election 10. Declarations use exact source-hash/type/constant assertions; methods invoke their Rust API with pinned Java capture input/output/error. Shared observations require an identical-observation digest. C019 owns role consumption and C021 authenticated transport/dispatch; neither takes canonical C018 evidence rows."
         }
@@ -2707,7 +2707,7 @@
       ],
       "gate": {
         "id": "C020.V",
-        "description": "Captured and live Java↔Rust bidirectional TCP, compression, malformed, UDP, DNS and ban tests pass; UDP ambiguity is results-resolved.",
+        "description": "Captured and live Java\u2194Rust bidirectional TCP, compression, malformed, UDP, DNS and ban tests pass; UDP ambiguity is results-resolved.",
         "status": "passed",
         "commands": [
           {
@@ -3395,7 +3395,7 @@
       ],
       "gate": {
         "id": "C026.V",
-        "description": "Cross-language full→Solidity replication and API-state parity pass; standalone exposure manifest has zero difference and every required/forbidden/cursor row has passing results.",
+        "description": "Cross-language full\u2192Solidity replication and API-state parity pass; standalone exposure manifest has zero difference and every required/forbidden/cursor row has passing results.",
         "status": "passed",
         "commands": [
           {
@@ -4372,10 +4372,10 @@
     {
       "id": "C030",
       "title": "Mixed-network qualification, security, and performance",
-      "status": "todo",
-      "owner": null,
-      "updated": null,
-      "resume": null,
+      "status": "active",
+      "owner": "implementation-agent",
+      "updated": "2026-09-14",
+      "resume": "Implement C030.01 mixed Java/Rust harness, scenario manifest, and qualification result schema against the frozen C030 specification.",
       "items": [
         {
           "id": "C030.01",
@@ -4428,15 +4428,158 @@
         {
           "id": "C030.09",
           "description": "Before qualification, freeze the release-gate specification: exact versions/config/topology/workloads, numeric duration/block/maintenance/fork minima, sampling frequency, zero/tolerance invariants, performance budgets, C000.07 policy/approvers, clean-environment definition, results hashes/retention/expiry and rerun triggers.",
-          "status": "todo",
-          "note": "Execution prerequisite for C030.01-C030.08. Stable array order remains unchanged; while C030.09 is unfinished, the validator's narrow C030-only --next rule selects it first, then resumes ordinary array order."
+          "status": "done",
+          "note": "Frozen by docs/oracles/c030-qualification-spec.v1.json; metadata/schema/reference-digest validation passes. Resume C030.01."
         }
       ],
       "gate": {
         "id": "C030.V",
         "description": "Sustained soak has no divergence, limits hold and budget is approved; no unresolved critical/high finding exists and every medium/low finding has a recorded approved unexpired disposition.",
-        "status": "unconfigured",
-        "commands": [],
+        "status": "not_run",
+        "commands": [
+          {
+            "name": "C030 frozen specification metadata",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/qualification/c030_gate.py",
+              "metadata"
+            ],
+            "timeout_seconds": 120
+          },
+          {
+            "name": "C030 frozen specification and referenced digests",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/qualification/c030_gate.py",
+              "check"
+            ],
+            "timeout_seconds": 300
+          },
+          {
+            "name": "C030 mixed-node harness qualification",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/qualification/c030_qualification.py",
+              "harness",
+              "--spec",
+              "docs/oracles/c030-qualification-spec.v1.json",
+              "--output",
+              "docs/oracles/results/c030/c030-01-harness-result.v1.json"
+            ],
+            "timeout_seconds": 7200
+          },
+          {
+            "name": "C030 lifecycle qualification",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/qualification/c030_qualification.py",
+              "lifecycle",
+              "--spec",
+              "docs/oracles/c030-qualification-spec.v1.json",
+              "--output",
+              "docs/oracles/results/c030/c030-02-lifecycle-result.v1.json"
+            ],
+            "timeout_seconds": 46800
+          },
+          {
+            "name": "C030 network-fault qualification",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/qualification/c030_qualification.py",
+              "network-fault",
+              "--spec",
+              "docs/oracles/c030-qualification-spec.v1.json",
+              "--output",
+              "docs/oracles/results/c030/c030-03-network-fault-result.v1.json"
+            ],
+            "timeout_seconds": 43200
+          },
+          {
+            "name": "C030 API-load qualification",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/qualification/c030_qualification.py",
+              "api-load",
+              "--spec",
+              "docs/oracles/c030-qualification-spec.v1.json",
+              "--output",
+              "docs/oracles/results/c030/c030-04-api-load-result.v1.json"
+            ],
+            "timeout_seconds": 43200
+          },
+          {
+            "name": "C030 endurance and convergence qualification",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/qualification/c030_qualification.py",
+              "endurance",
+              "--spec",
+              "docs/oracles/c030-qualification-spec.v1.json",
+              "--output",
+              "docs/oracles/results/c030/c030-05-convergence-result.v1.json"
+            ],
+            "timeout_seconds": 280800
+          },
+          {
+            "name": "C030 security qualification",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/qualification/c030_qualification.py",
+              "security",
+              "--spec",
+              "docs/oracles/c030-qualification-spec.v1.json",
+              "--output",
+              "docs/oracles/results/c030/c030-06-security-result.v1.json"
+            ],
+            "timeout_seconds": 43200
+          },
+          {
+            "name": "C030 license and provenance qualification",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/qualification/c030_qualification.py",
+              "license",
+              "--spec",
+              "docs/oracles/c030-qualification-spec.v1.json",
+              "--output",
+              "docs/oracles/results/c030/c030-07-license-provenance-result.v1.json"
+            ],
+            "timeout_seconds": 43200
+          },
+          {
+            "name": "C030 performance qualification",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/qualification/c030_qualification.py",
+              "performance",
+              "--spec",
+              "docs/oracles/c030-qualification-spec.v1.json",
+              "--output",
+              "docs/oracles/results/c030/c030-08-performance-result.v1.json"
+            ],
+            "timeout_seconds": 345000
+          },
+          {
+            "name": "C030 final qualification aggregation",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/qualification/c030_gate.py",
+              "all"
+            ],
+            "timeout_seconds": 3600
+          }
+        ],
         "last_failure": null
       },
       "review": {

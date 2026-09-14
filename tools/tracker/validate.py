@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -13,6 +14,8 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 TRACKER = ROOT / "docs/PORTING_TRACKER.json"
+C030_GATE = ROOT / "tools/qualification/c030_gate.py"
+EXPECTED_C030_GATE_SHA256 = "7047531b47392e54d9e36db66002909ee50d5ef9cffb1c503b41ceca4ecdeb39"
 CHUNK_STATUSES = {"todo", "active", "review", "blocked", "done"}
 ITEM_STATUSES = {"todo", "doing", "done"}
 GATE_STATUSES = {"unconfigured", "not_run", "failed", "passed"}
@@ -49,6 +52,26 @@ def exact_fields(value: Any, fields: set[str], where: str, errors: list[str]) ->
 
 def text(value: Any) -> bool:
     return isinstance(value, str) and bool(value.strip())
+
+def c030_gate_authorized(content: bytes) -> bool:
+    return hashlib.sha256(content).hexdigest() == EXPECTED_C030_GATE_SHA256
+
+
+def validate_c030_gate_authority(errors: list[str]) -> None:
+    try:
+        content = C030_GATE.read_bytes()
+    except OSError as error:
+        errors.append(f"C030.09: cannot read gate authority source: {error}")
+        return
+    if not c030_gate_authorized(content):
+        errors.append("C030.09: tools/qualification/c030_gate.py digest does not match tracker validator authority")
+    # A coordinated downstream manifest would pin this matching digest, but it is
+    # deliberately not an authority input and therefore cannot authorize the edit.
+    coordinated_gate = content + b"\n# coordinated gate and manifest mutation\n"
+    coordinated_manifest_digest = hashlib.sha256(coordinated_gate).hexdigest()
+    if coordinated_manifest_digest == EXPECTED_C030_GATE_SHA256 or c030_gate_authorized(coordinated_gate):
+        errors.append("C030.09: coordinated gate+manifest mutation bypassed validator authority")
+
 
 
 def validate(data: dict[str, Any]) -> list[str]:
@@ -119,6 +142,9 @@ def validate(data: dict[str, Any]) -> list[str]:
                 for item in items:
                     if isinstance(item, dict) and item.get("id") in {f"C030.{number:02d}" for number in range(1, 9)} and item.get("status") != "todo":
                         errors.append(f"{item['id']}: must remain todo until C030.09 is done")
+            configured = isinstance(chunk.get("gate"), dict) and chunk["gate"].get("status") != "unconfigured"
+            if (prerequisites and prerequisites[0].get("status") == "done") or configured:
+                validate_c030_gate_authority(errors)
         gate = chunk["gate"]
         if exact_fields(gate, GATE_FIELDS, f"{cid}.gate", errors):
             if gate["id"] != f"{cid}.V": errors.append(f"{cid}.gate: id must be {cid}.V")
@@ -142,7 +168,7 @@ def validate(data: dict[str, Any]) -> list[str]:
                 argv = command["argv"]
                 if not isinstance(argv, list) or not argv or any(not text(arg) or "\x00" in arg for arg in argv): errors.append(f"{cw}: argv must be a non-empty string array")
                 timeout = command["timeout_seconds"]
-                if not isinstance(timeout, int) or isinstance(timeout, bool) or not 1 <= timeout <= 3600: errors.append(f"{cw}: timeout_seconds must be 1..3600")
+                if not isinstance(timeout, int) or isinstance(timeout, bool) or not 1 <= timeout <= 345600: errors.append(f"{cw}: timeout_seconds must be 1..345600")
             if gate["last_failure"] is not None and not text(gate["last_failure"]): errors.append(f"{cid}.gate: last_failure must be null or non-empty")
         review = chunk["review"]
         if exact_fields(review, REVIEW_FIELDS, f"{cid}.review", errors):

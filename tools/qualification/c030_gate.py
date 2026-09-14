@@ -1,0 +1,234 @@
+#!/usr/bin/env python3
+"""Validate the frozen C030 qualification contract without fabricating results."""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import re
+from pathlib import Path
+
+from jsonschema import Draft202012Validator
+from jsonschema.exceptions import SchemaError, ValidationError
+
+ROOT = Path(__file__).resolve().parents[2]
+ORACLES = ROOT / "docs/oracles"
+SPEC = ORACLES / "c030-qualification-spec.v1.json"
+SCHEMA = ORACLES / "schemas/c030-qualification-spec-v1.schema.json"
+MANIFEST = ORACLES / "manifest.v1.json"
+TRACKER = ROOT / "docs/PORTING_TRACKER.json"
+EXPECTED_SPEC_SHA256 = "e0673120cf0ce3c3adbfe50705c10b9d21c88322519e42402e286241197c16ba"
+EXPECTED_SCHEMA_SHA256 = "9aab7c1b14bcee5777dc2c14487de23b2f3f1f5cfa04557c973cf407571cf54e"
+
+PLACEHOLDER = re.compile(r"\b(todo|tbd|placeholder|not implemented|coming soon|fill[ -]?me)\b", re.I)
+
+
+def load(path: Path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def lifecycle_schedule(contract: dict) -> tuple[list[list[list[int]]], list[dict]]:
+    seed = contract["seed"]
+    actions = contract["action_order"]
+    counts = contract["per_run_action_counts"]
+    phase_count = contract["phase_count_per_run"]
+    phase_duration = contract["phase_duration_seconds"]
+    matrices, rows = [], []
+    for run_index in range(contract["run_count"]):
+        assigned = {phase_index: [] for phase_index in range(phase_count)}
+        for action in actions:
+            ranked = sorted(
+                range(phase_count),
+                key=lambda phase_index: hashlib.sha256(
+                    f"{seed}:{run_index}:{action}:{phase_index}".encode()
+                ).digest(),
+            )
+            for occurrence_index, phase_index in enumerate(sorted(ranked[: counts[action]])):
+                assigned[phase_index].append((action, occurrence_index))
+        matrix = []
+        for phase_index in range(phase_count):
+            matrix.append([sum(action == expected for action, _ in assigned[phase_index]) for expected in actions])
+            ordered = sorted(assigned[phase_index], key=lambda row: actions.index(row[0]))
+            for phase_action_slot, (action, occurrence_index) in enumerate(ordered):
+                start = run_index * phase_count * phase_duration + phase_index * phase_duration + 60 + phase_action_slot * 90
+                rows.append({
+                    "action": action,
+                    "action_end_second": start + 60,
+                    "action_start_second": start,
+                    "exclusion_end_second": start + 120,
+                    "exclusion_start_second": start,
+                    "fork_activation": action == "reorg" and occurrence_index == 0,
+                    "occurrence_index": occurrence_index,
+                    "phase_index": phase_index,
+                    "run_index": run_index,
+                })
+        matrices.append(matrix)
+    return matrices, rows
+
+
+def require(ok: bool, message: str) -> None:
+    if not ok:
+        raise RuntimeError(message)
+
+
+def repository_path(path: str) -> Path:
+    candidate = (ROOT / path).resolve()
+    require(candidate == ROOT or ROOT in candidate.parents, f"path escapes repository: {path}")
+    return candidate
+
+
+def strings(value):
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, list):
+        for item in value:
+            yield from strings(item)
+    elif isinstance(value, dict):
+        for key, item in value.items():
+            yield key
+            yield from strings(item)
+
+
+def registered_c017_c028(manifest: dict) -> dict[str, tuple[str, str]]:
+    answer = {}
+    for key, value in manifest.items():
+        if not re.fullmatch(r"c0(?:1[7-9]|2[0-8])_[a-z0-9_]+", key):
+            continue
+        if isinstance(value, dict) and isinstance(value.get("path"), str) and isinstance(value.get("sha256"), str):
+            relative, digest = value["path"], value["sha256"]
+        elif isinstance(value, str):
+            relative = value
+            path = ORACLES / relative
+            if not path.is_file():
+                continue
+            digest = sha256(path)
+        else:
+            continue
+        public_path = relative if relative.startswith(("tools/", "rust-tron/")) else f"docs/oracles/{relative}"
+        answer[key] = (public_path, digest)
+    return answer
+
+
+def validate_metadata() -> dict:
+    spec, schema, manifest = load(SPEC), load(SCHEMA), load(MANIFEST)
+    require(sha256(SPEC) == EXPECTED_SPEC_SHA256, "frozen specification digest mismatch")
+    require(sha256(SCHEMA) == EXPECTED_SCHEMA_SHA256, "frozen schema digest mismatch")
+    try:
+        Draft202012Validator.check_schema(schema)
+        validator = Draft202012Validator(schema)
+        validator.validate(spec)
+    except (SchemaError, ValidationError) as error:
+        location = "/".join(map(str, error.absolute_path))
+        raise RuntimeError(f"Draft 2020-12 validation failed at {location or '<root>'}: {error.message}") from error
+    mutations = []
+    missing = json.loads(json.dumps(spec)); del missing["security"]["severity_rules"]
+    renamed = json.loads(json.dumps(spec)); renamed["profiles"]["release"]["soak_seconds"] = renamed["profiles"]["release"].pop("soak_duration_seconds")
+    unknown = json.loads(json.dumps(spec)); unknown["performance"]["unexpected"] = True
+    schedule_digest = json.loads(json.dumps(spec)); schedule_digest["workloads"]["lifecycle_schedule"]["canonical_schedule_sha256"] = "0" * 64
+    suite_duration = json.loads(json.dumps(spec)); suite_duration["performance"]["suite_orchestration"]["maximum_suite_duration_seconds"] = 344999
+    lifecycle_timeout = json.loads(json.dumps(spec)); lifecycle_timeout["workloads"]["lifecycle_schedule"]["command_timeout_seconds"] = 43200
+    for name, mutation in (("missing", missing), ("renamed", renamed), ("unknown", unknown), ("schedule-digest", schedule_digest), ("suite-duration", suite_duration), ("lifecycle-timeout", lifecycle_timeout)):
+        require(not validator.is_valid(mutation), f"schema accepted {name}-field mutation")
+        mutations.append(name)
+    bad = [text for text in strings(spec) if PLACEHOLDER.search(text)]
+    require(not bad, "placeholder text is forbidden" + (f": {bad[0]!r}" if bad else ""))
+    release = spec["profiles"]["release"]
+    require(release["soak_duration_seconds"] == 259200, "release soak drift")
+    require(release["block_requirement"]["no_exclusion_minimum_blocks"] == 86314, "availability-derived block floor drift")
+    require(release["block_requirement"]["availability_minimum"] == 0.999, "availability target drift")
+    orchestration = spec["performance"]["suite_orchestration"]
+    workload_seconds = 8 * sum(row["per_implementation_timeout_seconds"] for row in spec["performance"]["metric_workloads"].values())
+    require(workload_seconds == orchestration["scheduled_workload_timeout_seconds"] == 344160, "performance workload duration drift")
+    require(orchestration["orchestration_margin_seconds"] == 840, "performance orchestration margin drift")
+    require(orchestration["maximum_suite_duration_seconds"] == 345000, "performance maximum suite duration drift")
+    require(workload_seconds + orchestration["orchestration_margin_seconds"] == orchestration["maximum_suite_duration_seconds"], "performance suite duration formula mismatch")
+    contract = spec["workloads"]["lifecycle_schedule"]
+    lifecycle = spec["workloads"]["lifecycle_schedule"]
+    scheduled = lifecycle["run_count"] * lifecycle["phase_count_per_run"] * lifecycle["phase_duration_seconds"]
+    require(scheduled == lifecycle["scheduled_duration_seconds"] == 43200, "lifecycle scheduled duration drift")
+    require(lifecycle["orchestration_margin_seconds"] == 3600, "lifecycle orchestration margin drift")
+    require(lifecycle["command_timeout_seconds"] == 46800, "lifecycle command timeout drift")
+    require(scheduled + lifecycle["orchestration_margin_seconds"] == lifecycle["command_timeout_seconds"], "lifecycle command timeout formula mismatch")
+    tracker = load(TRACKER)
+    c030 = next(chunk for chunk in tracker["chunks"] if chunk["id"] == "C030")
+    lifecycle_command = next(command for command in c030["gate"]["commands"] if command["name"] == "C030 lifecycle qualification")
+    require(lifecycle_command["timeout_seconds"] == lifecycle["command_timeout_seconds"], "tracker lifecycle command timeout drift")
+    matrices, schedule = lifecycle_schedule(contract)
+    require(matrices == contract["per_run_phase_action_counts"], "lifecycle per-phase allocation drift")
+    schedule_bytes = json.dumps(schedule, sort_keys=True, separators=(",", ":")).encode()
+    require(hashlib.sha256(schedule_bytes).hexdigest() == contract["canonical_schedule_sha256"] == "1fe1e560db153fb01d9fc06e9c857f0c3ba2774ce678d3bcecced662a47898f0", "lifecycle schedule digest mismatch")
+    totals = {action: sum(row["action"] == action for row in schedule) for action in contract["action_order"]}
+    require(totals == {action: contract["run_count"] * count for action, count in contract["per_run_action_counts"].items()}, "lifecycle action totals drift")
+    require(sum(row["fork_activation"] for row in schedule) == 2, "lifecycle fork activation count drift")
+    require(sum(row["exclusion_end_second"] - row["exclusion_start_second"] for row in schedule) == 6720, "lifecycle exclusion windows drift")
+    require(spec["profiles"]["developer"]["qualifies_release"] is False, "developer profile must not qualify")
+    require(spec["version_pins"]["mutable_tags_allowed"] is False and spec["version_pins"]["network_downloads_allowed"] is False, "mutable tags and downloads must be forbidden")
+    require(spec["clean_environment"]["downloads_during_run"] is False, "qualification downloads forbidden")
+    require(spec["license_and_provenance"]["independent_approvals"]["required_roles"] == ["license-compliance-lead", "release-provenance-lead"], "license/provenance approval roles drift")
+    require(spec["security"]["independent_approvals"]["required_roles"] == ["security-lead", "owning-domain-owner"], "security approval roles drift")
+    require([row["item"] for row in spec["artifacts"]] == [f"C030.{n:02d}" for n in range(1, 9)], "result ownership must be exact C030.01-.08 order")
+    frozen = registered_c017_c028(manifest)
+    actual = {row["registry_key"]:(row["path"],row["sha256"]) for row in spec["artifact_references"]}
+    require(actual == frozen, "C017-C028 artifact reference set/path/digest drift")
+    expected_registry = {"c030_qualification_spec": ("c030-qualification-spec.v1.json", EXPECTED_SPEC_SHA256), "c030_qualification_schema": ("schemas/c030-qualification-spec-v1.schema.json", EXPECTED_SCHEMA_SHA256)}
+    for key, (relative, digest) in expected_registry.items():
+        entry = manifest.get(key)
+        require(isinstance(entry, dict) and (entry.get("path"), entry.get("sha256")) == (relative, digest), f"manifest synchronized mutation or missing {key}")
+    gate_entry = manifest.get("c030_gate_source")
+    require(isinstance(gate_entry, dict) and gate_entry.get("path") == "tools/qualification/c030_gate.py", "manifest missing c030_gate_source")
+    return {"schema":"draft-2020-12","referenced_artifacts":len(actual),"platform":"P-LINUX-X64","release_soak_seconds":release["soak_duration_seconds"],"no_exclusion_minimum_blocks":86314,"performance_maximum_suite_seconds":345000,"lifecycle_scheduled_seconds":scheduled,"lifecycle_orchestration_margin_seconds":lifecycle["orchestration_margin_seconds"],"lifecycle_command_timeout_seconds":lifecycle["command_timeout_seconds"],"lifecycle_schedule_sha256":contract["canonical_schedule_sha256"],"lifecycle_actions":len(schedule),"schema_mutation_tests":mutations}
+
+
+def validate_hashes() -> dict:
+    spec, manifest = load(SPEC), load(MANIFEST)
+    checked = 0
+    for row in spec["artifact_references"]:
+        path = repository_path(row["path"])
+        require(path.is_file(), f"missing referenced artifact: {row['path']}")
+        require(sha256(path) == row["sha256"], f"referenced artifact digest mismatch: {row['path']}")
+        checked += 1
+    execution_inputs = spec["topology"]["configuration_sources"] + spec["version_pins"]["execution_inputs"]
+    for row in execution_inputs:
+        path = repository_path(row["path"])
+        require(path.is_file() and sha256(path) == row["sha256"], f"execution input digest mismatch: {row['path']}")
+    for key in ("c030_qualification_spec", "c030_qualification_schema", "c030_gate_source"):
+        entry = manifest[key]
+        path = (ORACLES / entry["path"]) if not entry["path"].startswith("tools/") else ROOT / entry["path"]
+        require(path.is_file() and sha256(path) == entry["sha256"], f"manifest digest mismatch: {entry['path']}")
+    return {"verified_referenced_digests":checked,"verified_execution_input_digests":len(execution_inputs),"verified_c030_registry_entries":3}
+
+
+def validate_full() -> dict:
+    spec = load(SPEC)
+    future = spec["future_tool_contracts"]
+    for path in (future["runner"], future["scenario_manifest"], future["result_schema"]):
+        require(repository_path(path).is_file(), f"C030 implementation evidence absent: {path}")
+    for row in spec["artifacts"]:
+        require(repository_path(row["result_path"]).is_file(), f"qualification result absent: {row['result_path']}")
+    raise RuntimeError("full qualification must be implemented by C030.01-C030.08 and must validate signed scenario results; metadata gate cannot synthesize a pass")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("mode", choices=("metadata", "check", "all"))
+    args = parser.parse_args()
+    try:
+        metadata = validate_metadata()
+        output = {"metadata":metadata}
+        if args.mode in {"check", "all"}:
+            output["digests"] = validate_hashes()
+        if args.mode == "all":
+            output["qualification"] = validate_full()
+    except (OSError, json.JSONDecodeError, RuntimeError) as error:
+        print(f"C030 {args.mode}: FAIL: {error}")
+        return 1
+    print(json.dumps(output, sort_keys=True))
+    print(f"C030 {args.mode}: PASS")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
