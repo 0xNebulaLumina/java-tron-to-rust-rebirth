@@ -31001,7 +31001,7 @@
   },
   "gate_source": {
     "path": "tools/regression/c029_gate.py",
-    "sha256": "497948ec52c1c4cb760f7baf59b4eb86e34806b11803eb7f4525730f1859c2b0"
+    "sha256": "c54c34a9518e90cc567988df3cb36f1c0fd4ebf0fc1135521d617bad8d95bd67"
   },
   "accounting": {
     "mapped": 3443,
@@ -48567,6 +48567,47 @@
       "owning_item": "C029.06"
     },
     {
+      "id": "C029-PROOF-F98866F357388D18",
+      "cwd": "rust-tron",
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "tron-toolkit",
+        "--test",
+        "c027_db",
+        "--",
+        "root_classifies_read_only_and_only_opens_valid_rust_storage",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 1800,
+      "environment": {
+        "HOME": "${RUN_HOME}",
+        "TMPDIR": "${RUN_TMP}",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "TZ": "UTC",
+        "RUST_TEST_THREADS": "1",
+        "CARGO_NET_OFFLINE": "true"
+      },
+      "result_contract": {
+        "expected_exit": 0,
+        "minimum_executed_tests": 1,
+        "forbid_ignored": true,
+        "forbid_skipped": true,
+        "observable_projection": [
+          "missing_path_not_found_404",
+          "plain_empty_path_not_found_404",
+          "tree_snapshot_unchanged",
+          "missing_path_not_created"
+        ]
+      },
+      "owning_item": "C029.06"
+    },
+    {
       "id": "C029-PROOF-F9B6AEEB9B81D91A",
       "cwd": "rust-tron",
       "argv": [
@@ -49104,28 +49145,21 @@
         "docs/PORTING_TRACKER.json#C027-R6-01"
       ],
       "rationale": "Tracker records an observed CLI compatibility defect: Rust DB root opened or initialized missing and plain-empty paths instead of returning the Java-compatible read-only 404 result; the resolution proves no writes.",
-      "affected_stable_ids": [
-        "TCASE-E1CE182966F2CAE4",
-        "TCASE-0A0889ADBE9E8BD3"
-      ],
+      "affected_stable_ids": [],
       "behavior_claim_ids": [
-        "testRootForLevelDB",
-        "testEmpty"
+        "DB root classifies missing and plain-empty paths read-only as Java-compatible 404 without writes"
       ],
       "fixture_ids": [
-        "docs/oracles/c027-ownership-reconciliation.v1.json#TCASE-E1CE182966F2CAE4",
-        "docs/oracles/c027-ownership-reconciliation.v1.json#TCASE-0A0889ADBE9E8BD3"
+        "rust-tron/crates/tron-toolkit/tests/c027_db.rs#root_classifies_read_only_and_only_opens_valid_rust_storage"
       ],
       "rust_test_ids": [
-        "rust-tron/crates/tron-toolkit/tests/c027_db.rs::java_db_rows_are_exhaustively_dispatched",
-        "rust-tron/crates/tron-toolkit/tests/c027_db.rs::java_db_rows_are_exhaustively_dispatched"
+        "rust-tron/crates/tron-toolkit/tests/c027_db.rs::root_classifies_read_only_and_only_opens_valid_rust_storage"
       ],
       "command_ids": [
-        "C029-PROOF-0E14F750577BE24F"
+        "C029-PROOF-F98866F357388D18"
       ],
       "result_links": [
-        "{\"assertion_tokens\":[],\"declaration\":\"public void testRootForLevelDB() throws RocksDBException, IOException {\",\"line_count\":3,\"method_sha256\":\"738c72315a067f4feb722537fa2ec2fe88aa2b23520e6c6185f7113390269ebb\",\"source_sha256\":\"69835d79023609148a8e757cb3f8d642caf4a41c99414030ea93bb0533c320b1\"}",
-        "{\"assertion_tokens\":[\"assertEquals\",\"assertTrue\"],\"declaration\":\"public void testEmpty() throws IOException {\",\"line_count\":8,\"method_sha256\":\"3854af51d84875ed116d5c38b1085d9bbd4d904319cfeb337ddeccfbaeb2a494\",\"source_sha256\":\"69835d79023609148a8e757cb3f8d642caf4a41c99414030ea93bb0533c320b1\"}"
+        "C029-PROOF-F98866F357388D18|recurrence:missing and plain-empty DB paths return not_found 404 with byte-identical trees and are never initialized"
       ]
     },
     {

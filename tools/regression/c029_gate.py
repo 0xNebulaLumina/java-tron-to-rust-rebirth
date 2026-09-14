@@ -106,7 +106,6 @@ CLASSIFICATION_POLICY = {
 }
 ROW_BOUND_DEFECT_STABLE_IDS = {
     "C013-R3-001": ("TCASE-E6F1B8CAC044DEB5",),
-    "C027-R6-01": ("TCASE-0A0889ADBE9E8BD3", "TCASE-E1CE182966F2CAE4"),
 }
 
 GENERIC = re.compile(r"\b(?:generic|same as java|equivalent|covered|ported|parity|works|n/?a|not applicable)\b", re.I)
@@ -305,6 +304,13 @@ def validate_external_defect(defect: dict[str, Any]) -> bool:
             "command_ids": ["C029-PROOF-F39D03B730B4A1CD"],
             "result_links": ["C029-PROOF-F39D03B730B4A1CD|recurrence:HTTP_ROUTES preserves exact Full=123 Solidity=45 PBFT=47 surface-qualified registrations"],
         },
+        "C027-R6-01": {
+            "behavior_claim_ids": ["DB root classifies missing and plain-empty paths read-only as Java-compatible 404 without writes"],
+            "fixture_ids": ["rust-tron/crates/tron-toolkit/tests/c027_db.rs#root_classifies_read_only_and_only_opens_valid_rust_storage"],
+            "rust_test_ids": ["rust-tron/crates/tron-toolkit/tests/c027_db.rs::root_classifies_read_only_and_only_opens_valid_rust_storage"],
+            "command_ids": ["C029-PROOF-F98866F357388D18"],
+            "result_links": ["C029-PROOF-F98866F357388D18|recurrence:missing and plain-empty DB paths return not_found 404 with byte-identical trees and are never initialized"],
+        },
         "C028-R3-004": {
             "behavior_claim_ids": ["the packaged Solidity deployment does not advertise the unsupported Solidity JSON-RPC endpoint"],
             "fixture_ids": ["rust-tron/packaging/config/solidity.deployment.json", "rust-tron/packaging/config/solidity.conf", "rust-tron/packaging/container/compose.yaml"],
@@ -331,6 +337,8 @@ def validate_external_defect(defect: dict[str, Any]) -> bool:
     elif finding_id == "C023-R1-001":
         source_asserts("rust-tron/crates/tron-apis/src/http_routes.rs", ("HTTP_ROUTES", "HttpSurface::Full", "HttpSurface::Solidity", "HttpSurface::Pbft"), finding_id)
         source_asserts("rust-tron/crates/tron-apis/tests/c023_routes.rs", ("servlet_inventory_is_exact_and_excludes_commented_registrations", "HttpSurface::Full", "HttpSurface::Solidity", "HttpSurface::Pbft", "123", "45", "47"), finding_id)
+    elif finding_id == "C027-R6-01":
+        source_asserts("rust-tron/crates/tron-toolkit/tests/c027_db.rs", ("fn root_classifies_read_only_and_only_opens_valid_rust_storage", "let missing = parent.join(\"missing\")", "for name in [\"empty\", \"initializing\"]", "(\"not_found\", 404)", "assert_eq!(tree_snapshot(&parent), before)", "assert_eq!(tree_snapshot(&path), before)", "assert!(!missing.exists())"), finding_id)
     else:
         source_asserts("rust-tron/crates/tron-node/tests/c028_deployment.rs", ("packaged_surfaces_match_runtime_and_solidity_json_rpc_is_forbidden", "[\"admin\",\"grpc\",\"http\",\"prometheus\",\"zeromq\"]", "contains(\"8555\")", "contains(\"jsonrpc\")", "contains(\"8555:8555\")"), finding_id)
         fail(all((ROOT / path).is_file() for path in contract["fixture_ids"]), "C028-R3-004: packaged Solidity evidence file is absent")
