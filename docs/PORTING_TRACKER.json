@@ -4231,16 +4231,16 @@
     {
       "id": "C029",
       "title": "Java test-surface mapping and regression closure",
-      "status": "todo",
-      "owner": null,
-      "updated": null,
-      "resume": null,
+      "status": "active",
+      "owner": "implementation-agent",
+      "updated": "2026-09-14",
+      "resume": "Implement the three-file C029 contract in docs/PORTING_PLAN.md: author and review the initially complete docs/oracles/c029-java-surface-reconciliation.v1.json, create tools/regression/c029_gate.py, register the artifact in docs/oracles/manifest.v1.json, begin with C029.01's pinned read-only ledger reconciliation, and do not advance C029.02 until the exact stable-ID/source/count/order baseline is preserved.",
       "items": [
         {
           "id": "C029.01",
           "description": "Regenerate the C000 case-level Java test/resource ledger at the release revision and reject source/count drift.",
-          "status": "todo",
-          "note": null
+          "status": "doing",
+          "note": "Initial ownership is limited to tools/regression/c029_gate.py, the initially complete authored/reviewed docs/oracles/c029-java-surface-reconciliation.v1.json, and docs/oracles/manifest.v1.json; --write only merges or refreshes that existing artifact and fails if it is absent or a new stable ID lacks reviewed mapping. Reuse the pinned C000 ledger generator unchanged and preserve all existing ledger metadata."
         },
         {
           "id": "C029.02",
@@ -4276,8 +4276,29 @@
       "gate": {
         "id": "C029.V",
         "description": "Regeneration is clean and the case-level mapping has zero unexplained or without a passing result rows.",
-        "status": "unconfigured",
-        "commands": [],
+        "status": "not_run",
+        "commands": [
+          {
+            "name": "C029 pinned Java ownership ledger regeneration",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/reference-runner/generate-ledgers.py",
+              "--check"
+            ],
+            "timeout_seconds": 1800
+          },
+          {
+            "name": "C029 complete zero-gap reconciliation and regression closure",
+            "cwd": ".",
+            "argv": [
+              "python3",
+              "tools/regression/c029_gate.py",
+              "--check"
+            ],
+            "timeout_seconds": 3600
+          }
+        ],
         "last_failure": null
       },
       "review": {
@@ -4347,7 +4368,7 @@
           "id": "C030.09",
           "description": "Before qualification, freeze the release-gate specification: exact versions/config/topology/workloads, numeric duration/block/maintenance/fork minima, sampling frequency, zero/tolerance invariants, performance budgets, C000.07 policy/approvers, clean-environment definition, results hashes/retention/expiry and rerun triggers.",
           "status": "todo",
-          "note": null
+          "note": "Execution prerequisite for C030.01-C030.08. Stable array order remains unchanged; while C030.09 is unfinished, the validator's narrow C030-only --next rule selects it first, then resumes ordinary array order."
         }
       ],
       "gate": {

@@ -111,6 +111,14 @@ def validate(data: dict[str, Any]) -> list[str]:
             if item["status"] not in ITEM_STATUSES: errors.append(f"{iw}: invalid item status")
             if item["note"] is not None and not text(item["note"]): errors.append(f"{iw}: note must be null or non-empty")
             if status == "todo" and item["status"] != "todo": errors.append(f"{iw}: future chunk items must be todo")
+        if cid == "C030":
+            prerequisites = [item for item in items if isinstance(item, dict) and item.get("id") == "C030.09"]
+            if len(prerequisites) != 1:
+                errors.append("C030: items must contain exactly one C030.09 prerequisite")
+            elif prerequisites[0].get("status") != "done":
+                for item in items:
+                    if isinstance(item, dict) and item.get("id") in {f"C030.{number:02d}" for number in range(1, 9)} and item.get("status") != "todo":
+                        errors.append(f"{item['id']}: must remain todo until C030.09 is done")
         gate = chunk["gate"]
         if exact_fields(gate, GATE_FIELDS, f"{cid}.gate", errors):
             if gate["id"] != f"{cid}.V": errors.append(f"{cid}.gate: id must be {cid}.V")
@@ -172,6 +180,15 @@ def current_chunk(data: dict[str, Any]) -> dict[str, Any] | None:
     return next((chunk for chunk in data["chunks"] if chunk["status"] != "done"), None)
 
 
+def next_item(chunk: dict[str, Any]) -> dict[str, Any] | None:
+    # C030.09 freezes the qualification contract before the stable C030.01-.08 scenarios run.
+    if chunk["id"] == "C030":
+        prerequisite = next((item for item in chunk["items"] if item["id"] == "C030.09"), None)
+        if prerequisite is not None and prerequisite["status"] != "done":
+            return prerequisite
+    return next((item for item in chunk["items"] if item["status"] != "done"), None)
+
+
 def print_status(data: dict[str, Any]) -> None:
     for chunk in data["chunks"]:
         gate = chunk["gate"]
@@ -184,7 +201,7 @@ def print_next(data: dict[str, Any]) -> None:
     if chunk is None:
         print("All chunks are done.")
         return
-    item = next((item for item in chunk["items"] if item["status"] != "done"), None)
+    item = next_item(chunk)
     print(f"chunk: {chunk['id']} {chunk['title']}")
     if item: print(f"item: {item['id']} [{item['status']}] {item['description']}")
     if chunk["resume"]: print(f"resume: {chunk['resume']}")
