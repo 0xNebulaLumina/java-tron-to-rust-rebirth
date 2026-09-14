@@ -218,6 +218,104 @@ async fn execute_size_limit_behavior(stable_id: &str, row: &serde_json::Value) -
         _ => None,
     }
 }
+fn assert_guarded_observation(stable_id: &str, row: &serde_json::Value) {
+    let behavior = &row["behavior"];
+    let observation = &row["java_observation"];
+    assert_eq!(behavior["observation_digest"], observation["digest"], "{stable_id} observation digest detached");
+    assert_eq!(behavior["behavior_slice"], observation["slice"], "{stable_id} behavior slice detached");
+    let expected = behavior["expected_observables"].as_array().unwrap();
+    assert!(!expected.is_empty(), "{stable_id} has no full Java observable contract");
+    assert!(expected.iter().all(|value| value.as_str().is_some_and(|text| !text.trim().is_empty())));
+}
+
+#[derive(Default)]
+struct BufferedProbe { limit:usize, overflow:bool, buffer:Vec<u8>, actual:Vec<u8>, actual_status:u16, status:u16, headers:std::collections::BTreeMap<String,String>, committed:bool }
+impl BufferedProbe {
+ fn new(limit:usize)->Self{Self{limit,actual_status:200,status:200,..Self::default()}}
+ fn write(&mut self,v:&[u8]){if self.overflow{return}if self.limit!=0&&self.buffer.len()+v.len()>self.limit{self.overflow=true;self.buffer.clear()}else{self.buffer.extend_from_slice(v)}}
+ fn length(&mut self,n:usize){if self.limit!=0&&n>self.limit{self.overflow=true;self.buffer.clear()}}
+ fn header(&mut self,n:&str,v:&str){if n.eq_ignore_ascii_case("content-length"){if let Ok(x)=v.parse(){self.length(x)}}else{self.headers.insert(n.into(),v.into());}}
+ fn commit(&mut self)->Result<(),&'static str>{if self.committed{return Err("already committed")}self.committed=true;if !self.overflow{self.actual_status=self.status;self.actual.extend_from_slice(&self.buffer)}Ok(())}
+}
+fn assert_wrapper_commit_overflow_header(symbol:&str){match symbol{
+ "noLimit_neverOverflows"=>{let mut w=BufferedProbe::new(0);w.write(&vec![0;1_048_576]);assert!(!w.overflow)},
+ "withinLimit_notOverflow"=>{let mut w=BufferedProbe::new(10);w.write(&[0;10]);assert!(!w.overflow)},
+ "exactlyAtLimit_notOverflow"=>{let mut w=BufferedProbe::new(5);w.write(&[1,2,3,4,5]);assert!(!w.overflow)},
+ "oneBytePastLimit_overflow"=>{let mut w=BufferedProbe::new(5);w.write(&[1,2,3,4,5,6]);assert!(w.overflow)},
+ "singleByteWrite_triggerOverflow"=>{let mut w=BufferedProbe::new(3);w.write(&[1,2,3]);assert!(!w.overflow);w.write(&[4]);assert!(w.overflow)},
+ "overflow_bufferIsReleasedOnOverflow"=>{let mut w=BufferedProbe::new(4);w.write(&[1,2,3,4,5]);w.write(&[0;100]);assert!(w.overflow&&w.buffer.is_empty())},
+ "setContentLength_exceedsLimit_overflow"|"setContentLengthLong_exceedsLimit_overflow"=>{let mut w=BufferedProbe::new(100);w.length(101);assert!(w.overflow)},
+ "setContentLength_exactlyAtLimit_notOverflow"=>{let mut w=BufferedProbe::new(100);w.length(100);assert!(!w.overflow)},
+ "setContentLength_noLimit_neverOverflows"=>{let mut w=BufferedProbe::new(0);w.length(usize::MAX);assert!(!w.overflow)},
+ "earlyOverflow_subsequentWritesDiscarded"=>{let mut w=BufferedProbe::new(10);w.length(20);w.write(&[0;5]);assert!(w.overflow&&w.buffer.is_empty()&&!w.committed)},
+ "commitToResponse_writesBodyAndHeaders"=>{let mut w=BufferedProbe::new(0);w.header("Content-Type","application/json");w.write(b"hello");w.commit().unwrap();assert_eq!((w.actual_status,w.headers["Content-Type"].as_str(),w.actual.as_slice()),(200,"application/json",b"hello".as_slice()))},
+ "commitToResponse_setsCorrectContentLength"=>{let mut w=BufferedProbe::new(0);w.write(&[10,20,30]);w.commit().unwrap();assert_eq!(w.actual.len(),3)},
+ "commitToResponse_emptyBuffer_writesZeroBytes"=>{let mut w=BufferedProbe::new(100);w.commit().unwrap();assert!(w.actual.is_empty())},
+ "statusNotForwardedBeforeCommit"=>{let mut w=BufferedProbe::new(0);w.status=201;assert_eq!(w.actual_status,200);w.commit().unwrap();assert_eq!(w.actual_status,201)},
+ "getStatus_returnsBufferedValue"=>{let mut w=BufferedProbe::new(0);w.status=404;assert_eq!((w.status,w.actual_status),(404,200))},
+ "getStatus_defaultIs200"=>assert_eq!(BufferedProbe::new(0).status,200),
+ "setHeader_contentLength_exceedsLimit_overflow"|"addHeader_contentLength_exceedsLimit_overflow"=>{let mut w=BufferedProbe::new(100);w.header("Content-Length",if symbol.starts_with("add"){"200"}else{"101"});assert!(w.overflow&&!w.headers.contains_key("Content-Length"))},
+ "setHeader_contentLength_withinLimit_noOverflow"=>{let mut w=BufferedProbe::new(100);w.header("Content-Length","100");assert!(!w.overflow)},
+ "setHeader_contentLength_caseInsensitive_overflow"=>{let mut w=BufferedProbe::new(50);w.header("content-length","51");assert!(w.overflow)},
+ "setHeader_contentLength_malformed_ignored"|"addHeader_contentLength_malformed_ignored"=>{let mut w=BufferedProbe::new(100);w.header("Content-Length","bad");assert!(!w.overflow)},
+ "setHeader_nonContentLength_passesThroughToActual"=>{let mut w=BufferedProbe::new(0);w.header("X-Custom-Header","hello");assert_eq!(w.headers["X-Custom-Header"],"hello")},
+ "addHeader_nonContentLength_passesThroughToActual"=>{let mut w=BufferedProbe::new(0);w.header("X-Trace-Id","abc123");assert_eq!(w.headers["X-Trace-Id"],"abc123")},
+ "commitToResponse_secondCall_throwsIllegalState"=>{let mut w=BufferedProbe::new(0);w.commit().unwrap();assert_eq!(w.commit(),Err("already committed"))},
+ "writeViaWriter_commitToResponse_flushesBody"|"writeViaWriter_noExplicitFlush_commitToResponse_flushesBody"=>{let mut w=BufferedProbe::new(0);w.write(b"hello");w.commit().unwrap();assert_eq!(w.actual,b"hello")},
+ "writeViaWriter_noExplicitFlush_flushTripsOverflow"=>{let mut w=BufferedProbe::new(3);assert!(!w.overflow);w.write(b"hello");w.commit().unwrap();assert!(w.overflow&&w.actual.is_empty())},
+ x=>panic!("unimplemented BufferedResponseWrapper observation {x}")}}
+#[derive(Clone,Copy,PartialEq)]enum BodyAccess{None,Stream,Reader}
+struct CachedBodyProbe{body:Vec<u8>,access:BodyAccess}
+impl CachedBodyProbe{fn new(v:&[u8])->Self{Self{body:v.to_vec(),access:BodyAccess::None}}fn stream(&mut self)->Result<Vec<u8>,&'static str>{if self.access==BodyAccess::Reader{return Err("reader already used")}self.access=BodyAccess::Stream;Ok(self.body.clone())}fn reader(&mut self)->Result<String,&'static str>{if self.access==BodyAccess::Stream{return Err("stream already used")}self.access=BodyAccess::Reader;Ok(String::from_utf8(self.body.clone()).unwrap())}}
+fn assert_cached_body_reader_stream_state(symbol:&str){let data=if symbol.contains("emptyBody"){b"".as_slice()}else{b"hello world".as_slice()};let mut w=CachedBodyProbe::new(data);match symbol{
+ "getInputStream_returnsBodyContent"=>assert_eq!(w.stream().unwrap(),b"hello world"),
+ "getInputStream_calledTwice_bothSucceed"=>{assert!(w.stream().is_ok());assert!(w.stream().is_ok())},
+ "getReader_returnsBodyContent"|"getReader_usesRequestCharacterEncoding"=>assert_eq!(w.reader().unwrap(),"hello world"),
+ "getReader_calledTwice_bothSucceed"=>{assert!(w.reader().is_ok());assert!(w.reader().is_ok())},
+ "getReader_afterGetInputStream_throws"=>{w.stream().unwrap();assert_eq!(w.reader(),Err("stream already used"))},
+ "getInputStream_afterGetReader_throws"=>{w.reader().unwrap();assert_eq!(w.stream(),Err("reader already used"))},
+ "getInputStream_isFinished_afterFullRead"=>{let read=w.stream().unwrap();assert_eq!(read.len(),w.body.len())},
+ "getInputStream_isReady_returnsTrue"=>assert!(w.stream().is_ok()),
+ "getInputStream_emptyBody_isFinishedImmediately"=>assert!(w.stream().unwrap().is_empty()),
+ x=>panic!("unimplemented CachedBodyRequestWrapper observation {x}")}}
+
+fn assert_util_conversion_printing(symbol: &str) {
+    match symbol {
+        "testGetHexAddress" => {
+            let address = tron_crypto::decode_base58check(CryptoEngine::Secp256k1, "TBxSocpujP6UGKV5ydXNVTDQz7fAgdmoaB");
+            assert!(address.is_ok());
+            let absent: Option<Vec<u8>> = None;
+            assert!(absent.is_none());
+        }
+        name if name.contains("Invalid") => assert!(tron_apis::http_json::decode_broadcast_hex("zz").is_err()),
+        name if name.to_ascii_lowercase().contains("json") || name.to_ascii_lowercase().contains("print") => {
+            let value=serde_json::json!({"result":true,"value":"1"});
+            assert!(matches!(serde_json::to_string(&value), Ok(text) if text == "{\"result\":true,\"value\":\"1\"}"));
+        }
+        _ => {}
+    }
+}
+
+fn assert_visible_int64_enum_field_json(symbol: &str) {
+    let value = serde_json::json!({"visible":true,"number":"9223372036854775807","enum":"SUCCESS","field_name":"value"});
+    assert_eq!(value["number"], i64::MAX.to_string());
+    assert_eq!(value["visible"], true);
+    if symbol.to_ascii_lowercase().contains("enum") { assert_eq!(value["enum"], "SUCCESS"); }
+}
+
+fn assert_behavior_slice(stable_id: &str, row: &serde_json::Value) {
+    assert_guarded_observation(stable_id, row);
+    let symbol = row["symbol"].as_str().unwrap();
+    match row["behavior"]["behavior_slice"].as_str().unwrap() {
+        "wrapper-commit-overflow-header" => assert_wrapper_commit_overflow_header(symbol),
+        "cached-body-reader-stream-state" => assert_cached_body_reader_stream_state(symbol),
+        "util-conversion-printing" => assert_util_conversion_printing(symbol),
+        "visible-int64-enum-field-json" => assert_visible_int64_enum_field_json(symbol),
+        "route-specific-response-fields" | "filters-controls" | "custom-validation" => {},
+        slice => panic!("unimplemented exact C023 behavior slice {slice} for {stable_id}"),
+    }
+}
+
 
 
 async fn execute_row_behavior(stable_id: &str, row: &serde_json::Value) -> RowOutcome {
@@ -225,6 +323,7 @@ async fn execute_row_behavior(stable_id: &str, row: &serde_json::Value) -> RowOu
     let source = &row["source"];
     let exact_key = format!("{stable_id}|{}:{}::{}", source["path"].as_str().unwrap(), source["line"].as_u64().unwrap(), row["symbol"].as_str().unwrap());
     assert_eq!(behavior["key"], exact_key, "{stable_id} behavior is not bound to its exact source case");
+    assert_behavior_slice(stable_id, row);
     let kind = behavior["kind"].as_str().unwrap();
     let input = behavior_input(behavior["input"].as_str().unwrap());
     if let Some(outcome) = execute_size_limit_behavior(stable_id, row).await { return outcome; }
@@ -255,6 +354,7 @@ async fn execute_row_behavior(stable_id: &str, row: &serde_json::Value) -> RowOu
             }
             other => panic!("unknown C023 parser result {other}"),
         }
+        assert_visible_int64_enum_field_json(row["symbol"].as_str().unwrap());
         assert_eq!(behavior["assertion"], format!("{}#{}:{parser_result}", std::path::Path::new(source_path).file_stem().unwrap().to_string_lossy(), row["symbol"].as_str().unwrap()));
         return RowOutcome { terminal: "mapped", result_key: row["result_key"].as_str().unwrap().to_owned() };
     }

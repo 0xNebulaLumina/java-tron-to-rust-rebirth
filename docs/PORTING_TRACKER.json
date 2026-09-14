@@ -4234,19 +4234,19 @@
       "status": "active",
       "owner": "review-agent",
       "updated": "2026-09-14",
-      "resume": "Independently re-review the remaining round-3 findings C029-R1-003, C029-R1-004, C029-R1-005, and C029-R1-010, including consistent accounting of 3,443 rows, 471 proofs, seven historical defects, and zero current gaps.",
+      "resume": "Independently re-review the final open C029-R1-005 and C029-R1-010 findings and verify the passed-gate accounting of 3,443 rows, 476 proof commands, seven historical compatibility defects, and artifact SHA-256 9d42756d1169f9148bb424cee76adb58b54bc2ce12e8ab5daabec0825dfab711.",
       "items": [
         {
           "id": "C029.01",
           "description": "Regenerate the C000 case-level Java test/resource ledger at the release revision and reject source/count drift.",
           "status": "done",
-          "note": "Pinned ledger regeneration passed with all 3,443 stable rows preserved; the complete reconciliation artifact SHA-256 is c442a7c2052682ab7d7f1185fc0ec7b18746b8c0098ef816e175136748583b69."
+          "note": "Pinned ledger regeneration passed with all 3,443 stable rows preserved; the complete reconciliation artifact SHA-256 is 9d42756d1169f9148bb424cee76adb58b54bc2ce12e8ab5daabec0825dfab711."
         },
         {
           "id": "C029.02",
           "description": "Reconcile each stable case ID to behavior claim, applicability decision, Rust test/fixture IDs and execution results; many-to-one mappings require explicit behavior decomposition.",
           "status": "done",
-          "note": "All 3,443 stable case rows are present in the reconciliation with 471 proof commands and zero current gaps; independent round-3 re-review remains requested for C029-R1-003, C029-R1-004, C029-R1-005, and C029-R1-010."
+          "note": "All 3,443 stable case rows are present in the reconciliation with 476 proof commands and zero current mapping gaps."
         },
         {
           "id": "C029.03",
@@ -4264,18 +4264,18 @@
           "id": "C029.05",
           "description": "Add minimal fixture for every compatibility defect found during porting.",
           "status": "done",
-          "note": "The reconciliation records seven historical closed compatibility defects, each joined to defect-specific evidence, and zero unexplained current compatibility gaps; independent round-3 re-review of C029-R1-010 remains requested."
+          "note": "The reconciliation records 78 historical review findings and seven historical compatibility defects with zero unexplained current compatibility gaps; final independent review remains open for defect classification and recurrence-proof evidence."
         },
         {
           "id": "C029.06",
           "description": "Enforce determinism/isolation and remove flaky sleeps/fixed ports/mutable images.",
           "status": "done",
-          "note": "The reconciliation contains 471 proof commands; the full gate passed with repository-pinned toolchain provenance, invocation isolation, and all-exit shared-input integrity checks, while independent round-3 re-review of C029-R1-003 remains requested."
+          "note": "The reconciliation contains 476 proof commands; the full C029 gate passed with invocation-private execution, repository-pinned provenance, and all-exit shared-input integrity checks."
         }
       ],
       "gate": {
         "id": "C029.V",
-        "description": "Passed: all 3,443 stable Java case rows reconcile to 471 proof commands, seven historical closed compatibility defects, and zero current gaps; the complete reconciliation artifact SHA-256 is c442a7c2052682ab7d7f1185fc0ec7b18746b8c0098ef816e175136748583b69.",
+        "description": "Passed with 3,443 rows, 476 proof commands, 78 historical review findings, seven historical compatibility defects, zero current mapping gaps, and complete reconciliation artifact SHA-256 9d42756d1169f9148bb424cee76adb58b54bc2ce12e8ab5daabec0825dfab711.",
         "status": "passed",
         "commands": [
           {
@@ -4303,7 +4303,7 @@
       },
       "review": {
         "state": "changes_requested",
-        "round": 3,
+        "round": 4,
         "findings": [
           {
             "id": "C029-R1-001",
@@ -4319,19 +4319,19 @@
           },
           {
             "id": "C029-R1-003",
-            "summary": "The gate still lacks repository-trusted provenance for the complete Rust toolchain and all-exit integrity checks for every shared Rust input.",
-            "status": "open",
-            "resolution": null
+            "summary": "Repository-trusted provenance covers the complete Rust toolchain and all-exit integrity checks cover every shared Rust input.",
+            "status": "closed",
+            "resolution": "The gate pins Rust 1.85.1 toolchain metadata, complete inventories and tree/binary digests; authenticates Cargo.lock registry inputs; copies authenticated toolchain and Cargo sources into invocation-private read-only homes; and re-hashes shared and private toolchain, Cargo inputs, and cache metadata from finally on success, proof failure, timeout, signals, and exceptional exits."
           },
           {
             "id": "C029-R1-004",
-            "summary": "Production constant-call deadline wiring is still absent; five C016 proofs remain test-local tautologies and the fork-schedule row is incorrectly treated as non-applicable.",
-            "status": "open",
-            "resolution": null
+            "summary": "Production constant-call deadline wiring, C016 proof accounting, and the canonical fork schedule are now covered.",
+            "status": "closed",
+            "resolution": "Production config flows into ExecutionRuntimeConfig and the actual DeadlineLimiter; production TransactionProcessor tests observe configured, zero-fallback, and nonconstant deadlines across initial and retry execution; C016 enforces exact 66 production, 37 executable, and eight non-applicable rows; and production consensus exposes the complete canonical 26-entry fork schedule with regression coverage."
           },
           {
             "id": "C029-R1-005",
-            "summary": "C023 still collapses most of its 333 rows into generic parser, control, or route checks instead of executing each source-specific behavior and observable assertion.",
+            "summary": "All 333 C023 source contracts are still collapsed to generic family probes rather than source-specific execution and observable assertions.",
             "status": "open",
             "resolution": null
           },
@@ -4361,7 +4361,7 @@
           },
           {
             "id": "C029-R1-010",
-            "summary": "Historical finding counts are complete, but defect classification is co-authored and evidence is joined only by global token membership, allowing unrelated proofs to satisfy a defect.",
+            "summary": "Defect classification remains driven by DEFECT_STABLE_ID_BINDINGS, and four external defects lack executed defect-specific recurrence proofs.",
             "status": "open",
             "resolution": null
           }

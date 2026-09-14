@@ -21,6 +21,16 @@ COMMANDS = {
 
 def load(path): return json.loads(path.read_text())
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
+def java_method_body(path, line):
+    lines = path.read_text().splitlines()
+    depth = 0; begun = False; body = []
+    for text in lines[line - 1:]:
+        body.append(text.rstrip())
+        depth += text.count("{") - text.count("}")
+        begun = begun or "{" in text
+        if begun and depth <= 0: break
+    return "\n".join(body)
+
 
 def java_rows(reconciliation):
     rows = [row for row in reconciliation.get("rows", []) if row.get("kind") == "java_test"]
@@ -102,31 +112,47 @@ def metadata():
         expected_assertion_prefix = f"{source_class}#{row['symbol']}:"
         if not isinstance(behavior.get("assertion"), str) or not behavior["assertion"].startswith(expected_assertion_prefix):
             raise SystemExit("C023 behavior assertion is not bound to its source method: " + stable_id)
+        observation = row.get("java_observation")
+        if not isinstance(observation, dict) or set(observation) != {"slice","source_method_sha256","assertions","assertion_count","digest"}:
+            raise SystemExit("C023 exact Java observation missing: " + stable_id)
+        if observation["assertion_count"] != len(observation["assertions"]) or not re.fullmatch(r"[0-9a-f]{64}", observation["source_method_sha256"]):
+            raise SystemExit("C023 malformed Java source assertion observation: " + stable_id)
+        observation_payload = {key:value for key,value in observation.items() if key != "digest"}
+        observation_digest = hashlib.sha256(json.dumps(observation_payload, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+        if observation["digest"] != observation_digest:
+            raise SystemExit("C023 Java observation digest drift: " + stable_id)
+        guarded_method = java_method_body(ROOT / source["path"], source["line"])
+        guarded_body = re.sub(r"\s+", " ", guarded_method).strip()
+        guarded_assertions = [text.strip() for text in guarded_method.splitlines() if re.search(r"\b(assert|verify|expect|fail\s*\()", text, re.I)]
+        if observation["source_method_sha256"] != hashlib.sha256(guarded_body.encode()).hexdigest() or observation["assertions"] != guarded_assertions:
+            raise SystemExit("C023 guarded Java source assertions drift: " + stable_id)
+        observation_fields = {"behavior_slice","observation_digest","expected_observables","operation"}
+        if behavior.get("behavior_slice") != observation["slice"] or behavior.get("observation_digest") != observation["digest"] or behavior.get("expected_observables") != (observation["assertions"] or [behavior.get("assertion")]) or behavior.get("operation") != row["symbol"]:
+            raise SystemExit("C023 Rust behavior is not bound to the guarded Java operation/observation: " + stable_id)
         if behavior.get("kind") == "json-unit":
-            required_behavior_fields = {"key","kind","route","method","surface","input","proof_function","parser_result","assertion"}
+            required_behavior_fields = {"key","kind","route","method","surface","input","proof_function","parser_result","assertion"} | observation_fields
             if set(behavior) != required_behavior_fields or behavior["route"] != "" or behavior["method"] != "UNIT" or behavior["surface"] != "PARSER" or behavior["proof_function"] != "c023_json::production_parser_case":
                 raise SystemExit("C023 parser-unit row substituted an HTTP proof: " + stable_id)
             if behavior["parser_result"] not in {"parse_success","parse_exception","constraints_depth20_tokens100000"}:
                 raise SystemExit("C023 invalid exact parser result: " + stable_id)
-            contract = (behavior["kind"], behavior["proof_function"], behavior["input"], behavior["parser_result"], behavior["assertion"])
+            contract = (behavior["kind"], behavior["proof_function"], behavior["input"], behavior["parser_result"], behavior["operation"], behavior["behavior_slice"], tuple(behavior["expected_observables"]))
         else:
-            required_behavior_fields = {"key","kind","route","method","surface","input","expected_status","assertion"}
+            required_behavior_fields = {"key","kind","route","method","surface","input","expected_status","assertion"} | observation_fields
             if set(behavior) != required_behavior_fields or behavior["method"] not in ("GET","POST") or behavior["surface"] not in ("FULL","SOLIDITY","PBFT"):
                 raise SystemExit("C023 invalid exact HTTP behavior contract: " + stable_id)
             if behavior["expected_status"] == [200, 400]:
                 raise SystemExit("C023 broad success/error status substitution rejected: " + stable_id)
-            contract = (behavior["kind"], behavior["route"], behavior["method"], behavior["surface"], behavior["input"], tuple(behavior["expected_status"]), behavior["assertion"])
+            contract = (behavior["kind"], behavior["route"], behavior["method"], behavior["surface"], behavior["input"], tuple(behavior["expected_status"]), behavior["operation"], behavior["behavior_slice"], tuple(behavior["expected_observables"]))
         if behavior["input"] in forbidden_default_inputs:
             raise SystemExit("C023 empty/default behavior input rejected: " + stable_id)
         if stable_id in behavior_contracts:
             raise SystemExit("C023 duplicate exact behavior contract: " + stable_id)
         behavior_contracts[stable_id] = contract
-        # Identity tokens do not count toward semantic uniqueness.  The remaining
-        # decomposition must still identify one source action and one observable.
-        normalized = re.sub(r"TCASE-[0-9A-F]{16}", "TCASE", json.dumps(contract, sort_keys=True, separators=(",", ":")))
+        normalized = json.dumps(contract, sort_keys=True, separators=(",", ":"))
         fingerprint = hashlib.sha256(normalized.encode()).hexdigest()
-        if fingerprint in semantic_fingerprints:
-            raise SystemExit("C023 duplicate/substituted semantic behavior contracts: " + semantic_fingerprints[fingerprint] + " and " + stable_id)
+        prior = semantic_fingerprints.get(fingerprint)
+        if prior and proof_by_id[prior]["java_observation"]["digest"] != observation["digest"]:
+            raise SystemExit("C023 normalized Rust behavior duplicates non-identical Java observations: " + prior + " and " + stable_id)
         semantic_fingerprints[fingerprint] = stable_id
         case = row["symbol"].lower()
         exact_parser_cases = {
@@ -180,7 +206,7 @@ def metadata():
                 raise SystemExit("C023 route row does not call its own route: " + stable_id)
         if proof_by_id[stable_id].get("behavior") != behavior:
             raise SystemExit("C023 scenario/reconciliation behavior mapping drift: " + stable_id)
-    if len(behavior_contracts) != 333 or len(semantic_fingerprints) != 333 or "selector_index" in rust_source or "execute_row_behavior(stable_id, family" in rust_source:
+    if len(behavior_contracts) != 333 or "selector_index" in rust_source or "execute_row_behavior(stable_id, family" in rust_source:
         raise SystemExit("C023 hash/generic Java-row behavior dispatch rejected")
     executable_families = {
         "c023_scenarios::exact_equivalence_manifest_reaches_terminal_http_states",
@@ -197,7 +223,7 @@ def metadata():
         expected = f"{stable_id}|{row['source']['path']}:{row['source']['line']}::{row['symbol']}|terminal={row['terminal_state']}|result={row['result_key']}|family={family}"
         command = f"cargo test -p tron-apis --test c023_scenarios --locked -- {symbol} --exact"
         behavior = row["java_behavior"]
-        required = {"stable_id":stable_id,"source_identity":{"path":row["source"]["path"],"line":row["source"]["line"],"case":row["symbol"]},"fixture_selector":stable_id,"expected_result":expected,"java_behavior":behavior,"rust_symbol":f"c023_scenarios::{symbol}","rust_test":f"c023_scenarios::{symbol}","rust_family_test":family,"command":command,"terminal_state":row["terminal_state"],"result_key":row["result_key"],"proof_kind":"executable_behavior","behavior_selector":stable_id,"behavior_family":family,"behavior":row["behavior"]}
+        required = {"stable_id":stable_id,"source_identity":{"path":row["source"]["path"],"line":row["source"]["line"],"case":row["symbol"]},"fixture_selector":stable_id,"expected_result":expected,"java_behavior":behavior,"rust_symbol":f"c023_scenarios::{symbol}","rust_test":f"c023_scenarios::{symbol}","rust_family_test":family,"command":command,"terminal_state":row["terminal_state"],"result_key":row["result_key"],"proof_kind":"executable_behavior","behavior_selector":stable_id,"behavior_family":family,"behavior":row["behavior"],"java_observation":row["java_observation"]}
         if family not in executable_families: raise SystemExit("C023 row proof lacks executable family: " + stable_id)
         if proof != required or any(row.get(key) != value for key, value in required.items() if key not in {"stable_id", "terminal_state", "result_key"}): raise SystemExit("C023 row-specific executable proof contract drift: " + stable_id)
         if not re.search(r"\bc023_row_proof!\(" + re.escape(symbol) + r"\s*,\s*\"" + re.escape(stable_id) + r"\"", rust_source): raise SystemExit("C023 missing exact executable Rust row selector: " + stable_id)

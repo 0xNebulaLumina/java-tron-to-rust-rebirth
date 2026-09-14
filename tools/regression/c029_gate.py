@@ -83,14 +83,29 @@ PINNED_RUST_TOOLCHAIN = {
 C016_EXECUTABLE_ROWS = 37
 C016_NON_APPLICABLE_ROWS = 8
 C023_JAVA_CONTRACTS = 333
-DEFECT_STABLE_ID_BINDINGS = {
-    "C001-R1-001": (),
+CLASSIFICATION_POLICY = {
+    "algorithm": "c029-tracker-semantics-v1",
+    "observable_mismatch_markers": (
+        "protobuf-java", "captured java error bytes", "canonical persisted fork state",
+        "non-vm actuator execution", "surface-specific dispatch", "java-compatible 404",
+        "solidity json-rpc surface",
+    ),
+    "resolution_markers": (
+        "reproduces protobuf-java", "exact byte comparison", "every requested fork",
+        "exact captured java error bytes", "classifies execution before vm policy",
+        "surface-specific", "return 404 with byte-identical trees", "without writes",
+        "removed unsupported solidity json-rpc",
+    ),
+    "non_compatibility_markers": (
+        "final review", "independent review", "security review", "provenance reviewer",
+        "attacker-controlled", "crash", "tamper", "toctou", "command injection",
+        "trust boundary", "signature", "signing", "authenticated", "schema validation",
+    ),
+}
+ROW_BOUND_DEFECT_STABLE_IDS = {
     "C013-R3-001": ("TCASE-E6F1B8CAC044DEB5",),
-    "C014-R2-001": (),
     "C016-R1-001": ("TCASE-DA2F8C8CFD8D2262",),
-    "C023-R1-001": (),
     "C027-R6-01": ("TCASE-0A0889ADBE9E8BD3", "TCASE-E1CE182966F2CAE4"),
-    "C028-R3-004": (),
 }
 
 GENERIC = re.compile(r"\b(?:generic|same as java|equivalent|covered|ported|parity|works|n/?a|not applicable)\b", re.I)
@@ -220,6 +235,39 @@ def historical_findings() -> dict[str, dict[str, Any]]:
     return result
 
 
+def classification_policy_projection() -> dict[str, Any]:
+    return {
+        "algorithm": CLASSIFICATION_POLICY["algorithm"],
+        "observable_mismatch_markers": list(CLASSIFICATION_POLICY["observable_mismatch_markers"]),
+        "resolution_markers": list(CLASSIFICATION_POLICY["resolution_markers"]),
+        "non_compatibility_markers": list(CLASSIFICATION_POLICY["non_compatibility_markers"]),
+    }
+
+
+def classify_tracker_finding(finding: dict[str, Any]) -> tuple[str, dict[str, Any]]:
+    """Classify tracker prose, never finding IDs, using authenticated summary/resolution text."""
+    summary = finding.get("summary")
+    resolution = finding.get("resolution")
+    fail(isinstance(summary, str) and summary, "tracker finding: non-empty summary required")
+    fail(isinstance(resolution, str) and resolution, "tracker finding: non-empty resolution required")
+    summary_lower = summary.lower()
+    resolution_lower = resolution.lower()
+    mismatch = [marker for marker in CLASSIFICATION_POLICY["observable_mismatch_markers"] if marker in summary_lower]
+    remediation = [marker for marker in CLASSIFICATION_POLICY["resolution_markers"] if marker in resolution_lower]
+    excluded = [marker for marker in CLASSIFICATION_POLICY["non_compatibility_markers"] if marker in summary_lower]
+    classification = "compatibility_defect" if mismatch and remediation and not excluded else "non_compatibility"
+    evidence = {
+        "tracker_summary": summary,
+        "tracker_summary_sha256": sha256_bytes(summary.encode()),
+        "tracker_resolution": resolution,
+        "tracker_resolution_sha256": sha256_bytes(resolution.encode()),
+        "observable_mismatch_markers": mismatch,
+        "resolution_markers": remediation,
+        "non_compatibility_markers": excluded,
+        "derived_classification": classification,
+    }
+    return classification, evidence
+
 def source_asserts(path: str, tokens: tuple[str, ...], finding_id: str) -> None:
     source = (ROOT / path).read_text(encoding="utf-8")
     fail(all(token in source for token in tokens), f"{finding_id}: defect-specific source assertions are absent from {path}")
@@ -232,31 +280,35 @@ def validate_external_defect(defect: dict[str, Any]) -> bool:
             "behavior_claim_ids": ["constructed protobuf map bytes preserve protobuf-java insertion order for every descriptor map field"],
             "fixture_ids": ["docs/oracles/protocol-fixtures.v1.json#map_order_vectors"],
             "rust_test_ids": ["rust-tron/crates/tron-protocol/tests/protocol_surface.rs::ordered_map_encoder_matches_java_in_both_insertion_orders_for_every_map_field"],
-            "result_links": ["map_order_vectors contains exactly 15 descriptor fields and the test compares each row's exact forward_hex and reverse_hex bytes with the ordered encoder"],
+            "command_ids": ["C029-PROOF-557EF645060BB6BE"],
+            "result_links": ["C029-PROOF-557EF645060BB6BE|recurrence:all 15 descriptor map fields match protobuf-java forward and reverse insertion bytes"],
         },
         "C014-R2-001": {
             "behavior_claim_ids": ["C014-E2E-027 canonical_fork_state_loader"],
             "fixture_ids": ["docs/oracles/c014-execution-oracle.v1.json#C014-E2E-027"],
             "rust_test_ids": ["rust-tron/crates/tron-tvm/tests/c014_runtime.rs::production_rules_load_uses_persisted_version_35_fork_state", "rust-tron/crates/tron-tvm/tests/c014_runtime.rs::production_rules_load_rejects_malformed_fork_state_and_preserves_precedence_flags"],
-            "result_links": ["VERSION_NUMBER never shortcuts requested fork evaluation; version 35 uses exact raw persisted FORK_VERSION_35 bytes and their 27-byte denominator; 19 upgrades pass, 18 fail, non-1 bytes do not count, and malformed active-witness schedule bytes do not affect the result"],
+            "command_ids": ["C029-PROOF-6440FA156F92136A", "C029-PROOF-891ED00195920695"],
+            "result_links": ["C029-PROOF-6440FA156F92136A|recurrence:version 35 uses exact persisted raw-stat bytes and denominator without current-version shortcut", "C029-PROOF-891ED00195920695|recurrence:malformed active-witness schedule cannot replace canonical fork-state precedence"],
         },
         "C023-R1-001": {
             "behavior_claim_ids": ["Full, Solidity, and PBFT duplicate HTTP route registrations remain distinct by surface and path"],
             "fixture_ids": ["rust-tron/crates/tron-apis/src/http_routes.rs#HTTP_ROUTES"],
-            "rust_test_ids": ["rust-tron/crates/tron-apis/tests/c023_scenarios.rs::all_215_inventory_rows_execute_through_real_localhost_http"],
-            "result_links": ["the real localhost test dispatches every HTTP_ROUTES entry on its declared Full, Solidity, or PBFT surface, rejects duplicate (surface,path) identities, and requires exactly 215 distinct registrations"],
+            "rust_test_ids": ["rust-tron/crates/tron-apis/tests/c023_routes.rs::servlet_inventory_is_exact_and_excludes_commented_registrations"],
+            "command_ids": ["C029-PROOF-F39D03B730B4A1CD"],
+            "result_links": ["C029-PROOF-F39D03B730B4A1CD|recurrence:HTTP_ROUTES preserves exact Full=123 Solidity=45 PBFT=47 surface-qualified registrations"],
         },
         "C028-R3-004": {
             "behavior_claim_ids": ["the packaged Solidity deployment does not advertise the unsupported Solidity JSON-RPC endpoint"],
             "fixture_ids": ["rust-tron/packaging/config/solidity.deployment.json", "rust-tron/packaging/config/solidity.conf", "rust-tron/packaging/container/compose.yaml"],
             "rust_test_ids": ["rust-tron/crates/tron-node/tests/c028_deployment.rs::packaged_surfaces_match_runtime_and_solidity_json_rpc_is_forbidden"],
-            "result_links": ["the packaged Solidity listener inventory is exactly admin, grpc, http, prometheus, and zeromq; solidity.conf contains neither port 8555 nor jsonrpc; compose publishes no 8555:8555 mapping"],
+            "command_ids": ["C029-PROOF-139ED6EC1DA514C9"],
+            "result_links": ["C029-PROOF-139ED6EC1DA514C9|recurrence:packaged Solidity surfaces exclude JSON-RPC port 8555 from config and Compose"],
         },
     }
     contract = contracts.get(finding_id)
     if contract is None:
         return False
-    fail(defect["affected_stable_ids"] == [] and defect["command_ids"] == [], f"{finding_id}: source-bound external defect must not substitute unrelated ledger rows or commands")
+    fail(defect["affected_stable_ids"] == [], f"{finding_id}: external defect must not substitute unrelated ledger rows")
     fail(all(defect[field] == value for field, value in contract.items()), f"{finding_id}: exact defect-specific evidence contract mismatch")
     if finding_id == "C001-R1-001":
         vectors = load(ROOT / "docs/oracles/protocol-fixtures.v1.json").get("java_map_serialization", {}).get("rows")
@@ -268,7 +320,7 @@ def validate_external_defect(defect: dict[str, Any]) -> bool:
         source_asserts("rust-tron/crates/tron-tvm/tests/c014_runtime.rs", ("production_rules_load_uses_persisted_version_35_fork_state", "vec![1;19]", "vec![1;18]", "vec![1;27]", "VERSION_NUMBER", "ACTIVE_WITNESSES_KEY", "malformed.push(2)", "production_rules_load_rejects_malformed_fork_state_and_preserves_precedence_flags"), finding_id)
     elif finding_id == "C023-R1-001":
         source_asserts("rust-tron/crates/tron-apis/src/http_routes.rs", ("HTTP_ROUTES", "HttpSurface::Full", "HttpSurface::Solidity", "HttpSurface::Pbft"), finding_id)
-        source_asserts("rust-tron/crates/tron-apis/tests/c023_scenarios.rs", ("all_215_inventory_rows_execute_through_real_localhost_http", "HTTP_ROUTES", "215", "surface", "path"), finding_id)
+        source_asserts("rust-tron/crates/tron-apis/tests/c023_routes.rs", ("servlet_inventory_is_exact_and_excludes_commented_registrations", "HttpSurface::Full", "HttpSurface::Solidity", "HttpSurface::Pbft", "123", "45", "47"), finding_id)
     else:
         source_asserts("rust-tron/crates/tron-node/tests/c028_deployment.rs", ("packaged_surfaces_match_runtime_and_solidity_json_rpc_is_forbidden", "[\"admin\",\"grpc\",\"http\",\"prometheus\",\"zeromq\"]", "contains(\"8555\")", "contains(\"jsonrpc\")", "contains(\"8555:8555\")"), finding_id)
         fail(all((ROOT / path).is_file() for path in contract["fixture_ids"]), "C028-R3-004: packaged Solidity evidence file is absent")
@@ -288,28 +340,34 @@ def string_tokens(value: Any) -> set[str]:
 def validate_historical_findings(document: dict[str, Any], ledger_ids: set[str], command_ids: set[str]) -> None:
     findings = document["review_findings"]
     defects = document["compatibility_defects"]
+    policy = classification_policy_projection()
+    fail(document["classification_policy"] == {**policy, "sha256": sha256_bytes(canonical(policy))}, "artifact.classification_policy: pinned semantic algorithm drift")
     fail(isinstance(findings, list) and findings, "artifact.review_findings: exhaustive non-empty classification array required")
     fail(isinstance(defects, list), "artifact.compatibility_defects: must be an array")
+    tracker_findings = historical_findings()
     by_id: dict[str, dict[str, Any]] = {}
+    derived_defects: set[str] = set()
     for index, finding in enumerate(findings):
         where = f"review_findings[{index}]"
         fail(isinstance(finding, dict), f"{where}: object required")
-        required = {"finding_id", "source_refs", "classification", "rationale"}
-        fail(required <= finding.keys(), f"{where}: missing {sorted(required - finding.keys())}")
+        exact_keys(finding, {"finding_id", "source_refs", "classification", "rationale", "classification_evidence"}, where)
         finding_id = finding["finding_id"]
         fail(isinstance(finding_id, str) and finding_id and finding_id not in by_id, f"{where}.finding_id: non-empty unique ID required")
+        tracker_finding = tracker_findings.get(finding_id)
+        fail(tracker_finding is not None, f"{finding_id}: orphan historical classification")
         refs = strings(finding["source_refs"], f"{finding_id}.source_refs")
-        fail(any(finding_id in ref or (ROOT / ref.partition("#")[0]).is_file() for ref in refs), f"{finding_id}.source_refs: source-bound tracker/file reference required")
-        fail(finding["classification"] in {"compatibility_defect", "non_compatibility"}, f"{finding_id}.classification: invalid classification")
+        fail(refs == [f"docs/PORTING_TRACKER.json#{finding_id}"], f"{finding_id}.source_refs: exact tracker reference required")
+        derived, evidence = classify_tracker_finding(tracker_finding)
+        fail(finding["classification"] == derived and finding["classification_evidence"] == evidence, f"{finding_id}: classification or authenticated semantic evidence differs from tracker derivation")
         rationale = finding["rationale"]
         fail(isinstance(rationale, str) and len(rationale.split()) >= 5 and not GENERIC.search(rationale), f"{finding_id}.rationale: concrete source-bound rationale required")
+        if derived == "compatibility_defect":
+            derived_defects.add(finding_id)
         by_id[finding_id] = finding
-    tracker_findings = historical_findings()
     expected = set(tracker_findings)
-    classified_defects = {finding_id for finding_id, finding in by_id.items() if finding["classification"] == "compatibility_defect"}
     fail(set(by_id) == expected, f"artifact.review_findings: historical finding join mismatch; missing={sorted(expected-set(by_id))}, orphan={sorted(set(by_id)-expected)}")
-    fail(classified_defects == set(DEFECT_STABLE_ID_BINDINGS), f"artifact.review_findings: exact seven compatibility-defect classifications required; found={sorted(classified_defects)}")
-
+    classified_defects = {finding_id for finding_id, finding in by_id.items() if finding["classification"] == "compatibility_defect"}
+    fail(classified_defects == derived_defects, "artifact.review_findings: labels must equal independently derived tracker semantics")
     fail(document["accounting"]["compatibility_defects"] == len(classified_defects), "artifact.accounting.compatibility_defects: must equal the independently derived classified-defect count")
     rows_by_id = {row["stable_id"]: row for row in document["rows"]}
     defect_by_finding: dict[str, dict[str, Any]] = {}
@@ -328,12 +386,19 @@ def validate_historical_findings(document: dict[str, Any], ledger_ids: set[str],
             tracker_words = {word for word in re.findall(r"[a-z0-9]+", str(tracker_finding.get(field, "")).lower()) if len(word) >= 5}
             fail(len(rationale_words & tracker_words) >= 2, f"{finding_id}.rationale: not semantically grounded in tracker {field}")
         stable_ids = set(strings(defect["affected_stable_ids"], f"{finding_id}.affected_stable_ids", nonempty=False))
-        fail(stable_ids == set(DEFECT_STABLE_ID_BINDINGS[finding_id]), f"{finding_id}.affected_stable_ids: exact defect-specific stable-ID binding required")
-
+        external = validate_external_defect(defect)
+        if external:
+            fail(not stable_ids, f"{finding_id}: external defect must not bind ledger rows")
+        else:
+            fail(stable_ids == set(ROW_BOUND_DEFECT_STABLE_IDS.get(finding_id, ())), f"{finding_id}.affected_stable_ids: exact row-bound stable-ID join required")
         fail(stable_ids <= ledger_ids, f"{finding_id}.affected_stable_ids: unknown IDs {sorted(stable_ids-ledger_ids)}")
         for field in ("source_refs", "behavior_claim_ids", "fixture_ids", "rust_test_ids", "command_ids", "result_links"):
             strings(defect[field], f"{finding_id}.{field}", nonempty=field != "command_ids" or bool(stable_ids))
-        if not validate_external_defect(defect):
+        fail(set(defect["command_ids"]) <= command_ids, f"{finding_id}.command_ids: unknown proof command")
+        if external:
+            fail(len(defect["result_links"]) == len(defect["command_ids"]), f"{finding_id}: each recurrence command needs one exclusive result")
+            fail({link.split("|", 1)[0] for link in defect["result_links"]} == set(defect["command_ids"]) and all("|recurrence:" in link for link in defect["result_links"]), f"{finding_id}: result links must point exclusively to its recurrence proofs")
+        if not external:
             fail(stable_ids, f"{finding_id}: row-bound defect must name affected stable IDs")
             affected_rows = [rows_by_id[stable_id] for stable_id in stable_ids]
             row_fixtures = {link for row in affected_rows for link in row["fixture_links"]}
@@ -687,7 +752,7 @@ def validate_source_envelope(
     *,
     allow_ledger_file_digest_drift: bool = False,
 ) -> None:
-    exact_keys(document, {"schema", "schema_version", "chunk", "java_source_revision", "source_ledger", "gate_source", "accounting", "proof_commands", "compatibility_defects", "review_findings", "rows", "unsupported_by_owning_artifact_repair"}, "artifact")
+    exact_keys(document, {"schema", "schema_version", "chunk", "java_source_revision", "source_ledger", "gate_source", "classification_policy", "accounting", "proof_commands", "compatibility_defects", "review_findings", "rows", "unsupported_by_owning_artifact_repair"}, "artifact")
     fail(document["schema"] == "c029-java-surface-reconciliation", "artifact.schema: expected c029-java-surface-reconciliation")
     fail(document["schema_version"] == 1, "artifact.schema_version: expected 1")
     fail(document["chunk"] == "C029", "artifact.chunk: expected C029")
@@ -828,7 +893,8 @@ def validate_artifact(
         fail(isinstance(contract["projection"], list) and isinstance(contract["repeat_runs"], int), f"{sid}.determinism_isolation: invalid projection contract")
         strings(row["defect_refs"], f"{sid}.defect_refs", nonempty=False)
     referenced_command_ids = {row["proof_command_id"] for row in rows if row["proof_command_id"] is not None}
-    fail(set(command_ids) == referenced_command_ids, f"artifact.proof_commands: exact referenced set required; orphan={sorted(set(command_ids) - referenced_command_ids)}, missing={sorted(referenced_command_ids - set(command_ids))}")
+    referenced_command_ids.update(command_id for defect in document["compatibility_defects"] for command_id in defect.get("command_ids", []))
+    fail(set(command_ids) == referenced_command_ids, f"artifact.proof_commands: exact row/defect referenced set required; orphan={sorted(set(command_ids) - referenced_command_ids)}, missing={sorted(referenced_command_ids - set(command_ids))}")
 
     unsupported = document["unsupported_by_owning_artifact_repair"]
     fail(isinstance(unsupported, dict), "artifact.unsupported_by_owning_artifact_repair: grouped object required")
@@ -960,6 +1026,28 @@ def referenced_targets(tree: Path, document: dict[str, Any]) -> dict[tuple[str, 
                 selector, target_name = "lib", manifest_data.get("lib", {}).get("name", package.replace("-", "_"))
             else:
                 fail(len(inside.parts) == 2 and inside.parts[0] == "tests", f"proof source is not a lib or integration target: {relative}")
+                selector, target_name = "test", inside.stem
+            plans.setdefault((package, selector, target_name), set()).add(identifier)
+    for defect in document["compatibility_defects"]:
+        if defect["affected_stable_ids"]:
+            continue
+        for target_text in defect["rust_test_ids"]:
+            relative, identifier = rust_target_parts(target_text, require_source=True)
+            assert relative is not None
+            crate = tree / "rust-tron" / relative.parts[1] / relative.parts[2]
+            manifest = crate / "Cargo.toml"
+            fail(manifest.is_file(), f"external defect proof crate manifest missing: {manifest.relative_to(tree)}")
+            manifest_data = tomllib.loads(manifest.read_text(encoding="utf-8"))
+            package = manifest_data["package"]["name"]
+            inside = Path(*relative.parts[3:])
+            symbol = identifier.rsplit("::", 1)[-1]
+            source_text = (tree / relative).read_text(encoding="utf-8")
+            test_definition = re.compile(rf"#\[(?:[A-Za-z_][\w:]*::)?test(?:\([^]]*\))?\]\s*(?:#\[[^]]+\]\s*)*(?:async\s+)?fn\s+{re.escape(symbol)}\b")
+            fail(test_definition.search(source_text) is not None, f"external defect Rust proof symbol is not a direct test: {relative}::{symbol}")
+            if inside.parts[0] == "src":
+                selector, target_name = "lib", manifest_data.get("lib", {}).get("name", package.replace("-", "_"))
+            else:
+                fail(len(inside.parts) == 2 and inside.parts[0] == "tests", f"external defect proof source is not a lib or integration target: {relative}")
                 selector, target_name = "test", inside.stem
             plans.setdefault((package, selector, target_name), set()).add(identifier)
     fail(plans, "Rust proof target inventory is empty")
@@ -1302,6 +1390,48 @@ def run_proofs(tree: Path, scratch: Path, target: Path, plans: dict[tuple[str, s
                     authority = authoritative_proof(row, proof)
                     fail(authority is not None, f"{row['stable_id']}: exact executable proof lacks authoritative row selector/result")
                     execution[1].append((row["stable_id"], authority[0], authority[1], proof))
+    for defect in document["compatibility_defects"]:
+        for target_text in defect["rust_test_ids"]:
+            if target_text in proof_targets:
+                continue
+            source, identifier = rust_target_parts(target_text, require_source=True)
+            assert source is not None
+            proof_manifest = tree / "rust-tron" / "crates" / source.parts[2] / "Cargo.toml"
+            proof_package = tomllib.loads(proof_manifest.read_text(encoding="utf-8"))["package"]["name"]
+            inside = source.parts[3:]
+            proof_selector = "lib" if inside[0] == "src" else "test"
+            proof_target = proof_package.replace("-", "_") if proof_selector == "lib" else Path(*inside).stem
+            proof_targets[target_text] = (proof_package, proof_selector, proof_target, identifier)
+    external_execution_keys: set[tuple[Path, str, str]] = set()
+    for defect in document["compatibility_defects"]:
+        if defect["affected_stable_ids"]:
+            continue
+        links_by_command = {link.split("|", 1)[0]: link for link in defect["result_links"]}
+        for command_id in defect["command_ids"]:
+            command = commands[command_id]
+            command_symbol = next(value for value in command["argv"][command["argv"].index("--") + 1:] if not value.startswith("-"))
+            matching_targets = [candidate for candidate in defect["rust_test_ids"] if proof_targets[candidate][3] == command_symbol or proof_targets[candidate][3].endswith("::" + command_symbol)]
+            fail(len(matching_targets) == 1, f"{command_id}: external defect command resolves to {len(matching_targets)} Rust targets")
+            target_text = matching_targets[0]
+            expected_argv = canonical_proof_argv({}, target_text)
+            fail(expected_argv is not None and command["argv"] == expected_argv, f"{command_id}: external defect command does not exactly select {target_text}")
+            package, selector, target_name, identifier = proof_targets[target_text]
+            matching_executables = [executable for executable, (identity, _) in executables.items() if identity == (package, selector, target_name)]
+            fail(len(matching_executables) == 1, f"{command_id}: external defect target resolves to {len(matching_executables)} executables")
+            executable = matching_executables[0]
+            matching_names = sorted(name for name in discovered[executable] if name == identifier or name.endswith("::" + identifier))
+            fail(len(matching_names) == 1, f"{command_id}: external defect symbol {identifier!r} resolves to {len(matching_names)} compiled tests")
+            key = (executable, matching_names[0], command_id)
+            executions[key] = (command, [(defect["finding_id"], defect["source_refs"][0], links_by_command[command_id], {"target": target_text})])
+            external_execution_keys.add(key)
+    expected_external_commands = {
+        command_id
+        for defect in document["compatibility_defects"]
+        if not defect["affected_stable_ids"]
+        for command_id in defect["command_ids"]
+    }
+    actual_external_commands = {key[2] for key in external_execution_keys}
+    fail(actual_external_commands == expected_external_commands, f"external defect execution linkage mismatch: missing={sorted(expected_external_commands-actual_external_commands)} orphan={sorted(actual_external_commands-expected_external_commands)}")
     fail(executions, "proof execution inventory is empty")
     ledger_ids = {row["id"] for row in load(LEDGER)["rows"]}
     proof_modes: dict[tuple[Path, str, str], str] = {}
@@ -1312,6 +1442,9 @@ def run_proofs(tree: Path, scratch: Path, target: Path, plans: dict[tuple[str, s
         for proof in row["rust_proofs"]:
             mapped_target_ids.setdefault(proof["target"], set()).add(row["stable_id"])
     for key, (_, entries) in executions.items():
+        if key in external_execution_keys:
+            proof_modes[key] = "external"
+            continue
         target_text = entries[0][3]["target"]
         exact_union = validate_table_dispatcher(tree, target_text, entries, ledger_ids, mapped_target_ids)
         proof_modes[key] = "direct" if len(entries) == 1 and exact_union else "table" if len(entries) > 1 and exact_union else "per_id"
@@ -1369,6 +1502,17 @@ def mutation_self_checks(document: dict[str, Any], ledger: dict[str, Any]) -> No
     add("mapped accounting", lambda value: value["accounting"].__setitem__("mapped", value["accounting"]["mapped"] + 1))
     add("generic accounting", lambda value: value["accounting"].__setitem__("generic", 1))
     add("dangling proof command", lambda value: value["rows"][0].__setitem__("proof_command_id", "C029-PROOF-MISSING"))
+    non_defect_index = next(index for index, finding in enumerate(document["review_findings"]) if finding["classification"] == "non_compatibility")
+    def relabel_with_evidence(value: dict[str, Any]) -> None:
+        finding = value["review_findings"][non_defect_index]
+        finding["classification"] = "compatibility_defect"
+        finding["classification_evidence"]["derived_classification"] = "compatibility_defect"
+    add("classification label and recorded derivation", relabel_with_evidence)
+    external_defects = [defect for defect in document["compatibility_defects"] if not defect["affected_stable_ids"]]
+    if len(external_defects) >= 2:
+        first_id = external_defects[0]["finding_id"]
+        second_link = external_defects[1]["result_links"][0]
+        add("cross-defect recurrence result substitution", lambda value: next(defect for defect in value["compatibility_defects"] if defect["finding_id"] == first_id)["result_links"].__setitem__(0, second_link))
     if document["unsupported_by_owning_artifact_repair"]:
         add("unsupported inventory removal", lambda value: next(iter(value["unsupported_by_owning_artifact_repair"].values())).pop())
     covered_index = next(index for index, row in enumerate(document["rows"]) if row["applicability"]["type"] == "covered")
@@ -1618,6 +1762,15 @@ def synthesize_reconciliation(document: dict[str, Any]) -> dict[str, Any]:
     c016_executable = {candidate["stable_id"]: candidate for candidate in c016_owner.get("java_test_rows", [])}
     ledger_by_id = {source["id"]: source for source in load(LEDGER)["rows"]}
     commands_by_argv: dict[tuple[str, ...], dict[str, Any]] = {}
+    external_seed_ids = {
+        command_id
+        for defect in refreshed["compatibility_defects"]
+        if not defect.get("affected_stable_ids")
+        for command_id in defect.get("command_ids", [])
+    }
+    for command in refreshed["proof_commands"]:
+        if command["id"] in external_seed_ids:
+            commands_by_argv[tuple(command["argv"])] = command
     for row in refreshed["rows"]:
         row["treatment"] = source_treatment(ledger_by_id[row["stable_id"]])
         c016_exclusion = c016_non_applicable.get(row["stable_id"])
@@ -1711,8 +1864,16 @@ def synthesize_reconciliation(document: dict[str, Any]) -> dict[str, Any]:
         if row["proof_command_id"] is None:
             continue
         expected_by_command[row["proof_command_id"]].update(rust_target_parts(proof["target"])[1] for proof in row["rust_proofs"])
+    external_command_ids = {
+        command_id
+        for defect in refreshed["compatibility_defects"]
+        if not defect.get("affected_stable_ids")
+        for command_id in defect.get("command_ids", [])
+    }
     non_exact = []
     for command in refreshed["proof_commands"]:
+        if command["id"] in external_command_ids:
+            continue
         argv = command["argv"]
         suffix = argv[argv.index("--") + 1:] if "--" in argv else []
         expected = expected_by_command[command["id"]]
@@ -1722,13 +1883,13 @@ def synthesize_reconciliation(document: dict[str, Any]) -> dict[str, Any]:
     c023_defect = next((defect for defect in refreshed["compatibility_defects"] if defect.get("finding_id") == "C023-R1-001"), None)
     fail(c023_defect is not None, "C023-R1-001: compatibility-defect record is absent")
     c023_defect["fixture_ids"] = ["rust-tron/crates/tron-apis/src/http_routes.rs#HTTP_ROUTES"]
-    referenced_command_ids = {row["proof_command_id"] for row in refreshed["rows"] if row["proof_command_id"] is not None}
+    referenced_command_ids = {row["proof_command_id"] for row in refreshed["rows"] if row["proof_command_id"] is not None} | external_command_ids
     refreshed["proof_commands"] = [command for command in refreshed["proof_commands"] if command["id"] in referenced_command_ids]
-    fail({command["id"] for command in refreshed["proof_commands"]} == referenced_command_ids, "synthesis proof commands differ from exact referenced row command set")
+    fail({command["id"] for command in refreshed["proof_commands"]} == referenced_command_ids, "synthesis proof commands differ from row and external-defect command set")
     rows_by_id = {row["stable_id"]: row for row in refreshed["rows"]}
     for defect in refreshed["compatibility_defects"]:
-        if validate_external_defect(defect):
-            defect["command_ids"] = []
+        if not defect["affected_stable_ids"]:
+            validate_external_defect(defect)
             continue
         defect["command_ids"] = sorted({
             rows_by_id[stable_id]["proof_command_id"]

@@ -31001,7 +31001,7 @@
   },
   "gate_source": {
     "path": "tools/regression/c029_gate.py",
-    "sha256": "8b2c6714f59576342c9082f3fc70237a2926b537ea3b8b6dfcd57d26ab7f9d34"
+    "sha256": "fd2669ed85d0421d6c2fe97c5dc9ec460d3f2b67b97aabc0d616177d1ac0f976"
   },
   "accounting": {
     "mapped": 3443,
@@ -32203,6 +32203,46 @@
           "fixture_selector",
           "expected_result",
           "rust_test"
+        ]
+      },
+      "owning_item": "C029.06"
+    },
+    {
+      "id": "C029-PROOF-139ED6EC1DA514C9",
+      "cwd": "rust-tron",
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "tron-node",
+        "--test",
+        "c028_deployment",
+        "--",
+        "packaged_surfaces_match_runtime_and_solidity_json_rpc_is_forbidden",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 1800,
+      "environment": {
+        "HOME": "${RUN_HOME}",
+        "TMPDIR": "${RUN_TMP}",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "TZ": "UTC",
+        "RUST_TEST_THREADS": "1",
+        "CARGO_NET_OFFLINE": "true"
+      },
+      "result_contract": {
+        "expected_exit": 0,
+        "minimum_executed_tests": 1,
+        "forbid_ignored": true,
+        "forbid_skipped": true,
+        "observable_projection": [
+          "solidity_listener_inventory",
+          "solidity_conf_forbidden_8555_jsonrpc",
+          "compose_forbidden_8555_mapping"
         ]
       },
       "owning_item": "C029.06"
@@ -36718,6 +36758,47 @@
       "owning_item": "C029.06"
     },
     {
+      "id": "C029-PROOF-557EF645060BB6BE",
+      "cwd": "rust-tron",
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "tron-protocol",
+        "--test",
+        "protocol_surface",
+        "--",
+        "ordered_map_encoder_matches_java_in_both_insertion_orders_for_every_map_field",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 1800,
+      "environment": {
+        "HOME": "${RUN_HOME}",
+        "TMPDIR": "${RUN_TMP}",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "TZ": "UTC",
+        "RUST_TEST_THREADS": "1",
+        "CARGO_NET_OFFLINE": "true"
+      },
+      "result_contract": {
+        "expected_exit": 0,
+        "minimum_executed_tests": 1,
+        "forbid_ignored": true,
+        "forbid_skipped": true,
+        "observable_projection": [
+          "descriptor_field",
+          "forward_hex",
+          "reverse_hex",
+          "ordered_encoder_bytes"
+        ]
+      },
+      "owning_item": "C029.06"
+    },
+    {
       "id": "C029-PROOF-559287BC8906FBAB",
       "cwd": "rust-tron",
       "argv": [
@@ -38394,6 +38475,47 @@
           "fixture_selector",
           "expected_result",
           "rust_test"
+        ]
+      },
+      "owning_item": "C029.06"
+    },
+    {
+      "id": "C029-PROOF-6440FA156F92136A",
+      "cwd": "rust-tron",
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "tron-tvm",
+        "--test",
+        "c014_runtime",
+        "--",
+        "production_rules_load_uses_persisted_version_35_fork_state",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 1800,
+      "environment": {
+        "HOME": "${RUN_HOME}",
+        "TMPDIR": "${RUN_TMP}",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "TZ": "UTC",
+        "RUST_TEST_THREADS": "1",
+        "CARGO_NET_OFFLINE": "true"
+      },
+      "result_contract": {
+        "expected_exit": 0,
+        "minimum_executed_tests": 1,
+        "forbid_ignored": true,
+        "forbid_skipped": true,
+        "observable_projection": [
+          "fork_version",
+          "persisted_raw_statistics",
+          "quorum_denominator",
+          "evaluation_result"
         ]
       },
       "owning_item": "C029.06"
@@ -41141,6 +41263,47 @@
           "fixture_selector",
           "expected_result",
           "rust_test"
+        ]
+      },
+      "owning_item": "C029.06"
+    },
+    {
+      "id": "C029-PROOF-891ED00195920695",
+      "cwd": "rust-tron",
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "tron-tvm",
+        "--test",
+        "c014_runtime",
+        "--",
+        "production_rules_load_rejects_malformed_fork_state_and_preserves_precedence_flags",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 1800,
+      "environment": {
+        "HOME": "${RUN_HOME}",
+        "TMPDIR": "${RUN_TMP}",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "TZ": "UTC",
+        "RUST_TEST_THREADS": "1",
+        "CARGO_NET_OFFLINE": "true"
+      },
+      "result_contract": {
+        "expected_exit": 0,
+        "minimum_executed_tests": 1,
+        "forbid_ignored": true,
+        "forbid_skipped": true,
+        "observable_projection": [
+          "malformed_schedule",
+          "canonical_fork_state",
+          "precedence_flags",
+          "evaluation_result"
         ]
       },
       "owning_item": "C029.06"
@@ -49592,6 +49755,48 @@
       "owning_item": "C029.06"
     },
     {
+      "id": "C029-PROOF-F39D03B730B4A1CD",
+      "cwd": "rust-tron",
+      "argv": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "-p",
+        "tron-apis",
+        "--test",
+        "c023_routes",
+        "--",
+        "servlet_inventory_is_exact_and_excludes_commented_registrations",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 1800,
+      "environment": {
+        "HOME": "${RUN_HOME}",
+        "TMPDIR": "${RUN_TMP}",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "TZ": "UTC",
+        "RUST_TEST_THREADS": "1",
+        "CARGO_NET_OFFLINE": "true"
+      },
+      "result_contract": {
+        "expected_exit": 0,
+        "minimum_executed_tests": 1,
+        "forbid_ignored": true,
+        "forbid_skipped": true,
+        "observable_projection": [
+          "surface",
+          "path",
+          "full_count_123",
+          "solidity_count_45",
+          "pbft_count_47"
+        ]
+      },
+      "owning_item": "C029.06"
+    },
+    {
       "id": "C029-PROOF-F502D759DBE5CBB7",
       "cwd": "rust-tron",
       "argv": [
@@ -50347,9 +50552,11 @@
       "rust_test_ids": [
         "rust-tron/crates/tron-protocol/tests/protocol_surface.rs::ordered_map_encoder_matches_java_in_both_insertion_orders_for_every_map_field"
       ],
-      "command_ids": [],
+      "command_ids": [
+        "C029-PROOF-557EF645060BB6BE"
+      ],
       "result_links": [
-        "map_order_vectors contains exactly 15 descriptor fields and the test compares each row's exact forward_hex and reverse_hex bytes with the ordered encoder"
+        "C029-PROOF-557EF645060BB6BE|recurrence:all 15 descriptor map fields match protobuf-java forward and reverse insertion bytes"
       ]
     },
     {
@@ -50394,9 +50601,13 @@
         "rust-tron/crates/tron-tvm/tests/c014_runtime.rs::production_rules_load_uses_persisted_version_35_fork_state",
         "rust-tron/crates/tron-tvm/tests/c014_runtime.rs::production_rules_load_rejects_malformed_fork_state_and_preserves_precedence_flags"
       ],
-      "command_ids": [],
+      "command_ids": [
+        "C029-PROOF-6440FA156F92136A",
+        "C029-PROOF-891ED00195920695"
+      ],
       "result_links": [
-        "VERSION_NUMBER never shortcuts requested fork evaluation; version 35 uses exact raw persisted FORK_VERSION_35 bytes and their 27-byte denominator; 19 upgrades pass, 18 fail, non-1 bytes do not count, and malformed active-witness schedule bytes do not affect the result"
+        "C029-PROOF-6440FA156F92136A|recurrence:version 35 uses exact persisted raw-stat bytes and denominator without current-version shortcut",
+        "C029-PROOF-891ED00195920695|recurrence:malformed active-witness schedule cannot replace canonical fork-state precedence"
       ]
     },
     {
@@ -50438,11 +50649,13 @@
         "rust-tron/crates/tron-apis/src/http_routes.rs#HTTP_ROUTES"
       ],
       "rust_test_ids": [
-        "rust-tron/crates/tron-apis/tests/c023_scenarios.rs::all_215_inventory_rows_execute_through_real_localhost_http"
+        "rust-tron/crates/tron-apis/tests/c023_routes.rs::servlet_inventory_is_exact_and_excludes_commented_registrations"
       ],
-      "command_ids": [],
+      "command_ids": [
+        "C029-PROOF-F39D03B730B4A1CD"
+      ],
       "result_links": [
-        "the real localhost test dispatches every HTTP_ROUTES entry on its declared Full, Solidity, or PBFT surface, rejects duplicate (surface,path) identities, and requires exactly 215 distinct registrations"
+        "C029-PROOF-F39D03B730B4A1CD|recurrence:HTTP_ROUTES preserves exact Full=123 Solidity=45 PBFT=47 surface-qualified registrations"
       ]
     },
     {
@@ -50493,9 +50706,11 @@
       "rust_test_ids": [
         "rust-tron/crates/tron-node/tests/c028_deployment.rs::packaged_surfaces_match_runtime_and_solidity_json_rpc_is_forbidden"
       ],
-      "command_ids": [],
+      "command_ids": [
+        "C029-PROOF-139ED6EC1DA514C9"
+      ],
       "result_links": [
-        "the packaged Solidity listener inventory is exactly admin, grpc, http, prometheus, and zeromq; solidity.conf contains neither port 8555 nor jsonrpc; compose publishes no 8555:8555 mapping"
+        "C029-PROOF-139ED6EC1DA514C9|recurrence:packaged Solidity surfaces exclude JSON-RPC port 8555 from config and Compose"
       ]
     }
   ],
@@ -50506,7 +50721,21 @@
         "docs/PORTING_TRACKER.json#C001-R1-001"
       ],
       "classification": "compatibility_defect",
-      "rationale": "Tracker records an observed cross-language wire defect: reverse Rust insertion produced different constructed protobuf map bytes than protobuf-java; the resolution introduces the bounded insertion-ordered encoder and exact forward/reverse byte checks."
+      "rationale": "Tracker records an observed cross-language wire defect: reverse Rust insertion produced different constructed protobuf map bytes than protobuf-java; the resolution introduces the bounded insertion-ordered encoder and exact forward/reverse byte checks.",
+      "classification_evidence": {
+        "tracker_summary": "Constructed protobuf map encoding previously canonicalized generated BTreeMap order, so reverse Rust insertion did not reproduce protobuf-java reverse insertion bytes.",
+        "tracker_summary_sha256": "4cf7f8d9f3885306b354681aca628e4950400f99d0de6749fe5142593795cbe5",
+        "tracker_resolution": "The bounded ordered-map API reproduces protobuf-java forward and reverse insertion bytes for all 15 canonical map fields, and the final C001 gates pass.",
+        "tracker_resolution_sha256": "987cb8fa08c40542c6522588d84f52a1caff1cc949c734a66b2a78ff61041acb",
+        "observable_mismatch_markers": [
+          "protobuf-java"
+        ],
+        "resolution_markers": [
+          "reproduces protobuf-java"
+        ],
+        "non_compatibility_markers": [],
+        "derived_classification": "compatibility_defect"
+      }
     },
     {
       "finding_id": "C002.R.01",
@@ -50514,7 +50743,19 @@
         "docs/PORTING_TRACKER.json#C002.R.01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of ambient-clock isolation, exact Merkle behavior, digest-provider boundaries, BlockId postprocessing, byte/math operations, strict fixture consumption, and the complete locked validation results. Resolution states Approved after confirming the final gate results: 83 Java vectors, 41 fixtures, 3 cross-domain seams, and 13 Rust tests pass; the locked Rust workspace all-targets check also passes. C002 is complete and the next ready item is C003.01. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of ambient-clock isolation, exact Merkle behavior, digest-provider boundaries, BlockId postprocessing, byte/math operations, strict fixture consumption, and the complete locked validation results. Resolution states Approved after confirming the final gate results: 83 Java vectors, 41 fixtures, 3 cross-domain seams, and 13 Rust tests pass; the locked Rust workspace all-targets check also passes. C002 is complete and the next ready item is C003.01. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Final review required confirmation of ambient-clock isolation, exact Merkle behavior, digest-provider boundaries, BlockId postprocessing, byte/math operations, strict fixture consumption, and the complete locked validation results.",
+        "tracker_summary_sha256": "0b13fbd62abaadbe9a6643ab40549f0b64053b280286e04d9005ead419f0fb7f",
+        "tracker_resolution": "Approved after confirming the final gate results: 83 Java vectors, 41 fixtures, 3 cross-domain seams, and 13 Rust tests pass; the locked Rust workspace all-targets check also passes. C002 is complete and the next ready item is C003.01.",
+        "tracker_resolution_sha256": "97b28be52ae709bfc9250e12a7854cafad5ebc4a5bcf9b5cb8f5c187d32fe706",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "final review"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C003.R.01",
@@ -50522,7 +50763,19 @@
         "docs/PORTING_TRACKER.json#C003.R.01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of complete config and CLI inventory coverage, differential fixture consumption, precedence and validation behavior, lifecycle ordering and failure propagation, and the complete locked validation results. Resolution states Approved after confirming the final gate results: 239 configuration keys, 43 CLI names, 25 differential fixtures, 16 configuration tests, and 11 lifecycle tests pass; the locked Rust workspace all-targets check also passes. C003 is complete and the next ready item is C004.01. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of complete config and CLI inventory coverage, differential fixture consumption, precedence and validation behavior, lifecycle ordering and failure propagation, and the complete locked validation results. Resolution states Approved after confirming the final gate results: 239 configuration keys, 43 CLI names, 25 differential fixtures, 16 configuration tests, and 11 lifecycle tests pass; the locked Rust workspace all-targets check also passes. C003 is complete and the next ready item is C004.01. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Final review required confirmation of complete config and CLI inventory coverage, differential fixture consumption, precedence and validation behavior, lifecycle ordering and failure propagation, and the complete locked validation results.",
+        "tracker_summary_sha256": "235e3ee92cc7d043d6752d2a950864bd3db93ad23052d66420f8fbf5ca55686b",
+        "tracker_resolution": "Approved after confirming the final gate results: 239 configuration keys, 43 CLI names, 25 differential fixtures, 16 configuration tests, and 11 lifecycle tests pass; the locked Rust workspace all-targets check also passes. C003 is complete and the next ready item is C004.01.",
+        "tracker_resolution_sha256": "887eddd0f863790e3da1dc10578513ac3e27b8d022a6bb88b5a0fe40464ab3f1",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "final review"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C004.R.01",
@@ -50530,7 +50783,21 @@
         "docs/PORTING_TRACKER.json#C004.R.01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of authenticated Java-oracle provenance, exact cross-engine crypto and address vectors, malformed and historical signature behavior, and the complete locked validation results. Resolution states Approved after confirming the final gate results: the authenticated Java oracle produced 26 vectors, all 8 Rust tests pass, and the locked Rust workspace all-targets check passes. C004 is complete and the next ready item is C005.01. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of authenticated Java-oracle provenance, exact cross-engine crypto and address vectors, malformed and historical signature behavior, and the complete locked validation results. Resolution states Approved after confirming the final gate results: the authenticated Java oracle produced 26 vectors, all 8 Rust tests pass, and the locked Rust workspace all-targets check passes. C004 is complete and the next ready item is C005.01. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Final review required confirmation of authenticated Java-oracle provenance, exact cross-engine crypto and address vectors, malformed and historical signature behavior, and the complete locked validation results.",
+        "tracker_summary_sha256": "77bf85296c57cbf52185e00948240cf666dd16555cc846d47f702e0d126d506d",
+        "tracker_resolution": "Approved after confirming the final gate results: the authenticated Java oracle produced 26 vectors, all 8 Rust tests pass, and the locked Rust workspace all-targets check passes. C004 is complete and the next ready item is C005.01.",
+        "tracker_resolution_sha256": "aa86f9520d8ff48f111e4cd5cf7fff94602c81bfe250c1a7957cb39ac8708b3e",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "final review",
+          "signature",
+          "authenticated"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C005.R.01",
@@ -50538,7 +50805,20 @@
         "docs/PORTING_TRACKER.json#C005.R.01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of authenticated Java-oracle provenance, exhaustive Rust keystore dispatch coverage, and the complete locked workspace validation result. Resolution states Approved after confirming the final secured implementation and gate results: the authenticated Java oracle produced 37 vectors, all 5 Rust tests pass including password FIFO coverage, and the locked Rust workspace all-targets check passes. All findings are closed, review is approved, C005 is complete, and the next ready item is C006.01. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of authenticated Java-oracle provenance, exhaustive Rust keystore dispatch coverage, and the complete locked workspace validation result. Resolution states Approved after confirming the final secured implementation and gate results: the authenticated Java oracle produced 37 vectors, all 5 Rust tests pass including password FIFO coverage, and the locked Rust workspace all-targets check passes. All findings are closed, review is approved, C005 is complete, and the next ready item is C006.01. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Final review required confirmation of authenticated Java-oracle provenance, exhaustive Rust keystore dispatch coverage, and the complete locked workspace validation result.",
+        "tracker_summary_sha256": "bfabe423ad4bf882811fd39dd89ecbf013344f07b4a595ec2ea9ef65a2e3bc13",
+        "tracker_resolution": "Approved after confirming the final secured implementation and gate results: the authenticated Java oracle produced 37 vectors, all 5 Rust tests pass including password FIFO coverage, and the locked Rust workspace all-targets check passes. All findings are closed, review is approved, C005 is complete, and the next ready item is C006.01.",
+        "tracker_resolution_sha256": "b60916e51c9ddc47167d62e5ba2418766ec5a7c6b4a920930de4f374f8c2f3cc",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "final review",
+          "authenticated"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C006.R.01",
@@ -50546,7 +50826,19 @@
         "docs/PORTING_TRACKER.json#C006.R.01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of the secured package boundary, complete method and Java-case mapping, shielded compatibility suites, and the locked workspace validation result. Resolution states Approved after confirming the final results: the package boundary covers all 39 methods, all 157 Java cases plus 16 ignored cases have explicit mappings, all 4 Merkle, 5 note, 12 context, and 5 gRPC tests pass, and the locked Rust workspace all-targets check passes. All findings are closed, review is approved, C006 is complete, and the next ready item is C007.01. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of the secured package boundary, complete method and Java-case mapping, shielded compatibility suites, and the locked workspace validation result. Resolution states Approved after confirming the final results: the package boundary covers all 39 methods, all 157 Java cases plus 16 ignored cases have explicit mappings, all 4 Merkle, 5 note, 12 context, and 5 gRPC tests pass, and the locked Rust workspace all-targets check passes. All findings are closed, review is approved, C006 is complete, and the next ready item is C007.01. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Final review required confirmation of the secured package boundary, complete method and Java-case mapping, shielded compatibility suites, and the locked workspace validation result.",
+        "tracker_summary_sha256": "272204635345c45bba98ce6955ef2a9d5726d4fef2573de816da5003282f8ab6",
+        "tracker_resolution": "Approved after confirming the final results: the package boundary covers all 39 methods, all 157 Java cases plus 16 ignored cases have explicit mappings, all 4 Merkle, 5 note, 12 context, and 5 gRPC tests pass, and the locked Rust workspace all-targets check passes. All findings are closed, review is approved, C006 is complete, and the next ready item is C007.01.",
+        "tracker_resolution_sha256": "b7ac26677fd4b328bd2c2c5a7aef933392695bf956a0c0767f942c620a36baff",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "final review"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C007.R.01",
@@ -50554,7 +50846,20 @@
         "docs/PORTING_TRACKER.json#C007.R.01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of the authenticated inventory and vectors, complete storage contract matrix, platform qualification, and locked workspace result. Resolution states Approved after confirming the final results: 0 Java-test rows reconcile to 15 named Rust proofs; all 43 storage tests pass (9 backend/order, 15 format/migration/snapshot, 19 failure/crash/error); all 23 matrix scenarios pass on the sole enabled native pure-Rust Linux x86_64 rustlog-v1 row with no FFI or native resources; Linux aarch64 remains disabled/future; and the locked tron-storage all-targets check passes. All findings are closed, review is approved, C007 is complete, and the next ready item is C008.01. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of the authenticated inventory and vectors, complete storage contract matrix, platform qualification, and locked workspace result. Resolution states Approved after confirming the final results: 0 Java-test rows reconcile to 15 named Rust proofs; all 43 storage tests pass (9 backend/order, 15 format/migration/snapshot, 19 failure/crash/error); all 23 matrix scenarios pass on the sole enabled native pure-Rust Linux x86_64 rustlog-v1 row with no FFI or native resources; Linux aarch64 remains disabled/future; and the locked tron-storage all-targets check passes. All findings are closed, review is approved, C007 is complete, and the next ready item is C008.01. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Final review required confirmation of the authenticated inventory and vectors, complete storage contract matrix, platform qualification, and locked workspace result.",
+        "tracker_summary_sha256": "e29e15551baab5211e5b825c13a69e16d6e46caeb59a034b1073e8597d87cd42",
+        "tracker_resolution": "Approved after confirming the final results: 0 Java-test rows reconcile to 15 named Rust proofs; all 43 storage tests pass (9 backend/order, 15 format/migration/snapshot, 19 failure/crash/error); all 23 matrix scenarios pass on the sole enabled native pure-Rust Linux x86_64 rustlog-v1 row with no FFI or native resources; Linux aarch64 remains disabled/future; and the locked tron-storage all-targets check passes. All findings are closed, review is approved, C007 is complete, and the next ready item is C008.01.",
+        "tracker_resolution_sha256": "9b6fe7ae52148de4dd93f85cc7c468c1de09de35c753840c049f6d9c033ec8bd",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "final review",
+          "authenticated"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C008.R.01",
@@ -50562,7 +50867,19 @@
         "docs/PORTING_TRACKER.json#C008.R.01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of the complete C008 reconciliation, logical and integration contracts, and locked workspace result. Resolution states Approved after confirming the final results: 323 reconciled rows pass, both logical contract tests pass, all 16 integration contract tests pass, and the locked tron-state all-targets workspace check passes. All findings are closed, review is approved, C008 is complete, and the next ready item is C009.01. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of the complete C008 reconciliation, logical and integration contracts, and locked workspace result. Resolution states Approved after confirming the final results: 323 reconciled rows pass, both logical contract tests pass, all 16 integration contract tests pass, and the locked tron-state all-targets workspace check passes. All findings are closed, review is approved, C008 is complete, and the next ready item is C009.01. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Final review required confirmation of the complete C008 reconciliation, logical and integration contracts, and locked workspace result.",
+        "tracker_summary_sha256": "2cd693044476543fb5d3bc7878860bd66291e0423d9cfbe3e03585f87ff6be0e",
+        "tracker_resolution": "Approved after confirming the final results: 323 reconciled rows pass, both logical contract tests pass, all 16 integration contract tests pass, and the locked tron-state all-targets workspace check passes. All findings are closed, review is approved, C008 is complete, and the next ready item is C009.01.",
+        "tracker_resolution_sha256": "2ef266eed1606d400a6285615bb1b9d9780bd6e68b5f6c426fd1c239f8c5f2da",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "final review"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C009.R.01",
@@ -50570,7 +50887,19 @@
         "docs/PORTING_TRACKER.json#C009.R.01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of the complete C009 store matrix, Java-test and production reconciliation, revoking contract, and locked workspace result. Resolution states Approved after confirming the final results: all 45 stores, 155 Java-test rows, 604 production-ownership rows, all 15 revoking contract tests, and the locked tron-state all-targets workspace check pass. All findings are closed, review is approved, C009 is complete, and the next ready item is C010.01. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of the complete C009 store matrix, Java-test and production reconciliation, revoking contract, and locked workspace result. Resolution states Approved after confirming the final results: all 45 stores, 155 Java-test rows, 604 production-ownership rows, all 15 revoking contract tests, and the locked tron-state all-targets workspace check pass. All findings are closed, review is approved, C009 is complete, and the next ready item is C010.01. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Final review required confirmation of the complete C009 store matrix, Java-test and production reconciliation, revoking contract, and locked workspace result.",
+        "tracker_summary_sha256": "c8079fa1d8c8fa388b14309b0209c589cc4e1344efce82a089d0dc3dad929072",
+        "tracker_resolution": "Approved after confirming the final results: all 45 stores, 155 Java-test rows, 604 production-ownership rows, all 15 revoking contract tests, and the locked tron-state all-targets workspace check pass. All findings are closed, review is approved, C009 is complete, and the next ready item is C010.01.",
+        "tracker_resolution_sha256": "c38fe38137a9d8c62dfd77e9ddfd15991244abf1df95cb5abc3b51ab783dd473",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "final review"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C010.R.01",
@@ -50578,7 +50907,19 @@
         "docs/PORTING_TRACKER.json#C010.R.01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of the complete C010 fixture and ownership reconciliation, contract tests, module contracts, and locked workspace result. Resolution states Approved after confirming the final results: all 71 generated fixtures, 87 ownership rows, all 18 C010 contract tests, tron-state module contracts, and the locked tron-state all-targets workspace check pass. All findings are closed, review is approved, C010 is complete, and the next ready item is C011.01. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of the complete C010 fixture and ownership reconciliation, contract tests, module contracts, and locked workspace result. Resolution states Approved after confirming the final results: all 71 generated fixtures, 87 ownership rows, all 18 C010 contract tests, tron-state module contracts, and the locked tron-state all-targets workspace check pass. All findings are closed, review is approved, C010 is complete, and the next ready item is C011.01. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Final review required confirmation of the complete C010 fixture and ownership reconciliation, contract tests, module contracts, and locked workspace result.",
+        "tracker_summary_sha256": "e18ca5ebfd0ff1f9c82030dbb3b9c21e636252bfef55c5d8aeed9c8cb8ee29c0",
+        "tracker_resolution": "Approved after confirming the final results: all 71 generated fixtures, 87 ownership rows, all 18 C010 contract tests, tron-state module contracts, and the locked tron-state all-targets workspace check pass. All findings are closed, review is approved, C010 is complete, and the next ready item is C011.01.",
+        "tracker_resolution_sha256": "29df448e2f3b1cd3a23f7eb69363ea07820baeb3d56aa41a5864469344ccc5c2",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "final review"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C011.R.01",
@@ -50586,7 +50927,19 @@
         "docs/PORTING_TRACKER.json#C011.R.01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of the complete C011 fixture and Java-test reconciliation, contract tests, and locked workspace result. Resolution states Approved after confirming the final results: all 30 generated fixtures, 8 reconciled Java tests, all 20 C011 contract tests, and the locked tron-state all-targets workspace check pass. All findings are closed, review is approved, C011 is complete, and the next ready item is C012.01. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Final review required confirmation of the complete C011 fixture and Java-test reconciliation, contract tests, and locked workspace result. Resolution states Approved after confirming the final results: all 30 generated fixtures, 8 reconciled Java tests, all 20 C011 contract tests, and the locked tron-state all-targets workspace check pass. All findings are closed, review is approved, C011 is complete, and the next ready item is C012.01. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Final review required confirmation of the complete C011 fixture and Java-test reconciliation, contract tests, and locked workspace result.",
+        "tracker_summary_sha256": "0464ced00d310400ebc75415742a04fbcd4cc09dc2e17002469ddee14b14556e",
+        "tracker_resolution": "Approved after confirming the final results: all 30 generated fixtures, 8 reconciled Java tests, all 20 C011 contract tests, and the locked tron-state all-targets workspace check pass. All findings are closed, review is approved, C011 is complete, and the next ready item is C012.01.",
+        "tracker_resolution_sha256": "f86e3840df03c37af11aba37bccc0abb6a9bb121ef1820dd212d5886fc23278a",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "final review"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C012.R.01",
@@ -50594,7 +50947,19 @@
         "docs/PORTING_TRACKER.json#C012.R.01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Independent review required confirmation of DR-004 provenance, all 14 Rust executions, validation capability enforcement, built-in isolation, and the absence of a pinned-Java claim. Resolution states Approved after a clean independent review confirmed all 14 DR-004 variants, immutable declared-access validation capabilities, rejection without byte exposure for undeclared reads, successful declared reads, unrestricted built-in validation, separate fixture namespaces, and Rust-only provenance. C012 is complete and the next ready item is C013.01. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Independent review required confirmation of DR-004 provenance, all 14 Rust executions, validation capability enforcement, built-in isolation, and the absence of a pinned-Java claim. Resolution states Approved after a clean independent review confirmed all 14 DR-004 variants, immutable declared-access validation capabilities, rejection without byte exposure for undeclared reads, successful declared reads, unrestricted built-in validation, separate fixture namespaces, and Rust-only provenance. C012 is complete and the next ready item is C013.01. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Independent review required confirmation of DR-004 provenance, all 14 Rust executions, validation capability enforcement, built-in isolation, and the absence of a pinned-Java claim.",
+        "tracker_summary_sha256": "515e190a96422cfe79284554e1bf8c6dbeb3ffb14185ca51cc4c98eadd70877d",
+        "tracker_resolution": "Approved after a clean independent review confirmed all 14 DR-004 variants, immutable declared-access validation capabilities, rejection without byte exposure for undeclared reads, successful declared reads, unrestricted built-in validation, separate fixture namespaces, and Rust-only provenance. C012 is complete and the next ready item is C013.01.",
+        "tracker_resolution_sha256": "d7e742c762833a10339ae63bf8656a5e9a7c49c2dae4efdb18a4f472018c725c",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "independent review"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C013-R3-001",
@@ -50602,7 +50967,21 @@
         "docs/PORTING_TRACKER.json#C013-R3-001"
       ],
       "classification": "compatibility_defect",
-      "rationale": "Tracker records a cross-language error-observation defect: broad Rust normalization could accept error bytes unequal to the captured Java bytes; the resolution restores exact byte comparison."
+      "rationale": "Tracker records a cross-language error-observation defect: broad Rust normalization could accept error bytes unequal to the captured Java bytes; the resolution restores exact byte comparison.",
+      "classification_evidence": {
+        "tracker_summary": "Broad replay error normalization could accept Rust errors that did not exactly match the captured Java error bytes.",
+        "tracker_summary_sha256": "ba6e67a120c0a67921fb5fe7e7968982fa77198649d71af9d7197a9cb78bd984",
+        "tracker_resolution": "Removed broad normalization and now compare exact captured Java error bytes on every path, retaining one narrowly keyed, byte-exact reviewed decision for the unobservable MAX_CREATE_ACCOUNT_TX_SIZE mock-only distinction. The focused suites and clean guarded gate pass with 13 affected error observations reconciled.",
+        "tracker_resolution_sha256": "6b11e5545a19416be9ef2a5924cc9f35daf69204f765cb3756b6a80ed4c3a985",
+        "observable_mismatch_markers": [
+          "captured java error bytes"
+        ],
+        "resolution_markers": [
+          "exact captured java error bytes"
+        ],
+        "non_compatibility_markers": [],
+        "derived_classification": "compatibility_defect"
+      }
     },
     {
       "finding_id": "C013-R3-002",
@@ -50610,7 +50989,17 @@
         "docs/PORTING_TRACKER.json#C013-R3-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category implementation_correctness: tracker summary states Legacy storage protobuf messages and wallet RPCs needed an explicit executable-contract scope decision because pinned Java has no matching ContractType values or production actuators. Resolution states Recorded and proved that pinned Java retains the three storage messages and RPC declarations but no executable storage transaction types; Rust therefore rejects legacy numeric types 21, 22, and 23 as InvalidContractType without treating them as supported actuators. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category implementation_correctness: tracker summary states Legacy storage protobuf messages and wallet RPCs needed an explicit executable-contract scope decision because pinned Java has no matching ContractType values or production actuators. Resolution states Recorded and proved that pinned Java retains the three storage messages and RPC declarations but no executable storage transaction types; Rust therefore rejects legacy numeric types 21, 22, and 23 as InvalidContractType without treating them as supported actuators. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Legacy storage protobuf messages and wallet RPCs needed an explicit executable-contract scope decision because pinned Java has no matching ContractType values or production actuators.",
+        "tracker_summary_sha256": "24ddaaa2a9805610a345bdce20909ab9f245ca028064bab1103d9ed22816556c",
+        "tracker_resolution": "Recorded and proved that pinned Java retains the three storage messages and RPC declarations but no executable storage transaction types; Rust therefore rejects legacy numeric types 21, 22, and 23 as InvalidContractType without treating them as supported actuators.",
+        "tracker_resolution_sha256": "dbc94eaea5bc13eb4a2a60c41ec02c01a96ee12c3a9d891789236283fd0e79ec",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C014-R2-001",
@@ -50618,7 +51007,21 @@
         "docs/PORTING_TRACKER.json#C014-R2-001"
       ],
       "classification": "compatibility_defect",
-      "rationale": "Tracker records a cross-language fork-state semantic defect: Rust could shortcut versions or use decoded witness schedules instead of Java canonical persisted fork state; the resolution removes both divergent paths."
+      "rationale": "Tracker records a cross-language fork-state semantic defect: Rust could shortcut versions or use decoded witness schedules instead of Java canonical persisted fork state; the resolution removes both divergent paths.",
+      "classification_evidence": {
+        "tracker_summary": "Fork evaluation could shortcut requested versions or derive passNew quorum from decoded active-witness schedule data instead of canonical persisted fork state.",
+        "tracker_summary_sha256": "2950e4b4e732dda8333708050024a6d86b3069e7edd2acb392dbad107ac32232",
+        "tracker_resolution": "Removed the current-version shortcut and active-witness schedule coupling. Every requested fork now uses canonical special-height or exact-width time/raw-stat state, non-1 bytes do not count as upgrades, checked interval/timestamp math is enforced, and v35 quorum uses the raw persisted statistics length.",
+        "tracker_resolution_sha256": "540f7f85359eebc06bf93250185627833dbc9e79c5b702bb1edc0e5518cd9cdd",
+        "observable_mismatch_markers": [
+          "canonical persisted fork state"
+        ],
+        "resolution_markers": [
+          "every requested fork"
+        ],
+        "non_compatibility_markers": [],
+        "derived_classification": "compatibility_defect"
+      }
     },
     {
       "finding_id": "C014-R2-002",
@@ -50626,7 +51029,19 @@
         "docs/PORTING_TRACKER.json#C014-R2-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Attacker-controlled copy, CALL, and CREATE-family ranges could reach unchecked memory allocation or energy arithmetic. Resolution states All copy and CALL/CREATE-family destination, input, and output ranges now use checked conversion/addition, reject nonzero ranges beyond 3 MiB before allocation, zero-fill and copy directly within bounded memory, and use checked memory-energy and stipend arithmetic; maximum, limit-plus-one, and oversized-word vectors cover every affected family. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Attacker-controlled copy, CALL, and CREATE-family ranges could reach unchecked memory allocation or energy arithmetic. Resolution states All copy and CALL/CREATE-family destination, input, and output ranges now use checked conversion/addition, reject nonzero ranges beyond 3 MiB before allocation, zero-fill and copy directly within bounded memory, and use checked memory-energy and stipend arithmetic; maximum, limit-plus-one, and oversized-word vectors cover every affected family. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Attacker-controlled copy, CALL, and CREATE-family ranges could reach unchecked memory allocation or energy arithmetic.",
+        "tracker_summary_sha256": "8c94e740dda65579aa54f9c08c29d81dc2692e17a0dccb7bc16aca383ce1e4d7",
+        "tracker_resolution": "All copy and CALL/CREATE-family destination, input, and output ranges now use checked conversion/addition, reject nonzero ranges beyond 3 MiB before allocation, zero-fill and copy directly within bounded memory, and use checked memory-energy and stipend arithmetic; maximum, limit-plus-one, and oversized-word vectors cover every affected family.",
+        "tracker_resolution_sha256": "f0b3765d83a4ef362350eaef2feb092f4f4a8af8cf55af981bd18ce2743636e7",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "attacker-controlled"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C014-R2-003",
@@ -50634,7 +51049,19 @@
         "docs/PORTING_TRACKER.json#C014-R2-003"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Final correctness and security reviews needed to confirm that the fork, memory, recursive execution, mutation, and rollback fixes left no blocking finding. Resolution states Independent final correctness and security reviews traced the fork controller and repository adapter, machine memory and energy, opcode A/B/C paths, recursive interpreter, results and rollback behavior. Both reviews are clean with zero surviving blocker findings. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Final correctness and security reviews needed to confirm that the fork, memory, recursive execution, mutation, and rollback fixes left no blocking finding. Resolution states Independent final correctness and security reviews traced the fork controller and repository adapter, machine memory and energy, opcode A/B/C paths, recursive interpreter, results and rollback behavior. Both reviews are clean with zero surviving blocker findings. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Final correctness and security reviews needed to confirm that the fork, memory, recursive execution, mutation, and rollback fixes left no blocking finding.",
+        "tracker_summary_sha256": "3f7acff51350711c60cfeaaa6e71ecda2ce5a3308bce9c564d7fdf698650c0a7",
+        "tracker_resolution": "Independent final correctness and security reviews traced the fork controller and repository adapter, machine memory and energy, opcode A/B/C paths, recursive interpreter, results and rollback behavior. Both reviews are clean with zero surviving blocker findings.",
+        "tracker_resolution_sha256": "b1f8de3f266f10a9eeaf90216447e22ed9afeb18a3c096b0bd54e6876b5fb811",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "security review"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C015-R1-001",
@@ -50642,7 +51069,19 @@
         "docs/PORTING_TRACKER.json#C015-R1-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Independent technical/legal provenance reviewer must confirm the newly authored Apache-2.0 Freeze clean-room record and continued prohibition on the original UNLICENSED artifact. Resolution states Independent correctness, security, and technical/legal provenance reviews are clean. The reviewer confirmed the five direct-TVM programs are independently authored from permitted public stack and numeric behavior inputs, Apache-2.0-declared, hash-bound, and not copied, translated, compiled, disassembled, decompiled, or mechanically derived from the original UNLICENSED artifact, which remains prohibited. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Independent technical/legal provenance reviewer must confirm the newly authored Apache-2.0 Freeze clean-room record and continued prohibition on the original UNLICENSED artifact. Resolution states Independent correctness, security, and technical/legal provenance reviews are clean. The reviewer confirmed the five direct-TVM programs are independently authored from permitted public stack and numeric behavior inputs, Apache-2.0-declared, hash-bound, and not copied, translated, compiled, disassembled, decompiled, or mechanically derived from the original UNLICENSED artifact, which remains prohibited. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Independent technical/legal provenance reviewer must confirm the newly authored Apache-2.0 Freeze clean-room record and continued prohibition on the original UNLICENSED artifact.",
+        "tracker_summary_sha256": "0562383de4133e2d8c30d75aa07b8359680980e7299d92ccd7124d0688333265",
+        "tracker_resolution": "Independent correctness, security, and technical/legal provenance reviews are clean. The reviewer confirmed the five direct-TVM programs are independently authored from permitted public stack and numeric behavior inputs, Apache-2.0-declared, hash-bound, and not copied, translated, compiled, disassembled, decompiled, or mechanically derived from the original UNLICENSED artifact, which remains prohibited.",
+        "tracker_resolution_sha256": "6fb08f7ccff7d8d41416c448a344b61877ca1b1b536089c57c46496eadeb2146",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "provenance reviewer"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C016-R1-001",
@@ -50650,7 +51089,21 @@
         "docs/PORTING_TRACKER.json#C016-R1-001"
       ],
       "classification": "compatibility_defect",
-      "rationale": "Tracker records a cross-language execution-policy defect: non-VM actuators could inherit VM-only fee, planning, and settlement requirements; the resolution classifies runtime kind before VM policy."
+      "rationale": "Tracker records a cross-language execution-policy defect: non-VM actuators could inherit VM-only fee, planning, and settlement requirements; the resolution classifies runtime kind before VM policy.",
+      "classification_evidence": {
+        "tracker_summary": "Non-VM actuator execution must not inherit VM-only fee-limit, energy-dynamic-property, planning, or settlement requirements.",
+        "tracker_summary_sha256": "2b915204cba6b16f51cdd84ebfd57a57a0d2a0b13473999f010ef20c71072097",
+        "tracker_resolution": "RuntimeKind now classifies execution before VM policy and planning: Create/Trigger require and settle the canonical energy plan, while NonVm receives no plan and bypasses VM-only energy policy and settlement without bypassing bandwidth, metadata, or actuator fees. The admission 6, trace 16, pipeline 19, pending 4, Java oracle, ownership, and all-targets gates passed; independent final correctness and security/economic reviews are clean.",
+        "tracker_resolution_sha256": "b917776ec3f91522628ff85b2aaded44efe5a7dbbfb52706c864341e6fcdc199",
+        "observable_mismatch_markers": [
+          "non-vm actuator execution"
+        ],
+        "resolution_markers": [
+          "classifies execution before vm policy"
+        ],
+        "non_compatibility_markers": [],
+        "derived_classification": "compatibility_defect"
+      }
     },
     {
       "finding_id": "C023-R1-001",
@@ -50658,7 +51111,21 @@
         "docs/PORTING_TRACKER.json#C023-R1-001"
       ],
       "classification": "compatibility_defect",
-      "rationale": "Tracker records a cross-language API-surface defect: shared registration could collapse duplicate Full, Solidity, and PBFT Java routes and cursors; the resolution preserves surface-specific dispatch."
+      "rationale": "Tracker records a cross-language API-surface defect: shared registration could collapse duplicate Full, Solidity, and PBFT Java routes and cursors; the resolution preserves surface-specific dispatch.",
+      "classification_evidence": {
+        "tracker_summary": "Shared route registration could collapse duplicate paths across Full, Solidity, and PBFT HTTP servers instead of preserving surface-specific dispatch and cursors.",
+        "tracker_summary_sha256": "3b52e93f07080bd8ff8bc063fd8ca5c337980c780e287a150900557d90b56abf",
+        "tracker_resolution": "Route construction and deduplication are surface-specific; the exact 215 identities and live duplicate getnodeinfo behavior prove distinct Full, Solidity, and PBFT dispatch.",
+        "tracker_resolution_sha256": "bec74d21d1467c58b76ac234661f48f4647d6f099c0160ea8a95c0777da4dc75",
+        "observable_mismatch_markers": [
+          "surface-specific dispatch"
+        ],
+        "resolution_markers": [
+          "surface-specific"
+        ],
+        "non_compatibility_markers": [],
+        "derived_classification": "compatibility_defect"
+      }
     },
     {
       "finding_id": "C023-R1-002",
@@ -50666,7 +51133,17 @@
         "docs/PORTING_TRACKER.json#C023-R1-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states Connection admission needed absolute first-header and maximum-age bounds in addition to idle I/O and request limits so silent or drip-fed clients could not retain permits indefinitely. Resolution states Added absolute first-header and connection-age deadlines, read/write idle deadlines, cancellation-safe permit release, and 50 silent plus 50 drip-socket scenario coverage; admission remains before body collection and parsing. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states Connection admission needed absolute first-header and maximum-age bounds in addition to idle I/O and request limits so silent or drip-fed clients could not retain permits indefinitely. Resolution states Added absolute first-header and connection-age deadlines, read/write idle deadlines, cancellation-safe permit release, and 50 silent plus 50 drip-socket scenario coverage; admission remains before body collection and parsing. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Connection admission needed absolute first-header and maximum-age bounds in addition to idle I/O and request limits so silent or drip-fed clients could not retain permits indefinitely.",
+        "tracker_summary_sha256": "00d5bfc93cdd0e66800d74039bbe94f7dc3d1d772ecb7c3064f4f917af705d13",
+        "tracker_resolution": "Added absolute first-header and connection-age deadlines, read/write idle deadlines, cancellation-safe permit release, and 50 silent plus 50 drip-socket scenario coverage; admission remains before body collection and parsing.",
+        "tracker_resolution_sha256": "372ad90a8b6ebc99fe5191621f961cf16b24f45a329a85b3e67e29807d8a9137",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C023-R2-003",
@@ -50674,7 +51151,19 @@
         "docs/PORTING_TRACKER.json#C023-R2-003"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category review_evidence: tracker summary states Final correctness and security reviews required confirmation of surface isolation, bounded admission and deadlines, exact route/scenario accounting, and correctly aligned tracker item notes. Resolution states Independent final correctness and security reviews are clean with zero blocker findings. Item notes now align with C023.01A route families, C023.01B transaction/contract/shielded/chain/resource/market, C023.02 surfaces, C023.03 parsing, C023.04 printing, C023.05 controls, and C023.06 evidence. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category review_evidence: tracker summary states Final correctness and security reviews required confirmation of surface isolation, bounded admission and deadlines, exact route/scenario accounting, and correctly aligned tracker item notes. Resolution states Independent final correctness and security reviews are clean with zero blocker findings. Item notes now align with C023.01A route families, C023.01B transaction/contract/shielded/chain/resource/market, C023.02 surfaces, C023.03 parsing, C023.04 printing, C023.05 controls, and C023.06 evidence. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Final correctness and security reviews required confirmation of surface isolation, bounded admission and deadlines, exact route/scenario accounting, and correctly aligned tracker item notes.",
+        "tracker_summary_sha256": "41f8fa3541b3a3067a8b0eae4c2978b4bc20680c76003ed47e8818dabe578b70",
+        "tracker_resolution": "Independent final correctness and security reviews are clean with zero blocker findings. Item notes now align with C023.01A route families, C023.01B transaction/contract/shielded/chain/resource/market, C023.02 surfaces, C023.03 parsing, C023.04 printing, C023.05 controls, and C023.06 evidence.",
+        "tracker_resolution_sha256": "8bb35cbcef8c3012584297479b70fc682dbb95ae48560673c010728f0f82d8a4",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "security review"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C027-R2-01",
@@ -50682,7 +51171,19 @@
         "docs/PORTING_TRACKER.json#C027-R2-01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category durability_concurrency: tracker summary states Replace transaction crashes could leave ambiguous old/new generations. Resolution states Phase- and mode-checked retained-lock recovery validates staged/new and old fingerprints; exact process-death matrix proves rollback/resume leaves one complete generation. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category durability_concurrency: tracker summary states Replace transaction crashes could leave ambiguous old/new generations. Resolution states Phase- and mode-checked retained-lock recovery validates staged/new and old fingerprints; exact process-death matrix proves rollback/resume leaves one complete generation. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Replace transaction crashes could leave ambiguous old/new generations.",
+        "tracker_summary_sha256": "d5c35c8aa024801d69ad9609f27f4fc1f69e3ce7e89e9fabe33e57336dbdfd77",
+        "tracker_resolution": "Phase- and mode-checked retained-lock recovery validates staged/new and old fingerprints; exact process-death matrix proves rollback/resume leaves one complete generation.",
+        "tracker_resolution_sha256": "6de707d528b83daa52c488514ef62e9469feb4dc41b7d7212dce3da6e07a4491",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "crash"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C027-R2-02",
@@ -50690,7 +51191,20 @@
         "docs/PORTING_TRACKER.json#C027-R2-02"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Keystore overwrite lacked durable crash recovery and tamper-safe journal validation. Resolution states Checksummed replacement journals, fsynced transitions, strict identity/mode checks, and abrupt/tampered/symlinked recovery tests now pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Keystore overwrite lacked durable crash recovery and tamper-safe journal validation. Resolution states Checksummed replacement journals, fsynced transitions, strict identity/mode checks, and abrupt/tampered/symlinked recovery tests now pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Keystore overwrite lacked durable crash recovery and tamper-safe journal validation.",
+        "tracker_summary_sha256": "4c7243e78b4b597e54969bbc4618d08884d3c587c773639bce09bb1c7f066b53",
+        "tracker_resolution": "Checksummed replacement journals, fsynced transitions, strict identity/mode checks, and abrupt/tampered/symlinked recovery tests now pass.",
+        "tracker_resolution_sha256": "d5bc18be9368b33ecbd93200104ad84e130e4f3ce666b624f1acc19feabbe697",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "crash",
+          "tamper"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C027-R2-03",
@@ -50698,7 +51212,17 @@
         "docs/PORTING_TRACKER.json#C027-R2-03"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states Storage lock release and fresh-directory creation had race windows under canonical combined execution. Resolution states KernelLock synchronously unlocks retained guards and directories are created atomically at mode 0700; repeated race and combined storage gates pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states Storage lock release and fresh-directory creation had race windows under canonical combined execution. Resolution states KernelLock synchronously unlocks retained guards and directories are created atomically at mode 0700; repeated race and combined storage gates pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Storage lock release and fresh-directory creation had race windows under canonical combined execution.",
+        "tracker_summary_sha256": "ee43b9d79aa82c9c8fce9c86bbf5df726127348a764e4acf2fea125655d9d084",
+        "tracker_resolution": "KernelLock synchronously unlocks retained guards and directories are created atomically at mode 0700; repeated race and combined storage gates pass.",
+        "tracker_resolution_sha256": "7b37e209dc5f81977424c8f32dfaac9de865878f5abcb893f6579548caa9a428",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C027-R2-04",
@@ -50706,7 +51230,17 @@
         "docs/PORTING_TRACKER.json#C027-R2-04"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category durability_concurrency: tracker summary states Parallel keystore recovery fixtures could collide on pid plus timestamp names. Resolution states Fixture roots add a process-local atomic suffix and retry AlreadyExists; definitive canonical gate passes. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category durability_concurrency: tracker summary states Parallel keystore recovery fixtures could collide on pid plus timestamp names. Resolution states Fixture roots add a process-local atomic suffix and retry AlreadyExists; definitive canonical gate passes. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Parallel keystore recovery fixtures could collide on pid plus timestamp names.",
+        "tracker_summary_sha256": "2e0ac175b6c119deffa9e0cbaac175fe2c02f8d0e39b06795dbb8c5a8a879218",
+        "tracker_resolution": "Fixture roots add a process-local atomic suffix and retry AlreadyExists; definitive canonical gate passes.",
+        "tracker_resolution_sha256": "ade6c6450e9ad4ceb0e253071b99844b803fb9cf22358c6d2e8bc3d55169c882",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C027-R3-01",
@@ -50714,7 +51248,17 @@
         "docs/PORTING_TRACKER.json#C027-R3-01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Storage and keystore rollback cleanup may delete recovery journals after an unchecked failed backup restore. Resolution states Storage and keystore rollback now check identity-gated backup restoration, validate/fsync restored state, retain journals/artifacts on any failure, and pass rename/fsync/tamper/destination-interference tests. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Storage and keystore rollback cleanup may delete recovery journals after an unchecked failed backup restore. Resolution states Storage and keystore rollback now check identity-gated backup restoration, validate/fsync restored state, retain journals/artifacts on any failure, and pass rename/fsync/tamper/destination-interference tests. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Storage and keystore rollback cleanup may delete recovery journals after an unchecked failed backup restore.",
+        "tracker_summary_sha256": "246d85d742f47d679394508098daf242ec2f88a1d2b0d0aabe7f26e3aba94ea2",
+        "tracker_resolution": "Storage and keystore rollback now check identity-gated backup restoration, validate/fsync restored state, retain journals/artifacts on any failure, and pass rename/fsync/tamper/destination-interference tests.",
+        "tracker_resolution_sha256": "9acae7b0f5be29750441dfae1d3aafb7b070b86ae1795e9ae8d0167974a93eb0",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C027-R3-02",
@@ -50722,7 +51266,17 @@
         "docs/PORTING_TRACKER.json#C027-R3-02"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states Move publication releases the source lock before quarantine/removal and resume removes an unlocked, unverified source. Resolution states Move retains the source lock through verification and quarantine; resume re-locks and verifies source/quarantine fingerprints before removal, with concurrent-writer and process-death coverage. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states Move publication releases the source lock before quarantine/removal and resume removes an unlocked, unverified source. Resolution states Move retains the source lock through verification and quarantine; resume re-locks and verifies source/quarantine fingerprints before removal, with concurrent-writer and process-death coverage. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Move publication releases the source lock before quarantine/removal and resume removes an unlocked, unverified source.",
+        "tracker_summary_sha256": "43dca183b082fc634a1c6ad9d7d09e9653ec61225488838498d9645c8857f278",
+        "tracker_resolution": "Move retains the source lock through verification and quarantine; resume re-locks and verifies source/quarantine fingerprints before removal, with concurrent-writer and process-death coverage.",
+        "tracker_resolution_sha256": "f85ca67082bf8f053bdd0cdc3403ebb0d254a4498748934a3966be5517c488d5",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C027-R4-01",
@@ -50730,7 +51284,19 @@
         "docs/PORTING_TRACKER.json#C027-R4-01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Storage recovery journal path handling permits arbitrary deletion and move cleanup has a remaining TOCTOU window. Resolution states Journal v3 validates destination-scoped artifact names and dev/inode identities; descriptor-bound cleanup and locked move recovery reject arbitrary-sibling and same-UID substitutions. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Storage recovery journal path handling permits arbitrary deletion and move cleanup has a remaining TOCTOU window. Resolution states Journal v3 validates destination-scoped artifact names and dev/inode identities; descriptor-bound cleanup and locked move recovery reject arbitrary-sibling and same-UID substitutions. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Storage recovery journal path handling permits arbitrary deletion and move cleanup has a remaining TOCTOU window.",
+        "tracker_summary_sha256": "19991df0c2dfa9fa9dc59eb122a09f044df8806c74dc511dac7e977fded51272",
+        "tracker_resolution": "Journal v3 validates destination-scoped artifact names and dev/inode identities; descriptor-bound cleanup and locked move recovery reject arbitrary-sibling and same-UID substitutions.",
+        "tracker_resolution_sha256": "418f9e588186364061022bd0e00e3ff99d61bf13a37a94accbb20a12cd9318ba",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "toctou"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C027-R4-02",
@@ -50738,7 +51304,19 @@
         "docs/PORTING_TRACKER.json#C027-R4-02"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Keystore overwrite/recovery has a remaining target replacement TOCTOU window. Resolution states Keystore journals bind original/replacement inodes and validated retained tombstones; staged same-UID substitutions at every overwrite boundary are refused without unlinking data. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Keystore overwrite/recovery has a remaining target replacement TOCTOU window. Resolution states Keystore journals bind original/replacement inodes and validated retained tombstones; staged same-UID substitutions at every overwrite boundary are refused without unlinking data. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Keystore overwrite/recovery has a remaining target replacement TOCTOU window.",
+        "tracker_summary_sha256": "a24e5d6b9c453ae188df1256fce24218e4cbe37d1b23c76edec5418c4b0c1e26",
+        "tracker_resolution": "Keystore journals bind original/replacement inodes and validated retained tombstones; staged same-UID substitutions at every overwrite boundary are refused without unlinking data.",
+        "tracker_resolution_sha256": "fe28432bf835fada614b18eb739d3595b7868eb6c9fa17eccade458ac6edb657",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "toctou"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C027-R4-03",
@@ -50746,7 +51324,17 @@
         "docs/PORTING_TRACKER.json#C027-R4-03"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category evidence_integrity: tracker summary states C027 evidence manifest and gate permit self-authentication or registry bypass. Resolution states Central registry pins all artifacts and five oracle sources; gate recomputes independent ledgers/observations and rejects paired expected/actual, retained-hash, coordinated-drift, and central-digest bypass mutations. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category evidence_integrity: tracker summary states C027 evidence manifest and gate permit self-authentication or registry bypass. Resolution states Central registry pins all artifacts and five oracle sources; gate recomputes independent ledgers/observations and rejects paired expected/actual, retained-hash, coordinated-drift, and central-digest bypass mutations. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "C027 evidence manifest and gate permit self-authentication or registry bypass.",
+        "tracker_summary_sha256": "64d062fa22e5d9999ffdb18e6034449e091c6a8e81c3725a0ca9739a01284c48",
+        "tracker_resolution": "Central registry pins all artifacts and five oracle sources; gate recomputes independent ledgers/observations and rejects paired expected/actual, retained-hash, coordinated-drift, and central-digest bypass mutations.",
+        "tracker_resolution_sha256": "2fa89613d91620a7dd887a0b42578c2916df4bea7a0836faf99071f69371f134",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C027-R5-01",
@@ -50754,7 +51342,17 @@
         "docs/PORTING_TRACKER.json#C027-R5-01"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category invalid_finding: tracker summary states DB root reports a zero hash for recognized namespaces with no physical rows instead of omitting them and returning 404 when none are present. Resolution states Discarded as invalid: authenticated Java TCASE-E1CE182966F2CAE4 and TCASE-5112B56F3F6C0F81 return the zero root for an existing empty child DB. Rust C008 defines 45 fixed logical namespaces without per-namespace directories, so a known zero-row namespace maps to existing empty under DR-001; unknown names remain filtered and return 404. Duplicate requested names remain preserved by contract. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category invalid_finding: tracker summary states DB root reports a zero hash for recognized namespaces with no physical rows instead of omitting them and returning 404 when none are present. Resolution states Discarded as invalid: authenticated Java TCASE-E1CE182966F2CAE4 and TCASE-5112B56F3F6C0F81 return the zero root for an existing empty child DB. Rust C008 defines 45 fixed logical namespaces without per-namespace directories, so a known zero-row namespace maps to existing empty under DR-001; unknown names remain filtered and return 404. Duplicate requested names remain preserved by contract. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "DB root reports a zero hash for recognized namespaces with no physical rows instead of omitting them and returning 404 when none are present.",
+        "tracker_summary_sha256": "8dd61235a88b35e8da3c1adf6f59f1d29bd18198691023d93ca5dc98133020b4",
+        "tracker_resolution": "Discarded as invalid: authenticated Java TCASE-E1CE182966F2CAE4 and TCASE-5112B56F3F6C0F81 return the zero root for an existing empty child DB. Rust C008 defines 45 fixed logical namespaces without per-namespace directories, so a known zero-row namespace maps to existing empty under DR-001; unknown names remain filtered and return 404. Duplicate requested names remain preserved by contract.",
+        "tracker_resolution_sha256": "65d40a59a83ceffd0f47e749adf8e56b2747d9a48acd6e0f4fa02e3923c8bc4c",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C027-R6-01",
@@ -50762,7 +51360,21 @@
         "docs/PORTING_TRACKER.json#C027-R6-01"
       ],
       "classification": "compatibility_defect",
-      "rationale": "Tracker records an observed CLI compatibility defect: Rust DB root opened or initialized missing and plain-empty paths instead of returning the Java-compatible read-only 404 result; the resolution proves no writes."
+      "rationale": "Tracker records an observed CLI compatibility defect: Rust DB root opened or initialized missing and plain-empty paths instead of returning the Java-compatible read-only 404 result; the resolution proves no writes.",
+      "classification_evidence": {
+        "tracker_summary": "db root opens and initializes missing or plain-empty paths instead of returning Java-compatible 404 without writes.",
+        "tracker_summary_sha256": "c9db5e3d71fd9a7d8ecf74166de7ea698ab14335338b4f89280a0b9fdcf3cf2f",
+        "tracker_resolution": "Closed by rust-tron/crates/tron-toolkit/tests/c027_db.rs::root_classifies_read_only_and_only_opens_valid_rust_storage: missing and plain-empty paths return 404 with byte-identical trees, while only a valid Rust store is opened.",
+        "tracker_resolution_sha256": "e45083e815a4fa39e500d7527ba6a5be4cfdc71ac1571a3857fd8ca5d347e5cf",
+        "observable_mismatch_markers": [
+          "java-compatible 404"
+        ],
+        "resolution_markers": [
+          "return 404 with byte-identical trees"
+        ],
+        "non_compatibility_markers": [],
+        "derived_classification": "compatibility_defect"
+      }
     },
     {
       "finding_id": "C027-R6-02",
@@ -50770,7 +51382,17 @@
         "docs/PORTING_TRACKER.json#C027-R6-02"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category cross_language_evidence_only: tracker summary states DB root Merkle reduction required explicit cross-language correspondence proof that odd leaves are promoted unchanged rather than duplicated. Resolution states Closed by rust-tron/crates/tron-toolkit/tests/c027_db.rs::root_matches_java_merkle_vectors_for_arbitrary_leaf_counts, which matches Java roots for 0, 1, 2, 3, 5, 6, 7, and 8 leaves and therefore covers odd promotion at multiple tree levels. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category cross_language_evidence_only: tracker summary states DB root Merkle reduction required explicit cross-language correspondence proof that odd leaves are promoted unchanged rather than duplicated. Resolution states Closed by rust-tron/crates/tron-toolkit/tests/c027_db.rs::root_matches_java_merkle_vectors_for_arbitrary_leaf_counts, which matches Java roots for 0, 1, 2, 3, 5, 6, 7, and 8 leaves and therefore covers odd promotion at multiple tree levels. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "DB root Merkle reduction required explicit parity proof that odd leaves are promoted unchanged rather than duplicated.",
+        "tracker_summary_sha256": "810d8b1ca1e3649363c0a4a4a0f13391db41d4a52241180d7627aa7e80d3c5a1",
+        "tracker_resolution": "Closed by rust-tron/crates/tron-toolkit/tests/c027_db.rs::root_matches_java_merkle_vectors_for_arbitrary_leaf_counts, which matches Java roots for 0, 1, 2, 3, 5, 6, 7, and 8 leaves and therefore covers odd promotion at multiple tree levels.",
+        "tracker_resolution_sha256": "b64d440a1c7843ee23c9e66217f0e200064960ee383b34c64cb5c5544a409b90",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R1-001",
@@ -50778,7 +51400,17 @@
         "docs/PORTING_TRACKER.json#C028-R1-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states Production node binaries must compose the real Full/Solidity service graph rather than a placeholder runtime. Resolution states Replaced canned runtime with canonical ProductionNode composition and live Full/Solidity endpoint proofs. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states Production node binaries must compose the real Full/Solidity service graph rather than a placeholder runtime. Resolution states Replaced canned runtime with canonical ProductionNode composition and live Full/Solidity endpoint proofs. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Production node binaries must compose the real Full/Solidity service graph rather than a placeholder runtime.",
+        "tracker_summary_sha256": "81b8e1be83688828a336bcf7e1590b3378967ececf9bbb32cd093f8a5ea54d16",
+        "tracker_resolution": "Replaced canned runtime with canonical ProductionNode composition and live Full/Solidity endpoint proofs.",
+        "tracker_resolution_sha256": "55b453322a1f686c62fddb2c5ce244e52449a435db698913597cfd8ecfa7cc76",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R1-002",
@@ -50786,7 +51418,19 @@
         "docs/PORTING_TRACKER.json#C028-R1-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Snapshot recovery must use the authenticated durable journal path and preserve atomic fault recovery. Resolution states Bound snapshot recovery to the authenticated durable journal and independent operator checkpoint path. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Snapshot recovery must use the authenticated durable journal path and preserve atomic fault recovery. Resolution states Bound snapshot recovery to the authenticated durable journal and independent operator checkpoint path. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Snapshot recovery must use the authenticated durable journal path and preserve atomic fault recovery.",
+        "tracker_summary_sha256": "7a8a99a27c2803cc0cba22e59bf6fb679429268f2a4eb6cbcf18f0e91eaae781",
+        "tracker_resolution": "Bound snapshot recovery to the authenticated durable journal and independent operator checkpoint path.",
+        "tracker_resolution_sha256": "8099864113e5bf14866db55e0d16a158e95215cb6b8996b514b04fefa019db0b",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "authenticated"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R1-003",
@@ -50794,7 +51438,19 @@
         "docs/PORTING_TRACKER.json#C028-R1-003"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states Release installation must publish the receipt and current slot atomically with crash-safe ordering. Resolution states Implemented crash-safe install journaling with durable receipt publication before atomic current-slot switch. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states Release installation must publish the receipt and current slot atomically with crash-safe ordering. Resolution states Implemented crash-safe install journaling with durable receipt publication before atomic current-slot switch. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Release installation must publish the receipt and current slot atomically with crash-safe ordering.",
+        "tracker_summary_sha256": "585adc2a807c470e3a545a3757457e032e0ea0cc61a749e244df0c3aa53896bb",
+        "tracker_resolution": "Implemented crash-safe install journaling with durable receipt publication before atomic current-slot switch.",
+        "tracker_resolution_sha256": "9eb9eb1367317f3222492af2a44e24632619776317a9682955328122bac4154c",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "crash"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R1-004",
@@ -50802,7 +51458,19 @@
         "docs/PORTING_TRACKER.json#C028-R1-004"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Release signature authorization must enforce the manifest channel scope. Resolution states Enforced exact canonical release:<channel> authorization for release manifests. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Release signature authorization must enforce the manifest channel scope. Resolution states Enforced exact canonical release:<channel> authorization for release manifests. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Release signature authorization must enforce the manifest channel scope.",
+        "tracker_summary_sha256": "b6e6fd07e8e9e99ea73c6b410b544f235d1d92e363ca508e05f7589318946da5",
+        "tracker_resolution": "Enforced exact canonical release:<channel> authorization for release manifests.",
+        "tracker_resolution_sha256": "9fd39934a7c09fd096a04f8e56d83872748ac5a825478cd136b2d6272ca34c5a",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "signature"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R1-005",
@@ -50810,7 +51478,17 @@
         "docs/PORTING_TRACKER.json#C028-R1-005"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Publish workflow must provision and use an external out-of-band release trust anchor. Resolution states Publish workflow now provisions a protected-environment external trust anchor with pinned digest and optional authenticated rotation. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Publish workflow must provision and use an external out-of-band release trust anchor. Resolution states Publish workflow now provisions a protected-environment external trust anchor with pinned digest and optional authenticated rotation. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Publish workflow must provision and use an external out-of-band release trust anchor.",
+        "tracker_summary_sha256": "caa555df8dadd1eeba64dae3f02c6ebb65dfc9b25d40de05afcfe3b20857ec4a",
+        "tracker_resolution": "Publish workflow now provisions a protected-environment external trust anchor with pinned digest and optional authenticated rotation.",
+        "tracker_resolution_sha256": "769791fca7d1eec08217daeca7c4c6642c89bec3f4554c966d9dd4ac44a2ca11",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R1-006",
@@ -50818,7 +51496,19 @@
         "docs/PORTING_TRACKER.json#C028-R1-006"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Bundle verification and installation must close the verified-member TOCTOU window. Resolution states Verification retains member descriptors and revalidates inode, digest, and mode at the installation boundary. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Bundle verification and installation must close the verified-member TOCTOU window. Resolution states Verification retains member descriptors and revalidates inode, digest, and mode at the installation boundary. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Bundle verification and installation must close the verified-member TOCTOU window.",
+        "tracker_summary_sha256": "a2eeca45f8b213eb031415cdd48eac88594232e4658944a889a79b2190812bc8",
+        "tracker_resolution": "Verification retains member descriptors and revalidates inode, digest, and mode at the installation boundary.",
+        "tracker_resolution_sha256": "bbe7c4b7436b68b64ffe31ca3b4d95c8abf0ba6af4c68622a0290e17c4c0668a",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "toctou"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R1-007",
@@ -50826,7 +51516,17 @@
         "docs/PORTING_TRACKER.json#C028-R1-007"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Snapshot checkpoint trust must be independent of snapshot-supplied metadata. Resolution states Snapshot acceptance now requires an independently provisioned trusted checkpoint rather than snapshot-supplied trust metadata. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Snapshot checkpoint trust must be independent of snapshot-supplied metadata. Resolution states Snapshot acceptance now requires an independently provisioned trusted checkpoint rather than snapshot-supplied trust metadata. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Snapshot checkpoint trust must be independent of snapshot-supplied metadata.",
+        "tracker_summary_sha256": "a6066bde523b9c2b7e30176ca8fbc4224d4c4a7669210cf83e576c281e592add",
+        "tracker_resolution": "Snapshot acceptance now requires an independently provisioned trusted checkpoint rather than snapshot-supplied trust metadata.",
+        "tracker_resolution_sha256": "dc7f4131b1fcc485c4e34fa71eac03845efaa3db025831a37d01088cd43d5696",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R2-001",
@@ -50834,7 +51534,17 @@
         "docs/PORTING_TRACKER.json#C028-R2-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states Production runtime still constructs a placeholder service graph instead of the complete canonical node graph. Resolution states Canonical runtime phases now compose state, execution, consensus, production P2P/discovery/PBFT, APIs, operations, and Solidity replication; semantic transaction, sync, block, reopen, and Solidity drills pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states Production runtime still constructs a placeholder service graph instead of the complete canonical node graph. Resolution states Canonical runtime phases now compose state, execution, consensus, production P2P/discovery/PBFT, APIs, operations, and Solidity replication; semantic transaction, sync, block, reopen, and Solidity drills pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Production runtime still constructs a placeholder service graph instead of the complete canonical node graph.",
+        "tracker_summary_sha256": "be03961a0a6249b07a62d2e7f0c2429ae8831c32026f01947b0ccfce11f5d03c",
+        "tracker_resolution": "Canonical runtime phases now compose state, execution, consensus, production P2P/discovery/PBFT, APIs, operations, and Solidity replication; semantic transaction, sync, block, reopen, and Solidity drills pass.",
+        "tracker_resolution_sha256": "5364a01b0e8a418139b6bef24662cddbbcbbe0aceee1d33d49169e87df09ce63",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R2-002",
@@ -50842,7 +51552,19 @@
         "docs/PORTING_TRACKER.json#C028-R2-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Publish workflow retains a path-based TOCTOU window after offline verification and before upload. Resolution states Publishing now uploads only the immutable staged snapshot retained by stage-publish after offline verification, closing candidate-path substitution. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Publish workflow retains a path-based TOCTOU window after offline verification and before upload. Resolution states Publishing now uploads only the immutable staged snapshot retained by stage-publish after offline verification, closing candidate-path substitution. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Publish workflow retains a path-based TOCTOU window after offline verification and before upload.",
+        "tracker_summary_sha256": "50a1cf8e1b47e884543a68a411b6e57663ad728aca398c95d8cf18ce2bcd2c36",
+        "tracker_resolution": "Publishing now uploads only the immutable staged snapshot retained by stage-publish after offline verification, closing candidate-path substitution.",
+        "tracker_resolution_sha256": "2970b1abb0b19dd38bd9557f084974bb1d0ee0544e86eefc786810b006b67b9e",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "toctou"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R2-003",
@@ -50850,7 +51572,17 @@
         "docs/PORTING_TRACKER.json#C028-R2-003"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Snapshot verification permits a higher snapshot-supplied checkpoint to bypass the independently trusted checkpoint. Resolution states Snapshot verification requires the exact independently provisioned checkpoint tuple; a higher unrelated signer checkpoint cannot bypass it. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Snapshot verification permits a higher snapshot-supplied checkpoint to bypass the independently trusted checkpoint. Resolution states Snapshot verification requires the exact independently provisioned checkpoint tuple; a higher unrelated signer checkpoint cannot bypass it. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Snapshot verification permits a higher snapshot-supplied checkpoint to bypass the independently trusted checkpoint.",
+        "tracker_summary_sha256": "31bfa226c77cbfcd8931d2e9c3484838e875487df812111cd6f149c0ec8611fb",
+        "tracker_resolution": "Snapshot verification requires the exact independently provisioned checkpoint tuple; a higher unrelated signer checkpoint cannot bypass it.",
+        "tracker_resolution_sha256": "45498e1f68d0c653f6fa4812e7a38589a47d1e4ad9e63881de4d10e767371f9e",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R3-001",
@@ -50858,7 +51590,19 @@
         "docs/PORTING_TRACKER.json#C028-R3-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Production backup role is not authenticated end to end and can enter MASTER unconditionally. Resolution states Production BackupService now requires authenticated election input, starts in Backup, and cannot enter Master unconditionally; focused backup/runtime proofs pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Production backup role is not authenticated end to end and can enter MASTER unconditionally. Resolution states Production BackupService now requires authenticated election input, starts in Backup, and cannot enter Master unconditionally; focused backup/runtime proofs pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Production backup role is not authenticated end to end and can enter MASTER unconditionally.",
+        "tracker_summary_sha256": "ca2216fef3383c38ad891f64020215b09a772da782b42ebbd5b39b8edaf471df",
+        "tracker_resolution": "Production BackupService now requires authenticated election input, starts in Backup, and cannot enter Master unconditionally; focused backup/runtime proofs pass.",
+        "tracker_resolution_sha256": "f910c8265450df8a0b4f13686e1435844158b661c4dfb5a4afb8e781406b3abc",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "authenticated"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R3-002",
@@ -50866,7 +51610,19 @@
         "docs/PORTING_TRACKER.json#C028-R3-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Snapshot trust inputs permit symlink/path substitution instead of requiring stable authenticated file identity. Resolution states Snapshot trust store, descriptor, and watermark inputs use descriptor-safe non-symlink file identity and exact independent checkpoint validation. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Snapshot trust inputs permit symlink/path substitution instead of requiring stable authenticated file identity. Resolution states Snapshot trust store, descriptor, and watermark inputs use descriptor-safe non-symlink file identity and exact independent checkpoint validation. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Snapshot trust inputs permit symlink/path substitution instead of requiring stable authenticated file identity.",
+        "tracker_summary_sha256": "9b4af42548757956c62e8ea1411d7e17583283d2c4af3043db3bf38308dc1106",
+        "tracker_resolution": "Snapshot trust store, descriptor, and watermark inputs use descriptor-safe non-symlink file identity and exact independent checkpoint validation.",
+        "tracker_resolution_sha256": "094c7e636723d3cc39c562fcee14d8541dbe657e1490b3e04697c17357d333bc",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "authenticated"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R3-003",
@@ -50874,7 +51630,17 @@
         "docs/PORTING_TRACKER.json#C028-R3-003"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category evidence_integrity: tracker summary states The 44-drill and 62-production-row evidence permits substitutable proof substitution instead of exact row-specific observable evidence. Resolution states All 44 drills now have unique exact condition/observation runners and all 62 production rows have row-specific evidence; substitution mutation guards pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category evidence_integrity: tracker summary states The 44-drill and 62-production-row evidence permits substitutable proof substitution instead of exact row-specific observable evidence. Resolution states All 44 drills now have unique exact condition/observation runners and all 62 production rows have row-specific evidence; substitution mutation guards pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The 44-drill and 62-production-row evidence permits generic proof substitution instead of exact row-specific observable evidence.",
+        "tracker_summary_sha256": "2420024370d9517711c60c53edacd01cb8a21188fd1a80914aa561834186ed0c",
+        "tracker_resolution": "All 44 drills now have unique exact condition/observation runners and all 62 production rows have row-specific evidence; substitution mutation guards pass.",
+        "tracker_resolution_sha256": "f9a5fb4f215124a762af264513a8fddfd5e68b4b03866ce204e136ff8072127e",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R3-004",
@@ -50882,7 +51648,21 @@
         "docs/PORTING_TRACKER.json#C028-R3-004"
       ],
       "classification": "compatibility_defect",
-      "rationale": "Tracker records a published-surface compatibility defect: packaging advertised a Solidity JSON-RPC endpoint absent from the authenticated supported surface; the resolution removes that endpoint advertisement."
+      "rationale": "Tracker records a published-surface compatibility defect: packaging advertised a Solidity JSON-RPC endpoint absent from the authenticated supported surface; the resolution removes that endpoint advertisement.",
+      "classification_evidence": {
+        "tracker_summary": "Packaging advertises a Solidity JSON-RPC surface that C026 does not support and must not publish.",
+        "tracker_summary_sha256": "6925352817e7e82ffc01536474b102cd0c53087aeba6e0d6266ca48e44fa776e",
+        "tracker_resolution": "Removed unsupported Solidity JSON-RPC packaging advertisement and verified the exact C026 Solidity surface and forbidden ports.",
+        "tracker_resolution_sha256": "2f4ac14da74040b02af92a0ebf2b05c2e62fd34c43aa31d9a3701cd53e46c623",
+        "observable_mismatch_markers": [
+          "solidity json-rpc surface"
+        ],
+        "resolution_markers": [
+          "removed unsupported solidity json-rpc"
+        ],
+        "non_compatibility_markers": [],
+        "derived_classification": "compatibility_defect"
+      }
     },
     {
       "finding_id": "C028-R4-001",
@@ -50890,7 +51670,17 @@
         "docs/PORTING_TRACKER.json#C028-R4-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states Install receipt validation derives a current path that can disagree with the configured installation root. Resolution states Signed manifest and receipt now bind canonical install_prefix/current_target/config_root/receipt_path; install, recovery, verify-install, and node preflight reject mismatches and relocations. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states Install receipt validation derives a current path that can disagree with the configured installation root. Resolution states Signed manifest and receipt now bind canonical install_prefix/current_target/config_root/receipt_path; install, recovery, verify-install, and node preflight reject mismatches and relocations. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Install receipt validation derives a current path that can disagree with the configured installation root.",
+        "tracker_summary_sha256": "103dc41b44b087f00f874b0785ecb6e755a51457c3828bdf9cba20062b27a5a9",
+        "tracker_resolution": "Signed manifest and receipt now bind canonical install_prefix/current_target/config_root/receipt_path; install, recovery, verify-install, and node preflight reject mismatches and relocations.",
+        "tracker_resolution_sha256": "57709f8ba464ecab1a0d5ba233ed296f12aa86860cc7719463e8efe9f91eb48e",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R4-002",
@@ -50898,7 +51688,17 @@
         "docs/PORTING_TRACKER.json#C028-R4-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category evidence_integrity: tracker summary states The 44-drill manifest still permits semantic substitutions where a row-specific condition is not proved by its dispatched behavior. Resolution states All 44 rows dispatch distinct registered semantic functions with exact condition/observation/result evidence; five mutation guards reject runner, proof, condition, observation, and omission substitutions. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category evidence_integrity: tracker summary states The 44-drill manifest still permits semantic substitutions where a row-specific condition is not proved by its dispatched behavior. Resolution states All 44 rows dispatch distinct registered semantic functions with exact condition/observation/result evidence; five mutation guards reject runner, proof, condition, observation, and omission substitutions. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The 44-drill manifest still permits semantic substitutions where a row-specific condition is not proved by its dispatched behavior.",
+        "tracker_summary_sha256": "952176c3b8d1485c00c4b7e45411b22e9b839a87fe42a3c932333f5b790f5a6f",
+        "tracker_resolution": "All 44 rows dispatch distinct registered semantic functions with exact condition/observation/result evidence; five mutation guards reject runner, proof, condition, observation, and omission substitutions.",
+        "tracker_resolution_sha256": "98df02e7e1163da7477d98e67d09da3e431d2c34e68b3f1c31ec95d39b4a65de",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R4-003",
@@ -50906,7 +51706,19 @@
         "docs/PORTING_TRACKER.json#C028-R4-003"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Clean-install authentication uses a one-of-one signing threshold instead of exercising the release threshold contract. Resolution states Clean-install trust uses three independent Ed25519 keys, threshold two, and two signatures; missing or corrupted second signatures reject. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Clean-install authentication uses a one-of-one signing threshold instead of exercising the release threshold contract. Resolution states Clean-install trust uses three independent Ed25519 keys, threshold two, and two signatures; missing or corrupted second signatures reject. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Clean-install authentication uses a one-of-one signing threshold instead of exercising the release threshold contract.",
+        "tracker_summary_sha256": "2daa3f52bd9b368b3d8e90a449c56cf46894153806c706bcb6990ca336b6ef11",
+        "tracker_resolution": "Clean-install trust uses three independent Ed25519 keys, threshold two, and two signatures; missing or corrupted second signatures reject.",
+        "tracker_resolution_sha256": "dd3b71e55cc1367a634ff18dfb8b7ee5f14d6ecae91cc0a57c7a681e56003a30",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "signing"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R4-004",
@@ -50914,7 +51726,17 @@
         "docs/PORTING_TRACKER.json#C028-R4-004"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Release candidate and publish workflows are disconnected and do not bind the published bytes to one immutable release identity. Resolution states Candidate inventory and publish transfer are bound to one immutable release identity, channel, tag, candidate digest, and authenticated publication inventory. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Release candidate and publish workflows are disconnected and do not bind the published bytes to one immutable release identity. Resolution states Candidate inventory and publish transfer are bound to one immutable release identity, channel, tag, candidate digest, and authenticated publication inventory. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Release candidate and publish workflows are disconnected and do not bind the published bytes to one immutable release identity.",
+        "tracker_summary_sha256": "d48eba6e554e2962a8f3fc220df1f0200410d915ba74e685f7da1f395599d955",
+        "tracker_resolution": "Candidate inventory and publish transfer are bound to one immutable release identity, channel, tag, candidate digest, and authenticated publication inventory.",
+        "tracker_resolution_sha256": "40a968dda8a352d533d4209a65e28952214ec3672f84294591878c2ad78f3903",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R4-005",
@@ -50922,7 +51744,17 @@
         "docs/PORTING_TRACKER.json#C028-R4-005"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states The shipped container layout lacks required packaged configuration and externally provisioned trust, keyring, receipt, and data path wiring. Resolution states Release and container layouts now install bin/config trees and require external candidate, release/snapshot trust, backup keyring, Sapling, receipt, config, and data mounts with mandatory offline install/verify/preflight. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states The shipped container layout lacks required packaged configuration and externally provisioned trust, keyring, receipt, and data path wiring. Resolution states Release and container layouts now install bin/config trees and require external candidate, release/snapshot trust, backup keyring, Sapling, receipt, config, and data mounts with mandatory offline install/verify/preflight. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The shipped container layout lacks required packaged configuration and externally provisioned trust, keyring, receipt, and data path wiring.",
+        "tracker_summary_sha256": "3a07177b0fa7dc5295ab43143403e978f8bb9a9c7c97e968fe69f9ca736071a2",
+        "tracker_resolution": "Release and container layouts now install bin/config trees and require external candidate, release/snapshot trust, backup keyring, Sapling, receipt, config, and data mounts with mandatory offline install/verify/preflight.",
+        "tracker_resolution_sha256": "08620dce4c9fabac51e5ca12013a42009688035b279084fc0600b0902cfe48be",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R5-001",
@@ -50930,7 +51762,17 @@
         "docs/PORTING_TRACKER.json#C028-R5-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states The installer verifies signed configuration artifacts but never materializes them into the signed config root. Resolution states Artifact-only installation now uses the packaged verifier and proves all four signed configuration files are materialized under the signed current config selector. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states The installer verifies signed configuration artifacts but never materializes them into the signed config root. Resolution states Artifact-only installation now uses the packaged verifier and proves all four signed configuration files are materialized under the signed current config selector. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The installer verifies signed configuration artifacts but never materializes them into the signed config root.",
+        "tracker_summary_sha256": "8b9223f679710c502fd26f959dcc2e6387a35b73cdfbba3dfd81f7ffddd68d43",
+        "tracker_resolution": "Artifact-only installation now uses the packaged verifier and proves all four signed configuration files are materialized under the signed current config selector.",
+        "tracker_resolution_sha256": "f79ce77e8d20ee043ec31b63c52c51714ef7f627619abd83fbebf511dad3a69f",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R5-002",
@@ -50938,7 +51780,17 @@
         "docs/PORTING_TRACKER.json#C028-R5-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states The OCI image configuration names an entrypoint path that is absent from the produced root filesystem. Resolution states The emitted OCI rootfs contains and executes /usr/local/bin/entrypoint.sh as the declared nonroot entrypoint. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states The OCI image configuration names an entrypoint path that is absent from the produced root filesystem. Resolution states The emitted OCI rootfs contains and executes /usr/local/bin/entrypoint.sh as the declared nonroot entrypoint. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The OCI image configuration names an entrypoint path that is absent from the produced root filesystem.",
+        "tracker_summary_sha256": "8b866dc141d2a21d24e029267d05449db208dca05ee4e72a8a8b3676170282aa",
+        "tracker_resolution": "The emitted OCI rootfs contains and executes /usr/local/bin/entrypoint.sh as the declared nonroot entrypoint.",
+        "tracker_resolution_sha256": "d4ba060c187ca8e427577fcd3e9be58a552d14b8521f026476f87d8a67f5d9ad",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R5-003",
@@ -50946,7 +51798,17 @@
         "docs/PORTING_TRACKER.json#C028-R5-003"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states The OCI config records the compressed layer hash as diff_id instead of the uncompressed layer digest. Resolution states OCI validation and mutation guards bind diff_ids to the normalized uncompressed rootfs tar digest rather than the compressed layer digest. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states The OCI config records the compressed layer hash as diff_id instead of the uncompressed layer digest. Resolution states OCI validation and mutation guards bind diff_ids to the normalized uncompressed rootfs tar digest rather than the compressed layer digest. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The OCI config records the compressed layer hash as diff_id instead of the uncompressed layer digest.",
+        "tracker_summary_sha256": "4feda5ffa58c66f77763c4cef3c331a81892c4e5c94d77a84a17f581c51ac941",
+        "tracker_resolution": "OCI validation and mutation guards bind diff_ids to the normalized uncompressed rootfs tar digest rather than the compressed layer digest.",
+        "tracker_resolution_sha256": "b64075df497998ea9eee074b9ca92dd0bfb3179105126db3f445ba4cb9364922",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R5-004",
@@ -50954,7 +51816,17 @@
         "docs/PORTING_TRACKER.json#C028-R5-004"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category durability_concurrency: tracker summary states The 44 drill rows dispatch synthetic run_probe labels rather than executing their exact recovery and authentication behaviors. Resolution states The synthetic probe was removed; the manifest dispatches the exact 44-key union from six family CASES registries, executes all 44 artifact-backed cases, and rejects seven substitution, omission, and duplication mutations. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category durability_concurrency: tracker summary states The 44 drill rows dispatch synthetic run_probe labels rather than executing their exact recovery and authentication behaviors. Resolution states The synthetic probe was removed; the manifest dispatches the exact 44-key union from six family CASES registries, executes all 44 artifact-backed cases, and rejects seven substitution, omission, and duplication mutations. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The 44 drill rows dispatch synthetic run_probe labels rather than executing their exact recovery and authentication behaviors.",
+        "tracker_summary_sha256": "6f7384461b6b07538eeb3119e5570004af77416e95a7b24291983f4a45a7042b",
+        "tracker_resolution": "The synthetic probe was removed; the manifest dispatches the exact 44-key union from six family CASES registries, executes all 44 artifact-backed cases, and rejects seven substitution, omission, and duplication mutations.",
+        "tracker_resolution_sha256": "a1298816119a884e9bc791c5acbeda5fc18428303b97e761b6708095f4e054e5",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R6-001",
@@ -50962,7 +51834,17 @@
         "docs/PORTING_TRACKER.json#C028-R6-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Compose does not provide TRON_VERIFICATION_TIME or the complete material set required by the OCI entrypoint. Resolution states Compose and the emitted OCI entrypoint now bind trusted RFC3339 verification time and the complete externally mounted candidate, trust, keyring, Sapling, receipt, config, and data material set; live container rejection and conformance probes pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Compose does not provide TRON_VERIFICATION_TIME or the complete material set required by the OCI entrypoint. Resolution states Compose and the emitted OCI entrypoint now bind trusted RFC3339 verification time and the complete externally mounted candidate, trust, keyring, Sapling, receipt, config, and data material set; live container rejection and conformance probes pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Compose does not provide TRON_VERIFICATION_TIME or the complete material set required by the OCI entrypoint.",
+        "tracker_summary_sha256": "cf7ae7ca46f85b4eb8826840e7b8b0149583c04045718e5a0ef83e528b93b43c",
+        "tracker_resolution": "Compose and the emitted OCI entrypoint now bind trusted RFC3339 verification time and the complete externally mounted candidate, trust, keyring, Sapling, receipt, config, and data material set; live container rejection and conformance probes pass.",
+        "tracker_resolution_sha256": "e7a0d78e1f9dcc6fcfe165418d753ab3a5a6d420969bda06326d405583f4698e",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R6-002",
@@ -50970,7 +51852,17 @@
         "docs/PORTING_TRACKER.json#C028-R6-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category provenance_legal: tracker summary states The signed OCI build uses unpinned apt BusyBox input and permits PATH fallback instead of exact shipped executable paths. Resolution states Release assembly now requires an explicit absolute BusyBox executable plus exact digest, version, license, and immutable provenance, rejects PATH discovery, records the material in SBOM/provenance, and the canonical gate performs two actual locked/offline clean builds. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category provenance_legal: tracker summary states The signed OCI build uses unpinned apt BusyBox input and permits PATH fallback instead of exact shipped executable paths. Resolution states Release assembly now requires an explicit absolute BusyBox executable plus exact digest, version, license, and immutable provenance, rejects PATH discovery, records the material in SBOM/provenance, and the canonical gate performs two actual locked/offline clean builds. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The signed OCI build uses unpinned apt BusyBox input and permits PATH fallback instead of exact shipped executable paths.",
+        "tracker_summary_sha256": "9ce440d5a804986ba4c9947e101de437a54200d4aeb7713a5fcb6fb73a5282c0",
+        "tracker_resolution": "Release assembly now requires an explicit absolute BusyBox executable plus exact digest, version, license, and immutable provenance, rejects PATH discovery, records the material in SBOM/provenance, and the canonical gate performs two actual locked/offline clean builds.",
+        "tracker_resolution_sha256": "489ca11d569de0cad4bb84a6a8794cc63208775bc163e57e191ab91232fc2719",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R6-003",
@@ -50978,7 +51870,17 @@
         "docs/PORTING_TRACKER.json#C028-R6-003"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states Release workflows disable submodules, so canonical Java guards and prerequisite gates cannot execute on the checked-out tree. Resolution states Both release workflows initialize recursive submodules and run the immutable java-tron guard before the C028 gate while retaining locked/offline release controls. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states Release workflows disable submodules, so canonical Java guards and prerequisite gates cannot execute on the checked-out tree. Resolution states Both release workflows initialize recursive submodules and run the immutable java-tron guard before the C028 gate while retaining locked/offline release controls. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Release workflows disable submodules, so canonical Java guards and prerequisite gates cannot execute on the checked-out tree.",
+        "tracker_summary_sha256": "4de938068a9c6667d4a3401535a71dea4a840ecaed45e0999a07965c37e8f96a",
+        "tracker_resolution": "Both release workflows initialize recursive submodules and run the immutable java-tron guard before the C028 gate while retaining locked/offline release controls.",
+        "tracker_resolution_sha256": "708be0786fe5e32a80647fc22f3148528a70bd315573827c0f9943a3da107d61",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R7-001",
@@ -50986,7 +51888,19 @@
         "docs/PORTING_TRACKER.json#C028-R7-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Publication inventory and release tag are not bound to the signed release source_revision, permitting publication identity to diverge from authenticated source identity. Resolution states The signed manifest source_revision is now a canonical lowercase 40-hex Git SHA-1 carried into candidate and publication inventories and workflow metadata. Publish fetches only refs/tags/<release-id>, peels annotated or lightweight tags to a commit, checks out that exact commit, and rejects any tag, checkout, metadata, artifact, or authenticated inventory revision mismatch before release creation or upload. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Publication inventory and release tag are not bound to the signed release source_revision, permitting publication identity to diverge from authenticated source identity. Resolution states The signed manifest source_revision is now a canonical lowercase 40-hex Git SHA-1 carried into candidate and publication inventories and workflow metadata. Publish fetches only refs/tags/<release-id>, peels annotated or lightweight tags to a commit, checks out that exact commit, and rejects any tag, checkout, metadata, artifact, or authenticated inventory revision mismatch before release creation or upload. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Publication inventory and release tag are not bound to the signed release source_revision, permitting publication identity to diverge from authenticated source identity.",
+        "tracker_summary_sha256": "565862fd4e8d68c97eab99ee9c2c501fb8fde271497260d073fad6ba731d20f3",
+        "tracker_resolution": "The signed manifest source_revision is now a canonical lowercase 40-hex Git SHA-1 carried into candidate and publication inventories and workflow metadata. Publish fetches only refs/tags/<release-id>, peels annotated or lightweight tags to a commit, checks out that exact commit, and rejects any tag, checkout, metadata, artifact, or authenticated inventory revision mismatch before release creation or upload.",
+        "tracker_resolution_sha256": "d57032daf08fc981f779220b9efc77eada3283a28bde20e6cf0071556825a2c9",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "authenticated"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R7-002",
@@ -50994,7 +51908,19 @@
         "docs/PORTING_TRACKER.json#C028-R7-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states The candidate job executes externally downloaded BusyBox before signing secrets are used on the same runner, so untrusted executable input shares the signing-secret boundary. Resolution states Candidate assembly and downloaded BusyBox inspection run without signing secrets; a fresh isolated signing job downloads only the immutable unsigned candidate, signs metadata without executing candidate content, scrubs keys and workspace, and seals the digest-bound signed candidate for publication. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states The candidate job executes externally downloaded BusyBox before signing secrets are used on the same runner, so untrusted executable input shares the signing-secret boundary. Resolution states Candidate assembly and downloaded BusyBox inspection run without signing secrets; a fresh isolated signing job downloads only the immutable unsigned candidate, signs metadata without executing candidate content, scrubs keys and workspace, and seals the digest-bound signed candidate for publication. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The candidate job executes externally downloaded BusyBox before signing secrets are used on the same runner, so untrusted executable input shares the signing-secret boundary.",
+        "tracker_summary_sha256": "f2cd3c7ba0282a338016d8d62cd2d75c031eca7e463371255fdb12624e3379bd",
+        "tracker_resolution": "Candidate assembly and downloaded BusyBox inspection run without signing secrets; a fresh isolated signing job downloads only the immutable unsigned candidate, signs metadata without executing candidate content, scrubs keys and workspace, and seals the digest-bound signed candidate for publication.",
+        "tracker_resolution_sha256": "f715166584b1e48c70d420fa89fca52e51eede86be24280b24e8086dff77aef8",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "signing"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R8-001",
@@ -51002,7 +51928,19 @@
         "docs/PORTING_TRACKER.json#C028-R8-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states The isolated signing job self-authorizes signer identity and candidate digest from the candidate checkout instead of an independently trusted workflow boundary. Resolution states Production signing is now a job-level call to the exact commit-pinned protected external reusable workflow. The candidate repository cannot select signer bytes or digest, access authority secrets, execute the signer, or replace the authority workflow; targeted static and mutation tests plus the complete canonical gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states The isolated signing job self-authorizes signer identity and candidate digest from the candidate checkout instead of an independently trusted workflow boundary. Resolution states Production signing is now a job-level call to the exact commit-pinned protected external reusable workflow. The candidate repository cannot select signer bytes or digest, access authority secrets, execute the signer, or replace the authority workflow; targeted static and mutation tests plus the complete canonical gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The isolated signing job self-authorizes signer identity and candidate digest from the candidate checkout instead of an independently trusted workflow boundary.",
+        "tracker_summary_sha256": "7c68cf53f34c82a13429e35eb0e555e75a85e3acfdff52920fe226992c2b59f4",
+        "tracker_resolution": "Production signing is now a job-level call to the exact commit-pinned protected external reusable workflow. The candidate repository cannot select signer bytes or digest, access authority secrets, execute the signer, or replace the authority workflow; targeted static and mutation tests plus the complete canonical gate pass.",
+        "tracker_resolution_sha256": "8fa273abb300e33f2b94d4073fd38c8a96434a2a1d449ea10ee2554271c6ff1a",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "signing"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R9-001",
@@ -51010,7 +51948,19 @@
         "docs/PORTING_TRACKER.json#C028-R9-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Snapshot verification accepts threshold signatures without enforcing the exact TrustRole.scope, allowing a mismatched authorized role to satisfy the snapshot threshold. Resolution states Snapshot verification now calls scoped DSSE verification with the exact canonical snapshot:<network> scope derived from the authenticated import network before any mutation. Dedicated wrong-scope and cross-network signed-role integration tests pass, and C028-D14 executes the real integration-test path. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Snapshot verification accepts threshold signatures without enforcing the exact TrustRole.scope, allowing a mismatched authorized role to satisfy the snapshot threshold. Resolution states Snapshot verification now calls scoped DSSE verification with the exact canonical snapshot:<network> scope derived from the authenticated import network before any mutation. Dedicated wrong-scope and cross-network signed-role integration tests pass, and C028-D14 executes the real integration-test path. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Snapshot verification accepts threshold signatures without enforcing the exact TrustRole.scope, allowing a mismatched authorized role to satisfy the snapshot threshold.",
+        "tracker_summary_sha256": "01c8d7930ef8962872f173321a526e17475495e2cd5cf0f3c94b46ba4fd45a7f",
+        "tracker_resolution": "Snapshot verification now calls scoped DSSE verification with the exact canonical snapshot:<network> scope derived from the authenticated import network before any mutation. Dedicated wrong-scope and cross-network signed-role integration tests pass, and C028-D14 executes the real integration-test path.",
+        "tracker_resolution_sha256": "783abe857537b474d8a411324984b6cede146fb67c4760d3f754f547ee54e0fd",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "signature"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R9-002",
@@ -51018,7 +51968,19 @@
         "docs/PORTING_TRACKER.json#C028-R9-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states The commit-pinned external reusable signing workflow is unreachable from the public candidate caller, so the production signing handoff is not operationally usable. Resolution states Production signing moved to an accessible same-repository workflow_run authority whose definition is taken from the protected default branch. It rejects fork runs, failed or stale candidate runs, workflow name/path spoofing, candidate checkouts, caller-supplied signer authority, digest or bytes, and unsigned artifact-name/release mismatches; targeted mutations and the complete handoff policy pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states The commit-pinned external reusable signing workflow is unreachable from the public candidate caller, so the production signing handoff is not operationally usable. Resolution states Production signing moved to an accessible same-repository workflow_run authority whose definition is taken from the protected default branch. It rejects fork runs, failed or stale candidate runs, workflow name/path spoofing, candidate checkouts, caller-supplied signer authority, digest or bytes, and unsigned artifact-name/release mismatches; targeted mutations and the complete handoff policy pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The commit-pinned external reusable signing workflow is unreachable from the public candidate caller, so the production signing handoff is not operationally usable.",
+        "tracker_summary_sha256": "258c61b41e300fee1144972255cd46942ede5a0a289e1ecd7bca05ca480a1c12",
+        "tracker_resolution": "Production signing moved to an accessible same-repository workflow_run authority whose definition is taken from the protected default branch. It rejects fork runs, failed or stale candidate runs, workflow name/path spoofing, candidate checkouts, caller-supplied signer authority, digest or bytes, and unsigned artifact-name/release mismatches; targeted mutations and the complete handoff policy pass.",
+        "tracker_resolution_sha256": "587f1c5c531c087988aa454e84af519c71aa51f5df332a1cd261530f03d2032e",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "signing"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R10-001",
@@ -51026,7 +51988,19 @@
         "docs/PORTING_TRACKER.json#C028-R10-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states Release installation has a crash window after filesystem mutation but before the durable journal phase records the mutation, permitting incomplete or ambiguous recovery. Resolution states Installer recovery now reconciles the durable journal against retained filesystem effects before phase advancement. Targeted 14-case release verification and five Python drill tests cover mutation-before-phase process death and prove deterministic completion or rollback without ambiguous publication state. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states Release installation has a crash window after filesystem mutation but before the durable journal phase records the mutation, permitting incomplete or ambiguous recovery. Resolution states Installer recovery now reconciles the durable journal against retained filesystem effects before phase advancement. Targeted 14-case release verification and five Python drill tests cover mutation-before-phase process death and prove deterministic completion or rollback without ambiguous publication state. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Release installation has a crash window after filesystem mutation but before the durable journal phase records the mutation, permitting incomplete or ambiguous recovery.",
+        "tracker_summary_sha256": "1fa1b7552db287f5c2dc157fd063bfe19e8b17121a1ff69357885345c1d36619",
+        "tracker_resolution": "Installer recovery now reconciles the durable journal against retained filesystem effects before phase advancement. Targeted 14-case release verification and five Python drill tests cover mutation-before-phase process death and prove deterministic completion or rollback without ambiguous publication state.",
+        "tracker_resolution_sha256": "46fdc3ee55db8f63651f3605db67411d2923592fb4ecf454461b55f19bb05f5c",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "crash"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R10-002",
@@ -51034,7 +52008,20 @@
         "docs/PORTING_TRACKER.json#C028-R10-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states C028 schema validation can be bypassed, and not every C028 schema is authenticated through the central registry and mutation coverage. Resolution states The gate now validates all five C028 documents with authenticated Draft 2020-12 schemas, registers every schema plus the schema regression suite in the central manifest, rejects unknown fields and coordinated schema/document drift, and executes 30 mutation guards. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states C028 schema validation can be bypassed, and not every C028 schema is authenticated through the central registry and mutation coverage. Resolution states The gate now validates all five C028 documents with authenticated Draft 2020-12 schemas, registers every schema plus the schema regression suite in the central manifest, rejects unknown fields and coordinated schema/document drift, and executes 30 mutation guards. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "C028 schema validation can be bypassed, and not every C028 schema is authenticated through the central registry and mutation coverage.",
+        "tracker_summary_sha256": "d89b595e364b3ffe8a58656cc5185202fe112a06da605e6eddba4f6a46498161",
+        "tracker_resolution": "The gate now validates all five C028 documents with authenticated Draft 2020-12 schemas, registers every schema plus the schema regression suite in the central manifest, rejects unknown fields and coordinated schema/document drift, and executes 30 mutation guards.",
+        "tracker_resolution_sha256": "b19922452f2ab9fb39e5ac0ca087855f4ae32c3af8e86e2403ce744071e1c012",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "authenticated",
+          "schema validation"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R10-003",
@@ -51042,7 +52029,19 @@
         "docs/PORTING_TRACKER.json#C028-R10-003"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states The publish workflow interpolates expected_release_id into shell commands without first rejecting shell metacharacters, permitting command injection through workflow input. Resolution states The publish workflow validates the release identifier against the strict canonical character policy before privileged steps or shell interpolation, removes untrusted expressions from shell source, and rejects malicious metacharacter inputs in targeted signing-authority tests. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states The publish workflow interpolates expected_release_id into shell commands without first rejecting shell metacharacters, permitting command injection through workflow input. Resolution states The publish workflow validates the release identifier against the strict canonical character policy before privileged steps or shell interpolation, removes untrusted expressions from shell source, and rejects malicious metacharacter inputs in targeted signing-authority tests. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The publish workflow interpolates expected_release_id into shell commands without first rejecting shell metacharacters, permitting command injection through workflow input.",
+        "tracker_summary_sha256": "902d1b381c0bf1e2eb1bdb670f47f2ca9a14aecc13415f1f5a8cd9c4d3bd27e4",
+        "tracker_resolution": "The publish workflow validates the release identifier against the strict canonical character policy before privileged steps or shell interpolation, removes untrusted expressions from shell source, and rejects malicious metacharacter inputs in targeted signing-authority tests.",
+        "tracker_resolution_sha256": "5c46cd9eba91780cb1e3bf4f3f8431603abaaed06a54d2dec2de2d96c3779425",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "command injection"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R11-001",
@@ -51050,7 +52049,19 @@
         "docs/PORTING_TRACKER.json#C028-R11-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states The signer emits c028-workflow-metadata-v1 while the publish validator requires obsolete c028-workflow-candidate-v1, so the authenticated production handoff cannot validate its own output. Resolution states The signer and publisher now produce and validate one exact c028-workflow-metadata-v1 schema with candidate/signing run and protected workflow bindings. All 22 metadata/schema/authority tests and the complete ten-command C028 gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states The signer emits c028-workflow-metadata-v1 while the publish validator requires obsolete c028-workflow-candidate-v1, so the authenticated production handoff cannot validate its own output. Resolution states The signer and publisher now produce and validate one exact c028-workflow-metadata-v1 schema with candidate/signing run and protected workflow bindings. All 22 metadata/schema/authority tests and the complete ten-command C028 gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The signer emits c028-workflow-metadata-v1 while the publish validator requires obsolete c028-workflow-candidate-v1, so the authenticated production handoff cannot validate its own output.",
+        "tracker_summary_sha256": "678ef95c82de6886b2c35b7dd68443b081726ec4a542c7094cba23b226905331",
+        "tracker_resolution": "The signer and publisher now produce and validate one exact c028-workflow-metadata-v1 schema with candidate/signing run and protected workflow bindings. All 22 metadata/schema/authority tests and the complete ten-command C028 gate pass.",
+        "tracker_resolution_sha256": "26e3f623acff227b0f7c6196f2fee662ee8ca969c268214840d1eaae045c3655",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "authenticated"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R11-002",
@@ -51058,7 +52069,17 @@
         "docs/PORTING_TRACKER.json#C028-R11-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Container restart verify-install trusts a mutable unsigned receipt and installed-file state without re-authenticating them against the signed release manifest and externally provisioned trust root. Resolution states Restart verification now re-authenticates the signed manifest and candidate bundle under the externally provisioned trust store, channel, verification time, and sequence floor before checking receipt and installed bytes. Release-verifier tests, the live materialized container restart drill, and the complete ten-command C028 gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Container restart verify-install trusts a mutable unsigned receipt and installed-file state without re-authenticating them against the signed release manifest and externally provisioned trust root. Resolution states Restart verification now re-authenticates the signed manifest and candidate bundle under the externally provisioned trust store, channel, verification time, and sequence floor before checking receipt and installed bytes. Release-verifier tests, the live materialized container restart drill, and the complete ten-command C028 gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Container restart verify-install trusts a mutable unsigned receipt and installed-file state without re-authenticating them against the signed release manifest and externally provisioned trust root.",
+        "tracker_summary_sha256": "e64c31dada2044ff7453b2ea61431bbbb7ad7919a463dab203500e89052b7249",
+        "tracker_resolution": "Restart verification now re-authenticates the signed manifest and candidate bundle under the externally provisioned trust store, channel, verification time, and sequence floor before checking receipt and installed bytes. Release-verifier tests, the live materialized container restart drill, and the complete ten-command C028 gate pass.",
+        "tracker_resolution_sha256": "ef73f12ee5bafbeceed9736b218307a66f50d539c95baa40a4a28ebb8841b3aa",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R12-001",
@@ -51066,7 +52087,17 @@
         "docs/PORTING_TRACKER.json#C028-R12-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states The Solidity Compose profile also starts the unprofiled FullNode and collides on host ports; the canonical container drill masks the production failure by explicitly selecting only the Solidity service. Resolution states Assigned both FullNode and Solidity services to explicit mutually exclusive Compose profiles, removed the implicit default node, and changed the canonical R21 container case to inspect the complete profile-selected service set. Full selects only FullNode, solidity selects only Solidity, no profile selects no node, six focused container tests pass, and the complete ten-command C028 gate passes. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states The Solidity Compose profile also starts the unprofiled FullNode and collides on host ports; the canonical container drill masks the production failure by explicitly selecting only the Solidity service. Resolution states Assigned both FullNode and Solidity services to explicit mutually exclusive Compose profiles, removed the implicit default node, and changed the canonical R21 container case to inspect the complete profile-selected service set. Full selects only FullNode, solidity selects only Solidity, no profile selects no node, six focused container tests pass, and the complete ten-command C028 gate passes. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The Solidity Compose profile also starts the unprofiled FullNode and collides on host ports; the canonical container drill masks the production failure by explicitly selecting only the Solidity service.",
+        "tracker_summary_sha256": "ee124d025083d18364d19cfce70c309f1a2c7f37daf33f184e3c142871ba3e38",
+        "tracker_resolution": "Assigned both FullNode and Solidity services to explicit mutually exclusive Compose profiles, removed the implicit default node, and changed the canonical R21 container case to inspect the complete profile-selected service set. Full selects only FullNode, solidity selects only Solidity, no profile selects no node, six focused container tests pass, and the complete ten-command C028 gate passes.",
+        "tracker_resolution_sha256": "b41f045c021ba5fdab6ae58c80cb5bd143f6a7f660c09dec79ca24e1edd32167",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R13-001",
@@ -51074,7 +52105,19 @@
         "docs/PORTING_TRACKER.json#C028-R13-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Bootstrap ignores snapshot_policy.max_payload_bytes and enforces only the broader runtime payload cap, allowing an authenticated snapshot to exceed its configured snapshot-specific limit. Resolution states Bootstrap now computes one validated effective snapshot payload cap as the stricter nonzero minimum of runtime_limits.max_snapshot_bytes and snapshot_policy.max_payload_bytes, rejects limits that cannot fit the platform size type, and passes that cap to SnapshotSource before authentication or import. Three focused limit tests, two bootstrap tests, nine deployment tests, and the complete ten-command C028 gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Bootstrap ignores snapshot_policy.max_payload_bytes and enforces only the broader runtime payload cap, allowing an authenticated snapshot to exceed its configured snapshot-specific limit. Resolution states Bootstrap now computes one validated effective snapshot payload cap as the stricter nonzero minimum of runtime_limits.max_snapshot_bytes and snapshot_policy.max_payload_bytes, rejects limits that cannot fit the platform size type, and passes that cap to SnapshotSource before authentication or import. Three focused limit tests, two bootstrap tests, nine deployment tests, and the complete ten-command C028 gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Bootstrap ignores snapshot_policy.max_payload_bytes and enforces only the broader runtime payload cap, allowing an authenticated snapshot to exceed its configured snapshot-specific limit.",
+        "tracker_summary_sha256": "f96f7ababbc42d43c43bbf0cc06fd347bfa4f412e1e8a1d8f627cd887412e8f2",
+        "tracker_resolution": "Bootstrap now computes one validated effective snapshot payload cap as the stricter nonzero minimum of runtime_limits.max_snapshot_bytes and snapshot_policy.max_payload_bytes, rejects limits that cannot fit the platform size type, and passes that cap to SnapshotSource before authentication or import. Three focused limit tests, two bootstrap tests, nine deployment tests, and the complete ten-command C028 gate pass.",
+        "tracker_resolution_sha256": "df0da5eca05739317cf1aff69b95e4a26c780c33b804db6b85e59b1cce99d868",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "authenticated"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R14-001",
@@ -51082,7 +52125,17 @@
         "docs/PORTING_TRACKER.json#C028-R14-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states Compose accepts simultaneous Full and Solidity profiles instead of rejecting the conflicting dual-node host-port configuration. Resolution states Added a single-mode Compose launcher that requires exactly one of full or solidity before invoking Docker Compose; dual-mode, empty-mode, and direct ambiguous profile selections are rejected, with focused container regressions and the complete ten-command C028 gate passing. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states Compose accepts simultaneous Full and Solidity profiles instead of rejecting the conflicting dual-node host-port configuration. Resolution states Added a single-mode Compose launcher that requires exactly one of full or solidity before invoking Docker Compose; dual-mode, empty-mode, and direct ambiguous profile selections are rejected, with focused container regressions and the complete ten-command C028 gate passing. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Compose accepts simultaneous Full and Solidity profiles instead of rejecting the conflicting dual-node host-port configuration.",
+        "tracker_summary_sha256": "0d78ec199b4d24207a81ffbf1c0ea429b5e3d5b8fceeed5484a3f1d923b0d9c5",
+        "tracker_resolution": "Added a single-mode Compose launcher that requires exactly one of full or solidity before invoking Docker Compose; dual-mode, empty-mode, and direct ambiguous profile selections are rejected, with focused container regressions and the complete ten-command C028 gate passing.",
+        "tracker_resolution_sha256": "f604c18e0830c678ea9f9f58af661368d44264ce49f4b74ee41fcb44413170cb",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R14-002",
@@ -51090,7 +52143,17 @@
         "docs/PORTING_TRACKER.json#C028-R14-002"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states The release-candidate workflow runs the canonical gate and builds without explicitly provisioning the pinned Rust 1.85.1 toolchain. Resolution states The candidate workflow now installs, overrides, and verifies the exact pinned Rust 1.85.1 toolchain on the fresh runner before the canonical gate and release build; workflow regressions and the complete ten-command C028 gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states The release-candidate workflow runs the canonical gate and builds without explicitly provisioning the pinned Rust 1.85.1 toolchain. Resolution states The candidate workflow now installs, overrides, and verifies the exact pinned Rust 1.85.1 toolchain on the fresh runner before the canonical gate and release build; workflow regressions and the complete ten-command C028 gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The release-candidate workflow runs the canonical gate and builds without explicitly provisioning the pinned Rust 1.85.1 toolchain.",
+        "tracker_summary_sha256": "b6f1ad8ddb19f98b97346589e10ce23085eab123f3cd3e664d749ed51f440b9c",
+        "tracker_resolution": "The candidate workflow now installs, overrides, and verifies the exact pinned Rust 1.85.1 toolchain on the fresh runner before the canonical gate and release build; workflow regressions and the complete ten-command C028 gate pass.",
+        "tracker_resolution_sha256": "94b6f4d1f0149a80619cc43d1cf077fe3e29c57105da9e1932f5dd28e0072393",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R14-003",
@@ -51098,7 +52161,19 @@
         "docs/PORTING_TRACKER.json#C028-R14-003"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states The publish workflow reruns the complete C028 gate without provisioning the authenticated pinned BusyBox material required by native release assembly. Resolution states The publish pre-secret validation job now provisions authenticated pinned BusyBox package and material inputs for the complete gate rerun, while the privileged publish job receives no BusyBox executable; workflow regressions and the complete ten-command C028 gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states The publish workflow reruns the complete C028 gate without provisioning the authenticated pinned BusyBox material required by native release assembly. Resolution states The publish pre-secret validation job now provisions authenticated pinned BusyBox package and material inputs for the complete gate rerun, while the privileged publish job receives no BusyBox executable; workflow regressions and the complete ten-command C028 gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The publish workflow reruns the complete C028 gate without provisioning the authenticated pinned BusyBox material required by native release assembly.",
+        "tracker_summary_sha256": "db9d47f19745b4392fbe996f156956e066c27d68a0ab92efb92da1e682633a25",
+        "tracker_resolution": "The publish pre-secret validation job now provisions authenticated pinned BusyBox package and material inputs for the complete gate rerun, while the privileged publish job receives no BusyBox executable; workflow regressions and the complete ten-command C028 gate pass.",
+        "tracker_resolution_sha256": "21ac50db3a8ad0734206420e96f853def994d37cd8b54028f25f5f6ef95c5670",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "authenticated"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R14-004",
@@ -51106,7 +52181,17 @@
         "docs/PORTING_TRACKER.json#C028-R14-004"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category evidence_integrity: tracker summary states Snapshot descriptor loading calls fs::read before checking max_manifest_bytes, allowing unbounded allocation from an oversized descriptor. Resolution states Snapshot descriptors are now opened with retained no-follow descriptors, validated as bounded regular single-link owner-only files before allocation, read through a max-plus-one bounded loop, and revalidated against descriptor and pathname identity; sparse-oversize and substitution regressions plus the complete ten-command C028 gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category evidence_integrity: tracker summary states Snapshot descriptor loading calls fs::read before checking max_manifest_bytes, allowing unbounded allocation from an oversized descriptor. Resolution states Snapshot descriptors are now opened with retained no-follow descriptors, validated as bounded regular single-link owner-only files before allocation, read through a max-plus-one bounded loop, and revalidated against descriptor and pathname identity; sparse-oversize and substitution regressions plus the complete ten-command C028 gate pass. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Snapshot descriptor loading calls fs::read before checking max_manifest_bytes, allowing unbounded allocation from an oversized descriptor.",
+        "tracker_summary_sha256": "4751b18ae7072c0aadad75ff75f0dead9b6eb9315526a1ac716dab1134e53984",
+        "tracker_resolution": "Snapshot descriptors are now opened with retained no-follow descriptors, validated as bounded regular single-link owner-only files before allocation, read through a max-plus-one bounded loop, and revalidated against descriptor and pathname identity; sparse-oversize and substitution regressions plus the complete ten-command C028 gate pass.",
+        "tracker_resolution_sha256": "202a2debf307c5ccd91537a30a829eca375299a60e9f151d8b01eddde49e0493",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R15-001",
@@ -51114,7 +52199,19 @@
         "docs/PORTING_TRACKER.json#C028-R15-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category security_hardening: tracker summary states Candidate and signer workflow release-ID validation lacks the 128-character upper bound enforced by the authenticated schema and publish workflow, permitting inconsistent release identity acceptance across trust boundaries. Resolution states Candidate, signer, and publish workflows now enforce the exact schema-aligned 1..128 canonical release-ID regex before artifact assembly, secret provisioning, or privileged operations. Exact 1/128 acceptance and empty/129/noncanonical rejection regressions pass, the central gate hash is synchronized, and the complete ten-command C028 gate passes. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category security_hardening: tracker summary states Candidate and signer workflow release-ID validation lacks the 128-character upper bound enforced by the authenticated schema and publish workflow, permitting inconsistent release identity acceptance across trust boundaries. Resolution states Candidate, signer, and publish workflows now enforce the exact schema-aligned 1..128 canonical release-ID regex before artifact assembly, secret provisioning, or privileged operations. Exact 1/128 acceptance and empty/129/noncanonical rejection regressions pass, the central gate hash is synchronized, and the complete ten-command C028 gate passes. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "Candidate and signer workflow release-ID validation lacks the 128-character upper bound enforced by the authenticated schema and publish workflow, permitting inconsistent release identity acceptance across trust boundaries.",
+        "tracker_summary_sha256": "4c647810fd3caf13d0f3f8ecc1033d447c30d0cd73050ad4a347e865a431a8ad",
+        "tracker_resolution": "Candidate, signer, and publish workflows now enforce the exact schema-aligned 1..128 canonical release-ID regex before artifact assembly, secret provisioning, or privileged operations. Exact 1/128 acceptance and empty/129/noncanonical rejection regressions pass, the central gate hash is synchronized, and the complete ten-command C028 gate passes.",
+        "tracker_resolution_sha256": "0e2ec9a6d9377c360246f0fd43820d1b88391f4a825266d8e160afa1957b9d3f",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [
+          "authenticated"
+        ],
+        "derived_classification": "non_compatibility"
+      }
     },
     {
       "finding_id": "C028-R16-001",
@@ -51122,7 +52219,17 @@
         "docs/PORTING_TRACKER.json#C028-R16-001"
       ],
       "classification": "non_compatibility",
-      "rationale": "Evidence category release_operations: tracker summary states The offline release verifier accepts an arbitrary manifest release_id and uses it as a filesystem path component, bypassing the canonical 1..128 release identity contract and permitting unsafe path construction. Resolution states The offline verifier now validates the manifest release_id through the canonical schema-aligned 1..128 release identity type before deriving any installation path. Exact traversal, empty, 129-character, noncanonical, and 1/128 boundary regressions pass; the release drill hash is synchronized and the complete ten-command C028 gate passes. These semantics do not report a surviving Rust-versus-Java observable mismatch."
+      "rationale": "Evidence category release_operations: tracker summary states The offline release verifier accepts an arbitrary manifest release_id and uses it as a filesystem path component, bypassing the canonical 1..128 release identity contract and permitting unsafe path construction. Resolution states The offline verifier now validates the manifest release_id through the canonical schema-aligned 1..128 release identity type before deriving any installation path. Exact traversal, empty, 129-character, noncanonical, and 1/128 boundary regressions pass; the release drill hash is synchronized and the complete ten-command C028 gate passes. These semantics do not report a surviving Rust-versus-Java observable mismatch.",
+      "classification_evidence": {
+        "tracker_summary": "The offline release verifier accepts an arbitrary manifest release_id and uses it as a filesystem path component, bypassing the canonical 1..128 release identity contract and permitting unsafe path construction.",
+        "tracker_summary_sha256": "e5859c552fd1fa802722e53aeded18bf9e13963ba67cae18b5f4829836d931d8",
+        "tracker_resolution": "The offline verifier now validates the manifest release_id through the canonical schema-aligned 1..128 release identity type before deriving any installation path. Exact traversal, empty, 129-character, noncanonical, and 1/128 boundary regressions pass; the release drill hash is synchronized and the complete ten-command C028 gate passes.",
+        "tracker_resolution_sha256": "2e15b45d2d80093da8e364e3fd1fb149155939e3e15c0b5d70c554e5863694c2",
+        "observable_mismatch_markers": [],
+        "resolution_markers": [],
+        "non_compatibility_markers": [],
+        "derived_classification": "non_compatibility"
+      }
     }
   ],
   "rows": [
@@ -264392,5 +265499,45 @@
       "defect_refs": []
     }
   ],
-  "unsupported_by_owning_artifact_repair": {}
+  "unsupported_by_owning_artifact_repair": {},
+  "classification_policy": {
+    "algorithm": "c029-tracker-semantics-v1",
+    "observable_mismatch_markers": [
+      "protobuf-java",
+      "captured java error bytes",
+      "canonical persisted fork state",
+      "non-vm actuator execution",
+      "surface-specific dispatch",
+      "java-compatible 404",
+      "solidity json-rpc surface"
+    ],
+    "resolution_markers": [
+      "reproduces protobuf-java",
+      "exact byte comparison",
+      "every requested fork",
+      "exact captured java error bytes",
+      "classifies execution before vm policy",
+      "surface-specific",
+      "return 404 with byte-identical trees",
+      "without writes",
+      "removed unsupported solidity json-rpc"
+    ],
+    "non_compatibility_markers": [
+      "final review",
+      "independent review",
+      "security review",
+      "provenance reviewer",
+      "attacker-controlled",
+      "crash",
+      "tamper",
+      "toctou",
+      "command injection",
+      "trust boundary",
+      "signature",
+      "signing",
+      "authenticated",
+      "schema validation"
+    ],
+    "sha256": "1a901c4cdfda24125f90ad342cb85d2a8eefb4eb435abc21c60e4287b5c9e482"
+  }
 }
